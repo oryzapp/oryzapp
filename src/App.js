@@ -4,15 +4,14 @@ import Topbar from "./components/Topbar";
 
 function App() {
   return (
-    <div className="bg-sprGray flex flex-col">
-      <div >
-      <Topbar/>
+    <div className="bg-sprBackground flex flex-col h-screen">
+      <div>
+        <Topbar />
       </div>
-      <div className="h-screen  flex flex-auto gap-2">
-      <Sidebar/>
-      <Mainbar/>
+      <div className=" flex flex-auto gap-2 bg-black ">
+        <Sidebar />
+        <Mainbar />
       </div>
-      
     </div>
   );
 }

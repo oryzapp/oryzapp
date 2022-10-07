@@ -1,22 +1,25 @@
 import { collection, collectionGroup, onSnapshot } from "firebase/firestore";
 import { useEffect, useState } from "react";
 import db from "../firebase-config";
-export default function RiceList() {
-  const [riceList, setRiceList] = useState([]);
+export default function RiceAccessions() {
+  const [riceAccessions, setRiceAccessions] = useState([]);
 
   // console.log(riceList);
 
   useEffect(() => {
-    const riceCollectionRef = collectionGroup(db, "Raw_Rice_Data");
+    const riceCollectionRef = collection(db, "SPR/Rice_Data/Rice_Accessions");
     onSnapshot(riceCollectionRef, (snapshot) => {
-      setRiceList(snapshot.docs.map((doc) => doc.data()));
+      setRiceAccessions(snapshot.docs.map((doc) => doc.data()));
     });
   }, []);
 
   return (
     <>
       {/* header */}
-      <header className="h-5 bg-blue-600 font-bold">Rice List</header>
+      <header className="h-auto bg-blue-600 font-bold flex items-center">
+        <button className="h-8 w-8 rounded-full bg-sprPrimaryLight">+</button>
+        <h1>RiceAccessions</h1>
+      </header>
       {/* Options */}
       <div className="flex h-10 items-center gap-3  bg-blue-500">
         <div className="relative drop-shadow-sm">
@@ -53,19 +56,18 @@ export default function RiceList() {
           <thead>
             <tr>
               <th className=" py-3 px-6 font-medium">Accession</th>
-              <th className=" py-3 px-6 font-medium">Season</th>
-              <th className=" py-3 px-6 font-medium">Year</th>
-              <th className=" py-3 px-6 font-medium">Classification</th>
-              <th className=" py-3 px-6 font-medium">Variety</th>
               <th className=" py-3 px-6 font-medium">Source</th>
+              <th className=" py-3 px-6 font-medium">Variety</th>
+              <th className=" py-3 px-6 font-medium">Classification</th>
             </tr>
           </thead>
           <tbody>
-            {riceList.map((rice) => (
+            {riceAccessions.map((rice) => (
               <tr>
                 <td className="px-6 py-1">{rice.id}</td>
-                <td className="px-6 py-1">{rice.season}</td>
-                <td className="px-6 py-1">{rice.year}</td>
+                <td className="px-6 py-1">{rice.source}</td>
+                <td className="px-6 py-1">{rice.variety}</td>
+                <td className="px-6 py-1">{rice.classification}</td>
               </tr>
             ))}
           </tbody>

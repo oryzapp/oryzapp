@@ -1,6 +1,6 @@
 export default function Topbar() {
   return (
-    <div className=" h-10  my-2 -ml-4  mr-2 pl-10 pr-2 flex items-center space opacity-90 rounded-xl sm:bg-white">
+    <div className=" h-10  my-2 -ml-4  mr-2 pl-8 pr-2 flex items-center space  rounded-xl">
       {/* <div className="">hamburger</div>
       <div className="">Logo,Oryzapp</div>
       <div className="flex gap-2 justify-center">
