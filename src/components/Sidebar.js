@@ -6,7 +6,7 @@ import VegetativeStage from "../pages/VegetativeStage";
 
 export default function Sidebar() {
   return (
-    <div className=" whitespace-nowrap hidden w-auto p-3 mb-2 rounded-r-xl bg-white opacity-90 sm:block">
+    <div className=" whitespace-nowrap hidden w-auto p-3 mb-2 mr-2 rounded-r-xl bg-white opacity-90 sm:block sm:mr-0">
       <nav>
         <ul>
           <li>

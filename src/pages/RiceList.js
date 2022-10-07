@@ -48,27 +48,92 @@ export default function RiceList() {
         </div>
       </div>
       {/* Main Section */}
-      <section className=" h-full w-full bg-blue-500 ">
+      <section className=" h-full w-full bg-blue-500 flex overflow-auto ">
+        {/* <div className="h-full w-auto bg-yellow-400">Hello</div>
+        <div className="h-full w-auto bg-yellow-400">Helvvvvvvvvvvvvvvvvv</div>
+        <div className="h-full w-auto bg-yellow-400">Helvvvvvvvvvvvvvvvvv</div>
+        <div className="h-full w-auto bg-yellow-400">Helvvvvvvvvvvvvvvvvv</div>
+        <div className="h-full w-auto bg-yellow-400">Helvvvvvvvvvvvvvvvvv</div>
+        <div className="h-full w-auto bg-yellow-400">Helvvvvvvvvvvvvvvvvv</div>
+        <div className="h-full w-auto bg-yellow-400">Helvvvvvvvvvvvvvvvvv</div>
+        <div className="h-full w-auto bg-yellow-400">Helvvvvvvvvvvvvvvvvv</div>
+        <div className="h-full w-auto bg-yellow-400">Helvvvvvvvvvvvvvvvvv</div>
+        <div className="h-full w-auto bg-yellow-400">Helvvvvvvvvvvvvvvvvv</div>
+        <div className="h-full w-auto bg-yellow-400">Helvvvvvvvvvvvvvvvvv</div>
+        <div className="h-full w-auto bg-yellow-400">Helvvvvvvvvvvvvvvvvv</div>
+        <div className="h-full w-auto bg-yellow-400">Helvvvvvvvvvvvvvvvvv</div>
+        <div className="h-full w-auto bg-yellow-400">Helvvvvvvvvvvvvvvvvv</div>
+        <div className="h-full w-auto bg-yellow-400">Helvvvvvvvvvvvvvvvvv</div>
+        <div className="h-full w-auto bg-yellow-400">Helvvvvvvvvvvvvvvvvv</div>
+        <div className="h-full w-auto bg-yellow-400">Helvvvvvvvvvvvvvvvvv</div> */}
         <table>
           <thead>
             <tr>
-              <th className=" py-3 px-6 font-medium">Accession</th>
-              <th className=" py-3 px-6 font-medium">Season</th>
-              <th className=" py-3 px-6 font-medium">Year</th>
-              <th className=" py-3 px-6 font-medium">Classification</th>
-              <th className=" py-3 px-6 font-medium">Variety</th>
-              <th className=" py-3 px-6 font-medium">Source</th>
+              <td>one</td>
+              <td>one</td>
+              <td>one</td>
+              <td>one</td>
+              <td>one</td>
+              <td>one</td>
+              <td>one</td>
+              <td>one</td>
+              <td>one</td>
+              <td>one</td>
+              <td>one</td>
+              <td>one</td>
+              <td>one</td>
+              <td>one</td>
+              <td>one</td>
+              <td>one</td>
+              <td>one</td>
+              <td>one</td>
+              <td>one</td>
+              <td>one</td>
+              <td>one</td>
+              <td>one</td>
+              <td>one</td>
+              <td>one</td>
+              <td>one</td>
+              <td>one</td>
+              <td>one</td>
+              <td>one</td>
+              <td>one</td>
+              <td>one</td>
+              <td>one</td>
+              <td>one</td>
+              <td>one</td>
+              <td>one</td>
+              <td>one</td>
+              <td>one</td>
+              <td>one</td>
+              <td>one</td>
+              <td>one</td>
+              <td>one</td>
+              <td>one</td>
+              <td>one</td>
+              <td>one</td>
+              <td>one</td>
+              <td>one</td>
+              <td>one</td>
+              <td>one</td>
+              <td>one</td>
+              <td>one</td>
+              <td>one</td>
+              <td>one</td>
+              <td>one</td>
+              <td>one</td>
+              <td>one</td>
+              <td>one</td>
+              <td>one</td>
+              <td>one</td>
+              <td>one</td>
+              <td>one</td>
+              <td>one</td>
+              <td>one</td>
+              <td>one</td>
             </tr>
           </thead>
-          <tbody>
-            {riceList.map((rice) => (
-              <tr>
-                <td className="px-6 py-1">{rice.id}</td>
-                <td className="px-6 py-1">{rice.season}</td>
-                <td className="px-6 py-1">{rice.year}</td>
-              </tr>
-            ))}
-          </tbody>
+          <tbody></tbody>
         </table>
       </section>
     </>
