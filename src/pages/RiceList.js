@@ -15,10 +15,10 @@ export default function RiceList() {
 
   return (
     <>
-      {/* header */}
-      <header className="h-5 bg-blue-600 font-bold">Rice List</header>
+      {/* Header */}
+      <header className=" bg-blue-600 font-bold">Rice List</header>
       {/* Options */}
-      <div className="flex h-10 items-center gap-3  bg-blue-500">
+      <div className="flex  items-center gap-3  bg-blue-500">
         <div className="relative drop-shadow-sm">
           <input
             className=" pl-2 py-1 text-sm placeholder:text-sprGray40  rounded-full "
@@ -29,7 +29,7 @@ export default function RiceList() {
             o
           </button>
         </div>
-        <div classNam="reelative py-1 bg-white rounded-full drop-shadow-sm">
+        <div className="relative py-1 bg-white rounded-full drop-shadow-sm">
           Filter
           <div className=" hidden absolute w-28 h-auto rounded-sm p-2 z-50  bg-white">
             <label className="block" htmlFor="">
@@ -47,94 +47,33 @@ export default function RiceList() {
           </div>
         </div>
       </div>
-      {/* Main Section */}
-      <section className=" h-full w-full bg-blue-500 flex overflow-auto ">
-        {/* <div className="h-full w-auto bg-yellow-400">Hello</div>
-        <div className="h-full w-auto bg-yellow-400">Helvvvvvvvvvvvvvvvvv</div>
-        <div className="h-full w-auto bg-yellow-400">Helvvvvvvvvvvvvvvvvv</div>
-        <div className="h-full w-auto bg-yellow-400">Helvvvvvvvvvvvvvvvvv</div>
-        <div className="h-full w-auto bg-yellow-400">Helvvvvvvvvvvvvvvvvv</div>
-        <div className="h-full w-auto bg-yellow-400">Helvvvvvvvvvvvvvvvvv</div>
-        <div className="h-full w-auto bg-yellow-400">Helvvvvvvvvvvvvvvvvv</div>
-        <div className="h-full w-auto bg-yellow-400">Helvvvvvvvvvvvvvvvvv</div>
-        <div className="h-full w-auto bg-yellow-400">Helvvvvvvvvvvvvvvvvv</div>
-        <div className="h-full w-auto bg-yellow-400">Helvvvvvvvvvvvvvvvvv</div>
-        <div className="h-full w-auto bg-yellow-400">Helvvvvvvvvvvvvvvvvv</div>
-        <div className="h-full w-auto bg-yellow-400">Helvvvvvvvvvvvvvvvvv</div>
-        <div className="h-full w-auto bg-yellow-400">Helvvvvvvvvvvvvvvvvv</div>
-        <div className="h-full w-auto bg-yellow-400">Helvvvvvvvvvvvvvvvvv</div>
-        <div className="h-full w-auto bg-yellow-400">Helvvvvvvvvvvvvvvvvv</div>
-        <div className="h-full w-auto bg-yellow-400">Helvvvvvvvvvvvvvvvvv</div>
-        <div className="h-full w-auto bg-yellow-400">Helvvvvvvvvvvvvvvvvv</div> */}
-        <table>
-          <thead>
-            <tr>
-              <td>one</td>
-              <td>one</td>
-              <td>one</td>
-              <td>one</td>
-              <td>one</td>
-              <td>one</td>
-              <td>one</td>
-              <td>one</td>
-              <td>one</td>
-              <td>one</td>
-              <td>one</td>
-              <td>one</td>
-              <td>one</td>
-              <td>one</td>
-              <td>one</td>
-              <td>one</td>
-              <td>one</td>
-              <td>one</td>
-              <td>one</td>
-              <td>one</td>
-              <td>one</td>
-              <td>one</td>
-              <td>one</td>
-              <td>one</td>
-              <td>one</td>
-              <td>one</td>
-              <td>one</td>
-              <td>one</td>
-              <td>one</td>
-              <td>one</td>
-              <td>one</td>
-              <td>one</td>
-              <td>one</td>
-              <td>one</td>
-              <td>one</td>
-              <td>one</td>
-              <td>one</td>
-              <td>one</td>
-              <td>one</td>
-              <td>one</td>
-              <td>one</td>
-              <td>one</td>
-              <td>one</td>
-              <td>one</td>
-              <td>one</td>
-              <td>one</td>
-              <td>one</td>
-              <td>one</td>
-              <td>one</td>
-              <td>one</td>
-              <td>one</td>
-              <td>one</td>
-              <td>one</td>
-              <td>one</td>
-              <td>one</td>
-              <td>one</td>
-              <td>one</td>
-              <td>one</td>
-              <td>one</td>
-              <td>one</td>
-              <td>one</td>
-              <td>one</td>
-            </tr>
-          </thead>
-          <tbody></tbody>
-        </table>
+      <section className=" bg-blue-300 flex-auto overflow-auto rounded-sm scrollbar">
+        <div className="h-96 ">
+          <table className="table-auto">
+            <thead>
+              <tr>
+                <td className="pl-3 pr-0 py-3">
+                  <div className=" h-5 w-5 rounded-full bg-green-300"></div>
+                </td>
+                <td className="px-6 py-3">Accession</td>
+                <td className="px-6 py-3">Season</td>
+                <td className="px-6 py-3">Year</td>
+              </tr>
+            </thead>
+            <tbody>
+              {riceList.map((rice) => (
+                <tr>
+                  <td className="pl-3 pr-0 py-3">
+                    <div className=" h-5 w-5 rounded-full bg-green-300"></div>
+                  </td>
+                  <td className="px-6 py-1">{rice.id}</td>
+                  <td className="px-6 py-1">{rice.season}</td>
+                  <td className="px-6 py-1">{rice.year}</td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
       </section>
     </>
   );

@@ -1,3 +1,48 @@
 export default function VegetativeStage() {
-  return <div className="bg-green-600">VegetativeStage</div>;
+  return (
+    <>
+      <div>Table1</div>
+      <div>Table1</div>
+      <div>Table1</div>
+      <div>Table1</div>
+      <div>Table1</div>
+      <div>Table1</div>
+      <div>Table1</div>
+      <div>Table1</div>
+      <div>Table1</div>
+      <div>Table1</div>
+      <div>Table1</div>
+      <div>Table1</div>
+      <div>Table1</div>
+      <div>Table1</div>
+      <div>Table1</div>
+      <div>Table1</div>
+      <div>Table1</div>
+      <div>Table1</div>
+      <div>Table1</div>
+      <div>Table1</div>
+      <div>Table1</div>
+      <div>Table1</div>
+      <div>Table1</div>
+      <div>Table1</div>
+      <div>Table1</div>
+      <div>Table1</div>
+      <div>Table1</div>
+      <div>Table1</div>
+      <div>Table1</div>
+      <div>Table1</div>
+      <div>Table1</div>
+      <div>Table1</div>
+      <div>Table1</div>
+      <div>Table1</div>
+      <div>Table1</div>
+      <div>Table1</div>
+      <div>Table1</div>
+      <div>Table1</div>
+      <div>Table1</div>
+      <div>Table1</div>
+      <div>Table1</div>
+      <div>Table1</div>
+    </>
+  );
 }

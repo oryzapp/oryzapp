@@ -14,7 +14,7 @@ import YieldComponents from "./../pages/YieldComponents";
 
 export default function Mainbar() {
   return (
-    <div className="w-full max-w-full  ml-2 mr-2 mb-2 p-3 flex flex-col gap-2 rounded-xl bg-white opacity-90 overflow-hidden sm:ml-0 ">
+    <div className="  w-full max-w-full  ml-2 mr-2 mb-2 p-3 flex flex-col gap-2 rounded-xl bg-white opacity-90 overflow-hidden relative sm:ml-0 ">
       <Routes>
         <Route path="/" element={<Dashboard />} />
         <Route path="/manage-users" element={<ManageUsers />} />

@@ -20,3 +20,29 @@ code {
     @apply box-border;
   }
 }
+
+@layer utilities {
+  .scrollbar::-webkit-scrollbar {
+    width: 8px;
+    height: 8px;
+  }
+
+  .scrollbar::-webkit-scrollbar-track {
+    border-radius: 100vh;
+    /* background: #ffcf5f; */
+  }
+
+  .scrollbar::-webkit-scrollbar-thumb {
+    background: #df3f3f;
+    border-radius: 100vh;
+    /* border: 3px solid #6c742c; */
+  }
+
+  .scrollbar::-webkit-scrollbar-thumb:hover {
+    background: #d33fb3;
+  }
+
+  .scrollbar::-webkit-scrollbar-corner {
+    opacity: 0;
+  }
+}
