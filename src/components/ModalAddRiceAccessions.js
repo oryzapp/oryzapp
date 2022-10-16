@@ -1,6 +1,8 @@
+import { addDoc, collection, serverTimestamp } from "firebase/firestore";
 import React, { useState } from "react";
+import db from "../firebase-config";
 
-export default function AddRiceAccessions() {
+export default function ModalAddRiceAccessions() {
   const [state, setState] = useState({
     accession: "",
     variety: "",
@@ -8,19 +10,39 @@ export default function AddRiceAccessions() {
     classification: "",
   });
 
-  const handleChange = (e) => {
-    e.preventDefault();
+  const handleChange = async (e) => {
+    console.log(state);
     setState({
       ...state,
       [e.target.name]: e.target.value,
     });
   };
 
+  const handleSubmit = async (e) => {
+    // console.log(e.target);
+    e.preventDefault();
+
+    const collectionRef = collection(db, "SPR/Rice_Accessions/Accession_IDs");
+    const payLoad = {
+      accessionId: state.accession,
+      classification: state.classification,
+      variety: state.variety,
+      source: state.source,
+      timestamp: serverTimestamp(),
+    };
+    await addDoc(collectionRef, payLoad);
+
+    e.target.reset();
+  };
+
   return (
-    <section className="hidden addRiceModal flex flex-col p-3 bg-white w-3/6 h-4/6 absolute top-0 bottom-16 right-0 left-0 m-auto rounded-md">
+    <section className=" addRiceModal flex flex-col p-3 bg-white w-3/6 h-4/6 absolute top-0 bottom-16 right-0 left-0 m-auto rounded-md">
       <button className="bg-blue-300 absolute right-3">X</button>
       <div className="flex-auto bg-red-300">
-        <form action="" className="flex h-full flex-col bg-green-800">
+        <form
+          onSubmit={handleSubmit}
+          className="flex h-full flex-col bg-green-800"
+        >
           <label htmlFor="">
             <input
               type="text"
@@ -58,7 +80,9 @@ export default function AddRiceAccessions() {
             />
           </label>
           <div className="flex-auto  bg-slate-400">+ Add Image</div>
-          <button className=" bg-green-300">Store</button>
+          <button type="submit" className=" bg-green-300">
+            Store
+          </button>
         </form>
       </div>
     </section>

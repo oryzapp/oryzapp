@@ -2,7 +2,8 @@ import Mainbar from "./components/Mainbar";
 import Sidebar from "./components/Sidebar";
 import Topbar from "./components/Topbar";
 import { useEffect } from "react";
-import AddRiceAccessions from "./components/AddRiceAccessions";
+import ModalAddRiceAccessions from "./components/ModalAddRiceAccessions";
+import ModalAddRiceData from "./components/ModalAddRiceData";
 
 function App() {
   return (
@@ -15,7 +16,8 @@ function App() {
         <Mainbar />
       </div>
       {/* Modals */}
-      <AddRiceAccessions />
+      {/* <ModalAddRiceAccessions /> */}
+      <ModalAddRiceData />
     </div>
   );
 }

@@ -47,7 +47,10 @@ export default function Sidebar() {
             </Link>
           </li>
           <li>
-            <Link className="flex space-x-2 mb-2" to="rice-data">
+            <Link
+              className="flex space-x-2 mb-2"
+              to="rice-data/vegetative-stage"
+            >
               <div className="hidden md:block h-6 w-6 rounded-full bg-white">
                 <img className=" relative" src={ricedataLogo} alt="" />
               </div>

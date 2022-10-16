@@ -1,3 +1,4 @@
+import { async } from "@firebase/util";
 import {
   addDoc,
   collection,
@@ -7,6 +8,7 @@ import {
   updateDoc,
 } from "firebase/firestore";
 import db from "./firebase-config";
+
 export const addRiceAccession = async () => {
   const accessionId = prompt("Accession ID");
   const classification = prompt("classification");
