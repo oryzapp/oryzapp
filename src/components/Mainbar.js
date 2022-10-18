@@ -11,6 +11,7 @@ import VegetativeStage from "./../pages/VegetativeStage";
 import ReproductiveStage from "./../pages/ReproductiveStage";
 import GrainCharacteristics from "./../pages/GrainCharacteristics";
 import YieldComponents from "./../pages/YieldComponents";
+import ModalAddRiceData from "./ModalAddRiceData";
 
 export default function Mainbar() {
   return (
@@ -28,6 +29,7 @@ export default function Mainbar() {
             element={<GrainCharacteristics />}
           />
           <Route path="yield-components" element={<YieldComponents />} />
+          <Route path="add-rice-data" element={<ModalAddRiceData />} />
         </Route>
         <Route path="/rice-gallery" element={<RiceGallery />} />
         <Route path="/scan-code" element={<ScanCode />} />

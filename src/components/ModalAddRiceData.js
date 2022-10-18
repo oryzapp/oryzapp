@@ -11,6 +11,7 @@ export default function ModalAddRiceData() {
           className="flex h-full flex-col bg-green-800"
           onSubmit={addRiceData}
         >
+          <h1>Add Rice Data</h1>
           <button type="submit">Save</button>
         </form>
       </div>

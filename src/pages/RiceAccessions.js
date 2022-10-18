@@ -32,7 +32,7 @@ export default function RiceAccessions() {
   return (
     <>
       {/* Header */}
-      <header className=" bg-blue-600 font-bold flex items-center">
+      <header className="page-header bg-blue-600  flex items-center">
         <button
           className=" w-8 h-8 rounded-full bg-sprPrimaryLight"
           onClick={addRiceAccession}

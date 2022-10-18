@@ -4,6 +4,7 @@ import Topbar from "./components/Topbar";
 import { useEffect } from "react";
 import ModalAddRiceAccessions from "./components/ModalAddRiceAccessions";
 import ModalAddRiceData from "./components/ModalAddRiceData";
+import { Link, Outlet } from "react-router-dom";
 
 function App() {
   return (
@@ -17,7 +18,7 @@ function App() {
       </div>
       {/* Modals */}
       {/* <ModalAddRiceAccessions /> */}
-      <ModalAddRiceData />
+      {/* <ModalAddRiceData /> */}
     </div>
   );
 }

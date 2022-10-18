@@ -16,7 +16,7 @@ export default function RiceList() {
   return (
     <>
       {/* Header */}
-      <header className=" bg-blue-600 font-bold">Rice List</header>
+      <header className=" page-header  bg-blue-600 ">All Rice List</header>
       {/* Options */}
       <div className="flex  items-center gap-3  bg-blue-500">
         <div className="relative drop-shadow-sm">
