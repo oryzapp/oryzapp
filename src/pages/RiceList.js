@@ -13,6 +13,11 @@ export default function RiceList() {
     });
   }, []);
 
+  const trial = () => {
+    const trial = document.getElementsByClassName("trial");
+    console.log(trial);
+  };
+
   return (
     <>
       {/* Header */}
@@ -47,32 +52,45 @@ export default function RiceList() {
           </div>
         </div>
       </div>
-      <section className=" bg-blue-300 flex-auto overflow-auto rounded-sm scrollbar">
-        <div className="h-96 ">
-          <table className="table-auto">
-            <thead>
-              <tr>
-                <td className="pl-3 pr-0 py-3">
-                  <div className=" h-5 w-5 rounded-full bg-green-300"></div>
-                </td>
-                <td className="px-6 py-3">Accession</td>
-                <td className="px-6 py-3">Season</td>
-                <td className="px-6 py-3">Year</td>
-              </tr>
-            </thead>
-            <tbody>
-              {riceList.map((rice) => (
-                <tr>
-                  <td className="pl-3 pr-0 py-3">
-                    <div className=" h-5 w-5 rounded-full bg-green-300"></div>
-                  </td>
-                  <td className="px-6 py-1">{rice.id}</td>
-                  <td className="px-6 py-1">{rice.season}</td>
-                  <td className="px-6 py-1">{rice.year}</td>
-                </tr>
-              ))}
-            </tbody>
-          </table>
+      <section className=" trial bg-blue-300 flex-auto overflow-auto rounded-sm scrollbar ">
+        <div className="bg-red-500 flex">
+          <div className="w-10 bg-blue-800 ">
+            <div className="px-6 py-3 opacity-0">Action</div>
+            {riceList.map((rice) => (
+              <div className="px-6 py-3 gap-2">
+                <input type="checkbox" onClick={trial} />
+              </div>
+            ))}
+          </div>
+
+          <div className="flex-auto bg-blue-500">
+            <div className="px-6 py-3">Accession</div>
+            {riceList.map((rice) => (
+              <div className="px-6 py-3"> {rice.id}</div>
+            ))}
+          </div>
+          <div className="flex-auto bg-blue-400">
+            <div className="px-6 py-3">Season </div>
+            {riceList.map((rice) => (
+              <div className="px-6 py-3"> {rice.season}</div>
+            ))}
+          </div>
+          <div className="flex-auto bg-blue-600">
+            <div className="px-6 py-3">Year</div>
+            {riceList.map((rice) => (
+              <div className="px-6 py-3"> {rice.year}</div>
+            ))}
+          </div>
+          <div className=" bg-blue-700 ">
+            <div className="px-6 py-3 opacity-0">Action</div>
+            {riceList.map((rice) => (
+              <div className="px-6 py-3 flex gap-2">
+                <button className="bg-sprPrimary px-3 py-1 rounded-full">
+                  view
+                </button>
+              </div>
+            ))}
+          </div>
         </div>
       </section>
     </>

@@ -73,6 +73,7 @@ export default function RiceData() {
           </div>
         </div>
       </section>
+      <div className="h-5 bg-blue-900"></div>
       {/* Modal */}
     </>
   );

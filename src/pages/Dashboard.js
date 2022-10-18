@@ -2,11 +2,11 @@ export default function Dashboard() {
   return (
     <>
       {/* Header */}
-      <header className="page-header bg-blue-600 flex items-center">
+      <header className="page-header flex items-center">
         <h1>User Dashboard</h1>
       </header>
       {/* Options */}
-      <div className="flex  items-center gap-3  bg-blue-500">
+      <div className="flex  items-center gap-3 ">
         <div className="relative drop-shadow-sm">
           <input
             className=" pl-2 py-1 text-sm placeholder:text-sprGray40  rounded-full "
@@ -36,7 +36,7 @@ export default function Dashboard() {
         </div>
       </div>
       {/* Main */}
-      <section className=" bg-blue-300 w-full flex-auto overflow-auto rounded-sm scrollbar"></section>
+      <section className=" w-full flex-auto overflow-auto rounded-sm scrollbar"></section>
     </>
   );
 }
