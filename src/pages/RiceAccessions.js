@@ -6,15 +6,18 @@ import {
   query,
 } from "firebase/firestore";
 import { useEffect, useState } from "react";
+import ModalAddRiceAcc from "../components/ModalAddRiceAcc";
 import db from "../firebase-config";
 import {
   addRiceAccession,
   editRiceAccessionID,
   deleteRiceAccession,
 } from "./../util";
-export default function RiceAccessions() {
-  const [riceAccessions, setRiceAccessions] = useState([]);
+import closeIcon from "../assets/close.svg";
 
+export default function RiceAccessions({ onClose }) {
+  const [riceAccessions, setRiceAccessions] = useState([]);
+  const [isOpen, setIsOpen] = useState(false);
   // console.log(riceList);
 
   useEffect(() => {
@@ -35,7 +38,7 @@ export default function RiceAccessions() {
       <header className="page-header bg-blue-600  flex items-center">
         <button
           className=" w-8 h-8 rounded-full bg-sprPrimaryLight"
-          onClick={addRiceAccession}
+          onClick={() => setIsOpen(true)}
         >
           +
         </button>
@@ -129,6 +132,70 @@ export default function RiceAccessions() {
         </div>
       </section>
       {/* Modal */}
+      <ModalAddRiceAcc open={isOpen} onClose={() => setIsOpen(false)}>
+        <div className="flex bg-blue-400">
+          <h1 className="page-header">Add Rice Accession</h1>
+        </div>
+        <div className="flex-auto bg-yellow-400 relative">
+          <form className="flex flex-col bg-slate-400 h-full">
+            <div className="flex flex-auto flex-col lg:flex-row ">
+              <div className="flex flex-col flex-auto  bg-green-300 -space-y-2">
+                <div className="p-4 ">
+                  <input type="text" placeholder="CL-XXXX" />
+                </div>
+                <div className="p-4  flex flex-col">
+                  <label>Variety</label>
+                  <input
+                    className="rounded-full p-2 w-3/4"
+                    type="text"
+                    placeholder="CL-XXXX"
+                  />
+                </div>
+                <div className="p-4  flex flex-col">
+                  <label>Variety</label>
+                  <input
+                    className="rounded-full p-2 w-3/4"
+                    type="text"
+                    placeholder="CL-XXXX"
+                  />
+                </div>
+                <div className="p-4  flex flex-col">
+                  <label>Variety</label>
+                  <input
+                    className="rounded-full p-2 w-3/4"
+                    type="text"
+                    placeholder="CL-XXXX"
+                  />
+                </div>
+              </div>
+              <div className="flex-auto bg-yellow-600">
+                <input type="file" />
+              </div>
+            </div>
+            <div className="text-right space-x-2">
+              <button className="bg-sprPrimary rounded-full py-2 px-3">
+                Cancel
+              </button>
+              <button className="bg-sprPrimary rounded-full py-2 px-3">
+                Save
+              </button>
+            </div>
+          </form>
+        </div>
+      </ModalAddRiceAcc>
     </>
   );
 }
+
+// <div className="flex flex-auto">
+//   <div className="flex flex-col">
+//     <input type="text" placeholder="plchodler" />
+//     <input type="text" placeholder="plchodler" />
+//     <input type="text" placeholder="plchodler" />
+//   </div>
+//   <div className="place-self-center">Image</div>
+// </div>
+// <div className="flex-auto text-right space-x-2">
+//   <button>Cancel</button>
+//   <button>Save</button>
+// </div>
