@@ -7,7 +7,7 @@ export default function RiceData() {
       {/* Header */}
       <header className="page-header bg-blue-600  flex items-center">
         <button className=" w-8 h-8 rounded-full bg-sprPrimaryLight">+</button>
-        <h1>Rice Data</h1>
+        <h1 className="text-4xl font-bold text-sprBlack opacity-80">Rice Data</h1>
       </header>
       {/* Options */}
       <div className="flex  items-center gap-3  bg-blue-500">

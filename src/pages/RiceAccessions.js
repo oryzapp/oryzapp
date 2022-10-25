@@ -1,9 +1,11 @@
 import {
+  addDoc,
   collection,
   collectionGroup,
   onSnapshot,
   orderBy,
   query,
+  serverTimestamp,
 } from "firebase/firestore";
 import { useEffect, useState } from "react";
 import ModalAddRiceAcc from "../components/ModalAddRiceAcc";
@@ -15,10 +17,47 @@ import {
 } from "./../util";
 import closeIcon from "../assets/close.svg";
 
-export default function RiceAccessions({ onClose }) {
+export default function RiceAccessions() {
+  const [loading, setLoading] = useState(false)
+  const [state, setState] = useState({
+    accession: "",
+    variety: "",
+    source: "",
+    classification: "",
+  });
+
+  const handleSubmit = async (e) => {
+    setLoading(true)
+    try {
+      e.preventDefault();
+
+      const collectionRef = collection(db, "SPR/Rice_Accessions/Accession_IDs");
+      const payLoad = {
+        accessionId: state.accession,
+        classification: state.classification,
+        variety: state.variety,
+        source: state.source,
+        timestamp: serverTimestamp(),
+      };
+      await addDoc(collectionRef, payLoad);
+
+      e.target.reset();
+
+    } catch (error) {
+      alert(error)
+    }
+    setLoading(false)
+  };
+
+  const handleChange = async (e) => {
+    setState({
+      ...state,
+      [e.target.name]: e.target.value,
+    });
+  };
+
   const [riceAccessions, setRiceAccessions] = useState([]);
   const [isOpen, setIsOpen] = useState(false);
-  // console.log(riceList);
 
   useEffect(() => {
     const collectionRef = collection(db, "SPR/Rice_Accessions/Accession_IDs");
@@ -35,14 +74,14 @@ export default function RiceAccessions({ onClose }) {
   return (
     <>
       {/* Header */}
-      <header className="page-header bg-blue-600  flex items-center">
+      <header className=" bg-blue-600  flex items-center">
         <button
           className=" w-8 h-8 rounded-full bg-sprPrimaryLight"
           onClick={() => setIsOpen(true)}
         >
           +
         </button>
-        <h1>Rice Accessions</h1>
+        <h1 className="text-4xl font-bold text-sprBlack opacity-80">Rice Accessions</h1>
       </header>
       {/* Options */}
       <div className="flex  items-center gap-3  bg-blue-500">
@@ -137,46 +176,53 @@ export default function RiceAccessions({ onClose }) {
           <h1 className="page-header">Add Rice Accession</h1>
         </div>
         <div className="flex-auto bg-yellow-400 relative">
-          <form className="flex flex-col bg-slate-400 h-full">
+          <form className="flex flex-col bg-slate-400 h-full" onSubmit={handleSubmit}>
             <div className="flex flex-auto flex-col lg:flex-row ">
               <div className="flex flex-col flex-auto  bg-green-300 -space-y-2">
                 <div className="p-4 ">
-                  <input type="text" placeholder="CL-XXXX" />
+                  <input type="text" placeholder="CL-XXXX" name='accession' value={state.accession} onChange={handleChange} />
                 </div>
                 <div className="p-4  flex flex-col">
                   <label>Variety</label>
                   <input
                     className="rounded-full p-2 w-3/4"
                     type="text"
-                    placeholder="CL-XXXX"
+                    name="variety"
+                    value={state.variety}
+                    onChange={handleChange}
                   />
                 </div>
                 <div className="p-4  flex flex-col">
-                  <label>Variety</label>
+                  <label>Source</label>
                   <input
                     className="rounded-full p-2 w-3/4"
                     type="text"
-                    placeholder="CL-XXXX"
+                    name="source"
+                    value={state.source}
+                    onChange={handleChange}
+
                   />
                 </div>
                 <div className="p-4  flex flex-col">
-                  <label>Variety</label>
+                  <label>Classification</label>
                   <input
                     className="rounded-full p-2 w-3/4"
                     type="text"
-                    placeholder="CL-XXXX"
+                    name="classification"
+                    value={state.classification}
+                    onChange={handleChange}
                   />
                 </div>
               </div>
               <div className="flex-auto bg-yellow-600">
-                <input type="file" />
+                {/* <input type="file" /> */}
               </div>
             </div>
             <div className="text-right space-x-2">
               <button className="bg-sprPrimary rounded-full py-2 px-3">
                 Cancel
               </button>
-              <button className="bg-sprPrimary rounded-full py-2 px-3">
+              <button type="submit" className="bg-sprPrimary rounded-full py-2 px-3">
                 Save
               </button>
             </div>

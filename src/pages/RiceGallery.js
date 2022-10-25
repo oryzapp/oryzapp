@@ -2,8 +2,8 @@ export default function RiceGallery() {
   return (
     <>
       {/* Header */}
-      <header className="page-header bg-blue-600 flex items-center">
-        <h1>Rice Gallery</h1>
+      <header className=" bg-blue-600 flex items-center">
+        <h1 className="text-4xl font-bold text-sprBlack opacity-80">Rice Gallery</h1>
       </header>
       {/* Options */}
       <div className="flex  items-center gap-3  bg-blue-500">

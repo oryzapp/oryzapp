@@ -32,14 +32,15 @@ export default function ManageUsers() {
   return (
     <>
       {/* Header */}
-      <header className="page-header bg-blue-600  flex items-center">
+      <header className=" bg-blue-600  flex items-center">
         <button
           className=" w-8 h-8 rounded-full bg-sprPrimaryLight"
           onClick={addRiceAccession}
         >
           +
         </button>
-        <h1>Manage Users</h1>
+        <h1 className="text-4xl font-bold text-sprBlack opacity-80">
+          Manage Users</h1>
       </header>
       {/* Options */}
       <div className="flex  items-center gap-3  bg-blue-500">

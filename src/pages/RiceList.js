@@ -1,10 +1,12 @@
 import { collection, collectionGroup, onSnapshot } from "firebase/firestore";
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import db from "../firebase-config";
 export default function RiceList() {
+  const listOff = useRef(false)
+
+
   const [riceList, setRiceList] = useState([]);
 
-  // console.log(riceList);
 
   useEffect(() => {
     const riceCollectionRef = collectionGroup(db, "Raw_Rice_Data");
@@ -12,6 +14,10 @@ export default function RiceList() {
       setRiceList(snapshot.docs.map((doc) => doc.data()));
     });
   }, []);
+
+  useEffect(() => {
+    console.log(listOff.current.value);
+  }, [])
 
   const trial = () => {
     const trial = document.getElementsByClassName("trial");
@@ -21,7 +27,9 @@ export default function RiceList() {
   return (
     <>
       {/* Header */}
-      <header className=" page-header  bg-blue-600 ">All Rice List</header>
+      <header className="  bg-blue-600 ">
+        <h1 className="text-4xl font-bold text-sprBlack opacity-80">Rice List</h1>
+      </header>
       {/* Options */}
       <div className="flex  items-center gap-3  bg-blue-500">
         <div className="relative drop-shadow-sm">
@@ -63,29 +71,29 @@ export default function RiceList() {
             ))}
           </div>
 
-          <div className="flex-auto bg-blue-500">
-            <div className="px-6 py-3">Accession</div>
+          <div className="flex-auto divide-y divide-slate-400 bg-blue-500">
+            <div className="px-6 py-3 ">Accession</div>
             {riceList.map((rice) => (
               <div className="px-6 py-3"> {rice.id}</div>
             ))}
           </div>
-          <div className="flex-auto bg-blue-400">
+          <div className="flex-auto divide-y divide-slate-400 bg-blue-400">
             <div className="px-6 py-3">Season </div>
             {riceList.map((rice) => (
               <div className="px-6 py-3"> {rice.season}</div>
             ))}
           </div>
-          <div className="flex-auto bg-blue-600">
+          <div className="flex-auto divide-y divide-slate-400 bg-blue-600">
             <div className="px-6 py-3">Year</div>
             {riceList.map((rice) => (
               <div className="px-6 py-3"> {rice.year}</div>
             ))}
           </div>
-          <div className=" bg-blue-700 ">
+          <div className="divide-y divide-slate-400 bg-blue-700 ">
             <div className="px-6 py-3 opacity-0">Action</div>
             {riceList.map((rice) => (
               <div className="px-6 py-3 flex gap-2">
-                <button className="bg-sprPrimary px-3 py-1 rounded-full">
+                <button className="bg-sprPrimary px-3 py-1 rounded-full" onClick={(() => { console.log('hi'); })}>
                   view
                 </button>
               </div>

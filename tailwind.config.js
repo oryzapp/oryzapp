@@ -11,6 +11,7 @@ module.exports = {
     extend: {
       colors: {
         sprBackground: "#EBEBEB",
+        sprBlack: "#121414",
         sprGray: "rgba(18, 20, 20)",
         sprGray90: "rgba(18, 20, 20, 0.9)",
         sprGray80: "rgba(18, 20, 20, 0.8)",

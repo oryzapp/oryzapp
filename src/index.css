@@ -32,7 +32,16 @@
 * {
   font-family: "Poppins", sans-serif;
 }
-.page-header {
-  font-size: x-large;
+
+/* .page-header {
+  font-size: xx-large;
   font-weight: 600;
+  color: #121414;
+  opacity: 80%;
+} */
+
+.nav-text {
+  font-size: larger;
+  font-weight: 500;
+  color: #888a89;
 }
