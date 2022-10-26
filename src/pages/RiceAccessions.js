@@ -18,7 +18,7 @@ import {
 import closeIcon from "../assets/close.svg";
 
 export default function RiceAccessions() {
-  const [loading, setLoading] = useState(false)
+  const [loading, setLoading] = useState(false);
   const [state, setState] = useState({
     accession: "",
     variety: "",
@@ -27,7 +27,7 @@ export default function RiceAccessions() {
   });
 
   const handleSubmit = async (e) => {
-    setLoading(true)
+    setLoading(true);
     try {
       e.preventDefault();
 
@@ -42,11 +42,10 @@ export default function RiceAccessions() {
       await addDoc(collectionRef, payLoad);
 
       e.target.reset();
-
     } catch (error) {
-      alert(error)
+      alert(error);
     }
-    setLoading(false)
+    setLoading(false);
   };
 
   const handleChange = async (e) => {
@@ -81,7 +80,9 @@ export default function RiceAccessions() {
         >
           +
         </button>
-        <h1 className="text-4xl font-bold text-sprBlack opacity-80">Rice Accessions</h1>
+        <h1 className="text-4xl font-bold text-sprBlack opacity-80">
+          Rice Accessions
+        </h1>
       </header>
       {/* Options */}
       <div className="flex  items-center gap-3  bg-blue-500">
@@ -117,32 +118,32 @@ export default function RiceAccessions() {
       <section className=" bg-blue-300 w-full flex-auto overflow-auto rounded-sm scrollbar">
         <div className="bg-red-600 z-50">ddd</div>
         <div className="bg-red-500 flex">
-          <div className="flex-auto bg-blue-500">
+          <div className="flex-auto divide-y divide-slate-400 bg-blue-500">
             <div className="px-6 py-3">Accessions</div>
             {riceAccessions.map((rice) => (
               <div className="px-6 py-3">{rice.accessionId}</div>
             ))}
           </div>
-          <div className="flex-auto">
+          <div className="flex-auto divide-y divide-slate-400">
             <div className="px-6 py-3">Classification</div>
             {riceAccessions.map((rice) => (
               <div className="px-6 py-3">{rice.classification}</div>
             ))}
           </div>
-          <div className="flex-auto">
+          <div className="flex-auto divide-y divide-slate-400">
             <div className="px-6 py-3">Variety</div>
             {riceAccessions.map((rice) => (
               <div className="px-6 py-3">{rice.variety}</div>
             ))}
           </div>
-          <div className="flex-auto">
+          <div className="flex-auto divide-y divide-slate-400">
             <div className="px-6 py-3">Source</div>
             {riceAccessions.map((rice) => (
               <div className="px-6 py-3">{rice.variety}</div>
             ))}
           </div>
 
-          <div className=" hidden  md:block">
+          <div className=" divide-y divide-slate-400">
             <div className="px-6 py-3 opacity-0">Action</div>
             {riceAccessions.map((rice) => (
               <div className="px-6 py-3 flex gap-2">
@@ -176,11 +177,20 @@ export default function RiceAccessions() {
           <h1 className="page-header">Add Rice Accession</h1>
         </div>
         <div className="flex-auto bg-yellow-400 relative">
-          <form className="flex flex-col bg-slate-400 h-full" onSubmit={handleSubmit}>
+          <form
+            className="flex flex-col bg-slate-400 h-full"
+            onSubmit={handleSubmit}
+          >
             <div className="flex flex-auto flex-col lg:flex-row ">
               <div className="flex flex-col flex-auto  bg-green-300 -space-y-2">
                 <div className="p-4 ">
-                  <input type="text" placeholder="CL-XXXX" name='accession' value={state.accession} onChange={handleChange} />
+                  <input
+                    type="text"
+                    placeholder="CL-XXXX"
+                    name="accession"
+                    value={state.accession}
+                    onChange={handleChange}
+                  />
                 </div>
                 <div className="p-4  flex flex-col">
                   <label>Variety</label>
@@ -200,7 +210,6 @@ export default function RiceAccessions() {
                     name="source"
                     value={state.source}
                     onChange={handleChange}
-
                   />
                 </div>
                 <div className="p-4  flex flex-col">
@@ -219,10 +228,18 @@ export default function RiceAccessions() {
               </div>
             </div>
             <div className="text-right space-x-2">
-              <button className="bg-sprPrimary rounded-full py-2 px-3">
+              <button
+                className="bg-sprPrimary rounded-full py-2 px-3"
+                onClick={() => {
+                  setIsOpen(false);
+                }}
+              >
                 Cancel
               </button>
-              <button type="submit" className="bg-sprPrimary rounded-full py-2 px-3">
+              <button
+                type="submit"
+                className="bg-sprPrimary rounded-full py-2 px-3"
+              >
                 Save
               </button>
             </div>

@@ -15,7 +15,7 @@ import ModalAddRiceData from "./ModalAddRiceData";
 
 export default function Mainbar() {
   return (
-    <div className=" h-full max-h-full w-full max-w-full  p-3 flex flex-col gap-2 rounded-xl bg-white opacity-90 overflow-hidden relative sm:ml-0 ">
+    <div className=" h-full max-h-full w-full max-w-full  p-3 flex flex-col gap-2 rounded-t-xl sm:rounded-xl bg-white opacity-90 overflow-hidden relative sm:ml-0 ">
       <Routes>
         <Route path="/" element={<Dashboard />} />
         <Route path="/manage-users" element={<ManageUsers />} />
