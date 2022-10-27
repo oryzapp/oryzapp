@@ -16,6 +16,8 @@ import {
   deleteRiceAccession,
 } from "./../util";
 import closeIcon from "../assets/close.svg";
+import delIcon from "../assets/delete-icon.svg"
+import editIcon from "../assets/edit-icon.svg"
 
 export default function RiceAccessions() {
   const [loading, setLoading] = useState(false);
@@ -156,7 +158,7 @@ export default function RiceAccessions() {
                     editRiceAccessionID(rice.id);
                   }}
                 >
-                  e
+                  <img className=" relative" src={editIcon} alt="" />
                 </button>
                 <button
                   className="bg-sprPrimary px-3 py-1 rounded-full"
@@ -164,7 +166,7 @@ export default function RiceAccessions() {
                     deleteRiceAccession(rice.id);
                   }}
                 >
-                  d
+                  <img className=" relative" src={delIcon} alt="" />
                 </button>
               </div>
             ))}

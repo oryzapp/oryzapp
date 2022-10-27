@@ -1,12 +1,26 @@
 import { Link, Outlet } from "react-router-dom";
 import ReproductiveStage from "./ReproductiveStage";
 import GrainCharacteristics from "./GrainCharacteristics";
+import ModalAddRiceData from "../components/ModalAddRiceData";
+import { useState } from "react";
+
 export default function RiceData() {
+  const [showModal, setShowModal] = useState(false)
+
+//   function change_tab(id)
+//  {
+//    document.getElementById("page_content").innerHTML=document.getElementById(id+"_desc").innerHTML;
+//    document.getElementById("page1").className="notselected";
+//    document.getElementById("page2").className="notselected";
+//    document.getElementById("page3").className="notselected";
+//    document.getElementById(id).className="selected";
+//  }
+
   return (
     <>
       {/* Header */}
       <header className="page-header bg-blue-600  flex items-center">
-        <button className=" w-8 h-8 rounded-full bg-sprPrimaryLight">+</button>
+        <button className=" w-8 h-8 rounded-full bg-sprPrimaryLight" onClick={() => setShowModal(true)}>+</button>
         <h1 className="text-4xl font-bold text-sprBlack opacity-80">Rice Data</h1>
       </header>
       {/* Options */}
@@ -75,6 +89,68 @@ export default function RiceData() {
       </section>
       <div className="h-5 bg-blue-900"></div>
       {/* Modal */}
+      <ModalAddRiceData open={showModal} onClose={() => setShowModal(false)}>
+      <div className="flex bg-blue-400">
+          <h1 className="page-header">Add Rice Data</h1>
+        </div>
+        <div className="flex-auto bg-yellow-400 relative">
+          <form
+            className="flex flex-col bg-slate-400 h-full"
+            // onSubmit={handleSubmit}
+          >
+            <div id="main_content mt-12 ml-60">
+              <li className="selected inline p-2.5 cursor-pointer" id="page1" onclick>Page1</li>
+              <li className="notselected inline p-2.5 cursor-pointer" id="page2" onclick>Page2</li>
+              <li className="notselected inline p-2.5 cursor-pointer" id="page3" onclick>Page3</li>
+
+              <div className='hidden_desc hidden' id="page1_desc">
+              <h2>Page 1</h2>
+              Hello this is Page 1 description and this is just a sample text .This is the demo of Multiple Tab In Single Page Using JavaScript and CSS. 
+              Hello this is Page 1 description and this is just a sample text .This is the demo of Multiple Tab In Single Page Using JavaScript and CSS.
+              Hello this is Page 1 description and this is just a sample text .This is the demo of Multiple Tab In Single Page Using JavaScript and CSS.
+              </div>
+
+              <div className='hidden_desc hidden' id="page2_desc">
+              <h2>Page 2</h2>
+              Hello this is Page 2 description and this is just a sample text .This is the demo of Multiple Tab In Single Page Using JavaScript and CSS.
+              </div>
+
+              <div className='hidden_desc hidden' id="page3_desc">
+              <h2>Page 3</h2>
+              Hello this is Page 3 description and this is just a sample text .This is the demo of Multiple Tab In Single Page Using JavaScript and CSS. 
+              Hello this is Page 3 description and this is just a sample text .This is the demo of Multiple Tab In Single Page Using JavaScript and CSS.
+              </div>
+
+              <div id="page_content p-2.5 mt-2.5">
+              <h2>Page 1</h2>
+              Hello this is Page 1 description and this is just a sample text .This is the demo of Multiple Tab In Single Page Using JavaScript and CSS. 
+              Hello this is Page 1 description and this is just a sample text .This is the demo of Multiple Tab In Single Page Using JavaScript and CSS.
+              Hello this is Page 1 description and this is just a sample text .This is the demo of Multiple Tab In Single Page Using JavaScript and CSS.
+              </div>
+            </div>
+
+
+            
+            <div className="text-right space-x-2">
+              <button
+                className="bg-sprPrimary rounded-full py-2 px-3"
+                onClick={() => {
+                  setShowModal(false);
+                }}
+              >
+                Cancel
+              </button>
+              
+              <button
+                type="submit"
+                className="bg-sprPrimary rounded-full py-2 px-3"
+              >
+                Save
+              </button>
+            </div>
+          </form>
+        </div>
+      </ModalAddRiceData>
     </>
   );
 }
