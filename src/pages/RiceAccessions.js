@@ -236,6 +236,7 @@ export default function RiceAccessions() {
               >
                 Cancel
               </button>
+              
               <button
                 type="submit"
                 className="bg-sprPrimary rounded-full py-2 px-3"

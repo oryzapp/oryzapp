@@ -2,11 +2,25 @@ import { collection, collectionGroup, onSnapshot } from "firebase/firestore";
 import { useEffect, useRef, useState } from "react";
 import db from "../firebase-config";
 export default function RiceList() {
-  const listOff = useRef(false)
+  const [toggleView, setToggleView] = useState("list");
 
+  // useEffect(() => {
+  //   console.log(toggleView);
 
+  //   if (toggleView === "list") {
+  //     const list = document.getElementsByClassName("toggle-list");
+  //     const grid = document.getElementsByClassName("toggle-grid");
+  //     list.classList.remove("hidden");
+  //     grid.classList.add("hidden");
+  //   }
+  //   if (toggleView === "grid") {
+  //     const list = document.getElementsByClassName("toggle-list");
+  //     const grid = document.getElementsByClassName("toggle-grid");
+  //     grid.classList.remove("hidden");
+  //     list.classList.add("hidden");
+  //   }
+  // });
   const [riceList, setRiceList] = useState([]);
-
 
   useEffect(() => {
     const riceCollectionRef = collectionGroup(db, "Raw_Rice_Data");
@@ -15,20 +29,13 @@ export default function RiceList() {
     });
   }, []);
 
-  useEffect(() => {
-    console.log(listOff.current.value);
-  }, [])
-
-  const trial = () => {
-    const trial = document.getElementsByClassName("trial");
-    console.log(trial);
-  };
-
   return (
     <>
       {/* Header */}
       <header className="  bg-blue-600 ">
-        <h1 className="text-4xl font-bold text-sprBlack opacity-80">Rice List</h1>
+        <h1 className="text-4xl font-bold text-sprBlack opacity-80">
+          Rice List
+        </h1>
       </header>
       {/* Options */}
       <div className="flex  items-center gap-3  bg-blue-500">
@@ -59,46 +66,101 @@ export default function RiceList() {
             </label>
           </div>
         </div>
+        <div className="block">
+          <button
+            onClick={() => {
+              setToggleView("list");
+            }}
+          >
+            list
+          </button>
+          <button
+            onClick={() => {
+              setToggleView("grid");
+            }}
+          >
+            grid
+          </button>
+        </div>
       </div>
       <section className=" trial bg-blue-300 flex-auto overflow-auto rounded-sm scrollbar ">
-        <div className="bg-red-500 flex">
-          <div className="w-10 bg-blue-800 ">
+        <div className="toggle-list bg-red-500 flex">
+          <div className="w-10 hidden sm:block bg-blue-800 ">
             <div className="px-6 py-3 opacity-0">Action</div>
             {riceList.map((rice) => (
               <div className="px-6 py-3 gap-2">
-                <input type="checkbox" onClick={trial} />
+                <input type="checkbox" />
               </div>
             ))}
           </div>
 
-          <div className="flex-auto divide-y divide-slate-400 bg-blue-500">
+          <div className="hidden sm:block flex-auto divide-y divide-slate-400 bg-blue-500">
             <div className="px-6 py-3 ">Accession</div>
             {riceList.map((rice) => (
               <div className="px-6 py-3"> {rice.id}</div>
             ))}
           </div>
-          <div className="flex-auto divide-y divide-slate-400 bg-blue-400">
+          <div className=" hidden sm:block flex-auto divide-y divide-slate-400 bg-blue-400">
             <div className="px-6 py-3">Season </div>
             {riceList.map((rice) => (
               <div className="px-6 py-3"> {rice.season}</div>
             ))}
           </div>
-          <div className="flex-auto divide-y divide-slate-400 bg-blue-600">
+          <div className="hidden sm:block flex-auto divide-y divide-slate-400 bg-blue-600">
             <div className="px-6 py-3">Year</div>
             {riceList.map((rice) => (
               <div className="px-6 py-3"> {rice.year}</div>
             ))}
           </div>
-          <div className="divide-y divide-slate-400 bg-blue-700 ">
-            <div className="px-6 py-3 opacity-0">Action</div>
+          <div className="divide-y divide-slate-400 bg-blue-700 w-full sm:w-auto ">
+            <div className="px-6 py-3 opacity-0 hidden sm:block">Action</div>
             {riceList.map((rice) => (
-              <div className="px-6 py-3 flex gap-2">
-                <button className="bg-sprPrimary px-3 py-1 rounded-full" onClick={(() => { console.log('hi'); })}>
+              <div className="px-6 py-3 flex items-center justify-between gap-2">
+                <div className=" sm:hidden">
+                  <h1 className="text-2xl font-bold text-sprBlack opacity-80">
+                    {rice.id}
+                  </h1>
+                  <h6 className="text-md font-medium text-sprGray60">
+                    {rice.season}
+                  </h6>
+                  <h6 className="text-md font-medium text-sprGray60">
+                    {rice.year}
+                  </h6>
+                </div>
+                <button
+                  className="bg-sprPrimary w-16 h-10 rounded-full"
+                  onClick={() => {
+                    console.log("hi");
+                  }}
+                >
                   view
                 </button>
               </div>
             ))}
           </div>
+        </div>
+        <div className=" hidden toggle-grid grid grid-cols-2 sm:grid-cols-3  lg:grid-cols-6  gap-2 p-2 bg-blue-800">
+          {riceList.map((rice) => (
+            <div className="flex flex-col bg-yellow-500  p-2 rounded-md">
+              <div className=" bg-red-600"></div>
+              <div className="flex justify-between items-center">
+                <div>
+                  <h1 className="text-xl font-bold text-sprBlack opacity-80">
+                    {rice.id}
+                  </h1>
+                  <h6 className="text-xs font-medium text-sprGray60">
+                    {rice.season}
+                  </h6>
+                  <h6 className="text-xs font-medium text-sprGray60">
+                    {rice.year}
+                  </h6>
+                </div>
+                <button className="bg-sprPrimary w-14 h-8 rounded-full">
+                  view
+                </button>
+              </div>
+            </div>
+          ))}
         </div>
       </section>
     </>
