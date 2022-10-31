@@ -5,10 +5,12 @@ import { useEffect } from "react";
 import ModalAddRiceAccessions from "./components/ModalAddRiceAccessions";
 import ModalAddRiceData from "./components/ModalAddRiceData";
 import { Link, Outlet } from "react-router-dom";
+import Login from "./pages/Login";
 
 function App() {
   return (
     <div className=" bg-sprBackground flex flex-col h-screen relative ">
+      <Login/>
       <div className="">
         <Topbar />
       </div>
