@@ -117,7 +117,7 @@ export default function RiceAccessions() {
         </div>
       </div>
       {/* Main */}
-      <section className=" bg-blue-300 w-full flex-auto overflow-auto rounded-sm scrollbar">
+      {/* <section className=" bg-blue-300 w-full flex-auto overflow-auto rounded-sm scrollbar">
         <div className="bg-red-600 z-50">ddd</div>
         <div className="bg-red-500 flex">
           <div className="flex-auto divide-y divide-slate-400 bg-blue-500">
@@ -171,6 +171,110 @@ export default function RiceAccessions() {
               </div>
             ))}
           </div>
+        </div>
+      </section> */}
+      <section className="  bg-blue-300 flex-auto overflow-auto rounded-sm scrollbar ">
+        <div className=" bg-red-500 flex">
+          <div className="w-10 hidden sm:block bg-blue-800 ">
+            <div className="px-6 py-3 opacity-0">Action</div>
+            {riceAccessions.map((rice) => (
+              <div className="px-6 py-3 gap-2">
+                <input type="checkbox" />
+              </div>
+            ))}
+          </div>
+
+          <div className="hidden sm:block flex-auto divide-y divide-slate-400 bg-blue-500">
+            <div className="px-6 py-3 ">Accession</div>
+            {riceAccessions.map((rice) => (
+              <div className="px-6 py-3"> {rice.accessionId}</div>
+            ))}
+          </div>
+          <div className=" hidden sm:block flex-auto divide-y divide-slate-400 bg-blue-400">
+            <div className="px-6 py-3">Classification </div>
+            {riceAccessions.map((rice) => (
+              <div className="px-6 py-3"> {rice.classification}</div>
+            ))}
+          </div>
+          <div className="hidden sm:block flex-auto divide-y divide-slate-400 bg-blue-600">
+            <div className="px-6 py-3">Variety</div>
+            {riceAccessions.map((rice) => (
+              <div className="px-6 py-3"> {rice.variety}</div>
+            ))}
+          </div>
+          <div className="hidden sm:block flex-auto divide-y divide-slate-400 bg-blue-600">
+            <div className="px-6 py-3">Source</div>
+            {riceAccessions.map((rice) => (
+              <div className="px-6 py-3"> {rice.source}</div>
+            ))}
+          </div>
+          <div className="divide-y divide-slate-400 bg-blue-700 w-full sm:w-auto ">
+            <div className="px-6 py-3 opacity-0 hidden sm:block">Action</div>
+            {riceAccessions.map((rice) => (
+              <div className="px-6 py-3 flex items-center justify-between gap-2">
+                <div className=" sm:hidden">
+                  <h1 className="text-2xl font-bold text-sprBlack opacity-80">
+                    {rice.id}
+                  </h1>
+                  <h6 className="text-md  font-medium text-sprGray60">
+                    {rice.season}
+                  </h6>
+                  <h6 className="text-md font-medium text-sprGray60">
+                    {rice.year}
+                  </h6>
+                </div>
+                <button
+                  className="bg-sprPrimary px-2 rounded-full"
+                  onClick={() => {
+                    console.log("hi");
+                  }}
+                >
+                  view
+                </button>
+
+
+                <button
+                  className="hidden sm:block p-1 bg-sprPrimary rounded-full "
+                  onClick={() => {
+                    editRiceAccessionID(rice.id);
+                  }}
+                >
+                  <img className=" h-4 w-4  relative" src={editIcon} alt="" />
+                </button>
+                <button
+                  className="hidden sm:block p-1 bg-sprPrimary rounded-full"
+                  onClick={() => {
+                    deleteRiceAccession(rice.id);
+                  }}
+                >
+                  <img className=" h-4 w-4 relative" src={delIcon} alt="" />
+                </button>
+              </div>
+            ))}
+          </div>
+        </div>
+        <div className="hidden  grid grid-cols-2 sm:grid-cols-3  lg:grid-cols-6  gap-2 p-2 bg-blue-800">
+          {riceAccessions.map((rice) => (
+            <div className="flex flex-col bg-yellow-500  p-2 rounded-md">
+              <div className=" bg-red-600"></div>
+              <div className="flex justify-between items-center">
+                <div>
+                  <h1 className="text-xl font-bold text-sprBlack opacity-80">
+                    {rice.accessionId}
+                  </h1>
+                  <h6 className="text-xs font-medium text-sprGray60">
+                    {rice.variety}
+                  </h6>
+                  <h6 className="text-xs font-medium text-sprGray60">
+                    {rice.source}
+                  </h6>
+                </div>
+                <button className="bg-sprPrimary w-14 h-8 rounded-full">
+                  view
+                </button>
+              </div>
+            </div>
+          ))}
         </div>
       </section>
       {/* Modal */}
@@ -238,7 +342,7 @@ export default function RiceAccessions() {
               >
                 Cancel
               </button>
-              
+
               <button
                 type="submit"
                 className="bg-sprPrimary rounded-full py-2 px-3"
@@ -253,15 +357,3 @@ export default function RiceAccessions() {
   );
 }
 
-// <div className="flex flex-auto">
-//   <div className="flex flex-col">
-//     <input type="text" placeholder="plchodler" />
-//     <input type="text" placeholder="plchodler" />
-//     <input type="text" placeholder="plchodler" />
-//   </div>
-//   <div className="place-self-center">Image</div>
-// </div>
-// <div className="flex-auto text-right space-x-2">
-//   <button>Cancel</button>
-//   <button>Save</button>
-// </div>

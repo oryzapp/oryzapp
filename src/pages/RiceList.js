@@ -2,24 +2,7 @@ import { collection, collectionGroup, onSnapshot } from "firebase/firestore";
 import { useEffect, useRef, useState } from "react";
 import db from "../firebase-config";
 export default function RiceList() {
-  const [toggleView, setToggleView] = useState("list");
 
-  // useEffect(() => {
-  //   console.log(toggleView);
-
-  //   if (toggleView === "list") {
-  //     const list = document.getElementsByClassName("toggle-list");
-  //     const grid = document.getElementsByClassName("toggle-grid");
-  //     list.classList.remove("hidden");
-  //     grid.classList.add("hidden");
-  //   }
-  //   if (toggleView === "grid") {
-  //     const list = document.getElementsByClassName("toggle-list");
-  //     const grid = document.getElementsByClassName("toggle-grid");
-  //     grid.classList.remove("hidden");
-  //     list.classList.add("hidden");
-  //   }
-  // });
   const [riceList, setRiceList] = useState([]);
 
   useEffect(() => {
@@ -68,23 +51,18 @@ export default function RiceList() {
         </div>
         <div className="block">
           <button
-            onClick={() => {
-              setToggleView("list");
-            }}
           >
             list
           </button>
           <button
-            onClick={() => {
-              setToggleView("grid");
-            }}
           >
             grid
           </button>
         </div>
       </div>
-      <section className=" trial bg-blue-300 flex-auto overflow-auto rounded-sm scrollbar ">
-        <div className="toggle-list bg-red-500 flex">
+      {/* Main */}
+      <section className="  bg-blue-300 flex-auto overflow-auto rounded-sm scrollbar ">
+        <div className=" bg-red-500 flex">
           <div className="w-10 hidden sm:block bg-blue-800 ">
             <div className="px-6 py-3 opacity-0">Action</div>
             {riceList.map((rice) => (
@@ -128,18 +106,19 @@ export default function RiceList() {
                   </h6>
                 </div>
                 <button
-                  className="bg-sprPrimary w-16 h-10 rounded-full"
+                  className="bg-sprPrimary px-4 py-2 sm:py-0 sm:px-2 rounded-full"
                   onClick={() => {
                     console.log("hi");
                   }}
                 >
                   view
                 </button>
+
               </div>
             ))}
           </div>
         </div>
-        <div className=" hidden toggle-grid grid grid-cols-2 sm:grid-cols-3  lg:grid-cols-6  gap-2 p-2 bg-blue-800">
+        <div className="hidden  grid grid-cols-2 sm:grid-cols-3  lg:grid-cols-6  gap-2 p-2 bg-blue-800">
           {riceList.map((rice) => (
             <div className="flex flex-col bg-yellow-500  p-2 rounded-md">
               <div className=" bg-red-600"></div>
