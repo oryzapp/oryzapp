@@ -3,7 +3,7 @@ export default function RiceGallery() {
     <>
       {/* Header */}
       <header className=" bg-blue-600 flex items-center">
-        <h1 className="text-4xl font-bold text-sprBlack opacity-80">Rice Gallery</h1>
+        <h1 className="text-3xl font-bold text-sprBlack opacity-80">Rice Gallery</h1>
       </header>
       {/* Options */}
       <div className="flex  items-center gap-3  bg-blue-500">

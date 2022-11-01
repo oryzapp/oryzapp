@@ -14,7 +14,7 @@ export default function Sidebar() {
       <nav className="flex flex-row  sm:flex-col ">
         <div className="flex justify-center  flex-auto   sm:justify-start ">
           <Link className="flex items-center space-x-1  md:mb-2 " to="/">
-            <div className="rounded-xl h-10 w-10  mb-2 bg-yellow-300">
+            <div className="rounded-xl h-8 w-8  mb-2 bg-yellow-300">
               <img className=" relative" src={userLogo} alt="" />
             </div>
             <h3 className="nav-text hidden  md:block">Dashboard</h3>
@@ -25,7 +25,7 @@ export default function Sidebar() {
             className="flex items-center  space-x-1  md:mb-2 "
             to="manage-users"
           >
-            <div className="rounded-xl h-10 w-10 mb-2 bg-yellow-300">
+            <div className="rounded-xl h-8 w-8 mb-2 bg-yellow-300">
               <img className=" relative" src={userLogo} alt="" />
             </div>
             <h3 className="nav-text hidden  md:block">Manage Users</h3>
@@ -36,7 +36,7 @@ export default function Sidebar() {
             className="flex items-center space-x-1  md:mb-2 "
             to="rice-list"
           >
-            <div className="rounded-xl h-10 w-10 mb-2 bg-yellow-300">
+            <div className="rounded-xl h-8 w-8 mb-2 bg-yellow-300">
               <img className=" relative" src={userLogo} alt="" />
             </div>
             <h3 className="nav-text hidden  md:block">Rice List</h3>
@@ -47,7 +47,7 @@ export default function Sidebar() {
             className="flex items-center space-x-1  md:mb-2 "
             to="rice-accessions"
           >
-            <div className="rounded-xl h-10 w-10 mb-2 bg-yellow-300">
+            <div className="rounded-xl h-8 w-8 mb-2 bg-yellow-300">
               <img className=" relative" src={userLogo} alt="" />
             </div>
             <h3 className="nav-text hidden  md:block">Rice Accessions</h3>
@@ -56,9 +56,9 @@ export default function Sidebar() {
         <div className="flex-auto hidden sm:block">
           <Link
             className="flex items-center space-x-1  md:mb-2 "
-            to="rice-data"
+            to="rice-data/vegetative-stage"
           >
-            <div className="rounded-xl h-10 w-10 mb-2 bg-yellow-300">
+            <div className="rounded-xl h-8 w-8 mb-2 bg-yellow-300">
               <img className=" relative" src={userLogo} alt="" />
             </div>
             <h3 className="nav-text hidden  md:block">Rice Data</h3>
@@ -69,7 +69,7 @@ export default function Sidebar() {
             className="flex items-center space-x-1  md:mb-2 "
             to="rice-gallery"
           >
-            <div className="rounded-xl h-10 w-10 mb-2 bg-yellow-300">
+            <div className="rounded-xl h-8 w-8 mb-2 bg-yellow-300">
               <img className=" relative" src={userLogo} alt="" />
             </div>
             <h3 className="nav-text hidden  md:block">Rice Gallery</h3>
@@ -80,7 +80,7 @@ export default function Sidebar() {
             className="flex items-center space-x-1  md:mb-2 "
             to="scan-code"
           >
-            <div className="rounded-xl h-10 w-10 mb-2 bg-yellow-300">
+            <div className="rounded-xl h-8 w-8 mb-2 bg-yellow-300">
               <img className=" relative" src={userLogo} alt="" />
             </div>
             <h3 className="nav-text hidden  md:block">Scan Code</h3>

@@ -39,7 +39,7 @@ export default function ManageUsers() {
         >
           +
         </button>
-        <h1 className="text-4xl font-bold text-sprBlack opacity-80">
+        <h1 className="text-3xl font-bold text-sprBlack opacity-80">
           Manage Users</h1>
       </header>
       {/* Options */}

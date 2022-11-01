@@ -3,7 +3,7 @@ export default function Dashboard() {
     <>
       {/* Header */}
       <header className=" flex items-center">
-        <h1 className="text-4xl font-bold text-sprBlack opacity-80">Dashboard</h1>
+        <h1 className="text-3xl font-bold text-sprBlack opacity-80">Dashboard</h1>
       </header>
 
       {/* Main */}

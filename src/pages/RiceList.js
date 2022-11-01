@@ -16,7 +16,7 @@ export default function RiceList() {
     <>
       {/* Header */}
       <header className="  bg-blue-600 ">
-        <h1 className="text-4xl font-bold text-sprBlack opacity-80">
+        <h1 className="text-3xl font-bold text-sprBlack opacity-80">
           Rice List
         </h1>
       </header>

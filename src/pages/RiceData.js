@@ -3,25 +3,25 @@ import ReproductiveStage from "./ReproductiveStage";
 import GrainCharacteristics from "./GrainCharacteristics";
 import ModalAddRiceData from "../components/ModalAddRiceData";
 import { useState } from "react";
+import delIcon from "../assets/delete-icon.svg"
 
 export default function RiceData() {
   const [showModal, setShowModal] = useState(false)
+  const [toggleState, setToggleState] = useState(1)
+  console.log(toggleState);
 
-//   function change_tab(id)
-//  {
-//    document.getElementById("page_content").innerHTML=document.getElementById(id+"_desc").innerHTML;
-//    document.getElementById("page1").className="notselected";
-//    document.getElementById("page2").className="notselected";
-//    document.getElementById("page3").className="notselected";
-//    document.getElementById(id).className="selected";
-//  }
+  const toggleTab = (index) => {
+    setToggleState(index)
+  }
+
+
 
   return (
     <>
       {/* Header */}
       <header className="page-header bg-blue-600  flex items-center">
         <button className=" w-8 h-8 rounded-full bg-sprPrimaryLight" onClick={() => setShowModal(true)}>+</button>
-        <h1 className="text-4xl font-bold text-sprBlack opacity-80">Rice Data</h1>
+        <h1 className="text-3xl font-bold text-sprBlack opacity-80">Rice Data</h1>
       </header>
       {/* Options */}
       <div className="flex  items-center gap-3  bg-blue-500">
@@ -59,24 +59,28 @@ export default function RiceData() {
           <div className="bg-yellow-500 h-full">
             <nav className="bg-green-800 h-full">
               <ul className="flex flex-col  bg-gray-600 h-full">
-                <li className=" flex items-center  flex-auto  bg-green-300 ">
+                <li className=" flex items-center  flex-auto p-2 bg-green-300 ">
                   <Link to="vegetative-stage">
-                    <div className="bg-red-500 rounded-full h-4 w-4"></div>
+                    <img className=" h-4 w-4 relative" src={delIcon} alt="" />
+
                   </Link>
                 </li>
-                <li className=" flex items-center flex-auto  bg-green-500">
+                <li className=" flex items-center flex-auto p-2  bg-green-500">
                   <Link to="reproductive-stage">
-                    <div className="bg-red-500 rounded-full h-4 w-4"></div>
+                    <img className=" h-4 w-4 relative" src={delIcon} alt="" />
+
                   </Link>
                 </li>
-                <li className=" flex items-center flex-auto bg-green-700">
+                <li className=" flex items-center flex-auto p-2 bg-green-700">
                   <Link to="grain-characteristics">
-                    <div className="bg-red-500 rounded-full h-4 w-4"></div>
+                    <img className=" h-4 w-4 relative" src={delIcon} alt="" />
+
                   </Link>
                 </li>
-                <li className=" flex items-center flex-auto bg-green-900">
+                <li className=" flex items-center flex-auto p-2 bg-green-900">
                   <Link to="yield-components">
-                    <div className="bg-red-500 rounded-full h-4 w-4"></div>
+                    <img className=" h-4 w-4 relative" src={delIcon} alt="" />
+
                   </Link>
                 </li>
               </ul>
@@ -87,50 +91,75 @@ export default function RiceData() {
           </div>
         </div>
       </section>
-      <div className="h-5 bg-blue-900"></div>
       {/* Modal */}
       <ModalAddRiceData open={showModal} onClose={() => setShowModal(false)}>
-      <div className="flex bg-blue-400">
+        <div className="flex bg-blue-400">
           <h1 className="page-header">Add Rice Data</h1>
         </div>
         <div className="flex-auto bg-yellow-400 relative">
           <form
             className="flex flex-col bg-slate-400 h-full"
-            // onSubmit={handleSubmit}
+          // onSubmit={handleSubmit}
           >
-            <div id="main_content mt-12 ml-60">
-              <li className="selected inline p-2.5 cursor-pointer" id="page1" onclick>Page1</li>
-              <li className="notselected inline p-2.5 cursor-pointer" id="page2" onclick>Page2</li>
-              <li className="notselected inline p-2.5 cursor-pointer" id="page3" onclick>Page3</li>
-
-              <div className='hidden_desc hidden' id="page1_desc">
-              <h2>Page 1</h2>
-              Hello this is Page 1 description and this is just a sample text .This is the demo of Multiple Tab In Single Page Using JavaScript and CSS. 
-              Hello this is Page 1 description and this is just a sample text .This is the demo of Multiple Tab In Single Page Using JavaScript and CSS.
-              Hello this is Page 1 description and this is just a sample text .This is the demo of Multiple Tab In Single Page Using JavaScript and CSS.
+            <div className="flex whitespace-nowrap bg-blue-300">
+              <div>
+                <select name="" id=""></select>
               </div>
-
-              <div className='hidden_desc hidden' id="page2_desc">
-              <h2>Page 2</h2>
-              Hello this is Page 2 description and this is just a sample text .This is the demo of Multiple Tab In Single Page Using JavaScript and CSS.
+              <div>
+                <button>Wet</button>
+                <button>Dry</button>
               </div>
-
-              <div className='hidden_desc hidden' id="page3_desc">
-              <h2>Page 3</h2>
-              Hello this is Page 3 description and this is just a sample text .This is the demo of Multiple Tab In Single Page Using JavaScript and CSS. 
-              Hello this is Page 3 description and this is just a sample text .This is the demo of Multiple Tab In Single Page Using JavaScript and CSS.
-              </div>
-
-              <div id="page_content p-2.5 mt-2.5">
-              <h2>Page 1</h2>
-              Hello this is Page 1 description and this is just a sample text .This is the demo of Multiple Tab In Single Page Using JavaScript and CSS. 
-              Hello this is Page 1 description and this is just a sample text .This is the demo of Multiple Tab In Single Page Using JavaScript and CSS.
-              Hello this is Page 1 description and this is just a sample text .This is the demo of Multiple Tab In Single Page Using JavaScript and CSS.
+              <div>
+                <button>Year</button>
               </div>
             </div>
 
+            <div className=" flex  bg-red-600">
 
-            
+              <div className="flex cursor-pointer">
+                <div className={toggleState === 1 ? "border-b-2 border-b-sprPrimary" : ""} onClick={() => toggleTab(1)}>
+                  <img src="" alt="" />
+                  <p>Vegetative Stage</p>
+                </div>
+                <div className={toggleState === 2 ? "border-b-2 border-b-sprPrimary" : ""} onClick={() => toggleTab(2)}>
+
+
+                  <img src="" alt="" />
+                  <h3>Reproductive Stage</h3>
+                </div>
+                <div className={toggleState === 3 ? "border-b-2 border-b-sprPrimary" : ""} onClick={() => toggleTab(3)}>
+
+                  <img src="" alt="" />
+                  <h3>Grain Characteristics</h3>
+
+                </div>
+                <div className={toggleState === 4 ? "border-b-2 border-b-sprPrimary" : ""} onClick={() => toggleTab(4)}>
+
+                  <h3>Yield Components</h3>
+                  <img src="" alt="" />
+                </div>
+              </div>
+            </div>
+
+            <div className="flex-auto">
+              <div className={toggleState === 1 ? "flex" : "hidden"}>
+                first
+              </div>
+              <div className={toggleState === 2 ? "flex" : "hidden"}>
+                second
+              </div>
+              <div className={toggleState === 3 ? "flex" : "hidden"} >
+                third
+              </div>
+              <div className={toggleState === 4 ? "flex" : "hidden"} >
+                fourth
+              </div>
+
+            </div>
+
+
+
+
             <div className="text-right space-x-2">
               <button
                 className="bg-sprPrimary rounded-full py-2 px-3"
@@ -140,7 +169,7 @@ export default function RiceData() {
               >
                 Cancel
               </button>
-              
+
               <button
                 type="submit"
                 className="bg-sprPrimary rounded-full py-2 px-3"

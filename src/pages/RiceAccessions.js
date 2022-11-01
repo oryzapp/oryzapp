@@ -82,7 +82,7 @@ export default function RiceAccessions() {
         >
           +
         </button>
-        <h1 className="text-4xl font-bold text-sprBlack opacity-80">
+        <h1 className="text-3xl font-bold text-sprBlack opacity-80">
           Rice Accessions
         </h1>
       </header>
@@ -117,62 +117,7 @@ export default function RiceAccessions() {
         </div>
       </div>
       {/* Main */}
-      {/* <section className=" bg-blue-300 w-full flex-auto overflow-auto rounded-sm scrollbar">
-        <div className="bg-red-600 z-50">ddd</div>
-        <div className="bg-red-500 flex">
-          <div className="flex-auto divide-y divide-slate-400 bg-blue-500">
-            <div className="px-6 py-3">Accessions</div>
-            {riceAccessions.map((rice) => (
-              <div className="px-6 py-3">{rice.accessionId}</div>
-            ))}
-          </div>
-          <div className="flex-auto divide-y divide-slate-400">
-            <div className="px-6 py-3">Classification</div>
-            {riceAccessions.map((rice) => (
-              <div className="px-6 py-3">{rice.classification}</div>
-            ))}
-          </div>
-          <div className="flex-auto divide-y divide-slate-400">
-            <div className="px-6 py-3">Variety</div>
-            {riceAccessions.map((rice) => (
-              <div className="px-6 py-3">{rice.variety}</div>
-            ))}
-          </div>
-          <div className="flex-auto divide-y divide-slate-400">
-            <div className="px-6 py-3">Source</div>
-            {riceAccessions.map((rice) => (
-              <div className="px-6 py-3">{rice.variety}</div>
-            ))}
-          </div>
 
-          <div className=" divide-y divide-slate-400">
-            <div className="px-6 py-3 opacity-0">Action</div>
-            {riceAccessions.map((rice) => (
-              <div className="px-6 py-3 flex gap-2">
-                <button className="bg-sprPrimary px-3 py-1 rounded-full">
-                  view
-                </button>
-                <button
-                  className="bg-sprPrimary px-3 py-1 rounded-full"
-                  onClick={() => {
-                    editRiceAccessionID(rice.id);
-                  }}
-                >
-                  <img className=" relative" src={editIcon} alt="" />
-                </button>
-                <button
-                  className="bg-sprPrimary px-3 py-1 rounded-full"
-                  onClick={() => {
-                    deleteRiceAccession(rice.id);
-                  }}
-                >
-                  <img className=" relative" src={delIcon} alt="" />
-                </button>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section> */}
       <section className="  bg-blue-300 flex-auto overflow-auto rounded-sm scrollbar ">
         <div className=" bg-red-500 flex">
           <div className="w-10 hidden sm:block bg-blue-800 ">
@@ -214,17 +159,17 @@ export default function RiceAccessions() {
               <div className="px-6 py-3 flex items-center justify-between gap-2">
                 <div className=" sm:hidden">
                   <h1 className="text-2xl font-bold text-sprBlack opacity-80">
-                    {rice.id}
+                    {rice.accessionId}
                   </h1>
                   <h6 className="text-md  font-medium text-sprGray60">
-                    {rice.season}
+                    {rice.variety}
                   </h6>
                   <h6 className="text-md font-medium text-sprGray60">
-                    {rice.year}
+                    {rice.source}
                   </h6>
                 </div>
                 <button
-                  className="bg-sprPrimary px-2 rounded-full"
+                  className="bg-sprPrimary py-2 px-4 sm:px-2 sm:py-0 rounded-full"
                   onClick={() => {
                     console.log("hi");
                   }}
@@ -234,7 +179,7 @@ export default function RiceAccessions() {
 
 
                 <button
-                  className="hidden sm:block p-1 bg-sprPrimary rounded-full "
+                  className="hidden lg:block p-1 bg-sprPrimary rounded-full "
                   onClick={() => {
                     editRiceAccessionID(rice.id);
                   }}
@@ -242,7 +187,7 @@ export default function RiceAccessions() {
                   <img className=" h-4 w-4  relative" src={editIcon} alt="" />
                 </button>
                 <button
-                  className="hidden sm:block p-1 bg-sprPrimary rounded-full"
+                  className="hidden lg:block p-1 bg-sprPrimary rounded-full"
                   onClick={() => {
                     deleteRiceAccession(rice.id);
                   }}

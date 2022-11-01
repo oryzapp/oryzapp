@@ -3,7 +3,7 @@ export default function ScanCode() {
     <>
       {/* Header */}
       <header className=" flex items-center">
-        <h1 className="text-4xl font-bold text-sprBlack opacity-80">
+        <h1 className="text-3xl font-bold text-sprBlack opacity-80">
           Scan Code
         </h1>
       </header>
