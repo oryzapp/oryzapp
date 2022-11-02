@@ -7,6 +7,12 @@ import delIcon from "../assets/delete-icon.svg"
 import { addDoc, collection, doc, serverTimestamp } from "firebase/firestore";
 import db from "../firebase-config";
 
+import addIcon from '../assets/add-icon.svg'
+import vegetativeStageIcon from '../assets/vegetative-stage-icon.svg'
+import reproductiveStageIcon from '../assets/reproductive-stage-icon.svg'
+import grainCharacteristicsIcon from '../assets/grain-characteristics-icon.svg'
+import yieldComponentsIcon from '../assets/yield-components-icon.svg'
+import dashboardIcon from '../assets/dashboard-icon.svg'
 
 export default function RiceData() {
   const [showModal, setShowModal] = useState(false)
@@ -85,7 +91,9 @@ export default function RiceData() {
     <>
       {/* Header */}
       <header className="page-header bg-blue-600  flex items-center">
-        <button className=" w-8 h-8 rounded-full bg-sprPrimaryLight" onClick={() => setShowModal(true)}>+</button>
+        <button className=" w-8 h-8 p-2 rounded-full bg-sprPrimary" onClick={() => setShowModal(true)}>
+          <img src={addIcon} alt="" />
+        </button>
         <h1 className="text-3xl font-bold text-sprBlack opacity-80">Rice Data</h1>
       </header>
       {/* Options */}
@@ -126,25 +134,25 @@ export default function RiceData() {
               <ul className="flex flex-col  bg-gray-600 h-full">
                 <li className=" flex items-center  flex-auto  bg-green-300 ">
                   <Link to="vegetative-stage">
-                    <img className=" h-5 w-5 relative bg-blue-500 " src={delIcon} alt="" />
+                    <img className=" h-4 w relative bg-blue-500 " src={dashboardIcon} alt="" />
 
                   </Link>
                 </li>
                 <li className=" flex items-center flex-auto   bg-green-500">
                   <Link to="reproductive-stage">
-                    <img className=" h-5 w-5 relative" src={delIcon} alt="" />
+                    <img className=" h-5 w-5 relative" src={reproductiveStageIcon} alt="" />
 
                   </Link>
                 </li>
                 <li className=" flex items-center flex-auto  bg-green-700">
                   <Link to="grain-characteristics">
-                    <img className=" h-5 w-5 relative" src={delIcon} alt="" />
+                    <img className=" h-5 w-5 relative" src={grainCharacteristicsIcon} alt="" />
 
                   </Link>
                 </li>
                 <li className=" flex items-center flex-auto  bg-green-900">
                   <Link to="yield-components">
-                    <img className=" h-5 w-5  relative" src={delIcon} alt="" />
+                    <img className=" h-5 w-5  relative" src={yieldComponentsIcon} alt="" />
 
                   </Link>
                 </li>

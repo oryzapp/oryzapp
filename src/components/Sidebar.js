@@ -4,7 +4,14 @@ import RiceList from "./../pages/RiceList";
 import RiceAccessions from "./../pages/RiceAccessions";
 import VegetativeStage from "../pages/VegetativeStage";
 
-import userLogo from "../assets/user-logo.svg";
+import dashboardIcon from "../assets/dashboard-icon.svg"
+import manageUsersIcon from "../assets/manage-users-icon.svg"
+import riceAccessionsIcon from "../assets/rice-accessions-icon.svg"
+import riceListIcon from "../assets/rice-list-icon.svg"
+import riceDataIcon from "../assets/rice-data-icon.svg"
+import riceGalleryIcon from "../assets/rice-gallery-icon.svg"
+import scanQRCodeIcon from "../assets/scan-qr-code-icon.svg"
+
 import { useEffect } from "react";
 import { useRef } from "react";
 
@@ -15,7 +22,7 @@ export default function Sidebar() {
         <div className="flex justify-center  flex-auto   sm:justify-start ">
           <Link className="flex items-center space-x-1  md:mb-2 " to="/">
             <div className="rounded-xl h-8 w-8  mb-2 bg-yellow-300">
-              <img className=" relative" src={userLogo} alt="" />
+              <img className=" relative" src={dashboardIcon} alt="" />
             </div>
             <h3 className="nav-text hidden  md:block">Dashboard</h3>
           </Link>
@@ -26,7 +33,7 @@ export default function Sidebar() {
             to="manage-users"
           >
             <div className="rounded-xl h-8 w-8 mb-2 bg-yellow-300">
-              <img className=" relative" src={userLogo} alt="" />
+              <img className=" relative" src={manageUsersIcon} alt="" />
             </div>
             <h3 className="nav-text hidden  md:block">Manage Users</h3>
           </Link>
@@ -37,7 +44,7 @@ export default function Sidebar() {
             to="rice-list"
           >
             <div className="rounded-xl h-8 w-8 mb-2 bg-yellow-300">
-              <img className=" relative" src={userLogo} alt="" />
+              <img className=" relative" src={riceListIcon} alt="" />
             </div>
             <h3 className="nav-text hidden  md:block">Rice List</h3>
           </Link>
@@ -48,7 +55,7 @@ export default function Sidebar() {
             to="rice-accessions"
           >
             <div className="rounded-xl h-8 w-8 mb-2 bg-yellow-300">
-              <img className=" relative" src={userLogo} alt="" />
+              <img className=" relative" src={riceAccessionsIcon} alt="" />
             </div>
             <h3 className="nav-text hidden  md:block">Rice Accessions</h3>
           </Link>
@@ -59,7 +66,7 @@ export default function Sidebar() {
             to="rice-data/vegetative-stage"
           >
             <div className="rounded-xl h-8 w-8 mb-2 bg-yellow-300">
-              <img className=" relative" src={userLogo} alt="" />
+              <img className=" relative" src={riceDataIcon} alt="" />
             </div>
             <h3 className="nav-text hidden  md:block">Rice Data</h3>
           </Link>
@@ -70,7 +77,7 @@ export default function Sidebar() {
             to="rice-gallery"
           >
             <div className="rounded-xl h-8 w-8 mb-2 bg-yellow-300">
-              <img className=" relative" src={userLogo} alt="" />
+              <img className=" relative" src={riceGalleryIcon} alt="" />
             </div>
             <h3 className="nav-text hidden  md:block">Rice Gallery</h3>
           </Link>
@@ -81,7 +88,7 @@ export default function Sidebar() {
             to="scan-code"
           >
             <div className="rounded-xl h-8 w-8 mb-2 bg-yellow-300">
-              <img className=" relative" src={userLogo} alt="" />
+              <img className="" src={scanQRCodeIcon} alt="" />
             </div>
             <h3 className="nav-text hidden  md:block">Scan Code</h3>
           </Link>
