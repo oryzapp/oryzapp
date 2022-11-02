@@ -4,16 +4,81 @@ import GrainCharacteristics from "./GrainCharacteristics";
 import ModalAddRiceData from "../components/ModalAddRiceData";
 import { useState } from "react";
 import delIcon from "../assets/delete-icon.svg"
+import { addDoc, collection, doc, serverTimestamp } from "firebase/firestore";
+import db from "../firebase-config";
+
 
 export default function RiceData() {
   const [showModal, setShowModal] = useState(false)
   const [toggleState, setToggleState] = useState(1)
-  console.log(toggleState);
+  const [riceData, setRiceData] = useState({
+    vegetativeStage: '',
+    reproductiveStage: '',
+    grainCharacteristics: '',
+    yieldComponents: '',
+
+  })
+  const [season, setSeason] = useState('Dry_Season')
 
   const toggleTab = (index) => {
     setToggleState(index)
   }
 
+  const handleSubmit = async (e) => {
+    try {
+      e.preventDefault();
+      // Vegetative Stage
+      const vsDocRef = collection(db, `/SPR/Rice_Seasons/Seasons/${season}/Stages/Vegetative_Stage/Raw_Rice_Data`);
+      const vsPayLoad = {
+        vegetativeStage:
+          riceData.vegetativeStage
+        ,
+        timestamp: serverTimestamp(),
+      };
+      const rsDocRef = collection(db, `/SPR/Rice_Seasons/Seasons/${season}/Stages/Reproductive_Stage/Raw_Rice_Data`);
+      const rsPayLoad = {
+        reproductiveStage:
+          riceData.reproductiveStage
+        ,
+        timestamp: serverTimestamp(),
+      };
+      const gcDocRef = collection(db, `/SPR/Rice_Seasons/Seasons/${season}/Stages/Grain_Characteristics/Raw_Rice_Data`);
+      const gcPayLoad = {
+        vegetativeStage:
+          riceData.reproductiveStage
+        ,
+        timestamp: serverTimestamp(),
+      };
+      const ycDocRef = collection(db, `/SPR/Rice_Seasons/Seasons/${season}/Stages/Yield_Components/Raw_Rice_Data`);
+      const ycPayLoad = {
+        vegetativeStage:
+          riceData.reproductiveStage
+        ,
+        timestamp: serverTimestamp(),
+      };
+
+      console.log('b');
+      await addDoc(vsDocRef, vsPayLoad);
+      await addDoc(rsDocRef, rsPayLoad);
+      await addDoc(gcDocRef, gcPayLoad);
+      await addDoc(ycDocRef, ycPayLoad);
+      // Reproductive Stage
+      // Grain Characteristics
+      // Yield Components
+
+      e.target.reset();
+      setShowModal(false)
+    } catch (error) {
+      alert(error);
+    }
+  };
+
+  const handleChange = async (e) => {
+    setRiceData({
+      ...riceData,
+      [e.target.name]: e.target.value,
+    });
+  };
 
 
   return (
@@ -57,29 +122,29 @@ export default function RiceData() {
       <section className=" bg-blue-300 w-full flex-auto overflow-auto rounded-sm scrollbar">
         <div className="bg-red-500 h-full flex">
           <div className="bg-yellow-500 h-full">
-            <nav className="bg-green-800 h-full">
+            <nav className="bg-green-800 h-full w-4 mx-2">
               <ul className="flex flex-col  bg-gray-600 h-full">
-                <li className=" flex items-center  flex-auto p-2 bg-green-300 ">
+                <li className=" flex items-center  flex-auto  bg-green-300 ">
                   <Link to="vegetative-stage">
-                    <img className=" h-4 w-4 relative" src={delIcon} alt="" />
+                    <img className=" h-5 w-5 relative bg-blue-500 " src={delIcon} alt="" />
 
                   </Link>
                 </li>
-                <li className=" flex items-center flex-auto p-2  bg-green-500">
+                <li className=" flex items-center flex-auto   bg-green-500">
                   <Link to="reproductive-stage">
-                    <img className=" h-4 w-4 relative" src={delIcon} alt="" />
+                    <img className=" h-5 w-5 relative" src={delIcon} alt="" />
 
                   </Link>
                 </li>
-                <li className=" flex items-center flex-auto p-2 bg-green-700">
+                <li className=" flex items-center flex-auto  bg-green-700">
                   <Link to="grain-characteristics">
-                    <img className=" h-4 w-4 relative" src={delIcon} alt="" />
+                    <img className=" h-5 w-5 relative" src={delIcon} alt="" />
 
                   </Link>
                 </li>
-                <li className=" flex items-center flex-auto p-2 bg-green-900">
+                <li className=" flex items-center flex-auto  bg-green-900">
                   <Link to="yield-components">
-                    <img className=" h-4 w-4 relative" src={delIcon} alt="" />
+                    <img className=" h-5 w-5  relative" src={delIcon} alt="" />
 
                   </Link>
                 </li>
@@ -99,7 +164,7 @@ export default function RiceData() {
         <div className="flex-auto bg-yellow-400 relative">
           <form
             className="flex flex-col bg-slate-400 h-full"
-          // onSubmit={handleSubmit}
+            onSubmit={handleSubmit}
           >
             <div className="flex whitespace-nowrap bg-blue-300">
               <div>
@@ -143,16 +208,31 @@ export default function RiceData() {
 
             <div className="flex-auto">
               <div className={toggleState === 1 ? "flex" : "hidden"}>
-                first
+                <div>
+                  <label htmlFor="">Vegetative Trial input</label>
+                  <input type="text" name="vegetativeStage" value={riceData.vegetativeStage} onChange={handleChange} />
+                </div>
               </div>
               <div className={toggleState === 2 ? "flex" : "hidden"}>
-                second
+                <div>
+                  <label htmlFor="">Reproductive Trial input</label>
+                  <input type="text" name="reproductiveStage" value={riceData.reproductiveStage} onChange={handleChange} />
+
+                </div>
               </div>
               <div className={toggleState === 3 ? "flex" : "hidden"} >
-                third
+                <div>
+                  <label htmlFor="">Grain Trial input</label>
+                  <input type="text" name="grainCharacteristics" value={riceData.grainCharacteristics} onChange={handleChange} />
+
+                </div>
               </div>
               <div className={toggleState === 4 ? "flex" : "hidden"} >
-                fourth
+                <div>
+                  <label htmlFor="">Yield Trial input</label>
+                  <input type="text" name="yieldComponents" value={riceData.yieldComponents} onChange={handleChange} />
+
+                </div>
               </div>
 
             </div>

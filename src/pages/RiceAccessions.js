@@ -20,7 +20,6 @@ import delIcon from "../assets/delete-icon.svg"
 import editIcon from "../assets/edit-icon.svg"
 
 export default function RiceAccessions() {
-  const [loading, setLoading] = useState(false);
   const [state, setState] = useState({
     accession: "",
     variety: "",
@@ -29,7 +28,6 @@ export default function RiceAccessions() {
   });
 
   const handleSubmit = async (e) => {
-    setLoading(true);
     try {
       e.preventDefault();
 
@@ -43,11 +41,12 @@ export default function RiceAccessions() {
       };
       await addDoc(collectionRef, payLoad);
 
+
       e.target.reset();
+      setIsOpen(false)
     } catch (error) {
       alert(error);
     }
-    setLoading(false);
   };
 
   const handleChange = async (e) => {
