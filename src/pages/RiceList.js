@@ -62,15 +62,8 @@ export default function RiceList() {
       </div>
       {/* Main */}
       <section className="  bg-blue-300 flex-auto overflow-auto rounded-sm scrollbar ">
-        <div className=" bg-red-500 flex">
-          <div className="w-10 hidden sm:block bg-blue-800 ">
-            <div className="px-6 py-3 opacity-0">Action</div>
-            {riceList.map((rice) => (
-              <div className="px-6 py-3 gap-2">
-                <input type="checkbox" />
-              </div>
-            ))}
-          </div>
+        <div className=" bg-red-500 flex h-96">
+
 
           <div className="hidden sm:block flex-auto divide-y divide-slate-400 bg-blue-500">
             <div className="px-6 py-3 ">Accession</div>

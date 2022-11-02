@@ -122,44 +122,37 @@ export default function RiceAccessions() {
       {/* Main */}
 
       <section className="  bg-blue-300 flex-auto overflow-auto rounded-sm scrollbar ">
-        <div className=" bg-red-500 flex">
-          <div className="w-10 hidden sm:block bg-blue-800 ">
-            <div className="px-6 py-3 opacity-0">Action</div>
-            {riceAccessions.map((rice) => (
-              <div className="px-6 py-3 gap-2">
-                <input type="checkbox" />
-              </div>
-            ))}
-          </div>
+        <div className=" bg-red-500 flex h-96 ">
+
 
           <div className="hidden sm:block flex-auto divide-y divide-slate-400 bg-blue-500">
-            <div className="px-6 py-3 ">Accession</div>
+            <div className="px-6 py-2 ">Accession</div>
             {riceAccessions.map((rice) => (
-              <div className="px-6 py-3"> {rice.accessionId}</div>
+              <div className="px-6 py-2"> {rice.accessionId}</div>
             ))}
           </div>
           <div className=" hidden sm:block flex-auto divide-y divide-slate-400 bg-blue-400">
-            <div className="px-6 py-3">Classification </div>
+            <div className="px-6 py-2">Classification </div>
             {riceAccessions.map((rice) => (
-              <div className="px-6 py-3"> {rice.classification}</div>
+              <div className="px-6 py-2"> {rice.classification}</div>
             ))}
           </div>
           <div className="hidden sm:block flex-auto divide-y divide-slate-400 bg-blue-600">
-            <div className="px-6 py-3">Variety</div>
+            <div className="px-6 py-2">Variety</div>
             {riceAccessions.map((rice) => (
-              <div className="px-6 py-3"> {rice.variety}</div>
+              <div className="px-6 py-2"> {rice.variety}</div>
             ))}
           </div>
           <div className="hidden sm:block flex-auto divide-y divide-slate-400 bg-blue-600">
-            <div className="px-6 py-3">Source</div>
+            <div className="px-6 py-2">Source</div>
             {riceAccessions.map((rice) => (
-              <div className="px-6 py-3"> {rice.source}</div>
+              <div className="px-6 py-2"> {rice.source}</div>
             ))}
           </div>
           <div className="divide-y divide-slate-400 bg-blue-700 w-full sm:w-auto ">
-            <div className="px-6 py-3 opacity-0 hidden sm:block">Action</div>
+            <div className="px-6 py-2 opacity-0 hidden sm:block">Action</div>
             {riceAccessions.map((rice) => (
-              <div className="px-6 py-3 flex items-center justify-between gap-2">
+              <div className="px-6 py-2 flex items-center justify-between gap-2">
                 <div className=" sm:hidden">
                   <h1 className="text-2xl font-bold text-sprBlack opacity-80">
                     {rice.accessionId}
@@ -202,7 +195,7 @@ export default function RiceAccessions() {
             ))}
           </div>
         </div>
-        <div className="hidden  grid grid-cols-2 sm:grid-cols-3  lg:grid-cols-6  gap-2 p-2 bg-blue-800">
+        {/* <div className="hidden  grid grid-cols-2 sm:grid-cols-3  lg:grid-cols-6  gap-2 p-2 bg-blue-800">
           {riceAccessions.map((rice) => (
             <div className="flex flex-col bg-yellow-500  p-2 rounded-md">
               <div className=" bg-red-600"></div>
@@ -224,7 +217,7 @@ export default function RiceAccessions() {
               </div>
             </div>
           ))}
-        </div>
+        </div> */}
       </section>
       {/* Modal */}
       <ModalAddRiceAcc open={isOpen} onClose={() => setIsOpen(false)}>
