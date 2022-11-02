@@ -15,6 +15,8 @@ import {
   editRiceAccessionID,
   deleteRiceAccession,
 } from "./../util";
+import addIcon from '../assets/add-icon.svg'
+
 import closeIcon from "../assets/close.svg";
 import delIcon from "../assets/delete-icon.svg"
 import editIcon from "../assets/edit-icon.svg"
@@ -71,15 +73,17 @@ export default function RiceAccessions() {
     return unsub;
   }, []);
 
+
+
   return (
     <>
       {/* Header */}
       <header className=" bg-blue-600  flex items-center">
         <button
-          className=" w-8 h-8 rounded-full bg-sprPrimaryLight"
+          className=" w-8 h-8 p-2 rounded-full bg-sprPrimary"
           onClick={() => setIsOpen(true)}
         >
-          +
+          <img src={addIcon} alt="" />
         </button>
         <h1 className="text-3xl font-bold text-sprBlack opacity-80">
           Rice Accessions
@@ -183,7 +187,7 @@ export default function RiceAccessions() {
                     editRiceAccessionID(rice.id);
                   }}
                 >
-                  <img className=" h-4 w-4  relative" src={editIcon} alt="" />
+                  <div className="w-4 h-4"><img src={editIcon} alt="" /></div>
                 </button>
                 <button
                   className="hidden lg:block p-1 bg-sprPrimary rounded-full"
@@ -191,7 +195,8 @@ export default function RiceAccessions() {
                     deleteRiceAccession(rice.id);
                   }}
                 >
-                  <img className=" h-4 w-4 relative" src={delIcon} alt="" />
+                  <div className="w-4 h-4"><img src={delIcon} alt="" /></div>
+
                 </button>
               </div>
             ))}

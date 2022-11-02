@@ -2,9 +2,9 @@ import { Link, Outlet } from "react-router-dom";
 import ReproductiveStage from "./ReproductiveStage";
 import GrainCharacteristics from "./GrainCharacteristics";
 import ModalAddRiceData from "../components/ModalAddRiceData";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import delIcon from "../assets/delete-icon.svg"
-import { addDoc, collection, doc, serverTimestamp } from "firebase/firestore";
+import { addDoc, collection, doc, onSnapshot, orderBy, query, serverTimestamp } from "firebase/firestore";
 import db from "../firebase-config";
 
 import addIcon from '../assets/add-icon.svg'
@@ -29,7 +29,10 @@ export default function RiceData() {
   const toggleTab = (index) => {
     setToggleState(index)
   }
+  const [riceAccessions, setRiceAccessions] = useState([]);
 
+
+  // Submit to Database
   const handleSubmit = async (e) => {
     try {
       e.preventDefault();
@@ -78,13 +81,25 @@ export default function RiceData() {
       alert(error);
     }
   };
-
+  // Handle Inputs
   const handleChange = async (e) => {
     setRiceData({
       ...riceData,
       [e.target.name]: e.target.value,
     });
   };
+  // Get All Accessions
+  useEffect(() => {
+    const collectionRef = collection(db, "SPR/Rice_Accessions/Accession_IDs");
+    const q = query(collectionRef, orderBy("timestamp", "asc"));
+    const unsub = onSnapshot(q, (snapshot) => {
+      setRiceAccessions(
+        snapshot.docs.map((doc) => ({ ...doc.data(), id: doc.id }))
+      );
+    });
+
+    return unsub;
+  }, []);
 
 
   return (
@@ -134,7 +149,7 @@ export default function RiceData() {
               <ul className="flex flex-col  bg-gray-600 h-full">
                 <li className=" flex items-center  flex-auto  bg-green-300 ">
                   <Link to="vegetative-stage">
-                    <img className=" h-4 w relative bg-blue-500 " src={dashboardIcon} alt="" />
+                    <img className=" h-5 w-5 relative bg-blue-500 " src={dashboardIcon} alt="" />
 
                   </Link>
                 </li>
@@ -176,7 +191,10 @@ export default function RiceData() {
           >
             <div className="flex whitespace-nowrap bg-blue-300">
               <div>
-                <select name="" id=""></select>
+                <select name="" id="">
+                  {riceAccessions.map((rice) =>
+                    <option>{rice.accessionId}</option>)}
+                </select>
               </div>
               <div>
                 <button>Wet</button>
