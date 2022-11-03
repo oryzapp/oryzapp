@@ -1,16 +1,27 @@
 import { collection, collectionGroup, onSnapshot } from "firebase/firestore";
+import { QRCodeCanvas } from "qrcode.react";
 import { useEffect, useRef, useState } from "react";
 import db from "../firebase-config";
+import editIcon from '../assets/download-icon.svg'
 export default function RiceList() {
+
 
   const [riceList, setRiceList] = useState([]);
 
   useEffect(() => {
-    const riceCollectionRef = collectionGroup(db, "Raw_Rice_Data");
+    const riceCollectionRef = collectionGroup(db, "Raw_Rice_List");
     onSnapshot(riceCollectionRef, (snapshot) => {
       setRiceList(snapshot.docs.map((doc) => doc.data()));
     });
   }, []);
+
+
+  // useEffect(() => {
+  //   const riceCollectionRef = collection(db, "SPR/Rice_Accessions/Rice_List");
+  //   onSnapshot(riceCollectionRef, (snapshot) => {
+  //     setRiceList(snapshot.docs.map((doc) => doc.data()));
+  //   });
+  // }, []);
 
   return (
     <>
@@ -59,16 +70,17 @@ export default function RiceList() {
             grid
           </button>
         </div>
+
       </div>
       {/* Main */}
       <section className="  bg-blue-300 flex-auto overflow-auto rounded-sm scrollbar ">
-        <div className=" bg-red-500 flex h-96">
+        <div className="hidden bg-red-500 flex h-96">
 
 
           <div className="hidden sm:block flex-auto divide-y divide-slate-400 bg-blue-500">
             <div className="px-6 py-3 ">Accession</div>
             {riceList.map((rice) => (
-              <div className="px-6 py-3"> {rice.id}</div>
+              <div className="px-6 py-3"> {rice.accessionId}</div>
             ))}
           </div>
           <div className=" hidden sm:block flex-auto divide-y divide-slate-400 bg-blue-400">
@@ -89,7 +101,7 @@ export default function RiceList() {
               <div className="px-6 py-3 flex items-center justify-between gap-2">
                 <div className=" sm:hidden">
                   <h1 className="text-2xl font-bold text-sprBlack opacity-80">
-                    {rice.id}
+                    {rice.accessionId}
                   </h1>
                   <h6 className="text-md font-medium text-sprGray60">
                     {rice.season}
@@ -111,14 +123,17 @@ export default function RiceList() {
             ))}
           </div>
         </div>
-        <div className="hidden  grid grid-cols-2 sm:grid-cols-3  lg:grid-cols-6  gap-2 p-2 bg-blue-800">
+        <div className="  grid grid-rows  sm:grid-cols-3  lg:grid-cols-6  gap-2 p-2 bg-blue-800">
           {riceList.map((rice) => (
-            <div className="flex flex-col bg-yellow-500  p-2 rounded-md">
-              <div className=" bg-red-600"></div>
-              <div className="flex justify-between items-center">
+            <div className="flex  sm:flex-col bg-white  p-2 rounded-md">
+              <div className="flex  justify-center p-4">
+                <QRCodeCanvas className="hidden sm:block" value={rice.accessionId} bgColor="rgba(0,0,0,0)" fgColor="rgba(18, 20, 20, 0.7)" />
+                <QRCodeCanvas className="sm:hidden" value={rice.accessionId} bgColor="rgba(0,0,0,0)" fgColor="rgba(18, 20, 20, 0.7)" size={50} />
+              </div>
+              <div className=" flex flex-auto justify-between items-center sm:items-start">
                 <div>
                   <h1 className="text-xl font-bold text-sprBlack opacity-80">
-                    {rice.id}
+                    {rice.accessionId}
                   </h1>
                   <h6 className="text-xs font-medium text-sprGray60">
                     {rice.season}
@@ -127,14 +142,23 @@ export default function RiceList() {
                     {rice.year}
                   </h6>
                 </div>
-                <button className="bg-sprPrimary w-14 h-8 rounded-full">
-                  view
-                </button>
+                <div className="flex items-center space-x-2 sm:pt-1 ">
+                  <button className="bg-sprPrimary h-8 w-14 sm:h-6 sm:w-12 rounded-full">
+                    view
+                  </button>
+                  <button
+                    className=" bg-sprPrimary rounded-full "
+
+                  >
+                    <div className="sm:w-6 sm:h-6"><img src={editIcon} alt="" /></div>
+                  </button>
+
+                </div>
               </div>
             </div>
           ))}
         </div>
-      </section>
+      </section >
     </>
   );
 }

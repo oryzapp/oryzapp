@@ -18,6 +18,7 @@ export default function RiceData() {
   const [showModal, setShowModal] = useState(false)
   const [toggleState, setToggleState] = useState(1)
   const [riceData, setRiceData] = useState({
+    accessionId: '',
     vegetativeStage: '',
     reproductiveStage: '',
     grainCharacteristics: '',
@@ -37,40 +38,56 @@ export default function RiceData() {
     try {
       e.preventDefault();
       // Vegetative Stage
-      const vsDocRef = collection(db, `/SPR/Rice_Seasons/Seasons/${season}/Stages/Vegetative_Stage/Raw_Rice_Data`);
+      const vsColRef = collection(db, `/SPR/Rice_Seasons/Seasons/${season}/Stages/Vegetative_Stage/Raw_Rice_Data`);
       const vsPayLoad = {
+        accessionId: riceData.accessionId,
         vegetativeStage:
           riceData.vegetativeStage
         ,
         timestamp: serverTimestamp(),
       };
-      const rsDocRef = collection(db, `/SPR/Rice_Seasons/Seasons/${season}/Stages/Reproductive_Stage/Raw_Rice_Data`);
+      const rsColRef = collection(db, `/SPR/Rice_Seasons/Seasons/${season}/Stages/Reproductive_Stage/Raw_Rice_Data`);
       const rsPayLoad = {
+        accessionId: riceData.accessionId,
+
         reproductiveStage:
           riceData.reproductiveStage
         ,
         timestamp: serverTimestamp(),
       };
-      const gcDocRef = collection(db, `/SPR/Rice_Seasons/Seasons/${season}/Stages/Grain_Characteristics/Raw_Rice_Data`);
+      const gcColRef = collection(db, `/SPR/Rice_Seasons/Seasons/${season}/Stages/Grain_Characteristics/Raw_Rice_Data`);
       const gcPayLoad = {
+        accessionId: riceData.accessionId,
+
         vegetativeStage:
           riceData.reproductiveStage
         ,
         timestamp: serverTimestamp(),
       };
-      const ycDocRef = collection(db, `/SPR/Rice_Seasons/Seasons/${season}/Stages/Yield_Components/Raw_Rice_Data`);
+      const ycColRef = collection(db, `/SPR/Rice_Seasons/Seasons/${season}/Stages/Yield_Components/Raw_Rice_Data`);
       const ycPayLoad = {
+        accessionId: riceData.accessionId,
+
         vegetativeStage:
           riceData.reproductiveStage
         ,
         timestamp: serverTimestamp(),
       };
 
+      const riceListColRef = collection(db, `/SPR/Rice_Accessions/Rice_List/${season}/Raw_Rice_List/`);
+      const riceListPayLoad = {
+        accessionId: 'CL-R1',
+        year: '2022',
+        season: 'Dry'
+
+      }
+
       console.log('b');
-      await addDoc(vsDocRef, vsPayLoad);
-      await addDoc(rsDocRef, rsPayLoad);
-      await addDoc(gcDocRef, gcPayLoad);
-      await addDoc(ycDocRef, ycPayLoad);
+      await addDoc(vsColRef, vsPayLoad);
+      await addDoc(rsColRef, rsPayLoad);
+      await addDoc(gcColRef, gcPayLoad);
+      await addDoc(ycColRef, ycPayLoad);
+      await addDoc(riceListColRef, riceListPayLoad);
       // Reproductive Stage
       // Grain Characteristics
       // Yield Components
@@ -142,40 +159,43 @@ export default function RiceData() {
         </div>
       </div>
       {/* Main */}
-      <section className=" bg-blue-300 w-full flex-auto overflow-auto rounded-sm scrollbar">
-        <div className="bg-red-500 h-full flex">
-          <div className="bg-yellow-500 h-full">
-            <nav className="bg-green-800 h-full w-4 mx-2">
-              <ul className="flex flex-col  bg-gray-600 h-full">
-                <li className=" flex items-center  flex-auto  bg-green-300 ">
-                  <Link to="vegetative-stage">
-                    <img className=" h-5 w-5 relative bg-blue-500 " src={dashboardIcon} alt="" />
+      <section className=" bg-blue-300 w-full flex flex-auto overflow-auto rounded-sm scrollbar">
+        <div className="bg-yellow-500 h-full">
+          <nav className="bg-green-800 h-full w-4 mx-2">
+            <ul className="flex flex-col  bg-gray-600 h-full">
+              <li className=" flex items-center  flex-auto  bg-green-300 ">
+                <Link to="vegetative-stage">
+                  <img className=" h-5 w-5 relative bg-blue-500 " src={dashboardIcon} alt="" />
 
-                  </Link>
-                </li>
-                <li className=" flex items-center flex-auto   bg-green-500">
-                  <Link to="reproductive-stage">
-                    <img className=" h-5 w-5 relative" src={reproductiveStageIcon} alt="" />
+                </Link>
+              </li>
+              <li className=" flex items-center flex-auto   bg-green-500">
+                <Link to="reproductive-stage">
+                  <img className=" h-5 w-5 relative" src={reproductiveStageIcon} alt="" />
 
-                  </Link>
-                </li>
-                <li className=" flex items-center flex-auto  bg-green-700">
-                  <Link to="grain-characteristics">
-                    <img className=" h-5 w-5 relative" src={grainCharacteristicsIcon} alt="" />
+                </Link>
+              </li>
+              <li className=" flex items-center flex-auto  bg-green-700">
+                <Link to="grain-characteristics">
+                  <img className=" h-5 w-5 relative" src={grainCharacteristicsIcon} alt="" />
 
-                  </Link>
-                </li>
-                <li className=" flex items-center flex-auto  bg-green-900">
-                  <Link to="yield-components">
-                    <img className=" h-5 w-5  relative" src={yieldComponentsIcon} alt="" />
+                </Link>
+              </li>
+              <li className=" flex items-center flex-auto  bg-green-900">
+                <Link to="yield-components">
+                  <img className=" h-5 w-5  relative" src={yieldComponentsIcon} alt="" />
 
-                  </Link>
-                </li>
-              </ul>
-            </nav>
-          </div>
-          <div className="bg-blue-700  flex flex-row">
+                </Link>
+              </li>
+            </ul>
+          </nav>
+        </div>
+
+        <div className="bg-red-500 h-full flex  flex-auto overflow-auto">
+
+          <div className="bg-blue-700  flex h-96 divide-y divide-slate-400">
             <Outlet />
+
           </div>
         </div>
       </section>
@@ -191,9 +211,9 @@ export default function RiceData() {
           >
             <div className="flex whitespace-nowrap bg-blue-300">
               <div>
-                <select name="" id="">
+                <select name="accessionId" id="" onChange={handleChange}>
                   {riceAccessions.map((rice) =>
-                    <option>{rice.accessionId}</option>)}
+                    <option value={rice.accessionId} >{rice.accessionId}</option>)}
                 </select>
               </div>
               <div>
@@ -285,9 +305,40 @@ export default function RiceData() {
             </div>
           </form>
         </div>
-      </ModalAddRiceData>
+      </ModalAddRiceData >
     </>
   );
 }
 
-//
+
+
+{/* <div className="bg-yellow-500 h-full">
+  <nav className="bg-green-800 h-full w-4 mx-2">
+    <ul className="flex flex-col  bg-gray-600 h-full">
+      <li className=" flex items-center  flex-auto  bg-green-300 ">
+        <Link to="vegetative-stage">
+          <img className=" h-5 w-5 relative bg-blue-500 " src={dashboardIcon} alt="" />
+
+        </Link>
+      </li>
+      <li className=" flex items-center flex-auto   bg-green-500">
+        <Link to="reproductive-stage">
+          <img className=" h-5 w-5 relative" src={reproductiveStageIcon} alt="" />
+
+        </Link>
+      </li>
+      <li className=" flex items-center flex-auto  bg-green-700">
+        <Link to="grain-characteristics">
+          <img className=" h-5 w-5 relative" src={grainCharacteristicsIcon} alt="" />
+
+        </Link>
+      </li>
+      <li className=" flex items-center flex-auto  bg-green-900">
+        <Link to="yield-components">
+          <img className=" h-5 w-5  relative" src={yieldComponentsIcon} alt="" />
+
+        </Link>
+      </li>
+    </ul>
+  </nav>
+</div> */}
