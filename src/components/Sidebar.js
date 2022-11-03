@@ -12,82 +12,96 @@ import riceDataIcon from "../assets/rice-data-icon.svg"
 import riceGalleryIcon from "../assets/rice-gallery-icon.svg"
 import scanQRCodeIcon from "../assets/scan-qr-code-icon.svg"
 
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { useRef } from "react";
 
 export default function Sidebar() {
+  const [state, setState] = useState(1)
+
+  const activeOn = (index) => {
+
+    setState(index)
+
+  }
+
   return (
-    <div className=" sidenav flex  flex-col  whitespace-nowrap w-auto  mb-2 rounded-b-xl sm:rounded-l-none sm:rounded-r-xl bg-white opacity-90 sm:h-full sm:p-5  ">
+    <div className=" sidenav flex  flex-col  whitespace-nowrap w-auto  mb-2 rounded-b-xl sm:rounded-l-none sm:rounded-r-xl bg-white opacity-90 sm:h-full sm:p-3  ">
       <nav className="flex flex-row  sm:flex-col ">
-        <div className="flex justify-center  flex-auto   sm:justify-start ">
-          <Link className="flex items-center space-x-1  md:mb-2 " to="/">
-            <div className="rounded-xl h-8 w-8  mb-2 bg-yellow-300">
+        <div className={state === 1 ? "flex justify-center  flex-auto   sm:justify-start bg-slate-100 rounded-lg px-3 " : "flex justify-center  flex-auto   sm:justify-start  px-3 "} onClick={() => activeOn(1)}>
+          <Link className="flex items-center space-x-1   " to="/">
+            <div className="rounded-xl h-8 w-8  mb-2">
               <img className=" relative" src={dashboardIcon} alt="" />
             </div>
             <h3 className="nav-text hidden  md:block">Dashboard</h3>
           </Link>
         </div>
-        <div className="flex-auto hidden sm:block sm:justify-start">
+        <div className={state === 2 ? "flex justify-center  flex-auto   sm:justify-start bg-slate-100 rounded-lg px-3 " : "flex justify-center  flex-auto   sm:justify-start  px-3 "} onClick={() => activeOn(2)}>
+
           <Link
-            className="flex items-center  space-x-1  md:mb-2 "
+            className="flex items-center  space-x-1   "
             to="manage-users"
           >
-            <div className="rounded-xl h-8 w-8 mb-2 bg-yellow-300">
+            <div className="rounded-xl h-8 w-8 mb-2 ">
               <img className=" relative" src={manageUsersIcon} alt="" />
             </div>
             <h3 className="nav-text hidden  md:block">Manage Users</h3>
           </Link>
         </div>
-        <div className="flex justify-center flex-auto sm:justify-start">
+        <div className={state === 3 ? "flex justify-center  flex-auto   sm:justify-start bg-slate-100 rounded-lg px-3 " : "flex justify-center  flex-auto   sm:justify-start  px-3 "} onClick={() => activeOn(3)}>
+
           <Link
-            className="flex items-center space-x-1  md:mb-2 "
+            className="flex items-center space-x-1   "
             to="rice-list"
           >
-            <div className="rounded-xl h-8 w-8 mb-2 bg-yellow-300">
+            <div className="rounded-xl h-8 w-8 mb-2">
               <img className=" relative" src={riceListIcon} alt="" />
             </div>
             <h3 className="nav-text hidden  md:block">Rice List</h3>
           </Link>
         </div>
-        <div className="flex justify-center flex-auto sm:justify-start">
+        <div className={state === 4 ? "flex justify-center  flex-auto   sm:justify-start bg-slate-100 rounded-lg px-3 " : "flex justify-center  flex-auto   sm:justify-start  px-3 "} onClick={() => activeOn(4)}>
+
           <Link
-            className="flex items-center space-x-1  md:mb-2 "
+            className="flex items-center space-x-1   "
             to="rice-accessions"
           >
-            <div className="rounded-xl h-8 w-8 mb-2 bg-yellow-300">
+            <div className="rounded-xl h-8 w-8 mb-2">
               <img className=" relative" src={riceAccessionsIcon} alt="" />
             </div>
             <h3 className="nav-text hidden  md:block">Rice Accessions</h3>
           </Link>
         </div>
-        <div className="flex-auto hidden sm:block">
+        <div className={state === 5 ? "flex justify-center  flex-auto   sm:justify-start bg-slate-100 rounded-lg px-3 " : "flex justify-center  flex-auto   sm:justify-start  px-3 "} onClick={() => activeOn(5)}>
+
           <Link
-            className="flex items-center space-x-1  md:mb-2 "
+            className="flex items-center space-x-1 "
             to="rice-data/vegetative-stage"
           >
-            <div className="rounded-xl h-8 w-8 mb-2 bg-yellow-300">
+            <div className="rounded-xl h-8 w-8 mb-2">
               <img className=" relative" src={riceDataIcon} alt="" />
             </div>
             <h3 className="nav-text hidden  md:block">Rice Data</h3>
           </Link>
         </div>
-        <div className="flex justify-center flex-auto sm:justify-start">
+        <div className={state === 6 ? "flex justify-center  flex-auto   sm:justify-start bg-slate-100 rounded-lg px-3 " : "flex justify-center  flex-auto   sm:justify-start  px-3 "} onClick={() => activeOn(6)}>
+
           <Link
-            className="flex items-center space-x-1  md:mb-2 "
+            className="flex items-center space-x-1  "
             to="rice-gallery"
           >
-            <div className="rounded-xl h-8 w-8 mb-2 bg-yellow-300">
+            <div className="rounded-xl h-8 w-8 mb-2">
               <img className=" relative" src={riceGalleryIcon} alt="" />
             </div>
             <h3 className="nav-text hidden  md:block">Rice Gallery</h3>
           </Link>
         </div>
-        <div className="flex justify-center flex-auto sm:justify-start">
+        <div className={state === 7 ? "flex justify-center  flex-auto   sm:justify-start bg-slate-100 rounded-lg px-3 " : "flex justify-center  flex-auto   sm:justify-start  px-3 "} onClick={() => activeOn(7)}>
+
           <Link
-            className="flex items-center space-x-1  md:mb-2 "
+            className="flex items-center space-x-1  "
             to="scan-code"
           >
-            <div className="rounded-xl h-8 w-8 mb-2 bg-yellow-300">
+            <div className="rounded-xl h-8 w-8 mb-2 ">
               <img className="" src={scanQRCodeIcon} alt="" />
             </div>
             <h3 className="nav-text hidden  md:block">Scan Code</h3>
