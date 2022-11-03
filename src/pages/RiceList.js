@@ -83,7 +83,7 @@ export default function RiceList() {
       </div>
       {/* Main */}
       <section className="  bg-blue-300 flex-auto overflow-auto rounded-sm scrollbar ">
-        <div className="hidden bg-red-500 flex h-96">
+        <div className=" hidden bg-red-500 flex h-96">
 
 
           <div className="hidden sm:block flex-auto divide-y divide-slate-400 bg-blue-500">
