@@ -2,11 +2,12 @@ import { collection, collectionGroup, onSnapshot } from "firebase/firestore";
 import { QRCodeCanvas } from "qrcode.react";
 import { useEffect, useRef, useState } from "react";
 import db from "../firebase-config";
-import editIcon from '../assets/download-icon.svg'
+import downloadIcon from '../assets/download-icon.svg'
 export default function RiceList() {
 
 
   const [riceList, setRiceList] = useState([]);
+  const [qrCode, setQrCode] = useState('')
 
   useEffect(() => {
     const riceCollectionRef = collectionGroup(db, "Raw_Rice_List");
@@ -14,14 +15,22 @@ export default function RiceList() {
       setRiceList(snapshot.docs.map((doc) => doc.data()));
     });
   }, []);
+  const downloadQR = (accessionId) => {
+    console.log(accessionId);
 
 
-  // useEffect(() => {
-  //   const riceCollectionRef = collection(db, "SPR/Rice_Accessions/Rice_List");
-  //   onSnapshot(riceCollectionRef, (snapshot) => {
-  //     setRiceList(snapshot.docs.map((doc) => doc.data()));
-  //   });
-  // }, []);
+    const canvas = document.getElementById("qr-gen");
+    const pngUrl = canvas
+      .toDataURL("image/png")
+      .replace("image/png", "image/octet-stream");
+    let downloadLink = document.createElement("a");
+    downloadLink.href = pngUrl;
+    downloadLink.download = `${accessionId}.png`;
+    document.body.appendChild(downloadLink);
+    downloadLink.click();
+    document.body.removeChild(downloadLink);
+  }
+
 
   return (
     <>
@@ -127,8 +136,8 @@ export default function RiceList() {
           {riceList.map((rice) => (
             <div className="flex  sm:flex-col bg-white  p-2 rounded-md">
               <div className="flex  justify-center p-4">
-                <QRCodeCanvas className="hidden sm:block" value={rice.accessionId} bgColor="rgba(0,0,0,0)" fgColor="rgba(18, 20, 20, 0.7)" />
-                <QRCodeCanvas className="sm:hidden" value={rice.accessionId} bgColor="rgba(0,0,0,0)" fgColor="rgba(18, 20, 20, 0.7)" size={50} />
+                <QRCodeCanvas id="qr-gen" className="hidden sm:block" value={rice.accessionId} bgColor="white" fgColor="rgba(18, 20, 20, 0.9)" includeMargin={true} />
+                <QRCodeCanvas className="sm:hidden" value={rice.accessionId} fgColor="rgba(18, 20, 20, 0.9)" size={50} />
               </div>
               <div className=" flex flex-auto justify-between items-center sm:items-start">
                 <div>
@@ -147,10 +156,9 @@ export default function RiceList() {
                     view
                   </button>
                   <button
-                    className=" bg-sprPrimary rounded-full "
-
+                    className=" bg-sprPrimary rounded-full " onClick={() => downloadQR(rice.accessionId)}
                   >
-                    <div className="sm:w-6 sm:h-6"><img src={editIcon} alt="" /></div>
+                    <div className="sm:w-6 sm:h-6"><img src={downloadIcon} alt="" /></div>
                   </button>
 
                 </div>
