@@ -80,7 +80,7 @@ export default function RiceAccessions() {
       {/* Header */}
       <header className=" bg-blue-600  flex items-center">
         <button
-          className=" w-8 h-8 p-2 rounded-full bg-sprPrimary"
+          className=" hidden sm:block w-8 h-8 p-2 rounded-full bg-sprPrimary"
           onClick={() => setIsOpen(true)}
         >
           <img src={addIcon} alt="" />

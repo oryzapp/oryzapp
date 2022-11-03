@@ -160,30 +160,30 @@ export default function RiceData() {
       </div>
       {/* Main */}
       <section className=" bg-blue-300 w-full flex flex-auto overflow-auto rounded-sm scrollbar">
-        <div className="bg-yellow-500 h-full">
-          <nav className="bg-green-800 h-full w-4 mx-2">
+        <div className="bg-yellow-500 ">
+          <nav className="bg-green-800 h-full w-6 mx-2 ">
             <ul className="flex flex-col  bg-gray-600 h-full">
               <li className=" flex items-center  flex-auto  bg-green-300 ">
                 <Link to="vegetative-stage">
-                  <img className=" h-5 w-5 relative bg-blue-500 " src={dashboardIcon} alt="" />
+                  <img className=" h-8 w-8 relative bg-blue-500 " src={vegetativeStageIcon} alt="" />
 
                 </Link>
               </li>
               <li className=" flex items-center flex-auto   bg-green-500">
                 <Link to="reproductive-stage">
-                  <img className=" h-5 w-5 relative" src={reproductiveStageIcon} alt="" />
+                  <img className=" h-8 w-8 relative" src={reproductiveStageIcon} alt="" />
 
                 </Link>
               </li>
               <li className=" flex items-center flex-auto  bg-green-700">
                 <Link to="grain-characteristics">
-                  <img className=" h-5 w-5 relative" src={grainCharacteristicsIcon} alt="" />
+                  <img className=" h-8 w-8 relative" src={grainCharacteristicsIcon} alt="" />
 
                 </Link>
               </li>
               <li className=" flex items-center flex-auto  bg-green-900">
                 <Link to="yield-components">
-                  <img className=" h-5 w-5  relative" src={yieldComponentsIcon} alt="" />
+                  <img className=" h-8 w-8  relative" src={yieldComponentsIcon} alt="" />
 
                 </Link>
               </li>
@@ -191,7 +191,7 @@ export default function RiceData() {
           </nav>
         </div>
 
-        <div className="bg-red-500 h-full flex  flex-auto overflow-auto">
+        <div className="bg-red-500 h-full flex  flex-auto overflow-auto scrollbar">
 
           <div className="bg-blue-700  flex h-96 divide-y divide-slate-400">
             <Outlet />

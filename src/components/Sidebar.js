@@ -93,6 +93,8 @@ export default function Sidebar() {
             <h3 className="nav-text hidden  md:block">Scan Code</h3>
           </Link>
         </div>
+        {/* <Link to='rice-info'></Link> */}
+
       </nav>
     </div>
   );

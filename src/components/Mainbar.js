@@ -12,6 +12,7 @@ import ReproductiveStage from "./../pages/ReproductiveStage";
 import GrainCharacteristics from "./../pages/GrainCharacteristics";
 import YieldComponents from "./../pages/YieldComponents";
 import ModalAddRiceData from "./ModalAddRiceData";
+import RiceInfo from "../pages/RiceInfo";
 
 export default function Mainbar() {
   return (
@@ -20,6 +21,7 @@ export default function Mainbar() {
         <Route path="/" element={<Dashboard />} />
         <Route path="/manage-users" element={<ManageUsers />} />
         <Route path="/rice-list" element={<RiceList />} />
+        <Route path="/rice-info" element={<RiceInfo />} />
         <Route path="/rice-accessions" element={<RiceAccessions />} />
         <Route path="/rice-data" element={<RiceData />}>
           <Route path="vegetative-stage" element={<VegetativeStage />} />
