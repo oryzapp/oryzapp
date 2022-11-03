@@ -6,6 +6,7 @@ import {
   query,
 } from "firebase/firestore";
 import { useEffect, useState } from "react";
+import ModalAddUser from "../components/ModalAddUser";
 import db from "../firebase-config";
 import {
   addRiceAccession,
@@ -14,7 +15,7 @@ import {
 } from "./../util";
 export default function ManageUsers() {
   const [riceAccessions, setRiceAccessions] = useState([]);
-
+  const [openModal, setOpenModal] = useState(false)
   // console.log(riceList);
 
   useEffect(() => {
@@ -35,7 +36,7 @@ export default function ManageUsers() {
       <header className=" bg-blue-600  flex items-center">
         <button
           className=" w-8 h-8 rounded-full bg-sprPrimaryLight"
-          onClick={addRiceAccession}
+          onClick={() => setOpenModal(true)}
         >
           +
         </button>
@@ -76,6 +77,83 @@ export default function ManageUsers() {
       <section className=" bg-blue-300 w-full flex-auto overflow-auto rounded-sm scrollbar">
 
       </section>
+      {/* Modal */}
+      <ModalAddUser open={openModal} onClose={() => setOpenModal(false)}>
+      <div className="flex bg-blue-400">
+          <h1 className="page-header">Add User</h1>
+        </div>
+        <div className="flex-auto bg-yellow-400 relative">
+          <form
+            className="flex flex-col bg-slate-400 h-full"
+            // onSubmit={handleSubmit}
+          >
+            <div className="flex flex-auto flex-col lg:flex-row ">
+              <div className="flex flex-col flex-auto  bg-green-300 -space-y-2">
+                <div className="p-4 ">
+                {/* <label>ID</label> */}
+                  <input
+                    type="text"
+                    placeholder="ID"
+                    name="id"
+                    // value={state.accession}
+                    // onChange={handleChange}
+                  />
+                </div>
+                <div className="p-4  flex flex-col">
+                  <label>Name</label>
+                  <input
+                    className="rounded-full p-2 w-3/4"
+                    type="text"
+                    name="name"
+                    // value={state.variety}
+                    // onChange={handleChange}
+                  />
+                </div>
+                <div className="p-4  flex flex-col">
+                  <label>Position</label>
+                  <input
+                    className="rounded-full p-2 w-3/4"
+                    type="text"
+                    name="position"
+                    // value={state.source}
+                    // onChange={handleChange}
+                  />
+                </div>
+                <div className="p-4  flex flex-col">
+                  <label>Role</label>
+                  <input
+                    className="rounded-full p-2 w-3/4"
+                    type="text"
+                    name="role"
+                    // value={state.classification}
+                    // onChange={handleChange}
+                  />
+                </div>
+              </div>
+              <div className="flex-auto bg-yellow-600">
+                {/* <input type="file" /> */}
+              </div>
+            </div>
+            <div className="text-right space-x-2">
+              <button
+                className="bg-sprPrimary rounded-full py-2 px-3"
+                onClick={() => {
+                  setOpenModal(false);
+                }}
+              >
+                Cancel
+              </button>
+
+              <button
+                type="submit"
+                className="bg-sprPrimary rounded-full py-2 px-3"
+              >
+                Save
+              </button>
+            </div>
+          </form>
+        </div>
+      </ModalAddUser>
     </>
   );
 }

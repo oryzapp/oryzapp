@@ -252,13 +252,39 @@ export default function RiceData() {
               </div>
             </div>
 
-            <div className="flex-auto">
-              <div className={toggleState === 1 ? "flex" : "hidden"}>
-                <div>
-                  <label htmlFor="">Vegetative Trial input</label>
-                  <input type="text" name="vegetativeStage" value={riceData.vegetativeStage} onChange={handleChange} />
+            <div className="bg-yellow-800 flex-auto overflow-auto scrollbar">
+              <div className={toggleState === 1 ? "flex flex-col h-96 " : "hidden"}>
+                <div className="flex flex-col">
+                  <div>Title</div>
+                  <div className="grid grid-cols-2 gap-4 bg-blue-500">
+                  <div className="flex flex-col bg-blue-800"><label htmlFor="">label</label>
+                    <input type="text" /></div>
+                  <div className="flex flex-col"><label htmlFor="">label</label>
+                    <input type="text" /></div>
+                  <div className="flex flex-col"><label htmlFor="">label</label>
+                    <input type="text" /></div>
+                  </div>
+
+               
+                
                 </div>
+                <div className="flex flex-col">
+                  <div>Title</div>
+                  <div className="grid grid-cols-2 gap-4 bg-blue-500">
+                  <div className="flex flex-col bg-blue-800"><label htmlFor="">label</label>
+                    <input type="text" /></div>
+                  <div className="flex flex-col"><label htmlFor="">label</label>
+                    <input type="text" /></div>
+                  <div className="flex flex-col"><label htmlFor="">label</label>
+                    <input type="text" /></div>
+                  </div>
+
+               
+                
+                </div>
+                
               </div>
+
               <div className={toggleState === 2 ? "flex" : "hidden"}>
                 <div>
                   <label htmlFor="">Reproductive Trial input</label>
@@ -342,3 +368,22 @@ export default function RiceData() {
     </ul>
   </nav>
 </div> */}
+
+{/* <div>
+                  <label htmlFor="">Coleoptile: anthocyanin colouration</label>
+                  <input type="text" name="coleoptile_anthocyanin_colouration" value={riceData.vegetativeStage} onChange={handleChange} />
+                </div>
+                <div>
+                <label htmlFor="">Seedling: height [cm]</label>
+                  <input type="text" name="seedling_height" value={riceData.vegetativeStage} onChange={handleChange} />
+                  <label htmlFor="">Basal leaf sheath: colour</label>
+                </div>
+                <div>
+                <input type="text" name="Basal_leaf_sheath_colour" value={riceData.vegetativeStage} onChange={handleChange} />
+                  <label htmlFor="">Leaf sheath: anthocyanin colouration</label>
+                  <input type="text" name="Leaf_sheath_anthocyanin_colouration" value={riceData.vegetativeStage} onChange={handleChange} />
+                </div>
+                <div>
+                <label htmlFor="">Leaf blade: presence/absence of anthocyanin colouration</label>
+                  <input type="text" name="Leaf_blade_presence/absence_of_anthocyanin_colourationt" value={riceData.vegetativeStage} onChange={handleChange} />
+                </div> */}
