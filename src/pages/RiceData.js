@@ -118,7 +118,6 @@ export default function RiceData() {
     return unsub;
   }, []);
 
-
   return (
     <>
       {/* Header */}
@@ -130,6 +129,7 @@ export default function RiceData() {
       </header>
       {/* Options */}
       <div className="flex  items-center gap-3  bg-blue-500">
+
         <div className="relative drop-shadow-sm">
           <input
             className=" pl-2 py-1 text-sm placeholder:text-sprGray40  rounded-full "
