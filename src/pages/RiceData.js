@@ -257,32 +257,32 @@ export default function RiceData() {
                 <div className="flex flex-col">
                   <div>Title</div>
                   <div className="grid grid-cols-2 gap-4 bg-blue-500">
-                  <div className="flex flex-col bg-blue-800"><label htmlFor="">label</label>
-                    <input type="text" /></div>
-                  <div className="flex flex-col"><label htmlFor="">label</label>
-                    <input type="text" /></div>
-                  <div className="flex flex-col"><label htmlFor="">label</label>
-                    <input type="text" /></div>
+                    <div className="flex flex-col bg-blue-800"><label htmlFor="">label</label>
+                      <input type="text" /></div>
+                    <div className="flex flex-col"><label htmlFor="">label</label>
+                      <input type="text" /></div>
+                    <div className="flex flex-col"><label htmlFor="">label</label>
+                      <input type="text" /></div>
                   </div>
 
-               
-                
+
+
                 </div>
                 <div className="flex flex-col">
                   <div>Title</div>
                   <div className="grid grid-cols-2 gap-4 bg-blue-500">
-                  <div className="flex flex-col bg-blue-800"><label htmlFor="">label</label>
-                    <input type="text" /></div>
-                  <div className="flex flex-col"><label htmlFor="">label</label>
-                    <input type="text" /></div>
-                  <div className="flex flex-col"><label htmlFor="">label</label>
-                    <input type="text" /></div>
+                    <div className="flex flex-col bg-blue-800"><label htmlFor="">label</label>
+                      <input type="text" /></div>
+                    <div className="flex flex-col"><label htmlFor="">label</label>
+                      <input type="text" /></div>
+                    <div className="flex flex-col"><label htmlFor="">label</label>
+                      <input type="text" /></div>
                   </div>
 
-               
-                
+
+
                 </div>
-                
+
               </div>
 
               <div className={toggleState === 2 ? "flex" : "hidden"}>
