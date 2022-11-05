@@ -140,11 +140,11 @@ export default function RiceList() {
             ))}
           </div>
         </div>
-        <div className="  grid   sm:grid-cols-3  lg:grid-cols-6  gap-2  grid-colors-black p-2 bg-white  ">
+        <div className="  grid   sm:grid-cols-3  lg:grid-cols-6  xl:grid-cols-5 gap-2  grid-colors-black p-2 bg-white  h-96">
           {riceList.map((rice) => (
             <div className="flex  sm:flex-col bg-white  pr-4 sm:pr-2 p-2 rounded-md border-solid border-2 border-sprPrimaryLight">
               <div className="flex  justify-center p-4">
-                <QRCodeCanvas id="qr-gen" className="hidden sm:block rounded-xl" value={rice.accessionId} bgColor="#FAFAFA" fgColor="rgba(18, 20, 20, 0.8)" includeMargin={true} size={150} />
+                <QRCodeCanvas id="qr-gen" className="hidden sm:block rounded-xl" value={rice.accessionId} bgColor="#FAFAFA" fgColor="rgba(18, 20, 20, 0.8)" includeMargin={true} size={100} />
                 <QRCodeCanvas className="sm:hidden" value={rice.accessionId} fgColor="rgba(18, 20, 20, 0.9)" size={50} />
               </div>
               <div className=" flex flex-auto  space-x-8 justify-between items-center sm:items-start ">
