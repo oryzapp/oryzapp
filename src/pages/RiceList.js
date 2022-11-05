@@ -140,7 +140,7 @@ export default function RiceList() {
             ))}
           </div>
         </div>
-        <div className="  grid   sm:grid-cols-3  lg:grid-cols-6  xl:grid-cols-5 gap-2  grid-colors-black p-2 bg-white  h-96">
+        <div className="  grid   sm:grid-cols-3  lg:grid-cols-6   gap-2  grid-colors-black p-2 bg-white  h-96">
           {riceList.map((rice) => (
             <div className="flex  sm:flex-col bg-white  pr-4 sm:pr-2 p-2 rounded-md border-solid border-2 border-sprPrimaryLight">
               <div className="flex  justify-center p-4">
