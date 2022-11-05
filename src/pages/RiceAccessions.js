@@ -85,7 +85,7 @@ export default function RiceAccessions() {
         >
           <img src={addIcon} alt="" />
         </button>
-        <h1 className="text-3xl font-bold text-sprBlack opacity-80">
+        <h1 className="text-3xl font-bold text-sprBlack opacity-80 pl-2">
           Rice Accessions
         </h1>
       </header>
