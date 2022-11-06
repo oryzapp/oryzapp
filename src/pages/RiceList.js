@@ -10,6 +10,7 @@ export default function RiceList() {
 
   const [riceList, setRiceList] = useState([]);
   const [qrCode, setQrCode] = useState('')
+  const [listOn, setListOn] = useState(false)
 
   useEffect(() => {
     const riceCollectionRef = collectionGroup(db, "Raw_Rice_List");
@@ -78,11 +79,11 @@ export default function RiceList() {
           </div>
         </div>
         <div className="block">
-          <button
+          <button onClick={() => setListOn(true)}
           >
             list
           </button>
-          <button
+          <button onClick={() => setListOn(false)}
           >
             grid
           </button>
@@ -90,8 +91,8 @@ export default function RiceList() {
 
       </div>
       {/* Main */}
-      <section className="  flex-auto overflow-auto rounded-sm scrollbar ">
-        <div className=" hidden bg-red-500 flex h-96">
+      <section className={listOn === true ? "flex-auto overflow-auto rounded-sm scrollbar " : "hidden"}>
+        <div className="bg-red-500 flex h-96">
 
 
           <div className="hidden sm:block flex-auto divide-y divide-slate-400 bg-blue-500">
@@ -140,7 +141,11 @@ export default function RiceList() {
             ))}
           </div>
         </div>
-        <div className="  grid   sm:grid-cols-3  lg:grid-cols-6   gap-2  grid-colors-black p-2 bg-white  h-96">
+      </section >
+
+      <section className={listOn === false ? "flex-auto overflow-auto rounded-sm scrollbar " : "hidden"}>
+
+        <div className=" grid sm:grid-cols-3  lg:grid-cols-6   gap-2  grid-colors-black p-2 bg-white  h-96" >
           {riceList.map((rice) => (
             <div className="flex  sm:flex-col bg-white  pr-4 sm:pr-2 p-2 rounded-md border-solid border-2 border-sprPrimaryLight">
               <div className="flex  justify-center p-4">
@@ -174,7 +179,7 @@ export default function RiceList() {
             </div>
           ))}
         </div>
-      </section >
+      </section>
     </>
   );
 }
