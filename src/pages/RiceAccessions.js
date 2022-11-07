@@ -165,25 +165,25 @@ export default function RiceAccessions() {
           <div className="hidden sm:block flex-auto divide-y divide-slate-400 bg-blue-500 ">
             <div className="px-6 py-2 ">Accession</div>
             {riceAccessions.map((rice) => (
-              <div className="px-6 py-2"> {rice.accessionId}</div>
+              <div className="px-6 py-2"> {rice.accessionId === "" ? "---" : rice.accessionId} </div>
             ))}
           </div>
           <div className=" hidden sm:block flex-auto divide-y divide-slate-400 bg-blue-400">
             <div className="px-6 py-2">Classification </div>
             {riceAccessions.map((rice) => (
-              <div className="px-6 py-2"> {rice.classification}</div>
+              <div className="px-6 py-2"> {rice.classification === "" ? "---" : rice.classification}</div>
             ))}
           </div>
           <div className="hidden sm:block flex-auto divide-y divide-slate-400 bg-blue-600">
             <div className="px-6 py-2">Variety</div>
             {riceAccessions.map((rice) => (
-              <div className="px-6 py-2"> {rice.variety}</div>
+              <div className="px-6 py-2"> {rice.variety === "" ? "---" : rice.variety}</div>
             ))}
           </div>
           <div className="hidden sm:block flex-auto divide-y divide-slate-400 bg-blue-600">
             <div className="px-6 py-2">Source</div>
             {riceAccessions.map((rice) => (
-              <div className="px-6 py-2"> {rice.source}</div>
+              <div className="px-6 py-2"> {rice.source === "" ? "---" : rice.source}</div>
             ))}
           </div>
           <div className="divide-y divide-slate-400 bg-blue-700 w-full sm:w-auto ">

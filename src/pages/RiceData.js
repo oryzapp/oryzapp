@@ -115,7 +115,6 @@ export default function RiceData() {
 
 
   })
-  const [season, setSeason] = useState('Dry_Season')
 
   const toggleTab = (index) => {
     setToggleState(index)
@@ -127,6 +126,14 @@ export default function RiceData() {
   // Submit to Database
   const handleSubmit = async (e) => {
     try {
+      var season;
+      if (riceData.riceSeason === "Dry Season") {
+        season = "Dry_Season"
+      }
+      if (riceData.riceSeason === "Wet Season") {
+        season = "Wet_Season"
+      }
+
       e.preventDefault();
       const vsColRef = collection(db, `/SPR/Rice_Seasons/Seasons/${season}/Stages/Vegetative_Stage/Raw_Rice_Data`);
       const vsPayLoad = {
