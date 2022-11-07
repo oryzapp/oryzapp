@@ -16,7 +16,7 @@ export default function RiceData() {
   const [showModal, setShowModal] = useState(false)
   const [toggleState, setToggleState] = useState(1)
   const [riceData, setRiceData] = useState({
-    accessionId: '',
+    accessionId: ' ',
     riceYear: '2018',
     riceSeason: 'Dry Season',
     // vegetative
@@ -128,6 +128,7 @@ export default function RiceData() {
 
   const years = [2018, 2019, 2020, 2021, 2022, 2023, 2024, 2025, 2026, 2027, 2028, 2030]
 
+  console.log(riceData.riceSeason);
   // Submit to Database
   const handleSubmit = async (e) => {
     try {
@@ -139,8 +140,12 @@ export default function RiceData() {
         season = "Wet_Season"
       }
 
+      if (riceData.accessionId) {
+
+      }
+
       e.preventDefault();
-      const vsColRef = collection(db, `/SPR/Rice_Seasons/Seasons/${season}/Stages/Vegetative_Stage/Raw_Rice_Data`);
+      const vsColRef = collection(db, `/SPR/Rice_Seasons/Seasons/${season}/Stages/Vegetative_Stage/VS_Raw_Rice_Data`);
       const vsPayLoad = {
         accessionId: riceData.accessionId,
         riceYear: riceData.riceYear,
@@ -184,11 +189,9 @@ export default function RiceData() {
         liguleColour: riceData.liguleColour,
         rhizomeandStolonFormation: riceData.rhizomeandStolonFormation,
         seedlingHeight: riceData.seedlingHeight,
-
-
         timestamp: serverTimestamp(),
       };
-      const rsColRef = collection(db, `/SPR/Rice_Seasons/Seasons/${season}/Stages/Reproductive_Stage/Raw_Rice_Data`);
+      const rsColRef = collection(db, `/SPR/Rice_Seasons/Seasons/${season}/Stages/Reproductive_Stage/RS_Raw_Rice_Data`);
       const rsPayLoad = {
         accessionId: riceData.accessionId,
         riceYear: riceData.riceYear,
@@ -216,7 +219,7 @@ export default function RiceData() {
         panicleShattering: riceData.panicleShattering,
         timestamp: serverTimestamp(),
       };
-      const gcColRef = collection(db, `/SPR/Rice_Seasons/Seasons/${season}/Stages/Grain_Characteristics/Raw_Rice_Data`);
+      const gcColRef = collection(db, `/SPR/Rice_Seasons/Seasons/${season}/Stages/Grain_Characteristics/GC_Raw_Rice_Data`);
       const gcPayLoad = {
         accessionId: riceData.accessionId,
         riceYear: riceData.riceYear,
@@ -247,7 +250,7 @@ export default function RiceData() {
         sterileLemmaColour: riceData.sterileLemmaColour,
         timestamp: serverTimestamp(),
       };
-      const ycColRef = collection(db, `/SPR/Rice_Seasons/Seasons/${season}/Stages/Yield_Components/Raw_Rice_Data`);
+      const ycColRef = collection(db, `/SPR/Rice_Seasons/Seasons/${season}/Stages/Yield_Components/YC_Raw_Rice_Data/`);
       const ycPayLoad = {
         accessionId: riceData.accessionId,
         riceYear: riceData.riceYear,
@@ -399,17 +402,14 @@ export default function RiceData() {
           >
             <div className="flex whitespace-nowrap bg-blue-300">
               <div>
-                <select name="accessionId" id="" onChange={handleChange}>
+                <select name="accessionId" id="" onChange={handleChange} required>
+                  <option>Accession</option>
                   {riceAccessions.map((rice) =>
-                    <option value={rice.accessionId} >{rice.accessionId}</option>)}
+                    <option value={rice.accessionId}  >{rice.accessionId}</option>)}
                 </select>
               </div>
               <div>
-                {/* <label> Dry
-                  <input type="radio" value="Dry Season" name="riceSeason" onChange={handleChange} checked={riceAccessions.map((rice) => rice.riceSeason) === "Dry Season"} />
 
-                </label>
-                <input type="radio" value="Wet Season" name="riceSeason" onChange={handleChange} checked={riceAccessions.map((rice) => rice.riceSeason) === "Wet Season"} /> */}
                 <select value={riceData.riceSeason} name="riceSeason" onChange={handleChange}>
                   <option value="Dry Season">Dry</option>
                   <option value="Wet Season">Wet</option>

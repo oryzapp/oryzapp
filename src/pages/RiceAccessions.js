@@ -42,6 +42,8 @@ export default function RiceAccessions() {
         source: state.source,
         timestamp: serverTimestamp(),
       };
+
+
       await addDoc(collectionRef, payLoad);
 
 

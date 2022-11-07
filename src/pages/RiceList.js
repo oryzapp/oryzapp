@@ -1,4 +1,4 @@
-import { collection, collectionGroup, onSnapshot } from "firebase/firestore";
+import { collection, collectionGroup, onSnapshot, query } from "firebase/firestore";
 import { QRCodeCanvas } from "qrcode.react";
 import { useEffect, useRef, useState } from "react";
 import db from "../firebase-config";
@@ -11,17 +11,28 @@ export default function RiceList() {
   const [riceList, setRiceList] = useState([]);
   const [qrCode, setQrCode] = useState('')
   const [listOn, setListOn] = useState(false)
+  const [season, setSeason] = useState('All')
 
   useEffect(() => {
-    const riceCollectionRef = collectionGroup(db, "Raw_Rice_List");
+    let riceCollectionRef = collectionGroup(db, "Raw_Rice_List");
+
+    if (season === 'All') {
+      riceCollectionRef = collectionGroup(db, "Raw_Rice_List");
+    }
+    if (season === "Wet_Season") {
+      riceCollectionRef = query(collection(db, `SPR/Rice_Accessions/Rice_List/${season}/Raw_Rice_List`))
+    }
+    if (season === "Dry_Season") {
+      riceCollectionRef = query(collection(db, `SPR/Rice_Accessions/Rice_List/${season}/Raw_Rice_List`))
+    }
+
     onSnapshot(riceCollectionRef, (snapshot) => {
       setRiceList(snapshot.docs.map((doc) => doc.data()));
     });
-  }, []);
+  }, [season]);
+
   const downloadQR = (accessionId) => {
     console.log(accessionId);
-
-
     const canvas = document.getElementById("qr-gen");
     const pngUrl = canvas
       .toDataURL("image/png")
@@ -34,6 +45,13 @@ export default function RiceList() {
     document.body.removeChild(downloadLink);
   }
 
+
+  const changeSeason = (e) => {
+    console.log(`1 ${season}`);
+    setSeason(e.target.value)
+    console.log(`2 ${season}`);
+  }
+  console.log(riceList);
 
   return (
     <>
@@ -78,6 +96,11 @@ export default function RiceList() {
             </label>
           </div>
         </div>
+        <select value={season} name="riceSeason" onChange={changeSeason}>
+          <option value="All">All</option>
+          <option value="Dry_Season">Dry</option>
+          <option value="Wet_Season">Wet</option>
+        </select>
         <div className="block">
           <button onClick={() => setListOn(true)}
           >
@@ -92,9 +115,7 @@ export default function RiceList() {
       </div>
       {/* Main */}
       <section className={listOn === true ? "flex-auto overflow-auto rounded-sm scrollbar " : "hidden"}>
-        <div className="bg-red-500 flex h-96">
-
-
+        {riceList.length === 0 ? <div>Empty Image</div> : <div className="bg-red-500 flex h-96">
           <div className="hidden sm:block flex-auto divide-y divide-slate-400 bg-blue-500">
             <div className="px-6 py-3 ">Accession</div>
             {riceList.map((rice) => (
@@ -140,14 +161,15 @@ export default function RiceList() {
               </div>
             ))}
           </div>
-        </div>
+        </div>}
       </section >
 
       <section className={listOn === false ? "flex-auto overflow-auto rounded-sm scrollbar " : "hidden"}>
+        {riceList.length === 0 ? <div>Empty Image</div> : <div className=" grid sm:grid-cols-3  lg:grid-cols-6   gap-2  grid-colors-black p-2 bg-white h-12 " >
 
-        <div className=" grid sm:grid-cols-3  lg:grid-cols-6   gap-2  grid-colors-black p-2 bg-white  h-96" >
           {riceList.map((rice) => (
-            <div className="flex  sm:flex-col bg-white  pr-4 sm:pr-2 p-2 rounded-md border-solid border-2 border-sprPrimaryLight">
+            <div className="flex  sm:flex-col bg-white  p-4 pt-2 pr-6 sm:pr-4   rounded-md border-solid border-2 border-sprPrimaryLight">
+
               <div className="flex  justify-center p-4">
                 <QRCodeCanvas id="qr-gen" className="hidden sm:block rounded-xl" value={rice.accessionId} bgColor="#FAFAFA" fgColor="rgba(18, 20, 20, 0.8)" includeMargin={true} size={100} />
                 <QRCodeCanvas className="sm:hidden" value={rice.accessionId} fgColor="rgba(18, 20, 20, 0.9)" size={50} />
@@ -158,10 +180,10 @@ export default function RiceList() {
                     {rice.accessionId}
                   </h1>
                   <h6 className="text-xs font-medium text-sprGray60">
-                    {rice.season}
+                    {rice.riceSeason}
                   </h6>
                   <h6 className="text-xs font-medium text-sprGray60">
-                    {rice.year}
+                    {rice.riceYear}
                   </h6>
                 </div>
                 <div className="flex items-center space-x-2 sm:pt-1 ">
@@ -178,7 +200,8 @@ export default function RiceList() {
               </div>
             </div>
           ))}
-        </div>
+        </div>}
+
       </section>
     </>
   );
