@@ -3,11 +3,14 @@ import { QRCodeCanvas } from "qrcode.react";
 import { useEffect, useRef, useState } from "react";
 import db from "../firebase-config";
 import downloadIcon from '../assets/download-icon.svg'
+import addIcon from '../assets/add-icon.svg'
 export default function RiceList() {
+
 
 
   const [riceList, setRiceList] = useState([]);
   const [qrCode, setQrCode] = useState('')
+  const [listOn, setListOn] = useState(false)
 
   useEffect(() => {
     const riceCollectionRef = collectionGroup(db, "Raw_Rice_List");
@@ -35,13 +38,19 @@ export default function RiceList() {
   return (
     <>
       {/* Header */}
-      <header className="  bg-blue-600 ">
+      {/* <header className="   ">
+        
         <h1 className="text-3xl font-bold text-sprBlack opacity-80">
           Rice List
         </h1>
+      </header> */}
+      <header className="  flex items-center">
+
+        <h1 className="text-3xl font-bold text-sprBlack opacity-80 ">
+          Rice List</h1>
       </header>
       {/* Options */}
-      <div className="flex  items-center gap-3  bg-blue-500">
+      <div className="flex  items-center gap-3  bg-slate-100 rounded-full">
         <div className="relative drop-shadow-sm">
           <input
             className=" pl-2 py-1 text-sm placeholder:text-sprGray40  rounded-full "
@@ -70,11 +79,11 @@ export default function RiceList() {
           </div>
         </div>
         <div className="block">
-          <button
+          <button onClick={() => setListOn(true)}
           >
             list
           </button>
-          <button
+          <button onClick={() => setListOn(false)}
           >
             grid
           </button>
@@ -82,8 +91,8 @@ export default function RiceList() {
 
       </div>
       {/* Main */}
-      <section className="  bg-blue-300 flex-auto overflow-auto rounded-sm scrollbar ">
-        <div className=" hidden bg-red-500 flex h-96">
+      <section className={listOn === true ? "flex-auto overflow-auto rounded-sm scrollbar " : "hidden"}>
+        <div className="bg-red-500 flex h-96">
 
 
           <div className="hidden sm:block flex-auto divide-y divide-slate-400 bg-blue-500">
@@ -132,15 +141,19 @@ export default function RiceList() {
             ))}
           </div>
         </div>
-        <div className="  grid grid-rows  sm:grid-cols-3  lg:grid-cols-6  gap-2 p-2 bg-blue-800">
+      </section >
+
+      <section className={listOn === false ? "flex-auto overflow-auto rounded-sm scrollbar " : "hidden"}>
+
+        <div className=" grid sm:grid-cols-3  lg:grid-cols-6   gap-2  grid-colors-black p-2 bg-white  h-96" >
           {riceList.map((rice) => (
-            <div className="flex  sm:flex-col bg-white  p-2 rounded-md">
+            <div className="flex  sm:flex-col bg-white  pr-4 sm:pr-2 p-2 rounded-md border-solid border-2 border-sprPrimaryLight">
               <div className="flex  justify-center p-4">
-                <QRCodeCanvas id="qr-gen" className="hidden sm:block" value={rice.accessionId} bgColor="white" fgColor="rgba(18, 20, 20, 0.9)" includeMargin={true} />
+                <QRCodeCanvas id="qr-gen" className="hidden sm:block rounded-xl" value={rice.accessionId} bgColor="#FAFAFA" fgColor="rgba(18, 20, 20, 0.8)" includeMargin={true} size={100} />
                 <QRCodeCanvas className="sm:hidden" value={rice.accessionId} fgColor="rgba(18, 20, 20, 0.9)" size={50} />
               </div>
-              <div className=" flex flex-auto justify-between items-center sm:items-start">
-                <div>
+              <div className=" flex flex-auto  space-x-8 justify-between items-center sm:items-start ">
+                <div className="">
                   <h1 className="text-xl font-bold text-sprBlack opacity-80">
                     {rice.accessionId}
                   </h1>
@@ -152,11 +165,11 @@ export default function RiceList() {
                   </h6>
                 </div>
                 <div className="flex items-center space-x-2 sm:pt-1 ">
-                  <button className="bg-sprPrimary h-8 w-14 sm:h-6 sm:w-12 rounded-full">
+                  <button className=" text-white text-sm bg-gradient-to-b from-sprPrimary to-sprPrimaryDark h-8 w-14 sm:h-6 sm:w-12 rounded-full shadow-lg shadow-slate-300 ">
                     view
                   </button>
                   <button
-                    className=" bg-sprPrimary rounded-full " onClick={() => downloadQR(rice.accessionId)}
+                    className=" bg-sprPrimary rounded-full shadow-lg shadow-slate-300  " onClick={() => downloadQR(rice.accessionId)}
                   >
                     <div className="sm:w-6 sm:h-6"><img src={downloadIcon} alt="" /></div>
                   </button>
@@ -166,7 +179,7 @@ export default function RiceList() {
             </div>
           ))}
         </div>
-      </section >
+      </section>
     </>
   );
 }

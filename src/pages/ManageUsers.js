@@ -34,14 +34,14 @@ export default function ManageUsers() {
   return (
     <>
       {/* Header */}
-      <header className=" bg-blue-600  flex items-center">
+      <header className="  flex items-center">
         <button
-          className="hidden sm:block w-8 h-8 p-2 rounded-full bg-sprPrimary"
+
           onClick={() => setOpenModal(true)}
         >
           <img src={addIcon} alt="" />
         </button>
-        <h1 className="text-3xl font-bold text-sprBlack opacity-80">
+        <h1 className="text-3xl font-bold text-sprBlack opacity-80 pl-5">
           Manage Users</h1>
       </header>
       {/* Options */}
@@ -80,24 +80,24 @@ export default function ManageUsers() {
       </section>
       {/* Modal */}
       <ModalAddUser open={openModal} onClose={() => setOpenModal(false)}>
-      <div className="flex bg-blue-400">
+        <div className="flex bg-blue-400">
           <h1 className="page-header">Add User</h1>
         </div>
         <div className="flex-auto bg-yellow-400 relative">
           <form
             className="flex flex-col bg-slate-400 h-full"
-            // onSubmit={handleSubmit}
+          // onSubmit={handleSubmit}
           >
             <div className="flex flex-auto flex-col lg:flex-row ">
               <div className="flex flex-col flex-auto  bg-green-300 -space-y-2">
                 <div className="p-4 ">
-                {/* <label>ID</label> */}
+                  {/* <label>ID</label> */}
                   <input
                     type="text"
                     placeholder="ID"
                     name="id"
-                    // value={state.accession}
-                    // onChange={handleChange}
+                  // value={state.accession}
+                  // onChange={handleChange}
                   />
                 </div>
                 <div className="p-4  flex flex-col">
@@ -106,8 +106,8 @@ export default function ManageUsers() {
                     className="rounded-full p-2 w-3/4"
                     type="text"
                     name="name"
-                    // value={state.variety}
-                    // onChange={handleChange}
+                  // value={state.variety}
+                  // onChange={handleChange}
                   />
                 </div>
                 <div className="p-4  flex flex-col">
@@ -116,8 +116,8 @@ export default function ManageUsers() {
                     className="rounded-full p-2 w-3/4"
                     type="text"
                     name="position"
-                    // value={state.source}
-                    // onChange={handleChange}
+                  // value={state.source}
+                  // onChange={handleChange}
                   />
                 </div>
                 <div className="p-4  flex flex-col">
@@ -126,8 +126,8 @@ export default function ManageUsers() {
                     className="rounded-full p-2 w-3/4"
                     type="text"
                     name="role"
-                    // value={state.classification}
-                    // onChange={handleChange}
+                  // value={state.classification}
+                  // onChange={handleChange}
                   />
                 </div>
               </div>

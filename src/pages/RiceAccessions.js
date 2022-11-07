@@ -6,6 +6,7 @@ import {
   orderBy,
   query,
   serverTimestamp,
+  where,
 } from "firebase/firestore";
 import { useEffect, useState } from "react";
 import ModalAddRiceAcc from "../components/ModalAddRiceAcc";
@@ -51,7 +52,7 @@ export default function RiceAccessions() {
     }
   };
 
-  const handleChange = async (e) => {
+  const handleChange = (e) => {
     setState({
       ...state,
       [e.target.name]: e.target.value,
@@ -61,9 +62,29 @@ export default function RiceAccessions() {
   const [riceAccessions, setRiceAccessions] = useState([]);
   const [isOpen, setIsOpen] = useState(false);
 
+  const [search, setSearch] = useState('q')
+  const [searchInput, setSearchInput] = useState('')
+
   useEffect(() => {
     const collectionRef = collection(db, "SPR/Rice_Accessions/Accession_IDs");
-    const q = query(collectionRef, orderBy("timestamp", "asc"));
+
+    if (searchInput === '') {
+      setSearch('q')
+      console.log('bb');
+    }
+    if (searchInput !== '') {
+      setSearch('s')
+    }
+
+    let q = query(collectionRef, orderBy("timestamp", "asc"));
+
+    if (search === 'q') {
+      q = query(collectionRef, orderBy("timestamp", "asc"));
+    }
+    if (search === 's') {
+      q = query(collectionRef, where('accessionId', '==', searchInput));
+    }
+
     const unsub = onSnapshot(q, (snapshot) => {
       setRiceAccessions(
         snapshot.docs.map((doc) => ({ ...doc.data(), id: doc.id }))
@@ -71,9 +92,21 @@ export default function RiceAccessions() {
     });
 
     return unsub;
-  }, []);
+  }, [search, searchInput]);
+
+  const handleSearchInput = (e) => {
+    setSearchInput(e.target.value)
+    console.log(searchInput);
 
 
+  }
+
+  console.log(searchInput);
+  console.log(search);
+  const startSearch = (e) => {
+    e.preventDefault()
+
+  }
 
   return (
     <>
@@ -85,21 +118,25 @@ export default function RiceAccessions() {
         >
           <img src={addIcon} alt="" />
         </button>
-        <h1 className="text-3xl font-bold text-sprBlack opacity-80">
+        <h1 className="text-3xl font-bold text-sprBlack opacity-80 pl-2">
           Rice Accessions
         </h1>
       </header>
       {/* Options */}
       <div className="flex  items-center gap-3  bg-blue-500">
         <div className="relative drop-shadow-sm">
-          <input
-            className=" pl-2 py-1 text-sm placeholder:text-sprGray40  rounded-full "
-            type="text"
-            placeholder="Find a Rice"
-          />
-          <button className=" w-8 h-full rounded-full absolute right-0 bg-sprPrimaryLight">
-            o
-          </button>
+          <form onSubmit={startSearch}>
+            <input
+              className=" pl-2 py-1 text-sm placeholder:text-sprGray40  rounded-full "
+              type="text"
+              placeholder="Find a Rice"
+              value={searchInput}
+              onChange={handleSearchInput}
+            />
+            <button className=" w-8 h-full rounded-full absolute right-0 bg-sprPrimaryLight" type="submit" >
+              o
+            </button>
+          </form>
         </div>
         <div className="relative py-1 bg-white rounded-full drop-shadow-sm">
           Filter

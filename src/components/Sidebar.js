@@ -27,14 +27,16 @@ export default function Sidebar() {
   return (
     <div className=" sidenav flex  flex-col  whitespace-nowrap w-auto  mb-2 rounded-b-xl sm:rounded-l-none sm:rounded-r-xl bg-white opacity-90 sm:h-full sm:p-3  ">
       <nav className="flex flex-row  sm:flex-col ">
-        <div className={state === 1 ? "flex justify-center  flex-auto   sm:justify-start text- bg-sprPrimaryLight rounded-lg px-3 py-2  " : " flex justify-center  flex-auto   sm:justify-start  px-3 py-2 hover:bg-slate-200 rounded-lg   "} onClick={() => activeOn(1)} >
-          <Link className="flex items-center space-x-1   " to="/">
+
+        <Link className={state === 1 ? "flex justify-center  flex-auto   sm:justify-start text- bg-sprPrimaryLight rounded-lg px-3 py-2  " : " flex justify-center  flex-auto   sm:justify-start  px-3 py-2 hover:bg-slate-200 rounded-lg   "} onClick={() => activeOn(1)} to="/">
+          <div className="flex items-center space-x-1   "  >
             <div className="rounded-xl h-8 w-8   hover:text-white">
               <img className=" relative" src={dashboardIcon} alt="" />
             </div>
             <h3 className="nav-text hidden  md:block  ">Dashboard</h3>
-          </Link>
-        </div>
+          </div>
+        </Link>
+
         <div className={state === 2 ? "flex justify-center  flex-auto   sm:justify-start bg-sprPrimaryLight rounded-lg px-3 py-2 " : "hidden  sm:flex justify-center  flex-auto   sm:justify-start  px-3 py-2 hover:bg-slate-200 rounded-lg  "} onClick={() => activeOn(2)}>
 
           <Link
