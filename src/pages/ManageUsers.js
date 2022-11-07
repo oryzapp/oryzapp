@@ -8,6 +8,7 @@ import {
 import { useEffect, useState } from "react";
 import ModalAddUser from "../components/ModalAddUser";
 import db from "../firebase-config";
+import addIcon from '../assets/add-icon.svg'
 import {
   addRiceAccession,
   editRiceAccessionID,
@@ -35,10 +36,10 @@ export default function ManageUsers() {
       {/* Header */}
       <header className=" bg-blue-600  flex items-center">
         <button
-          className=" w-8 h-8 rounded-full bg-sprPrimaryLight"
+          className="hidden sm:block w-8 h-8 p-2 rounded-full bg-sprPrimary"
           onClick={() => setOpenModal(true)}
         >
-          +
+          <img src={addIcon} alt="" />
         </button>
         <h1 className="text-3xl font-bold text-sprBlack opacity-80">
           Manage Users</h1>
