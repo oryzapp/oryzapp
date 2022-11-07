@@ -162,7 +162,7 @@ export default function RiceAccessions() {
         <div className=" bg-red-500 flex h-96 ">
 
 
-          <div className="hidden sm:block flex-auto divide-y divide-slate-400 bg-blue-500">
+          <div className="hidden sm:block flex-auto divide-y divide-slate-400 bg-blue-500 ">
             <div className="px-6 py-2 ">Accession</div>
             {riceAccessions.map((rice) => (
               <div className="px-6 py-2"> {rice.accessionId}</div>
