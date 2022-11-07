@@ -10,6 +10,7 @@ import vegetativeStageIcon from '../assets/vegetative-stage-icon.svg'
 import reproductiveStageIcon from '../assets/reproductive-stage-icon.svg'
 import grainCharacteristicsIcon from '../assets/grain-characteristics-icon.svg'
 import yieldComponentsIcon from '../assets/yield-components-icon.svg'
+import { Component } from "react";
 
 export default function RiceData() {
   const [showModal, setShowModal] = useState(false)
@@ -18,6 +19,7 @@ export default function RiceData() {
     accessionId: '',
     riceYear: '2018',
     riceSeason: 'Dry Season',
+    // vegetative
     auricleColor: '',
     coleoptileAnthocyaninColouration: '',
     collarColour: '',
@@ -58,6 +60,7 @@ export default function RiceData() {
     liguleColour: '',
     rhizomeandStolonFormation: '',
     seedlingHeight: '',
+    // reproductive
     antherLength: '',
     antherColour: '',
     awnsPresenceWildSpecies: '',
@@ -80,7 +83,8 @@ export default function RiceData() {
     panicleSecondaryBranching: '',
     panicleExsertion: '',
     panicleShattering: '',
-    awnColour: '---',
+    // grain components
+    awnColour: '',
     caryopsisLength: '',
     caryopsisWidth: '',
     caryopsisShape: '',
@@ -104,6 +108,7 @@ export default function RiceData() {
     longerSterileLemmaLength: '',
     sterileLemmaShape: '',
     sterileLemmaColour: '',
+    // yield component
     cavans: '',
     kilogram: '',
     grainYield: '',

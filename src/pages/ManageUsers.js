@@ -36,7 +36,7 @@ export default function ManageUsers() {
       {/* Header */}
       <header className="  flex items-center">
         <button
-
+          className=" w-8 h-8 rounded-full bg-sprPrimaryLight text-white "
           onClick={() => setOpenModal(true)}
         >
           <img src={addIcon} alt="" />
