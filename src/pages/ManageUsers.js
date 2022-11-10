@@ -33,16 +33,22 @@ export default function ManageUsers() {
 
   return (
     <>
+
       {/* Header */}
       <header className="  flex items-center">
         <button
-          className=" w-8 h-8 rounded-full bg-sprPrimaryLight text-white "
+          className=" hidden sm:block w-8 h-8 p-2 rounded-full bg-sprPrimary"
           onClick={() => setOpenModal(true)}
         >
-          <img src={addIcon} alt="" />
+          {/* <img src={addIcon} alt="" />
         </button>
         <h1 className="text-3xl font-bold text-sprBlack opacity-80 pl-5">
-          Manage Users</h1>
+          Manage Users</h1> */}
+          <img src={addIcon} alt="" />
+        </button>
+        <h1 className="text-3xl font-bold text-sprBlack opacity-80 pl-2">
+          Manage Users
+        </h1>
       </header>
       {/* Options */}
       <div className="flex  items-center gap-3  bg-blue-500">

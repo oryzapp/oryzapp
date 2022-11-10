@@ -101,6 +101,7 @@ export default function RiceList() {
           <option value="Dry_Season">Dry</option>
           <option value="Wet_Season">Wet</option>
         </select>
+
         <div className="block">
           <button onClick={() => setListOn(true)}
           >
