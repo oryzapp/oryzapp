@@ -316,7 +316,7 @@ export default function RiceData() {
         <button className=" w-8 h-8 p-2 rounded-full bg-sprPrimary" onClick={() => setShowModal(true)}>
           <img src={addIcon} alt="" />
         </button>
-        <h1 className="text-3xl font-bold text-sprBlack opacity-80">Rice Data</h1>
+        <h1 className="text-3xl font-bold text-sprBlack opacity-80 pl-2">Rice Data</h1>
       </header>
       {/* Options */}
       <div className="flex  items-center gap-3  bg-blue-500">

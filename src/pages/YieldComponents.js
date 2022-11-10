@@ -23,69 +23,47 @@ export default function YieldComponents() {
   return (
 
     <>
-      {/* ffffff */}
-      <div className="bg-yellow-300">
-        <thead>Auricle</thead>
-        <tbody className="bg-green-800 flex ">
-          <div className="hidden sm:block flex-auto divide-y divide-slate-400 bg-blue-500">
-            <div className="px-6 py-2 ">Accession</div>
-            {riceAccessions.map((rice) => (
-              <div className="px-6 py-2"> {rice.accessionId === "" ? "---" : rice.accessionId}</div>
-            ))}
-          </div>
-        </tbody>
-      </div>
-
-      {/* ffffff */}
-      <div className=" bg-green-200 flex ">
+      
+      <div className=" bg-green-200 flex text-sm">
         {/* ffffff */}
         <div className="bg-yellow-300">
-          <thead>Cavans</thead>
+          <thead className=" text-xs font-medium uppercase">Accession</thead>
           <tbody className="bg-green-800 flex ">
             <div className="hidden sm:block flex-auto divide-y divide-slate-400 bg-blue-500">
-              <div className="px-6 py-2 ">cavans</div>
+              <div className="px-6 py-2 font-medium">Accession</div>
+              {riceAccessions.map((rice) => (
+                <div className="px-6 py-2"> {rice.accessionId === "" ? "---" : rice.accessionId}</div>
+              ))}
+            </div>
+          </tbody>
+        </div>
+
+        {/* ffffff */}
+
+        {/* ffffff */}
+        <div className="bg-yellow-300">
+          <thead className="text-xs font-medium uppercase">Yield Components</thead>
+          <tbody className="bg-green-800 flex ">
+            <div className="hidden sm:block flex-auto divide-y divide-slate-400 bg-blue-500">
+              <div className="px-6 py-2 font-medium">cavans</div>
               {riceAccessions.map((rice) => (
                 <div className="px-6 py-2"> {rice.cavans === "" ? "---" : rice.cavans}</div>
               ))}
             </div>
-          </tbody>
-        </div>
-
-        {/* ffffff */}
-        {/* ffffff */}
-        <div className="bg-yellow-300">
-          <thead>Kilogram</thead>
-          <tbody className="bg-green-800 flex ">
             <div className="hidden sm:block flex-auto divide-y divide-slate-400 bg-blue-500">
-              <div className="px-6 py-2 ">Anthocyanin colouration</div>
+              <div className="px-6 py-2 font-medium">Kilogram</div>
               {riceAccessions.map((rice) => (
                 <div className="px-6 py-2"> {rice.kilogram === "" ? "---" : rice.kilogram}</div>
               ))}
             </div>
-          </tbody>
-        </div>
-
-        {/* ffffff */}
-        {/* ffffff */}
-        <div className="bg-yellow-300">
-          <thead>Grain Yield</thead>
-          <tbody className="bg-green-800 flex ">
             <div className="hidden sm:block flex-auto divide-y divide-slate-400 bg-blue-500">
-              <div className="px-6 py-2 ">Grain Yield</div>
+              <div className="px-6 py-2 font-medium">Grain Yield</div>
               {riceAccessions.map((rice) => (
                 <div className="px-6 py-2"> {rice.grainYield === "" ? "---" : rice.grainYield}</div>
               ))}
             </div>
-          </tbody>
-        </div>
-
-        {/* ffffff */}
-        {/* ffffff */}
-        <div className="bg-yellow-300">
-          <thead>Ton/Ha</thead>
-          <tbody className="bg-green-800 flex ">
             <div className="hidden sm:block flex-auto divide-y divide-slate-400 bg-blue-500">
-              <div className="px-6 py-2 ">Ton/Ha</div>
+              <div className="px-6 py-2 font-medium">Ton/Ha</div>
               {riceAccessions.map((rice) => (
                 <div className="px-6 py-2"> {rice.tonHa === "" ? "---" : rice.tonHa}</div>
               ))}
@@ -95,23 +73,66 @@ export default function YieldComponents() {
 
         {/* ffffff */}
         {/* ffffff */}
-        <div className="bg-yellow-300">
-          <thead>Aroma</thead>
+        {/* <div className="bg-yellow-300">
+          <thead></thead>
           <tbody className="bg-green-800 flex ">
             <div className="hidden sm:block flex-auto divide-y divide-slate-400 bg-blue-500">
-              <div className="px-6 py-2 ">Cooked Rice</div>
+              <div className="px-6 py-2 ">Kilogram</div>
+              {riceAccessions.map((rice) => (
+                <div className="px-6 py-2"> {rice.kilogram === "" ? "---" : rice.kilogram}</div>
+              ))}
+            </div>
+          </tbody>
+        </div>
+         */}
+
+        {/* ffffff */}
+        {/* ffffff */}
+        {/* <div className="bg-yellow-300">
+          <thead></thead>
+          <tbody className="bg-green-800 flex ">
+            <div className="hidden sm:block flex-auto divide-y divide-slate-400 bg-blue-500">
+              <div className="px-6 py-2 ">Grain Yield</div>
+              {riceAccessions.map((rice) => (
+                <div className="px-6 py-2"> {rice.grainYield === "" ? "---" : rice.grainYield}</div>
+              ))}
+            </div>
+          </tbody>
+        </div> */}
+
+        {/* ffffff */}
+        {/* ffffff */}
+        {/* <div className="bg-yellow-300">
+          <thead></thead>
+          <tbody className="bg-green-800 flex ">
+            <div className="hidden sm:block flex-auto divide-y divide-slate-400 bg-blue-500">
+              <div className="px-6 py-2 ">Ton/Ha</div>
+              {riceAccessions.map((rice) => (
+                <div className="px-6 py-2"> {rice.tonHa === "" ? "---" : rice.tonHa}</div>
+              ))}
+            </div>
+          </tbody>
+        </div> */}
+
+        {/* ffffff */}
+        {/* ffffff */}
+        <div className="bg-yellow-300">
+          <thead className="text-xs font-medium uppercase">Aroma</thead>
+          <tbody className="bg-green-800 flex ">
+            <div className="hidden sm:block flex-auto divide-y divide-slate-400 bg-blue-500">
+              <div className="px-6 py-2 font-medium">Cooked Rice</div>
               {riceAccessions.map((rice) => (
                 <div className="px-6 py-2"> {rice.cookedRiceAroma === "" ? "---" : rice.cookedRiceAroma}</div>
               ))}
             </div>
             <div className="hidden sm:block flex-auto divide-y divide-slate-400 bg-blue-500">
-              <div className="px-6 py-2 ">Grain</div>
+              <div className="px-6 py-2 font-medium">Grain</div>
               {riceAccessions.map((rice) => (
                 <div className="px-6 py-2"> {rice.grainAroma === "" ? "---" : rice.grainAroma}</div>
               ))}
             </div>
             <div className="hidden sm:block flex-auto divide-y divide-slate-400 bg-blue-500">
-              <div className="px-6 py-2 ">Leaf</div>
+              <div className="px-6 py-2 font-medium">Leaf</div>
               {riceAccessions.map((rice) => (
                 <div className="px-6 py-2"> {rice.leafAroma === "" ? "---" : rice.leafAroma}</div>
               ))}

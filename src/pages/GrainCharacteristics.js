@@ -23,27 +23,28 @@ export default function GrainCharacteristics() {
 
   return (
     <>
-      {/* ffffff */}
-      <div className="bg-yellow-300">
-        <thead>Auricle</thead>
-        <tbody className="bg-green-800 flex ">
-          <div className="hidden sm:block flex-auto divide-y divide-slate-400 bg-blue-500">
-            <div className="px-6 py-2 ">Accession</div>
-            {riceAccessions.map((rice) => (
-              <div className="px-6 py-2"> {rice.accessionId === "" ? "---" : rice.accessionId}</div>
-            ))}
-          </div>
-        </tbody>
-      </div>
-
-      {/* ffffff */}
-      <div className=" bg-green-200 flex ">
+      <div className=" bg-green-200 flex text-sm ">
         {/* ffffff */}
         <div className="bg-yellow-300">
-          <thead>Awn</thead>
+          <thead className="text-xs uppercase font-medium">Accession</thead>
           <tbody className="bg-green-800 flex ">
             <div className="hidden sm:block flex-auto divide-y divide-slate-400 bg-blue-500">
-              <div className="px-6 py-2 ">Colour</div>
+              <div className="px-6 py-2 font-medium">Accession</div>
+              {riceAccessions.map((rice) => (
+                <div className="px-6 py-2"> {rice.accessionId === "" ? "---" : rice.accessionId}</div>
+              ))}
+            </div>
+          </tbody>
+        </div>
+
+        {/* ffffff */}
+
+        {/* ffffff */}
+        <div className="bg-yellow-300">
+          <thead className="text-xs uppercase font-medium">Awn</thead>
+          <tbody className="bg-green-800 flex ">
+            <div className="hidden sm:block flex-auto divide-y divide-slate-400 bg-blue-500">
+              <div className="px-6 py-2 font-medium">Colour</div>
               {riceAccessions.map((rice) => (
                 <div className="px-6 py-2"> {rice.awnColour === "" ? "---" : rice.awnColour}</div>
               ))}
@@ -54,28 +55,28 @@ export default function GrainCharacteristics() {
         {/* ffffff */}
         {/* ffffff */}
         <div className="bg-yellow-300">
-          <thead>Caryopsis</thead>
+          <thead className="text-xs uppercase font-medium">Caryopsis</thead>
           <tbody className="bg-green-800 flex ">
             <div className="hidden sm:block flex-auto divide-y divide-slate-400 bg-blue-500">
-              <div className="px-6 py-2 ">Length</div>
+              <div className="px-6 py-2 font-medium">Length</div>
               {riceAccessions.map((rice) => (
                 <div className="px-6 py-2"> {rice.caryopsisLength === "" ? "---" : rice.caryopsisLength}</div>
               ))}
             </div>
             <div className="hidden sm:block flex-auto divide-y divide-slate-400 bg-blue-500">
-              <div className="px-6 py-2 ">Width</div>
+              <div className="px-6 py-2 font-medium">Width</div>
               {riceAccessions.map((rice) => (
                 <div className="px-6 py-2"> {rice.caryopsisWidth === "" ? "---" : rice.caryopsisWidth}</div>
               ))}
             </div>
             <div className="hidden sm:block flex-auto divide-y divide-slate-400 bg-blue-500">
-              <div className="px-6 py-2 ">Shape</div>
+              <div className="px-6 py-2 font-medium">Shape</div>
               {riceAccessions.map((rice) => (
                 <div className="px-6 py-2"> {rice.caryopsisShape === "" ? "---" : rice.caryopsisShape}</div>
               ))}
             </div>
             <div className="hidden sm:block flex-auto divide-y divide-slate-400 bg-blue-500">
-              <div className="px-6 py-2 ">Pericarp Colour</div>
+              <div className="px-6 py-2 font-medium">Pericarp Colour</div>
               {riceAccessions.map((rice) => (
                 <div className="px-6 py-2"> {rice.caryopsisPericarpColour === "" ? "---" : rice.caryopsisPericarpColour}</div>
               ))}
@@ -86,10 +87,10 @@ export default function GrainCharacteristics() {
         {/* ffffff */}
         {/* ffffff */}
         <div className="bg-yellow-300">
-          <thead>Endorsperm</thead>
+          <thead className="text-xs uppercase font-medium">Endorsperm</thead>
           <tbody className="bg-green-800 flex ">
             <div className="hidden sm:block flex-auto divide-y divide-slate-400 bg-blue-500">
-              <div className="px-6 py-2 ">Colour</div>
+              <div className="px-6 py-2 font-medium">Colour</div>
               {riceAccessions.map((rice) => (
                 <div className="px-6 py-2"> {rice.endorspermType === "" ? "---" : rice.endorspermType}</div>
               ))}
@@ -100,34 +101,34 @@ export default function GrainCharacteristics() {
         {/* ffffff */}
         {/* ffffff */}
         <div className="bg-yellow-300">
-          <thead>Grain</thead>
+          <thead className="text-xs uppercase font-medium">Grain</thead>
           <tbody className="bg-green-800 flex ">
             <div className="hidden sm:block flex-auto divide-y divide-slate-400 bg-blue-500">
-              <div className="px-6 py-2 ">Habit</div>
+              <div className="px-6 py-2 font-medium">Habit</div>
               {riceAccessions.map((rice) => (
                 <div className="px-6 py-2"> {rice.grainLength === "" ? "---" : rice.grainLength}</div>
               ))}
             </div>
             <div className="hidden sm:block flex-auto divide-y divide-slate-400 bg-blue-500">
-              <div className="px-6 py-2 ">Width</div>
+              <div className="px-6 py-2 font-medium">Width</div>
               {riceAccessions.map((rice) => (
                 <div className="px-6 py-2"> {rice.grainWidth === "" ? "---" : rice.grainWidth}</div>
               ))}
             </div>
             <div className="hidden sm:block flex-auto divide-y divide-slate-400 bg-blue-500">
-              <div className="px-6 py-2 ">Thickness</div>
+              <div className="px-6 py-2 font-medium">Thickness</div>
               {riceAccessions.map((rice) => (
                 <div className="px-6 py-2"> {rice.grainThickness === "" ? "---" : rice.grainThickness}</div>
               ))}
             </div>
             <div className="hidden sm:block flex-auto divide-y divide-slate-400 bg-blue-500">
-              <div className="px-6 py-2 ">100 Grain Weight</div>
+              <div className="px-6 py-2 font-medium">100 Grain Weight</div>
               {riceAccessions.map((rice) => (
                 <div className="px-6 py-2"> {rice.grain100GrainWeight === "" ? "---" : rice.grain100GrainWeight}</div>
               ))}
             </div>
             <div className="hidden sm:block flex-auto divide-y divide-slate-400 bg-blue-500">
-              <div className="px-6 py-2 ">10 Grain Weight</div>
+              <div className="px-6 py-2 font-medium">10 Grain Weight</div>
               {riceAccessions.map((rice) => (
                 <div className="px-6 py-2"> {rice.grain10GrainWeight === "" ? "---" : rice.grain10GrainWeight}</div>
               ))}
@@ -138,28 +139,28 @@ export default function GrainCharacteristics() {
         {/* ffffff */}
         {/* ffffff */}
         <div className="bg-yellow-300">
-          <thead>Lemma</thead>
+          <thead className="text-xs uppercase font-medium">Lemma</thead>
           <tbody className="bg-green-800 flex ">
             <div className="hidden sm:block flex-auto divide-y divide-slate-400 bg-blue-500">
-              <div className="px-6 py-2 ">Anthocyanin Colouration of Keel</div>
+              <div className="px-6 py-2 font-medium">Anthocyanin Colouration of Keel</div>
               {riceAccessions.map((rice) => (
                 <div className="px-6 py-2"> {rice.lemmaAnthocyaninColourationofKeel === "" ? "---" : rice.lemmaAnthocyaninColourationofKeel}</div>
               ))}
             </div>
             <div className="hidden sm:block flex-auto divide-y divide-slate-400 bg-blue-500">
-              <div className="px-6 py-2 ">Anthocyanin Colouration of Area Below Apiculus Late Observation</div>
+              <div className="px-6 py-2 font-medium">Anthocyanin Colouration of Area Below Apiculus Late Observation</div>
               {riceAccessions.map((rice) => (
                 <div className="px-6 py-2"> {rice.lemmaAnthocyaninColourationofAreaBelowApiculusLateobs === "" ? "---" : rice.lemmaAnthocyaninColourationofAreaBelowApiculusLateobs}</div>
               ))}
             </div>
             <div className="hidden sm:block flex-auto divide-y divide-slate-400 bg-blue-500">
-              <div className="px-6 py-2 ">Colour of Apiculus Late Observation</div>
+              <div className="px-6 py-2 font-medium">Colour of Apiculus Late Observation</div>
               {riceAccessions.map((rice) => (
                 <div className="px-6 py-2"> {rice.lemmaColourofApiculusLateobs === "" ? "---" : rice.lemmaColourofApiculusLateobs}</div>
               ))}
             </div>
             <div className="hidden sm:block flex-auto divide-y divide-slate-400 bg-blue-500">
-              <div className="px-6 py-2 ">Shape of Apiculus</div>
+              <div className="px-6 py-2 font-medium">Shape of Apiculus</div>
               {riceAccessions.map((rice) => (
                 <div className="px-6 py-2"> {rice.lemmaShapeofApiculus === "" ? "---" : rice.lemmaShapeofApiculus}</div>
               ))}
@@ -170,16 +171,16 @@ export default function GrainCharacteristics() {
         {/* ffffff */}
         {/* ffffff */}
         <div className="bg-yellow-300">
-          <thead>Lemma and Palea</thead>
+          <thead className="text-xs uppercase font-medium">Lemma and Palea</thead>
           <tbody className="bg-green-800 flex ">
             <div className="hidden sm:block flex-auto divide-y divide-slate-400 bg-blue-500">
-              <div className="px-6 py-2 ">Pubesence</div>
+              <div className="px-6 py-2 font-medium">Pubesence</div>
               {riceAccessions.map((rice) => (
                 <div className="px-6 py-2"> {rice.lemmaandPaleaPubesence === "" ? "---" : rice.lemmaandPaleaPubesence}</div>
               ))}
             </div>
             <div className="hidden sm:block flex-auto divide-y divide-slate-400 bg-blue-500">
-              <div className="px-6 py-2 ">Colour Late Observation</div>
+              <div className="px-6 py-2 font-medium">Colour Late Observation</div>
               {riceAccessions.map((rice) => (
                 <div className="px-6 py-2"> {rice.lemmaandPaleaColourLateobs === "" ? "---" : rice.lemmaandPaleaColourLateobs}</div>
               ))}
@@ -190,16 +191,16 @@ export default function GrainCharacteristics() {
         {/* ffffff */}
         {/* ffffff */}
         <div className="bg-yellow-300">
-          <thead>Panicle</thead>
+          <thead className="text-xs uppercase font-medium">Panicle</thead>
           <tbody className="bg-green-800 flex ">
             <div className="hidden sm:block flex-auto divide-y divide-slate-400 bg-blue-500">
-              <div className="px-6 py-2 ">Length Late Observation</div>
+              <div className="px-6 py-2 font-medium">Length Late Observation</div>
               {riceAccessions.map((rice) => (
                 <div className="px-6 py-2"> {rice.panicleLengthLateobs === "" ? "---" : rice.panicleLengthLateobs}</div>
               ))}
             </div>
             <div className="hidden sm:block flex-auto divide-y divide-slate-400 bg-blue-500">
-              <div className="px-6 py-2 ">Threshability</div>
+              <div className="px-6 py-2 font-medium">Threshability</div>
               {riceAccessions.map((rice) => (
                 <div className="px-6 py-2"> {rice.panicleThreshability === "" ? "---" : rice.panicleThreshability}</div>
               ))}
@@ -210,10 +211,10 @@ export default function GrainCharacteristics() {
         {/* ffffff */}
         {/* ffffff */}
         <div className="bg-yellow-300">
-          <thead>Spikelet</thead>
+          <thead className="text-xs uppercase font-medium">Spikelet</thead>
           <tbody className="bg-green-800 flex ">
             <div className="hidden sm:block flex-auto divide-y divide-slate-400 bg-blue-500">
-              <div className="px-6 py-2 ">Fertility</div>
+              <div className="px-6 py-2 font-medium">Fertility</div>
               {riceAccessions.map((rice) => (
                 <div className="px-6 py-2"> {rice.spikeletFertility === "" ? "---" : rice.spikeletFertility}</div>
               ))}
@@ -224,28 +225,28 @@ export default function GrainCharacteristics() {
         {/* ffffff */}
         {/* ffffff */}
         <div className="bg-yellow-300">
-          <thead>Sterile</thead>
+          <thead className="text-xs uppercase font-medium">Sterile</thead>
           <tbody className="bg-green-800 flex ">
             <div className="hidden sm:block flex-auto divide-y divide-slate-400 bg-blue-500">
-              <div className="px-6 py-2 ">Lemma Length</div>
+              <div className="px-6 py-2 font-medium">Lemma Length</div>
               {riceAccessions.map((rice) => (
                 <div className="px-6 py-2"> {rice.sterileLemmaLength === "" ? "---" : rice.sterileLemmaLength}</div>
               ))}
             </div>
             <div className="hidden sm:block flex-auto divide-y divide-slate-400 bg-blue-500">
-              <div className="px-6 py-2 ">Longer Sterile Lemma Length</div>
+              <div className="px-6 py-2 font-medium">Longer Sterile Lemma Length</div>
               {riceAccessions.map((rice) => (
                 <div className="px-6 py-2"> {rice.longerSterileLemmaLength === "" ? "---" : rice.longerSterileLemmaLength}</div>
               ))}
             </div>
             <div className="hidden sm:block flex-auto divide-y divide-slate-400 bg-blue-500">
-              <div className="px-6 py-2 ">Lemma Shape</div>
+              <div className="px-6 py-2 font-medium">Lemma Shape</div>
               {riceAccessions.map((rice) => (
                 <div className="px-6 py-2"> {rice.sterileLemmaShape === "" ? "---" : rice.sterileLemmaShape}</div>
               ))}
             </div>
             <div className="hidden sm:block flex-auto divide-y divide-slate-400 bg-blue-500">
-              <div className="px-6 py-2 ">Lemma Colour</div>
+              <div className="px-6 py-2 font-medium">Lemma Colour</div>
               {riceAccessions.map((rice) => (
                 <div className="px-6 py-2"> {rice.sterileLemmaColour === "" ? "---" : rice.sterileLemmaColour}</div>
               ))}

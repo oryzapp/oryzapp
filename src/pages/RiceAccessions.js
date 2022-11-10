@@ -165,31 +165,31 @@ export default function RiceAccessions() {
 
 
           <div className="hidden sm:block flex-auto divide-y divide-slate-400 bg-blue-500 ">
-            <div className="px-6 py-2 ">Accession</div>
+            <div className="px-6 py-2 text-sm font-medium">Accession</div>
             {riceAccessions.map((rice) => (
               <div className="px-6 py-2"> {rice.accessionId === "" ? "---" : rice.accessionId} </div>
             ))}
           </div>
           <div className=" hidden sm:block flex-auto divide-y divide-slate-400 bg-blue-400">
-            <div className="px-6 py-2">Classification </div>
+            <div className="px-6 py-2 text-sm font-medium">Classification </div>
             {riceAccessions.map((rice) => (
               <div className="px-6 py-2"> {rice.classification === "" ? "---" : rice.classification}</div>
             ))}
           </div>
           <div className="hidden sm:block flex-auto divide-y divide-slate-400 bg-blue-600">
-            <div className="px-6 py-2">Variety</div>
+            <div className="px-6 py-2 text-sm font-medium">Variety</div>
             {riceAccessions.map((rice) => (
               <div className="px-6 py-2"> {rice.variety === "" ? "---" : rice.variety}</div>
             ))}
           </div>
           <div className="hidden sm:block flex-auto divide-y divide-slate-400 bg-blue-600">
-            <div className="px-6 py-2">Source</div>
+            <div className="px-6 py-2 text-sm font-medium">Source</div>
             {riceAccessions.map((rice) => (
               <div className="px-6 py-2"> {rice.source === "" ? "---" : rice.source}</div>
             ))}
           </div>
           <div className="divide-y divide-slate-400 bg-blue-700 w-full sm:w-auto ">
-            <div className="px-6 py-2 opacity-0 hidden sm:block">Action</div>
+            <div className="px-6 py-2 opacity-0 hidden sm:block text-sm font-medium">Action</div>
             {riceAccessions.map((rice) => (
               <div className="px-6 py-2 flex items-center justify-between gap-2">
                 <div className=" sm:hidden">
