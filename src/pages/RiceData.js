@@ -13,6 +13,15 @@ import yieldComponentsIcon from '../assets/yield-components-icon.svg'
 import { Component } from "react";
 
 export default function RiceData() {
+
+  const [state, setState] = useState(1)
+
+  const activeOn = (index) => {
+
+    setState(index)
+
+  }
+
   const [showModal, setShowModal] = useState(false)
   const [toggleState, setToggleState] = useState(1)
   const [riceData, setRiceData] = useState({
@@ -350,29 +359,37 @@ export default function RiceData() {
         </div>
       </div>
       {/* Main */}
-      <section className=" bg-blue-300 w-full flex flex-auto overflow-auto rounded-sm scrollbar">
-        <div className="bg-yellow-500 ">
-          <nav className="bg-green-800 h-full w-6 mx-2 ">
-            <ul className="flex flex-col  bg-gray-600 h-full">
-              <li className=" flex items-center  flex-auto  bg-green-300 ">
+      <section className=" w-full flex flex-auto overflow-auto rounded-sm scrollbar">
+        <div className=" ">
+          <nav className=" h-full w-9 ">
+            <ul className="flex flex-col h-full">
+              <li className={state === 1 ? "flex items-center  flex-auto   bg-sprPrimaryLight rounded-l-lg" :
+                  "flex items-center  flex-auto hover:bg-slate-200 rounded-l-lg"} 
+                  onClick={() => activeOn(1)}>
                 <Link to="vegetative-stage">
-                  <img className=" h-8 w-8 relative bg-blue-500 " src={vegetativeStageIcon} alt="" />
+                  <img className=" h-8 w-8 relative" src={vegetativeStageIcon} alt="" />
 
                 </Link>
               </li>
-              <li className=" flex items-center flex-auto   bg-green-500">
+              <li className={state === 2 ? "flex items-center  flex-auto  bg-sprPrimaryLight rounded-l-lg" :
+                  "flex items-center  flex-auto hover:bg-slate-200 rounded-l-lg"} 
+                  onClick={() => activeOn(2)}>
                 <Link to="reproductive-stage">
                   <img className=" h-8 w-8 relative" src={reproductiveStageIcon} alt="" />
 
                 </Link>
               </li>
-              <li className=" flex items-center flex-auto  bg-green-700">
+              <li className={state === 3 ? "flex items-center  flex-auto  bg-sprPrimaryLight rounded-l-lg" :
+                  "flex items-center  flex-auto hover:bg-slate-200 rounded-l-lg"} 
+                  onClick={() => activeOn(3)}>
                 <Link to="grain-characteristics">
                   <img className=" h-8 w-8 relative" src={grainCharacteristicsIcon} alt="" />
 
                 </Link>
               </li>
-              <li className=" flex items-center flex-auto  bg-green-900">
+              <li className={state === 4 ? "flex items-center  flex-auto  bg-sprPrimaryLight rounded-l-lg" :
+                  "flex items-center  flex-auto hover:bg-slate-200 rounded-l-lg"} 
+                  onClick={() => activeOn(4)}>
                 <Link to="yield-components">
                   <img className=" h-8 w-8  relative" src={yieldComponentsIcon} alt="" />
 
