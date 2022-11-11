@@ -123,7 +123,7 @@ export default function RiceList() {
               <div className="px-6 py-3"> {rice.accessionId}</div>
             ))}
           </div>
-          <div className=" hidden sm:block flex-auto divide-y divide-slate-400 bg-blue-400">
+          <div className=" hidden sm:block flex-auto divide-y divide-slate-400 bg-red-400">
             <div className="px-6 py-3">Season </div>
             {riceList.map((rice) => (
               <div className="px-6 py-3"> {rice.season}</div>
@@ -151,7 +151,7 @@ export default function RiceList() {
                   </h6>
                 </div>
                 <button
-                  className="bg-sprPrimary px-4 py-2 sm:py-0 sm:px-2 rounded-full"
+                  className=" text-white text-sm bg-gradient-to-b from-sprPrimary to-sprPrimaryDark h-8 w-14 sm:h-6 sm:w-12 rounded-full shadow-lg shadow-slate-300 "
                   onClick={() => {
                     console.log("hi");
                   }}
