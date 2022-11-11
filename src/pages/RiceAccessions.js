@@ -33,7 +33,6 @@ export default function RiceAccessions() {
   const handleSubmit = async (e) => {
     try {
       e.preventDefault();
-
       const collectionRef = collection(db, "SPR/Rice_Accessions/Accession_IDs");
       const payLoad = {
         accessionId: state.accession,
@@ -70,6 +69,7 @@ export default function RiceAccessions() {
   useEffect(() => {
     const collectionRef = collection(db, "SPR/Rice_Accessions/Accession_IDs");
 
+    // Search Bar
     if (searchInput === '') {
       setSearch('q')
       console.log('bb');
@@ -78,6 +78,7 @@ export default function RiceAccessions() {
       setSearch('s')
     }
 
+    // Query or List All
     let q = query(collectionRef, orderBy("timestamp", "asc"));
 
     if (search === 'q') {
@@ -99,15 +100,12 @@ export default function RiceAccessions() {
   const handleSearchInput = (e) => {
     setSearchInput(e.target.value)
     console.log(searchInput);
-
-
   }
 
   console.log(searchInput);
   console.log(search);
   const startSearch = (e) => {
     e.preventDefault()
-
   }
 
   return (

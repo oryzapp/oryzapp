@@ -1,10 +1,23 @@
 import { useState } from "react";
 import ModalRiceInfo from "../components/ModalRiceInfo";
 import closeIcon from '../assets/close.svg'
+import QrScanner from "qr-scanner";
 export default function ScanCode() {
 
   const [modalIsOpen, setModalIsOpen] = useState(false)
   const [qrData, setQrData] = useState('No Result')
+
+  const [result, setResult] = useState("")
+
+  const readCode = (e) => {
+    const file = e.target.files[0];
+    if (!file) {
+      return;
+    }
+    QrScanner.scanImage(file, { returnDetailedScanResult: true })
+      .then(result => setResult(result.data))
+      .catch(e => console.log(e));
+  }
   return (
     <>
       {/* Header */}
@@ -26,7 +39,10 @@ export default function ScanCode() {
             </div>
           </div>
 
-          <div className="bg-yellow-800 h-1/4">b</div>
+          <div className="bg-yellow-800 h-1/4">
+            <input type="file" onChange={(e) => readCode(e)} />
+            the code is {result}
+          </div>
         </div>
         <div className="bg-red-600 w-3/4" >
           <ModalRiceInfo open={modalIsOpen} >

@@ -1,7 +1,7 @@
 import { Link, Outlet } from "react-router-dom";
 import ModalAddRiceData from "../components/ModalAddRiceData";
 import { useEffect, useState } from "react";
-import { addDoc, collection, doc, onSnapshot, orderBy, query, serverTimestamp } from "firebase/firestore";
+import { addDoc, collection, collectionGroup, doc, getDoc, getDocs, onSnapshot, orderBy, query, serverTimestamp, setDoc, where } from "firebase/firestore";
 import db from "../firebase-config";
 
 // Icons
@@ -27,7 +27,7 @@ export default function RiceData() {
   const [riceData, setRiceData] = useState({
     accessionId: ' ',
     riceYear: '2018',
-    riceSeason: 'Dry Season',
+    riceSeason: 'Dry',
     // vegetative
     auricleColor: '',
     coleoptileAnthocyaninColouration: '',
@@ -142,10 +142,10 @@ export default function RiceData() {
   const handleSubmit = async (e) => {
     try {
       var season;
-      if (riceData.riceSeason === "Dry Season") {
+      if (riceData.riceSeason === "Dry") {
         season = "Dry_Season"
       }
-      if (riceData.riceSeason === "Wet Season") {
+      if (riceData.riceSeason === "Wet") {
         season = "Wet_Season"
       }
 
@@ -274,7 +274,7 @@ export default function RiceData() {
         timestamp: serverTimestamp(),
       };
 
-      const riceListColRef = collection(db, `/SPR/Rice_Accessions/Rice_List/${season}/Raw_Rice_List/`);
+      const riceListDocRef = doc(db, `/SPR/Rice_Accessions/Rice_List/${season}/Raw_Rice_List/`, `${riceData.accessionId}_${season}_${riceData.riceYear}`);
       const riceListPayLoad = {
         accessionId: riceData.accessionId,
         riceYear: riceData.riceYear,
@@ -282,12 +282,11 @@ export default function RiceData() {
 
       }
 
-      console.log('b');
       await addDoc(vsColRef, vsPayLoad);
       await addDoc(rsColRef, rsPayLoad);
       await addDoc(gcColRef, gcPayLoad);
       await addDoc(ycColRef, ycPayLoad);
-      await addDoc(riceListColRef, riceListPayLoad);
+      await setDoc(riceListDocRef, riceListPayLoad);
 
       e.target.reset();
       setShowModal(false)
@@ -364,32 +363,32 @@ export default function RiceData() {
           <nav className=" h-full w-9 ">
             <ul className="flex flex-col h-full">
               <li className={state === 1 ? "flex items-center  flex-auto   bg-sprPrimaryLight rounded-l-lg" :
-                  "flex items-center  flex-auto hover:bg-slate-200 rounded-l-lg"} 
-                  onClick={() => activeOn(1)}>
+                "flex items-center  flex-auto hover:bg-slate-200 rounded-l-lg"}
+                onClick={() => activeOn(1)}>
                 <Link to="vegetative-stage">
                   <img className=" h-8 w-8 relative" src={vegetativeStageIcon} alt="" />
 
                 </Link>
               </li>
               <li className={state === 2 ? "flex items-center  flex-auto  bg-sprPrimaryLight rounded-l-lg" :
-                  "flex items-center  flex-auto hover:bg-slate-200 rounded-l-lg"} 
-                  onClick={() => activeOn(2)}>
+                "flex items-center  flex-auto hover:bg-slate-200 rounded-l-lg"}
+                onClick={() => activeOn(2)}>
                 <Link to="reproductive-stage">
                   <img className=" h-8 w-8 relative" src={reproductiveStageIcon} alt="" />
 
                 </Link>
               </li>
               <li className={state === 3 ? "flex items-center  flex-auto  bg-sprPrimaryLight rounded-l-lg" :
-                  "flex items-center  flex-auto hover:bg-slate-200 rounded-l-lg"} 
-                  onClick={() => activeOn(3)}>
+                "flex items-center  flex-auto hover:bg-slate-200 rounded-l-lg"}
+                onClick={() => activeOn(3)}>
                 <Link to="grain-characteristics">
                   <img className=" h-8 w-8 relative" src={grainCharacteristicsIcon} alt="" />
 
                 </Link>
               </li>
               <li className={state === 4 ? "flex items-center  flex-auto  bg-sprPrimaryLight rounded-l-lg" :
-                  "flex items-center  flex-auto hover:bg-slate-200 rounded-l-lg"} 
-                  onClick={() => activeOn(4)}>
+                "flex items-center  flex-auto hover:bg-slate-200 rounded-l-lg"}
+                onClick={() => activeOn(4)}>
                 <Link to="yield-components">
                   <img className=" h-8 w-8  relative" src={yieldComponentsIcon} alt="" />
 
@@ -428,8 +427,8 @@ export default function RiceData() {
               <div>
 
                 <select value={riceData.riceSeason} name="riceSeason" onChange={handleChange}>
-                  <option value="Dry Season">Dry</option>
-                  <option value="Wet Season">Wet</option>
+                  <option value="Dry">Dry</option>
+                  <option value="Wet">Wet</option>
                 </select>
               </div>
               <div>
