@@ -1,7 +1,6 @@
 import { useState } from "react";
 import ModalRiceInfo from "../components/ModalRiceInfo";
 import closeIcon from '../assets/close.svg'
-import { QrReader } from "react-qr-reader";
 export default function ScanCode() {
 
   const [modalIsOpen, setModalIsOpen] = useState(false)
@@ -23,16 +22,6 @@ export default function ScanCode() {
               Scan Here
             </h3>
             <div className="bg-slate-300 h-60 w-60 rounded-md ">
-              <QrReader onResult={(result, error) => {
-                if (!!result) {
-                  setQrData(result?.text);
-                }
-                if (!!error) {
-                  console.info(error);
-                }
-              }}
-                style={{ height: '100%' }}
-              />
 
             </div>
           </div>
