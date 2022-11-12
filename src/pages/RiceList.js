@@ -103,11 +103,11 @@ export default function RiceList() {
         </select>
 
         <div className="block">
-          <button onClick={() => setListOn(true)}
+          <button onClick={() => setListOn(true)} className={listOn === true ? "bg-sprPrimary" : "bg-white"}
           >
             list
           </button>
-          <button onClick={() => setListOn(false)}
+          <button onClick={() => setListOn(false)} className={listOn === false ? "bg-sprPrimary" : "bg-white"}
           >
             grid
           </button>

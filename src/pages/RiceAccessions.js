@@ -23,12 +23,11 @@ import delIcon from "../assets/delete-icon.svg"
 import editIcon from "../assets/edit-icon.svg"
 
 export default function RiceAccessions() {
-  const [state, setState] = useState({
-    accession: "",
-    variety: "",
-    source: "",
-    classification: "",
-  });
+
+  // Open and Close Modal ------------------->
+  const [isOpen, setIsOpen] = useState(false);
+
+  // Handle Form Submit ------------------>
 
   const handleSubmit = async (e) => {
     try {
@@ -43,15 +42,33 @@ export default function RiceAccessions() {
       };
 
 
-      await addDoc(collectionRef, payLoad);
+      if (accessionExists === true) {
+        alert('Change Accession')
+      }
+      else {
+        await addDoc(collectionRef, payLoad);
+        setIsOpen(false)
+      }
 
-
-      e.target.reset();
-      setIsOpen(false)
+      setState(initialState)
     } catch (error) {
       alert(error);
     }
   };
+
+  // Form Inputs --------------------->
+  const [state, setState] = useState({
+    accession: "",
+    variety: "",
+    source: "",
+    classification: "",
+  });
+  const initialState = {
+    accession: "",
+    variety: "",
+    source: "",
+    classification: "",
+  }
 
   const handleChange = (e) => {
     setState({
@@ -60,19 +77,43 @@ export default function RiceAccessions() {
     });
   };
 
-  const [riceAccessions, setRiceAccessions] = useState([]);
-  const [isOpen, setIsOpen] = useState(false);
+  // Check Accession If Exists
+  const [accessionExists, setAccessionExists] = useState(false)
+  useEffect(() => {
+    riceAccessions.forEach((item) => {
+      if (state.accession === item.accessionId) {
+        setAccessionExists(true)
+      }
+      else {
+        setAccessionExists(false)
+      }
+    })
 
-  const [search, setSearch] = useState('q')
+  }, [state.accession])
+
+
+
+
+  // Search Box ----------------------->
   const [searchInput, setSearchInput] = useState('')
+  const handleSearchInput = (e) => {
+    setSearchInput(e.target.value)
+  }
+
+  // Search Entered ----------------->
+  const startSearch = (e) => {
+    e.preventDefault()
+  }
+
+  // Display on Search -------------------->
+  const [riceAccessions, setRiceAccessions] = useState([]);
+  const [search, setSearch] = useState('q')
 
   useEffect(() => {
     const collectionRef = collection(db, "SPR/Rice_Accessions/Accession_IDs");
 
-    // Search Bar
     if (searchInput === '') {
       setSearch('q')
-      console.log('bb');
     }
     if (searchInput !== '') {
       setSearch('s')
@@ -97,16 +138,9 @@ export default function RiceAccessions() {
     return unsub;
   }, [search, searchInput]);
 
-  const handleSearchInput = (e) => {
-    setSearchInput(e.target.value)
-    console.log(searchInput);
-  }
 
-  console.log(searchInput);
-  console.log(search);
-  const startSearch = (e) => {
-    e.preventDefault()
-  }
+
+
 
   return (
     <>
@@ -269,6 +303,7 @@ export default function RiceAccessions() {
             <div className="flex flex-auto flex-col lg:flex-row ">
               <div className="flex flex-col flex-auto  bg-green-300 -space-y-2">
                 <div className="p-4 ">
+                  <div className={accessionExists === true ? "block text-red-500 text-sm" : "hidden"}>*Accession already exists</div>
                   <input
                     type="text"
                     placeholder="CL-XXXX"
