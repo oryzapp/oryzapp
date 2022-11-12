@@ -2,10 +2,12 @@ import {
   addDoc,
   collection,
   collectionGroup,
+  doc,
   onSnapshot,
   orderBy,
   query,
   serverTimestamp,
+  updateDoc,
   where,
 } from "firebase/firestore";
 import { useEffect, useState } from "react";
@@ -25,7 +27,7 @@ import editIcon from "../assets/edit-icon.svg"
 export default function RiceAccessions() {
 
   // Open and Close Modal ------------------->
-  const [isOpen, setIsOpen] = useState(false);
+  const [isModalOpen, setIsModalOpen] = useState(false);
 
   // Handle Form Submit ------------------>
 
@@ -47,7 +49,7 @@ export default function RiceAccessions() {
       }
       else {
         await addDoc(collectionRef, payLoad);
-        setIsOpen(false)
+        setIsModalOpen(false)
       }
 
       setState(initialState)
@@ -92,8 +94,43 @@ export default function RiceAccessions() {
   }, [state.accession])
 
 
+  // Open Edit Rice Accession ---------->
+  const [isEdit, setIsEdit] = useState(false)
+  const [editId, setEditId] = useState('')
+  const editRiceAccessionID = async (id) => {
+    setIsEdit(true)
+    setIsModalOpen(true)
+    setEditId(id)
+    riceAccessions.map((rice) => {
+      if (rice.id === id) {
+        setState({
+          accession: rice.accessionId,
+          variety: rice.variety,
+          source: rice.source,
+          classification: rice.classification,
+        }
+        )
+      }
+    })
 
 
+
+
+  };
+
+  const submitEdit = async (e) => {
+    e.preventDefault()
+    const docRef = doc(db, "SPR/Rice_Accessions/Accession_IDs", editId);
+    const payLoad = {
+      classification: state.classification,
+      variety: state.variety,
+      source: state.source,
+      timestamp: serverTimestamp(),
+    };
+
+    await updateDoc(docRef, payLoad);
+    setIsModalOpen(false)
+  }
   // Search Box ----------------------->
   const [searchInput, setSearchInput] = useState('')
   const handleSearchInput = (e) => {
@@ -148,7 +185,7 @@ export default function RiceAccessions() {
       <header className=" flex items-center">
         <button
           className=" hidden sm:block w-8 h-8 p-2 rounded-full bg-sprPrimary"
-          onClick={() => setIsOpen(true)}
+          onClick={() => setIsModalOpen(true)}
         >
           <img src={addIcon} alt="" />
         </button>
@@ -291,25 +328,30 @@ export default function RiceAccessions() {
         </div> */}
       </section>
       {/* Modal */}
-      <ModalAddRiceAcc open={isOpen} onClose={() => setIsOpen(false)}>
+      <ModalAddRiceAcc open={isModalOpen} onClose={() => setIsModalOpen(false)}>
         <div className="flex bg-blue-400">
           <h1 className="page-header">Add Rice Accession</h1>
         </div>
         <div className="flex-auto bg-yellow-400 relative">
           <form
             className="flex flex-col bg-slate-400 h-full"
-            onSubmit={handleSubmit}
+            onSubmit={isEdit === true ? submitEdit : handleSubmit}
           >
             <div className="flex flex-auto flex-col lg:flex-row ">
               <div className="flex flex-col flex-auto  bg-green-300 -space-y-2">
                 <div className="p-4 ">
-                  <div className={accessionExists === true ? "block text-red-500 text-sm" : "hidden"}>*Accession already exists</div>
+                  <div className={isEdit === true ? "hidden" : "block"}>
+                    <div className={accessionExists === true ? "block text-red-500 text-sm" : "hidden"}>*Accession already exists</div>
+
+                  </div>
                   <input
                     type="text"
                     placeholder="CL-XXXX"
                     name="accession"
                     value={state.accession}
                     onChange={handleChange}
+
+                    readOnly={isEdit === true ? true : false}
                   />
                 </div>
                 <div className="p-4  flex flex-col">
@@ -351,7 +393,7 @@ export default function RiceAccessions() {
               <button
                 className="bg-sprPrimary rounded-full py-2 px-3"
                 onClick={() => {
-                  setIsOpen(false);
+                  setIsModalOpen(false);
                 }}
               >
                 Cancel
