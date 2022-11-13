@@ -1,23 +1,64 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import ModalRiceInfo from "../components/ModalRiceInfo";
 import closeIcon from '../assets/close.svg'
 import QrScanner from "qr-scanner";
+import { collectionGroup, onSnapshot } from "firebase/firestore";
+import db from '../firebase-config'
 export default function ScanCode() {
 
+
   const [modalIsOpen, setModalIsOpen] = useState(false)
-  const [qrData, setQrData] = useState('No Result')
 
-  const [result, setResult] = useState("")
 
+  // Read Code from File Input
+  const [qrData, setQrData] = useState("No Result")
   const readCode = (e) => {
     const file = e.target.files[0];
     if (!file) {
       return;
     }
     QrScanner.scanImage(file, { returnDetailedScanResult: true })
-      .then(result => setResult(result.data))
+      .then(result => setQrData(result.data))
       .catch(e => console.log(e));
   }
+
+
+  // Get All Rice Data
+  const [riceDataExists, setRiceDataExists] = useState(false)
+  const [riceList, setRiceList] = useState([]);
+
+  useEffect(() => {
+    const collectionRef = collectionGroup(db, "Raw_Rice_List");
+    const unsub = onSnapshot(collectionRef, (snapshot) => {
+      setRiceList(
+        snapshot.docs.map((doc) => ({ ...doc.data(), id: doc.id }))
+      );
+    });
+    return unsub;
+  }, []);
+
+  console.log(riceList);
+
+  // Check if Rice Data Exists --------->
+  useEffect(() => {
+
+    const result = riceList.find(rice => rice.id === qrData)
+    if (result === undefined) {
+      console.log('undefine');
+      setRiceDataExists(false)
+    }
+    else {
+      console.log('exisst');
+      setRiceDataExists(true)
+    }
+  }, [qrData])
+
+  // Open View Rice Info Modal
+  const openViewInfoModal = () => {
+    setModalIsOpen(true)
+  }
+
+
   return (
     <>
       {/* Header */}
@@ -41,7 +82,10 @@ export default function ScanCode() {
 
           <div className="bg-yellow-800 h-1/4">
             <input type="file" onChange={(e) => readCode(e)} />
-            the code is {result}
+            <div className={riceDataExists === true ? "block" : "hidden"}>
+              the code is {qrData}
+              <button className="bg-sprPrimary rounded-full" onClick={openViewInfoModal}>View</button>
+            </div>
           </div>
         </div>
         <div className="bg-red-600 w-3/4" >

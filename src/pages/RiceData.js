@@ -234,7 +234,7 @@ export default function RiceData() {
 
   };
 
-  // Set Season in snake case?
+  // Set Season in Snake case
   var season;
   if (riceData.riceSeason === "Dry") {
     season = "Dry_Season"
@@ -422,9 +422,9 @@ export default function RiceData() {
     return unsub;
   }, []);
 
-  // Rice List for Existing Check
-  const [riceList, setRiceList] = useState([]);
+  // Get All Rice List to check if Exisiting
   const [riceDataExists, setRiceDataExists] = useState(false)
+  const [riceList, setRiceList] = useState([]);
 
   useEffect(() => {
     const collectionRef = collectionGroup(db, "Raw_Rice_List");
