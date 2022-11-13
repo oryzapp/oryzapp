@@ -40,7 +40,7 @@ export default function RiceList() {
       .replace("image/png", "image/octet-stream");
     let downloadLink = document.createElement("a");
     downloadLink.href = pngUrl;
-    downloadLink.download = `${accessionId}_${riceSeason}_${riceYear}.png`;
+    downloadLink.download = `${accessionId}_${riceSeason}_Season_${riceYear}.png`;
     document.body.appendChild(downloadLink);
     downloadLink.click();
     document.body.removeChild(downloadLink);
@@ -173,8 +173,8 @@ export default function RiceList() {
             <div className="flex  sm:flex-col bg-white  p-4 pt-2 pr-6 sm:pr-4   rounded-md border-solid border-2 border-sprPrimaryLight">
 
               <div className="flex  justify-center p-4">
-                <QRCodeCanvas id="qr-gen" className="hidden sm:block rounded-xl" value={`${rice.accessionId}_${rice.riceSeason}_${rice.riceYear}`} bgColor="#FAFAFA" fgColor="rgba(18, 20, 20, 0.8)" includeMargin={true} size={100} />
-                <QRCodeCanvas className="sm:hidden" value={`${rice.accessionId}_${rice.riceSeason}_${rice.riceYear}`} fgColor="rgba(18, 20, 20, 0.9)" size={50} />
+                <QRCodeCanvas id="qr-gen" className="hidden sm:block rounded-xl" value={`${rice.accessionId}_${rice.riceSeason}_Season_${rice.riceYear}`} bgColor="#FAFAFA" fgColor="rgba(18, 20, 20, 0.8)" includeMargin={true} size={100} />
+                <QRCodeCanvas className="sm:hidden" value={`${rice.accessionId}_${rice.riceSeason}_Season_${rice.riceYear}`} fgColor="rgba(18, 20, 20, 0.9)" size={50} />
               </div>
               <div className=" flex flex-auto  space-x-8 justify-between items-center sm:items-start ">
                 <div className="">
