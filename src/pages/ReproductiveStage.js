@@ -26,7 +26,7 @@ export default function ReproductiveStage() {
 
       <div className=" bg-green-200 flex text-sm ">
         {/* ffffff */}
-        <div className="bg-yellow-300">
+        <table className="bg-yellow-300">
           <thead className="text-xs font-medium uppercase">Accession</thead>
           <tbody className="bg-green-800 flex ">
             <div className="hidden sm:block flex-auto divide-y divide-slate-400 bg-blue-500">
@@ -36,12 +36,12 @@ export default function ReproductiveStage() {
               ))}
             </div>
           </tbody>
-        </div>
+        </table>
 
         {/* ffffff */}
 
         {/* ffffff */}
-        <div className="bg-yellow-300">
+        <table className="bg-yellow-300">
           <thead className="text-xs uppercase font-medium">Anther</thead>
           <tbody className="bg-green-800 flex ">
             <div className="hidden sm:block flex-auto divide-y divide-slate-400 bg-blue-500">
@@ -57,11 +57,11 @@ export default function ReproductiveStage() {
               ))}
             </div>
           </tbody>
-        </div>
+        </table>
 
         {/* ffffff */}
         {/* ffffff */}
-        <div className="bg-yellow-300">
+        <table className="bg-yellow-300">
           <thead className="text-xs uppercase font-medium">Awns</thead>
           <tbody className="bg-green-800 flex ">
             <div className="hidden sm:block flex-auto divide-y divide-slate-400 bg-blue-500">
@@ -95,11 +95,11 @@ export default function ReproductiveStage() {
               ))}
             </div>
           </tbody>
-        </div>
+        </table>
 
         {/* ffffff */}
         {/* ffffff */}
-        <div className="bg-yellow-300">
+        <table className="bg-yellow-300">
           <thead className="text-xs uppercase font-medium">Lemma</thead>
           <tbody className="bg-green-800 flex ">
             <div className="hidden sm:block flex-auto divide-y divide-slate-400 bg-blue-500">
@@ -115,11 +115,11 @@ export default function ReproductiveStage() {
               ))}
             </div>
           </tbody>
-        </div>
+        </table>
 
         {/* ffffff */}
         {/* ffffff */}
-        <div className="bg-yellow-300">
+        <table className="bg-yellow-300">
           <thead className="whitespace-nowrap text-xs uppercase font-medium">Lemma and Palea</thead>
           <tbody className="bg-green-800 flex ">
             <div className="hidden sm:block flex-auto divide-y divide-slate-400 bg-blue-500">
@@ -129,11 +129,11 @@ export default function ReproductiveStage() {
               ))}
             </div>
           </tbody>
-        </div>
+        </table>
 
         {/* ffffff */}
         {/* ffffff */}
-        <div className="bg-yellow-300">
+        <table className="bg-yellow-300">
           <thead className="text-xs uppercase font-medium">Male Sterility</thead>
           <tbody className="bg-green-800 flex ">
             <div className="hidden sm:block flex-auto divide-y divide-slate-400 bg-blue-500">
@@ -143,11 +143,11 @@ export default function ReproductiveStage() {
               ))}
             </div>
           </tbody>
-        </div>
+        </table>
 
         {/* ffffff */}
         {/* ffffff */}
-        <div className="bg-yellow-300">
+        <table className="bg-yellow-300">
           <thead className="text-xs uppercase font-medium">Panicle</thead>
           <tbody className="bg-green-800 flex ">
             <div className="hidden sm:block flex-auto divide-y divide-slate-400 bg-blue-500">
@@ -217,7 +217,7 @@ export default function ReproductiveStage() {
               ))}
             </div>
           </tbody>
-        </div>
+        </table>
 
         {/* ffffff */}
       </div>

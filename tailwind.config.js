@@ -20,12 +20,13 @@ module.exports = {
         sprGray50: "rgba(18, 20, 20, 0.5)",
         sprGray40: "rgba(18, 20, 20, 0.4)",
         sprGray30: "rgba(18, 20, 20, 0.3)",
-        sprGray20: "rgba(18, 20, 20, 0.2)",
+        sprGray20: "rgba(18, 20, 20, 0.02)",
         sprGray10: "rgba(18, 20, 20, 0.1)",
         sprPrimary: "#AFBE00",
         sprPrimaryLight: "rgba(175, 190, 0, 0.6)",
         sprPrimaryDark: "#99B100",
-        sprPrimaryButton: "linear-gradient(180deg, #AFBE00 0%, #99B100 100%);"
+        sprPrimaryButton: "linear-gradient(180deg, #AFBE00 0%, #99B100 100%);",
+        sprInactiveGray: "#888A89"
       },
       dropShadow: {
         sm: "0 4px 4px rgba(18, 20, 20, 0.05)",
