@@ -13,6 +13,7 @@ export default function RiceList() {
   const [listOn, setListOn] = useState(false)
   const [season, setSeason] = useState('All')
 
+
   useEffect(() => {
     let riceCollectionRef = collectionGroup(db, "Raw_Rice_List");
 

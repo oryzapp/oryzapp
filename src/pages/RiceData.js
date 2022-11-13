@@ -11,19 +11,11 @@ import reproductiveStageIcon from '../assets/reproductive-stage-icon.svg'
 import grainCharacteristicsIcon from '../assets/grain-characteristics-icon.svg'
 import yieldComponentsIcon from '../assets/yield-components-icon.svg'
 import { Component } from "react";
+import { listRice } from "../util";
 
 export default function RiceData() {
-
-  const [state, setState] = useState(1)
-
-  const activeOn = (index) => {
-
-    setState(index)
-
-  }
-
-  const [showModal, setShowModal] = useState(false)
-  const [toggleState, setToggleState] = useState(1)
+  const [isModalOpen, setIsModalOpen] = useState(false)
+  // Rice Data Inputs
   const [riceData, setRiceData] = useState({
     accessionId: ' ',
     riceYear: '2018',
@@ -129,29 +121,134 @@ export default function RiceData() {
 
 
   })
-
-  const toggleTab = (index) => {
-    setToggleState(index)
+  // Initial State
+  const initialState = {
+    accessionId: ' ',
+    riceYear: '2018',
+    riceSeason: 'Dry',
+    // vegetative
+    auricleColor: '',
+    coleoptileAnthocyaninColouration: '',
+    collarColour: '',
+    culmHabit: '',
+    culmKneeingAbility: '',
+    culmLength: '',
+    culmNumber: '',
+    culmDiameteratBasalInternode: '',
+    culmAnthocyaninColourationonNodes: '',
+    culmUnderlyingNodeColour: '',
+    culmInternodeAnthocyanin: '',
+    culmUnderlyingInternodeColouration: '',
+    culmLodgingResistance: '',
+    culmStrength: '',
+    flagLeafLegnth: '',
+    flagLeafWidth: '',
+    flagLeafAttitudeEarlyobs: '',
+    flagLeafAttitudeLateobs: '',
+    leafMarginPubesence: '',
+    leafSenesence: '',
+    lbPresenceAbsenceofAnthocyaninColouration: '',
+    lbDistributionofAnthocyaninColouration: '',
+    lbIntensityofGreenColour: '',
+    lbAttitude: '',
+    lbPubesence: '',
+    lbPubesenceonBladeSurface: '',
+    lbLength: '',
+    lbWidth: '',
+    basalLeafSheathColour: '',
+    lsAnthocyaninColouration: '',
+    liguleLength: '',
+    liguleShape: '',
+    liguleShapeCultivatedSpecies: '',
+    liguleShapeWildSpecies: '',
+    liguleMarginShapeWildSpecies: '',
+    liguleMarginHairiness: '',
+    ligulePubesence: '',
+    liguleColour: '',
+    rhizomeandStolonFormation: '',
+    seedlingHeight: '',
+    // reproductive
+    antherLength: '',
+    antherColour: '',
+    awnsPresenceWildSpecies: '',
+    awnsDistributionCultivatedSpecies: '',
+    awnsDistributionEarlyobs: '',
+    awnLength: '',
+    awnsThickness: '',
+    lemmaColourofApicusearlyobs: '',
+    lemmaAnthocyaninColourationofAreaBelowApiculusEarlyobs: '',
+    lemmaandPaleaColourEarlyobs: '',
+    maleSterility: '',
+    panicleArrangementofPrimaryBranches: '',
+    panicleNumberofBasalPrimaryBranches: '',
+    panicleDistancefromBasetoLowestSpikeletInsertion: '',
+    panicleTextureofMainAxis: '',
+    panicleNumberPerPlant: '',
+    panicleLength: '',
+    panicleAttitudeofMainAxis: '',
+    panicleAttitudeofBranches: '',
+    panicleSecondaryBranching: '',
+    panicleExsertion: '',
+    panicleShattering: '',
+    // grain components
+    awnColour: '',
+    caryopsisLength: '',
+    caryopsisWidth: '',
+    caryopsisShape: '',
+    caryopsisPericarpColour: '',
+    endorspermType: '',
+    grainLength: '',
+    grainWidth: '',
+    grainThickness: '',
+    grain100GrainWeight: '',
+    grain10GrainWeight: '',
+    lemmaAnthocyaninColourationofKeel: '',
+    lemmaAnthocyaninColourationofAreaBelowApiculusLateobs: '',
+    lemmaColourofApiculusLateobs: '',
+    lemmaShapeofApiculus: '',
+    lemmaandPaleaPubesence: '',
+    lemmaandPaleaColourLateobs: '',
+    panicleLengthLateobs: '',
+    panicleThreshability: '',
+    spikeletFertility: '',
+    sterileLemmaLength: '',
+    longerSterileLemmaLength: '',
+    sterileLemmaShape: '',
+    sterileLemmaColour: '',
+    // yield component
+    cavans: '',
+    kilogram: '',
+    grainYield: '',
+    tonHa: '',
+    cookedRiceAroma: '',
+    grainAroma: '',
+    leafAroma: '',
   }
-  const [riceAccessions, setRiceAccessions] = useState([]);
 
-  const years = [2018, 2019, 2020, 2021, 2022, 2023, 2024, 2025, 2026, 2027, 2028, 2030]
+  // Handle Inputs
+  const handleChange = async (e) => {
+    setRiceData({
+      ...riceData,
+      [e.target.name]: e.target.value,
+    });
 
-  console.log(riceData.riceSeason);
-  // Submit to Database
+  };
+
+  // Set Season in snake case?
+  var season;
+  if (riceData.riceSeason === "Dry") {
+    season = "Dry_Season"
+  }
+  if (riceData.riceSeason === "Wet") {
+    season = "Wet_Season"
+  }
+
+
+  // Submit to Database ------------->
   const handleSubmit = async (e) => {
     try {
-      var season;
-      if (riceData.riceSeason === "Dry") {
-        season = "Dry_Season"
-      }
-      if (riceData.riceSeason === "Wet") {
-        season = "Wet_Season"
-      }
 
-      if (riceData.accessionId) {
 
-      }
 
       e.preventDefault();
       const vsColRef = collection(db, `/SPR/Rice_Seasons/Seasons/${season}/Stages/Vegetative_Stage/VS_Raw_Rice_Data`);
@@ -288,23 +385,31 @@ export default function RiceData() {
       await addDoc(ycColRef, ycPayLoad);
       await setDoc(riceListDocRef, riceListPayLoad);
 
-      e.target.reset();
-      setShowModal(false)
+      setIsModalOpen(false)
+      setRiceData(initialState);
+
     } catch (error) {
       alert(error);
     }
   };
 
-  // Handle Inputs
-  const handleChange = async (e) => {
-    setRiceData({
-      ...riceData,
-      [e.target.name]: e.target.value,
-    });
 
-  };
+  // Stages Nav Active State ---------------->
+  const [state, setState] = useState(1)
+  const activeOn = (index) => {
+    setState(index)
+  }
 
-  // Get All Accessions
+  // Stages Nav ---------------->
+  const [toggleState, setToggleState] = useState(1)
+  const toggleTab = (index) => {
+    setToggleState(index)
+  }
+
+
+
+  // Get All Accessions for Select
+  const [riceAccessions, setRiceAccessions] = useState([]);
   useEffect(() => {
     const collectionRef = collection(db, "SPR/Rice_Accessions/Accession_IDs");
     const q = query(collectionRef, orderBy("timestamp", "asc"));
@@ -313,15 +418,47 @@ export default function RiceData() {
         snapshot.docs.map((doc) => ({ ...doc.data(), id: doc.id }))
       );
     });
-
     return unsub;
   }, []);
+
+  // Rice List for Existing Check
+  const [riceList, setRiceList] = useState([]);
+  const [riceDataExists, setRiceDataExists] = useState(false)
+
+  useEffect(() => {
+    const collectionRef = collectionGroup(db, "Raw_Rice_List");
+    const unsub = onSnapshot(collectionRef, (snapshot) => {
+      setRiceList(
+        snapshot.docs.map((doc) => ({ ...doc.data(), id: doc.id }))
+      );
+    });
+    return unsub;
+  }, []);
+
+
+  useEffect(() => {
+
+    const result = riceList.find(rice => rice.id === `${riceData.accessionId}_${season}_${riceData.riceYear}`)
+    if (result === undefined) {
+      console.log('undefine');
+      setRiceDataExists(false)
+    }
+    else {
+      console.log('exisst');
+      setRiceDataExists(true)
+    }
+  }, [riceData.accessionId, season, riceData.riceYear])
+
+
+
+  const years = [2018, 2019, 2020, 2021, 2022, 2023, 2024, 2025, 2026, 2027, 2028, 2030]
+  console.log(riceData.riceSeason);
 
   return (
     <>
       {/* Header */}
       <header className="page-header bg-blue-600  flex items-center">
-        <button className=" w-8 h-8 p-2 rounded-full bg-sprPrimary" onClick={() => setShowModal(true)}>
+        <button className=" w-8 h-8 p-2 rounded-full bg-sprPrimary" onClick={() => setIsModalOpen(true)}>
           <img src={addIcon} alt="" />
         </button>
         <h1 className="text-3xl font-bold text-sprBlack opacity-80 pl-2">Rice Data</h1>
@@ -407,7 +544,7 @@ export default function RiceData() {
         </div>
       </section>
       {/* Modal */}
-      <ModalAddRiceData open={showModal} onClose={() => setShowModal(false)}>
+      <ModalAddRiceData open={isModalOpen} onClose={() => setIsModalOpen(false)}>
         <div className="flex bg-blue-400">
           <h1 className="page-header">Add Rice Data</h1>
         </div>
@@ -416,7 +553,9 @@ export default function RiceData() {
             className="flex flex-col bg-slate-400 h-full"
             onSubmit={handleSubmit}
           >
+            <div className={riceDataExists === true ? "block text-red-400" : "hidden"}>*Rice Data Already Exists</div>
             <div className="flex whitespace-nowrap bg-blue-300">
+
               <div>
                 <select name="accessionId" id="" onChange={handleChange} required>
                   <option>Accession</option>
@@ -1131,7 +1270,7 @@ export default function RiceData() {
               <button
                 className="bg-sprPrimary rounded-full py-2 px-3"
                 onClick={() => {
-                  setShowModal(false);
+                  setIsModalOpen(false);
                 }}
               >
                 Cancel
@@ -1151,53 +1290,3 @@ export default function RiceData() {
 }
 
 
-
-{/* <div className="bg-yellow-500 h-full">
-  <nav className="bg-green-800 h-full w-4 mx-2">
-    <ul className="flex flex-col  bg-gray-600 h-full">
-      <li className=" flex items-center  flex-auto  bg-green-300 ">
-        <Link to="vegetative-stage">
-          <img className=" h-5 w-5 relative bg-blue-500 " src={dashboardIcon} alt="" />
-
-        </Link>
-      </li>
-      <li className=" flex items-center flex-auto   bg-green-500">
-        <Link to="reproductive-stage">
-          <img className=" h-5 w-5 relative" src={reproductiveStageIcon} alt="" />
-
-        </Link>
-      </li>
-      <li className=" flex items-center flex-auto  bg-green-700">
-        <Link to="grain-characteristics">
-          <img className=" h-5 w-5 relative" src={grainCharacteristicsIcon} alt="" />
-
-        </Link>
-      </li>
-      <li className=" flex items-center flex-auto  bg-green-900">
-        <Link to="yield-components">
-          <img className=" h-5 w-5  relative" src={yieldComponentsIcon} alt="" />
-
-        </Link>
-      </li>
-    </ul>
-  </nav>
-</div> */}
-
-{/* <div>
-                  <label htmlFor="">Coleoptile: anthocyanin colouration</label>
-                  <input type="text" name="coleoptile_anthocyanin_colouration" value={riceData.vegetativeStage} onChange={handleChange} />
-                </div>
-                <div>
-                <label htmlFor="">Seedling: height [cm]</label>
-                  <input type="text" name="seedling_height" value={riceData.vegetativeStage} onChange={handleChange} />
-                  <label htmlFor="">Basal leaf sheath: colour</label>
-                </div>
-                <div>
-                <input type="text" name="Basal_leaf_sheath_colour" value={riceData.vegetativeStage} onChange={handleChange} />
-                  <label htmlFor="">Leaf sheath: anthocyanin colouration</label>
-                  <input type="text" name="Leaf_sheath_anthocyanin_colouration" value={riceData.vegetativeStage} onChange={handleChange} />
-                </div>
-                <div>
-                <label htmlFor="">Leaf blade: presence/absence of anthocyanin colouration</label>
-                  <input type="text" name="Leaf_blade_presence/absence_of_anthocyanin_colourationt" value={riceData.vegetativeStage} onChange={handleChange} />
-                </div> */}

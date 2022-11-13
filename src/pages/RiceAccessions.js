@@ -82,14 +82,18 @@ export default function RiceAccessions() {
   // Check Accession If Exists
   const [accessionExists, setAccessionExists] = useState(false)
   useEffect(() => {
-    riceAccessions.forEach((item) => {
-      if (state.accession === item.accessionId) {
-        setAccessionExists(true)
-      }
-      else {
-        setAccessionExists(false)
-      }
-    })
+
+
+    const result = riceAccessions.find(rice => rice.accessionId === state.accession)
+    if (result === undefined) {
+      console.log('undefine');
+      setAccessionExists(false)
+    }
+    else {
+      console.log('exisst');
+      setAccessionExists(true)
+    }
+
 
   }, [state.accession])
 
@@ -116,6 +120,7 @@ export default function RiceAccessions() {
 
 
 
+
   };
 
   const submitEdit = async (e) => {
@@ -130,6 +135,8 @@ export default function RiceAccessions() {
 
     await updateDoc(docRef, payLoad);
     setIsModalOpen(false)
+    setState(initialState)
+    setIsEdit(false)
   }
   // Search Box ----------------------->
   const [searchInput, setSearchInput] = useState('')
@@ -299,6 +306,7 @@ export default function RiceAccessions() {
                   <div className="w-4 h-4"><img src={delIcon} alt="" /></div>
 
                 </button>
+
               </div>
             ))}
           </div>
@@ -328,7 +336,16 @@ export default function RiceAccessions() {
         </div> */}
       </section>
       {/* Modal */}
-      <ModalAddRiceAcc open={isModalOpen} onClose={() => setIsModalOpen(false)}>
+      <ModalAddRiceAcc open={isModalOpen} >
+        <div className="absolute right-5 z-50 ">
+          <button onClick={() => {
+            setIsModalOpen(false)
+            setIsEdit(false)
+            setState(initialState)
+          }}>
+            <img className="relative" src={closeIcon} alt="" />
+          </button>
+        </div>
         <div className="flex bg-blue-400">
           <h1 className="page-header">Add Rice Accession</h1>
         </div>
@@ -394,6 +411,8 @@ export default function RiceAccessions() {
                 className="bg-sprPrimary rounded-full py-2 px-3"
                 onClick={() => {
                   setIsModalOpen(false);
+                  setState(initialState)
+                  setIsEdit(false)
                 }}
               >
                 Cancel
