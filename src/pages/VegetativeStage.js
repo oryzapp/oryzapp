@@ -153,7 +153,7 @@ export default function VegetativeStage() {
 
         {/* ffffff */}
         {/* ffffff */}
-        <div className="bg-yellow-300 text-sm">
+        <table className="bg-yellow-300 text-sm">
           <thead className="text-xs font-medium uppercase">Flag Leaf</thead>
           <tbody className="bg-green-800 flex ">
             <div className="hidden sm:block flex-auto divide-y divide-slate-400 bg-blue-500">
@@ -181,11 +181,11 @@ export default function VegetativeStage() {
               ))}
             </div>
           </tbody>
-        </div>
+        </table>
 
         {/* ffffff */}
         {/* ffffff */}
-        <div className="bg-yellow-300 text-sm">
+        <table className="bg-yellow-300 text-sm">
           <thead className="text-xs font-medium uppercase">Leaf</thead>
           <tbody className="bg-green-800 flex ">
             <div className="hidden sm:block flex-auto divide-y divide-slate-400 bg-blue-500">
@@ -201,11 +201,11 @@ export default function VegetativeStage() {
               ))}
             </div>
           </tbody>
-        </div>
+        </table>
 
         {/* ffffff */}
         {/* ffffff */}
-        <div className="bg-yellow-300 text-sm">
+        <table className="bg-yellow-300 text-sm">
           <thead className="text-xs font-medium uppercase">Leaf Blade</thead>
           <tbody className="bg-green-800 flex ">
             <div className="hidden sm:block flex-auto divide-y divide-slate-400 bg-blue-500">
@@ -257,11 +257,11 @@ export default function VegetativeStage() {
               ))}
             </div>
           </tbody>
-        </div>
+        </table>
 
         {/* ffffff */}
         {/* ffffff */}
-        <div className="bg-yellow-300 text-sm">
+        <table className="bg-yellow-300 text-sm">
           <thead className="text-xs font-medium uppercase">Leaf Sheath</thead>
           <tbody className="bg-green-800 flex ">
             <div className="hidden sm:block flex-auto divide-y divide-slate-400 bg-blue-500">
@@ -277,11 +277,11 @@ export default function VegetativeStage() {
               ))}
             </div>
           </tbody>
-        </div>
+        </table>
 
         {/* ffffff */}
         {/* ffffff */}
-        <div className="bg-yellow-300 text-sm">
+        <table className="bg-yellow-300 text-sm">
           <thead className="text-xs font-medium uppercase">Ligule</thead>
           <tbody className="bg-green-800 flex ">
             <div className="hidden sm:block flex-auto divide-y divide-slate-400 bg-blue-500">
@@ -333,11 +333,11 @@ export default function VegetativeStage() {
               ))}
             </div>
           </tbody>
-        </div>
+        </table>
 
         {/* ffffff */}
         {/* ffffff */}
-        <div className="bg-yellow-300 text-sm">
+        <table className="bg-yellow-300 text-sm">
           <thead className="text-xs whitespace-nowrap font-medium uppercase">Rhizome and Stalon</thead>
           <tbody className="bg-green-800 flex ">
             <div className="hidden sm:block flex-auto divide-y divide-slate-400 bg-blue-500">
@@ -347,11 +347,11 @@ export default function VegetativeStage() {
               ))}
             </div>
           </tbody>
-        </div>
+        </table>
 
         {/* ffffff */}
         {/* ffffff */}
-        <div className="bg-yellow-300 text-sm">
+        <table className="bg-yellow-300 text-sm">
           <thead className="text-xs font-medium uppercase">Seedling</thead>
           <tbody className="bg-green-800 flex ">
             <div className="hidden sm:block flex-auto divide-y divide-slate-400 bg-blue-500">
@@ -361,10 +361,9 @@ export default function VegetativeStage() {
               ))}
             </div>
           </tbody>
-        </div>
+        </table>
 
-        {/* ffffff */}
-      </div>
+        {/* ffffff */}table    </div>
 
     </>
   );

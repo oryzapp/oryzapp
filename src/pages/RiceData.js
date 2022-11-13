@@ -6,12 +6,16 @@ import db from "../firebase-config";
 
 // Icons
 import addIcon from '../assets/add-icon.svg'
-import vegetativeStageIcon from '../assets/vegetative-stage-icon.svg'
-import reproductiveStageIcon from '../assets/reproductive-stage-icon.svg'
-import grainCharacteristicsIcon from '../assets/grain-characteristics-icon.svg'
-import yieldComponentsIcon from '../assets/yield-components-icon.svg'
-import { Component } from "react";
-import { listRice } from "../util";
+// import vegetativeStageIcon from '../assets/vegetative-stage-icon.svg'
+// import reproductiveStageIcon from '../assets/reproductive-stage-icon.svg'
+// import reproductiveStageIcon_Dark from '../assets/reproductive-stage-icon-dark.svg'
+// import grainCharacteristicsIcon from '../assets/grain-characteristics-icon.svg'
+// import yieldComponentsIcon from '../assets/yield-components-icon.svg'
+
+import { ReactComponent as RSicon } from "../assets/reproductive-stage-icon.svg";
+import { ReactComponent as GCicon } from "../assets/grain-characteristics-icon.svg";
+import { ReactComponent as VSicon } from "../assets/vegetative-stage-icon.svg";
+import { ReactComponent as YCicon } from "../assets/yield-components-icon.svg";
 
 export default function RiceData() {
   const [isModalOpen, setIsModalOpen] = useState(false)
@@ -500,38 +504,47 @@ export default function RiceData() {
         <div className=" ">
           <nav className=" h-full w-9 ">
             <ul className="flex flex-col h-full">
-              <li className={state === 1 ? "flex items-center  flex-auto   bg-sprPrimaryLight rounded-l-lg" :
+              {/* <li className={state === 1 ? "flex items-center  flex-auto   bg-sprPrimaryLight rounded-l-lg" :
                 "flex items-center  flex-auto hover:bg-slate-200 rounded-l-lg"}
-                onClick={() => activeOn(1)}>
-                <Link to="vegetative-stage">
-                  <img className=" h-8 w-8 relative" src={vegetativeStageIcon} alt="" />
+                onClick={() => activeOn(1)}> */}
+                <Link className={state === 1 ? "flex items-center  flex-auto   bg-sprPrimary rounded-l-lg" :
+                " group flex items-center  flex-auto  hover:bg-sprPrimaryLight bg-sprGray20 rounded-l-lg"}
+                onClick={() => activeOn(1)} to="vegetative-stage">
+                  {/* <img className=" h-8 w-8 relative" src={state !== 1 ? vegetativeStageIcon : vegetativeStageIcon} alt="" /> */}
+                  <VSicon className=" group-hover:stroke-white" fill="none" stroke={state !== 1 ?"#888A89" : "white"} />
+                </Link>
+              {/* </li> */}
+              {/* <li className={state === 2 ? "flex items-center  flex-auto  bg-sprPrimaryLight rounded-l-lg" :
+                "flex items-center  flex-auto hover:bg-slate-200 rounded-l-lg"}
+                onClick={() => activeOn(2)}> */}
+                <Link className={state === 2 ? " flex items-center  flex-auto  bg-sprPrimary rounded-l-lg" :
+                " group flex items-center  flex-auto  hover:bg-sprPrimaryLight bg-sprGray20 rounded-l-lg"}
+                onClick={() => activeOn(2)} to="reproductive-stage">
+                  {/* <img className=" h-8 w-8 relative" src={state !== 2 ? reproductiveStageIcon_Dark : reproductiveStageIcon } alt="" /> */}
+                  <RSicon className=" group-hover:stroke-white" fill="none" stroke={state !== 2 ?"#888A89" : "white"} />
 
                 </Link>
-              </li>
-              <li className={state === 2 ? "flex items-center  flex-auto  bg-sprPrimaryLight rounded-l-lg" :
+              {/* </li> */}
+              {/* <li className={state === 3 ? "flex items-center  flex-auto  bg-sprPrimaryLight rounded-l-lg" :
                 "flex items-center  flex-auto hover:bg-slate-200 rounded-l-lg"}
-                onClick={() => activeOn(2)}>
-                <Link to="reproductive-stage">
-                  <img className=" h-8 w-8 relative" src={reproductiveStageIcon} alt="" />
-
+                onClick={() => activeOn(3)}> */}
+                <Link className={state === 3 ? "flex items-center  flex-auto  bg-sprPrimary rounded-l-lg" :
+                "group flex items-center  flex-auto  hover:bg-sprPrimaryLight bg-sprGray20 rounded-l-lg"}
+                onClick={() => activeOn(3)} to="grain-characteristics">
+                  {/* <img className=" h-8 w-8 relative" src={state !== 3 ? grainCharacteristicsIcon : grainCharacteristicsIcon} alt="" /> */}
+                  <GCicon className=" group-hover:stroke-white" fill="none" stroke={state !== 3 ?"#888A89" : "white"} />
                 </Link>
-              </li>
-              <li className={state === 3 ? "flex items-center  flex-auto  bg-sprPrimaryLight rounded-l-lg" :
+              {/* </li> */}
+              {/* <li className={state === 4 ? "flex items-center  flex-auto  bg-sprPrimaryLight rounded-l-lg" :
                 "flex items-center  flex-auto hover:bg-slate-200 rounded-l-lg"}
-                onClick={() => activeOn(3)}>
-                <Link to="grain-characteristics">
-                  <img className=" h-8 w-8 relative" src={grainCharacteristicsIcon} alt="" />
-
+                onClick={() => activeOn(4)}> */}
+                <Link className={state === 4 ? "flex items-center  flex-auto  bg-sprPrimary rounded-l-lg" :
+                " group flex items-center  flex-auto hover:bg-sprPrimaryLight bg-sprGray20 rounded-l-lg"}
+                onClick={() => activeOn(4)} to="yield-components">
+                  {/* <img className=" h-8 w-8  relative" src={yieldComponentsIcon} alt="" /> */}
+                  <YCicon className=" group-hover:stroke-white" fill="none" stroke={state !== 4 ?"#888A89" : "white"} />
                 </Link>
-              </li>
-              <li className={state === 4 ? "flex items-center  flex-auto  bg-sprPrimaryLight rounded-l-lg" :
-                "flex items-center  flex-auto hover:bg-slate-200 rounded-l-lg"}
-                onClick={() => activeOn(4)}>
-                <Link to="yield-components">
-                  <img className=" h-8 w-8  relative" src={yieldComponentsIcon} alt="" />
-
-                </Link>
-              </li>
+              {/* </li> */}
             </ul>
           </nav>
         </div>
@@ -588,33 +601,37 @@ export default function RiceData() {
             <div className=" flex  bg-red-600">
 
               <div className="flex cursor-pointer ">
-                <div className={toggleState === 1 ? "border-b-2 border-b-sprPrimary flex bg-blue-900 items-end" : "flex bg-blue-900 items-end"} onClick={() => toggleTab(1)}>
+                <div className={toggleState === 1 ? "group border-b-2 border-b-sprPrimary flex bg-blue-900 items-end" : "group flex bg-blue-900 items-end"} onClick={() => toggleTab(1)}>
                   <div className="w-8 h-8 bg-yellow-900">
-                    <img src={vegetativeStageIcon} alt="" />
-
+                    {/* <img src={vegetativeStageIcon} alt="" /> */}
+                    <VSicon className={toggleState === 1 ? "" : "group-hover:stroke-sprPrimaryLight"} fill="none" stroke={toggleState !== 1 ?"#888A89" : "#AFBE00"} />
                   </div>
-                  <h6 className=" text-sm md:block hidden">Vegetative Stage</h6>
+                  <h6 className={toggleState === 1 ? "text-sm md:block hidden text-sprPrimary" : "text-sm md:block hidden group-hover:text-sprPrimaryLight text-sprInactiveGray"}>Vegetative Stage</h6>
                 </div>
-                <div className={toggleState === 2 ? "border-b-2 border-b-sprPrimary flex items-end" : "flex items-end"} onClick={() => toggleTab(2)}>
+
+                <div className={toggleState === 2 ? "group border-b-2 border-b-sprPrimary flex items-end" : "group flex items-end"} onClick={() => toggleTab(2)}>
                   <div className="h-8 w-8 bg-yellow-900">
-                    <img src={reproductiveStageIcon} alt="" />
+                    {/* <img src={reproductiveStageIcon} alt="" /> */}
+                    <RSicon className={toggleState === 2 ? "" : "group-hover:stroke-sprPrimaryLight"} fill="none" stroke={toggleState !== 2 ?"#888A89" : "#AFBE00"} />
                   </div>
-                  <h6 className="text-sm md:block hidden">Reproductive Stage</h6>
+                  <h6 className={toggleState === 2 ? "text-sm md:block hidden text-sprPrimary" : "text-sm md:block hidden group-hover:text-sprPrimaryLight text-sprInactiveGray"}>Reproductive Stage</h6>
                 </div>
-                <div className={toggleState === 3 ? "border-b-2 border-b-sprPrimary flex items-end" : "flex items-end"} onClick={() => toggleTab(3)}>
+
+                <div className={toggleState === 3 ? "group border-b-2 border-b-sprPrimary flex items-end" : "group flex items-end"} onClick={() => toggleTab(3)}>
                   <div className="h-8 w-8 bg-yellow-900">
-                    <img src={grainCharacteristicsIcon} alt="" />
-
+                    {/* <img src={grainCharacteristicsIcon} alt="" /> */}
+                    <GCicon className={toggleState === 3 ? "" : "group-hover:stroke-sprPrimaryLight"} fill="none" stroke={toggleState !== 3 ?"#888A89" : "#AFBE00"} />
                   </div>
-                  <h6 className="text-sm md:block hidden">Grain Characteristics</h6>
+                  <h6 className={toggleState === 3 ? "text-sm md:block hidden text-sprPrimary" : "text-sm md:block hidden group-hover:text-sprPrimaryLight text-sprInactiveGray"}>Grain Characteristics</h6>
 
                 </div>
-                <div className={toggleState === 4 ? "border-b-2 border-b-sprPrimary flex items-end" : "flex items-end"} onClick={() => toggleTab(4)}>
+
+                <div className={toggleState === 4 ? "group border-b-2 border-b-sprPrimary flex items-end" : "group flex items-end"} onClick={() => toggleTab(4)}>
                   <div className="w-8 h-8 bg-yellow-900">
-                    <img src={yieldComponentsIcon} alt="" />
-
+                    {/* <img src={yieldComponentsIcon} alt="" /> */}
+                    <YCicon className={toggleState === 4 ? "" : "group-hover:stroke-sprPrimaryLight"} fill="none" stroke={toggleState !== 4 ?"#888A89" : "#AFBE00"} />   
                   </div>
-                  <h6 className="text-sm hidden md:block">Yield Components</h6>
+                  <h6 className={toggleState === 4 ? "text-sm md:block hidden text-sprPrimary" : "text-sm md:block hidden group-hover:text-sprPrimaryLight text-sprInactiveGray"}>Yield Components</h6>
                 </div>
               </div>
             </div>
