@@ -247,9 +247,6 @@ export default function RiceData() {
   // Submit to Database ------------->
   const handleSubmit = async (e) => {
     try {
-
-
-
       e.preventDefault();
       const vsColRef = collection(db, `/SPR/Rice_Seasons/Seasons/${season}/Stages/Vegetative_Stage/VS_Raw_Rice_Data`);
       const vsPayLoad = {
@@ -379,15 +376,19 @@ export default function RiceData() {
 
       }
 
-      await addDoc(vsColRef, vsPayLoad);
-      await addDoc(rsColRef, rsPayLoad);
-      await addDoc(gcColRef, gcPayLoad);
-      await addDoc(ycColRef, ycPayLoad);
-      await setDoc(riceListDocRef, riceListPayLoad);
+      if (riceDataExists === true) {
+        alert('Change Accession')
+      }
 
-      setIsModalOpen(false)
-      setRiceData(initialState);
-
+      else {
+        await addDoc(vsColRef, vsPayLoad);
+        await addDoc(rsColRef, rsPayLoad);
+        await addDoc(gcColRef, gcPayLoad);
+        await addDoc(ycColRef, ycPayLoad);
+        await setDoc(riceListDocRef, riceListPayLoad);
+        setIsModalOpen(false)
+        setRiceData(initialState);
+      }
     } catch (error) {
       alert(error);
     }

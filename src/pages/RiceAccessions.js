@@ -50,9 +50,8 @@ export default function RiceAccessions() {
       else {
         await addDoc(collectionRef, payLoad);
         setIsModalOpen(false)
+        setState(initialState)
       }
-
-      setState(initialState)
     } catch (error) {
       alert(error);
     }

@@ -79,7 +79,7 @@ export default function VegetativeStage() {
 
         {/* ffffff */}
         {/* ffffff */}
-        <div className="bg-yellow-300 text-sm">
+        <table className="bg-yellow-300 text-sm">
           <thead className="text-xs font-medium uppercase">Culm</thead>
           <tbody className="bg-green-800 flex ">
             <div className="hidden sm:block flex-auto divide-y divide-slate-400 bg-blue-500">
@@ -149,7 +149,7 @@ export default function VegetativeStage() {
               ))}
             </div>
           </tbody>
-        </div>
+        </table>
 
         {/* ffffff */}
         {/* ffffff */}
