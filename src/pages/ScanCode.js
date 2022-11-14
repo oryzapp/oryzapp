@@ -45,9 +45,11 @@ export default function ScanCode() {
   console.log(riceList);
 
   // Check if Rice Data Exists --------->
+  const [currentData, setCurrentData] = useState([])
   useEffect(() => {
 
     const result = riceList.find(rice => rice.id === qrData)
+    setCurrentData(result)
     if (result === undefined) {
       console.log('undefine');
       setRiceDataExists(false)
@@ -64,12 +66,13 @@ export default function ScanCode() {
   // Open View Rice Info Modal
   const openViewInfoModal = () => {
     setModalIsOpen(true)
+    // console.log(riceList.find(rice => rice.id === qrData));
   }
 
 
   return (
     <div className="flex  bg-blue-900  h-full">
-      <div className="bg-red-800 w-full md:w-5/12 flex flex-col">
+      <div className="bg-red-800 w-full md:w-4/12 flex flex-col">
         {/* Header */}
         <header className="  bg-red-600">
           <h1 className="text-3xl font-bold text-sprBlack opacity-80 p-2">
@@ -108,16 +111,16 @@ export default function ScanCode() {
               <div className={riceDataExists === true ? 'w-64  rounded-lg bg-yellow-300 flex justify-between p-2' : 'hidden'}>
                 <div className="">
                   <h1 className="text-xl font-bold text-sprBlack opacity-80">
-                    CL_XXX
+                    {currentData?.accessionId}
                   </h1>
                   <h6 className="text-xs font-medium text-sprGray60">
-                    cccc
+                    {currentData?.riceSeason + ' Season'}
                   </h6>
                   <h6 className="text-xs font-medium text-sprGray60">
-                    ccc
+                    {currentData?.riceYear}
                   </h6>
                 </div>
-                <button className=" text-white text-sm bg-gradient-to-b from-sprPrimary to-sprPrimaryDark h-8 w-14 sm:h-6 sm:w-12 rounded-full shadow-lg shadow-slate-300 " onClick={openViewInfoModal}>
+                <button className=" text-white text-sm bg-gradient-to-b from-sprPrimary to-sprPrimaryDark h-8 w-14 sm:h-6 sm:hidden sm:w-12 rounded-full shadow-lg shadow-slate-300 " onClick={openViewInfoModal}>
                   view
                 </button>
               </div>
@@ -129,7 +132,40 @@ export default function ScanCode() {
         </div>
       </div>
 
-      <div className="bg-red-900 hidden md:flex md:flex-auto">bbssssssss</div>
+      <div className="bg-red-900 hidden md:flex md:flex-auto">
+        <div className={riceDataExists == true ? "flex w-full flex-col p-6 rounded-lg" : "hidden"}>
+          <div className="bg-yellow-400 flex  ">
+            <header className="  bg-red-600">
+              <h1 className="text-3xl font-bold text-sprBlack opacity-80 p-2">
+                Rice Info
+              </h1>
+            </header>
+            <div className="bg-yellow-400">
+            </div>
+          </div>
+          <div className="bg-violet-500 flex-auto flex">
+            <div className="bg-green-600 w-1/4 flex flex-col">
+              <div className="bg-pink-600 h-1/2 w-full p-3">
+                <div className="bg-yellow-400 h-full">image</div></div>
+              <div className="bg-pink-300 h-3/4 w-full"> Info</div>
+            </div>
+            <div className="bg-green-600 w-3/4">info</div>
+          </div>
+        </div>
+
+
+      </div>
+
+      <ModalRiceInfo open={modalIsOpen} >
+        <div className=" fixed left-0 right-0 bottom-0 top-0 z-50 bg-black opacity-70 " />
+        <div className=" flex flex-col absolute left-3 right-3 bottom-16 top-16 sm:left-12 sm:right-12 md:left-28 md:right-28 lg:left-1/4 lg:right-1/4 z-50 bg-red-500 rounded-md  px-6 pt-10 pb-6   ">
+          <div className="absolute right-5 z-50 ">
+            <button onClick={() => setModalIsOpen(false)}>
+              <img className="relative" src={closeIcon} alt="" />
+            </button>
+          </div>
+        </div>
+      </ModalRiceInfo>
 
     </div>
   );
@@ -172,15 +208,5 @@ export default function ScanCode() {
 //     bee
 //   </div>
 
-//   <ModalRiceInfo open={modalIsOpen} >
-//     <div className=" fixed left-0 right-0 bottom-0 top-0 z-50 bg-black opacity-70 " />
-//     <div className=" flex flex-col absolute left-3 right-3 bottom-16 top-16 sm:left-12 sm:right-12 md:left-28 md:right-28 lg:left-1/4 lg:right-1/4 z-50 bg-red-500 rounded-md  px-6 pt-10 pb-6   ">
-//       <div className="absolute right-5 z-50 ">
-//         <button onClick={() => setModalIsOpen(false)}>
-//           <img className="relative" src={closeIcon} alt="" />
-//         </button>
-//       </div>
-//     </div>
-//   </ModalRiceInfo>
 
 // </section>
