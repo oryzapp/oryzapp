@@ -128,7 +128,7 @@ export default function ScanCode() {
               <div className={isScan === true ? 'bg-green-600 flex-auto rounded-b-lg' : 'hidden'}>
                 <video ></video>
               </div>
-              <div className={isScan === false ? 'flex flex-col gap-5 justify-center items-center bg-green-600 flex-auto rounded-b-lg  sprBorderDashed' : 'hidden'}>
+              <div className={isScan === false ? 'flex flex-col gap-5 justify-center items-center bg-green-600 flex-auto rounded-b-lg  sprBorderDashed' : 'hidden'} >
                 <ImageIcon fill="none" className="w-16" />
                 <div className="bg-sprPrimary relative rounded-full hover:bg-sprPrimaryLight">
                   <h6 className="absolute left-4 top-1 text-white font-medium" >Choose File</h6>

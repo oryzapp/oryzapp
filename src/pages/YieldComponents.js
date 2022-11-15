@@ -1,29 +1,36 @@
-import { collection, onSnapshot, orderBy, query } from "firebase/firestore";
+import { collection, collectionGroup, onSnapshot, orderBy, query } from "firebase/firestore";
 import { useEffect, useState } from "react";
+import { useOutletContext } from "react-router-dom";
 import db from "../firebase-config";
 
 
 
 export default function YieldComponents() {
-  const season = 'Wet_Season'
-  const [riceAccessions, setRiceAccessions] = useState([])
+  const [seasonToOutlet, setSeasonToOutlet] = useOutletContext()
+  const [riceData, setRiceData] = useState([])
   useEffect(() => {
-    const collectionRef = collection(db, `/SPR/Rice_Seasons/Seasons/${season}/Stages/Yield_Components/YC_Raw_Rice_Data`);
 
-    const q = query(collectionRef, orderBy("timestamp", "asc"));
-    const unsub = onSnapshot(q, (snapshot) => {
-      setRiceAccessions(
-        snapshot.docs.map((doc) => ({ ...doc.data(), id: doc.id }))
-      );
+    let riceCollectionRef = collectionGroup(db, "YC_Raw_Rice_Data");
+
+    if (seasonToOutlet === 'All') {
+      riceCollectionRef = collectionGroup(db, "YC_Raw_Rice_Data");
+    }
+    if (seasonToOutlet === "Wet_Season") {
+      riceCollectionRef = query(collection(db, `/SPR/Rice_Seasons/Seasons/${seasonToOutlet}/Stages/Yield_Components/YC_Raw_Rice_Data`))
+    }
+    if (seasonToOutlet === "Dry_Season") {
+      riceCollectionRef = query(collection(db, `/SPR/Rice_Seasons/Seasons/${seasonToOutlet}/Stages/Yield_Components/YC_Raw_Rice_Data`))
+    }
+
+    onSnapshot(riceCollectionRef, (snapshot) => {
+      setRiceData(snapshot.docs.map((doc) => doc.data()));
     });
 
-    return unsub;
-  }, []);
-
+  }, [seasonToOutlet]);
   return (
 
     <>
-      
+
       <div className=" bg-green-200 flex text-sm">
         {/* ffffff */}
         <table className="bg-yellow-300">
@@ -31,7 +38,7 @@ export default function YieldComponents() {
           <tbody className="bg-green-800 flex ">
             <div className="hidden sm:block flex-auto divide-y divide-slate-400 bg-blue-500">
               <div className="px-6 py-2 font-medium">Accession</div>
-              {riceAccessions.map((rice) => (
+              {riceData.map((rice) => (
                 <div className="px-6 py-2"> {rice.accessionId === "" ? "---" : rice.accessionId}</div>
               ))}
             </div>
@@ -46,25 +53,25 @@ export default function YieldComponents() {
           <tbody className="bg-green-800 flex ">
             <div className="hidden sm:block flex-auto divide-y divide-slate-400 bg-blue-500">
               <div className="px-6 py-2 font-medium">cavans</div>
-              {riceAccessions.map((rice) => (
+              {riceData.map((rice) => (
                 <div className="px-6 py-2"> {rice.cavans === "" ? "---" : rice.cavans}</div>
               ))}
             </div>
             <div className="hidden sm:block flex-auto divide-y divide-slate-400 bg-blue-500">
               <div className="px-6 py-2 font-medium">Kilogram</div>
-              {riceAccessions.map((rice) => (
+              {riceData.map((rice) => (
                 <div className="px-6 py-2"> {rice.kilogram === "" ? "---" : rice.kilogram}</div>
               ))}
             </div>
             <div className="hidden sm:block flex-auto divide-y divide-slate-400 bg-blue-500">
               <div className="px-6 py-2 font-medium">Grain Yield</div>
-              {riceAccessions.map((rice) => (
+              {riceData.map((rice) => (
                 <div className="px-6 py-2"> {rice.grainYield === "" ? "---" : rice.grainYield}</div>
               ))}
             </div>
             <div className="hidden sm:block flex-auto divide-y divide-slate-400 bg-blue-500">
               <div className="px-6 py-2 font-medium">Ton/Ha</div>
-              {riceAccessions.map((rice) => (
+              {riceData.map((rice) => (
                 <div className="px-6 py-2"> {rice.tonHa === "" ? "---" : rice.tonHa}</div>
               ))}
             </div>
@@ -78,7 +85,7 @@ export default function YieldComponents() {
           <tbody className="bg-green-800 flex ">
             <div className="hidden sm:block flex-auto divide-y divide-slate-400 bg-blue-500">
               <div className="px-6 py-2 ">Kilogram</div>
-              {riceAccessions.map((rice) => (
+              {riceData.map((rice) => (
                 <div className="px-6 py-2"> {rice.kilogram === "" ? "---" : rice.kilogram}</div>
               ))}
             </div>
@@ -93,7 +100,7 @@ export default function YieldComponents() {
           <tbody className="bg-green-800 flex ">
             <div className="hidden sm:block flex-auto divide-y divide-slate-400 bg-blue-500">
               <div className="px-6 py-2 ">Grain Yield</div>
-              {riceAccessions.map((rice) => (
+              {riceData.map((rice) => (
                 <div className="px-6 py-2"> {rice.grainYield === "" ? "---" : rice.grainYield}</div>
               ))}
             </div>
@@ -107,7 +114,7 @@ export default function YieldComponents() {
           <tbody className="bg-green-800 flex ">
             <div className="hidden sm:block flex-auto divide-y divide-slate-400 bg-blue-500">
               <div className="px-6 py-2 ">Ton/Ha</div>
-              {riceAccessions.map((rice) => (
+              {riceData.map((rice) => (
                 <div className="px-6 py-2"> {rice.tonHa === "" ? "---" : rice.tonHa}</div>
               ))}
             </div>
@@ -121,19 +128,19 @@ export default function YieldComponents() {
           <tbody className="bg-green-800 flex ">
             <div className="hidden sm:block flex-auto divide-y divide-slate-400 bg-blue-500">
               <div className="px-6 py-2 font-medium">Cooked Rice</div>
-              {riceAccessions.map((rice) => (
+              {riceData.map((rice) => (
                 <div className="px-6 py-2"> {rice.cookedRiceAroma === "" ? "---" : rice.cookedRiceAroma}</div>
               ))}
             </div>
             <div className="hidden sm:block flex-auto divide-y divide-slate-400 bg-blue-500">
               <div className="px-6 py-2 font-medium">Grain</div>
-              {riceAccessions.map((rice) => (
+              {riceData.map((rice) => (
                 <div className="px-6 py-2"> {rice.grainAroma === "" ? "---" : rice.grainAroma}</div>
               ))}
             </div>
             <div className="hidden sm:block flex-auto divide-y divide-slate-400 bg-blue-500">
               <div className="px-6 py-2 font-medium">Leaf</div>
-              {riceAccessions.map((rice) => (
+              {riceData.map((rice) => (
                 <div className="px-6 py-2"> {rice.leafAroma === "" ? "---" : rice.leafAroma}</div>
               ))}
             </div>
