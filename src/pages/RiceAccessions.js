@@ -246,7 +246,7 @@ export default function RiceAccessions() {
               <div className="px-6 py-2"> {rice.accessionId === "" ? "---" : rice.accessionId} </div>
             ))}
           </div>
-          <div className=" hidden sm:block flex-auto divide-y divide-slate-300 bg-slate-200 h-fit">
+          <div className=" hidden sm:block flex-auto divide-y divide-slate-300 bg-slate-100 h-fit">
             <div className="px-6 py-2 text-sm font-medium bg-white text-sprPrimary">Classification </div>
             {riceAccessions.map((rice) => (
               <div className="px-6 py-2"> {rice.classification === "" ? "---" : rice.classification}</div>
@@ -258,7 +258,7 @@ export default function RiceAccessions() {
               <div className="px-6 py-2"> {rice.variety === "" ? "---" : rice.variety}</div>
             ))}
           </div>
-          <div className="hidden sm:block flex-auto divide-y divide-slate-300 bg-slate-200 h-fit">
+          <div className="hidden sm:block flex-auto divide-y divide-slate-300 bg-slate-100 h-fit">
             <div className="px-6 py-2 text-sm font-medium bg-white text-sprPrimary">Source</div>
             {riceAccessions.map((rice) => (
               <div className="px-6 py-2"> {rice.source === "" ? "---" : rice.source}</div>

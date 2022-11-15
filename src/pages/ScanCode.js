@@ -26,6 +26,9 @@ export default function ScanCode() {
       .then(result => setQrData(result.data))
       .catch(e => console.log(e));
 
+    console.log('wazzu[[[[');
+    console.log(qrData);
+
   }
 
 
@@ -97,13 +100,12 @@ export default function ScanCode() {
   }
 
 
-
-
-
+  // View On Md-Lg Screen
+  const [viewMdLg, setViewMdLg] = useState(false)
 
   return (
     <div className="flex  bg-blue-900  h-full">
-      <div className="bg-red-800 w-full md:w-4/12 flex flex-col">
+      <div className={viewMdLg === true ? "bg-red-800 w-5/12  flex flex-col" : "bg-red-800 w-full  flex flex-col"}>
         {/* Header */}
         <header className="  bg-red-600">
           <h1 className="text-3xl font-bold text-sprBlack opacity-80 p-2">
@@ -124,7 +126,7 @@ export default function ScanCode() {
                 </div>
               </div>
               <div className={isScan === true ? 'bg-green-600 flex-auto rounded-b-lg' : 'hidden'}>
-                scan
+                <video ></video>
               </div>
               <div className={isScan === false ? 'flex flex-col gap-5 justify-center items-center bg-green-600 flex-auto rounded-b-lg  sprBorderDashed' : 'hidden'}>
                 <ImageIcon fill="none" className="w-16" />
@@ -153,6 +155,12 @@ export default function ScanCode() {
                     {currentData?.riceYear}
                   </h6>
                 </div>
+                <button className=" text-white text-sm bg-gradient-to-b from-sprPrimary to-sprPrimaryDark h-8 w-14 sm:h-6 hidden sm:block sm:w-12 rounded-full shadow-lg shadow-slate-300 " onClick={() => {
+                  setViewMdLg(true)
+                  getData()
+                }}>
+                  view
+                </button>
                 <button className=" text-white text-sm bg-gradient-to-b from-sprPrimary to-sprPrimaryDark h-8 w-14 sm:h-6 sm:hidden sm:w-12 rounded-full shadow-lg shadow-slate-300 " onClick={() => {
                   openViewInfoModal()
                   getData()
@@ -167,7 +175,7 @@ export default function ScanCode() {
         </div>
       </div>
 
-      <div className="bg-red-900 hidden md:flex md:flex-auto">
+      <div className={viewMdLg === true ? "bg-red-900 md:flex  md:flex-auto" : "bg-red-900 hidden  md:flex-auto"}>
         <div className={riceDataExists == true ? "flex w-full flex-col p-6 rounded-lg" : "hidden"}>
           <div className="bg-yellow-400 flex  ">
             <header className="  bg-red-600">
@@ -182,9 +190,19 @@ export default function ScanCode() {
             <div className="bg-green-600 w-1/4 flex flex-col">
               <div className="bg-pink-600 h-1/2 w-full p-3">
                 <div className="bg-yellow-400 h-full">image</div></div>
-              <div className="bg-pink-300 h-3/4 w-full"> Info</div>
+              <div className="bg-pink-300 h-3/4 w-full">
+                <h1>{currentData.accessionId}</h1>
+                <p>Season: {currentData.riceSeason} Season</p>
+                <p>Year: {currentData.riceYear}</p>
+              </div>
             </div>
-            <div className="bg-green-600 w-3/4">info</div>
+            <main className="bg-green-600 w-3/4">
+              <section>
+                <h1>Vegetative Stage</h1>
+                <p>{vsData.auricleColor}</p>
+
+              </section>
+            </main>
           </div>
         </div>
 
