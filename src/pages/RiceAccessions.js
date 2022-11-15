@@ -182,7 +182,8 @@ export default function RiceAccessions() {
   }, [search, searchInput]);
 
 
-
+  console.log('jjjj');
+  console.log(riceAccessions);
 
 
   return (

@@ -252,7 +252,7 @@ export default function RiceData() {
   const handleSubmit = async (e) => {
     try {
       e.preventDefault();
-      const vsColRef = collection(db, `/SPR/Rice_Seasons/Seasons/${season}/Stages/Vegetative_Stage/VS_Raw_Rice_Data`);
+      const vsColRef = doc(db, `/SPR/Rice_Seasons/Seasons/${season}/Stages/Vegetative_Stage/VS_Raw_Rice_Data`, `${riceData.accessionId}_${season}_${riceData.riceYear}`);
       const vsPayLoad = {
         accessionId: riceData.accessionId,
         riceYear: riceData.riceYear,
@@ -298,7 +298,7 @@ export default function RiceData() {
         seedlingHeight: riceData.seedlingHeight,
         timestamp: serverTimestamp(),
       };
-      const rsColRef = collection(db, `/SPR/Rice_Seasons/Seasons/${season}/Stages/Reproductive_Stage/RS_Raw_Rice_Data`);
+      const rsColRef = doc(db, `/SPR/Rice_Seasons/Seasons/${season}/Stages/Reproductive_Stage/RS_Raw_Rice_Data`, `${riceData.accessionId}_${season}_${riceData.riceYear}`);
       const rsPayLoad = {
         accessionId: riceData.accessionId,
         riceYear: riceData.riceYear,
@@ -326,7 +326,7 @@ export default function RiceData() {
         panicleShattering: riceData.panicleShattering,
         timestamp: serverTimestamp(),
       };
-      const gcColRef = collection(db, `/SPR/Rice_Seasons/Seasons/${season}/Stages/Grain_Characteristics/GC_Raw_Rice_Data`);
+      const gcColRef = doc(db, `/SPR/Rice_Seasons/Seasons/${season}/Stages/Grain_Characteristics/GC_Raw_Rice_Data`, `${riceData.accessionId}_${season}_${riceData.riceYear}`);
       const gcPayLoad = {
         accessionId: riceData.accessionId,
         riceYear: riceData.riceYear,
@@ -357,7 +357,7 @@ export default function RiceData() {
         sterileLemmaColour: riceData.sterileLemmaColour,
         timestamp: serverTimestamp(),
       };
-      const ycColRef = collection(db, `/SPR/Rice_Seasons/Seasons/${season}/Stages/Yield_Components/YC_Raw_Rice_Data/`);
+      const ycColRef = doc(db, `/SPR/Rice_Seasons/Seasons/${season}/Stages/Yield_Components/YC_Raw_Rice_Data/`, `${riceData.accessionId}_${season}_${riceData.riceYear}`);
       const ycPayLoad = {
         accessionId: riceData.accessionId,
         riceYear: riceData.riceYear,
@@ -385,10 +385,10 @@ export default function RiceData() {
       }
 
       else {
-        await addDoc(vsColRef, vsPayLoad);
-        await addDoc(rsColRef, rsPayLoad);
-        await addDoc(gcColRef, gcPayLoad);
-        await addDoc(ycColRef, ycPayLoad);
+        await setDoc(vsColRef, vsPayLoad);
+        await setDoc(rsColRef, rsPayLoad);
+        await setDoc(gcColRef, gcPayLoad);
+        await setDoc(ycColRef, ycPayLoad);
         await setDoc(riceListDocRef, riceListPayLoad);
         setIsModalOpen(false)
         setRiceData(initialState);
@@ -507,43 +507,43 @@ export default function RiceData() {
               {/* <li className={state === 1 ? "flex items-center  flex-auto   bg-sprPrimaryLight rounded-l-lg" :
                 "flex items-center  flex-auto hover:bg-slate-200 rounded-l-lg"}
                 onClick={() => activeOn(1)}> */}
-                <Link className={state === 1 ? "flex items-center  flex-auto   bg-sprPrimary rounded-l-lg" :
+              <Link className={state === 1 ? "flex items-center  flex-auto   bg-sprPrimary rounded-l-lg" :
                 " group flex items-center  flex-auto  hover:bg-sprPrimaryLight bg-sprGray20 rounded-l-lg"}
                 onClick={() => activeOn(1)} to="vegetative-stage">
-                  {/* <img className=" h-8 w-8 relative" src={state !== 1 ? vegetativeStageIcon : vegetativeStageIcon} alt="" /> */}
-                  <VSicon className=" group-hover:stroke-white" fill="none" stroke={state !== 1 ?"#888A89" : "white"} />
-                </Link>
+                {/* <img className=" h-8 w-8 relative" src={state !== 1 ? vegetativeStageIcon : vegetativeStageIcon} alt="" /> */}
+                <VSicon className=" group-hover:stroke-white" fill="none" stroke={state !== 1 ? "#888A89" : "white"} />
+              </Link>
               {/* </li> */}
               {/* <li className={state === 2 ? "flex items-center  flex-auto  bg-sprPrimaryLight rounded-l-lg" :
                 "flex items-center  flex-auto hover:bg-slate-200 rounded-l-lg"}
                 onClick={() => activeOn(2)}> */}
-                <Link className={state === 2 ? " flex items-center  flex-auto  bg-sprPrimary rounded-l-lg" :
+              <Link className={state === 2 ? " flex items-center  flex-auto  bg-sprPrimary rounded-l-lg" :
                 " group flex items-center  flex-auto  hover:bg-sprPrimaryLight bg-sprGray20 rounded-l-lg"}
                 onClick={() => activeOn(2)} to="reproductive-stage">
-                  {/* <img className=" h-8 w-8 relative" src={state !== 2 ? reproductiveStageIcon_Dark : reproductiveStageIcon } alt="" /> */}
-                  <RSicon className=" group-hover:stroke-white" fill="none" stroke={state !== 2 ?"#888A89" : "white"} />
+                {/* <img className=" h-8 w-8 relative" src={state !== 2 ? reproductiveStageIcon_Dark : reproductiveStageIcon } alt="" /> */}
+                <RSicon className=" group-hover:stroke-white" fill="none" stroke={state !== 2 ? "#888A89" : "white"} />
 
-                </Link>
+              </Link>
               {/* </li> */}
               {/* <li className={state === 3 ? "flex items-center  flex-auto  bg-sprPrimaryLight rounded-l-lg" :
                 "flex items-center  flex-auto hover:bg-slate-200 rounded-l-lg"}
                 onClick={() => activeOn(3)}> */}
-                <Link className={state === 3 ? "flex items-center  flex-auto  bg-sprPrimary rounded-l-lg" :
+              <Link className={state === 3 ? "flex items-center  flex-auto  bg-sprPrimary rounded-l-lg" :
                 "group flex items-center  flex-auto  hover:bg-sprPrimaryLight bg-sprGray20 rounded-l-lg"}
                 onClick={() => activeOn(3)} to="grain-characteristics">
-                  {/* <img className=" h-8 w-8 relative" src={state !== 3 ? grainCharacteristicsIcon : grainCharacteristicsIcon} alt="" /> */}
-                  <GCicon className=" group-hover:stroke-white" fill="none" stroke={state !== 3 ?"#888A89" : "white"} />
-                </Link>
+                {/* <img className=" h-8 w-8 relative" src={state !== 3 ? grainCharacteristicsIcon : grainCharacteristicsIcon} alt="" /> */}
+                <GCicon className=" group-hover:stroke-white" fill="none" stroke={state !== 3 ? "#888A89" : "white"} />
+              </Link>
               {/* </li> */}
               {/* <li className={state === 4 ? "flex items-center  flex-auto  bg-sprPrimaryLight rounded-l-lg" :
                 "flex items-center  flex-auto hover:bg-slate-200 rounded-l-lg"}
                 onClick={() => activeOn(4)}> */}
-                <Link className={state === 4 ? "flex items-center  flex-auto  bg-sprPrimary rounded-l-lg" :
+              <Link className={state === 4 ? "flex items-center  flex-auto  bg-sprPrimary rounded-l-lg" :
                 " group flex items-center  flex-auto hover:bg-sprPrimaryLight bg-sprGray20 rounded-l-lg"}
                 onClick={() => activeOn(4)} to="yield-components">
-                  {/* <img className=" h-8 w-8  relative" src={yieldComponentsIcon} alt="" /> */}
-                  <YCicon className=" group-hover:stroke-white" fill="none" stroke={state !== 4 ?"#888A89" : "white"} />
-                </Link>
+                {/* <img className=" h-8 w-8  relative" src={yieldComponentsIcon} alt="" /> */}
+                <YCicon className=" group-hover:stroke-white" fill="none" stroke={state !== 4 ? "#888A89" : "white"} />
+              </Link>
               {/* </li> */}
             </ul>
           </nav>
@@ -604,7 +604,7 @@ export default function RiceData() {
                 <div className={toggleState === 1 ? "group border-b-2 border-b-sprPrimary flex bg-blue-900 items-end" : "group flex bg-blue-900 items-end"} onClick={() => toggleTab(1)}>
                   <div className="w-8 h-8 bg-yellow-900">
                     {/* <img src={vegetativeStageIcon} alt="" /> */}
-                    <VSicon className={toggleState === 1 ? "" : "group-hover:stroke-sprPrimaryLight"} fill="none" stroke={toggleState !== 1 ?"#888A89" : "#AFBE00"} />
+                    <VSicon className={toggleState === 1 ? "" : "group-hover:stroke-sprPrimaryLight"} fill="none" stroke={toggleState !== 1 ? "#888A89" : "#AFBE00"} />
                   </div>
                   <h6 className={toggleState === 1 ? "text-sm md:block hidden text-sprPrimary" : "text-sm md:block hidden group-hover:text-sprPrimaryLight text-sprInactiveGray"}>Vegetative Stage</h6>
                 </div>
@@ -612,7 +612,7 @@ export default function RiceData() {
                 <div className={toggleState === 2 ? "group border-b-2 border-b-sprPrimary flex items-end" : "group flex items-end"} onClick={() => toggleTab(2)}>
                   <div className="h-8 w-8 bg-yellow-900">
                     {/* <img src={reproductiveStageIcon} alt="" /> */}
-                    <RSicon className={toggleState === 2 ? "" : "group-hover:stroke-sprPrimaryLight"} fill="none" stroke={toggleState !== 2 ?"#888A89" : "#AFBE00"} />
+                    <RSicon className={toggleState === 2 ? "" : "group-hover:stroke-sprPrimaryLight"} fill="none" stroke={toggleState !== 2 ? "#888A89" : "#AFBE00"} />
                   </div>
                   <h6 className={toggleState === 2 ? "text-sm md:block hidden text-sprPrimary" : "text-sm md:block hidden group-hover:text-sprPrimaryLight text-sprInactiveGray"}>Reproductive Stage</h6>
                 </div>
@@ -620,7 +620,7 @@ export default function RiceData() {
                 <div className={toggleState === 3 ? "group border-b-2 border-b-sprPrimary flex items-end" : "group flex items-end"} onClick={() => toggleTab(3)}>
                   <div className="h-8 w-8 bg-yellow-900">
                     {/* <img src={grainCharacteristicsIcon} alt="" /> */}
-                    <GCicon className={toggleState === 3 ? "" : "group-hover:stroke-sprPrimaryLight"} fill="none" stroke={toggleState !== 3 ?"#888A89" : "#AFBE00"} />
+                    <GCicon className={toggleState === 3 ? "" : "group-hover:stroke-sprPrimaryLight"} fill="none" stroke={toggleState !== 3 ? "#888A89" : "#AFBE00"} />
                   </div>
                   <h6 className={toggleState === 3 ? "text-sm md:block hidden text-sprPrimary" : "text-sm md:block hidden group-hover:text-sprPrimaryLight text-sprInactiveGray"}>Grain Characteristics</h6>
 
@@ -629,7 +629,7 @@ export default function RiceData() {
                 <div className={toggleState === 4 ? "group border-b-2 border-b-sprPrimary flex items-end" : "group flex items-end"} onClick={() => toggleTab(4)}>
                   <div className="w-8 h-8 bg-yellow-900">
                     {/* <img src={yieldComponentsIcon} alt="" /> */}
-                    <YCicon className={toggleState === 4 ? "" : "group-hover:stroke-sprPrimaryLight"} fill="none" stroke={toggleState !== 4 ?"#888A89" : "#AFBE00"} />   
+                    <YCicon className={toggleState === 4 ? "" : "group-hover:stroke-sprPrimaryLight"} fill="none" stroke={toggleState !== 4 ? "#888A89" : "#AFBE00"} />
                   </div>
                   <h6 className={toggleState === 4 ? "text-sm md:block hidden text-sprPrimary" : "text-sm md:block hidden group-hover:text-sprPrimaryLight text-sprInactiveGray"}>Yield Components</h6>
                 </div>
