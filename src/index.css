@@ -51,3 +51,8 @@
   color: white;
 
 }
+
+.sprBorderDashed {
+  background-image: url("data:image/svg+xml,%3csvg width='100%25' height='100%25' xmlns='http://www.w3.org/2000/svg'%3e%3crect width='100%25' height='100%25' fill='none' rx='6' ry='6' stroke='%23AFBE00FF' stroke-width='4' stroke-dasharray='18' stroke-dashoffset='48' stroke-linecap='square'/%3e%3c/svg%3e");
+  border-radius: 6px;
+}
