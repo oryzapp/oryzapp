@@ -204,7 +204,7 @@ export default function RiceAccessions() {
         <div className="relative drop-shadow-sm">
           <form onSubmit={startSearch}>
             <input
-              className=" pl-2 py-1 text-sm placeholder:text-sprGray40  rounded-full "
+              className=" pl-2 py-1 text-sm focus:outline-none focus:border-none text-sprPrimary placeholder:text-sprPrimary/40 rounded-full "
               type="text"
               placeholder="Find a Rice"
               value={searchInput}
@@ -240,27 +240,27 @@ export default function RiceAccessions() {
 
 
           <div className="hidden sm:block  flex-auto divide-y divide-slate-300 bg-slate-50 h-fit  ">
-            <div className="px-6 py-2 text-sm font-medium bg-white text-sprPrimary ">Accession</div>
+            <div className="px-6 py-2 text-sm font-medium bg-white text-sprBlack ">Accession</div>
             {riceAccessions.map((rice) => (
-              <div className="px-6 py-2"> {rice.accessionId === "" ? "---" : rice.accessionId} </div>
+              <div className="px-6 py-2 text-md font-medium text-sprGray60"> {rice.accessionId === "" ? "---" : rice.accessionId} </div>
             ))}
           </div>
           <div className=" hidden sm:block flex-auto divide-y divide-slate-300 bg-slate-200 h-fit">
-            <div className="px-6 py-2 text-sm font-medium bg-white text-sprPrimary">Classification </div>
+            <div className="px-6 py-2 text-sm font-medium bg-white text-sprBlack">Classification </div>
             {riceAccessions.map((rice) => (
-              <div className="px-6 py-2"> {rice.classification === "" ? "---" : rice.classification}</div>
+              <div className="px-6 py-2 text-md font-medium text-sprGray60"> {rice.classification === "" ? "---" : rice.classification}</div>
             ))}
           </div>
           <div className="hidden sm:block flex-auto divide-y divide-slate-300 bg-slate-50 h-fit">
-            <div className="px-6 py-2 text-sm font-medium bg-white text-sprPrimary">Variety</div>
+            <div className="px-6 py-2 text-sm font-medium bg-white text-sprBlack">Variety</div>
             {riceAccessions.map((rice) => (
-              <div className="px-6 py-2"> {rice.variety === "" ? "---" : rice.variety}</div>
+              <div className="px-6 py-2 text-md font-medium text-sprGray60"> {rice.variety === "" ? "---" : rice.variety}</div>
             ))}
           </div>
           <div className="hidden sm:block flex-auto divide-y divide-slate-300 bg-slate-200 h-fit">
-            <div className="px-6 py-2 text-sm font-medium bg-white text-sprPrimary">Source</div>
+            <div className="px-6 py-2 text-sm font-medium bg-white text-sprBlack">Source</div>
             {riceAccessions.map((rice) => (
-              <div className="px-6 py-2"> {rice.source === "" ? "---" : rice.source}</div>
+              <div className="px-6 py-2 text-md font-medium text-sprGray60"> {rice.source === "" ? "---" : rice.source}</div>
             ))}
           </div>
           <div className="divide-y divide-slate-50  w-full sm:w-auto h-fit ">
@@ -346,11 +346,11 @@ export default function RiceAccessions() {
           </button>
         </div>
         <div className="flex bg-blue-400">
-          <h1 className="page-header">Add Rice Accession</h1>
+          <h1 className="page-header text-2xl font-bold">Add Rice Accession</h1>
         </div>
-        <div className="flex-auto bg-yellow-400 relative">
+        <div className="flex-auto relative">
           <form
-            className="flex flex-col bg-slate-400 h-full"
+            className="flex flex-col h-full"
             onSubmit={isEdit === true ? submitEdit : handleSubmit}
           >
             <div className="flex flex-auto flex-col lg:flex-row ">
@@ -361,19 +361,20 @@ export default function RiceAccessions() {
 
                   </div>
                   <input
+                    className="text-3xl font-medium py-px placeholder-sprPrimaryLight/50 text-sprPrimary focus:outline-none focus:ring-transparent bg-transparent"
                     type="text"
                     placeholder="CL-XXXX"
                     name="accession"
                     value={state.accession}
                     onChange={handleChange}
-
+                    required
                     readOnly={isEdit === true ? true : false}
                   />
                 </div>
                 <div className="p-4  flex flex-col">
-                  <label>Variety</label>
+                  <label className="text-sprPrimary">Variety</label>
                   <input
-                    className="rounded-full p-2 w-3/4"
+                    className="rounded-full p-2 w-3/4 border border-sprPrimary focus:outline-none focus:ring-2 focus:ring-sprPrimary focus:bg-sprPrimaryLight/30"
                     type="text"
                     name="variety"
                     value={state.variety}
@@ -381,9 +382,9 @@ export default function RiceAccessions() {
                   />
                 </div>
                 <div className="p-4  flex flex-col">
-                  <label>Source</label>
+                  <label className="text-sprPrimary">Source</label>
                   <input
-                    className="rounded-full p-2 w-3/4"
+                    className="rounded-full p-2 w-3/4 border border-sprPrimary focus:outline-none focus:ring-2 focus:ring-sprPrimary focus:bg-sprPrimaryLight/30"
                     type="text"
                     name="source"
                     value={state.source}
@@ -391,9 +392,9 @@ export default function RiceAccessions() {
                   />
                 </div>
                 <div className="p-4  flex flex-col">
-                  <label>Classification</label>
+                  <label className="text-sprPrimary">Classification</label>
                   <input
-                    className="rounded-full p-2 w-3/4"
+                    className="rounded-full p-2 w-3/4 border border-sprPrimary focus:outline-none focus:ring-2 focus:ring-sprPrimary focus:bg-sprPrimaryLight/30"
                     type="text"
                     name="classification"
                     value={state.classification}
@@ -407,7 +408,7 @@ export default function RiceAccessions() {
             </div>
             <div className="text-right space-x-2">
               <button
-                className="bg-sprPrimary rounded-full py-2 px-3"
+                className="bg-sprGray30 rounded-full py-2 px-3 text-sm font-medium text-white shadow-slate-300"
                 onClick={() => {
                   setIsModalOpen(false);
                   setState(initialState)
@@ -419,7 +420,7 @@ export default function RiceAccessions() {
 
               <button
                 type="submit"
-                className="bg-sprPrimary rounded-full py-2 px-3"
+                className="bg-sprPrimary rounded-full py-2 px-3 text-sm font-medium text-white shadow-slate-300"
               >
                 Save
               </button>

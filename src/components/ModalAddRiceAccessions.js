@@ -38,7 +38,7 @@ export default function ModalAddRiceAccessions() {
   return (
     <section className=" addRiceModal flex flex-col p-3 bg-white w-3/6 h-4/6 absolute top-0 bottom-16 right-0 left-0 m-auto rounded-md">
       <button className="bg-blue-300 absolute right-3">X</button>
-      <div className="flex-auto bg-red-300">
+      <div className="flex-auto">
         <form
           onSubmit={handleSubmit}
           className="flex h-full flex-col bg-green-800"

@@ -9,7 +9,7 @@ export default function RiceGallery() {
       <div className="flex  items-center gap-3  bg-blue-500">
         <div className="relative drop-shadow-sm">
           <input
-            className=" pl-2 py-1 text-sm placeholder:text-sprGray40  rounded-full "
+            className=" pl-2 py-1 text-sm placeholder:text-sprPrimary/40 text-sprPrimary focus:outline-none focus:border-none  rounded-full "
             type="text"
             placeholder="Find a Rice"
           />

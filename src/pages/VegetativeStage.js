@@ -363,7 +363,7 @@ export default function VegetativeStage() {
           </tbody>
         </table>
 
-        {/* ffffff */}table    </div>
+        {/* ffffff */}</div>
 
     </>
   );
