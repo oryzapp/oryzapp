@@ -3,7 +3,10 @@ import { QRCodeCanvas } from "qrcode.react";
 import { useEffect, useRef, useState } from "react";
 import db from "../firebase-config";
 import downloadIcon from '../assets/download-icon.svg'
-import addIcon from '../assets/add-icon.svg'
+import { ReactComponent as SearchIcon } from '../assets/search-icon.svg'
+import { ReactComponent as GridIcon } from '../assets/grid-icon.svg'
+import { ReactComponent as ListIcon } from '../assets/list-icon.svg'
+
 export default function RiceList() {
 
 
@@ -69,49 +72,56 @@ export default function RiceList() {
           Rice List</h1>
       </header>
       {/* Options */}
-      <div className="flex  items-center gap-3  bg-slate-100 rounded-full">
-        <div className="relative drop-shadow-sm">
-          <input
-            className=" pl-2 py-1 text-sm placeholder:text-sprPrimary/50 text-sprPrimary focus:outline-none focus:border-none  rounded-full "
-            type="text"
-            placeholder="Find a Rice"
-          />
-          <button className=" w-8 h-full rounded-full absolute right-0 bg-sprPrimaryLight">
-            o
-          </button>
-        </div>
-        <div className="relative py-1 bg-white rounded-full drop-shadow-sm">
-          Filter
-          <div className=" hidden absolute w-28 h-auto rounded-sm p-2 z-50  bg-white">
-            <label className="block" htmlFor="">
-              <input type="checkbox" name="Season" id="Season" />
-              Season
-            </label>
-            <label className="block" htmlFor="">
-              <input type="checkbox" name="Season" id="Season" />
-              Year
-            </label>
-            <label className="block" htmlFor="">
-              <input type="checkbox" name="Season" id="Season" />
-              Variety
-            </label>
+      <div className="flex justify-between  p-1 ">
+        <div className=" flex  items-center gap-3   rounded-full">
+          <div className="relative drop-shadow-md ">
+            <input
+              className=" pl-2 py-2 text-sm placeholder:text-sprPrimary/50 text-sprPrimary focus:outline-none focus:border-none  rounded-full "
+              type="text"
+              placeholder="Find a Rice"
+            />
+            <button className="  h-full px-2 rounded-full absolute right-0 bg-sprPrimaryLight">
+              <SearchIcon />
+            </button>
           </div>
-        </div>
-        <select value={season} name="riceSeason" onChange={changeSeason}>
-          <option value="All">All</option>
-          <option value="Dry_Season">Dry</option>
-          <option value="Wet_Season">Wet</option>
-        </select>
+          <div className="relative py-1 bg-white rounded-full drop-shadow-sm">
+            Filter
+            <div className=" hidden absolute w-28 h-auto rounded-sm p-2 z-50  bg-white">
+              <label className="block" htmlFor="">
+                <input type="checkbox" name="Season" id="Season" />
+                Season
+              </label>
+              <label className="block" htmlFor="">
+                <input type="checkbox" name="Season" id="Season" />
+                Year
+              </label>
+              <label className="block" htmlFor="">
+                <input type="checkbox" name="Season" id="Season" />
+                Variety
+              </label>
+            </div>
+          </div>
+          <div className="drop-shadow-md">
+            <div className="bg-sprPrimaryLight text-white h-full text-sm inline-block p-2 rounded-full pl-3 pr-10">Year</div>
+            <div className="inline-block -ml-9">
+              <select value={season} name="riceSeason" onChange={changeSeason} className="rounded-full py-2 text-sprPrimary text-sm">
+                <option value="All">All</option>
+                <option value="Dry_Season">Dry</option>
+                <option value="Wet_Season">Wet</option>
+              </select>
+            </div>
+          </div>
 
-        <div className="block">
-          <button onClick={() => setListOn(true)} className={listOn === true ? "bg-sprPrimary" : "bg-white"}
+        </div>
+        <div className=" bg-sprPrimaryLight flex mr-14 rounded-full drop-shadow-md">
+          <div className=" flex"><button onClick={() => setListOn(true)} className={listOn === true ? "bg-white rounded-full p-2 pl-3 pr-6" : " rounded-full -mr-1  p-2 pl-3"}
           >
-            list
+            <ListIcon className="w-4 h-4" fill={listOn === true ? "#CFD866" : "white"} />
           </button>
-          <button onClick={() => setListOn(false)} className={listOn === false ? "bg-sprPrimary" : "bg-white"}
-          >
-            grid
-          </button>
+            <button onClick={() => setListOn(false)} className={listOn === false ? "bg-white rounded-full  p-2 pr-6 pl-3" : "-ml-1 rounded-full  p-2 pr-3 "}
+            >
+              <GridIcon className="w-4 h-4" fill={listOn === false ? "#CFD866" : "white"} />
+            </button></div>
         </div>
 
       </div>
@@ -170,7 +180,7 @@ export default function RiceList() {
         {riceList.length === 0 ? <div>Empty Image</div> : <div className=" grid sm:grid-cols-3  lg:grid-cols-6   gap-2  grid-colors-black p-2 bg-white h-12 " >
 
           {riceList.map((rice) => (
-            <div className="flex  sm:flex-col bg-white  p-4 pt-2 pr-6 sm:pr-4   rounded-md border-solid border-2 border-sprPrimaryLight">
+            <div className="flex  sm:flex-col bg-white  p-4 pt-2 pr-6 sm:pr-4   rounded-md border-solid border-2 border-sprPrimaryLight drop-shadow-sm">
 
               <div className="flex  justify-center p-4">
                 <QRCodeCanvas id="qr-gen" className="hidden sm:block rounded-xl" value={`${rice.accessionId}_${rice.riceSeason}_Season_${rice.riceYear}`} bgColor="#FAFAFA" fgColor="rgba(18, 20, 20, 0.8)" includeMargin={true} size={100} />

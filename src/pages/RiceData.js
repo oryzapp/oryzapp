@@ -6,11 +6,6 @@ import db from "../firebase-config";
 
 // Icons
 import addIcon from '../assets/add-icon.svg'
-// import vegetativeStageIcon from '../assets/vegetative-stage-icon.svg'
-// import reproductiveStageIcon from '../assets/reproductive-stage-icon.svg'
-// import reproductiveStageIcon_Dark from '../assets/reproductive-stage-icon-dark.svg'
-// import grainCharacteristicsIcon from '../assets/grain-characteristics-icon.svg'
-// import yieldComponentsIcon from '../assets/yield-components-icon.svg'
 
 import { ReactComponent as RSicon } from "../assets/reproductive-stage-icon.svg";
 import { ReactComponent as GCicon } from "../assets/grain-characteristics-icon.svg";
@@ -467,7 +462,7 @@ export default function RiceData() {
   return (
     <>
       {/* Header */}
-      <header className="page-header bg-blue-600  flex items-center">
+      <header className="page-header   flex items-center">
         <button className=" w-8 h-8 p-2 rounded-full bg-sprPrimary" onClick={() => setIsModalOpen(true)}>
           <img src={addIcon} alt="" />
         </button>

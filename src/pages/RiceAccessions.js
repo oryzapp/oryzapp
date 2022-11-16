@@ -201,11 +201,11 @@ export default function RiceAccessions() {
         </h1>
       </header>
       {/* Options */}
-      <div className="flex  items-center gap-3 bg-slate-100 rounded-full">
+      <div className="flex  items-center gap-3 bg-white rounded-full">
         <div className="relative drop-shadow-sm">
           <form onSubmit={startSearch}>
             <input
-              className=" pl-2 py-1 text-sm focus:outline-none focus:border-none text-sprPrimary placeholder:text-sprPrimary/40 rounded-full "
+              className=" pl-2 py-1 text-sm focus:outline-none focus:border-none text-sprPrimary placeholder:text-sprPrimaryDark rounded-full "
               type="text"
               placeholder="Find a Rice"
               value={searchInput}
@@ -246,7 +246,7 @@ export default function RiceAccessions() {
               <div className="px-6 py-2 text-md font-medium text-sprGray60"> {rice.accessionId === "" ? "---" : rice.accessionId} </div>
             ))}
           </div>
-          
+
           <div className=" hidden sm:block flex-auto divide-y divide-slate-300 bg-slate-100 h-fit">
             <div className="px-6 py-2 text-sm font-medium bg-white text-sprPrimary">Classification </div>
             {riceAccessions.map((rice) => (
@@ -259,7 +259,7 @@ export default function RiceAccessions() {
               <div className="px-6 py-2 text-md font-medium text-sprGray60"> {rice.variety === "" ? "---" : rice.variety}</div>
             ))}
           </div>
-          
+
           <div className="hidden sm:block flex-auto divide-y divide-slate-300 bg-slate-100 h-fit">
             <div className="px-6 py-2 text-sm font-medium bg-white text-sprPrimary">Source</div>
             {riceAccessions.map((rice) => (
@@ -313,8 +313,8 @@ export default function RiceAccessions() {
             ))}
           </div>
         </div>
-        </section>
-        {/* <div className="hidden  grid grid-cols-2 sm:grid-cols-3  lg:grid-cols-6  gap-2 p-2 bg-blue-800">
+      </section>
+      {/* <div className="hidden  grid grid-cols-2 sm:grid-cols-3  lg:grid-cols-6  gap-2 p-2 bg-blue-800">
           {riceAccessions.map((rice) => (
             <div className="flex flex-col bg-yellow-500  p-2 rounded-md">
               <div className=" bg-red-600"></div>
@@ -337,7 +337,7 @@ export default function RiceAccessions() {
             </div>
           ))}
         </div> */}
-    
+
       {/* Modal */}
       <ModalAddRiceAcc open={isModalOpen} >
         <div className="absolute right-5 z-50 ">
