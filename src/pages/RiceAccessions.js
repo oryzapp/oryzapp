@@ -241,7 +241,7 @@ export default function RiceAccessions() {
 
 
           <div className="hidden sm:block  flex-auto divide-y divide-slate-300 bg-slate-50 h-fit  ">
-            <div className="px-6 py-2 text-sm font-medium bg-white text-sprBlack ">Accession</div>
+            <div className="px-6 py-2 text-sm font-medium bg-white text-sprPrimary ">Accession</div>
             {riceAccessions.map((rice) => (
               <div className="px-6 py-2 text-md font-medium text-sprGray60"> {rice.accessionId === "" ? "---" : rice.accessionId} </div>
             ))}
@@ -254,7 +254,7 @@ export default function RiceAccessions() {
             ))}
           </div>
           <div className="hidden sm:block flex-auto divide-y divide-slate-300 bg-slate-50 h-fit">
-            <div className="px-6 py-2 text-sm font-medium bg-white text-sprBlack">Variety</div>
+            <div className="px-6 py-2 text-sm font-medium bg-white text-sprPrimary">Variety</div>
             {riceAccessions.map((rice) => (
               <div className="px-6 py-2 text-md font-medium text-sprGray60"> {rice.variety === "" ? "---" : rice.variety}</div>
             ))}
@@ -266,10 +266,10 @@ export default function RiceAccessions() {
               <div className="px-6 py-2 text-md font-medium text-sprGray60"> {rice.source === "" ? "---" : rice.source}</div>
             ))}
           </div>
-          <div className="divide-y divide-slate-50  w-full sm:w-auto h-fit ">
-            <div className="px-6 py-2 opacity-0 hidden sm:block text-sm font-medium">Action</div>
+          <div className="divide-y divide-slate-50   w-full sm:w-auto h-fit ">
+            <div className="px-6 py-2 opacity-0 hidden sm:block text-sm font-medium ">Action</div>
             {riceAccessions.map((rice) => (
-              <div className="px-6 py-2 flex items-center justify-between gap-2">
+              <div className="px-6 py-2 flex items-center justify-between gap-2 ">
                 <div className=" sm:hidden">
                   <h1 className="text-2xl font-bold text-sprBlack opacity-80">
                     {rice.accessionId}

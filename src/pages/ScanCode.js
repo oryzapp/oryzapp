@@ -104,32 +104,32 @@ export default function ScanCode() {
   const [viewMdLg, setViewMdLg] = useState(false)
 
   return (
-    <div className="flex  bg-blue-900  h-full">
-      <div className={viewMdLg === true ? "bg-red-800 w-5/12  flex flex-col" : "bg-red-800 w-full  flex flex-col"}>
+    <div className="flex    h-full">
+      <div className={viewMdLg === true ? "w-5/12  flex flex-col" : " w-full  flex flex-col"}>
         {/* Header */}
-        <header className="  bg-red-600">
+        <header className="">
           <h1 className="text-3xl font-bold text-sprBlack opacity-80 p-2">
             Scan Code
           </h1>
         </header>
-        <div className="bg-blue-500 flex-auto flex flex-col">
-          <div className="bg-green-800 h-full flex justify-center items-center flex-col gap-6 ">
-            <div className="bg-yellow-500 h-72 w-64 flex flex-col  ">
-              <div className="bg-blue-700 flex ">
-                <div className={isScan === true ? 'w-1/2 h-8 rounded-t-lg bg-sprPrimary flex justify-center items-center' : 'w-1/2 h-8 rounded-t-lg bg-sprPrimarySuperLight flex justify-center items-center'} onClick={() => setIsScan(true)}>
-                  <ScanCodeIcon />
+        <div className="flex-auto flex flex-col">
+          <div className=" h-full flex justify-center items-center flex-col gap-6 ">
+            <div className=" h-72 w-64 flex flex-col  ">
+              <div className=" flex ">
+                <div className={isScan === true ? 'w-1/2 h-10 rounded-t-lg bg-sprPrimary flex justify-center items-center' : 'w-1/2 h-10 rounded-t-lg bg-sprPrimarySuperLight flex justify-center items-center'} onClick={() => setIsScan(true)}>
+                  <ScanCodeIcon fill={isScan === true ? "white" : "#CFD491"} />
                 </div>
-                <div className={isScan === false ? 'w-1/2 h-8 rounded-t-lg bg-sprPrimary flex justify-center items-center' : 'w-1/2 h-8 rounded-t-lg bg-sprPrimarySuperLight flex justify-center items-center'} onClick={() => setIsScan(false)}>
+                <div className={isScan === false ? 'w-1/2 h-10 rounded-t-lg bg-sprPrimary flex justify-center items-center' : 'w-1/2 h-10 rounded-t-lg bg-sprPrimarySuperLight flex justify-center items-center'} onClick={() => setIsScan(false)}>
 
 
-                  <ImageIcon className="w-6" fill="none" />
+                  <ImageIcon className="w-7" fill="none" stroke={isScan === false ? "white" : "#CFD491"} />
                 </div>
               </div>
-              <div className={isScan === true ? 'bg-green-600 flex-auto rounded-b-lg' : 'hidden'}>
+              <div className={isScan === true ? 'bg-slate-100 flex-auto rounded-b-lg' : 'hidden'}>
                 <video ></video>
               </div>
-              <div className={isScan === false ? 'flex flex-col gap-5 justify-center items-center bg-green-600 flex-auto rounded-b-lg  sprBorderDashed' : 'hidden'} >
-                <ImageIcon fill="none" className="w-16" />
+              <div className={isScan === false ? 'flex flex-col gap-5 justify-center items-center bg-slate-100 flex-auto rounded-b-lg  sprBorderDashed' : 'hidden'} >
+                <ImageIcon fill="none" stroke="#CFD491" className="w-16" />
                 <div className="bg-sprPrimary relative rounded-full hover:bg-sprPrimaryLight">
                   <h6 className="absolute left-4 top-1 text-white font-medium" >Choose File</h6>
                   <input className="opacity-0 w-32" type="file" onChange={(e) => {
@@ -143,7 +143,7 @@ export default function ScanCode() {
             </div>
             <div className="bg-green-600 flex justify-center items-center rounded-lg">
 
-              <div className={riceDataExists === true ? 'w-64  rounded-lg bg-yellow-300 flex justify-between p-2' : 'hidden'}>
+              <div className={riceDataExists === true ? 'w-64  rounded-lg bg-slate-100 flex justify-between p-2 items-center' : 'hidden'}>
                 <div className="">
                   <h1 className="text-xl font-bold text-sprBlack opacity-80">
                     {currentData?.accessionId}
@@ -155,13 +155,13 @@ export default function ScanCode() {
                     {currentData?.riceYear}
                   </h6>
                 </div>
-                <button className=" text-white text-sm bg-gradient-to-b from-sprPrimary to-sprPrimaryDark h-8 w-14 sm:h-6 hidden sm:block sm:w-12 rounded-full shadow-lg shadow-slate-300 " onClick={() => {
+                <button className=" text-white text-sm bg-gradient-to-b from-sprPrimary to-sprPrimaryDarkest h-8 w-16  hidden sm:block  rounded-full shadow-lg shadow-slate-300 " onClick={() => {
                   setViewMdLg(true)
                   getData()
                 }}>
                   view
                 </button>
-                <button className=" text-white text-sm bg-gradient-to-b from-sprPrimary to-sprPrimaryDark h-8 w-14 sm:h-6 sm:hidden sm:w-12 rounded-full shadow-lg shadow-slate-300 " onClick={() => {
+                <button className=" text-white text-sm bg-gradient-to-b from-sprPrimary to-sprPrimaryDarkest h-8 w-16   sm:hidden  rounded-full shadow-lg shadow-slate-300 " onClick={() => {
                   openViewInfoModal()
                   getData()
                 }}>
@@ -179,7 +179,7 @@ export default function ScanCode() {
         <div className={riceDataExists == true ? "flex w-full flex-col p-6 rounded-lg" : "hidden"}>
           <div className="bg-yellow-400 flex  ">
             <header className="  bg-red-600">
-              <h1 className="text-3xl font-bold text-sprBlack opacity-80 p-2">
+              <h1 className="text-3xl  font-bold text-sprBlack opacity-80 p-2">
                 Rice Info
               </h1>
             </header>

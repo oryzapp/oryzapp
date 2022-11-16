@@ -26,6 +26,7 @@ module.exports = {
         sprPrimaryLight: "rgba(175, 190, 0, 0.6)",
         sprPrimarySuperLight: "rgba(175, 190, 0, 0.3)",
         sprPrimaryDark: "#99B100",
+        sprPrimaryDarkest: "#7F9F00",
         sprPrimaryButton: "linear-gradient(180deg, #AFBE00 0%, #99B100 100%);",
         sprInactiveGray: "#888A89"
       },
