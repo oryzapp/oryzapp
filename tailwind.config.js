@@ -1,6 +1,9 @@
 /** @type {import('tailwindcss').Config} */
 module.exports = {
   content: ["./src/**/*.{js,jsx,ts,tsx}"],
+  variants: {
+    linearGradients: ['hover', 'responsive'],
+  },
   theme: {
     screen: {
       sm: "480px",

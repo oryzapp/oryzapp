@@ -155,7 +155,7 @@ export default function ScanCode() {
                     {currentData?.riceYear}
                   </h6>
                 </div>
-                <button className=" text-white text-sm bg-gradient-to-b from-sprPrimary to-sprPrimaryDarkest h-8 w-16  hidden sm:block  rounded-full shadow-lg shadow-slate-300 " onClick={() => {
+                <button className=" text-white text-sm bg-gradient-to-b from-sprPrimary to-sprPrimaryDarkest h-8 w-16  hidden sm:block  rounded-full shadow-lg shadow-slate-300 hover:bg-gradient-to-t hover:from-sprPrimaryLight hover:to-sprPrimaryLight " onClick={() => {
                   setViewMdLg(true)
                   getData()
                 }}>
@@ -199,7 +199,7 @@ export default function ScanCode() {
             <main className="bg-green-600 w-3/4">
               <section>
                 <h1>Vegetative Stage</h1>
-                <p>{vsData.auricleColor}</p>
+                <p> {vsData.auricleColor}</p>
 
               </section>
             </main>

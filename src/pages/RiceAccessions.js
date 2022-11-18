@@ -23,6 +23,7 @@ import addIcon from '../assets/add-icon.svg'
 import closeIcon from "../assets/close.svg";
 import delIcon from "../assets/delete-icon.svg"
 import editIcon from "../assets/edit-icon.svg"
+import { ReactComponent as SearchIcon } from "../assets/search-icon.svg"
 
 export default function RiceAccessions() {
 
@@ -185,6 +186,8 @@ export default function RiceAccessions() {
   console.log('jjjj');
   console.log(riceAccessions);
 
+  var list = 0
+
 
   return (
     <>
@@ -201,37 +204,25 @@ export default function RiceAccessions() {
         </h1>
       </header>
       {/* Options */}
-      <div className="flex  items-center gap-3 bg-white rounded-full">
-        <div className="relative drop-shadow-sm">
-          <form onSubmit={startSearch}>
-            <input
-              className=" pl-2 py-1 text-sm focus:outline-none focus:border-none text-sprPrimary placeholder:text-sprPrimaryDark rounded-full "
-              type="text"
-              placeholder="Find a Rice"
-              value={searchInput}
-              onChange={handleSearchInput}
-            />
-            <button className=" w-8 h-full rounded-full absolute right-0 bg-sprPrimaryLight" type="submit" >
-              o
-            </button>
-          </form>
-        </div>
-        <div className="relative py-1 bg-white rounded-full drop-shadow-sm">
-          Filter
-          <div className=" hidden absolute w-28 h-auto rounded-sm p-2 z-50  bg-white">
-            <label className="block" htmlFor="">
-              <input type="checkbox" name="Season" id="Season" />
-              Season
-            </label>
-            <label className="block" htmlFor="">
-              <input type="checkbox" name="Season" id="Season" />
-              Year
-            </label>
-            <label className="block" htmlFor="">
-              <input type="checkbox" name="Season" id="Season" />
-              Variety
-            </label>
+
+      <div className="flex justify-between   p-1 ">
+
+        <div className="flex  items-center gap-3 bg-white rounded-full">
+          <div className="relative drop-shadow-md">
+            <form onSubmit={startSearch}>
+              <input
+                className=" pl-2 py-2 text-sm placeholder:text-sprPrimary/50 text-sprPrimary focus:outline-none focus:border-none  rounded-full "
+                type="text"
+                placeholder="Find a Rice"
+                value={searchInput}
+                onChange={handleSearchInput}
+              />
+              <button className="  h-full px-2 rounded-full absolute right-0 bg-sprPrimaryLight">
+                <SearchIcon />
+              </button>
+            </form>
           </div>
+
         </div>
       </div>
       {/* Main */}
@@ -240,6 +231,14 @@ export default function RiceAccessions() {
         <div className=" flex h-96 ">
 
 
+          <div className="hidden sm:block divide-y divide-slate-300 h-fit">
+            <div className="px-6 py-2 text-sm font-medium bg-white text-sprPrimary ">#</div>
+            {
+
+              riceAccessions.map((rice) => (
+                <div className="px-6 py-2 text-md font-medium text-sprPrimaryLight"> {list = list + 1} </div>
+              ))}
+          </div>
           <div className="hidden sm:block  flex-auto divide-y divide-slate-300 bg-slate-50 h-fit  ">
             <div className="px-6 py-2 text-sm font-medium bg-white text-sprPrimary ">Accession</div>
             {riceAccessions.map((rice) => (
@@ -272,13 +271,13 @@ export default function RiceAccessions() {
               <div className="px-6 py-2 flex items-center justify-between gap-2 ">
                 <div className=" sm:hidden">
                   <h1 className="text-2xl font-bold text-sprBlack opacity-80">
-                    {rice.accessionId}
+                    {rice.accessionId === "" ? "---" : rice.accessionId}
                   </h1>
                   <h6 className="text-md  font-medium text-sprGray60">
-                    {rice.variety}
+                    {rice.variety === "" ? "---" : rice.variety}
                   </h6>
                   <h6 className="text-md font-medium text-sprGray60">
-                    {rice.source}
+                    {rice.source === "" ? "---" : rice.source}
                   </h6>
                 </div>
                 <button

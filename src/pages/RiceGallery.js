@@ -1,4 +1,5 @@
 export default function RiceGallery() {
+
   return (
     <>
       {/* Header */}
@@ -36,7 +37,9 @@ export default function RiceGallery() {
         </div>
       </div>
       {/* Main */}
-      <section className=" bg-blue-300 w-full flex-auto overflow-auto rounded-sm scrollbar"></section>
+      <section className=" bg-blue-300 w-full flex-auto overflow-auto rounded-sm scrollbar">
+
+      </section>
     </>
   );
 }
