@@ -24,6 +24,7 @@ import closeIcon from "../assets/close.svg";
 import delIcon from "../assets/delete-icon.svg"
 import editIcon from "../assets/edit-icon.svg"
 import { ReactComponent as SearchIcon } from "../assets/search-icon.svg"
+import { ReactComponent as EmptyIllustration } from "../assets/empty-illustration.svg"
 
 export default function RiceAccessions() {
 
@@ -194,7 +195,7 @@ export default function RiceAccessions() {
       {/* Header */}
       <header className=" flex items-center">
         <button
-          className=" hidden sm:block w-8 h-8 p-2 rounded-full bg-sprPrimary"
+          className=" hidden sm:block w-8 h-8 p-2 rounded-full bg-gradient-to-b from-sprPrimary to-sprPrimaryDarkest hover:bg-gradient-to-t hover:from-sprPrimaryLight hover:to-sprPrimaryLight drop-shadow-md"
           onClick={() => setIsModalOpen(true)}
         >
           <img src={addIcon} alt="" />
@@ -211,14 +212,14 @@ export default function RiceAccessions() {
           <div className="relative drop-shadow-md">
             <form onSubmit={startSearch}>
               <input
-                className=" pl-2 py-2 text-sm placeholder:text-sprPrimary/50 text-sprPrimary focus:outline-none focus:border-none  rounded-full "
+                className=" pl-2 py-2 text-sm placeholder:text-sprPrimary/50 text-sprPrimary focus:outline-none focus:border-none  rounded-full  "
                 type="text"
                 placeholder="Find a Rice"
                 value={searchInput}
                 onChange={handleSearchInput}
               />
-              <button className="  h-full px-2 rounded-full absolute right-0 bg-sprPrimaryLight">
-                <SearchIcon />
+              <button className="  h-full px-2 rounded-full absolute right-0  bg-sprPrimaryLight">
+                <SearchIcon stroke=" white" />
               </button>
             </form>
           </div>
@@ -228,7 +229,8 @@ export default function RiceAccessions() {
       {/* Main */}
 
       <section className=" flex-auto overflow-auto rounded-sm scrollbar ">
-        <div className=" flex h-96 ">
+        {riceAccessions.length === 0 ? <div className="flex justify-center items-center pt-32 flex-col gap-8 "><EmptyIllustration /><p className="font-medium text-xl text-sprPrimaryOffLight">Plenty of space in the field </p></div> : <div className="flex h-96">
+
 
 
           <div className="hidden sm:block divide-y divide-slate-300 h-fit">
@@ -311,31 +313,8 @@ export default function RiceAccessions() {
               </div>
             ))}
           </div>
-        </div>
+        </div>}
       </section>
-      {/* <div className="hidden  grid grid-cols-2 sm:grid-cols-3  lg:grid-cols-6  gap-2 p-2 bg-blue-800">
-          {riceAccessions.map((rice) => (
-            <div className="flex flex-col bg-yellow-500  p-2 rounded-md">
-              <div className=" bg-red-600"></div>
-              <div className="flex justify-between items-center">
-                <div>
-                  <h1 className="text-xl font-bold text-sprBlack opacity-80">
-                    {rice.accessionId}
-                  </h1>
-                  <h6 className="text-xs font-medium text-sprGray60">
-                    {rice.variety}
-                  </h6>
-                  <h6 className="text-xs font-medium text-sprGray60">
-                    {rice.source}
-                  </h6>
-                </div>
-                <button className="bg-sprPrimary w-14 h-8 rounded-full">
-                  view
-                </button>
-              </div>
-            </div>
-          ))}
-        </div> */}
 
       {/* Modal */}
       <ModalAddRiceAcc open={isModalOpen} >
@@ -348,23 +327,23 @@ export default function RiceAccessions() {
             <img className="relative" src={closeIcon} alt="" />
           </button>
         </div>
-        <div className="flex bg-blue-400">
-          <h1 className="page-header text-2xl font-bold">Add Rice Accession</h1>
+        <div className="flex">
+          <h1 className="page-header text-2xl font-bold text-sprGray70">Add Rice Accession</h1>
         </div>
         <div className="flex-auto relative">
           <form
             className="flex flex-col h-full"
             onSubmit={isEdit === true ? submitEdit : handleSubmit}
           >
-            <div className="flex flex-auto flex-col lg:flex-row ">
-              <div className="flex flex-col flex-auto  bg-green-300 -space-y-2">
+            <div className="flex flex-auto flex-col lg:flex-row pb-20">
+              <div className="flex flex-col flex-auto -space-y-2">
                 <div className="p-4 ">
                   <div className={isEdit === true ? "hidden" : "block"}>
                     <div className={accessionExists === true ? "block text-red-500 text-sm" : "hidden"}>*Accession already exists</div>
 
                   </div>
                   <input
-                    className="text-3xl font-medium py-px placeholder-sprPrimaryLight/50 text-sprPrimary focus:outline-none focus:ring-transparent bg-transparent"
+                    className="text-4xl font-medium py-px placeholder-sprPrimaryLight/50 text-sprPrimary focus:outline-none focus:ring-transparent bg-transparent"
                     type="text"
                     placeholder="CL-XXXX"
                     name="accession"
@@ -374,10 +353,10 @@ export default function RiceAccessions() {
                     readOnly={isEdit === true ? true : false}
                   />
                 </div>
-                <div className="p-4  flex flex-col">
+                <div className="p-4  flex flex-col ">
                   <label className="text-sprPrimary">Variety</label>
                   <input
-                    className="rounded-full p-2 w-3/4 border border-sprPrimary focus:outline-none focus:ring-2 focus:ring-sprPrimary focus:bg-sprPrimaryLight/30"
+                    className="rounded-full p-2 w-3/4 border border-sprPrimary focus:outline-none focus:ring-1 focus:ring-sprPrimary focus:bg-sprPrimaryLight/30"
                     type="text"
                     name="variety"
                     value={state.variety}
@@ -387,7 +366,7 @@ export default function RiceAccessions() {
                 <div className="p-4  flex flex-col">
                   <label className="text-sprPrimary">Source</label>
                   <input
-                    className="rounded-full p-2 w-3/4 border border-sprPrimary focus:outline-none focus:ring-2 focus:ring-sprPrimary focus:bg-sprPrimaryLight/30"
+                    className="rounded-full p-2 w-3/4 border border-sprPrimary focus:outline-none focus:ring-1 focus:ring-sprPrimary focus:bg-sprPrimaryLight/30"
                     type="text"
                     name="source"
                     value={state.source}
@@ -397,7 +376,7 @@ export default function RiceAccessions() {
                 <div className="p-4  flex flex-col">
                   <label className="text-sprPrimary">Classification</label>
                   <input
-                    className="rounded-full p-2 w-3/4 border border-sprPrimary focus:outline-none focus:ring-2 focus:ring-sprPrimary focus:bg-sprPrimaryLight/30"
+                    className="rounded-full p-2 w-3/4 border border-sprPrimary focus:outline-none focus:ring-1 focus:ring-sprPrimary focus:bg-sprPrimaryLight/30"
                     type="text"
                     name="classification"
                     value={state.classification}
@@ -405,8 +384,9 @@ export default function RiceAccessions() {
                   />
                 </div>
               </div>
-              <div className="flex-auto bg-yellow-600">
+              <div className="flex-auto flex justify-center ">
                 {/* <input type="file" /> */}
+                <div className="border border-gray-600 w-60 h-60 mt-24"> </div>
               </div>
             </div>
             <div className="text-right space-x-2">

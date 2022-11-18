@@ -2,7 +2,6 @@ import Mainbar from "./components/Mainbar";
 import Sidebar from "./components/Sidebar";
 import Topbar from "./components/Topbar";
 import { useEffect } from "react";
-import ModalAddRiceAccessions from "./components/ModalAddRiceAccessions";
 import ModalAddRiceData from "./components/ModalAddRiceData";
 import { Link, Outlet } from "react-router-dom";
 import Login from "./pages/Login";

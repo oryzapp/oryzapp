@@ -8,7 +8,7 @@ export default function Dashboard() {
 
       {/* Main */}
       <section className=" w-full flex-auto overflow-auto rounded-sm scrollbar">
-        <div className="bg-blue">Row 1</div>
+        <div className="bg-blue-300">Row 1</div>
       </section>
     </>
   );

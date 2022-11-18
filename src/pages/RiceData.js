@@ -11,6 +11,7 @@ import { ReactComponent as RSicon } from "../assets/reproductive-stage-icon.svg"
 import { ReactComponent as GCicon } from "../assets/grain-characteristics-icon.svg";
 import { ReactComponent as VSicon } from "../assets/vegetative-stage-icon.svg";
 import { ReactComponent as YCicon } from "../assets/yield-components-icon.svg";
+import { ReactComponent as SearchIcon } from "../assets/search-icon.svg"
 
 export default function RiceData() {
   const [isModalOpen, setIsModalOpen] = useState(false)
@@ -463,15 +464,41 @@ export default function RiceData() {
     <>
       {/* Header */}
       <header className="page-header   flex items-center">
-        <button className=" w-8 h-8 p-2 rounded-full bg-sprPrimary" onClick={() => setIsModalOpen(true)}>
+        <button className=" w-8 h-8 p-2 rounded-full  bg-gradient-to-b from-sprPrimary to-sprPrimaryDarkest hover:bg-gradient-to-t hover:from-sprPrimaryLight hover:to-sprPrimaryLight drop-shadow-md" onClick={() => setIsModalOpen(true)}>
           <img src={addIcon} alt="" />
         </button>
         <h1 className="text-3xl font-bold text-sprBlack opacity-80 pl-2">Rice Data</h1>
       </header>
       {/* Options */}
       <div className="flex  items-center gap-3  bg-white">
+        <div className=" flex  items-center gap-1 sm:gap-3   rounded-full">
+          <div className="relative drop-shadow-md hidden sm:block">
+            <input
+              className=" pl-2 py-2 text-sm placeholder:text-sprPrimary/50 text-sprPrimary focus:outline-none focus:border-none  rounded-full "
+              type="text"
+              placeholder="Find a Rice"
+            />
+            <button className="  h-full px-2 rounded-full absolute right-0 bg-sprPrimaryLight">
+              <SearchIcon stroke="white" />
+            </button>
+          </div>
 
-        <div className="relative drop-shadow-sm">
+          <div className="drop-shadow-md flex" >
+            <div className="bg-sprPrimaryLight text-white h-full text-sm  p-2 rounded-full pl-3 pr-10">Season</div>
+            <div className=" -ml-9">
+              <select value={seasonToOutlet} name="riceSeason" onChange={changeSeason} className="rounded-full py-2 text-sprPrimary text-sm ">
+                <option value="All">All</option>
+                <option value="Dry_Season">Dry</option>
+                <option value="Wet_Season">Wet</option>
+              </select>
+            </div>
+
+
+
+          </div>
+
+        </div>
+        {/* <div className="relative drop-shadow-sm">
           <input
             className=" pl-2 py-1 text-sm placeholder:text-sprPrimary/40 text-sprPrimary focus:outline-none focus:border-none  rounded-full "
             type="text"
@@ -480,7 +507,7 @@ export default function RiceData() {
           <button className=" w-8 h-full rounded-full absolute right-0 bg-sprPrimaryLight">
             o
           </button>
-        </div>
+        </div> */}
         <div className="relative py-1 bg-white rounded-full drop-shadow-sm">
           Filter
           <div className=" hidden absolute w-28 h-auto rounded-sm p-2 z-50  bg-white">
@@ -498,65 +525,40 @@ export default function RiceData() {
             </label>
           </div>
         </div>
-        <select value={seasonToOutlet} name="riceSeason" onChange={changeSeason}>
-          <option value="All">All</option>
-          <option value="Dry_Season">Dry</option>
-          <option value="Wet_Season">Wet</option>
-        </select>
+
+
+
+
       </div>
       {/* Main */}
       <section className=" w-full flex flex-auto overflow-auto rounded-sm scrollbar">
         <div className=" ">
           <nav className=" h-full w-9 ">
             <ul className="flex flex-col h-full">
-              {/* <li className={state === 1 ? "flex items-center  flex-auto   bg-sprPrimaryLight rounded-l-lg" :
-                "flex items-center  flex-auto hover:bg-slate-200 rounded-l-lg"}
-                onClick={() => activeOn(1)}> */}
-              <Link className={state === 1 ? "flex items-center  flex-auto   bg-sprPrimary rounded-l-lg" :
+              <Link className={state === 1 ? "group flex items-center  flex-auto   bg-sprPrimary rounded-l-lg relative" :
                 " group flex items-center  flex-auto  hover:bg-sprPrimaryLight bg-sprGray20 rounded-l-lg relative"}
                 onClick={() => activeOn(1)} to="vegetative-stage">
-                {/* <img className=" h-8 w-8 relative" src={state !== 1 ? vegetativeStageIcon : vegetativeStageIcon} alt="" /> */}
                 <VSicon className=" group-hover:stroke-white" fill="none" stroke={state !== 1 ? "#888A89" : "white"} />
-                <p className="text-xs whitespace-nowrap bg-sprPrimaryDark text-white p-1 font-medium rounded-md absolute bottom-8 hidden group-hover:block   ">Vegetative Stage</p>
-
+                <p className="text-xs whitespace-nowrap bg-sprGray60 text-white p-1 font-medium rounded-md absolute bottom-8 hidden group-hover:block   ">Vegetative Stage</p>
               </Link>
-              {/* </li> */}
-              {/* <li className={state === 2 ? "flex items-center  flex-auto  bg-sprPrimaryLight rounded-l-lg" :
-                "flex items-center  flex-auto hover:bg-slate-200 rounded-l-lg"}
-                onClick={() => activeOn(2)}> */}
-              <Link className={state === 2 ? " flex items-center  flex-auto  bg-sprPrimary rounded-l-lg" :
+              <Link className={state === 2 ? "group flex items-center  flex-auto  bg-sprPrimary rounded-l-lg relative" :
                 " group flex items-center  flex-auto  hover:bg-sprPrimaryLight bg-sprGray20 rounded-l-lg relative"}
                 onClick={() => activeOn(2)} to="reproductive-stage">
-                {/* <img className=" h-8 w-8 relative" src={state !== 2 ? reproductiveStageIcon_Dark : reproductiveStageIcon } alt="" /> */}
                 <RSicon className=" group-hover:stroke-white" fill="none" stroke={state !== 2 ? "#888A89" : "white"} />
-                <p className="text-xs whitespace-nowrap bg-sprPrimaryDark text-white p-1 font-medium rounded-md absolute bottom-8 hidden group-hover:block   ">Reproductive Stage</p>
-
-
+                <p className="text-xs whitespace-nowrap bg-sprGray60 text-white p-1 font-medium rounded-md absolute bottom-8 hidden group-hover:block   ">Reproductive Stage</p>
               </Link>
-              {/* </li> */}
-              {/* <li className={state === 3 ? "flex items-center  flex-auto  bg-sprPrimaryLight rounded-l-lg" :
-                "flex items-center  flex-auto hover:bg-slate-200 rounded-l-lg"}
-                onClick={() => activeOn(3)}> */}
-              <Link className={state === 3 ? "flex items-center  flex-auto  bg-sprPrimary rounded-l-lg relative" :
-                "group flex items-center  flex-auto  hover:bg-sprPrimaryLight bg-sprGray20 rounded-l-lg"}
+              <Link className={state === 3 ? "group flex items-center  flex-auto  bg-sprPrimary rounded-l-lg relative" :
+                "group flex items-center  flex-auto  hover:bg-sprPrimaryLight bg-sprGray20 rounded-l-lg relative"}
                 onClick={() => activeOn(3)} to="grain-characteristics">
-                {/* <img className=" h-8 w-8 relative" src={state !== 3 ? grainCharacteristicsIcon : grainCharacteristicsIcon} alt="" /> */}
                 <GCicon className=" group-hover:stroke-white" fill="none" stroke={state !== 3 ? "#888A89" : "white"} />
-                <p className="text-xs whitespace-nowrap bg-sprPrimaryDark text-white p-1 font-medium rounded-md absolute  hidden group-hover:block   ">Grain Characteristics</p>
-
+                <p className="text-xs whitespace-nowrap bg-sprGray60 text-white p-1 font-medium rounded-md absolute bottom-8  hidden group-hover:block   ">Grain Characteristics</p>
               </Link>
-              {/* </li> */}
-              {/* <li className={state === 4 ? "flex items-center  flex-auto  bg-sprPrimaryLight rounded-l-lg" :
-                "flex items-center  flex-auto hover:bg-slate-200 rounded-l-lg"}
-                onClick={() => activeOn(4)}> */}
-              <Link className={state === 4 ? "flex items-center  flex-auto  bg-sprPrimary rounded-l-lg relative" :
-                " group flex items-center  flex-auto hover:bg-sprPrimaryLight bg-sprGray20 rounded-l-lg"}
+              <Link className={state === 4 ? "group flex items-center  flex-auto  bg-sprPrimary  rounded-l-lg relative" :
+                " group flex items-center  flex-auto hover:bg-sprPrimaryLight bg-sprGray20 rounded-l-lg relative"}
                 onClick={() => activeOn(4)} to="yield-components">
-                {/* <img className=" h-8 w-8  relative" src={yieldComponentsIcon} alt="" /> */}
                 <YCicon className=" group-hover:stroke-white" fill="none" stroke={state !== 4 ? "#888A89" : "white"} />
-                <p className="text-xs whitespace-nowrap bg-sprPrimaryDark text-white p-1 font-medium rounded-md absolute bottom-8 hidden group-hover:block   ">Yield Components</p>
+                <p className="text-xs whitespace-nowrap bg-sprGray60 text-white p-1 font-medium rounded-md absolute bottom-8 hidden group-hover:block   ">Yield Components</p>
               </Link>
-              {/* </li> */}
             </ul>
           </nav>
         </div>

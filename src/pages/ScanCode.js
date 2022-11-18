@@ -23,8 +23,11 @@ export default function ScanCode() {
       return;
     }
     QrScanner.scanImage(file, { returnDetailedScanResult: true })
-      .then(result => setQrData(result.data))
-      .catch(e => console.log(e));
+      .then(result => {
+        setQrData(result.data)
+        setRiceDataExists(true)
+      })
+      .catch(setRiceDataExists(false));
 
     console.log('wazzu[[[[');
     console.log(qrData);
@@ -42,13 +45,17 @@ export default function ScanCode() {
   const [riceList, setRiceList] = useState([]);
 
   useEffect(() => {
-    const collectionRef = collectionGroup(db, "Raw_Rice_List");
-    const unsub = onSnapshot(collectionRef, (snapshot) => {
-      setRiceList(
-        snapshot.docs.map((doc) => ({ ...doc.data(), id: doc.id }))
-      );
-    });
-    return unsub;
+    try {
+      const collectionRef = collectionGroup(db, "Raw_Rice_List");
+      const unsub = onSnapshot(collectionRef, (snapshot) => {
+        setRiceList(
+          snapshot.docs.map((doc) => ({ ...doc.data(), id: doc.id }))
+        );
+      });
+      return unsub;
+    } catch (error) {
+      console.log(error);
+    }
   }, []);
 
   console.log('rice');
@@ -130,7 +137,7 @@ export default function ScanCode() {
               </div>
               <div className={isScan === false ? 'flex flex-col gap-5 justify-center items-center bg-slate-100 flex-auto rounded-b-lg  sprBorderDashed' : 'hidden'} >
                 <ImageIcon fill="none" stroke="#CFD491" className="w-16" />
-                <div className="bg-sprPrimary relative rounded-full hover:bg-sprPrimaryLight">
+                <div className="bg-sprPrimaryLight relative rounded-full ">
                   <h6 className="absolute left-4 top-1 text-white font-medium" >Choose File</h6>
                   <input className="opacity-0 w-32" type="file" onChange={(e) => {
                     readCode(e)
@@ -141,7 +148,7 @@ export default function ScanCode() {
               </div>
 
             </div>
-            <div className="bg-green-600 flex justify-center items-center rounded-lg">
+            <div className=" flex justify-center items-center rounded-lg">
 
               <div className={riceDataExists === true ? 'w-64  rounded-lg bg-slate-100 flex justify-between p-2 items-center' : 'hidden'}>
                 <div className="">
@@ -168,6 +175,7 @@ export default function ScanCode() {
                   view
                 </button>
               </div>
+              <div className={riceDataExists === false ? "w-64 rounded-lg bg-slate-100 p-2 text-center font-medium text-sprGray60" : "hidden"}>No Results</div>
             </div>
 
           </div>
@@ -199,7 +207,8 @@ export default function ScanCode() {
             <main className="bg-green-600 w-3/4">
               <section>
                 <h1>Vegetative Stage</h1>
-                <p> {vsData.auricleColor}</p>
+                <p>7.3.2 Auricle Color : {vsData.auricleColor}</p>
+
 
               </section>
             </main>
@@ -237,7 +246,7 @@ export default function ScanCode() {
               </div>
             </div>
             <div className="bg-green-600 w-full flex-auto">
-              <p>{vsData.auricleColor}</p>
+              <p>7.3.2 Auricle Color : {vsData.auricleColor}</p>
             </div>
 
           </div>

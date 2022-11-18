@@ -8,33 +8,39 @@ import { ReactComponent as GridIcon } from '../assets/grid-icon.svg'
 import { ReactComponent as ListIcon } from '../assets/list-icon.svg'
 import { ReactComponent as EmptyIllustration } from '../assets/empty-illustration.svg'
 import { ReactComponent as FilterIcon } from '../assets/filter-icon.svg'
+import Loading from "../components/Loading";
 
 export default function RiceList() {
 
 
 
   const [riceList, setRiceList] = useState([]);
-  const [qrCode, setQrCode] = useState('')
   const [listOn, setListOn] = useState(false)
   const [season, setSeason] = useState('All')
 
 
+
   useEffect(() => {
-    let riceCollectionRef = collectionGroup(db, "Raw_Rice_List");
+    try {
+      let riceCollectionRef = collectionGroup(db, "Raw_Rice_List");
 
-    if (season === 'All') {
-      riceCollectionRef = collectionGroup(db, "Raw_Rice_List");
-    }
-    if (season === "Wet_Season") {
-      riceCollectionRef = query(collection(db, `SPR/Rice_Accessions/Rice_List/${season}/Raw_Rice_List`))
-    }
-    if (season === "Dry_Season") {
-      riceCollectionRef = query(collection(db, `SPR/Rice_Accessions/Rice_List/${season}/Raw_Rice_List`))
-    }
+      if (season === 'All') {
+        riceCollectionRef = collectionGroup(db, "Raw_Rice_List");
+      }
+      if (season === "Wet_Season") {
+        riceCollectionRef = query(collection(db, `SPR/Rice_Accessions/Rice_List/${season}/Raw_Rice_List`))
+      }
+      if (season === "Dry_Season") {
+        riceCollectionRef = query(collection(db, `SPR/Rice_Accessions/Rice_List/${season}/Raw_Rice_List`))
+      }
 
-    onSnapshot(riceCollectionRef, (snapshot) => {
-      setRiceList(snapshot.docs.map((doc) => doc.data()));
-    });
+      onSnapshot(riceCollectionRef, (snapshot) => {
+        setRiceList(snapshot.docs.map((doc) => doc.data()));
+      });
+
+    } catch (error) {
+      console.log(error);
+    }
   }, [season]);
 
 
@@ -75,7 +81,7 @@ export default function RiceList() {
           Rice List</h1>
         <div className="relative sm:hidden ">
           <input
-            className=" pl-2 py-2  w-36 text-sm placeholder:text-sprPrimary/50 text-sprPrimary focus:outline-none focus:border-none  rounded-full "
+            className=" pl-2 py-2  w-36  text-sm placeholder:text-sprPrimary/50 text-sprPrimary focus:outline-none focus:border-none  rounded-full "
             type="text"
           />
           <button className="  h-full px-2 rounded-full absolute right-0 ">
@@ -88,7 +94,7 @@ export default function RiceList() {
         <div className=" flex  items-center gap-1 sm:gap-3   rounded-full">
           <div className="relative drop-shadow-md hidden sm:block">
             <input
-              className=" pl-2 py-2  w-36 text-sm placeholder:text-sprPrimary/50 text-sprPrimary focus:outline-none focus:border-none  rounded-full "
+              className=" pl-2 py-2 text-sm placeholder:text-sprPrimary/50 text-sprPrimary focus:outline-none focus:border-none  rounded-full "
               type="text"
               placeholder="Find a Rice"
             />
@@ -98,7 +104,7 @@ export default function RiceList() {
           </div>
 
           <div className="drop-shadow-md flex" >
-            <div className="bg-sprPrimaryLight text-white h-full text-sm  p-2 rounded-full pl-3 pr-10">Year</div>
+            <div className="bg-sprPrimaryLight text-white h-full text-sm  p-2 rounded-full pl-3 pr-10">Season</div>
             <div className=" -ml-9">
               <select value={season} name="riceSeason" onChange={changeSeason} className="rounded-full py-2 text-sprPrimary text-sm ">
                 <option value="All">All</option>
@@ -122,8 +128,9 @@ export default function RiceList() {
 
       </div>
       {/* Main */}
+
       <section className={listOn === true ? "flex-auto overflow-auto rounded-sm scrollbar " : "hidden"}>
-        {riceList.length === 0 ? <div className="flex justify-center items-center pt-32 flex-col gap-8 "><EmptyIllustration /><p className="font-medium text-xl text-slate-300">Plenty of space in the field </p></div> : <div className="flex h-96">
+        {riceList.length === 0 ? <div className="flex justify-center items-center pt-32 flex-col gap-8 "><EmptyIllustration /><p className="font-medium text-xl text-sprPrimaryOffLight">Plenty of space in the field </p></div> : <div className="flex h-96">
           <div className="hidden sm:block flex-auto divide-y bg-slate-50 divide-slate-300 h-fit">
             <div className="px-6 py-3 text-sprPrimaryDark bg-white">Accession</div>
             {riceList.map((rice) => (
@@ -173,7 +180,7 @@ export default function RiceList() {
       </section >
 
       <section className={listOn === false ? "flex-auto overflow-auto rounded-sm scrollbar " : "hidden"}>
-        {riceList.length === 0 ? <div className="flex justify-center items-center flex-col gap-8 pt-32 "><EmptyIllustration /><p className="font-medium text-xl text-slate-300">Plenty of space in the field </p></div> : <div className=" grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5   gap-2  grid-colors-black p-2 bg-white h-12 " >
+        {riceList.length === 0 ? <div className="flex justify-center items-center flex-col gap-8 pt-32 "><EmptyIllustration /><p className="font-medium text-xl text-sprPrimaryOffLight">Plenty of space in the field </p></div> : <div className=" grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5   gap-2  grid-colors-black p-2 bg-white h-12 " >
 
           {riceList.map((rice) => (
 

@@ -26,6 +26,7 @@ module.exports = {
         sprGray20: "rgba(18, 20, 20, 0.02)",
         sprGray10: "rgba(18, 20, 20, 0.1)",
         sprPrimary: "#AFBE00",
+        sprPrimaryOffLight: "#E2E7B3",
         sprPrimaryLight: "rgba(175, 190, 0, 0.6)",
         sprPrimarySuperLight: "rgba(175, 190, 0, 0.3)",
         sprPrimaryDark: "#99B100",
