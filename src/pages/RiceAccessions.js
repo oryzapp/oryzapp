@@ -12,6 +12,7 @@ import {
 } from "firebase/firestore";
 import { useEffect, useState } from "react";
 import ModalAddRiceAcc from "../components/ModalAddRiceAcc";
+import ModalRiceInfo from "../components/ModalRiceInfo";
 import db from "../firebase-config";
 import {
   addRiceAccession,
@@ -30,6 +31,7 @@ export default function RiceAccessions() {
 
   // Open and Close Modal ------------------->
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const [isRiceInfoModalOpen, setIsRiceInfoModalOpen] = useState(false);
 
   // Handle Form Submit ------------------>
 
@@ -285,7 +287,7 @@ export default function RiceAccessions() {
                 <button
                   className=" text-white text-sm bg-gradient-to-b from-sprPrimary to-sprPrimaryDark h-8 w-14 sm:h-6 sm:w-12 rounded-full shadow-lg shadow-slate-300 "
                   onClick={() => {
-                    console.log("hi");
+                    setIsRiceInfoModalOpen(true)
                   }}
                 >
                   view
@@ -411,6 +413,41 @@ export default function RiceAccessions() {
           </form>
         </div>
       </ModalAddRiceAcc>
+
+      <ModalRiceInfo open={isRiceInfoModalOpen} >
+        <div className=" fixed left-0 right-0 bottom-0 top-0 z-50 bg-black opacity-70 " />
+        <div className=" flex flex-col absolute left-3 right-3 bottom-16 top-16 sm:left-12 sm:right-12 md:left-28 md:right-28 lg:left-1/4 lg:right-1/4 z-50 bg-white rounded-xl  px-4 pt-8 pb-4   ">
+          <div className="absolute right-5 z-50 ">
+            <button onClick={() => setIsRiceInfoModalOpen(false)}>
+              <img className="relative" src={closeIcon} alt="" />
+            </button>
+          </div>
+          <div className="bg-yellow-400 flex  ">
+            <header className="  bg-red-600">
+              <h1 className="text-3xl font-bold text-sprBlack opacity-80 p-2">
+                Rice Info
+              </h1>
+            </header>
+            <div className="bg-yellow-400">
+            </div>
+          </div>
+          <div className="bg-violet-500 flex-auto flex flex-col">
+            <div className="bg-green-600 w-full h-1/4 flex ">
+              <div className="bg-pink-600  w-1/2 p-3">
+                <div className="bg-yellow-400 h-full">image</div></div>
+              <div className="bg-pink-300 flex flex-col flex-auto">
+                {/* <h1>{currentData.accessionId}</h1>
+                <p>Season: {currentData.riceSeason} Season</p>
+                <p>Year: {currentData.riceYear}</p> */}
+              </div>
+            </div>
+            <div className="bg-green-600 w-full flex-auto">
+              {/* <p>7.3.2 Auricle Color : {vsData.auricleColor}</p> */}
+            </div>
+
+          </div>
+        </div>
+      </ModalRiceInfo>
     </>
   );
 }

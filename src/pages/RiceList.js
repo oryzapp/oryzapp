@@ -1,48 +1,111 @@
-import { collection, collectionGroup, onSnapshot, query } from "firebase/firestore";
+import { collection, collectionGroup, onSnapshot, query, where } from "firebase/firestore";
 import { QRCodeCanvas } from "qrcode.react";
 import { useEffect, useRef, useState } from "react";
 import db from "../firebase-config";
 import downloadIcon from '../assets/download-icon.svg'
+import closeIcon from '../assets/close.svg'
+
 import { ReactComponent as SearchIcon } from '../assets/search-icon.svg'
 import { ReactComponent as GridIcon } from '../assets/grid-icon.svg'
 import { ReactComponent as ListIcon } from '../assets/list-icon.svg'
 import { ReactComponent as EmptyIllustration } from '../assets/empty-illustration.svg'
 import { ReactComponent as FilterIcon } from '../assets/filter-icon.svg'
-import Loading from "../components/Loading";
+import ModalRiceInfo from "../components/ModalRiceInfo";
 
 export default function RiceList() {
 
 
 
   const [riceList, setRiceList] = useState([]);
+  const [riceSearchList, setRiceSearchList] = useState([])
   const [listOn, setListOn] = useState(false)
   const [season, setSeason] = useState('All')
+  const [year, setYear] = useState('All')
+  const [searchValue, setSearchValue] = useState('')
+  const [submitSearch, setSubmitSearch] = useState('')
+  const [searchStatus, setSearchStatus] = useState('No_Input')
+  const [modalIsOpen, setModalIsOpen] = useState(false)
 
 
-
+  // For Search
   useEffect(() => {
     try {
-      let riceCollectionRef = collectionGroup(db, "Raw_Rice_List");
-
-      if (season === 'All') {
-        riceCollectionRef = collectionGroup(db, "Raw_Rice_List");
-      }
-      if (season === "Wet_Season") {
-        riceCollectionRef = query(collection(db, `SPR/Rice_Accessions/Rice_List/${season}/Raw_Rice_List`))
-      }
-      if (season === "Dry_Season") {
-        riceCollectionRef = query(collection(db, `SPR/Rice_Accessions/Rice_List/${season}/Raw_Rice_List`))
-      }
-
-      onSnapshot(riceCollectionRef, (snapshot) => {
-        setRiceList(snapshot.docs.map((doc) => doc.data()));
+      const riceCollectionRef = collectionGroup(db, "Raw_Rice_List");
+      const unsub = onSnapshot(riceCollectionRef, (snapshot) => {
+        setRiceSearchList(
+          snapshot.docs.map((doc) => ({ ...doc.data(), id: doc.id }))
+        );
       });
+
+      return unsub;
 
     } catch (error) {
       console.log(error);
     }
-  }, [season]);
+  }, [])
 
+  // For Display
+
+  useEffect(() => {
+    try {
+      var riceCollectionRef;
+      if (searchValue === '') {
+        setSearchStatus('No_Input')
+
+      }
+      if (searchValue !== '') {
+        setSearchStatus('Has_Input')
+      }
+
+      if (searchStatus === 'No_Input') {
+        if (searchValue === '' && (season === 'All' || season !== 'All') && (year === 'All' || season !== 'All')) {
+
+          riceCollectionRef = collectionGroup(db, "Raw_Rice_List");
+        }
+        if (season === 'All' && year === 'All') {
+        }
+        if (season === 'All' && year !== 'All') {
+          riceCollectionRef = query(collectionGroup(db, "Raw_Rice_List"), where("riceYear", "==", year));
+        }
+        if (season === 'Wet_Season' && year === 'All') {
+          riceCollectionRef = query(collection(db, `SPR/Rice_Accessions/Rice_List/${season}/Raw_Rice_List`))
+        }
+        if (season === 'Dry_Season' && year === 'All') {
+          riceCollectionRef = query(collection(db, `SPR/Rice_Accessions/Rice_List/${season}/Raw_Rice_List`))
+        }
+        if (season === 'Dry_Season' && year !== 'All') {
+          riceCollectionRef = query(collection(db, `SPR/Rice_Accessions/Rice_List/${season}/Raw_Rice_List`), where("riceYear", "==", year))
+        }
+        if (season === 'Wet_Season' && year !== 'All') {
+          riceCollectionRef = query(collection(db, `SPR/Rice_Accessions/Rice_List/${season}/Raw_Rice_List`), where("riceYear", "==", year))
+        }
+      }
+
+      // Query With Rice Accession
+
+      if (searchStatus === 'Has_Input') {
+        if (searchValue !== "" && season === 'All' && year === "All") {
+          riceCollectionRef = query(collectionGroup(db, "Raw_Rice_List"), where("accessionId", "==", searchValue))
+        }
+
+
+      }
+
+      const unsub = onSnapshot(riceCollectionRef, (snapshot) => {
+        setRiceList(
+          snapshot.docs.map((doc) => ({ ...doc.data(), id: doc.id }))
+        );
+      });
+
+      return unsub;
+
+    } catch (error) {
+      console.log(error);
+    }
+  }, [season, year, submitSearch, searchValue, searchStatus]);
+
+  console.log("---------------");
+  console.log(riceList);
 
   const downloadQR = (accessionId, riceSeason, riceYear) => {
     console.log(accessionId);
@@ -59,12 +122,45 @@ export default function RiceList() {
   }
 
 
+  // Season Filter
   const changeSeason = (e) => {
     console.log(`1 ${season}`);
     setSeason(e.target.value)
     console.log(`2 ${season}`);
   }
   console.log(riceList);
+
+
+  // Year Filter
+  const years = [2018, 2019, 2020, 2021, 2022, 2023, 2024, 2025, 2026, 2027, 2028, 2030]
+
+  const changeYear = (e) => {
+    setYear(e.target.value)
+  }
+  console.log(year);
+
+  // Search Suggest
+  const searchInputChange = (e) => {
+    setSearchValue(e.target.value)
+    console.log('kkkkkkk')
+    console.log(e.target.parentElement)
+  }
+  const onSearch = (searchTerm) => {
+    setSubmitSearch(searchTerm)
+    setSearchValue(searchTerm)
+  }
+
+  console.log('brr');
+  riceList.map((rice) => {
+    console.log(rice.accessionId);
+  })
+
+  var searchItem = ''
+
+  console.log('Hi I am');
+  console.log(searchValue);
+  console.log(searchItem);
+  console.log(submitSearch);
 
   return (
     <>
@@ -92,24 +188,61 @@ export default function RiceList() {
       {/* Options */}
       <div className="flex justify-between   p-1 ">
         <div className=" flex  items-center gap-1 sm:gap-3   rounded-full">
-          <div className="relative drop-shadow-md hidden sm:block">
-            <input
-              className=" pl-2 py-2 text-sm placeholder:text-sprPrimary/50 text-sprPrimary focus:outline-none focus:border-none  rounded-full "
-              type="text"
-              placeholder="Find a Rice"
-            />
-            <button className="  h-full px-2 rounded-full absolute right-0 bg-sprPrimaryLight">
-              <SearchIcon stroke="white" />
-            </button>
-          </div>
+          {/* Search bar */}
+          <div className="relative ">
+            <div className="relative drop-shadow-md hidden sm:block z-20">
+              <input
+                className=" pl-2 py-2   text-sm placeholder:text-sprPrimary/50 text-sprPrimary focus:outline-none focus:border-none  rounded-full "
+                type="text"
+                placeholder="Find a Rice"
+                value={searchValue}
+                onChange={searchInputChange}
+              />
+              <button className="  h-full px-2 rounded-full absolute right-0 bg-sprPrimaryLight " onClick={() => { onSearch(searchValue) }}>
+                <SearchIcon stroke="white" />
+              </button>
+            </div>
+            <div className="absolute z-10 flex flex-col  overflow-auto bg-white w-full rounded-xl p-2 drop-shadow-md -mt-10">
+              <div className={searchValue === '' ? 'hidden' : 'pt-10'}></div>
+              {riceSearchList.filter((rice) => {
+                searchItem = searchValue
+                const riceAcc = rice.accessionId
 
+                return searchItem && riceAcc.startsWith(searchItem)
+              }).map((rice) =>
+                <div onClick={() => { onSearch(rice.accessionId) }} className=" hover:bg-slate-200 cursor-pointer p-1 rounded-sm">
+
+                  {rice.accessionId}
+                </div>
+              )}
+
+            </div>
+          </div>
+          {/* Season Filter */}
           <div className="drop-shadow-md flex" >
             <div className="bg-sprPrimaryLight text-white h-full text-sm  p-2 rounded-full pl-3 pr-10">Season</div>
             <div className=" -ml-9">
               <select value={season} name="riceSeason" onChange={changeSeason} className="rounded-full py-2 text-sprPrimary text-sm ">
+
                 <option value="All">All</option>
                 <option value="Dry_Season">Dry</option>
                 <option value="Wet_Season">Wet</option>
+              </select>
+            </div>
+          </div>
+          {/* Year Filter */}
+          <div className="drop-shadow-md flex" >
+            <div className="bg-sprPrimaryLight text-white h-full text-sm  p-2 rounded-full pl-3 pr-10">Year</div>
+            <div className=" -ml-9">
+              <select name="riceYear" onChange={changeYear} className="rounded-full py-2 text-sprPrimary text-sm ">
+
+                <option value={'All'}>All</option>
+                {
+                  years.map((e) =>
+                    <option value={e} >{e}</option>
+
+                  )
+                }
               </select>
             </div>
           </div>
@@ -205,7 +338,9 @@ export default function RiceList() {
                   </h6>
                 </div>
                 <div className="flex items-center space-x-2 sm:pt-1 ">
-                  <button className=" text-white text-xs sm:text-sm bg-gradient-to-b from-sprPrimary to-sprPrimaryDark h-6 w-10 sm:h-6 sm:w-12 rounded-full drop-shadow-md ">
+                  <button onClick={() => {
+                    setModalIsOpen(true)
+                  }} className=" text-white text-xs sm:text-sm bg-gradient-to-b from-sprPrimary to-sprPrimaryDark h-6 w-10 sm:h-6 sm:w-12 rounded-full drop-shadow-md ">
                     view
                   </button>
                   <button
@@ -221,6 +356,42 @@ export default function RiceList() {
         </div>}
 
       </section>
+
+      <ModalRiceInfo open={modalIsOpen} >
+        <div className=" fixed left-0 right-0 bottom-0 top-0 z-50 bg-black opacity-70 " />
+        <div className=" flex flex-col absolute left-3 right-3 bottom-16 top-16 sm:left-12 sm:right-12 md:left-28 md:right-28 lg:left-1/4 lg:right-1/4 z-50 bg-white rounded-xl  px-4 pt-8 pb-4   ">
+          <div className="absolute right-5 z-50 ">
+            <button onClick={() => setModalIsOpen(false)}>
+              <img className="relative" src={closeIcon} alt="" />
+            </button>
+          </div>
+          <div className="bg-yellow-400 flex  ">
+            <header className="  bg-red-600">
+              <h1 className="text-3xl font-bold text-sprBlack opacity-80 p-2">
+                Rice Info
+              </h1>
+            </header>
+            <div className="bg-yellow-400">
+            </div>
+          </div>
+          <div className="bg-violet-500 flex-auto flex flex-col">
+            <div className="bg-green-600 w-full h-1/4 flex ">
+              <div className="bg-pink-600  w-1/2 p-3">
+                <div className="bg-yellow-400 h-full">image</div></div>
+              <div className="bg-pink-300 flex flex-col flex-auto">
+                {/* <h1>{currentData.accessionId}</h1>
+                <p>Season: {currentData.riceSeason} Season</p>
+                <p>Year: {currentData.riceYear}</p> */}
+              </div>
+            </div>
+            <div className="bg-green-600 w-full flex-auto">
+              {/* <p>7.3.2 Auricle Color : {vsData.auricleColor}</p> */}
+            </div>
+
+          </div>
+        </div>
+      </ModalRiceInfo>
+
     </>
   );
 }

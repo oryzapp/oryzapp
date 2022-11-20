@@ -472,6 +472,7 @@ export default function RiceData() {
       {/* Options */}
       <div className="flex  items-center gap-3  bg-white">
         <div className=" flex  items-center gap-1 sm:gap-3   rounded-full">
+          {/* Search Bar */}
           <div className="relative drop-shadow-md hidden sm:block">
             <input
               className=" pl-2 py-2 text-sm placeholder:text-sprPrimary/50 text-sprPrimary focus:outline-none focus:border-none  rounded-full "
@@ -482,7 +483,7 @@ export default function RiceData() {
               <SearchIcon stroke="white" />
             </button>
           </div>
-
+          {/* Season */}
           <div className="drop-shadow-md flex" >
             <div className="bg-sprPrimaryLight text-white h-full text-sm  p-2 rounded-full pl-3 pr-10">Season</div>
             <div className=" -ml-9">
@@ -583,32 +584,51 @@ export default function RiceData() {
           >
             <div className={riceDataExists === true ? "block text-red-400" : "hidden"}>*Rice Data Already Exists</div>
             <div className="flex whitespace-nowrap bg-blue-300">
+              {/* Accession */}
+              <div className="drop-shadow-md flex" >
+                <div className="bg-sprPrimaryLight text-white h-full text-sm  p-2 rounded-full pl-3 pr-10">Accession</div>
+                <div className=" -ml-9">
+                  <select className="rounded-full py-2 text-sprPrimary text-sm " name="accessionId" id="" onChange={handleChange} required>
+                    {/* <option>Accession</option> */}
+                    {riceAccessions.map((rice) =>
+                      <option value={rice.accessionId}  >{rice.accessionId}</option>)}
+                  </select>
+                </div>
 
-              <div>
-                <select name="accessionId" id="" onChange={handleChange} required>
-                  <option>Accession</option>
-                  {riceAccessions.map((rice) =>
-                    <option value={rice.accessionId}  >{rice.accessionId}</option>)}
-                </select>
-              </div>
-              <div>
 
-                <select value={riceData.riceSeason} name="riceSeason" onChange={handleChange}>
-                  <option value="Dry">Dry</option>
-                  <option value="Wet">Wet</option>
-                </select>
-              </div>
-              <div>
-                <select value={riceData.riceYear} name="riceYear" onChange={handleChange}>
-                  {
-                    years.map((e) =>
-                      <option value={e} >{e}</option>
-
-                    )
-                  }
-                </select>
 
               </div>
+              {/* Season */}
+              <div className="drop-shadow-md flex" >
+                <div className="bg-sprPrimaryLight text-white h-full text-sm  p-2 rounded-full pl-3 pr-10">Season</div>
+                <div className=" -ml-9">
+                  <select className="rounded-full py-2 text-sprPrimary text-sm " value={riceData.riceSeason} name="riceSeason" onChange={handleChange}>
+                    <option value="Dry">Dry</option>
+                    <option value="Wet">Wet</option>
+                  </select>
+                </div>
+
+
+
+              </div>
+              {/* Year */}
+              <div className="drop-shadow-md flex" >
+                <div className="bg-sprPrimaryLight text-white h-full text-sm  p-2 rounded-full pl-3 pr-10">Year</div>
+                <div className=" -ml-9">
+                  <select className="rounded-full py-2 text-sprPrimary text-sm " value={riceData.riceYear} name="riceYear" onChange={handleChange}>
+                    {
+                      years.map((e) =>
+                        <option value={e} >{e}</option>
+
+                      )
+                    }
+                  </select>
+                </div>
+
+
+
+              </div>
+
             </div>
 
             {/* Tab Nav */}
