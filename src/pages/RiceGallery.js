@@ -1,4 +1,24 @@
+import { useEffect, useState } from "react"
+import { getDownloadURL, listAll, ref } from "firebase/storage";
+import { storage } from "../firebase-config";
+
 export default function RiceGallery() {
+
+  const [imageList, setImageList] = useState([])
+  const imageListRef = ref(storage, "images/")
+  useEffect(() => {
+    try {
+      listAll(imageListRef).then((response) => {
+        response.items.forEach((item) => {
+          getDownloadURL(item).then((url) => {
+            setImageList((prev) => [...prev, url])
+          })
+        })
+      })
+    } catch (error) {
+      console.log(error);
+    }
+  }, [])
 
   return (
     <>
@@ -39,7 +59,13 @@ export default function RiceGallery() {
         </div>
         {/* Main */}
         <section className=" bg-blue-300 w-full flex-auto overflow-auto rounded-sm scrollbar">
+          breh
+          {imageList.map((item) => (
+            <div>
+              <img src={item} />
+            </div>
 
+          ))}
         </section>
       </div>
 

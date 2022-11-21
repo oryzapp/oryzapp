@@ -3,6 +3,7 @@ import { getFirestore } from "firebase/firestore"
 import { getAuth, onAuthStateChanged, signInWithEmailAndPassword } from "firebase/auth"
 import { useState } from "react";
 import { useEffect } from "react";
+import { getStorage } from 'firebase/storage'
 
 const firebaseConfig = {
   apiKey: "AIzaSyA6fTQVyO005g4xnx7JCJu6DdrRuBUyeBg",
@@ -18,6 +19,7 @@ const firebaseConfig = {
 const app = initializeApp(firebaseConfig);
 export default getFirestore();
 export const auth = getAuth()
+export const storage = getStorage(app)
 
 export function login(email, password) {
   return signInWithEmailAndPassword(auth, email, password)
