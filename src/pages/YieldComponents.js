@@ -5,28 +5,27 @@ import db from "../firebase-config";
 
 
 
-export default function YieldComponents() {
-  const [seasonToOutlet, setSeasonToOutlet] = useOutletContext()
+export default function YieldComponents({ season }) {
   const [riceData, setRiceData] = useState([])
   useEffect(() => {
 
     let riceCollectionRef = collectionGroup(db, "YC_Raw_Rice_Data");
 
-    if (seasonToOutlet === 'All') {
+    if (season === 'All') {
       riceCollectionRef = collectionGroup(db, "YC_Raw_Rice_Data");
     }
-    if (seasonToOutlet === "Wet_Season") {
-      riceCollectionRef = query(collection(db, `/SPR/Rice_Seasons/Seasons/${seasonToOutlet}/Stages/Yield_Components/YC_Raw_Rice_Data`))
+    if (season === "Wet_Season") {
+      riceCollectionRef = query(collection(db, `/SPR/Rice_Seasons/Seasons/${season}/Stages/Yield_Components/YC_Raw_Rice_Data`))
     }
-    if (seasonToOutlet === "Dry_Season") {
-      riceCollectionRef = query(collection(db, `/SPR/Rice_Seasons/Seasons/${seasonToOutlet}/Stages/Yield_Components/YC_Raw_Rice_Data`))
+    if (season === "Dry_Season") {
+      riceCollectionRef = query(collection(db, `/SPR/Rice_Seasons/Seasons/${season}/Stages/Yield_Components/YC_Raw_Rice_Data`))
     }
 
     onSnapshot(riceCollectionRef, (snapshot) => {
       setRiceData(snapshot.docs.map((doc) => doc.data()));
     });
 
-  }, [seasonToOutlet]);
+  }, [season]);
   return (
 
     <>
@@ -151,6 +150,7 @@ export default function YieldComponents() {
       </div>
 
     </>
+
 
   )
 }

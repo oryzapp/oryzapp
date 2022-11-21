@@ -6,28 +6,27 @@ import db from "../firebase-config";
 
 
 
-export default function GrainCharacteristics() {
-  const [seasonToOutlet, setSeasonToOutlet] = useOutletContext()
+export default function GrainCharacteristics({ season }) {
   const [riceData, setRiceData] = useState([])
   useEffect(() => {
 
     let riceCollectionRef = collectionGroup(db, "GC_Raw_Rice_Data");
 
-    if (seasonToOutlet === 'All') {
+    if (season === 'All') {
       riceCollectionRef = collectionGroup(db, "GC_Raw_Rice_Data");
     }
-    if (seasonToOutlet === "Wet_Season") {
-      riceCollectionRef = query(collection(db, `/SPR/Rice_Seasons/Seasons/${seasonToOutlet}/Stages/Grain_Characteristics/GC_Raw_Rice_Data`))
+    if (season === "Wet_Season") {
+      riceCollectionRef = query(collection(db, `/SPR/Rice_Seasons/Seasons/${season}/Stages/Grain_Characteristics/GC_Raw_Rice_Data`))
     }
-    if (seasonToOutlet === "Dry_Season") {
-      riceCollectionRef = query(collection(db, `/SPR/Rice_Seasons/Seasons/${seasonToOutlet}/Stages/Grain_Characteristics/GC_Raw_Rice_Data`))
+    if (season === "Dry_Season") {
+      riceCollectionRef = query(collection(db, `/SPR/Rice_Seasons/Seasons/${season}/Stages/Grain_Characteristics/GC_Raw_Rice_Data`))
     }
 
     onSnapshot(riceCollectionRef, (snapshot) => {
       setRiceData(snapshot.docs.map((doc) => doc.data()));
     });
 
-  }, [seasonToOutlet]);
+  }, [season]);
 
   return (
     <>
@@ -266,6 +265,7 @@ export default function GrainCharacteristics() {
       </div>
 
     </>
+
 
   )
 }

@@ -9,7 +9,6 @@ import Login from "./pages/Login";
 function App() {
   return (
     <div className=" bg-sprBackground flex flex-col h-screen relative ">
-      {/* <Login/> */}
       <div className="">
         <Topbar />
       </div>

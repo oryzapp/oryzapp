@@ -1,4 +1,4 @@
-import { Link, Route, Routes } from "react-router-dom";
+import { button, Route, Routes } from "react-router-dom";
 import Dahsboard from "../pages/Dashboard";
 import RiceList from "./../pages/RiceList";
 import RiceAccessions from "./../pages/RiceAccessions";
@@ -20,23 +20,25 @@ import { ReactComponent as RiceDIcon } from "../assets/rice-data-icon.svg";
 import { ReactComponent as RiceGIcon } from "../assets/rice-gallery-icon.svg";
 import { ReactComponent as SQRIcon } from "../assets/scan-qr-code-icon.svg";
 
-import { useEffect, useState } from "react";
-import { useRef } from "react";
+import { useState } from "react";
 
-export default function Sidebar() {
+export default function Sidebar({ onChange }) {
   const [state, setState] = useState(1)
 
-  const activeOn = (index) => {
-
+  const handleClick = (page, index) => {
     setState(index)
+    onChange(page)
+  }
 
+  const activeOn = (index) => {
+    setState(index)
   }
 
   return (
     <div className=" sidenav flex  flex-col  whitespace-nowrap w-auto  mb-2 rounded-b-xl sm:rounded-l-none sm:rounded-r-xl bg-white opacity-90 sm:h-full sm:p-3  ">
       <nav className="flex flex-row  sm:flex-col ">
 
-        <Link className={state === 1 ? " flex justify-center  flex-auto   sm:justify-start bg-sprPrimary rounded-lg px-3 py-2  " : " group flex justify-center  flex-auto   sm:justify-start  px-3 py-2 hover:bg-slate-200 rounded-lg   "} onClick={() => activeOn(1)} to="/">
+        <button onClick={() => handleClick('dashboard', 1)} className={state === 1 ? " flex justify-center  flex-auto   sm:justify-start bg-sprPrimary rounded-lg px-3 py-2  " : " group flex justify-center  flex-auto   sm:justify-start  px-3 py-2 hover:bg-slate-200 rounded-lg   "}>
           <div className="flex items-center space-x-1   "  >
             <div className="rounded-xl h-6 w-6  ">
               {/* <img className=" relative" src={dashboardIcon} alt="" /> */}
@@ -44,9 +46,9 @@ export default function Sidebar() {
             </div>
             <h3 className={state === 1 ? "nav-text hidden md:block text-white font-medium text-md" : "nav-text hidden  md:block text-sprInactiveGray font-medium text-md"}>Dashboard</h3>
           </div>
-        </Link>
+        </button>
 
-        <Link className={state === 2 ? "flex justify-center  flex-auto   sm:justify-start bg-sprPrimary rounded-lg px-3 py-2 " : "group hidden  sm:flex justify-center  flex-auto   sm:justify-start  px-3 py-2 hover:bg-slate-200 rounded-lg  "} onClick={() => activeOn(2)} to="manage-users">
+        <button onClick={() => handleClick('users', 2)} className={state === 2 ? "flex justify-center  flex-auto   sm:justify-start bg-sprPrimary rounded-lg px-3 py-2 " : "group hidden  sm:flex justify-center  flex-auto   sm:justify-start  px-3 py-2 hover:bg-slate-200 rounded-lg  "}>
           <div className="flex items-center  space-x-1   " >
             <div className="rounded-xl h-6 w-6  ">
               {/* <img className=" relative" src={manageUsersIcon} alt="" /> */}
@@ -54,9 +56,9 @@ export default function Sidebar() {
             </div>
             <h3 className={state === 2 ? "nav-text hidden md:block text-white font-medium text-md" : "nav-text hidden  md:block text-sprInactiveGray font-medium text-md"}>Manage Users</h3>
           </div>
-        </Link>
+        </button>
 
-        <Link className={state === 3 ? "flex justify-center  flex-auto   sm:justify-start bg-sprPrimary rounded-lg px-3 py-2" : "group flex justify-center  flex-auto   sm:justify-start  px-3 py-2 hover:bg-slate-200 rounded-lg "} onClick={() => activeOn(3)} to="rice-list">
+        <button onClick={() => handleClick('rice-list', 3)} className={state === 3 ? "flex justify-center  flex-auto   sm:justify-start bg-sprPrimary rounded-lg px-3 py-2" : "group flex justify-center  flex-auto   sm:justify-start  px-3 py-2 hover:bg-slate-200 rounded-lg "} >
           <div className="flex items-center space-x-1   " >
             <div className=" h-6 w-6">
               {/* <img className=" relative" src={riceListIcon} alt="" /> */}
@@ -64,9 +66,9 @@ export default function Sidebar() {
             </div>
             <h3 className={state === 3 ? "nav-text hidden md:block text-white font-medium text-md" : "nav-text hidden  md:block text-sprInactiveGray font-medium text-md"}>Rice List</h3>
           </div>
-        </Link>
+        </button>
 
-        <Link className={state === 4 ? "flex justify-center  flex-auto   sm:justify-start bg-sprPrimary rounded-lg px-3 py-2 " : "group flex justify-center  flex-auto   sm:justify-start  px-3 py-2 hover:bg-slate-200 rounded-lg "} onClick={() => activeOn(4)} to="rice-accessions">
+        <button onClick={() => handleClick('rice-accessions', 4)} className={state === 4 ? "flex justify-center  flex-auto   sm:justify-start bg-sprPrimary rounded-lg px-3 py-2 " : "group flex justify-center  flex-auto   sm:justify-start  px-3 py-2 hover:bg-slate-200 rounded-lg "} >
           <div className="flex items-center space-x-1   " >
             <div className="rounded-xl h-6 w-6">
               {/* <img className=" relative" src={riceAccessionsIcon} alt="" /> */}
@@ -74,9 +76,9 @@ export default function Sidebar() {
             </div>
             <h3 className={state === 4 ? "nav-text hidden md:block text-white font-medium text-md" : "nav-text hidden  md:block text-sprInactiveGray font-medium text-md"}>Rice Accessions</h3>
           </div>
-        </Link>
+        </button>
 
-        <Link className={state === 5 ? "flex justify-center  flex-auto   sm:justify-start bg-sprPrimary rounded-lg px-3 py-2" : " group hidden sm:flex justify-center  flex-auto   sm:justify-start  px-3 py-2 hover:bg-slate-200 rounded-lg "} onClick={() => activeOn(5)} to="rice-data/vegetative-stage">
+        <button onClick={() => handleClick('rice-data', 5)} className={state === 5 ? "flex justify-center  flex-auto   sm:justify-start bg-sprPrimary rounded-lg px-3 py-2" : " group hidden sm:flex justify-center  flex-auto   sm:justify-start  px-3 py-2 hover:bg-slate-200 rounded-lg "} >
           <div className="flex items-center space-x-1 " >
             <div className="rounded-xl h-6 w-6 ">
               {/* <img className=" relative" src={riceDataIcon} alt="" /> */}
@@ -84,9 +86,9 @@ export default function Sidebar() {
             </div>
             <h3 className={state === 5 ? "nav-text hidden md:block text-white font-medium text-md" : "nav-text hidden  md:block text-sprInactiveGray font-medium text-md"}>Rice Data</h3>
           </div>
-        </Link>
+        </button>
 
-        <Link className={state === 6 ? "flex justify-center  flex-auto   sm:justify-start bg-sprPrimary rounded-lg px-3 py-2" : "group flex justify-center  flex-auto   sm:justify-start  px-3 py-2 hover:bg-slate-200 rounded-lg "} onClick={() => activeOn(6)} to="rice-gallery">
+        <button onClick={() => handleClick('rice-gallery', 6)} className={state === 6 ? "flex justify-center  flex-auto   sm:justify-start bg-sprPrimary rounded-lg px-3 py-2" : "group flex justify-center  flex-auto   sm:justify-start  px-3 py-2 hover:bg-slate-200 rounded-lg "} >
           <div className="flex items-center space-x-1  ">
             <div className="rounded-xl h-6 w-6 ">
               {/* <img className=" relative" src={riceGalleryIcon} alt="" /> */}
@@ -94,9 +96,9 @@ export default function Sidebar() {
             </div>
             <h3 className={state === 6 ? "nav-text hidden md:block text-white font-medium text-md" : "nav-text hidden  md:block text-sprInactiveGray font-medium text-md"}>Rice Gallery</h3>
           </div>
-        </Link>
+        </button>
 
-        <Link className={state === 7 ? " flex justify-center  flex-auto   sm:justify-start bg-sprPrimary rounded-lg px-3 py-2" : "group flex justify-center  flex-auto   sm:justify-start  px-3 py-2 hover:bg-slate-200 rounded-lg "} onClick={() => activeOn(7)} to="scan-code">
+        <button onClick={() => handleClick('scan-code', 7)} className={state === 7 ? " flex justify-center  flex-auto   sm:justify-start bg-sprPrimary rounded-lg px-3 py-2" : "group flex justify-center  flex-auto   sm:justify-start  px-3 py-2 hover:bg-slate-200 rounded-lg "} >
           <div className="flex items-center space-x-1  ">
             <div className="rounded-xl h-6 w-6 ">
               {/* <img className="" src={scanQRCodeIcon} alt="" /> */}
@@ -105,8 +107,8 @@ export default function Sidebar() {
             <h3 className={state === 7 ? "nav-text hidden md:block text-white font-medium text-md" : "nav-text hidden  md:block text-sprInactiveGray font-medium text-md"}>Scan Code</h3>
 
           </div>
-        </Link>
-        {/* <Link to='rice-info'></Link> */}
+        </button>
+        {/* <button to='rice-info'></button> */}
 
       </nav>
     </div >
@@ -116,39 +118,39 @@ export default function Sidebar() {
 {
   /* <ul className=" md:pr-8 ">
   <li>
-    <Link className="flex space-x-2  md:mb-2 " to="/">
+    <button className="flex space-x-2  md:mb-2 " to="/">
       <div className="h-6 w-6 rounded-full bg-green-300">
         <img className=" relative" src={riceaccLogo} alt="" />
       </div>
       <h3 className="hidden md:block">Dashboard</h3>
-    </Link>
+    </button>
   </li>
   <li>
-    <Link className="flex space-x-2 mb-2" to="manage-users">
+    <button className="flex space-x-2 mb-2" to="manage-users">
       <div className="hidden md:block h-6 w-6 rounded-full bg-white">
         <img className=" relative" src={userLogo} alt="" />
       </div>
       <h3 className="hidden md:block">Manage Users</h3>
-    </Link>
+    </button>
   </li>
   <li>
-    <Link className="flex space-x-2 mb-2" to="rice-list">
+    <button className="flex space-x-2 mb-2" to="rice-list">
       <div className="h-6 w-6 rounded-full bg-white">
         <img className=" relative" src={ricelistLogo} alt="" />
       </div>
       <h3 className="hidden md:block">Rice List</h3>
-    </Link>
+    </button>
   </li>
   <li>
-    <Link className="flex space-x-2 md:mb-2" to="rice-accessions">
+    <button className="flex space-x-2 md:mb-2" to="rice-accessions">
       <div className="h-6 w-6 rounded-full bg-white">
         <img className=" relative" src={riceaccLogo} alt="" />
       </div>
       <h3 className="hidden md:block">Rice Accessions</h3>
-    </Link>
+    </button>
   </li>
   <li>
-    <Link
+    <button
       className="flex space-x-2 mb-2"
       to="rice-data/vegetative-stage"
     >
@@ -156,23 +158,23 @@ export default function Sidebar() {
         <img className=" relative" src={ricedataLogo} alt="" />
       </div>
       <h3 className="hidden md:block">Rice Data</h3>
-    </Link>
+    </button>
   </li>
   <li>
-    <Link className="flex space-x-2 mb-2" to="rice-gallery">
+    <button className="flex space-x-2 mb-2" to="rice-gallery">
       <div className="h-6 w-6 rounded-full bg-green-300">
         <img className=" relative" src={ricelistLogo} alt="" />
       </div>
       <h3 className="hidden md:block">Rice Gallery</h3>
-    </Link>
+    </button>
   </li>
   <li>
-    <Link className="flex space-x-2 mb-2" to="scan-code">
+    <button className="flex space-x-2 mb-2" to="scan-code">
       <div className="h-6 w-6 rounded-full bg-green-300">
         <img className=" relative" src={ricelistLogo} alt="" />
       </div>
       <h3 className="hidden md:block">Scan Code</h3>
-    </Link>
+    </button>
   </li>
 </ul> */
 }

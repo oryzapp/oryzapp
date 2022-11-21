@@ -4,33 +4,34 @@ import { useOutletContext } from "react-router-dom";
 import db from "../firebase-config";
 
 
-export default function VegetativeStage() {
+export default function VegetativeStage({ season }) {
 
-  const [seasonToOutlet, setSeasonToOutlet] = useOutletContext()
+
   const [riceData, setRiceData] = useState([])
   useEffect(() => {
 
     let riceCollectionRef = collectionGroup(db, "VS_Raw_Rice_Data");
 
-    if (seasonToOutlet === 'All') {
+    if (season === 'All') {
       riceCollectionRef = collectionGroup(db, "VS_Raw_Rice_Data");
     }
-    if (seasonToOutlet === "Wet_Season") {
-      riceCollectionRef = query(collection(db, `/SPR/Rice_Seasons/Seasons/${seasonToOutlet}/Stages/Vegetative_Stage/VS_Raw_Rice_Data`))
+    if (season === "Wet_Season") {
+      riceCollectionRef = query(collection(db, `/SPR/Rice_Seasons/Seasons/${season}/Stages/Vegetative_Stage/VS_Raw_Rice_Data`))
     }
-    if (seasonToOutlet === "Dry_Season") {
-      riceCollectionRef = query(collection(db, `/SPR/Rice_Seasons/Seasons/${seasonToOutlet}/Stages/Vegetative_Stage/VS_Raw_Rice_Data`))
+    if (season === "Dry_Season") {
+      riceCollectionRef = query(collection(db, `/SPR/Rice_Seasons/Seasons/${season}/Stages/Vegetative_Stage/VS_Raw_Rice_Data`))
     }
 
     onSnapshot(riceCollectionRef, (snapshot) => {
       setRiceData(snapshot.docs.map((doc) => doc.data()));
     });
 
-  }, [seasonToOutlet]);
+  }, [season]);
   return (
 
+
     <>
-      <div className=" bg-green-200 flex">
+      <div className=" bg-green-300  flex ">
         {/* ffffff */}
         <table className="bg-yellow-300 text-sm">
           <thead className="text-xs font-medium uppercase">Accession </thead>
@@ -372,7 +373,9 @@ export default function VegetativeStage() {
           </tbody>
         </table>
 
-        {/* ffffff */}</div>
+      </div>
+
+
 
     </>
   );
