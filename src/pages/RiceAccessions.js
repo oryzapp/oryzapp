@@ -59,7 +59,7 @@ export default function RiceAccessions() {
       }
       else {
         if (imageUpload !== null) {
-          const imageRef = ref(storage, `images/${imageUpload.name + v4()} `)
+          const imageRef = ref(storage, `images/${state.accession} `)
           uploadBytes(imageRef, imageUpload).then(() => {
             alert("image uploaded")
           })
@@ -152,6 +152,10 @@ export default function RiceAccessions() {
       timestamp: serverTimestamp(),
     };
 
+    const imageRef = ref(storage, `images/${state.accession} `)
+    uploadBytes(imageRef, imageUpload).then(() => {
+      alert("image uploaded")
+    })
     await updateDoc(docRef, payLoad);
     setIsModalOpen(false)
     setState(initialState)
@@ -213,7 +217,7 @@ export default function RiceAccessions() {
 
   return (
     <>
-      <div className='w-full flex flex-col rounded-xl bg-white opacity-90 p-2'>
+      <div className='h-full w-full flex flex-col rounded-t-xl  sm:rounded-xl bg-white opacity-90 p-2'>
 
         {/* Header */}
         <header className=" flex items-center">
