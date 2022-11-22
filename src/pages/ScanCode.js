@@ -126,8 +126,8 @@ export default function ScanCode() {
   const [viewMdLg, setViewMdLg] = useState(false)
 
   return (
-    <div className=' w-full flex flex-col rounded-xl bg-white opacity-90 p-2'>
-      <div className="flex    h-full">
+    <div className='bg-white rounded-t-xl  sm:rounded-xl h-full w-full flex flex-col  p-2'>
+      < div className="flex    h-full" >
         <div className={viewMdLg === true ? "w-5/12  flex flex-col" : " w-full  flex flex-col"}>
           {/* Header */}
           <header className="">
@@ -135,7 +135,7 @@ export default function ScanCode() {
               Scan Code
             </h1>
           </header>
-          <div className="flex-auto flex flex-col">
+          <div className="flex-auto flex flex-col" >
             <div className=" h-full flex justify-center items-center flex-col gap-6 ">
               <div className=" h-72 w-64 flex flex-col  ">
                 <div className=" flex ">
@@ -164,6 +164,7 @@ export default function ScanCode() {
                 </div>
 
               </div>
+
               <div className=" flex justify-center items-center rounded-lg">
 
                 <div className={riceDataExists === true ? 'w-64  rounded-lg bg-slate-100 flex justify-between p-2 items-center' : 'hidden'}>
@@ -1146,8 +1147,8 @@ export default function ScanCode() {
           </div>
         </ModalRiceInfo>
 
-      </div>
-    </div>
+      </div >
+    </div >
 
 
   );

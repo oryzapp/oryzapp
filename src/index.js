@@ -10,14 +10,14 @@ import { AuthProvider } from "./components/AuthProvider";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
-  <React.StrictMode>
-    <BrowserRouter>
-      <AuthProvider>
-        <Routes>
-          <Route exact path="/" element={<Main />} ></Route>
-          <Route path="/login" element={<Login />}></Route>
-        </Routes>
-      </AuthProvider>
-    </BrowserRouter>
-  </React.StrictMode>
+  // <React.StrictMode>
+  <BrowserRouter>
+    <AuthProvider>
+      <Routes>
+        <Route exact path="/" element={<Main />} ></Route>
+        <Route path="/login" element={<Login />}></Route>
+      </Routes>
+    </AuthProvider>
+  </BrowserRouter>
+  // </React.StrictMode>
 );

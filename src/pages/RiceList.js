@@ -168,7 +168,7 @@ export default function RiceList() {
 
   return (
     <>
-      <div className=' w-full flex flex-col rounded-xl bg-white opacity-90 p-2'>
+      <div className='h-full w-full flex flex-col rounded-t-xl sm:rounded-xl bg-white opacity-90 p-2'>
         {/* Header */}
         {/* <header className="   ">
         
@@ -322,8 +322,8 @@ export default function RiceList() {
 
             {riceList.map((rice) => (
 
-
-              <div className="flex  flex-col  p-4 pt-2 pr-6 sm:pr-4   rounded-md border-solid border-2 border-sprPrimaryLight drop-shadow-sm">
+              // border-solid border-2 border-sprPrimaryLight
+              <div className="flex  flex-col  p-4 pt-2 pr-6 sm:pr-4   rounded-lg bg-slate-50  drop-shadow-md ">
                 {console.log('booop')}
 
                 <div className="flex  justify-center p-4">

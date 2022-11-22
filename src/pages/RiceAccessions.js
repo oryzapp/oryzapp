@@ -14,6 +14,8 @@ import { useEffect, useState } from "react";
 import ModalAddRiceAcc from "../components/ModalAddRiceAcc";
 import ModalRiceInfo from "../components/ModalRiceInfo";
 import db from "../firebase-config";
+import { storage } from "../firebase-config";
+import { ref, uploadBytes } from "firebase/storage"
 import {
   addRiceAccession,
   editRiceAccessionID,
@@ -26,6 +28,8 @@ import delIcon from "../assets/delete-icon.svg"
 import editIcon from "../assets/edit-icon.svg"
 import { ReactComponent as SearchIcon } from "../assets/search-icon.svg"
 import { ReactComponent as EmptyIllustration } from "../assets/empty-illustration.svg"
+import { ReactComponent as ImageIcon } from "../assets/image-icon.svg"
+import { v4 } from "uuid";
 
 export default function RiceAccessions() {
 
@@ -33,7 +37,10 @@ export default function RiceAccessions() {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [isRiceInfoModalOpen, setIsRiceInfoModalOpen] = useState(false);
 
+
   // Handle Form Submit ------------------>
+  const [imageUpload, setImageUpload] = useState(null)
+  console.log(imageUpload);
 
   const handleSubmit = async (e) => {
     try {
@@ -47,12 +54,21 @@ export default function RiceAccessions() {
         timestamp: serverTimestamp(),
       };
 
-
       if (accessionExists === true) {
         alert('Change Accession')
       }
       else {
+        if (imageUpload !== null) {
+          const imageRef = ref(storage, `images/${state.accession} `)
+          uploadBytes(imageRef, imageUpload).then(() => {
+            alert("image uploaded")
+          })
+        }
+
         await addDoc(collectionRef, payLoad);
+
+
+
         setIsModalOpen(false)
         setState(initialState)
       }
@@ -136,6 +152,10 @@ export default function RiceAccessions() {
       timestamp: serverTimestamp(),
     };
 
+    const imageRef = ref(storage, `images/${state.accession} `)
+    uploadBytes(imageRef, imageUpload).then(() => {
+      alert("image uploaded")
+    })
     await updateDoc(docRef, payLoad);
     setIsModalOpen(false)
     setState(initialState)
@@ -191,10 +211,13 @@ export default function RiceAccessions() {
 
   var list = 0
 
+  const uploadImage = () => {
+
+  }
 
   return (
     <>
-      <div className='w-full flex flex-col rounded-xl bg-white opacity-90 p-2'>
+      <div className='h-full w-full flex flex-col rounded-t-xl  sm:rounded-xl bg-white opacity-90 p-2'>
 
         {/* Header */}
         <header className=" flex items-center">
@@ -287,7 +310,7 @@ export default function RiceAccessions() {
                     </h6>
                   </div>
                   <button
-                    className=" text-white text-sm bg-gradient-to-b from-sprPrimary to-sprPrimaryDark h-8 w-14 sm:h-6 sm:w-12 rounded-full shadow-lg shadow-slate-300 "
+                    className=" text-white text-sm bg-gradient-to-b from-sprPrimary to-sprPrimaryDarkest hover:bg-gradient-to-t hover:from-sprPrimaryLight hover:to-sprPrimaryLight drop-shadow-md h-8 w-14 sm:h-6 sm:w-12 rounded-full  shadow-slate-300 "
                     onClick={() => {
                       setIsRiceInfoModalOpen(true)
                     }}
@@ -297,7 +320,7 @@ export default function RiceAccessions() {
 
 
                   <button
-                    className="hidden lg:block p-1 bg-sprPrimary rounded-full   shadow-slate-300 "
+                    className="hidden lg:block p-1 bg-gradient-to-b from-sprPrimary to-sprPrimaryDarkest hover:bg-gradient-to-t hover:from-sprPrimaryLight hover:to-sprPrimaryLight drop-shadow-md   rounded-full   shadow-slate-300 "
                     onClick={() => {
                       editRiceAccessionID(rice.id);
                     }}
@@ -305,7 +328,7 @@ export default function RiceAccessions() {
                     <div className="w-4 h-4"><img src={editIcon} alt="" /></div>
                   </button>
                   <button
-                    className="hidden lg:block p-1 bg-sprPrimary rounded-full  shadow-slate-300 "
+                    className="hidden lg:block p-1 bg-gradient-to-b from-sprPrimary to-sprPrimaryDarkest rounded-full  hover:bg-gradient-to-t hover:from-sprPrimaryLight hover:to-sprPrimaryLight drop-shadow-md shadow-slate-300 "
                     onClick={() => {
                       deleteRiceAccession(rice.id);
                     }}
@@ -336,31 +359,34 @@ export default function RiceAccessions() {
           </div>
           <div className="flex-auto relative">
             <form
-              className="flex flex-col h-full"
+              className="flex flex-col h-full "
               onSubmit={isEdit === true ? submitEdit : handleSubmit}
             >
-              <div className="flex flex-auto flex-col lg:flex-row pb-20">
-                <div className="flex flex-col flex-auto -space-y-2">
-                  <div className="p-4 ">
-                    <div className={isEdit === true ? "hidden" : "block"}>
-                      <div className={accessionExists === true ? "block text-red-500 text-sm" : "hidden"}>*Accession already exists</div>
+              <div className="p-4">
+                <div className={isEdit === true ? "hidden" : "block"}>
+                  <div className={accessionExists === true ? "block text-red-500 text-sm" : "hidden"}>*Accession already exists</div>
 
-                    </div>
-                    <input
-                      className="text-4xl font-medium py-px placeholder-sprPrimaryLight/50 text-sprPrimary focus:outline-none focus:ring-transparent bg-transparent"
-                      type="text"
-                      placeholder="CL-XXXX"
-                      name="accession"
-                      value={state.accession}
-                      onChange={handleChange}
-                      required
-                      readOnly={isEdit === true ? true : false}
-                    />
-                  </div>
+                </div>
+                <input
+                  className=" w-full text-4xl font-medium py-px placeholder-sprPrimaryLight/50 text-sprPrimary focus:outline-none focus:ring-transparent bg-transparent"
+                  type="text"
+                  placeholder="CL-XXXX"
+                  name="accession"
+                  value={state.accession}
+                  onChange={handleChange}
+                  required
+                  readOnly={isEdit === true ? true : false}
+                />
+              </div>
+              <div className="flex flex-auto flex-col lg:flex-row pb-20  w-full">
+                <div className="flex flex-col  -space-y-2  w-1/2">
+
+
                   <div className="p-4  flex flex-col ">
                     <label className="text-sprPrimary">Variety</label>
                     <input
-                      className="rounded-full p-2 w-3/4 border border-sprPrimary focus:outline-none focus:ring-1 focus:ring-sprPrimary focus:bg-sprPrimaryLight/30"
+
+                      className="rounded-full p-2  border border-sprPrimary focus:outline-none focus:ring-1 focus:ring-sprPrimary focus:bg-sprPrimaryLight/30"
                       type="text"
                       name="variety"
                       value={state.variety}
@@ -370,7 +396,7 @@ export default function RiceAccessions() {
                   <div className="p-4  flex flex-col">
                     <label className="text-sprPrimary">Source</label>
                     <input
-                      className="rounded-full p-2 w-3/4 border border-sprPrimary focus:outline-none focus:ring-1 focus:ring-sprPrimary focus:bg-sprPrimaryLight/30"
+                      className="rounded-full p-2 border border-sprPrimary focus:outline-none focus:ring-1 focus:ring-sprPrimary focus:bg-sprPrimaryLight/30"
                       type="text"
                       name="source"
                       value={state.source}
@@ -380,7 +406,7 @@ export default function RiceAccessions() {
                   <div className="p-4  flex flex-col">
                     <label className="text-sprPrimary">Classification</label>
                     <input
-                      className="rounded-full p-2 w-3/4 border border-sprPrimary focus:outline-none focus:ring-1 focus:ring-sprPrimary focus:bg-sprPrimaryLight/30"
+                      className="rounded-full p-2 border border-sprPrimary focus:outline-none focus:ring-1 focus:ring-sprPrimary focus:bg-sprPrimaryLight/30"
                       type="text"
                       name="classification"
                       value={state.classification}
@@ -388,9 +414,18 @@ export default function RiceAccessions() {
                     />
                   </div>
                 </div>
-                <div className="flex-auto flex justify-center ">
-                  {/* <input type="file" /> */}
-                  <div className="border border-gray-600 w-60 h-60 mt-24"> </div>
+                <div className="flex justify-center items-center   w-1/2">
+
+                  <div className=" rounded-b-lg  sprBorderDashed w-3/4 h-3/4  flex flex-col gap-5  justify-center items-center bg-slate-100 ">
+                    <ImageIcon fill="none" stroke="#CFD491" className="w-16" />
+                    <div className="bg-sprPrimaryLight relative rounded-full ">
+                      <h6 className="absolute left-4 top-1 text-white font-medium" >Choose Image</h6>
+                      <input className="opacity-0 w-32" type="file" onChange={(e) => {
+                        setImageUpload(e.target.files[0])
+                      }} />
+
+                    </div>
+                  </div>
                 </div>
               </div>
               <div className="text-right space-x-2">
@@ -408,6 +443,7 @@ export default function RiceAccessions() {
                 <button
                   type="submit"
                   className="bg-sprPrimary rounded-full py-2 px-3 text-sm font-medium text-white shadow-slate-300"
+
                 >
                   Save
                 </button>
