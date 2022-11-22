@@ -40,13 +40,10 @@ export default function ManageUsers() {
         {/* Header */}
         <header className="  flex items-center">
           <button
-            className=" hidden sm:block w-8 h-8 p-2 rounded-full bg-sprPrimary"
+           className=" w-8 h-8 p-2 rounded-full  bg-gradient-to-b from-sprPrimary to-sprPrimaryDarkest hover:bg-gradient-to-t hover:from-sprPrimaryLight hover:to-sprPrimaryLight drop-shadow-md"
             onClick={() => setOpenModal(true)}
           >
-            {/* <img src={addIcon} alt="" />
-        </button>
-        <h1 className="text-3xl font-bold text-sprBlack opacity-80 pl-5">
-          Manage Users</h1> */}
+
             <img src={addIcon} alt="" />
           </button>
           <h1 className="text-3xl font-bold text-sprBlack opacity-80 pl-2">
@@ -76,31 +73,31 @@ export default function ManageUsers() {
         <section className=" flex-auto overflow-auto rounded-sm scrollbar ">
           <div className=" flex h-96 ">
             <div className="hidden sm:block  flex-auto divide-y divide-slate-300 bg-slate-50 h-fit  ">
-              <div className="px-6 py-2 text-sm font-medium bg-white text-sprBlack ">ID</div>
+              <div className="px-6 py-2 text-sm font-medium bg-white text-sprPrimary ">ID</div>
               {riceAccessions.map((rice) => (
                 <div className="px-6 py-2 text-md font-medium text-sprGray60"> {rice.accessionId === "" ? "---" : rice.accessionId} </div>
               ))}
             </div>
             <div className=" hidden sm:block flex-auto divide-y divide-slate-300 bg-slate-200 h-fit">
-              <div className="px-6 py-2 text-sm font-medium bg-white text-sprBlack">Name</div>
+              <div className="px-6 py-2 text-sm font-medium bg-white text-sprPrimary">Name</div>
               {riceAccessions.map((rice) => (
                 <div className="px-6 py-2 text-md font-medium text-sprGray60"> {rice.classification === "" ? "---" : rice.classification}</div>
               ))}
             </div>
             <div className="hidden sm:block flex-auto divide-y divide-slate-300 bg-slate-50 h-fit">
-              <div className="px-6 py-2 text-sm font-medium bg-white text-sprBlack">Role</div>
+              <div className="px-6 py-2 text-sm font-medium bg-white text-sprPrimary">Role</div>
               {riceAccessions.map((rice) => (
                 <div className="px-6 py-2 text-md font-medium text-sprGray60"> {rice.variety === "" ? "---" : rice.variety}</div>
               ))}
             </div>
             <div className="hidden sm:block flex-auto divide-y divide-slate-300 bg-slate-200 h-fit">
-              <div className="px-6 py-2 text-sm font-medium bg-white text-sprBlack">Position</div>
+              <div className="px-6 py-2 text-sm font-medium bg-white text-sprPrimary">Position</div>
               {riceAccessions.map((rice) => (
                 <div className="px-6 py-2 text-md font-medium text-sprGray60"> {rice.source === "" ? "---" : rice.source}</div>
               ))}
             </div>
             <div className="hidden sm:block flex-auto divide-y divide-slate-300 bg-slate-200 h-fit">
-              <div className="px-6 py-2 text-sm font-medium bg-white text-sprBlack">Status</div>
+              <div className="px-6 py-2 text-sm font-medium bg-white text-sprPrimary">Status</div>
               {riceAccessions.map((rice) => (
                 <div className="px-6 py-2 text-md font-medium text-sprGray60"> {rice.source === "" ? "---" : rice.source}</div>
               ))}
@@ -110,7 +107,7 @@ export default function ManageUsers() {
               {riceAccessions.map((rice) => (
                 <div className="px-6 py-2 flex items-center justify-between gap-2">
                   <div className=" sm:hidden">
-                    <h1 className="text-2xl font-bold text-sprBlack opacity-80">
+                    <h1 className="text-2xl font-bold text-sprPrimary opacity-80">
                       {rice.accessionId}
                     </h1>
                     <h6 className="text-md  font-medium text-sprGray60">

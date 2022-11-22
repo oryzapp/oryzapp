@@ -155,6 +155,20 @@ export default function ReproductiveStage({ season }) {
         {/* ffffff */}
         {/* ffffff */}
         <table className="bg-yellow-300">
+          <thead className="text-xs uppercase font-medium">Stigma</thead>
+          <tbody className="bg-green-800 flex ">
+            <div className="hidden sm:block flex-auto divide-y divide-slate-400 bg-blue-500">
+              <div className="px-6 py-2 font-medium">Colour</div>
+              {riceData.map((rice) => (
+                <div className="px-6 py-2"> {rice.stigmaColour === "" ? "---" : rice.stigmaColour}</div>
+              ))}
+            </div>
+          </tbody>
+        </table>
+
+        {/* ffffff */}
+        {/* ffffff */}
+        <table className="bg-yellow-300">
           <thead className="text-xs uppercase font-medium">Panicle</thead>
           <tbody className="bg-green-800 flex ">
             <div className="hidden sm:block flex-auto divide-y divide-slate-400 bg-blue-500">

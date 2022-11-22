@@ -106,6 +106,7 @@ export default function RiceData() {
     panicleSecondaryBranching: '',
     panicleExsertion: '',
     panicleShattering: '',
+    stigmaColour: '',
     // grain components
     awnColour: '',
     caryopsisLength: '',
@@ -331,6 +332,7 @@ export default function RiceData() {
         lemmaAnthocyaninColourationofAreaBelowApiculusEarlyobs: riceData.lemmaAnthocyaninColourationofAreaBelowApiculusEarlyobs,
         lemmaandPaleaColourEarlyobs: riceData.lemmaandPaleaColourEarlyobs,
         maleSterility: riceData.maleSterility,
+        stigmaColour: riceData.stigmaColour,
         panicleArrangementofPrimaryBranches: riceData.panicleArrangementofPrimaryBranches,
         panicleNumberofBasalPrimaryBranches: riceData.panicleNumberofBasalPrimaryBranches,
         panicleDistancefromBasetoLowestSpikeletInsertion: riceData.panicleDistancefromBasetoLowestSpikeletInsertion,
@@ -1044,6 +1046,16 @@ export default function RiceData() {
                         <div className="flex flex-col -space-y-1"><h6 className="text-xs  ">7.4.1</h6>
                           <label className="text-sprPrimary" htmlFor="">Male sterility</label></div>
                         <input className="rounded-full px-1 py-px border border-sprInactiveGray focus:border-none focus:outline-none focus:ring-2 focus:ring-sprPrimary" type="text" name="maleSterility" value={riceData.maleSterility} onChange={handleChange} /></div>
+                    </div>
+
+                  </div>
+                  <div className="flex flex-col p-2 pb-0">
+                    <div className="text-xs uppercase font-medium">Stigma</div>
+                    <div className="grid grid-cols-2 gap-4 bg-white text-sm">
+                      <div className="flex flex-col bg-white px-6">
+                        <div className="flex flex-col -space-y-1"><h6 className="text-xs  ">7.4.2</h6>
+                          <label className="text-sprPrimary" htmlFor="">Stigma Colour</label></div>
+                        <input className="rounded-full px-1 py-px border border-sprInactiveGray focus:border-none focus:outline-none focus:ring-2 focus:ring-sprPrimary" type="text" name="stigmaColour" value={riceData.stigmaColour} onChange={handleChange} /></div>
                     </div>
 
 
