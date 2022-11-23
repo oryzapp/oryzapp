@@ -233,7 +233,7 @@ export default function RiceAccessions() {
         </header>
         {/* Options */}
 
-        <div className="flex justify-between   p-1 ">
+        <div className="flex justify-between  pt-1 pb-3">
 
           <div className="flex  items-center gap-3 bg-white rounded-full">
             <div className="relative drop-shadow-md">
@@ -255,7 +255,7 @@ export default function RiceAccessions() {
         </div>
         {/* Main */}
 
-        <section className=" flex-auto overflow-auto rounded-sm scrollbar ">
+        <section className=" flex-auto overflow-auto  scrollbar bg-white rounded-lg border border-slate-200">
           {riceAccessions.length === 0 ? <div className="flex justify-center items-center pt-32 flex-col gap-8 "><EmptyIllustration /><p className="font-medium text-xl text-sprPrimaryOffLight">Plenty of space in the field </p></div> : <div className="flex h-96">
 
 

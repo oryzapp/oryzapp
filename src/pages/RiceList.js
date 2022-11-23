@@ -323,7 +323,7 @@ export default function RiceList() {
             {riceList.map((rice) => (
 
               // border-solid border-2 border-sprPrimaryLight
-              <div className="flex  flex-col  p-4 pt-2 pr-6 sm:pr-4   rounded-lg bg-slate-50  drop-shadow-md ">
+              <div className="flex  flex-col  p-4 pt-2 pr-6 sm:pr-4   rounded-lg bg-slate-50  drop-shadow-md  hover:bg-sprPrimaryOffLight">
                 {console.log('booop')}
 
                 <div className="flex  justify-center p-4">
