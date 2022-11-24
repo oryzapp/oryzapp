@@ -109,6 +109,7 @@ export default function ScanCode() {
     const rsDocSnap = await getDoc(rsDocRef)
     const gcDocSnap = await getDoc(gcDocRef)
     const ycDocSnap = await getDoc(ycDocRef)
+    console.log(ycDocSnap);
 
     const transferVSData = vsDocSnap.data()
     const transferRSData = rsDocSnap.data()
@@ -118,6 +119,8 @@ export default function ScanCode() {
     setrsData(transferRSData)
     setgcData(transferGCData)
     setycData(transferYCData)
+    console.log('such fun');
+    console.log(ycData);
 
   }
 

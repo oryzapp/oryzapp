@@ -3,6 +3,7 @@ import {
   collection,
   collectionGroup,
   doc,
+  getDoc,
   onSnapshot,
   orderBy,
   query,
@@ -26,21 +27,44 @@ import addIcon from '../assets/add-icon.svg'
 import closeIcon from "../assets/close.svg";
 import delIcon from "../assets/delete-icon.svg"
 import editIcon from "../assets/edit-icon.svg"
+import downloadIcon from "../assets/download-icon.svg"
 import { ReactComponent as SearchIcon } from "../assets/search-icon.svg"
 import { ReactComponent as EmptyIllustration } from "../assets/empty-illustration.svg"
 import { ReactComponent as ImageIcon } from "../assets/image-icon.svg"
+import { ReactComponent as ListIcon } from "../assets/list-icon.svg"
+import { ReactComponent as GridIcon } from "../assets/grid-icon.svg"
 import { v4 } from "uuid";
+import { QRCodeCanvas } from "qrcode.react";
 
 export default function RiceAccessions() {
 
   // Open and Close Modal ------------------->
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [isRiceInfoModalOpen, setIsRiceInfoModalOpen] = useState(false);
+  // Data in Modal
+  const [modalId, setModalId] = useState('')
+  const [modalAccession, setModalAccession] = useState([])
+
+  // View Modal
+  const getAccessionData = async () => {
+    try {
+      console.log(modalId);
+      const docRef = doc(db, "/SPR/Rice_Accessions/Accession_IDs", modalId)
+      const snapshot = await getDoc(docRef)
+      const transferData = snapshot.data()
+      setModalAccession(transferData)
+      console.log('bbb');
+    } catch (error) {
+      console.log(error);
+    }
+  }
+
+  //  Set List on or Off
+  const [listOn, setListOn] = useState(true)
 
 
   // Handle Form Submit ------------------>
   const [imageUpload, setImageUpload] = useState(null)
-  console.log(imageUpload);
 
   const handleSubmit = async (e) => {
     try {
@@ -105,11 +129,9 @@ export default function RiceAccessions() {
 
     const result = riceAccessions.find(rice => rice.accessionId === state.accession)
     if (result === undefined) {
-      console.log('undefine');
       setAccessionExists(false)
     }
     else {
-      console.log('exisst');
       setAccessionExists(true)
     }
 
@@ -138,28 +160,32 @@ export default function RiceAccessions() {
 
 
 
-
-
   };
-
+  // Submit Edit ---------------->
   const submitEdit = async (e) => {
-    e.preventDefault()
-    const docRef = doc(db, "SPR/Rice_Accessions/Accession_IDs", editId);
-    const payLoad = {
-      classification: state.classification,
-      variety: state.variety,
-      source: state.source,
-      timestamp: serverTimestamp(),
-    };
+    try {
+      e.preventDefault()
+      const docRef = doc(db, "SPR/Rice_Accessions/Accession_IDs", editId);
+      const payLoad = {
+        classification: state.classification,
+        variety: state.variety,
+        source: state.source,
+        timestamp: serverTimestamp(),
+      };
 
-    const imageRef = ref(storage, `images/${state.accession} `)
-    uploadBytes(imageRef, imageUpload).then(() => {
-      alert("image uploaded")
-    })
-    await updateDoc(docRef, payLoad);
-    setIsModalOpen(false)
-    setState(initialState)
-    setIsEdit(false)
+      if (imageUpload !== null) {
+        const imageRef = ref(storage, `images/${state.accession} `)
+        uploadBytes(imageRef, imageUpload).then(() => {
+          alert("image uploaded")
+        })
+      }
+      await updateDoc(docRef, payLoad);
+      setIsModalOpen(false)
+      setState(initialState)
+      setIsEdit(false)
+    } catch (error) {
+      console.log(error);
+    }
   }
   // Search Box ----------------------->
   const [searchInput, setSearchInput] = useState('')
@@ -206,18 +232,15 @@ export default function RiceAccessions() {
   }, [search, searchInput]);
 
 
-  console.log('jjjj');
-  console.log(riceAccessions);
+
 
   var list = 0
 
-  const uploadImage = () => {
-
-  }
+  //  
 
   return (
     <>
-      <div className='h-full w-full flex flex-col rounded-t-xl  sm:rounded-xl bg-white opacity-90 p-2'>
+      <div className='h-full w-full flex flex-col rounded-t-xl  sm:rounded-xl bg-slate-50 opacity-90 p-2'>
 
         {/* Header */}
         <header className=" flex items-center">
@@ -252,98 +275,162 @@ export default function RiceAccessions() {
             </div>
 
           </div>
+          <div className=" bg-sprPrimaryLight flex sm:mr-5 rounded-full drop-shadow-md">
+            <div className=" flex"><button onClick={() => setListOn(true)} className={listOn === true ? "bg-white rounded-full p-2 pl-3 pr-6" : " rounded-full -mr-1  p-2 pl-3"}
+            >
+              <ListIcon className="w-4 h-4" fill={listOn === true ? "#CFD866" : "white"} />
+            </button>
+              <button onClick={() => setListOn(false)} className={listOn === false ? "bg-white rounded-full  p-2 pr-6 pl-3" : "-ml-1 rounded-full  p-2 pr-3 "}
+              >
+                <GridIcon className="w-4 h-4" fill={listOn === false ? "#CFD866" : "white"} />
+              </button></div>
+          </div>
         </div>
         {/* Main */}
 
-        <section className=" flex-auto overflow-auto  scrollbar bg-white rounded-lg border border-slate-200">
-          {riceAccessions.length === 0 ? <div className="flex justify-center items-center pt-32 flex-col gap-8 "><EmptyIllustration /><p className="font-medium text-xl text-sprPrimaryOffLight">Plenty of space in the field </p></div> : <div className="flex h-96">
+        {/* List */}
+        <section className={listOn === true ? "flex-auto overflow-auto  scrollbar bg-white rounded-lg border border-slate-200" : "hidden"}>
+          {riceAccessions.length === 0 ? <div className="flex justify-center items-center pt-32 flex-col gap-8 "><EmptyIllustration /><p className="font-medium text-xl text-sprPrimaryOffLight">Plenty of space in the field </p></div> :
+            <div className="flex h-96">
 
 
 
-            <div className="hidden sm:block divide-y divide-slate-300 h-fit">
-              <div className="px-6 py-2 text-sm font-medium bg-white text-sprPrimary ">#</div>
-              {
+              <div className="hidden sm:block divide-y divide-slate-300 h-fit">
+                <div className="px-6 py-2 text-sm font-medium bg-white text-sprPrimary ">#</div>
+                {
 
-                riceAccessions.map((rice) => (
-                  <div className="px-6 py-2 text-md font-medium text-sprPrimaryLight"> {list = list + 1} </div>
+                  riceAccessions.map((rice) => (
+                    <div className="px-6 py-2 text-md font-medium text-sprPrimaryLight"> {list = list + 1} </div>
+                  ))}
+              </div>
+              <div className="hidden sm:block  flex-auto divide-y divide-slate-300 bg-slate-50 h-fit  ">
+                <div className="px-6 py-2 text-sm font-medium bg-white text-sprPrimary ">Accession</div>
+                {riceAccessions.map((rice) => (
+                  <div className="px-6 py-2 text-md font-medium text-sprGray60"> {rice.accessionId === "" ? "---" : rice.accessionId} </div>
                 ))}
-            </div>
-            <div className="hidden sm:block  flex-auto divide-y divide-slate-300 bg-slate-50 h-fit  ">
-              <div className="px-6 py-2 text-sm font-medium bg-white text-sprPrimary ">Accession</div>
-              {riceAccessions.map((rice) => (
-                <div className="px-6 py-2 text-md font-medium text-sprGray60"> {rice.accessionId === "" ? "---" : rice.accessionId} </div>
-              ))}
-            </div>
+              </div>
 
-            <div className=" hidden sm:block flex-auto divide-y divide-slate-300 bg-slate-100 h-fit">
-              <div className="px-6 py-2 text-sm font-medium bg-white text-sprPrimary">Classification </div>
-              {riceAccessions.map((rice) => (
-                <div className="px-6 py-2 text-md font-medium text-sprGray60"> {rice.classification === "" ? "---" : rice.classification}</div>
-              ))}
-            </div>
-            <div className="hidden sm:block flex-auto divide-y divide-slate-300 bg-slate-50 h-fit">
-              <div className="px-6 py-2 text-sm font-medium bg-white text-sprPrimary">Variety</div>
-              {riceAccessions.map((rice) => (
-                <div className="px-6 py-2 text-md font-medium text-sprGray60"> {rice.variety === "" ? "---" : rice.variety}</div>
-              ))}
-            </div>
+              <div className=" hidden sm:block flex-auto divide-y divide-slate-300 bg-slate-100 h-fit">
+                <div className="px-6 py-2 text-sm font-medium bg-white text-sprPrimary">Classification </div>
+                {riceAccessions.map((rice) => (
+                  <div className="px-6 py-2 text-md font-medium text-sprGray60"> {rice.classification === "" ? "---" : rice.classification}</div>
+                ))}
+              </div>
+              <div className="hidden sm:block flex-auto divide-y divide-slate-300 bg-slate-50 h-fit">
+                <div className="px-6 py-2 text-sm font-medium bg-white text-sprPrimary">Variety</div>
+                {riceAccessions.map((rice) => (
+                  <div className="px-6 py-2 text-md font-medium text-sprGray60"> {rice.variety === "" ? "---" : rice.variety}</div>
+                ))}
+              </div>
 
-            <div className="hidden sm:block flex-auto divide-y divide-slate-300 bg-slate-100 h-fit">
-              <div className="px-6 py-2 text-sm font-medium bg-white text-sprPrimary">Source</div>
-              {riceAccessions.map((rice) => (
-                <div className="px-6 py-2 text-md font-medium text-sprGray60"> {rice.source === "" ? "---" : rice.source}</div>
-              ))}
-            </div>
-            <div className="divide-y divide-slate-50   w-full sm:w-auto h-fit ">
-              <div className="px-6 py-2 opacity-0 hidden sm:block text-sm font-medium ">Action</div>
-              {riceAccessions.map((rice) => (
-                <div className="px-6 py-2 flex items-center justify-between gap-2 ">
-                  <div className=" sm:hidden">
-                    <h1 className="text-2xl font-bold text-sprBlack opacity-80">
-                      {rice.accessionId === "" ? "---" : rice.accessionId}
-                    </h1>
-                    <h6 className="text-md  font-medium text-sprGray60">
-                      {rice.variety === "" ? "---" : rice.variety}
-                    </h6>
-                    <h6 className="text-md font-medium text-sprGray60">
-                      {rice.source === "" ? "---" : rice.source}
-                    </h6>
+              <div className="hidden sm:block flex-auto divide-y divide-slate-300 bg-slate-100 h-fit">
+                <div className="px-6 py-2 text-sm font-medium bg-white text-sprPrimary">Source</div>
+                {riceAccessions.map((rice) => (
+                  <div className="px-6 py-2 text-md font-medium text-sprGray60"> {rice.source === "" ? "---" : rice.source}</div>
+                ))}
+              </div>
+              <div className="divide-y divide-slate-50   w-full sm:w-auto h-fit ">
+                <div className="px-6 py-2 opacity-0 hidden sm:block text-sm font-medium ">Action</div>
+                {riceAccessions.map((rice) => (
+                  <div className="px-6 py-2 flex items-center justify-between gap-2 ">
+                    <div className=" sm:hidden">
+                      <h1 className="text-2xl font-bold text-sprBlack opacity-80">
+                        {rice.accessionId === "" ? "---" : rice.accessionId}
+                      </h1>
+                      <h6 className="text-md  font-medium text-sprGray60">
+                        {rice.variety === "" ? "---" : rice.variety}
+                      </h6>
+                      <h6 className="text-md font-medium text-sprGray60">
+                        {rice.source === "" ? "---" : rice.source}
+                      </h6>
+                    </div>
+                    <button
+                      className=" text-white text-sm bg-gradient-to-b from-sprPrimary to-sprPrimaryDarkest hover:bg-gradient-to-t hover:from-sprPrimaryLight hover:to-sprPrimaryLight drop-shadow-md h-8 w-14 sm:h-6 sm:w-12 rounded-full  shadow-slate-300 "
+                      onClick={() => {
+                        setIsRiceInfoModalOpen(true)
+                        getAccessionData()
+                        setModalId(rice.accessionId)
+
+                      }}
+                    >
+                      view
+                    </button>
+
+
+                    <button
+                      className="hidden lg:block p-1 bg-gradient-to-b from-sprPrimary to-sprPrimaryDarkest hover:bg-gradient-to-t hover:from-sprPrimaryLight hover:to-sprPrimaryLight drop-shadow-md   rounded-full   shadow-slate-300 "
+                      onClick={() => {
+                        editRiceAccessionID(rice.id);
+                      }}
+                    >
+                      <div className="w-4 h-4"><img src={editIcon} alt="" /></div>
+                    </button>
+                    <button
+                      className="hidden lg:block p-1 bg-gradient-to-b from-sprPrimary to-sprPrimaryDarkest rounded-full  hover:bg-gradient-to-t hover:from-sprPrimaryLight hover:to-sprPrimaryLight drop-shadow-md shadow-slate-300 "
+                      onClick={() => {
+                        deleteRiceAccession(rice.id);
+                      }}
+                    >
+                      <div className="w-4 h-4"><img src={delIcon} alt="" /></div>
+
+                    </button>
+
                   </div>
-                  <button
-                    className=" text-white text-sm bg-gradient-to-b from-sprPrimary to-sprPrimaryDarkest hover:bg-gradient-to-t hover:from-sprPrimaryLight hover:to-sprPrimaryLight drop-shadow-md h-8 w-14 sm:h-6 sm:w-12 rounded-full  shadow-slate-300 "
-                    onClick={() => {
-                      setIsRiceInfoModalOpen(true)
-                    }}
-                  >
-                    view
-                  </button>
+                ))}
+              </div>
+            </div>
+          }
+        </section>
+        {/* Grid */}
+        <section className={listOn === false ? "flex-auto overflow-auto  scrollbar bg-white rounded-lg " : "hidden"}>
+          {riceAccessions.length === 0 ? <div className="flex justify-center items-center pt-32 flex-col gap-8 "><EmptyIllustration /><p className="font-medium text-xl text-sprPrimaryOffLight">Plenty of space in the field </p></div> :
+            <div className="grid grid-cols-5 gap-2">
+              {riceAccessions.map((rice) => (
 
+                <div className="flex  flex-col  p-4 pt-2 pr-6 sm:pr-4   rounded-lg bg-slate-50  drop-shadow-md group hover:bg-sprPrimaryOffLight">
 
-                  <button
-                    className="hidden lg:block p-1 bg-gradient-to-b from-sprPrimary to-sprPrimaryDarkest hover:bg-gradient-to-t hover:from-sprPrimaryLight hover:to-sprPrimaryLight drop-shadow-md   rounded-full   shadow-slate-300 "
-                    onClick={() => {
-                      editRiceAccessionID(rice.id);
-                    }}
-                  >
-                    <div className="w-4 h-4"><img src={editIcon} alt="" /></div>
-                  </button>
-                  <button
-                    className="hidden lg:block p-1 bg-gradient-to-b from-sprPrimary to-sprPrimaryDarkest rounded-full  hover:bg-gradient-to-t hover:from-sprPrimaryLight hover:to-sprPrimaryLight drop-shadow-md shadow-slate-300 "
-                    onClick={() => {
-                      deleteRiceAccession(rice.id);
-                    }}
-                  >
-                    <div className="w-4 h-4"><img src={delIcon} alt="" /></div>
+                  <div className="flex  justify-center p-4 ">
+                    <QRCodeCanvas id="qr-gen" className="hidden sm:block rounded-xl" value={`${rice.accessionId}_${rice.riceSeason}_Season_${rice.riceYear}`} bgColor="#FAFAFA" fgColor="rgba(18, 20, 20, 0.8)" includeMargin={true} size={150} />
+                    <QRCodeCanvas id="qr-gen" className="sm:hidden" value={`${rice.accessionId}_${rice.riceSeason}_Season_${rice.riceYear}`} fgColor="rgba(18, 20, 20, 0.9)" size={80} />
+                  </div>
+                  <div className=" flex flex-auto   justify-between items-center  ">
+                    <div className="">
+                      <h1 className=" text-sm whitespace-nowrap sm:text-xl font-bold  text-sprGray">
+                        {rice.accessionId}
+                      </h1>
+                      <h6 className="text-xs font-medium text-sprGray60">
+                        {rice.source}
+                      </h6>
+                      <h6 className="text-xs font-medium text-sprGray60">
+                        {rice.variety}
+                      </h6>
+                      <h6 className="text-xs font-medium text-sprGray60">
+                        {rice.classification}
+                      </h6>
+                    </div>
+                    <div className="flex items-center space-x-2 sm:pt-1 ">
+                      <button className=" text-white text-xs sm:text-sm bg-gradient-to-b from-sprPrimary to-sprPrimaryDark h-6 w-10 sm:h-6 sm:w-12 rounded-full drop-shadow-md ">
+                        view
+                      </button>
+                      <button
+                        className=" bg-sprPrimary rounded-full drop-shadow-md  "
+                      >
+                        <div className=" w-6 sm:w-6 h-6"><img src={downloadIcon} alt="" /></div>
+                      </button>
 
-                  </button>
+                    </div>
 
+                  </div>
                 </div>
               ))}
+
+
             </div>
-          </div>}
+          }
         </section>
 
         {/* Modal */}
+        {/* Add Rice Accession */}
         <ModalAddRiceAcc open={isModalOpen} >
           <div className="absolute right-5 z-50 ">
             <button onClick={() => {
@@ -452,6 +539,7 @@ export default function RiceAccessions() {
           </div>
         </ModalAddRiceAcc>
 
+        {/* Rice Accession Info */}
         <ModalRiceInfo open={isRiceInfoModalOpen} >
           <div className=" fixed left-0 right-0 bottom-0 top-0 z-50 bg-black opacity-70 " />
           <div className=" flex flex-col absolute left-3 right-3 bottom-16 top-16 sm:left-12 sm:right-12 md:left-28 md:right-28 lg:left-1/4 lg:right-1/4 z-50 bg-white rounded-xl  px-4 pt-8 pb-4   ">
@@ -463,24 +551,20 @@ export default function RiceAccessions() {
             <div className="bg-yellow-400 flex  ">
               <header className="  bg-red-600">
                 <h1 className="text-3xl font-bold text-sprBlack opacity-80 p-2">
-                  Rice Info
+                  CL-XXXX
                 </h1>
               </header>
-              <div className="bg-yellow-400">
-              </div>
+
             </div>
             <div className="bg-violet-500 flex-auto flex flex-col">
               <div className="bg-green-600 w-full h-1/4 flex ">
                 <div className="bg-pink-600  w-1/2 p-3">
                   <div className="bg-yellow-400 h-full">image</div></div>
                 <div className="bg-pink-300 flex flex-col flex-auto">
-                  {/* <h1>{currentData.accessionId}</h1>
-                <p>Season: {currentData.riceSeason} Season</p>
-                <p>Year: {currentData.riceYear}</p> */}
+
                 </div>
               </div>
               <div className="bg-green-600 w-full flex-auto">
-                {/* <p>7.3.2 Auricle Color : {vsData.auricleColor}</p> */}
               </div>
 
             </div>
