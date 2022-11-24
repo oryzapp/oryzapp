@@ -496,7 +496,7 @@ export default function RiceData() {
           <h1 className="text-3xl font-bold text-sprBlack opacity-80 pl-2">Rice Data</h1>
         </header>
         {/* Options */}
-        <div className="flex  items-center gap-3  bg-white ">
+        <div className="flex  items-center gap-3  bg-white py-1">
           <div className=" flex  items-center gap-1 sm:gap-3   rounded-full">
             {/* Search Bar */}
             <div className="relative drop-shadow-md hidden sm:block">
@@ -558,7 +558,7 @@ export default function RiceData() {
 
         </div>
         {/* Main */}
-        <section className=" w-full flex flex-auto overflow-auto rounded-sm scrollbar mt-2">
+        <section className=" w-full flex flex-auto overflow-auto rounded-lg scrollbar  mt-2 border  border-slate-200" >
           <div className="">
 
             <RiceTables onChange={setPage} />
@@ -585,7 +585,7 @@ export default function RiceData() {
               onSubmit={handleSubmit}
             >
               <div className={riceDataExists === true ? "block text-red-400" : "hidden"}>*Rice Data Already Exists</div>
-              <div className="flex whitespace-nowrap ">
+              <div className="flex whitespace-nowrap  my-2">
                 {/* Accession */}
                 <div className="drop-shadow-md flex" >
                   <div className="bg-sprPrimaryLight text-white h-full text-sm  p-2 rounded-full pl-3 pr-10">Accession</div>
