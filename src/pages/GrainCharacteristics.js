@@ -30,13 +30,13 @@ export default function GrainCharacteristics({ season }) {
 
   return (
     <>
-      <div className=" bg-green-200 flex text-sm ">
+      <div className="  flex text-sm text-sprGray60">
         {/* ffffff */}
-        <table className="bg-yellow-300">
-          <thead className="text-xs uppercase font-medium">Accession</thead>
-          <tbody className="bg-green-800 flex ">
-            <div className="hidden sm:block flex-auto divide-y divide-slate-400 bg-blue-500">
-              <div className="px-6 py-2 font-medium">Accession</div>
+        <table className="">
+          <thead className="text-xs uppercase font-medium text-center bg-sprPrimaryOffLight">Accession</thead>
+          <tbody className=" flex ">
+            <div className="hidden sm:block flex-auto divide-y divide-slate-300 ">
+              <div className="px-6 py-2 font-medium text-sprPrimary">Accession</div>
               {riceData.map((rice) => (
                 <div className="px-6 py-2"> {rice.accessionId === "" ? "---" : rice.accessionId}</div>
               ))}
@@ -47,13 +47,13 @@ export default function GrainCharacteristics({ season }) {
         {/* ffffff */}
 
         {/* ffffff */}
-        <table className="bg-yellow-300">
-          <thead className="text-xs uppercase font-medium">Awn</thead>
-          <tbody className="bg-green-800 flex ">
-            <div className="hidden sm:block flex-auto divide-y divide-slate-400 bg-blue-500">
-              <div className="px-6 py-2 font-medium">Colour</div>
+        <table className="">
+          <thead className="text-xs uppercase font-medium text-center bg-sprPrimaryLight">Awn</thead>
+          <tbody className=" flex ">
+            <div className="hidden sm:block flex-auto divide-y divide-slate-300 ">
+              <div className="px-6 py-2 font-medium text-sprPrimary">Colour</div>
               {riceData.map((rice) => (
-                <div className="px-6 py-2"> {rice.awnColour === "" ? "---" : rice.awnColour}</div>
+                <div className="px-6 py-2 bg-slate-50"> {rice.awnColour === "" ? "---" : rice.awnColour}</div>
               ))}
             </div>
           </tbody>
@@ -61,31 +61,31 @@ export default function GrainCharacteristics({ season }) {
 
         {/* ffffff */}
         {/* ffffff */}
-        <table className="bg-yellow-300">
-          <thead className="text-xs uppercase font-medium">Caryopsis</thead>
-          <tbody className="bg-green-800 flex ">
-            <div className="hidden sm:block flex-auto divide-y divide-slate-400 bg-blue-500">
-              <div className="px-6 py-2 font-medium">Length</div>
+        <table className="">
+          <thead className="text-xs uppercase font-medium text-center bg-sprPrimaryOffLight">Caryopsis</thead>
+          <tbody className=" flex ">
+            <div className="hidden sm:block flex-auto divide-y divide-slate-300 ">
+              <div className="px-6 py-2 font-medium text-sprPrimary">Length</div>
               {riceData.map((rice) => (
-                <div className="px-6 py-2"> {rice.caryopsisLength === "" ? "---" : rice.caryopsisLength}</div>
+                <div className="px-6 py-2 "> {rice.caryopsisLength === "" ? "---" : rice.caryopsisLength}</div>
               ))}
             </div>
-            <div className="hidden sm:block flex-auto divide-y divide-slate-400 bg-blue-500">
-              <div className="px-6 py-2 font-medium">Width</div>
+            <div className="hidden sm:block flex-auto divide-y divide-slate-300 ">
+              <div className="px-6 py-2 font-medium text-sprPrimary">Width</div>
               {riceData.map((rice) => (
-                <div className="px-6 py-2"> {rice.caryopsisWidth === "" ? "---" : rice.caryopsisWidth}</div>
+                <div className="px-6 py-2 bg-slate-50"> {rice.caryopsisWidth === "" ? "---" : rice.caryopsisWidth}</div>
               ))}
             </div>
-            <div className="hidden sm:block flex-auto divide-y divide-slate-400 bg-blue-500">
-              <div className="px-6 py-2 font-medium">Shape</div>
+            <div className="hidden sm:block flex-auto divide-y divide-slate-300 ">
+              <div className="px-6 py-2 font-medium text-sprPrimary">Shape</div>
               {riceData.map((rice) => (
                 <div className="px-6 py-2"> {rice.caryopsisShape === "" ? "---" : rice.caryopsisShape}</div>
               ))}
             </div>
-            <div className="hidden sm:block flex-auto divide-y divide-slate-400 bg-blue-500">
-              <div className="px-6 py-2 font-medium">Pericarp Colour</div>
+            <div className="hidden sm:block flex-auto divide-y divide-slate-300 ">
+              <div className="px-6 py-2 font-medium whitespace-nowrap text-sprPrimary">Pericarp Colour</div>
               {riceData.map((rice) => (
-                <div className="px-6 py-2"> {rice.caryopsisPericarpColour === "" ? "---" : rice.caryopsisPericarpColour}</div>
+                <div className="px-6 py-2 whitespace-nowrap bg-slate-50"> {rice.caryopsisPericarpColour === "" ? "---" : rice.caryopsisPericarpColour}</div>
               ))}
             </div>
           </tbody>
@@ -93,11 +93,11 @@ export default function GrainCharacteristics({ season }) {
 
         {/* ffffff */}
         {/* ffffff */}
-        <table className="bg-yellow-300">
-          <thead className="text-xs uppercase font-medium">Endorsperm</thead>
-          <tbody className="bg-green-800 flex ">
-            <div className="hidden sm:block flex-auto divide-y divide-slate-400 bg-blue-500">
-              <div className="px-6 py-2 font-medium">Colour</div>
+        <table className="">
+          <thead className="text-xs uppercase font-medium text-center bg-sprPrimaryLight">Endorsperm</thead>
+          <tbody className=" flex ">
+            <div className="hidden sm:block flex-auto divide-y divide-slate-300 ">
+              <div className="px-6 py-2 font-medium text-sprPrimary">Colour</div>
               {riceData.map((rice) => (
                 <div className="px-6 py-2"> {rice.endorspermType === "" ? "---" : rice.endorspermType}</div>
               ))}
@@ -107,37 +107,37 @@ export default function GrainCharacteristics({ season }) {
 
         {/* ffffff */}
         {/* ffffff */}
-        <table className="bg-yellow-300">
-          <thead className="text-xs uppercase font-medium">Grain</thead>
-          <tbody className="bg-green-800 flex ">
-            <div className="hidden sm:block flex-auto divide-y divide-slate-400 bg-blue-500">
-              <div className="px-6 py-2 font-medium">Habit</div>
+        <table className="">
+          <thead className="text-xs uppercase font-medium text-center bg-sprPrimaryOffLight">Grain</thead>
+          <tbody className=" flex ">
+            <div className="hidden sm:block flex-auto divide-y divide-slate-300 ">
+              <div className="px-6 py-2 font-medium text-sprPrimary">Habit</div>
               {riceData.map((rice) => (
-                <div className="px-6 py-2"> {rice.grainLength === "" ? "---" : rice.grainLength}</div>
+                <div className="px-6 py-2 bg-slate-50"> {rice.grainLength === "" ? "---" : rice.grainLength}</div>
               ))}
             </div>
-            <div className="hidden sm:block flex-auto divide-y divide-slate-400 bg-blue-500">
-              <div className="px-6 py-2 font-medium">Width</div>
+            <div className="hidden sm:block flex-auto divide-y divide-slate-300 ">
+              <div className="px-6 py-2 font-medium text-sprPrimary">Width</div>
               {riceData.map((rice) => (
                 <div className="px-6 py-2"> {rice.grainWidth === "" ? "---" : rice.grainWidth}</div>
               ))}
             </div>
-            <div className="hidden sm:block flex-auto divide-y divide-slate-400 bg-blue-500">
-              <div className="px-6 py-2 font-medium">Thickness</div>
+            <div className="hidden sm:block flex-auto divide-y divide-slate-300 ">
+              <div className="px-6 py-2 font-medium text-sprPrimary">Thickness</div>
               {riceData.map((rice) => (
-                <div className="px-6 py-2"> {rice.grainThickness === "" ? "---" : rice.grainThickness}</div>
+                <div className="px-6 py-2 bg-slate-50"> {rice.grainThickness === "" ? "---" : rice.grainThickness}</div>
               ))}
             </div>
-            <div className="hidden sm:block flex-auto divide-y divide-slate-400 bg-blue-500">
-              <div className="px-6 py-2 font-medium">100 Grain Weight</div>
+            <div className="hidden sm:block flex-auto divide-y divide-slate-300 ">
+              <div className="px-6 py-2 font-medium whitespace-nowrap text-sprPrimary">100 Grain Weight</div>
               {riceData.map((rice) => (
-                <div className="px-6 py-2"> {rice.grain100GrainWeight === "" ? "---" : rice.grain100GrainWeight}</div>
+                <div className="px-6 py-2 whitespace-nowrap"> {rice.grain100GrainWeight === "" ? "---" : rice.grain100GrainWeight}</div>
               ))}
             </div>
-            <div className="hidden sm:block flex-auto divide-y divide-slate-400 bg-blue-500">
-              <div className="px-6 py-2 font-medium">10 Grain Weight</div>
+            <div className="hidden sm:block flex-auto divide-y divide-slate-300 ">
+              <div className="px-6 py-2 font-medium whitespace-nowrap text-sprPrimary">10 Grain Weight</div>
               {riceData.map((rice) => (
-                <div className="px-6 py-2"> {rice.grain10GrainWeight === "" ? "---" : rice.grain10GrainWeight}</div>
+                <div className="px-6 py-2 whitespace-nowrap bg-slate-50"> {rice.grain10GrainWeight === "" ? "---" : rice.grain10GrainWeight}</div>
               ))}
             </div>
           </tbody>
@@ -145,31 +145,31 @@ export default function GrainCharacteristics({ season }) {
 
         {/* ffffff */}
         {/* ffffff */}
-        <table className="bg-yellow-300">
-          <thead className="text-xs uppercase font-medium">Lemma</thead>
-          <tbody className="bg-green-800 flex ">
-            <div className="hidden sm:block flex-auto divide-y divide-slate-400 bg-blue-500">
-              <div className="px-6 py-2 font-medium">Anthocyanin Colouration of Keel</div>
+        <table className="">
+          <thead className="text-xs uppercase font-medium text-center bg-sprPrimaryLight">Lemma</thead>
+          <tbody className=" flex ">
+            <div className="hidden sm:block flex-auto divide-y divide-slate-300 ">
+              <div className="px-6 py-2 font-medium whitespace-nowrap text-sprPrimary">Anthocyanin Colouration of Keel</div>
               {riceData.map((rice) => (
-                <div className="px-6 py-2"> {rice.lemmaAnthocyaninColourationofKeel === "" ? "---" : rice.lemmaAnthocyaninColourationofKeel}</div>
+                <div className="px-6 py-2 whitespace-nowrap"> {rice.lemmaAnthocyaninColourationofKeel === "" ? "---" : rice.lemmaAnthocyaninColourationofKeel}</div>
               ))}
             </div>
-            <div className="hidden sm:block flex-auto divide-y divide-slate-400 bg-blue-500">
-              <div className="px-6 py-2 font-medium">Anthocyanin Colouration of Area Below Apiculus Late Observation</div>
+            <div className="hidden sm:block flex-auto divide-y divide-slate-300 ">
+              <div className="px-6 py-2 font-medium whitespace-nowrap text-sprPrimary">Anthocyanin Colouration of Area Below Apiculus Late Observation</div>
               {riceData.map((rice) => (
-                <div className="px-6 py-2"> {rice.lemmaAnthocyaninColourationofAreaBelowApiculusLateobs === "" ? "---" : rice.lemmaAnthocyaninColourationofAreaBelowApiculusLateobs}</div>
+                <div className="px-6 py-2 bg-slate-50"> {rice.lemmaAnthocyaninColourationofAreaBelowApiculusLateobs === "" ? "---" : rice.lemmaAnthocyaninColourationofAreaBelowApiculusLateobs}</div>
               ))}
             </div>
-            <div className="hidden sm:block flex-auto divide-y divide-slate-400 bg-blue-500">
-              <div className="px-6 py-2 font-medium">Colour of Apiculus Late Observation</div>
+            <div className="hidden sm:block flex-auto divide-y divide-slate-300 ">
+              <div className="px-6 py-2 font-medium whitespace-nowrap text-sprPrimary">Colour of Apiculus Late Observation</div>
               {riceData.map((rice) => (
                 <div className="px-6 py-2"> {rice.lemmaColourofApiculusLateobs === "" ? "---" : rice.lemmaColourofApiculusLateobs}</div>
               ))}
             </div>
-            <div className="hidden sm:block flex-auto divide-y divide-slate-400 bg-blue-500">
-              <div className="px-6 py-2 font-medium">Shape of Apiculus</div>
+            <div className="hidden sm:block flex-auto divide-y divide-slate-300 ">
+              <div className="px-6 py-2 font-medium whitespace-nowrap text-sprPrimary">Shape of Apiculus</div>
               {riceData.map((rice) => (
-                <div className="px-6 py-2"> {rice.lemmaShapeofApiculus === "" ? "---" : rice.lemmaShapeofApiculus}</div>
+                <div className="px-6 py-2 whitespace-nowrap bg-slate-50"> {rice.lemmaShapeofApiculus === "" ? "---" : rice.lemmaShapeofApiculus}</div>
               ))}
             </div>
           </tbody>
@@ -177,19 +177,19 @@ export default function GrainCharacteristics({ season }) {
 
         {/* ffffff */}
         {/* ffffff */}
-        <table className="bg-yellow-300">
-          <thead className="text-xs uppercase font-medium">Lemma and Palea</thead>
-          <tbody className="bg-green-800 flex ">
-            <div className="hidden sm:block flex-auto divide-y divide-slate-400 bg-blue-500">
-              <div className="px-6 py-2 font-medium">Pubesence</div>
+        <table className="">
+          <thead className="text-xs uppercase font-medium text-center bg-sprPrimaryOffLight">Lemma and Palea</thead>
+          <tbody className=" flex ">
+            <div className="hidden sm:block flex-auto divide-y divide-slate-300 ">
+              <div className="px-6 py-2 font-medium text-sprPrimary">Pubesence</div>
               {riceData.map((rice) => (
                 <div className="px-6 py-2"> {rice.lemmaandPaleaPubesence === "" ? "---" : rice.lemmaandPaleaPubesence}</div>
               ))}
             </div>
-            <div className="hidden sm:block flex-auto divide-y divide-slate-400 bg-blue-500">
-              <div className="px-6 py-2 font-medium">Colour Late Observation</div>
+            <div className="hidden sm:block flex-auto divide-y divide-slate-300 ">
+              <div className="px-6 py-2 font-medium whitespace-nowrap text-sprPrimary">Colour Late Observation</div>
               {riceData.map((rice) => (
-                <div className="px-6 py-2"> {rice.lemmaandPaleaColourLateobs === "" ? "---" : rice.lemmaandPaleaColourLateobs}</div>
+                <div className="px-6 py-2 whitespace-nowrap bg-slate-50"> {rice.lemmaandPaleaColourLateobs === "" ? "---" : rice.lemmaandPaleaColourLateobs}</div>
               ))}
             </div>
           </tbody>
@@ -197,19 +197,19 @@ export default function GrainCharacteristics({ season }) {
 
         {/* ffffff */}
         {/* ffffff */}
-        <table className="bg-yellow-300">
-          <thead className="text-xs uppercase font-medium">Panicle</thead>
-          <tbody className="bg-green-800 flex ">
-            <div className="hidden sm:block flex-auto divide-y divide-slate-400 bg-blue-500">
-              <div className="px-6 py-2 font-medium">Length Late Observation</div>
+        <table className="">
+          <thead className="text-xs uppercase font-medium text-center bg-sprPrimaryLight">Panicle</thead>
+          <tbody className=" flex ">
+            <div className="hidden sm:block flex-auto divide-y divide-slate-300 ">
+              <div className="px-6 py-2 font-medium whitespace-nowrap text-sprPrimary">Length Late Observation</div>
               {riceData.map((rice) => (
-                <div className="px-6 py-2"> {rice.panicleLengthLateobs === "" ? "---" : rice.panicleLengthLateobs}</div>
+                <div className="px-6 py-2 whitespace-nowrap"> {rice.panicleLengthLateobs === "" ? "---" : rice.panicleLengthLateobs}</div>
               ))}
             </div>
-            <div className="hidden sm:block flex-auto divide-y divide-slate-400 bg-blue-500">
-              <div className="px-6 py-2 font-medium">Threshability</div>
+            <div className="hidden sm:block flex-auto divide-y divide-slate-300 ">
+              <div className="px-6 py-2 font-medium text-sprPrimary">Threshability</div>
               {riceData.map((rice) => (
-                <div className="px-6 py-2"> {rice.panicleThreshability === "" ? "---" : rice.panicleThreshability}</div>
+                <div className="px-6 py-2 bg-slate-50"> {rice.panicleThreshability === "" ? "---" : rice.panicleThreshability}</div>
               ))}
             </div>
           </tbody>
@@ -217,11 +217,11 @@ export default function GrainCharacteristics({ season }) {
 
         {/* ffffff */}
         {/* ffffff */}
-        <table className="bg-yellow-300">
-          <thead className="text-xs uppercase font-medium">Spikelet</thead>
-          <tbody className="bg-green-800 flex ">
-            <div className="hidden sm:block flex-auto divide-y divide-slate-400 bg-blue-500">
-              <div className="px-6 py-2 font-medium">Fertility</div>
+        <table className="">
+          <thead className="text-xs uppercase font-medium text-center bg-sprPrimaryOffLight">Spikelet</thead>
+          <tbody className=" flex ">
+            <div className="hidden sm:block flex-auto divide-y divide-slate-300 ">
+              <div className="px-6 py-2 font-medium text-sprPrimary">Fertility</div>
               {riceData.map((rice) => (
                 <div className="px-6 py-2"> {rice.spikeletFertility === "" ? "---" : rice.spikeletFertility}</div>
               ))}
@@ -231,29 +231,29 @@ export default function GrainCharacteristics({ season }) {
 
         {/* ffffff */}
         {/* ffffff */}
-        <table className="bg-yellow-300">
-          <thead className="text-xs uppercase font-medium">Sterile</thead>
-          <tbody className="bg-green-800 flex ">
-            <div className="hidden sm:block flex-auto divide-y divide-slate-400 bg-blue-500">
-              <div className="px-6 py-2 font-medium">Lemma Length</div>
+        <table className="">
+          <thead className="text-xs uppercase font-medium text-center bg-sprPrimaryLight">Sterile</thead>
+          <tbody className=" flex ">
+            <div className="hidden sm:block flex-auto divide-y divide-slate-300 ">
+              <div className="px-6 py-2 font-medium whitespace-nowrap text-sprPrimary">Lemma Length</div>
               {riceData.map((rice) => (
-                <div className="px-6 py-2"> {rice.sterileLemmaLength === "" ? "---" : rice.sterileLemmaLength}</div>
+                <div className="px-6 py-2 whitespace-nowrap bg-slate-50"> {rice.sterileLemmaLength === "" ? "---" : rice.sterileLemmaLength}</div>
               ))}
             </div>
-            <div className="hidden sm:block flex-auto divide-y divide-slate-400 bg-blue-500">
-              <div className="px-6 py-2 font-medium">Longer Sterile Lemma Length</div>
+            <div className="hidden sm:block flex-auto divide-y divide-slate-300 ">
+              <div className="px-6 py-2 font-medium whitespace-nowrap text-sprPrimary">Longer Sterile Lemma Length</div>
               {riceData.map((rice) => (
-                <div className="px-6 py-2"> {rice.longerSterileLemmaLength === "" ? "---" : rice.longerSterileLemmaLength}</div>
+                <div className="px-6 py-2 whitespace-nowrap"> {rice.longerSterileLemmaLength === "" ? "---" : rice.longerSterileLemmaLength}</div>
               ))}
             </div>
-            <div className="hidden sm:block flex-auto divide-y divide-slate-400 bg-blue-500">
-              <div className="px-6 py-2 font-medium">Lemma Shape</div>
+            <div className="hidden sm:block flex-auto divide-y divide-slate-300 ">
+              <div className="px-6 py-2 font-medium whitespace-nowrap text-sprPrimary">Lemma Shape</div>
               {riceData.map((rice) => (
-                <div className="px-6 py-2"> {rice.sterileLemmaShape === "" ? "---" : rice.sterileLemmaShape}</div>
+                <div className="px-6 py-2 bg-slate-50"> {rice.sterileLemmaShape === "" ? "---" : rice.sterileLemmaShape}</div>
               ))}
             </div>
-            <div className="hidden sm:block flex-auto divide-y divide-slate-400 bg-blue-500">
-              <div className="px-6 py-2 font-medium">Lemma Colour</div>
+            <div className="hidden sm:block flex-auto divide-y divide-slate-300 ">
+              <div className="px-6 py-2 font-medium whitespace-nowrap text-sprPrimary">Lemma Colour</div>
               {riceData.map((rice) => (
                 <div className="px-6 py-2"> {rice.sterileLemmaColour === "" ? "---" : rice.sterileLemmaColour}</div>
               ))}

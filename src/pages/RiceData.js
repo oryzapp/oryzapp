@@ -95,6 +95,7 @@ export default function RiceData() {
     lemmaAnthocyaninColourationofAreaBelowApiculusEarlyobs: '',
     lemmaandPaleaColourEarlyobs: '',
     maleSterility: '',
+    stigmaColour: '',
     panicleArrangementofPrimaryBranches: '',
     panicleNumberofBasalPrimaryBranches: '',
     panicleDistancefromBasetoLowestSpikeletInsertion: '',
@@ -495,7 +496,7 @@ export default function RiceData() {
           <h1 className="text-3xl font-bold text-sprBlack opacity-80 pl-2">Rice Data</h1>
         </header>
         {/* Options */}
-        <div className="flex  items-center gap-3  bg-white">
+        <div className="flex  items-center gap-3  bg-white ">
           <div className=" flex  items-center gap-1 sm:gap-3   rounded-full">
             {/* Search Bar */}
             <div className="relative drop-shadow-md hidden sm:block">
@@ -509,10 +510,10 @@ export default function RiceData() {
               </button>
             </div>
             {/* Season */}
-            <div className="drop-shadow-md flex" >
-              <div className="bg-sprPrimaryLight text-white h-full text-sm  p-2 rounded-full pl-3 pr-10">Season</div>
+            <div className="drop-shadow-md flex " >
+              <div className="bg-sprPrimaryLight text-white h-full text-sm  p-2 rounded-full pl-3 pr-10 ">Season</div>
               <div className=" -ml-9">
-                <select value={seasonToOutlet} name="riceSeason" onChange={changeSeason} className="rounded-full py-2 text-sprPrimary text-sm ">
+                <select value={seasonToOutlet} name="riceSeason" onChange={changeSeason} className="rounded-full py-2 text-sprPrimary text-sm  ">
                   <option value="All">All</option>
                   <option value="Dry_Season">Dry</option>
                   <option value="Wet_Season">Wet</option>
@@ -564,9 +565,9 @@ export default function RiceData() {
 
           </div>
 
-          <div className="bg-red-500 h-full w-full flex  flex-auto overflow-auto scrollbar">
+          <div className=" h-full w-full flex  flex-auto overflow-auto scrollbar">
 
-            <div className="bg-blue-700  flex h-96 divide-y divide-slate-400 w-96">
+            <div className="  flex h-96 divide-y divide-slate-400 w-96">
               {getPage()}
 
 
@@ -575,7 +576,7 @@ export default function RiceData() {
         </section>
         {/* Modal */}
         <ModalAddRiceData open={isModalOpen} onClose={() => setIsModalOpen(false)}>
-          <div className="flex bg-blue-400">
+          <div className="flex ">
             <h1 className="page-header text-2xl font-bold">Add Rice Data</h1>
           </div>
           <div className="flex-auto relative">
@@ -584,7 +585,7 @@ export default function RiceData() {
               onSubmit={handleSubmit}
             >
               <div className={riceDataExists === true ? "block text-red-400" : "hidden"}>*Rice Data Already Exists</div>
-              <div className="flex whitespace-nowrap bg-blue-300">
+              <div className="flex whitespace-nowrap ">
                 {/* Accession */}
                 <div className="drop-shadow-md flex" >
                   <div className="bg-sprPrimaryLight text-white h-full text-sm  p-2 rounded-full pl-3 pr-10">Accession</div>

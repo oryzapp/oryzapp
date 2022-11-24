@@ -31,13 +31,13 @@ export default function ReproductiveStage({ season }) {
   return (
     <>
 
-      <div className=" bg-green-200 flex text-sm ">
+      <div className="  flex text-sm text-sprGray60">
         {/* ffffff */}
-        <table className="bg-yellow-300">
-          <thead className="text-xs font-medium uppercase">Accession</thead>
-          <tbody className="bg-green-800 flex ">
-            <div className="hidden sm:block flex-auto divide-y divide-slate-400 bg-blue-500">
-              <div className="px-6 py-2 font-medium">Accession</div>
+        <table className="">
+          <thead className="text-xs font-medium uppercase text-center bg-sprPrimaryOffLight">Accession</thead>
+          <tbody className=" flex ">
+            <div className="hidden sm:block flex-auto divide-y divide-slate-300 ">
+              <div className="px-6 py-2 font-medium text-sprPrimary">Accession</div>
               {riceData.map((rice) => (
                 <div className="px-6 py-2"> {rice.accessionId === "" ? "---" : rice.accessionId}</div>
               ))}
@@ -48,17 +48,17 @@ export default function ReproductiveStage({ season }) {
         {/* ffffff */}
 
         {/* ffffff */}
-        <table className="bg-yellow-300">
-          <thead className="text-xs uppercase font-medium">Anther</thead>
-          <tbody className="bg-green-800 flex ">
-            <div className="hidden sm:block flex-auto divide-y divide-slate-400 bg-blue-500">
-              <div className="px-6 py-2 font-medium">Length</div>
+        <table className="">
+          <thead className="text-xs uppercase font-medium text-center bg-sprPrimaryLight">Anther</thead>
+          <tbody className=" flex ">
+            <div className="hidden sm:block flex-auto divide-y divide-slate-300 ">
+              <div className="px-6 py-2 font-medium text-sprPrimary">Length</div>
               {riceData.map((rice) => (
-                <div className="px-6 py-2"> {rice.antherLength === "" ? "---" : rice.antherLength}</div>
+                <div className="px-6 py-2 bg-slate-50"> {rice.antherLength === "" ? "---" : rice.antherLength}</div>
               ))}
             </div>
-            <div className="hidden sm:block flex-auto divide-y divide-slate-400 bg-blue-500">
-              <div className="px-6 py-2 font-medium">Colour</div>
+            <div className="hidden sm:block flex-auto divide-y divide-slate-300 ">
+              <div className="px-6 py-2 font-medium text-sprPrimary">Colour</div>
               {riceData.map((rice) => (
                 <div className="px-6 py-2"> {rice.antherColour === "" ? "---" : rice.antherColour}</div>
               ))}
@@ -68,37 +68,37 @@ export default function ReproductiveStage({ season }) {
 
         {/* ffffff */}
         {/* ffffff */}
-        <table className="bg-yellow-300">
-          <thead className="text-xs uppercase font-medium">Awns</thead>
-          <tbody className="bg-green-800 flex ">
-            <div className="hidden sm:block flex-auto divide-y divide-slate-400 bg-blue-500">
-              <div className="px-6 py-2 font-medium">Presence Wild Species</div>
+        <table className="">
+          <thead className="text-xs uppercase font-medium text-center bg-sprPrimaryOffLight">Awns</thead>
+          <tbody className=" flex ">
+            <div className="hidden sm:block flex-auto divide-y divide-slate-300 ">
+              <div className="px-6 py-2 font-medium whitespace-nowrap text-sprPrimary">Presence Wild Species</div>
               {riceData.map((rice) => (
-                <div className="px-6 py-2"> {rice.awnsPresenceWildSpecies === "" ? "---" : rice.awnsPresenceWildSpecies}</div>
+                <div className="px-6 py-2 whitespace-nowrap bg-slate-50"> {rice.awnsPresenceWildSpecies === "" ? "---" : rice.awnsPresenceWildSpecies}</div>
               ))}
             </div>
-            <div className="hidden sm:block flex-auto divide-y divide-slate-400 bg-blue-500">
-              <div className="px-6 py-2 font-medium">Distribution Cultivated Species</div>
+            <div className="hidden sm:block flex-auto divide-y divide-slate-300 ">
+              <div className="px-6 py-2 font-medium whitespace-nowrap text-sprPrimary">Distribution Cultivated Species</div>
               {riceData.map((rice) => (
-                <div className="px-6 py-2"> {rice.awnsDistributionCultivatedSpecies === "" ? "---" : rice.awnsDistributionCultivatedSpecies}</div>
+                <div className="px-6 py-2 whitespace-nowrap"> {rice.awnsDistributionCultivatedSpecies === "" ? "---" : rice.awnsDistributionCultivatedSpecies}</div>
               ))}
             </div>
-            <div className="hidden sm:block flex-auto divide-y divide-slate-400 bg-blue-500">
-              <div className="px-6 py-2 font-medium">Distribution Early Observation</div>
+            <div className="hidden sm:block flex-auto divide-y divide-slate-300 ">
+              <div className="px-6 py-2 font-medium whitespace-nowrap text-sprPrimary">Distribution Early Observation</div>
               {riceData.map((rice) => (
-                <div className="px-6 py-2"> {rice.awnsDistributionEarlyobs === "" ? "---" : rice.awnsDistributionEarlyobs}</div>
+                <div className="px-6 py-2 whitespace-nowrap bg-slate-50"> {rice.awnsDistributionEarlyobs === "" ? "---" : rice.awnsDistributionEarlyobs}</div>
               ))}
             </div>
-            <div className="hidden sm:block flex-auto divide-y divide-slate-400 bg-blue-500">
-              <div className="px-6 py-2 font-medium">Length</div>
+            <div className="hidden sm:block flex-auto divide-y divide-slate-300 ">
+              <div className="px-6 py-2 font-medium text-sprPrimary">Length</div>
               {riceData.map((rice) => (
                 <div className="px-6 py-2"> {rice.awnLength === "" ? "---" : rice.awnLength}</div>
               ))}
             </div>
-            <div className="hidden sm:block flex-auto divide-y divide-slate-400 bg-blue-500">
-              <div className="px-6 py-2 font-medium">awnsThickness</div>
+            <div className="hidden sm:block flex-auto divide-y divide-slate-300 ">
+              <div className="px-6 py-2 font-medium whitespace-nowrap text-sprPrimary">Awns Thickness</div>
               {riceData.map((rice) => (
-                <div className="px-6 py-2"> {rice.awnsThickness === "" ? "---" : rice.awnsThickness}</div>
+                <div className="px-6 py-2 whitespace-nowrap bg-slate-50"> {rice.awnsThickness === "" ? "---" : rice.awnsThickness}</div>
               ))}
             </div>
           </tbody>
@@ -106,33 +106,19 @@ export default function ReproductiveStage({ season }) {
 
         {/* ffffff */}
         {/* ffffff */}
-        <table className="bg-yellow-300">
-          <thead className="text-xs uppercase font-medium">Lemma</thead>
-          <tbody className="bg-green-800 flex ">
-            <div className="hidden sm:block flex-auto divide-y divide-slate-400 bg-blue-500">
-              <div className="px-6 py-2 font-medium">Colour of Apicus Early Observation</div>
+        <table className="">
+          <thead className="text-xs uppercase font-medium text-center bg-sprPrimaryLight">Lemma</thead>
+          <tbody className=" flex ">
+            <div className="hidden sm:block flex-auto divide-y divide-slate-300 ">
+              <div className="px-6 py-2 font-medium whitespace-nowrap text-sprPrimary">Colour of Apicus Early Observation</div>
               {riceData.map((rice) => (
-                <div className="px-6 py-2"> {rice.lemmaColourofApicusearlyobs === "" ? "---" : rice.lemmaColourofApicusearlyobs}</div>
+                <div className="px-6 py-2 whitespace-nowrap"> {rice.lemmaColourofApicusearlyobs === "" ? "---" : rice.lemmaColourofApicusearlyobs}</div>
               ))}
             </div>
-            <div className="hidden sm:block flex-auto divide-y divide-slate-400 bg-blue-500">
-              <div className="px-6 py-2 font-medium">Anthocyanin Colouration of Area Below Apiculus Early Observation</div>
+            <div className="hidden sm:block flex-auto divide-y divide-slate-300 ">
+              <div className="px-6 py-2 font-medium whitespace-nowrap text-sprPrimary">Anthocyanin Colouration of Area Below Apiculus Early Observation</div>
               {riceData.map((rice) => (
-                <div className="px-6 py-2"> {rice.lemmaAnthocyaninColourationofAreaBelowApiculusEarlyobs === "" ? "---" : rice.lemmaAnthocyaninColourationofAreaBelowApiculusEarlyobs}</div>
-              ))}
-            </div>
-          </tbody>
-        </table>
-
-        {/* ffffff */}
-        {/* ffffff */}
-        <table className="bg-yellow-300">
-          <thead className="whitespace-nowrap text-xs uppercase font-medium">Lemma and Palea</thead>
-          <tbody className="bg-green-800 flex ">
-            <div className="hidden sm:block flex-auto divide-y divide-slate-400 bg-blue-500">
-              <div className="px-6 py-2 font-medium">Colour Early Observation</div>
-              {riceData.map((rice) => (
-                <div className="px-6 py-2"> {rice.lemmaandPaleaColourEarlyobs === "" ? "---" : rice.lemmaandPaleaColourEarlyobs}</div>
+                <div className="px-6 py-2 whitespace-nowrap bg-slate-50"> {rice.lemmaAnthocyaninColourationofAreaBelowApiculusEarlyobs === "" ? "---" : rice.lemmaAnthocyaninColourationofAreaBelowApiculusEarlyobs}</div>
               ))}
             </div>
           </tbody>
@@ -140,13 +126,13 @@ export default function ReproductiveStage({ season }) {
 
         {/* ffffff */}
         {/* ffffff */}
-        <table className="bg-yellow-300">
-          <thead className="text-xs uppercase font-medium">Male Sterility</thead>
-          <tbody className="bg-green-800 flex ">
-            <div className="hidden sm:block flex-auto divide-y divide-slate-400 bg-blue-500">
-              <div className="px-6 py-2 font-medium">Sterility</div>
+        <table className="">
+          <thead className="whitespace-nowrap text-xs uppercase font-medium text-center bg-sprPrimaryOffLight">Lemma and Palea</thead>
+          <tbody className=" flex ">
+            <div className="hidden sm:block flex-auto divide-y divide-slate-300 ">
+              <div className="px-6 py-2 font-medium whitespace-nowrap text-sprPrimary">Colour Early Observation</div>
               {riceData.map((rice) => (
-                <div className="px-6 py-2"> {rice.maleSterility === "" ? "---" : rice.maleSterility}</div>
+                <div className="px-6 py-2 whitespace-nowrap"> {rice.lemmaandPaleaColourEarlyobs === "" ? "---" : rice.lemmaandPaleaColourEarlyobs}</div>
               ))}
             </div>
           </tbody>
@@ -154,11 +140,25 @@ export default function ReproductiveStage({ season }) {
 
         {/* ffffff */}
         {/* ffffff */}
-        <table className="bg-yellow-300">
-          <thead className="text-xs uppercase font-medium">Stigma</thead>
-          <tbody className="bg-green-800 flex ">
-            <div className="hidden sm:block flex-auto divide-y divide-slate-400 bg-blue-500">
-              <div className="px-6 py-2 font-medium">Colour</div>
+        <table className="">
+          <thead className="text-xs uppercase font-medium text-center bg-sprPrimaryLight">Male Sterility</thead>
+          <tbody className=" flex ">
+            <div className="hidden sm:block flex-auto divide-y divide-slate-300 ">
+              <div className="px-6 py-2 font-medium text-sprPrimary">Sterility</div>
+              {riceData.map((rice) => (
+                <div className="px-6 py-2 bg-slate-50"> {rice.maleSterility === "" ? "---" : rice.maleSterility}</div>
+              ))}
+            </div>
+          </tbody>
+        </table>
+
+        {/* ffffff */}
+        {/* ffffff */}
+        <table className="">
+          <thead className="text-xs uppercase font-medium text-center bg-sprPrimaryOffLight">Stigma</thead>
+          <tbody className=" flex ">
+            <div className="hidden sm:block flex-auto divide-y divide-slate-300 ">
+              <div className="px-6 py-2 font-medium text-sprPrimary">Colour</div>
               {riceData.map((rice) => (
                 <div className="px-6 py-2"> {rice.stigmaColour === "" ? "---" : rice.stigmaColour}</div>
               ))}
@@ -168,73 +168,73 @@ export default function ReproductiveStage({ season }) {
 
         {/* ffffff */}
         {/* ffffff */}
-        <table className="bg-yellow-300">
-          <thead className="text-xs uppercase font-medium">Panicle</thead>
-          <tbody className="bg-green-800 flex ">
-            <div className="hidden sm:block flex-auto divide-y divide-slate-400 bg-blue-500">
-              <div className="px-6 py-2 font-medium">Arrangement of Primary Branches</div>
+        <table className="">
+          <thead className="text-xs uppercase font-medium text-center bg-sprPrimaryLight">Panicle</thead>
+          <tbody className=" flex ">
+            <div className="hidden sm:block flex-auto divide-y divide-slate-300 ">
+              <div className="px-6 py-2 font-medium whitespace-nowrap text-sprPrimary">Arrangement of Primary Branches</div>
               {riceData.map((rice) => (
-                <div className="px-6 py-2"> {rice.panicleArrangementofPrimaryBranches === "" ? "---" : rice.panicleArrangementofPrimaryBranches}</div>
+                <div className="px-6 py-2 whitespace-nowrap bg-slate-50"> {rice.panicleArrangementofPrimaryBranches === "" ? "---" : rice.panicleArrangementofPrimaryBranches}</div>
               ))}
             </div>
-            <div className="hidden sm:block flex-auto divide-y divide-slate-400 bg-blue-500">
-              <div className="px-6 py-2 font-medium">Number of Basal Primary Branches</div>
+            <div className="hidden sm:block flex-auto divide-y divide-slate-300 ">
+              <div className="px-6 py-2 font-medium whitespace-nowrap text-sprPrimary">Number of Basal Primary Branches</div>
               {riceData.map((rice) => (
-                <div className="px-6 py-2"> {rice.panicleNumberofBasalPrimaryBranches === "" ? "---" : rice.panicleNumberofBasalPrimaryBranches}</div>
+                <div className="px-6 py-2 whitespace-nowrap"> {rice.panicleNumberofBasalPrimaryBranches === "" ? "---" : rice.panicleNumberofBasalPrimaryBranches}</div>
               ))}
             </div>
-            <div className="hidden sm:block flex-auto divide-y divide-slate-400 bg-blue-500">
-              <div className="px-6 py-2 font-medium">Distance from Base to Lowest Spikelet Insertion</div>
+            <div className="hidden sm:block flex-auto divide-y divide-slate-300 ">
+              <div className="px-6 py-2 font-medium whitespace-nowrap text-sprPrimary">Distance from Base to Lowest Spikelet Insertion</div>
               {riceData.map((rice) => (
-                <div className="px-6 py-2"> {rice.panicleDistancefromBasetoLowestSpikeletInsertion === "" ? "---" : rice.panicleDistancefromBasetoLowestSpikeletInsertion}</div>
+                <div className="px-6 py-2 whitespace-nowrap bg-slate-50"> {rice.panicleDistancefromBasetoLowestSpikeletInsertion === "" ? "---" : rice.panicleDistancefromBasetoLowestSpikeletInsertion}</div>
               ))}
             </div>
-            <div className="hidden sm:block flex-auto divide-y divide-slate-400 bg-blue-500">
-              <div className="px-6 py-2 font-medium">Texture of Main Axis</div>
+            <div className="hidden sm:block flex-auto divide-y divide-slate-300 ">
+              <div className="px-6 py-2 font-medium whitespace-nowrap text-sprPrimary">Texture of Main Axis</div>
               {riceData.map((rice) => (
-                <div className="px-6 py-2"> {rice.panicleTextureofMainAxis === "" ? "---" : rice.panicleTextureofMainAxis}</div>
+                <div className="px-6 py-2 whitespace-nowrap"> {rice.panicleTextureofMainAxis === "" ? "---" : rice.panicleTextureofMainAxis}</div>
               ))}
             </div>
-            <div className="hidden sm:block flex-auto divide-y divide-slate-400 bg-blue-500">
-              <div className="px-6 py-2 font-medium">pNumber Per Plant</div>
+            <div className="hidden sm:block flex-auto divide-y divide-slate-300 ">
+              <div className="px-6 py-2 font-medium whitespace-nowrap text-sprPrimary">pNumber Per Plant</div>
               {riceData.map((rice) => (
-                <div className="px-6 py-2"> {rice.panicleNumberPerPlant === "" ? "---" : rice.panicleNumberPerPlant}</div>
+                <div className="px-6 py-2 whitespace-nowrap bg-slate-50"> {rice.panicleNumberPerPlant === "" ? "---" : rice.panicleNumberPerPlant}</div>
               ))}
             </div>
-            <div className="hidden sm:block flex-auto divide-y divide-slate-400 bg-blue-500">
-              <div className="px-6 py-2 font-medium">Length</div>
+            <div className="hidden sm:block flex-auto divide-y divide-slate-300 ">
+              <div className="px-6 py-2 font-medium text-sprPrimary">Length</div>
               {riceData.map((rice) => (
                 <div className="px-6 py-2"> {rice.panicleLength === "" ? "---" : rice.panicleLength}</div>
               ))}
             </div>
-            <div className="hidden sm:block flex-auto divide-y divide-slate-400 bg-blue-500">
-              <div className="px-6 py-2 font-medium">Attitude of Main Axis</div>
+            <div className="hidden sm:block flex-auto divide-y divide-slate-300 ">
+              <div className="px-6 py-2 font-medium whitespace-nowrap text-sprPrimary">Attitude of Main Axis</div>
               {riceData.map((rice) => (
-                <div className="px-6 py-2"> {rice.panicleAttitudeofMainAxis === "" ? "---" : rice.panicleAttitudeofMainAxis}</div>
+                <div className="px-6 py-2 whitespace-nowrap bg-slate-50"> {rice.panicleAttitudeofMainAxis === "" ? "---" : rice.panicleAttitudeofMainAxis}</div>
               ))}
             </div>
-            <div className="hidden sm:block flex-auto divide-y divide-slate-400 bg-blue-500">
-              <div className="px-6 py-2 font-medium">Attitude of Branches</div>
+            <div className="hidden sm:block flex-auto divide-y divide-slate-300 ">
+              <div className="px-6 py-2 font-medium whitespace-nowrap text-sprPrimary">Attitude of Branches</div>
               {riceData.map((rice) => (
-                <div className="px-6 py-2"> {rice.panicleAttitudeofBranches === "" ? "---" : rice.panicleAttitudeofBranches}</div>
+                <div className="px-6 py-2 whitespace-nowrap"> {rice.panicleAttitudeofBranches === "" ? "---" : rice.panicleAttitudeofBranches}</div>
               ))}
             </div>
-            <div className="hidden sm:block flex-auto divide-y divide-slate-400 bg-blue-500">
-              <div className="px-6 py-2 font-medium">Secondary Branching</div>
+            <div className="hidden sm:block flex-auto divide-y divide-slate-300 ">
+              <div className="px-6 py-2 font-medium whitespace-nowrap text-sprPrimary">Secondary Branching</div>
               {riceData.map((rice) => (
-                <div className="px-6 py-2"> {rice.panicleSecondaryBranching === "" ? "---" : rice.panicleSecondaryBranching}</div>
+                <div className="px-6 py-2 whitespace-nowrap bg-slate-50"> {rice.panicleSecondaryBranching === "" ? "---" : rice.panicleSecondaryBranching}</div>
               ))}
             </div>
-            <div className="hidden sm:block flex-auto divide-y divide-slate-400 bg-blue-500">
-              <div className="px-6 py-2 font-medium">Exsertion</div>
+            <div className="hidden sm:block flex-auto divide-y divide-slate-300 ">
+              <div className="px-6 py-2 font-medium text-sprPrimary">Exsertion</div>
               {riceData.map((rice) => (
                 <div className="px-6 py-2"> {rice.panicleExsertion === "" ? "---" : rice.panicleExsertion}</div>
               ))}
             </div>
-            <div className="hidden sm:block flex-auto divide-y divide-slate-400 bg-blue-500">
-              <div className="px-6 py-2 font-medium">Shattering</div>
+            <div className="hidden sm:block flex-auto divide-y divide-slate-300 ">
+              <div className="px-6 py-2 font-medium text-sprPrimary">Shattering</div>
               {riceData.map((rice) => (
-                <div className="px-6 py-2"> {rice.panicleShattering === "" ? "---" : rice.panicleShattering}</div>
+                <div className="px-6 py-2 bg-slate-50"> {rice.panicleShattering === "" ? "---" : rice.panicleShattering}</div>
               ))}
             </div>
           </tbody>
