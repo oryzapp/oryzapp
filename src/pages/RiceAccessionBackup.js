@@ -13,7 +13,7 @@ import {
 } from "firebase/firestore";
 import { useEffect, useState } from "react";
 import ModalAddRiceAcc from "../components/ModalAddRiceAcc";
-import ModalRiceInfo from "../components/ModalRiceInfo";
+import ModalRiceInfo from "../components/ModalAccessionsInfo";
 import db from "../firebase-config";
 import { storage } from "../firebase-config";
 import { ref, uploadBytes } from "firebase/storage"

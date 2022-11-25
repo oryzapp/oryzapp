@@ -95,7 +95,6 @@ export default function RiceData() {
     lemmaAnthocyaninColourationofAreaBelowApiculusEarlyobs: '',
     lemmaandPaleaColourEarlyobs: '',
     maleSterility: '',
-    stigmaColour: '',
     panicleArrangementofPrimaryBranches: '',
     panicleNumberofBasalPrimaryBranches: '',
     panicleDistancefromBasetoLowestSpikeletInsertion: '',
@@ -214,6 +213,7 @@ export default function RiceData() {
     panicleSecondaryBranching: '',
     panicleExsertion: '',
     panicleShattering: '',
+    stigmaColour: '',
     // grain components
     awnColour: '',
     caryopsisLength: '',
@@ -267,6 +267,9 @@ export default function RiceData() {
     season = "Wet_Season"
   }
 
+  console.log(riceData.accessionId);
+  console.log(riceData.riceYear);
+  console.log(riceData.riceSeason);
 
   // Submit to Database ------------->
   const handleSubmit = async (e) => {
@@ -401,9 +404,10 @@ export default function RiceData() {
 
       }
 
-      if (riceDataExists === true) {
+      if (riceDataExists === true || riceData.accessionId === ' ' || riceData.accessionId === 'Accession') {
         alert('Change Accession')
       }
+
 
       else {
         await setDoc(vsColRef, vsPayLoad);
@@ -525,16 +529,7 @@ export default function RiceData() {
             </div>
 
           </div>
-          {/* <div className="relative drop-shadow-sm">
-          <input
-            className=" pl-2 py-1 text-sm placeholder:text-sprPrimary/40 text-sprPrimary focus:outline-none focus:border-none  rounded-full "
-            type="text"
-            placeholder="Find a Rice"
-          />
-          <button className=" w-8 h-full rounded-full absolute right-0 bg-sprPrimaryLight">
-            o
-          </button>
-        </div> */}
+
           <div className="relative py-1 bg-white rounded-full drop-shadow-sm">
             Filter
             <div className=" hidden absolute w-28 h-auto rounded-sm p-2 z-50  bg-white">
@@ -591,7 +586,7 @@ export default function RiceData() {
                   <div className="bg-sprPrimaryLight text-white h-full text-sm  p-2 rounded-full pl-3 pr-10">Accession</div>
                   <div className=" -ml-9">
                     <select className="rounded-full py-2 text-sprPrimary text-sm " name="accessionId" id="" onChange={handleChange} required>
-                      {/* <option>Accession</option> */}
+                      <option value='Accession' >Accession</option>
                       {riceAccessions.map((rice) =>
                         <option value={rice.accessionId}  >{rice.accessionId}</option>)}
                     </select>

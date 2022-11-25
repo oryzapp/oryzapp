@@ -10,7 +10,7 @@ import { ReactComponent as GridIcon } from '../assets/grid-icon.svg'
 import { ReactComponent as ListIcon } from '../assets/list-icon.svg'
 import { ReactComponent as EmptyIllustration } from '../assets/empty-illustration.svg'
 import { ReactComponent as FilterIcon } from '../assets/filter-icon.svg'
-import ModalRiceInfo from "../components/ModalRiceInfo";
+import ModalRiceInfo from "../components/ModalAccessionsInfo";
 
 export default function RiceList() {
 
