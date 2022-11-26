@@ -4,9 +4,8 @@ import React from 'react'
 export default function Test() {
 
     const downloadQR = (name) => {
-        const canvas = document.getElementById("qr-gen");
-        const hehe = document.getElementById("hehe");
-        console.log(hehe);
+        const canvas = document.getElementById(`qr-gen-${name}`);
+
         const pngUrl = canvas
             .toDataURL("image/png")
             .replace("image/png", "image/octet-stream");
@@ -32,7 +31,7 @@ export default function Test() {
             {
                 arrayOfLove.map((item) => (
                     <div className='p-3' id='hehe'>
-                        <QRCodeCanvas id='qr-gen' value={item.name} />
+                        <QRCodeCanvas id={`qr-gen-${item.name}`} value={item.name} />
                         <button onClick={() => { downloadQR(item.name) }}>download</button>
 
                     </div>

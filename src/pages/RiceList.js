@@ -113,7 +113,7 @@ export default function RiceList() {
 
   const downloadQR = (accessionId, riceSeason, riceYear) => {
     console.log(accessionId);
-    const canvas = document.getElementById("qr-gen");
+    const canvas = document.getElementById(`qr-code-${accessionId}`);
     const pngUrl = canvas
       .toDataURL("image/png")
       .replace("image/png", "image/octet-stream");
@@ -327,8 +327,8 @@ export default function RiceList() {
                 {console.log('booop')}
 
                 <div className="flex  justify-center p-4">
-                  <QRCodeCanvas id="qr-gen" className="hidden sm:block rounded-xl" value={`${rice.accessionId}_${rice.riceSeason}_Season_${rice.riceYear}`} bgColor="#FAFAFA" fgColor="rgba(18, 20, 20, 0.8)" includeMargin={true} size={150} />
-                  <QRCodeCanvas id="qr-gen" className="sm:hidden" value={`${rice.accessionId}_${rice.riceSeason}_Season_${rice.riceYear}`} fgColor="rgba(18, 20, 20, 0.9)" size={80} />
+                  <QRCodeCanvas id={`qr-gen-${rice.accessionId}`} className="hidden sm:block rounded-xl" value={`${rice.accessionId}_${rice.riceSeason}_Season_${rice.riceYear}`} bgColor="#FAFAFA" fgColor="rgba(18, 20, 20, 0.8)" includeMargin={true} size={150} />
+                  <QRCodeCanvas id={`qr-gen-${rice.accessionId}`} className="sm:hidden" value={`${rice.accessionId}_${rice.riceSeason}_Season_${rice.riceYear}`} fgColor="rgba(18, 20, 20, 0.9)" size={80} />
                 </div>
                 <div className=" flex flex-auto   justify-between items-center  ">
                   <div className="">

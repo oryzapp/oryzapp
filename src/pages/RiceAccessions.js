@@ -227,6 +227,23 @@ export default function RiceAccessions() {
 	// Count accessions ------------------>
 	var list = 0
 
+	// Download QR
+	const downloadQR = (accessionId) => {
+		console.log('accession');
+		console.log(accessionId);
+		const canvas = document.getElementById(`qr-gen-${accessionId}`);
+		console.log(canvas);
+		const pngUrl = canvas
+			.toDataURL("image/png")
+			.replace("image/png", "image/octet-stream");
+		let downloadLink = document.createElement("a");
+		downloadLink.href = pngUrl;
+		downloadLink.download = `${accessionId}.png`;
+		document.body.appendChild(downloadLink);
+		downloadLink.click();
+		document.body.removeChild(downloadLink);
+	}
+
 
 
 
@@ -381,8 +398,8 @@ export default function RiceAccessions() {
 								<div className="flex  flex-col  p-4 pt-2 pr-6 sm:pr-4   rounded-lg bg-slate-50  drop-shadow-md group hover:bg-sprPrimaryOffLight">
 
 									<div className="flex  justify-center p-4 ">
-										<QRCodeCanvas id="qr-gen" className="hidden sm:block rounded-xl" value={`${rice.accessionId}`} bgColor="#FAFAFA" fgColor="rgba(18, 20, 20, 0.8)" includeMargin={true} size={150} />
-										<QRCodeCanvas id="qr-gen" className="sm:hidden" value={`${rice.accessionId}`} fgColor="rgba(18, 20, 20, 0.9)" size={80} />
+										<QRCodeCanvas id={`qr-gen-${rice.accessionId}`} className="hidden sm:block rounded-xl" value={`${rice.accessionId}`} bgColor="#FAFAFA" fgColor="rgba(18, 20, 20, 0.8)" includeMargin={true} size={150} />
+										<QRCodeCanvas id={`qr-gen-${rice.accessionId}`} className="sm:hidden" value={`${rice.accessionId}`} fgColor="rgba(18, 20, 20, 0.9)" size={80} />
 									</div>
 									<div className=" flex flex-auto   justify-between items-start  ">
 										<div className="">
@@ -405,6 +422,9 @@ export default function RiceAccessions() {
 											</button>
 											<button
 												className=" bg-sprPrimary rounded-full drop-shadow-md  "
+												onClick={() => {
+													downloadQR(rice.accessionId)
+												}}
 											>
 												<div className=" w-6 sm:w-6 h-6"><img src={downloadIcon} alt="" /></div>
 											</button>
