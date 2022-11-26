@@ -229,6 +229,7 @@ export default function RiceAccessions() {
 
 
 
+
 	return (
 		<>
 			<div className='h-full w-full flex flex-col rounded-t-xl  sm:rounded-xl bg-slate-50 opacity-90 p-2'>
@@ -307,14 +308,14 @@ export default function RiceAccessions() {
 									<div className="px-6 py-2 text-md font-medium text-sprGray60"> {rice.classification === "" ? "---" : rice.classification}</div>
 								))}
 							</div>
-							<div className="hidden sm:block flex-auto divide-y divide-slate-300 bg-slate-50 h-fit">
+							<div className="hidden lg:block flex-auto divide-y divide-slate-300 bg-slate-50 h-fit">
 								<div className="px-6 py-2 text-sm font-medium bg-white text-sprPrimary">Variety</div>
 								{riceAccessions.map((rice) => (
 									<div className="px-6 py-2 text-md font-medium text-sprGray60"> {rice.variety === "" ? "---" : rice.variety}</div>
 								))}
 							</div>
 
-							<div className="hidden sm:block flex-auto divide-y divide-slate-300 bg-slate-100 h-fit">
+							<div className="hidden lg:block flex-auto divide-y divide-slate-300 bg-slate-100 h-fit">
 								<div className="px-6 py-2 text-sm font-medium bg-white text-sprPrimary">Source</div>
 								{riceAccessions.map((rice) => (
 									<div className="px-6 py-2 text-md font-medium text-sprGray60"> {rice.source === "" ? "---" : rice.source}</div>
@@ -394,7 +395,12 @@ export default function RiceAccessions() {
 											</h6>
 										</div>
 										<div className="flex items-center space-x-2 sm:pt-1 ">
-											<button className=" text-white text-xs sm:text-sm bg-gradient-to-b from-sprPrimary to-sprPrimaryDark h-6 w-10 sm:h-6 sm:w-12 rounded-full drop-shadow-md ">
+											<button className=" text-white text-xs sm:text-sm bg-gradient-to-b from-sprPrimary to-sprPrimaryDark h-6 w-10 sm:h-6 sm:w-12 rounded-full drop-shadow-md "
+												onClick={() => {
+													setIsRiceInfoModalOpen(true)
+													setModalId(rice.accessionId)
+
+												}}>
 												view
 											</button>
 											<button
@@ -525,7 +531,7 @@ export default function RiceAccessions() {
 				</ModalAddRiceAcc>
 
 				{/* Rice Accession Info */}
-				<ModalAccessionsInfo open={isRiceInfoModalOpen} modalId={modalId} closeModal={() => { setIsRiceInfoModalOpen(false) }} >
+				<ModalAccessionsInfo open={isRiceInfoModalOpen} modalId={modalId} closeModal={() => { setIsRiceInfoModalOpen(false) }}  >
 
 				</ModalAccessionsInfo>
 			</div>

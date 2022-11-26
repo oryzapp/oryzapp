@@ -278,6 +278,7 @@ export default function RiceData() {
       const vsColRef = doc(db, `/SPR/Rice_Seasons/Seasons/${season}/Stages/Vegetative_Stage/VS_Raw_Rice_Data`, `${riceData.accessionId}_${season}_${riceData.riceYear}`);
       const vsPayLoad = {
         accessionId: riceData.accessionId,
+        tagId: `${riceData.accessionId}_${season}_${riceData.riceYear}`,
         riceYear: riceData.riceYear,
         auricleColor: riceData.auricleColor,
         coleoptileAnthocyaninColouration: riceData.coleoptileAnthocyaninColouration,
@@ -324,6 +325,7 @@ export default function RiceData() {
       const rsColRef = doc(db, `/SPR/Rice_Seasons/Seasons/${season}/Stages/Reproductive_Stage/RS_Raw_Rice_Data`, `${riceData.accessionId}_${season}_${riceData.riceYear}`);
       const rsPayLoad = {
         accessionId: riceData.accessionId,
+        tagId: `${riceData.accessionId}_${season}_${riceData.riceYear}`,
         riceYear: riceData.riceYear,
         antherLength: riceData.antherLength,
         antherColour: riceData.antherColour,
@@ -353,8 +355,8 @@ export default function RiceData() {
       const gcColRef = doc(db, `/SPR/Rice_Seasons/Seasons/${season}/Stages/Grain_Characteristics/GC_Raw_Rice_Data`, `${riceData.accessionId}_${season}_${riceData.riceYear}`);
       const gcPayLoad = {
         accessionId: riceData.accessionId,
+        tagId: `${riceData.accessionId}_${season}_${riceData.riceYear}`,
         riceYear: riceData.riceYear,
-
         awnColour: riceData.awnColour,
         caryopsisLength: riceData.caryopsisLength,
         caryopsisWidth: riceData.caryopsisWidth,
@@ -384,6 +386,7 @@ export default function RiceData() {
       const ycColRef = doc(db, `/SPR/Rice_Seasons/Seasons/${season}/Stages/Yield_Components/YC_Raw_Rice_Data/`, `${riceData.accessionId}_${season}_${riceData.riceYear}`);
       const ycPayLoad = {
         accessionId: riceData.accessionId,
+        tagId: `${riceData.accessionId}_${season}_${riceData.riceYear}`,
         riceYear: riceData.riceYear,
         cavans: riceData.cavans,
         kilogram: riceData.kilogram,
