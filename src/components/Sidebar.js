@@ -39,7 +39,7 @@ export default function Sidebar({ onChange }) {
       <nav className="flex flex-row  sm:flex-col ">
 
         <button onClick={() => handleClick('dashboard', 1)} className={state === 1 ? " flex justify-center  flex-auto   sm:justify-start bg-sprPrimary rounded-lg px-3 py-2  " : " group flex justify-center  flex-auto   sm:justify-start  px-3 py-2 hover:bg-slate-200 rounded-lg   "}>
-          <div className="flex items-center space-x-1   "  >
+          <div className="flex items-center space-x-1  "  >
             <div className="rounded-xl h-6 w-6  ">
               {/* <img className=" relative" src={dashboardIcon} alt="" /> */}
               <DashBIcon className=" group-hover:stroke-sprInactiveGray" fill="none" stroke={state !== 1 ? "#888A89" : "white"} />
@@ -48,7 +48,7 @@ export default function Sidebar({ onChange }) {
           </div>
         </button>
 
-        <button onClick={() => handleClick('users', 2)} className={state === 2 ? "flex justify-center  flex-auto   sm:justify-start bg-sprPrimary rounded-lg px-3 py-2 " : "group hidden  sm:flex justify-center  flex-auto   sm:justify-start  px-3 py-2 hover:bg-slate-200 rounded-lg  "}>
+        <button onClick={() => handleClick('users', 2)} className={state === 2 ? "hidden sm:flex justify-center  flex-auto   sm:justify-start bg-sprPrimary rounded-lg px-3 py-2 " : "group hidden  sm:flex justify-center  flex-auto   sm:justify-start  px-3 py-2 hover:bg-slate-200 rounded-lg  "}>
           <div className="flex items-center  space-x-1   " >
             <div className="rounded-xl h-6 w-6  ">
               {/* <img className=" relative" src={manageUsersIcon} alt="" /> */}
@@ -70,7 +70,7 @@ export default function Sidebar({ onChange }) {
           </div>
         </button>
 
-        <button onClick={() => handleClick('rice-data', 4)} className={state === 4 ? "flex justify-center  flex-auto   sm:justify-start bg-sprPrimary rounded-lg px-3 py-2" : " group hidden sm:flex justify-center  flex-auto   sm:justify-start  px-3 py-2 hover:bg-slate-200 rounded-lg "} >
+        <button onClick={() => handleClick('rice-data', 4)} className={state === 4 ? "hidden sm:flex justify-center  flex-auto   sm:justify-start bg-sprPrimary rounded-lg px-3 py-2" : " group hidden sm:flex justify-center  flex-auto   sm:justify-start  px-3 py-2 hover:bg-slate-200 rounded-lg "} >
           <div className="flex items-center space-x-1 " >
             <div className="rounded-xl h-6 w-6 ">
               {/* <img className=" relative" src={riceDataIcon} alt="" /> */}
@@ -90,7 +90,7 @@ export default function Sidebar({ onChange }) {
           </div>
         </button>
 
-        <button onClick={() => handleClick('scan-code', 6)} className={state === 6 ? " flex justify-center  flex-auto   sm:justify-start bg-sprPrimary rounded-lg px-3 py-2" : "group flex justify-center  flex-auto   sm:justify-start  px-3 py-2 hover:bg-slate-200 rounded-lg "} >
+        <button onClick={() => handleClick('scan-code', 6)} className={state === 6 ? " flex justify-center  flex-auto   sm:justify-start bg-sprPrimary rounded-lg px-3 py-2 order-first sm:order-last" : "group flex justify-center  flex-auto   sm:justify-start  px-3 py-2 hover:bg-slate-200 rounded-lg order-first sm:order-last"} >
           <div className="flex items-center space-x-1  ">
             <div className="rounded-xl h-6 w-6 ">
               {/* <img className="" src={scanQRCodeIcon} alt="" /> */}

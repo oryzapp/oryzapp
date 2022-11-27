@@ -37,6 +37,9 @@ module.exports = {
       dropShadow: {
         sm: "0 4px 4px rgba(18, 20, 20, 0.05)",
       },
+      backgroundImage: {
+        'background-image': "url('/public/background-image.png')"
+      }
     },
   },
   plugins: [],

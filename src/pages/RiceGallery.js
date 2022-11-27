@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react"
-import { getDownloadURL, listAll, ref } from "firebase/storage";
+import { getDownloadURL, getMetadata, listAll, ref } from "firebase/storage";
 import { storage } from "../firebase-config";
 
 export default function RiceGallery() {
@@ -18,14 +18,29 @@ export default function RiceGallery() {
         })
       })
 
+      // Get metadata properties
+      getMetadata(imageListRef)
+        .then((metadata) => {
+          // Metadata now contains the metadata for 'images/forest.jpg'
+          console.log('beeee');
+          console.log(metadata.size);
+        })
+        .catch((error) => {
+          // Uh-oh, an error occurred!
+        });
+
     } catch (error) {
       console.log(error);
     }
   }, [])
 
+  imageList.map((item) => {
+    console.log(item);
+  })
+
   return (
     <>
-      <div className=' w-full flex flex-col rounded-xl bg-white opacity-90 p-2'>
+      <div className=' h-full w-full flex flex-col rounded-xl bg-white opacity-90 p-2'>
         {/* Header */}
         <header className="flex items-center">
           <h1 className="text-3xl font-bold text-sprBlack opacity-80">Rice Gallery</h1>

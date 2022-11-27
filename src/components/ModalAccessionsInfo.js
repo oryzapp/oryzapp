@@ -32,8 +32,6 @@ export default function ModalAccessionsInfo({ open, modalId, closeModal }) {
 
     }, [open])
 
-
-
     const [season, setSeason] = useState('Wet_Season')
     const [year, setYear] = useState('2018')
 
@@ -61,9 +59,6 @@ export default function ModalAccessionsInfo({ open, modalId, closeModal }) {
 
 
     }, [season, year, open])
-
-
-
     useEffect(() => {
         const rsDocRef = collection(db, `/SPR/Rice_Seasons/Seasons/${season}/Stages/Reproductive_Stage/RS_Raw_Rice_Data`)
 
@@ -79,7 +74,6 @@ export default function ModalAccessionsInfo({ open, modalId, closeModal }) {
 
 
     }, [season, year, open])
-
     useEffect(() => {
         const gcDocRef = collection(db, `/SPR/Rice_Seasons/Seasons/${season}/Stages/Grain_Characteristics/GC_Raw_Rice_Data`)
 
@@ -111,12 +105,7 @@ export default function ModalAccessionsInfo({ open, modalId, closeModal }) {
 
     }, [season, year, open])
 
-
-
     const years = [2018, 2019, 2020, 2021, 2022, 2023, 2024, 2025, 2026, 2027, 2028, 2030]
-
-
-
 
     if (!open) return null;
     return ReactDom.createPortal(

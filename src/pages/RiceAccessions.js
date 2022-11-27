@@ -229,8 +229,7 @@ export default function RiceAccessions() {
 
 	// Download QR
 	const downloadQR = (accessionId) => {
-		console.log('accession');
-		console.log(accessionId);
+
 		const canvas = document.getElementById(`qr-gen-${accessionId}`);
 		console.log(canvas);
 		const pngUrl = canvas
