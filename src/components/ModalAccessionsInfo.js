@@ -119,14 +119,14 @@ export default function ModalAccessionsInfo({ open, modalId, closeModal }) {
                     </button>
                 </div>
                 {/* main */}
-                <div className="bg-violet-500 flex-auto flex flex-col">
-                    <div className="bg-green-900 w-full h-1/4 flex ">
-                        <div className="bg-pink-600  w-1/4 p-3">
-                            <div className="bg-yellow-400 h-full">image</div>
+                <div className=" flex-auto flex flex-col">
+                    <div className=" w-full h-1/4 flex ">
+                        <div className="  bg-yellow-300 w-1/4 p-3 mb-3 rounded-md">
+                            <div className=" h-full rounded-md"></div>
                         </div>
 
                         {riceAccessions.map((rice) => (
-                            <div className="bg-pink-100 flex flex-col flex-auto p-3">
+                            <div className=" flex flex-col flex-auto p-3">
                                 <h1 className="text-4xl text-sprPrimaryDarkest font-semibold">{rice.accessionId}</h1>
                                 <h1 className="text-xl text-sprPrimaryDarkest font-medium">Source: {rice.source === '' ? "---" : rice.source}</h1>
                                 <h1 className="text-xl text-sprPrimaryDarkest font-medium">variety: {rice.variety === '' ? "---" : rice.variety}</h1>
@@ -139,7 +139,7 @@ export default function ModalAccessionsInfo({ open, modalId, closeModal }) {
 
                     </div>
                     <div className=" w-full flex-auto flex flex-col ">
-                        <div className=" bg-yellow-600 flex gap-3  w-3/4">
+                        <div className="  flex gap-3  w-3/4">
                             <div className="flex-auto bg-sprPrimaryOffLight flex p-2 justify-center gap-2 rounded-t-lg">
                                 <CalendarIcon stroke="#AFBE00" className="h-6" />
                                 <select className=" bg-transparent text-sprPrimary text-md font-medium " name="riceYear" onChange={(e) => { setYear(e.target.value) }}>

@@ -299,12 +299,12 @@ export default function RiceAccessions() {
 				{/* List */}
 				<section className={listOn === true ? "flex-auto overflow-auto  scrollbar bg-white rounded-lg border border-slate-200" : "hidden"}>
 					{riceAccessions.length === 0 ? <div className="flex justify-center items-center pt-32 flex-col gap-8 "><EmptyIllustration /><p className="font-medium text-xl text-sprPrimaryOffLight">Plenty of space in the field </p></div> :
-						<div className="flex h-96">
+						<div className="flex h-96 ">
 
 
 
 							<div className="hidden sm:block divide-y divide-slate-300 h-fit">
-								<div className="px-6 py-2 text-sm font-medium bg-white text-sprPrimary ">#</div>
+								<div className="px-6 py-2 text-sm font-medium bg-white text-sprPrimary sticky ">#</div>
 								{
 
 									riceAccessions.map((rice) => (
@@ -314,30 +314,30 @@ export default function RiceAccessions() {
 							<div className="hidden sm:block  flex-auto divide-y divide-slate-300 bg-slate-50 h-fit  ">
 								<div className="px-6 py-2 text-sm font-medium bg-white text-sprPrimary ">Accession</div>
 								{riceAccessions.map((rice) => (
-									<div className="px-6 py-2 text-md font-medium text-sprGray60"> {rice.accessionId === "" ? "---" : rice.accessionId} </div>
+									<div className="px-6 py-2 text-md font-medium text-sprGray60 whitespace-nowrap"> {rice.accessionId === "" ? "---" : rice.accessionId} </div>
 								))}
 							</div>
 
 							<div className=" hidden sm:block flex-auto divide-y divide-slate-300 bg-slate-100 h-fit">
 								<div className="px-6 py-2 text-sm font-medium bg-white text-sprPrimary">Classification </div>
 								{riceAccessions.map((rice) => (
-									<div className="px-6 py-2 text-md font-medium text-sprGray60"> {rice.classification === "" ? "---" : rice.classification}</div>
+									<div className="px-6 py-2 text-md font-medium text-sprGray60 whitespace-nowrap"> {rice.classification === "" ? "---" : rice.classification}</div>
 								))}
 							</div>
 							<div className="hidden lg:block flex-auto divide-y divide-slate-300 bg-slate-50 h-fit">
 								<div className="px-6 py-2 text-sm font-medium bg-white text-sprPrimary">Variety</div>
 								{riceAccessions.map((rice) => (
-									<div className="px-6 py-2 text-md font-medium text-sprGray60"> {rice.variety === "" ? "---" : rice.variety}</div>
+									<div className="px-6 py-2 text-md font-medium text-sprGray60 whitespace-nowrap"> {rice.variety === "" ? "---" : rice.variety}</div>
 								))}
 							</div>
 
 							<div className="hidden lg:block flex-auto divide-y divide-slate-300 bg-slate-100 h-fit">
 								<div className="px-6 py-2 text-sm font-medium bg-white text-sprPrimary">Source</div>
 								{riceAccessions.map((rice) => (
-									<div className="px-6 py-2 text-md font-medium text-sprGray60"> {rice.source === "" ? "---" : rice.source}</div>
+									<div className="px-6 py-2 text-md font-medium text-sprGray60 whitespace-nowrap" > {rice.source === "" ? "---" : rice.source}</div>
 								))}
 							</div>
-							<div className="divide-y divide-slate-50   w-full sm:w-auto h-fit ">
+							<div className="divide-y divide-slate-300 sm:divide-slate-50    w-full sm:w-auto sticky inset-x-0 h-fit ">
 								<div className="px-6 py-2 opacity-0 hidden sm:block text-sm font-medium ">Action</div>
 								{riceAccessions.map((rice) => (
 									<div className="px-6 py-2 flex items-center justify-between gap-2 ">
@@ -394,15 +394,15 @@ export default function RiceAccessions() {
 						<div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-2 h-96">
 							{riceAccessions.map((rice) => (
 
-								<div className="flex  flex-col  p-4 pt-2 pr-6 sm:pr-4   rounded-lg bg-slate-50  drop-shadow-md group hover:bg-sprPrimaryOffLight">
+								<div className="flex  flex-col  p-4 pt-2 pr-6 sm:pr-4   rounded-lg bg-slate-50  drop-shadow-md group hover:bg-sprPrimaryOffLight ">
 
 									<div className="flex  justify-center p-4 ">
 										<QRCodeCanvas id={`qr-gen-${rice.accessionId}`} className="hidden sm:block rounded-xl" value={`${rice.accessionId}`} bgColor="#FAFAFA" fgColor="rgba(18, 20, 20, 0.8)" includeMargin={true} size={150} />
-										<QRCodeCanvas id={`qr-gen-${rice.accessionId}`} className="sm:hidden" value={`${rice.accessionId}`} fgColor="rgba(18, 20, 20, 0.9)" size={80} />
+										<QRCodeCanvas id={`qr-gen-${rice.accessionId}`} className="sm:hidden" value={`${rice.accessionId}`} fgColor="rgba(18, 20, 20, 0.9)" size={100} />
 									</div>
 									<div className=" flex flex-auto   justify-between items-start  ">
 										<div className="">
-											<h1 className=" text-sm whitespace-nowrap sm:text-xl font-bold  text-sprGray">
+											<h1 className=" text-md whitespace-nowrap sm:text-xl font-bold  text-sprGray">
 												{rice.accessionId}
 											</h1>
 

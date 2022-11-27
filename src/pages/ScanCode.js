@@ -11,6 +11,7 @@ import BackgroundImage from '../assets/background-image.svg'
 import { ReactComponent as ScanCodeIcon } from '../assets/qr-code-icon.svg'
 import { ReactComponent as ImageIcon } from '../assets/image-icon.svg'
 import ModalViewAccessionOnly from "../components/ModalViewAccessionOnly";
+import { useRef } from "react";
 export default function ScanCode() {
 
 
@@ -36,7 +37,7 @@ export default function ScanCode() {
   }
 
 
-  console.log(qrData);
+  // console.log(qrData);
 
 
 
@@ -66,12 +67,12 @@ export default function ScanCode() {
 
     const result = riceList.find(rice => rice.accessionId === qrData)
     if (result === undefined) {
-      console.log('doesnt');
+      // console.log('doesnt');
       setRiceDataExists(false)
     }
     else {
       setCurrentData(result)
-      console.log('exisst');
+      // console.log('exisst');
       setRiceDataExists(true)
 
     }
@@ -84,6 +85,17 @@ export default function ScanCode() {
   const openViewInfoModal = () => {
     setIsModalOpen(true)
   }
+
+  // Scanner
+  const scanRef = useRef(null)
+  // useEffect(() => {
+  //   console.log(scanRef.current);
+  // }, [])
+
+  // const [result, setResult] = useState('No Result')
+
+  // const scanner = new QrScanner(scanRef, result => setResult(result));
+
 
 
   return (
@@ -111,7 +123,7 @@ export default function ScanCode() {
               </div>
             </div>
             <div className={isScan === true ? 'bg-slate-100 flex-auto rounded-b-lg' : 'hidden'}>
-              <video ></video>
+              <video ref={scanRef}></video>
             </div>
             <div className={isScan === false ? 'flex flex-col gap-5 justify-center items-center bg-slate-100 flex-auto rounded-b-lg  sprBorderDashed' : 'hidden'} >
               <ImageIcon fill="none" stroke="#CFD491" className="w-16" />
