@@ -36,6 +36,7 @@ import { ReactComponent as GridIcon } from "../assets/grid-icon.svg"
 import { v4 } from "uuid";
 import { QRCodeCanvas } from "qrcode.react";
 import ModalAccessionsInfo from "../components/ModalAccessionsInfo";
+import ModalDelete from "../components/ModalDelete";
 
 export default function RiceAccessions() {
 
@@ -243,6 +244,10 @@ export default function RiceAccessions() {
 		document.body.removeChild(downloadLink);
 	}
 
+	// Delete Modal
+	const [isDelModalOpen, setIsDelModalOpen] = useState(false)
+	const [delId, setDelId] = useState('')
+	console.log(delId);
 
 
 
@@ -297,14 +302,14 @@ export default function RiceAccessions() {
 				{/* Main */}
 
 				{/* List */}
-				<section className={listOn === true ? "flex-auto overflow-auto  scrollbar bg-white rounded-lg border border-slate-200" : "hidden"}>
+				<section className={listOn === true ? "flex-auto overflow-auto  scrollbar bg-white rounded-lg border border-slate-200 w-full" : "hidden"}>
 					{riceAccessions.length === 0 ? <div className="flex justify-center items-center pt-32 flex-col gap-8 "><EmptyIllustration /><p className="font-medium text-xl text-sprPrimaryOffLight">Plenty of space in the field </p></div> :
 						<div className="flex h-96 ">
 
 
 
 							<div className="hidden sm:block divide-y divide-slate-300 h-fit">
-								<div className="px-6 py-2 text-sm font-medium bg-white text-sprPrimary sticky ">#</div>
+								<div className="px-6 py-2 text-sm font-medium bg-white text-sprPrimary ">#</div>
 								{
 
 									riceAccessions.map((rice) => (
@@ -375,7 +380,13 @@ export default function RiceAccessions() {
 										<button
 											className="hidden lg:block p-1 bg-gradient-to-b from-sprPrimary to-sprPrimaryDarkest rounded-full  hover:bg-gradient-to-t hover:from-sprPrimaryLight hover:to-sprPrimaryLight drop-shadow-md shadow-slate-300 "
 											onClick={() => {
-												deleteRiceAccession(rice.id);
+												// deleteRiceAccession(rice.id);
+												setDelId(rice.id)
+												setModalId(rice.accessionId)
+
+												setIsDelModalOpen(true)
+												console.log('delId');
+
 											}}
 										>
 											<div className="w-4 h-4"><img src={delIcon} alt="" /></div>
@@ -553,6 +564,11 @@ export default function RiceAccessions() {
 				<ModalAccessionsInfo open={isRiceInfoModalOpen} modalId={modalId} closeModal={() => { setIsRiceInfoModalOpen(false) }}  >
 
 				</ModalAccessionsInfo>
+
+
+				<ModalDelete open={isDelModalOpen} closeModal={() => { setIsDelModalOpen(false) }} modalId={modalId} delId={delId}>
+
+				</ModalDelete>
 			</div>
 
 		</>

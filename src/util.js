@@ -44,7 +44,15 @@ export const editRiceAccessionID = async (id) => {
   updateDoc(docRef, payLoad);
 };
 
+
 export const deleteRiceAccession = async (id) => {
-  const docRef = doc(db, "SPR/Rice_Accessions/Accession_IDs", id);
-  await deleteDoc(docRef);
+  try {
+    const docRef = doc(db, "SPR/Rice_Accessions/Accession_IDs", id);
+    await deleteDoc(docRef);
+    return alert('Accession Deleted')
+
+  } catch (error) {
+    console.log(error);
+  }
+
 };

@@ -32,7 +32,8 @@ module.exports = {
         sprPrimaryDark: "#99B100",
         sprPrimaryDarkest: "#7F9F00",
         sprPrimaryButton: "linear-gradient(180deg, #AFBE00 0%, #99B100 100%);",
-        sprInactiveGray: "#888A89"
+        sprInactiveGray: "#888A89",
+        sprTertiary: "#CA160A",
       },
       dropShadow: {
         sm: "0 4px 4px rgba(18, 20, 20, 0.05)",
