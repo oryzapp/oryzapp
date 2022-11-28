@@ -10,18 +10,18 @@
   }
 
   .scrollbar::-webkit-scrollbar-track {
-    /* border-radius: 100vh; */
-    /* background: #ffcf5f; */
+    border-radius: 100vh;
+    background: transparent;
   }
 
   .scrollbar::-webkit-scrollbar-thumb {
-    background: #afbe00;
+    background:  rgba(18, 20, 20, 0.1);
     border-radius: 100vh;
     /* border: 3px solid #6c742c; */
   }
 
   .scrollbar::-webkit-scrollbar-thumb:hover {
-    background: rgba(18, 20, 20, 0.5);
+    background:#afbe00 ;
   }
 
   .scrollbar::-webkit-scrollbar-corner {
