@@ -1,9 +1,61 @@
+import { writeBatch, collection, deleteDoc, doc, onSnapshot, query, where } from 'firebase/firestore';
 import React from 'react'
 import ReactDom from 'react-dom'
 import closeIcon from "../assets/close.svg"
-import { deleteRiceAccession } from '../util'
+import db from "../firebase-config";
+import { useEffect } from 'react';
+import { useState } from 'react';
+
+
 
 const ModalDelete = ({ open, closeModal, modalId, delId }) => {
+
+    const [dryList, setDryList] = useState([])
+
+    useEffect(() => {
+
+        const collectionRef = collection(db, "SPR/Rice_Accessions/Rice_List/Dry_Season/Raw_Rice_List/");
+
+        const dryList = query(collectionRef, where("accessionId", "==", modalId))
+        const unsub = onSnapshot(dryList, (snapshot) => {
+            setDryList(
+                snapshot.docs.map((doc) => ({ ...doc.data(), id: doc.id }))
+            );
+        });
+    }, [modalId])
+
+
+    console.log('I am dryList' + dryList);
+    dryList.map((item) => {
+        console.log(item.id);
+
+    })
+
+    const deleteRiceAccession = async (accessionId, id) => {
+        try {
+            console.log('Iam' + accessionId);
+            const docRef = doc(db, "SPR/Rice_Accessions/Accession_IDs", id);
+
+            const dryBatch = writeBatch(db)
+
+
+
+            dryList.forEach((rice) => {
+                const dryDocRef = doc(db, "SPR/Rice_Accessions/Rice_List/Dry_Season/Raw_Rice_List", rice.id)
+                dryBatch.delete(dryDocRef)
+            })
+
+            await dryBatch.commit()
+            await deleteDoc(docRef);
+            return alert('Accession Deleted')
+
+
+        } catch (error) {
+            console.log(error);
+        }
+
+    };
+
     if (!open) return null
 
     return ReactDom.createPortal(
@@ -21,7 +73,7 @@ const ModalDelete = ({ open, closeModal, modalId, delId }) => {
                     <div className='flex gap-3 mt-6'>
                         <button onClick={closeModal} className='rounded-full   bg-sprGray40 p-2  text-white hover:bg-sprGray10 hover:text-sprGray50'>Cancel</button>
                         <button onClick={() => {
-                            deleteRiceAccession(delId);
+                            deleteRiceAccession(modalId, delId);
                             closeModal()
 
                         }} className='rounded-full  bg-sprTertiary p-2 text-white hover:bg-sprTertiary/50 hover:text-sprTertiary'>Delete</button>

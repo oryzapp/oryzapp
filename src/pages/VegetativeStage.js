@@ -32,7 +32,7 @@ export default function VegetativeStage({ season }) {
 
 
     <>
-      <div className=" flex text-sprGray60 relative">
+      <div className=" flex  text-sprGray60 relative">
         {/* ffffff */}
         <table className=" text-sm">
           <thead className="text-xs font-medium uppercase text-center bg-sprPrimaryOffLight">Accession </thead>

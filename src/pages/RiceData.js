@@ -565,7 +565,7 @@ export default function RiceData() {
 
           <div className=" h-full w-full flex  flex-auto overflow-auto scrollbar">
 
-            <div className="  flex h-96 divide-y divide-slate-400 w-96">
+            <div className="  flex flex-auto max-w-0 max-h-0 divide-y divide-slate-400 ">
               {getPage()}
 
 
