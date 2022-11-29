@@ -2,7 +2,6 @@ import { collection, collectionGroup, onSnapshot, orderBy, query } from "firebas
 import { useEffect, useState } from "react";
 import db from "../firebase-config";
 import { ReactComponent as EditIcon } from '../assets/edit-icon.svg'
-import { ReactComponent as DelIcon } from '../assets/delete-icon.svg'
 
 
 export default function VegetativeStage({ season }) {
@@ -379,10 +378,10 @@ export default function VegetativeStage({ season }) {
             <p className="opacity-0">Action</p>
           </thead>
           <tbody className=" flex bg-white   ">
-            <div className="hidden sm:block flex-auto divide-y divide-slate-300 ">
-              <div className="px-3 py-3 font-medium text-sprPrimary opacity-0">Action</div>
+            <div className="hidden sm:block flex-auto divide-y divide-slate-300  ">
+              <div className=" py-3 font-medium text-sprPrimary opacity-0">Action</div>
               {riceData.map((rice) => (
-                <div className=" px-1 py-2 flex gap-1 ">
+                <div className=" px-1 py-2 flex gap-1 border-l border-slate-400">
                   <button
                     className=" p-1 mb-1   bg-gradient-to-b from-sprPrimary to-sprPrimaryDarkest hover:bg-gradient-to-t hover:from-sprPrimaryLight hover:to-sprPrimaryLight   rounded-full   shadow-slate-300 "
                     onClick={() => {
@@ -391,14 +390,7 @@ export default function VegetativeStage({ season }) {
                   >
                     <EditIcon className="h-4" />
                   </button>
-                  <button
-                    className=" p-1 mb-1   bg-gradient-to-b from-sprPrimary to-sprPrimaryDarkest hover:bg-gradient-to-t hover:from-sprPrimaryLight hover:to-sprPrimaryLight   rounded-full   shadow-slate-300 "
-                    onClick={() => {
-                      console.log(rice.id);
-                    }}
-                  >
-                    <DelIcon className="h-4" />
-                  </button>
+
                 </div>
               ))}
             </div>

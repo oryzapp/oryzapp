@@ -533,23 +533,6 @@ export default function RiceData() {
 
           </div>
 
-          <div className="relative py-1 bg-white rounded-full drop-shadow-sm">
-            Filter
-            <div className=" hidden absolute w-28 h-auto rounded-sm p-2 z-50  bg-white">
-              <label className="block" htmlFor="">
-                <input type="checkbox" name="Season" id="Season" />
-                Season
-              </label>
-              <label className="block" htmlFor="">
-                <input type="checkbox" name="Season" id="Season" />
-                Year
-              </label>
-              <label className="block" htmlFor="">
-                <input type="checkbox" name="Season" id="Season" />
-                Variety
-              </label>
-            </div>
-          </div>
 
 
 
