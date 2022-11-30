@@ -47,27 +47,27 @@ export default function Dash() {
                 {/* No Table */}
                 <section className={showTable === false ? "h-full flex  items-center gap-3 p-6 sm:p-10 lg:p-20" : 'hidden'}>
 
-                    <div className='bg-white flex-auto flex flex-col justify-center items-center drop-shadow-sm rounded-lg p-2 md:p-5' onClick={() => {
+                    <div className='group hover:bg-sprPrimaryOffLight active:bg-sprPrimary bg-white flex-auto flex flex-col justify-center items-center drop-shadow-sm rounded-lg p-2 md:p-5' onClick={() => {
                         setShowTable(true)
                         setClassification('Aromatic')
                     }}>
-                        <AromIcon className='h-20' stroke='#AFBE00' />
-                        <h1 className='text-lg font-medium text-sprPrimaryDark'>Aromatic</h1>
+                        <AromIcon className='h-20 group-hover:stroke-white ' stroke='#AFBE00' />
+                        <h1 className='text-lg font-medium text-sprPrimaryDark group-hover:text-white '>Aromatic</h1>
                     </div>
-                    <div className='text-lg font-medium text-sprPrimaryDark bg-white flex-auto flex flex-col justify-center items-center drop-shadow-sm rounded-lg p-2 md:p-5' onClick={() => {
+                    <div className=' group hover:bg-sprPrimaryOffLight active:bg-sprPrimary  bg-white flex-auto flex flex-col justify-center items-center drop-shadow-sm rounded-lg p-2 md:p-5' onClick={() => {
                         setShowTable(true)
                         setClassification('Pigmented')
                     }}>
-                        <PigIcon className='h-20' stroke='#AFBE00' />
-                        <h1>Pigmented</h1>
+                        <PigIcon className='h-20 group-hover:stroke-white' stroke='#AFBE00' />
+                        <h1 className='text-lg font-medium text-sprPrimaryDark  group-hover:text-white'>Pigmented</h1>
                     </div>
-                    <div className='text-lg font-medium text-sprPrimaryDark bg-white flex-auto flex flex-col justify-center items-center drop-shadow-sm rounded-lg p-2 md:p-5' onClick={() => {
+                    <div className='group hover:bg-sprPrimaryOffLight active:bg-sprPrimary text-lg font-medium text-sprPrimaryDark bg-white flex-auto flex flex-col justify-center items-center drop-shadow-sm rounded-lg p-2 md:p-5' onClick={() => {
                         setShowTable(true)
 
                         setClassification('Glutinous')
                     }}>
-                        <GlutIcon className='h-20' stroke='#AFBE00' />
-                        <h1>Glutinous</h1>
+                        <GlutIcon className='h-20 group-hover:stroke-white' stroke='#AFBE00' />
+                        <h1 className='text-lg font-medium text-sprPrimaryDark  group-hover:text-white'>Glutinous</h1>
                     </div>
 
                 </section>
@@ -75,27 +75,28 @@ export default function Dash() {
                 <section className={showTable === true ? "h-full flex flex-col items-center gap-3 p-6 pt-2 " : 'hidden'}>
 
                     <div className='flex w-full gap-3'>
-                        <div className='bg-white flex-auto flex flex-col justify-center items-center drop-shadow-sm rounded-lg p-2 ' onClick={() => {
+                    <div className={classification === 'Aromatic'? "group hover:bg-sprPrimaryOffLight active:bg-sprPrimary bg-sprPrimary  flex-auto flex flex-col justify-center items-center drop-shadow-sm rounded-lg p-2":"group hover:bg-sprPrimaryOffLight active:bg-sprPrimary bg-white  flex-auto flex flex-col justify-center items-center drop-shadow-sm rounded-lg p-2"}  onClick={() => {
                             setShowTable(true)
                             setClassification('Aromatic')
                         }}>
-                            <AromIcon className='h-10 ' stroke='#AFBE00' />
-                            <h1 className='text-sm md:text-lg font-medium text-sprPrimaryDark'>Aromatic</h1>
+                            <AromIcon className='h-10 group-hover:stroke-white' stroke={classification==='Aromatic'?'white':'#AFBE00'} />
+                            <h1 className={classification === 'Aromatic' ? "group-hover:text-white text-sm md:text-lg font-medium text-white":'group-hover:text-white text-sm md:text-lg font-medium text-sprPrimaryDark'}>Aromatic</h1>
                         </div>
-                        <div className=' bg-white flex-auto flex flex-col justify-center items-center drop-shadow-sm rounded-lg p-2 ' onClick={() => {
+                        <div className={classification === 'Pigmented'? "group hover:bg-sprPrimaryOffLight active:bg-sprPrimary bg-sprPrimary  flex-auto flex flex-col justify-center items-center drop-shadow-sm rounded-lg p-2":"group hover:bg-sprPrimaryOffLight active:bg-sprPrimary bg-white  flex-auto flex flex-col justify-center items-center drop-shadow-sm rounded-lg p-2"}  onClick={() => {
                             setShowTable(true)
                             setClassification('Pigmented')
                         }}>
-                            <PigIcon className='h-10' stroke='#AFBE00' />
-                            <h1 className='text-md md:text-lg font-medium text-sprPrimaryDark'>Pigmented</h1>
+                            <PigIcon className='h-10 group-hover:stroke-white' stroke={classification==='Pigmented'?'white':'#AFBE00'} />
+                            <h1 className={classification === 'Pigmented' ? "group-hover:text-white text-sm md:text-lg font-medium text-white":'group-hover:text-white text-sm md:text-lg font-medium text-sprPrimaryDark'}>Pigmented</h1>
                         </div>
-                        <div className=' bg-white flex-auto flex flex-col justify-center items-center drop-shadow-sm rounded-lg p-2 ' onClick={() => {
+                    <div className={classification === 'Glutinous'? "group hover:bg-sprPrimaryOffLight active:bg-sprPrimary bg-sprPrimary  flex-auto flex flex-col justify-center items-center drop-shadow-sm rounded-lg p-2":"group hover:bg-sprPrimaryOffLight active:bg-sprPrimary bg-white  flex-auto flex flex-col justify-center items-center drop-shadow-sm rounded-lg p-2"}  onClick={() => {
+                      
                             setShowTable(true)
 
                             setClassification('Glutinous')
                         }}>
-                            <GlutIcon className='h-10' stroke='#AFBE00' />
-                            <h1 className='text-md md:text-lg font-medium text-sprPrimaryDark'>Glutinous</h1>
+                            <GlutIcon className='h-10 group-hover:stroke-white' stroke={classification==='Glutinous'?'white':'#AFBE00'} />
+                            <h1 className={classification === 'Glutinous' ? "group-hover:text-white text-sm md:text-lg font-medium text-white":'group-hover:text-white text-sm md:text-lg font-medium text-sprPrimaryDark'}>Glutinous</h1>
                         </div>
                     </div>
                     <div className='bg-white drop-shadow-sm rounded-xl flex-auto w-full'>

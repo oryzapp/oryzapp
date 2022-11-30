@@ -314,39 +314,39 @@ export default function RiceAccessions() {
 								))}
 							</div>
 							<div className="hidden sm:flex flex-col flex-auto  divide-y divide-slate-200 relative h-full">
-								<div className="text-sprPrimary bg-white sticky top-0 px-6 py-2 text-sm font-medium">
+								<div className="text-sprPrimary bg-white sticky top-0 px-10 py-2 text-sm font-medium">
 									Accessions
 								</div>
 								{riceAccessions.map((rice) => (
-									<div className="px-6 py-2 text-md font-medium text-sprGray60 whitespace-nowrap bg-slate-50"> {rice.accessionId === "" ? "---" : rice.accessionId} </div>
+									<div className="px-10 py-2 text-md font-medium text-sprGray60 whitespace-nowrap bg-slate-50"> {rice.accessionId === "" ? "---" : rice.accessionId} </div>
 								))}
 							</div>
 							<div className="hidden sm:flex flex-col flex-auto divide-y divide-slate-200   relative h-full">
-								<div className=" text-sprPrimary px-6 py-2 bg-white sticky top-0 text-sm font-medium">
+								<div className=" text-sprPrimary px-10 py-2 bg-white sticky top-0 text-sm font-medium">
 									Classification
 								</div>
 								{riceAccessions.map((rice) => (
-									<div className="px-6 py-2 text-md font-medium text-sprGray60 whitespace-nowrap bg-slate-100"> {rice.classification === "" ? "---" : rice.classification}</div>
+									<div className="px-10 py-2 text-md font-medium text-sprGray60 whitespace-nowrap bg-slate-100"> {rice.classification === "" ? "---" : rice.classification}</div>
 								))}
 							</div>
 							<div className="hidden sm:flex flex-col flex-auto divide-y divide-slate-200 relative h-full">
-								<div className="text-sprPrimary bg-white px-6 py-2 sticky top-0 text-sm font-medium">
+								<div className="text-sprPrimary bg-white px-10 py-2 sticky top-0 text-sm font-medium">
 									Variety
 								</div>
 								{riceAccessions.map((rice) => (
-									<div className="px-6 py-2 text-md font-medium text-sprGray60 whitespace-nowrap bg-slate-50"> {rice.variety === "" ? "---" : rice.variety}</div>
+									<div className="px-10 py-2 text-md font-medium text-sprGray60 whitespace-nowrap bg-slate-50"> {rice.variety === "" ? "---" : rice.variety}</div>
 								))}
 							</div>
 							<div className="hidden sm:flex flex-col flex-auto divide-y divide-slate-200 relative h-full ">
-								<div className="text-sprPrimary bg-white  px-6 py-2 sticky top-0 text-sm font-medium">
+								<div className="text-sprPrimary bg-white  px-10 py-2 sticky top-0 text-sm font-medium">
 									Source
 								</div>
 								{riceAccessions.map((rice) => (
-									<div className="px-6 py-2 text-md font-medium text-sprGray60 whitespace-nowrap bg-slate-100" > {rice.source === "" ? "---" : rice.source}</div>
+									<div className="px-10 py-2 text-md font-medium text-sprGray60 whitespace-nowrap bg-slate-100" > {rice.source === "" ? "---" : rice.source}</div>
 								))}
 							</div>
 							<div className="hidden sm:flex flex-col flex-auto divide-y sm:divide-y bg-white divide-white h-full sticky right-0">
-								<div className=" text-sprPrimary bg-white  px-6 py-2 sticky top-0 text-sm font-medium">
+								<div className=" text-sprPrimary bg-white  px-10 py-2 sticky top-0 text-sm font-medium">
 									<h1 className="opacity-0">
 										Action
 									</h1>
