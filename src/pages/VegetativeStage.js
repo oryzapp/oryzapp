@@ -2,6 +2,7 @@ import { collection, collectionGroup, onSnapshot, orderBy, query } from "firebas
 import { useEffect, useState } from "react";
 import db from "../firebase-config";
 import { ReactComponent as EditIcon } from '../assets/edit-icon.svg'
+import ModalVegetativeUpdate from "../components/ModalVegetativeUpdate";
 
 
 export default function VegetativeStage({ season }) {
@@ -27,13 +28,34 @@ export default function VegetativeStage({ season }) {
     });
 
   }, [season]);
+
+	const [isModalOpen, setIsModalOpen] = useState(false)
+	const [modalId, setModalId] = useState('')
+	const [modalYear, setModalYear] = useState('')
+	const [modalSeason, setModalSeason] = useState('')
+
+	// get Vs Data
+	const [vsRiceData, setVsRiceData] = useState('')
+	const getRiceData=(id)=>{
+		const find = riceData.find((rice)=> rice.tagId === id )
+		console.log(find);
+		setVsRiceData(find)
+
+		console.log(vsRiceData);
+	}
+	console.log('I am VS RIce Data inside vegetative stage');
+	console.log(vsRiceData.tagId);
+	
+
+	
+
+
   return (
-
-
     <>
       <div className=" flex  text-sprGray60 relative">
         {/* ffffff */}
         <table className=" text-sm">
+					
           <thead className="text-xs font-medium uppercase text-center bg-sprPrimaryOffLight">Accession </thead>
           <tbody className=" flex ">
             <div className="hidden sm:block flex-auto divide-y divide-slate-300 ">
@@ -385,7 +407,12 @@ export default function VegetativeStage({ season }) {
                   <button
                     className=" p-1 mb-1   bg-gradient-to-b from-sprPrimary to-sprPrimaryDarkest hover:bg-gradient-to-t hover:from-sprPrimaryLight hover:to-sprPrimaryLight   rounded-full   shadow-slate-300 "
                     onClick={() => {
-                      console.log(rice.id);
+											setIsModalOpen(true)
+											setModalId(rice.id)
+											setModalYear(rice.riceYear)
+											setModalSeason(rice.riceSeason)
+											getRiceData(rice.id)
+
                     }}
                   >
                     <EditIcon className="h-4" />
@@ -396,6 +423,8 @@ export default function VegetativeStage({ season }) {
             </div>
           </tbody>
         </table>
+
+				<ModalVegetativeUpdate open={isModalOpen} closeModal={()=>setIsModalOpen(false)}  modalId={modalId} modalYear={modalYear} modalSeason={modalSeason} vsRiceData= {vsRiceData}></ModalVegetativeUpdate>
 
       </div>
 
