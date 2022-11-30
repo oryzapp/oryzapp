@@ -12,6 +12,7 @@ import { ReactComponent as ScanCodeIcon } from '../assets/qr-code-icon.svg'
 import { ReactComponent as ImageIcon } from '../assets/image-icon.svg'
 import ModalViewAccessionOnly from "../components/ModalViewAccessionOnly";
 import { useRef } from "react";
+import ModalAccessionsInfo from "../components/ModalAccessionsInfo";
 export default function ScanCode() {
 
 
@@ -95,8 +96,8 @@ export default function ScanCode() {
   // const [result, setResult] = useState('No Result')
 
   // const scanner = new QrScanner(scanRef, result => setResult(result));
-
-
+console.log('I am currentData');
+console.log(currentData);
 
   return (
     <div className='bg-slate-50 rounded-t-xl  sm:rounded-xl h-full w-full flex flex-col  p-2'>
@@ -176,9 +177,8 @@ export default function ScanCode() {
 
 
 
-      <ModalViewAccessionOnly open={isModalOpen} closeModal={() => { setIsModalOpen(false) }} >
+      <ModalAccessionsInfo open={isModalOpen} modalId={currentData.accessionId} closeModal={() => { setIsModalOpen(false) }} />
 
-      </ModalViewAccessionOnly>
     </div >
 
 
