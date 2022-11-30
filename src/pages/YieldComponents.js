@@ -3,6 +3,7 @@ import { useEffect, useState } from "react";
 import { useOutletContext } from "react-router-dom";
 import db from "../firebase-config";
 import { ReactComponent as EditIcon } from '../assets/edit-icon.svg'
+import ModalYieldUpdate from "../components/ModalYieldUpdate";
 
 
 
@@ -31,6 +32,20 @@ export default function YieldComponents({ season }) {
     });
 
   }, [season]);
+
+  // Update Yield Characteristics
+     const [isModalOpen, setIsModalOpen] = useState(false)
+     const [modalId, setModalId] = useState('')
+     const [modalYear, setModalYear] = useState('')
+     const [modalSeason, setModalSeason] = useState('')
+
+  //  Get YC Data
+  const [ycRiceData, setYcRiceData] = useState('')
+
+	const getRiceData=(id)=>{
+		const find = riceData.find((rice)=> rice.tagId === id )
+		setYcRiceData(find)
+	}
   return (
 
     <>
@@ -113,6 +128,11 @@ export default function YieldComponents({ season }) {
                     className=" p-1 mb-1   bg-gradient-to-b from-sprPrimary to-sprPrimaryDarkest hover:bg-gradient-to-t hover:from-sprPrimaryLight hover:to-sprPrimaryLight   rounded-full   shadow-slate-300 "
                     onClick={() => {
                       console.log(rice.id);
+                      setIsModalOpen(true)
+                      getRiceData(rice.id)
+                      setModalId(rice.id)
+                      setModalSeason(rice.riceSeason)
+                      setModalYear(rice.riceYear)
                     }}
                   >
                     <EditIcon className="h-4" />
@@ -123,6 +143,7 @@ export default function YieldComponents({ season }) {
             </div>
           </tbody>
         </table>
+        <ModalYieldUpdate open={isModalOpen} closeModal = {()=>{setIsModalOpen(false)}} modalId={modalId} modalYear={modalYear} modalSeason={modalSeason} ycRiceData={ycRiceData}/>
 
       </div>
 
