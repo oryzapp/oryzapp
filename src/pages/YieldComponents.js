@@ -8,6 +8,8 @@ import { ReactComponent as EditIcon } from '../assets/edit-icon.svg'
 
 
 export default function YieldComponents({ season }) {
+  // List and Filter ---------------------------->
+
   const [riceData, setRiceData] = useState([])
   useEffect(() => {
 
@@ -24,7 +26,8 @@ export default function YieldComponents({ season }) {
     }
 
     onSnapshot(riceCollectionRef, (snapshot) => {
-      setRiceData(snapshot.docs.map((doc) => doc.data()));
+      setRiceData(snapshot.docs.map((doc) => ({ ...doc.data(), id: doc.id })));
+
     });
 
   }, [season]);
@@ -33,7 +36,6 @@ export default function YieldComponents({ season }) {
     <>
 
       <div className="  flex text-sprGray60 text-sm">
-        {/* ffffff */}
         <table className="">
           <thead className=" text-xs font-medium uppercase text-center bg-sprPrimaryOffLight">Accession</thead>
           <tbody className=" flex ">
@@ -45,10 +47,6 @@ export default function YieldComponents({ season }) {
             </div>
           </tbody>
         </table>
-
-        {/* ffffff */}
-
-        {/* ffffff */}
         <table className="">
           <thead className="text-xs font-medium uppercase text-center bg-sprPrimaryLight">Yield Components</thead>
           <tbody className=" flex ">
@@ -126,7 +124,6 @@ export default function YieldComponents({ season }) {
           </tbody>
         </table>
 
-        {/* ffffff */}
       </div>
 
     </>

@@ -14,10 +14,11 @@ console.log(modalSeason);
 console.log(modalId);
 console.log('vsRice Data inside Modal');
 console.log(vsRiceData);
+
 const [riceData,setRiceData] = useState({
-  auricleColor:'' ,
+      auricleColor:'' ,
       coleoptileAnthocyaninColouration: '',
-      collarColour: '',
+      collarColour: '', 
       culmHabit: '',
       culmKneeingAbility: '',
       culmLength: '',
@@ -58,10 +59,10 @@ const [riceData,setRiceData] = useState({
 
 })
 
+// When Edit is Clicked Pass VsData is set on riceData to show on Input.
 useEffect(()=>{
  setRiceData({
-    blanch:'bb',
-    auricleColor: vsRiceData.auricleColor ,
+        auricleColor: vsRiceData.auricleColor ,
         coleoptileAnthocyaninColouration:  vsRiceData.coleoptileAnthocyaninColouration,
         collarColour: vsRiceData.collarColour,
         culmHabit:vsRiceData.culmHabit,
@@ -109,15 +110,16 @@ console.log('Rice Data');
 console.log(riceData);
 console.log(vsRiceData.auricleColor);
   
-
+// Get Inputs
 const handleChange = (e) =>{
-  // console.log('meow');
   setRiceData({
     ...riceData,
     [e.target.name]: e.target.value,
   });
   console.log(riceData);
 }
+
+// Submit the Edit
 const submitEdit =async (e) => {
 try {
   e.preventDefault()
@@ -170,10 +172,9 @@ try {
     seedlingHeight: riceData.seedlingHeight,
     timestamp: serverTimestamp(),
   };
-
   await updateDoc(docRef, vsPayLoad);
+  closeModal()
   alert('Updated')
-
 } catch (error) {
   console.log(error);
 }
@@ -196,10 +197,11 @@ try {
                         <img className="relative" src={closeIcon} alt="" />
                     </button>
                 </div>
-        <div className="flex-auto flex flex-col bg-green-50 overflow-hidden ">
-        <h1 className="page-header text-2xl font-bold text-sprGray70 ">Update <h1 className="inline-block text-sprPrimary">{modalId}</h1></h1>
-        <div className="bg-yellow-500 flex overflow-auto scrollbar">
-        <div className="bg-yellow-900 flex-auto flex flex-col  ">
+        <div className="flex-auto flex flex-col  overflow-hidden ">
+        <h1 className="page-header text-2xl font-bold text-sprGray70 inline-block">Update Vegetative Data</h1> 
+        <p className="font-medium text-xl text-sprPrimaryDark">{modalId}</p>
+        <div className=" flex overflow-auto scrollbar">
+        <div className=" flex-auto flex flex-col  ">
         
            <div className="flex flex-col p-2 pb-0">
                     <div className="text-xs uppercase font-medium">Auricle</div>
@@ -211,8 +213,8 @@ try {
                           value={riceData.auricleColor} onChange={handleChange} /></div>
                     </div>
 
-                  </div>
-                  <div className="flex flex-col p-2 pb-0">
+            </div>
+              <div className="flex flex-col p-2 pb-0">
                     <div className="uppercase text-xs font-medium">Coleoptile</div>
                     <div className="grid grid-cols-2 gap-4 bg-white text-sm">
                       <div className="flex flex-col bg-white px-6">
@@ -486,12 +488,10 @@ try {
 
 
 
-                  </div>
-         
+                  </div>   
         </div>
-          </div> 
-        
-          <div className="bg-blue-500">
+        </div>     
+          <div className="flex gap-2 justify-end">
           <button
 									className="bg-sprGray30 rounded-full py-2 px-3 text-sm font-medium text-white shadow-slate-300"
 									onClick={() => {

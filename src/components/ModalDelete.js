@@ -158,7 +158,7 @@ const ModalDelete = ({ open, closeModal, modalId, delId }) => {
             })
             // Grain Characteristics
             gcWetList.forEach((rice) => {
-                batch.delete(doc(db, "SPR/Rice_Seasons/Seasons/Wet_Season/Stages/Grain_Characteristic/GC_Raw_Rice_Data", rice.id))
+                batch.delete(doc(db, "SPR/Rice_Seasons/Seasons/Wet_Season/Stages/Grain_Characteristics/GC_Raw_Rice_Data", rice.id))
             })
             gcDryList.forEach((rice) => {
                 batch.delete(doc(db, "SPR/Rice_Seasons/Seasons/Dry_Season/Stages/Grain_Characteristics/GC_Raw_Rice_Data", rice.id))

@@ -3,11 +3,13 @@ import { useEffect, useState } from "react";
 import { useOutletContext } from "react-router-dom";
 import db from "../firebase-config"
 import { ReactComponent as EditIcon } from '../assets/edit-icon.svg'
+import ModalReproductiveStage from "../components/ModalReproductiveStage";
 
 
 
 
 export default function ReproductiveStage({ season }) {
+  // List and Filter ----------------------->
   const [riceData, setRiceData] = useState([])
   useEffect(() => {
 
@@ -24,16 +26,38 @@ export default function ReproductiveStage({ season }) {
     }
 
     onSnapshot(riceCollectionRef, (snapshot) => {
-      setRiceData(snapshot.docs.map((doc) => doc.data()));
+      setRiceData(snapshot.docs.map((doc) => ({ ...doc.data(), id: doc.id })));
+
     });
 
   }, [season]);
+
+  // Update Reproductive Stage
+  const [isModalOpen, setIsModalOpen] = useState(false)
+	const [modalId, setModalId] = useState('')
+	const [modalYear, setModalYear] = useState('')
+	const [modalSeason, setModalSeason] = useState('')
+
+  // get RS Data
+  const [rsRiceData, setRsRiceData] = useState('')
+
+	const getRiceData=(id)=>{
+		const find = riceData.find((rice)=> rice.tagId === id )
+    console.log('------------------- ');
+		console.log(find);
+		setRsRiceData(find)
+		console.log(rsRiceData);
+	}
+	console.log('I am RS Rice Data inside vegetative stage');
+	console.log(rsRiceData.tagId);
+  console.log('Season');
+  console.log(modalSeason);
+
 
   return (
     <>
 
       <div className="  flex text-sm text-sprGray60">
-        {/* ffffff */}
         <table className="">
           <thead className="text-xs font-medium uppercase text-center bg-sprPrimaryOffLight">Accession</thead>
           <tbody className=" flex ">
@@ -45,17 +69,13 @@ export default function ReproductiveStage({ season }) {
             </div>
           </tbody>
         </table>
-
-        {/* ffffff */}
-
-        {/* ffffff */}
         <table className="">
           <thead className="text-xs uppercase font-medium text-center bg-sprPrimaryLight">Anther</thead>
           <tbody className=" flex ">
             <div className="hidden sm:block flex-auto divide-y divide-slate-300 ">
               <div className="px-6 py-3 font-medium text-sprPrimary">Length</div>
               {riceData.map((rice) => (
-                <div className="px-6 py-3 bg-slate-50"> {rice.antherLength === "" ? "---" : rice.antherLength}</div>
+                <div className="px-6 py-3 bg-slate-50 whitespace-nowrap"> {rice.antherLength === "" ? "---" : rice.antherLength}</div>
               ))}
             </div>
             <div className="hidden sm:block flex-auto divide-y divide-slate-300 ">
@@ -66,9 +86,6 @@ export default function ReproductiveStage({ season }) {
             </div>
           </tbody>
         </table>
-
-        {/* ffffff */}
-        {/* ffffff */}
         <table className="">
           <thead className="text-xs uppercase font-medium text-center bg-sprPrimaryOffLight">Awns</thead>
           <tbody className=" flex ">
@@ -104,9 +121,6 @@ export default function ReproductiveStage({ season }) {
             </div>
           </tbody>
         </table>
-
-        {/* ffffff */}
-        {/* ffffff */}
         <table className="">
           <thead className="text-xs uppercase font-medium text-center bg-sprPrimaryLight">Lemma</thead>
           <tbody className=" flex ">
@@ -124,9 +138,6 @@ export default function ReproductiveStage({ season }) {
             </div>
           </tbody>
         </table>
-
-        {/* ffffff */}
-        {/* ffffff */}
         <table className="">
           <thead className="whitespace-nowrap text-xs uppercase font-medium text-center bg-sprPrimaryOffLight">Lemma and Palea</thead>
           <tbody className=" flex ">
@@ -138,9 +149,6 @@ export default function ReproductiveStage({ season }) {
             </div>
           </tbody>
         </table>
-
-        {/* ffffff */}
-        {/* ffffff */}
         <table className="">
           <thead className="text-xs uppercase font-medium text-center bg-sprPrimaryLight">Male Sterility</thead>
           <tbody className=" flex ">
@@ -152,9 +160,6 @@ export default function ReproductiveStage({ season }) {
             </div>
           </tbody>
         </table>
-
-        {/* ffffff */}
-        {/* ffffff */}
         <table className="">
           <thead className="text-xs uppercase font-medium text-center bg-sprPrimaryOffLight">Stigma</thead>
           <tbody className=" flex ">
@@ -166,9 +171,6 @@ export default function ReproductiveStage({ season }) {
             </div>
           </tbody>
         </table>
-
-        {/* ffffff */}
-        {/* ffffff */}
         <table className="">
           <thead className="text-xs uppercase font-medium text-center bg-sprPrimaryLight">Panicle</thead>
           <tbody className=" flex ">
@@ -253,7 +255,11 @@ export default function ReproductiveStage({ season }) {
                   <button
                     className=" p-1 mb-1   bg-gradient-to-b from-sprPrimary to-sprPrimaryDarkest hover:bg-gradient-to-t hover:from-sprPrimaryLight hover:to-sprPrimaryLight   rounded-full   shadow-slate-300 "
                     onClick={() => {
-                      console.log(rice.id);
+                      setIsModalOpen(true)
+                      setModalId(rice.id)
+                      setModalSeason(rice.riceSeason)
+                      setModalYear(rice.riceYear)
+                      getRiceData(rice.id)
                     }}
                   >
                     <EditIcon className="h-4" />
@@ -265,7 +271,11 @@ export default function ReproductiveStage({ season }) {
           </tbody>
         </table>
 
-        {/* ffffff */}
+        <ModalReproductiveStage  open={isModalOpen} closeModal={()=>{setIsModalOpen(false)}} modalId={modalId} modalYear={modalYear} modalSeason={modalSeason} rsRiceData= {rsRiceData}>
+
+        </ModalReproductiveStage>
+
+    
       </div>
 
     </>

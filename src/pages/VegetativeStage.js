@@ -7,7 +7,7 @@ import ModalVegetativeUpdate from "../components/ModalVegetativeUpdate";
 
 export default function VegetativeStage({ season }) {
 
-
+  // List All and Filter ------------------->
   const [riceData, setRiceData] = useState([])
   useEffect(() => {
 
@@ -29,6 +29,7 @@ export default function VegetativeStage({ season }) {
 
   }, [season]);
 
+  // Update Vegetative Stage
 	const [isModalOpen, setIsModalOpen] = useState(false)
 	const [modalId, setModalId] = useState('')
 	const [modalYear, setModalYear] = useState('')
@@ -40,20 +41,14 @@ export default function VegetativeStage({ season }) {
 		const find = riceData.find((rice)=> rice.tagId === id )
 		console.log(find);
 		setVsRiceData(find)
-
 		console.log(vsRiceData);
 	}
 	console.log('I am VS RIce Data inside vegetative stage');
 	console.log(vsRiceData.tagId);
 	
-
-	
-
-
   return (
     <>
       <div className=" flex  text-sprGray60 relative">
-        {/* ffffff */}
         <table className=" text-sm">
 					
           <thead className="text-xs font-medium uppercase text-center bg-sprPrimaryOffLight">Accession </thead>
@@ -66,9 +61,6 @@ export default function VegetativeStage({ season }) {
             </div>
           </tbody>
         </table>
-
-        {/* ffffff */}
-        {/* ffffff */}
         <table className=" text-sm">
           <thead className=" text-xs font-medium uppercase text-center bg-sprPrimaryLight">Auricle</thead>
           <tbody className=" flex ">
@@ -80,9 +72,6 @@ export default function VegetativeStage({ season }) {
             </div>
           </tbody>
         </table>
-
-        {/* ffffff */}
-        {/* ffffff */}
         <table className=" text-sm">
           <thead className="text-xs font-medium uppercase text-center bg-sprPrimaryOffLight">Coleoptile</thead>
           <tbody className=" flex ">
@@ -94,9 +83,6 @@ export default function VegetativeStage({ season }) {
             </div>
           </tbody>
         </table>
-
-        {/* ffffff */}
-        {/* ffffff */}
         <table className=" text-sm">
           <thead className="text-xs font-medium uppercase text-center bg-sprPrimaryLight">Collar</thead>
           <tbody className=" flex ">
@@ -108,9 +94,6 @@ export default function VegetativeStage({ season }) {
             </div>
           </tbody>
         </table>
-
-        {/* ffffff */}
-        {/* ffffff */}
         <table className=" text-sm">
           <thead className="text-xs font-medium uppercase text-center bg-sprPrimaryOffLight">Culm</thead>
           <tbody className=" flex ">
@@ -182,9 +165,6 @@ export default function VegetativeStage({ season }) {
             </div>
           </tbody>
         </table>
-
-        {/* ffffff */}
-        {/* ffffff */}
         <table className=" text-sm">
           <thead className="text-xs font-medium uppercase text-center bg-sprPrimaryLight">Flag Leaf</thead>
           <tbody className=" flex ">
@@ -214,9 +194,6 @@ export default function VegetativeStage({ season }) {
             </div>
           </tbody>
         </table>
-
-        {/* ffffff */}
-        {/* ffffff */}
         <table className=" text-sm">
           <thead className="text-xs font-medium uppercase text-center bg-sprPrimaryOffLight">Leaf</thead>
           <tbody className=" flex ">
@@ -234,9 +211,6 @@ export default function VegetativeStage({ season }) {
             </div>
           </tbody>
         </table>
-
-        {/* ffffff */}
-        {/* ffffff */}
         <table className=" text-sm">
           <thead className="text-xs font-medium uppercase text-center bg-sprPrimaryLight">Leaf Blade</thead>
           <tbody className=" flex ">
@@ -290,9 +264,6 @@ export default function VegetativeStage({ season }) {
             </div>
           </tbody>
         </table>
-
-        {/* ffffff */}
-        {/* ffffff */}
         <table className=" text-sm">
           <thead className="text-xs font-medium uppercase text-center bg-sprPrimaryOffLight">Leaf Sheath</thead>
           <tbody className=" flex ">
@@ -310,9 +281,6 @@ export default function VegetativeStage({ season }) {
             </div>
           </tbody>
         </table>
-
-        {/* ffffff */}
-        {/* ffffff */}
         <table className=" text-sm">
           <thead className="text-xs font-medium uppercase text-center bg-sprPrimaryLight">Ligule</thead>
           <tbody className=" flex ">
@@ -366,9 +334,6 @@ export default function VegetativeStage({ season }) {
             </div>
           </tbody>
         </table>
-
-        {/* ffffff */}
-        {/* ffffff */}
         <table className=" text-sm">
           <thead className="text-xs whitespace-nowrap font-medium uppercase text-center bg-sprPrimaryOffLight">Rhizome and Stalon</thead>
           <tbody className=" flex ">
@@ -380,9 +345,6 @@ export default function VegetativeStage({ season }) {
             </div>
           </tbody>
         </table>
-
-        {/* ffffff */}
-        {/* ffffff */}
         <table className=" text-sm">
           <thead className="text-xs font-medium uppercase text-center bg-sprPrimaryLight">Seedling</thead>
           <tbody className=" flex ">

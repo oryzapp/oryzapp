@@ -2,6 +2,7 @@ import { collection, collectionGroup, onSnapshot, orderBy, query } from "firebas
 import { useEffect, useState } from "react";
 import { useOutletContext } from "react-router-dom";
 import { ReactComponent as EditIcon } from '../assets/edit-icon.svg'
+import ModalGrainUpdate from "../components/ModalGrainUpdate";
 
 import db from "../firebase-config";
 
@@ -9,6 +10,7 @@ import db from "../firebase-config";
 
 
 export default function GrainCharacteristics({ season }) {
+  // List and Filter ---------------------------->
   const [riceData, setRiceData] = useState([])
   useEffect(() => {
 
@@ -25,15 +27,29 @@ export default function GrainCharacteristics({ season }) {
     }
 
     onSnapshot(riceCollectionRef, (snapshot) => {
-      setRiceData(snapshot.docs.map((doc) => doc.data()));
+      setRiceData(snapshot.docs.map((doc) => ({ ...doc.data(), id: doc.id })));
     });
 
   }, [season]);
 
+   // Update Grain Characteristics
+   const [isModalOpen, setIsModalOpen] = useState(false)
+   const [modalId, setModalId] = useState('')
+   const [modalYear, setModalYear] = useState('')
+   const [modalSeason, setModalSeason] = useState('')
+
+  //  Get GC Data
+  const [gcRiceData, setGcRiceData] = useState('')
+
+	const getRiceData=(id)=>{
+		const find = riceData.find((rice)=> rice.tagId === id )
+		setGcRiceData(find)
+	}
+  console.log(gcRiceData);
+
   return (
     <>
       <div className="  flex text-sm text-sprGray60">
-        {/* ffffff */}
         <table className="">
           <thead className="text-xs uppercase font-medium text-center bg-sprPrimaryOffLight">Accession</thead>
           <tbody className=" flex ">
@@ -45,10 +61,6 @@ export default function GrainCharacteristics({ season }) {
             </div>
           </tbody>
         </table>
-
-        {/* ffffff */}
-
-        {/* ffffff */}
         <table className="">
           <thead className="text-xs uppercase font-medium text-center bg-sprPrimaryLight">Awn</thead>
           <tbody className=" flex ">
@@ -60,9 +72,6 @@ export default function GrainCharacteristics({ season }) {
             </div>
           </tbody>
         </table>
-
-        {/* ffffff */}
-        {/* ffffff */}
         <table className="">
           <thead className="text-xs uppercase font-medium text-center bg-sprPrimaryOffLight">Caryopsis</thead>
           <tbody className=" flex ">
@@ -92,9 +101,6 @@ export default function GrainCharacteristics({ season }) {
             </div>
           </tbody>
         </table>
-
-        {/* ffffff */}
-        {/* ffffff */}
         <table className="">
           <thead className="text-xs uppercase font-medium text-center bg-sprPrimaryLight">Endorsperm</thead>
           <tbody className=" flex ">
@@ -106,9 +112,6 @@ export default function GrainCharacteristics({ season }) {
             </div>
           </tbody>
         </table>
-
-        {/* ffffff */}
-        {/* ffffff */}
         <table className="">
           <thead className="text-xs uppercase font-medium text-center bg-sprPrimaryOffLight">Grain</thead>
           <tbody className=" flex ">
@@ -144,9 +147,6 @@ export default function GrainCharacteristics({ season }) {
             </div>
           </tbody>
         </table>
-
-        {/* ffffff */}
-        {/* ffffff */}
         <table className="">
           <thead className="text-xs uppercase font-medium text-center bg-sprPrimaryLight">Lemma</thead>
           <tbody className=" flex ">
@@ -176,9 +176,6 @@ export default function GrainCharacteristics({ season }) {
             </div>
           </tbody>
         </table>
-
-        {/* ffffff */}
-        {/* ffffff */}
         <table className="">
           <thead className="text-xs uppercase font-medium text-center bg-sprPrimaryOffLight">Lemma and Palea</thead>
           <tbody className=" flex ">
@@ -196,9 +193,6 @@ export default function GrainCharacteristics({ season }) {
             </div>
           </tbody>
         </table>
-
-        {/* ffffff */}
-        {/* ffffff */}
         <table className="">
           <thead className="text-xs uppercase font-medium text-center bg-sprPrimaryLight">Panicle</thead>
           <tbody className=" flex ">
@@ -216,9 +210,6 @@ export default function GrainCharacteristics({ season }) {
             </div>
           </tbody>
         </table>
-
-        {/* ffffff */}
-        {/* ffffff */}
         <table className="">
           <thead className="text-xs uppercase font-medium text-center bg-sprPrimaryOffLight">Spikelet</thead>
           <tbody className=" flex ">
@@ -230,9 +221,6 @@ export default function GrainCharacteristics({ season }) {
             </div>
           </tbody>
         </table>
-
-        {/* ffffff */}
-        {/* ffffff */}
         <table className="">
           <thead className="text-xs uppercase font-medium text-center bg-sprPrimaryLight">Sterile</thead>
           <tbody className=" flex ">
@@ -275,7 +263,11 @@ export default function GrainCharacteristics({ season }) {
                   <button
                     className=" p-1 mb-1   bg-gradient-to-b from-sprPrimary to-sprPrimaryDarkest hover:bg-gradient-to-t hover:from-sprPrimaryLight hover:to-sprPrimaryLight   rounded-full   shadow-slate-300 "
                     onClick={() => {
-                      console.log(rice.id);
+                      setIsModalOpen(true)
+                      setModalId(rice.id)
+                      setModalSeason(rice.riceSeason)
+                      setModalYear(rice.riceYear)
+                      getRiceData(rice.id)
                     }}
                   >
                     <EditIcon className="h-4" />
@@ -287,7 +279,7 @@ export default function GrainCharacteristics({ season }) {
           </tbody>
         </table>
 
-        {/* ffffff */}
+        <ModalGrainUpdate open={isModalOpen} closeModal={()=>{setIsModalOpen(false)}} modalId={modalId}  modalYear={modalYear} modalSeason={modalSeason} gcRiceData={gcRiceData}/>
       </div>
 
     </>
