@@ -494,7 +494,7 @@ export default function RiceData() {
 
   return (
     <>
-      <div className=' w-full flex flex-col rounded-xl bg-white opacity-90 p-2'>
+      <div className=' w-full hidden sm:flex flex-col rounded-xl  bg-white opacity-90 p-2'>
         {/* Header */}
         <header className="page-header   flex items-center">
           <button className=" w-8 h-8 p-2 rounded-full  bg-gradient-to-b from-sprPrimary to-sprPrimaryDarkest hover:bg-gradient-to-t hover:from-sprPrimaryLight hover:to-sprPrimaryLight drop-shadow-md" onClick={() => setIsModalOpen(true)}>

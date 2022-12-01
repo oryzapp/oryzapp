@@ -3,6 +3,7 @@ import { ReactComponent as AromIcon } from '../assets/aromatic-icon.svg'
 import { ReactComponent as PigIcon } from '../assets/pigmented-icon.svg'
 import { ReactComponent as GlutIcon } from '../assets/glutinous-icon.svg'
 import { ReactComponent as SearchIcon } from '../assets/search-icon.svg'
+import ModalSearch from '../components/ModalSearch'
 
 export default function Dash() {
     // const [page, setPage] = useState('dashboard');
@@ -19,6 +20,9 @@ export default function Dash() {
     const [showTable, setShowTable] = useState(false)
     const [classification, setClassification] = useState('')
 
+    // Search Modal
+    const [isSearchModalOpen, setIsSearchModalOpen] = useState(false)
+
 
     return (
         <>
@@ -32,7 +36,9 @@ export default function Dash() {
 
                 {/* Main */}
                 <div className='flex justify-center pb-4'>
-                    <div className="relative drop-shadow-md hidden sm:flex w-1/2 ">
+                    <div className="relative drop-shadow-md hidden sm:flex w-1/2 " onClick={()=>{
+                        setIsSearchModalOpen(true)
+                    }}>
                         <input
                             className="  w-full pl-2 py-2 text-sm placeholder:text-sprPrimary/50 text-sprPrimary focus:outline-none focus:border-none  rounded-full "
                             type="text"
@@ -106,6 +112,7 @@ export default function Dash() {
                 </section>
 
             </div >
+            <ModalSearch open={isSearchModalOpen} closeModal={()=>{setIsSearchModalOpen(false)}}/>
         </>
     )
 }

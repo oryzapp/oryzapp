@@ -177,7 +177,7 @@ console.log(currentData);
 
 
 
-      <ModalAccessionsInfo open={isModalOpen} modalId={currentData.accessionId} closeModal={() => { setIsModalOpen(false) }} />
+      <ModalAccessionsInfo open={isModalOpen} modalId={currentData.accessionIdgit} closeModal={() => { setIsModalOpen(false) }} />
 
     </div >
 
