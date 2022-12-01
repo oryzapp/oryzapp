@@ -6,6 +6,7 @@ import { ReactComponent as SearchIcon } from "../assets/search-icon.svg"
 import closeIcon from "../assets/close.svg";
 
 import db from "../firebase-config";
+import ModalAccessionsInfo from './ModalAccessionsInfo';
 
 
 export default function ModalSearch({open, closeModal}) {
@@ -59,7 +60,12 @@ const [searched, setSearched] = useState([])
             // console.log('trial exists-----------------' + trial);
             console.log('I exist' + rice.accessionId)
             // setSearched(rice.accessionId)
-            searchList.push(rice.accessionId)
+            searchList.push({
+                accession: rice.accessionId,
+                variety: rice.variety,
+                classification: rice.classification,
+                source: rice.source
+            })
 
         }
         // match.searchIndex.includes(('Boom'))
@@ -74,6 +80,8 @@ const [searched, setSearched] = useState([])
    setSearched(searchList)
  },[searchInput])
 
+ const [isModalOpen, setIsModalOpen] = useState(false)
+ const [currentAccessionId, setCurrentAccessionId] = useState('')
     if(!open) return null;
   return (
     <div>
@@ -88,17 +96,27 @@ const [searched, setSearched] = useState([])
 
                         </div>
                     </div>
-                    <div className='bg-blue-200 flex-auto'>
+                    <div className='bg-blue-200 flex-auto overflow-auto scrollbar'>
                         {
                          searchInput !== ''?
                          <div>{searched.map((item)=>(
-                            <div>{item}</div>
+                            <div className='bg-yellow-900 m-2 rounded-md p-2' onClick={()=>{setIsModalOpen(true)
+                            setCurrentAccessionId(item.accession)}}>
+                                <div className='text-lg font-bold'>{item.accession}</div>
+                               <div className='flex flex-col -space-y-1'>
+                               <div className='text-sm font-medium text-sprGray80'>{item.variety}</div>
+                                <div className='text-sm font-medium text-sprGray80'>{item.source}</div>
+                                <div className='text-sm font-medium text-sprGray80'>{item.classification}</div>
+                               </div>
+                            </div>
                          ))}</div>:
                          <div>Nope</div>
                         }                            
                     </div>
 
                 </div>
+
+                <ModalAccessionsInfo  open={isModalOpen}  modalId={currentAccessionId} closeModal={()=>{setIsModalOpen(false)}}/>
     </div>
   )
 }
