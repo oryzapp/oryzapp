@@ -1,9 +1,13 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { ReactComponent as AromIcon } from '../assets/aromatic-icon.svg'
 import { ReactComponent as PigIcon } from '../assets/pigmented-icon.svg'
 import { ReactComponent as GlutIcon } from '../assets/glutinous-icon.svg'
 import { ReactComponent as SearchIcon } from '../assets/search-icon.svg'
 import ModalSearch from '../components/ModalSearch'
+import { collection, onSnapshot } from 'firebase/firestore'
+import db from "../firebase-config";
+import ModalAccessionsInfo from '../components/ModalAccessionsInfo'
+
 
 export default function Dash() {
     // const [page, setPage] = useState('dashboard');
@@ -16,6 +20,17 @@ export default function Dash() {
     //             <div>Users</div>
     //     }
     // }
+    const [riceAccessions, setRiceAccessions] = useState([])
+    // Get All Accessions
+    useEffect(()=>{
+        const collectionRef = collection(db, "SPR/Rice_Accessions/Accession_IDs");
+        const unsub = onSnapshot(collectionRef, (snapshot) => {
+			setRiceAccessions(
+				snapshot.docs.map((doc) => ({ ...doc.data(), id: doc.id }))
+			);
+		});
+		return unsub;
+    },[])
 
     const [showTable, setShowTable] = useState(false)
     const [classification, setClassification] = useState('')
@@ -23,7 +38,33 @@ export default function Dash() {
     // Search Modal
     const [isSearchModalOpen, setIsSearchModalOpen] = useState(false)
 
+    // Accessions Info
+    const [isModalOpen, setIsModalOpen] = useState(false)
 
+    // Current Id
+    const [currentId, setCurrentId] = useState('')
+
+    // Tables
+const [searched, setSearched] = useState([])
+ useEffect(()=>{
+
+    var searchList = []
+    riceAccessions.map((rice)=>{
+        const match = rice.classification
+        const trial = match.includes(classification)
+        if (trial === true){
+            searchList.push({
+                accession: rice.accessionId,
+                variety: rice.variety,
+                classification: rice.classification,
+                source: rice.source
+            })
+        }
+    })
+   setSearched(searchList)
+ },[classification])
+console.log(searched);
+var list = 0;
     return (
         <>
             <div className=' h-full w-full flex flex-col rounded-t-xl sm:rounded-xl bg-slate-50 opacity-90 p-2' onClick={() => {
@@ -105,14 +146,61 @@ export default function Dash() {
                             <h1 className={classification === 'Glutinous' ? "group-hover:text-white text-sm md:text-lg font-medium text-white":'group-hover:text-white text-sm md:text-lg font-medium text-sprPrimaryDark'}>Glutinous</h1>
                         </div>
                     </div>
-                    <div className='bg-white drop-shadow-sm rounded-xl flex-auto w-full'>
-                        {classification}
+                    <div className='bg-white drop-shadow-sm  flex-auto w-full flex  h-20  overflow-auto scrollbar'>
+                       <div className=' flex-auto flex rounded-xl  '>
+                        <section className='bg-slate-50 divide-y divide-slate-300 py-2  '>
+                            <div className=' px-4'>#</div>
+                            {searched.map((rice)=>(
+                                <div className='py-3 px-4'>{list = list + 1}</div>
+                            ))}
+                            
+                        </section>
+                        <section className='bg-slate-100 divide-y divide-slate-300 py-2 flex-auto'>
+                            <div className='px-4'>Accession</div>
+                            {searched.map((rice)=>(
+                                <div className='py-3 px-4'>{rice.accession}</div>
+                            ))}
+                        </section>
+                        <section className='bg-slate-50 divide-y divide-slate-300 py-2 flex-auto'>
+                            <div className='px-4'>Classification</div>
+                            {searched.map((rice)=>(
+                                <div className='py-3 px-4'>{rice.classification}</div>
+                            ))}
+                        </section>
+                        <section className='bg-slate-100 divide-y divide-slate-300 py-2 flex-auto'>
+                            <div className='px-4'>Source</div>
+                            {searched.map((rice)=>(
+                                <div className='py-3 px-4'>{rice.source}</div>
+                            ))}
+                        </section>
+                        <section className='bg-slate-50 divide-y divide-slate-300 py-2 flex-auto'>
+                            <div className='px-4'>Variety</div>
+                            {searched.map((rice)=>(
+                                <div className='py-3 px-4'>{rice.variety}</div>
+                            ))}
+                        </section>
+                        <section className='bg-white divide-y divide-slate-300 py-2 '>
+                            <div className='px-4 opacity-0'>Action</div>
+                            {searched.map((rice)=>(
+                                <div className='py-3 px-4'>
+                                    <button className='text-white text-sm bg-gradient-to-b from-sprPrimary to-sprPrimaryDarkest rounded-full  hover:bg-gradient-to-t hover:from-sprPrimaryLight hover:to-sprPrimaryLight h-8 w-14 sm:h-6 sm:w-12 shadow-slate-300  '
+                                    onClick={()=>{
+                                        setCurrentId(rice.accession)
+                                        setIsModalOpen(true)
+                                    }}
+                                    >view</button>
+                                </div>
+                            ))}
+                        </section>
+
+                       </div>
                     </div>
 
                 </section>
 
             </div >
             <ModalSearch open={isSearchModalOpen} closeModal={()=>{setIsSearchModalOpen(false)}}/>
+            <ModalAccessionsInfo  open={isModalOpen} modalId={currentId}  closeModal={()=>{setIsModalOpen(false)}}/>
         </>
     )
 }
