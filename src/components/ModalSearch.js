@@ -51,7 +51,7 @@ const [searched, setSearched] = useState([])
         // const index = rice.searchIndex
         // console.log(index);
         // console.log(rice.searchIndex);
-        const match = rice.searchIndex
+        const match = rice.searchIndex.toLowerCase()
         // console.log('bbbbb');
         // console.log(typeof match);
         // console.log(match);
