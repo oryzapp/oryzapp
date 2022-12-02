@@ -192,60 +192,60 @@ export default function RiceAccessions() {
 
 	// Display on Search -------------------->
 	const [riceAccessions, setRiceAccessions] = useState([]);
-	const [search, setSearch] = useState('q')
 
-	// Rice Accession With Query -------------------->
+
+	// Display All -------------------->
 	useEffect(() => {
-		const collectionRef = collection(db, "SPR/Rice_Accessions/Accession_IDs");
+		try {
+			const collectionRef = collection(db, "SPR/Rice_Accessions/Accession_IDs");
+			const unsub = onSnapshot(collectionRef, (snapshot) => {
+				setRiceAccessions(
+					snapshot.docs.map((doc) => ({ ...doc.data(), id: doc.id }))
+				);
+			});
 
-		if (searchInput === '') {
-			setSearch('q')
+			return unsub;
+		} catch (error) {
+			console.log(error);
 		}
-		if (searchInput !== '') {
-			setSearch('s')
+	}, [searchInput]);
+
+
+
+	// DB Data to Array Search for Searching---->
+	const [searched, setSearched] = useState([])
+	useEffect(() => {
+		var searchList = []
+
+		if (searchInput !== "") {
+			riceAccessions.map((rice) => {
+
+
+				const match = rice.accessionId.toLowerCase()
+				const search = match.includes(searchInput)
+				if (search === true) {
+					searchList.push({
+						accessionId: rice.accessionId,
+						classification: rice.classification,
+						variety: rice.variety,
+						source: rice.source
+					})
+
+				}
+			})
 		}
 
-		// Query or List All ---------------->
-		let q = query(collectionRef, orderBy("timestamp", "asc"));
 
-		if (search === 'q') {
-			q = query(collectionRef, orderBy("timestamp", "asc"));
-		}
-		if (search === 's') {
-			q = query(collectionRef, where('accessionId', '==', searchInput));
-		}
+		setSearched(searchList)
+	}, [searchInput])
 
-		const unsub = onSnapshot(q, (snapshot) => {
-			setRiceAccessions(
-				snapshot.docs.map((doc) => ({ ...doc.data(), id: doc.id }))
-			);
-		});
-
-		return unsub;
-	}, [search, searchInput]);
-
+	console.log(searched);
 
 
 	// Count accessions ------------------>
 	var list = 0
 
-	// Download QR
-	const downloadQR = (accessionId) => {
-
-		const canvas = document.getElementById(`qr-gen-${accessionId}`);
-		console.log(canvas);
-		const pngUrl = canvas
-			.toDataURL("image/png")
-			.replace("image/png", "image/octet-stream");
-		let downloadLink = document.createElement("a");
-		downloadLink.href = pngUrl;
-		downloadLink.download = `${accessionId}.png`;
-		document.body.appendChild(downloadLink);
-		downloadLink.click();
-		document.body.removeChild(downloadLink);
-	}
-
-	// Delete Modal
+	// Delete Modal----------------->
 	const [isDelModalOpen, setIsDelModalOpen] = useState(false)
 	const [delId, setDelId] = useState('')
 	console.log(delId);
@@ -292,7 +292,6 @@ export default function RiceAccessions() {
 				</div>
 
 				{/* Main */}
-
 				{/* List */}
 				<section className="flex-auto overflow-auto  scrollbar bg-white rounded-lg border border-slate-200 w-full">
 					{riceAccessions.length === 0 ? <div className="flex justify-center items-center pt-32 flex-col gap-8 "><EmptyIllustration /><p className="font-medium text-xl text-sprPrimaryOffLight">Plenty of space in the field </p></div> :
@@ -301,41 +300,73 @@ export default function RiceAccessions() {
 								<div className="  text-sprPrimary bg-white sticky top-0 px-6 py-2 text-sm font-medium">
 									#
 								</div>
-								{riceAccessions.map((rice) => (
-									<div className="px-6 py-2 font-medium text-sprPrimaryLight"> {list = list + 1} </div>
-								))}
+								{
+									searchInput === '' ? <>
+										{riceAccessions.map((rice) => (
+											<div className="px-6 py-2 font-medium text-sprPrimaryLight"> {list = list + 1} </div>
+										))}
+									</> :
+										<>
+											{searched.map((rice) => (
+												<div className="px-6 py-2 font-medium text-sprPrimaryLight"> {list = list + 1} </div>
+											))}
+										</>
+								}
 							</div>
 							<div className="hidden sm:flex flex-col flex-auto  divide-y divide-slate-200 relative h-full">
 								<div className="text-sprPrimary bg-white sticky top-0 px-8 py-2 text-sm font-medium">
 									Accessions
 								</div>
-								{riceAccessions.map((rice) => (
-									<div className="px-8 py-2 text-md font-medium text-sprGray60 whitespace-nowrap bg-slate-50"> {rice.accessionId === "" ? "---" : rice.accessionId} </div>
-								))}
+								{
+									searchInput === '' ? <>
+										{riceAccessions.map((rice) => (
+											<div className="px-8 py-2 text-md font-medium text-sprGray60 whitespace-nowrap bg-slate-50"> {rice.accessionId === "" ? "---" : rice.accessionId} </div>
+										))}</> : <>
+										{searched.map((rice) => (
+											<div className="px-8 py-2 text-md font-medium text-sprGray60 whitespace-nowrap bg-slate-50"> {rice.accessionId === "" ? "---" : rice.accessionId} </div>
+										))}</>
+								}
+
 							</div>
 							<div className="hidden sm:flex flex-col flex-auto divide-y divide-slate-200   relative h-full">
 								<div className=" text-sprPrimary px-8 py-2 bg-white sticky top-0 text-sm font-medium">
 									Classification
 								</div>
-								{riceAccessions.map((rice) => (
-									<div className="px-8 py-2 text-md font-medium text-sprGray60 whitespace-nowrap bg-slate-100"> {rice.classification === "" ? "---" : rice.classification}</div>
-								))}
+								{
+									searchInput === '' ?
+										<>{riceAccessions.map((rice) => (
+											<div className="px-8 py-2 text-md font-medium text-sprGray60 whitespace-nowrap bg-slate-100"> {rice.classification === "" ? "---" : rice.classification}</div>
+										))}</> :
+										<>{searched.map((rice) => (
+											<div className="px-8 py-2 text-md font-medium text-sprGray60 whitespace-nowrap bg-slate-100"> {rice.classification === "" ? "---" : rice.classification}</div>
+										))}</>
+
+								}
 							</div>
 							<div className="hidden sm:flex flex-col flex-auto divide-y divide-slate-200 relative h-full">
 								<div className="text-sprPrimary bg-white px-8 py-2 sticky top-0 text-sm font-medium">
 									Variety
 								</div>
-								{riceAccessions.map((rice) => (
-									<div className="px-8 py-2 text-md font-medium text-sprGray60 whitespace-nowrap bg-slate-50"> {rice.variety === "" ? "---" : rice.variety}</div>
-								))}
+								{searchInput === '' ? <>
+									{riceAccessions.map((rice) => (
+										<div className="px-8 py-2 text-md font-medium text-sprGray60 whitespace-nowrap bg-slate-50"> {rice.variety === "" ? "---" : rice.variety}</div>
+									))}</> : <>
+									{searched.map((rice) => (
+										<div className="px-8 py-2 text-md font-medium text-sprGray60 whitespace-nowrap bg-slate-50"> {rice.variety === "" ? "---" : rice.variety}</div>
+									))}</>}
+
 							</div>
 							<div className="hidden sm:flex flex-col flex-auto divide-y divide-slate-200 relative h-full ">
 								<div className="text-sprPrimary bg-white  px-8 py-2 sticky top-0 text-sm font-medium">
 									Source
 								</div>
-								{riceAccessions.map((rice) => (
-									<div className="px-8 py-2 text-md font-medium text-sprGray60 whitespace-nowrap bg-slate-100" > {rice.source === "" ? "---" : rice.source}</div>
-								))}
+								{searchInput === '' ? <>
+									{riceAccessions.map((rice) => (
+										<div className="px-8 py-2 text-md font-medium text-sprGray60 whitespace-nowrap bg-slate-100" > {rice.source === "" ? "---" : rice.source}</div>
+									))}</> : <>
+									{searched.map((rice) => (
+										<div className="px-8 py-2 text-md font-medium text-sprGray60 whitespace-nowrap bg-slate-100" > {rice.source === "" ? "---" : rice.source}</div>
+									))}</>}
 							</div>
 							<div className="hidden sm:flex flex-col flex-auto divide-y sm:divide-y bg-white divide-white h-full sticky right-0">
 								<div className=" text-sprPrimary bg-white  px-10 py-2 sticky top-0 text-sm font-medium">
@@ -343,7 +374,48 @@ export default function RiceAccessions() {
 										Action
 									</h1>
 								</div>
-								{riceAccessions.map((rice) => (
+								{searchInput === '' ? <>
+									{riceAccessions.map((rice) => (
+										<div className="p-6 py-2 text-md font-medium text-sprGray60 whitespace-nowrap" >
+											<div className="flex gap-2">
+												<button
+													// className=" text-white text-sm bg-gradient-to-b from-sprPrimary to-sprPrimaryDarkest hover:bg-gradient-to-t hover:from-sprPrimaryLight hover:to-sprPrimaryLight drop-shadow-md h-8 w-14 sm:h-6 sm:w-12 rounded-full  shadow-slate-300 "
+													className=" text-white text-sm bg-gradient-to-b from-sprPrimary to-sprPrimaryDarkest rounded-full  hover:bg-gradient-to-t hover:from-sprPrimaryLight hover:to-sprPrimaryLight h-8 w-14 sm:h-6 sm:w-12 shadow-slate-300 "
+													onClick={() => {
+														setIsRiceInfoModalOpen(true)
+														setModalId(rice.accessionId)
+
+													}}
+												>
+													view
+												</button>
+												<button
+													className="hidden lg:block p-1 bg-gradient-to-b from-sprPrimary to-sprPrimaryDarkest hover:bg-gradient-to-t hover:from-sprPrimaryLight hover:to-sprPrimaryLight   rounded-full   shadow-slate-300 "
+													onClick={() => {
+														editRiceAccessionID(rice.id);
+													}}
+												>
+													<div className="w-4 h-4"><img src={editIcon} alt="" /></div>
+												</button>
+												<button
+													className="hidden lg:block p-1 bg-gradient-to-b from-sprPrimary to-sprPrimaryDarkest rounded-full  hover:bg-gradient-to-t hover:from-sprPrimaryLight hover:to-sprPrimaryLight shadow-slate-300 "
+													onClick={() => {
+														// deleteRiceAccession(rice.id);
+														setDelId(rice.id)
+														setModalId(rice.accessionId)
+
+														setIsDelModalOpen(true)
+														console.log('delId');
+
+													}}
+												>
+													<div className="w-4 h-4"><img src={delIcon} alt="" /></div>
+
+												</button>
+											</div>
+										</div>
+									))}
+								</> : <>{searched.map((rice) => (
 									<div className="p-6 py-2 text-md font-medium text-sprGray60 whitespace-nowrap" >
 										<div className="flex gap-2">
 											<button
@@ -382,7 +454,7 @@ export default function RiceAccessions() {
 											</button>
 										</div>
 									</div>
-								))}
+								))}</>}
 							</div>
 
 							{/* Mobile */}
@@ -404,7 +476,7 @@ export default function RiceAccessions() {
 
 
 
-				{/* Modal */}
+				{/* Modals */}
 				{/* Add Rice Accession */}
 				<ModalAddRiceAcc open={isModalOpen} >
 					<div className="absolute right-5 z-50 ">
@@ -519,7 +591,7 @@ export default function RiceAccessions() {
 
 				</ModalAccessionsInfo>
 
-
+				{/* Delete Prompt */}
 				<ModalDelete open={isDelModalOpen} closeModal={() => { setIsDelModalOpen(false) }} modalId={modalId} delId={delId}>
 
 				</ModalDelete>

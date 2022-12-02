@@ -13,21 +13,15 @@ import { ReactComponent as FilterIcon } from '../assets/filter-icon.svg'
 
 export default function RiceList() {
 
-
-
     const [riceList, setRiceList] = useState([]);
-    const [riceSearchList, setRiceSearchList] = useState([])
     const [listOn, setListOn] = useState(false)
     const [season, setSeason] = useState('All')
     const [year, setYear] = useState('All')
     const [searchValue, setSearchValue] = useState('')
-    const [submitSearch, setSubmitSearch] = useState('')
-    const [searchStatus, setSearchStatus] = useState('No_Input')
     const [modalIsOpen, setModalIsOpen] = useState(false)
 
 
-    // For Display
-
+    // Display All
     useEffect(() => {
         try {
             var riceCollectionRef;
@@ -64,29 +58,10 @@ export default function RiceList() {
         }
     }, [season, year]);
 
-    // console.log("---------------");
-    // console.log(searchValue);
-
-    // Download QR Code
-    const downloadQR = (accessionId, riceSeason, riceYear) => {
-        console.log(accessionId);
-        const canvas = document.getElementById(`qr-gen-${accessionId}`);
-        const pngUrl = canvas
-            .toDataURL("image/png")
-            .replace("image/png", "image/octet-stream");
-        let downloadLink = document.createElement("a");
-        downloadLink.href = pngUrl;
-        downloadLink.download = `${accessionId}_${riceSeason}_Season_${riceYear}.png`;
-        document.body.appendChild(downloadLink);
-        downloadLink.click();
-        document.body.removeChild(downloadLink);
-    }
-
-    // Season Filter
+    // Season Filter--------------->
     const changeSeason = (e) => {
         setSeason(e.target.value)
     }
-    // console.log(riceList);
 
     // Year Filter ---------------> 
     const years = [2018, 2019, 2020, 2021, 2022, 2023, 2024, 2025, 2026, 2027, 2028, 2030]
@@ -94,25 +69,27 @@ export default function RiceList() {
     const changeYear = (e) => {
         setYear(e.target.value)
     }
-    // console.log(year);
 
-    // Search
+
+    // Search Bar------------>
     const searchInputChange = (e) => {
         setSearchValue(e.target.value)
     }
 
 
-    // riceList.map((rice) => {
-    //     console.log(rice.accessionId);
-    // })
-
-    // DB Data to Array
-    // Tables
+    // DB Data to Array Search for Searching---->
     const [searched, setSearched] = useState([])
     useEffect(() => {
         var searchList = []
 
+        if (searchValue === "") {
+            console.log('hello');
+            console.log('I am RiceList' + riceList);
+            console.log('I am searched' + searched);
+        }
         if (searchValue !== "") {
+            console.log('I am RiceList' + riceList);
+            console.log('I am searched' + searched);
             riceList.map((rice) => {
 
 
@@ -126,16 +103,36 @@ export default function RiceList() {
                         riceSeason: rice.riceSeason,
                         riceYear: rice.riceYear
                     })
-                    // console.log(rice.accessionId);
-                    // console.log(rice.riceSeason);
-                    // console.log(rice.riceYear);
+
                 }
             })
         }
 
 
+
         setSearched(searchList)
-    }, [searchValue])
+    }, [searchValue, searched])
+
+
+
+
+
+
+
+    // Download QR Code-------------->
+    const downloadQR = (accessionId, riceSeason, riceYear) => {
+        console.log(accessionId);
+        const canvas = document.getElementById(`qr-gen-${accessionId}`);
+        const pngUrl = canvas
+            .toDataURL("image/png")
+            .replace("image/png", "image/octet-stream");
+        let downloadLink = document.createElement("a");
+        downloadLink.href = pngUrl;
+        downloadLink.download = `${accessionId}_${riceSeason}_Season_${riceYear}.png`;
+        document.body.appendChild(downloadLink);
+        downloadLink.click();
+        document.body.removeChild(downloadLink);
+    }
 
 
     return (
