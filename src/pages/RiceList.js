@@ -30,44 +30,44 @@ export default function RiceList() {
 
     useEffect(() => {
         try {
-          var riceCollectionRef;
-       
-        if (season === 'All' && year === 'All') {
-          riceCollectionRef = collectionGroup(db, "Raw_Rice_List");
+            var riceCollectionRef;
 
-        }
-        if (season === 'All' && year !== 'All') {
-            riceCollectionRef = query(collectionGroup(db, "Raw_Rice_List"), where("riceYear", "==", year));
-        }
-        if (season === 'Wet_Season' && year === 'All') {
-            riceCollectionRef = query(collection(db, `SPR/Rice_Accessions/Rice_List/${season}/Raw_Rice_List`))
-        }
-        if (season === 'Dry_Season' && year === 'All') {
-            riceCollectionRef = query(collection(db, `SPR/Rice_Accessions/Rice_List/${season}/Raw_Rice_List`))
-        }
-        if (season === 'Dry_Season' && year !== 'All') {
-            riceCollectionRef = query(collection(db, `SPR/Rice_Accessions/Rice_List/${season}/Raw_Rice_List`), where("riceYear", "==", year))
-        }
-        if (season === 'Wet_Season' && year !== 'All') {
-            riceCollectionRef = query(collection(db, `SPR/Rice_Accessions/Rice_List/${season}/Raw_Rice_List`), where("riceYear", "==", year))
-        }
+            if (season === 'All' && year === 'All') {
+                riceCollectionRef = collectionGroup(db, "Raw_Rice_List");
 
-        const unsub = onSnapshot(riceCollectionRef, (snapshot) => {
-          setRiceList(
-              snapshot.docs.map((doc) => ({ ...doc.data(), id: doc.id }))
-          );
-      });
+            }
+            if (season === 'All' && year !== 'All') {
+                riceCollectionRef = query(collectionGroup(db, "Raw_Rice_List"), where("riceYear", "==", year));
+            }
+            if (season === 'Wet_Season' && year === 'All') {
+                riceCollectionRef = query(collection(db, `SPR/Rice_Accessions/Rice_List/${season}/Raw_Rice_List`))
+            }
+            if (season === 'Dry_Season' && year === 'All') {
+                riceCollectionRef = query(collection(db, `SPR/Rice_Accessions/Rice_List/${season}/Raw_Rice_List`))
+            }
+            if (season === 'Dry_Season' && year !== 'All') {
+                riceCollectionRef = query(collection(db, `SPR/Rice_Accessions/Rice_List/${season}/Raw_Rice_List`), where("riceYear", "==", year))
+            }
+            if (season === 'Wet_Season' && year !== 'All') {
+                riceCollectionRef = query(collection(db, `SPR/Rice_Accessions/Rice_List/${season}/Raw_Rice_List`), where("riceYear", "==", year))
+            }
 
-      return unsub;
+            const unsub = onSnapshot(riceCollectionRef, (snapshot) => {
+                setRiceList(
+                    snapshot.docs.map((doc) => ({ ...doc.data(), id: doc.id }))
+                );
+            });
+
+            return unsub;
         } catch (error) {
             console.log(error);
         }
     }, [season, year]);
 
-    console.log("---------------");
-    console.log(searchValue);
+    // console.log("---------------");
+    // console.log(searchValue);
 
-// Download QR Code
+    // Download QR Code
     const downloadQR = (accessionId, riceSeason, riceYear) => {
         console.log(accessionId);
         const canvas = document.getElementById(`qr-gen-${accessionId}`);
@@ -86,7 +86,7 @@ export default function RiceList() {
     const changeSeason = (e) => {
         setSeason(e.target.value)
     }
-    console.log(riceList);
+    // console.log(riceList);
 
     // Year Filter ---------------> 
     const years = [2018, 2019, 2020, 2021, 2022, 2023, 2024, 2025, 2026, 2027, 2028, 2030]
@@ -94,20 +94,50 @@ export default function RiceList() {
     const changeYear = (e) => {
         setYear(e.target.value)
     }
-    console.log(year);
+    // console.log(year);
 
     // Search
     const searchInputChange = (e) => {
         setSearchValue(e.target.value)
     }
-  
 
-    riceList.map((rice) => {
-        console.log(rice.accessionId);
-    })
-    
-    
-    
+
+    // riceList.map((rice) => {
+    //     console.log(rice.accessionId);
+    // })
+
+    // DB Data to Array
+    // Tables
+    const [searched, setSearched] = useState([])
+    useEffect(() => {
+        var searchList = []
+
+        if (searchValue !== "") {
+            riceList.map((rice) => {
+
+
+                const match = rice.searchIndex.toLowerCase()
+                // console.log(match);
+                const search = match.includes(searchValue)
+                // console.log(search);
+                if (search === true) {
+                    searchList.push({
+                        accessionId: rice.accessionId,
+                        riceSeason: rice.riceSeason,
+                        riceYear: rice.riceYear
+                    })
+                    // console.log(rice.accessionId);
+                    // console.log(rice.riceSeason);
+                    // console.log(rice.riceYear);
+                }
+            })
+        }
+
+
+        setSearched(searchList)
+    }, [searchValue])
+
+
     return (
         <>
             <div className='h-full w-full flex flex-col rounded-t-xl sm:rounded-xl bg-white opacity-90 p-2'>
@@ -126,26 +156,25 @@ export default function RiceList() {
                     </div>
                 </header>
                 {/* Options */}
-                <div className="flex justify-between   p-1 ">
+                <div className="flex justify-between   p-1 pb-3 ">
                     <div className=" flex  items-center gap-1 sm:gap-3   rounded-full">
                         {/* Search bar */}
                         <div className="relative ">
                             <div className="relative drop-shadow-md hidden sm:block z-20">
-                               <form action="
-                               ">
-                                 <input
-                                    className=" pl-2 py-2   text-sm placeholder:text-sprPrimary/50 text-sprPrimary focus:outline-none focus:border-none  rounded-full "
-                                    type="text"
-                                    placeholder="Find a Rice"
-                                    value={searchValue}
-                                    onChange={searchInputChange}
-                                />
-                                <button className="  h-full px-2 rounded-full absolute right-0 bg-sprPrimaryLight ">
-                                    <SearchIcon stroke="white" />
-                                </button>
-                               </form>
+                                <form>
+                                    <input
+                                        className=" pl-2 py-2   text-sm placeholder:text-sprPrimary/50 text-sprPrimary focus:outline-none focus:border-none  rounded-full "
+                                        type="text"
+                                        placeholder="Find a Rice"
+                                        value={searchValue}
+                                        onChange={searchInputChange}
+                                    />
+                                    <button className="  h-full px-2 rounded-full absolute right-0 bg-sprPrimaryLight ">
+                                        <SearchIcon stroke="white" />
+                                    </button>
+                                </form>
                             </div>
-                           
+
                         </div>
                         {/* Season Filter */}
                         <div className="drop-shadow-md flex" >
@@ -191,102 +220,198 @@ export default function RiceList() {
                 </div>
                 {/* Main */}
 
-                <section className={listOn === true ? "flex-auto overflow-auto rounded-sm scrollbar " : "hidden"}>
+                <section className={listOn === true ? "flex-auto overflow-auto  scrollbar rounded-lg border border-slate-200 " : "hidden"}>
                     {riceList.length === 0 ? <div className="flex justify-center items-center pt-32 flex-col gap-8 "><EmptyIllustration /><p className="font-medium text-xl text-sprPrimaryOffLight">Plenty of space in the field </p></div> : <div className="flex h-96">
                         <div className="hidden sm:block flex-auto divide-y bg-slate-50 divide-slate-300 h-fit">
                             <div className="px-6 py-3 text-sprPrimaryDark bg-white">Accession</div>
-                            {riceList.map((rice) => (
-                                <div className="px-6 py-3"> {rice.accessionId}</div>
-                            ))}
+                            {searchValue === '' ? <>
+                                {riceList.map((rice) => (
+                                    <div className="px-6 py-3"> {rice.accessionId}</div>
+                                ))}
+                            </> : <>
+
+                                {
+                                    searched.map((rice) => (
+                                        <div className="px-6 py-3"> {rice.accessionId}</div>
+                                    ))
+                                }
+                            </>}
                         </div>
                         <div className=" hidden sm:block flex-auto divide-y bg-slate-100 divide-slate-300 h-fit">
                             <div className="px-6 py-3 text-sprPrimaryDark bg-white">Season </div>
-                            {riceList.map((rice) => (
-                                <div className="px-6 py-3"> {rice.riceSeason}</div>
-                            ))}
+                            {searchValue === '' ? <>
+                                {riceList.map((rice) => (
+                                    <div className="px-6 py-3"> {rice.riceSeason}</div>
+                                ))}
+                            </> : <>
+
+                                {
+                                    searched.map((rice) => (
+                                        <div className="px-6 py-3"> {rice.riceSeason}</div>
+                                    ))
+                                }
+                            </>}
                         </div>
                         <div className="hidden sm:block flex-auto divide-y bg-slate-50 divide-slate-300 h-fit">
                             <div className="px-6 py-3 text-sprPrimaryDark bg-white">Year</div>
-                            {riceList.map((rice) => (
-                                <div className="px-6 py-3"> {rice.riceYear}</div>
-                            ))}
+                            {searchValue === '' ? <>
+                                {riceList.map((rice) => (
+                                    <div className="px-6 py-3"> {rice.riceYear}</div>
+                                ))}
+                            </> : <>
+
+                                {
+                                    searched.map((rice) => (
+                                        <div className="px-6 py-3"> {rice.riceYear}</div>
+                                    ))
+                                }
+                            </>}
                         </div>
                         <div className="  w-full sm:w-auto ">
                             <div className="px-6 py-3 opacity-0 hidden sm:block">Action</div>
-                            {riceList.map((rice) => (
-                                <div className="px-6 py-3 flex items-center justify-between gap-2 bg-slate-100 sm:bg-white m-1 sm:m-0 rounded-lg ">
-                                    <div className=" sm:hidden">
-                                        <h1 className="text-xl font-bold text-sprBlack opacity-80">
-                                            {rice.accessionId}
-                                        </h1>
-                                        <h6 className="text-xs font-medium text-sprGray60">
-                                            {rice.riceSeason}
-                                        </h6>
-                                        <h6 className="text-xs font-medium text-sprGray60">
-                                            {rice.riceYear}
-                                        </h6>
-                                    </div>
-                                    <button
-                                        className=" text-white text-sm bg-gradient-to-b from-sprPrimary to-sprPrimaryDark h-8 w-14 sm:h-6 sm:w-12 rounded-full shadow-lg shadow-slate-300 "
-                                        onClick={() => {
-                                            console.log("hi");
-                                        }}
-                                    >
-                                        view
-                                    </button>
+                            {searchValue === '' ? <>
+                                {riceList.map((rice) => (
+                                    <div className="px-6 py-3 flex items-center justify-between gap-2 bg-slate-100 sm:bg-white m-1 sm:m-0 rounded-lg ">
+                                        <div className=" sm:hidden">
+                                            <h1 className="text-xl font-bold text-sprBlack opacity-80">
+                                                {rice.accessionId}
+                                            </h1>
+                                            <h6 className="text-xs font-medium text-sprGray60">
+                                                {rice.riceSeason}
+                                            </h6>
+                                            <h6 className="text-xs font-medium text-sprGray60">
+                                                {rice.riceYear}
+                                            </h6>
+                                        </div>
+                                        <button
+                                            className=" text-white text-sm bg-gradient-to-b from-sprPrimary to-sprPrimaryDark h-8 w-14 sm:h-6 sm:w-12 rounded-full shadow-lg shadow-slate-300 "
+                                            onClick={() => {
+                                                console.log("hi");
+                                            }}
+                                        >
+                                            view
+                                        </button>
 
-                                </div>
-                            ))}
+                                    </div>
+                                ))}
+                            </> : <>
+
+                                {searched.map((rice) => (
+                                    <div className="px-6 py-3 flex items-center justify-between gap-2 bg-slate-100 sm:bg-white m-1 sm:m-0 rounded-lg ">
+                                        <div className=" sm:hidden">
+                                            <h1 className="text-xl font-bold text-sprBlack opacity-80">
+                                                {rice.accessionId}
+                                            </h1>
+                                            <h6 className="text-xs font-medium text-sprGray60">
+                                                {rice.riceSeason}
+                                            </h6>
+                                            <h6 className="text-xs font-medium text-sprGray60">
+                                                {rice.riceYear}
+                                            </h6>
+                                        </div>
+                                        <button
+                                            className=" text-white text-sm bg-gradient-to-b from-sprPrimary to-sprPrimaryDark h-8 w-14 sm:h-6 sm:w-12 rounded-full shadow-lg shadow-slate-300 "
+                                            onClick={() => {
+                                                console.log("hi");
+                                            }}
+                                        >
+                                            view
+                                        </button>
+
+                                    </div>
+                                ))}
+                            </>}
+
                         </div>
                     </div>}
                 </section >
 
-                <section className={listOn === false ? "flex-auto overflow-auto rounded-sm scrollbar " : "hidden"}>
-                    {riceList.length === 0 ? <div className="flex justify-center items-center flex-col gap-8 pt-32 "><EmptyIllustration /><p className="font-medium text-xl text-sprPrimaryOffLight">Plenty of space in the field </p></div> : <div className=" grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5   gap-2  grid-colors-black p-2  h-12 " >
+                <section className={listOn === false ? "flex-auto overflow-auto  scrollbar rounded-lg border border-slate-200" : "hidden"}>
+                    {riceList.length === 0 ? <div className="flex justify-center items-center flex-col gap-8 pt-32 "><EmptyIllustration /><p className="font-medium text-xl text-sprPrimaryOffLight">Plenty of space in the field </p></div> :
+                        <div className=" grid grid-cols-2 sm:grid-cols-2 md:grid-cols-4  gap-2  grid-colors-black p-2  " >
+                            {searchValue === '' ? <>
+                                {riceList.map((rice) => (
 
-                        {riceList.map((rice) => (
+                                    <div className="flex  flex-col  p-4 pt-2 pr-6 sm:pr-4   rounded-lg bg-slate-50  drop-shadow-md  hover:bg-sprPrimaryOffLight ">
 
-                            // border-solid border-2 border-sprPrimaryLight
-                            <div className="flex  flex-col  p-4 pt-2 pr-6 sm:pr-4   rounded-lg bg-slate-50  drop-shadow-md  hover:bg-sprPrimaryOffLight">
-                                {console.log('booop')}
+                                        <div className="flex  justify-center p-4">
+                                            <QRCodeCanvas id={`qr-gen-${rice.accessionId}`} className="hidden sm:block rounded-xl" value={`${rice.accessionId}_${rice.riceSeason}_Season_${rice.riceYear}`} bgColor="#FAFAFA" fgColor="rgba(18, 20, 20, 0.8)" includeMargin={true} size={150} />
+                                            <QRCodeCanvas id={`qr-gen-${rice.accessionId}`} className="sm:hidden" value={`${rice.accessionId}_${rice.riceSeason}_Season_${rice.riceYear}`} fgColor="rgba(18, 20, 20, 0.9)" size={80} />
+                                        </div>
+                                        <div className=" flex flex-auto   justify-between items-center  ">
+                                            <div className="">
+                                                <h1 className=" text-sm whitespace-nowrap sm:text-xl font-bold text-sprBlack opacity-80">
+                                                    {rice.accessionId}
+                                                </h1>
+                                                <h6 className="text-xs font-medium text-sprGray60">
+                                                    {rice.riceSeason}
+                                                </h6>
+                                                <h6 className="text-xs font-medium text-sprGray60">
+                                                    {rice.riceYear}
+                                                </h6>
+                                            </div>
+                                            <div className="flex items-center space-x-2 sm:pt-1 ">
+                                                <button onClick={() => {
+                                                    setModalIsOpen(true)
+                                                }} className=" text-white text-xs sm:text-sm bg-gradient-to-b from-sprPrimary to-sprPrimaryDark h-6 w-10 sm:h-6 sm:w-12 rounded-full drop-shadow-md ">
+                                                    view
+                                                </button>
+                                                <button
+                                                    className=" bg-sprPrimary rounded-full drop-shadow-md  " onClick={() => downloadQR(rice.accessionId, rice.riceSeason, rice.riceYear)}
+                                                >
+                                                    <div className=" w-6 sm:w-6 h-6"><img src={downloadIcon} alt="" /></div>
+                                                </button>
 
-                                <div className="flex  justify-center p-4">
-                                    <QRCodeCanvas id={`qr-gen-${rice.accessionId}`} className="hidden sm:block rounded-xl" value={`${rice.accessionId}_${rice.riceSeason}_Season_${rice.riceYear}`} bgColor="#FAFAFA" fgColor="rgba(18, 20, 20, 0.8)" includeMargin={true} size={150} />
-                                    <QRCodeCanvas id={`qr-gen-${rice.accessionId}`} className="sm:hidden" value={`${rice.accessionId}_${rice.riceSeason}_Season_${rice.riceYear}`} fgColor="rgba(18, 20, 20, 0.9)" size={80} />
-                                </div>
-                                <div className=" flex flex-auto   justify-between items-center  ">
-                                    <div className="">
-                                        <h1 className=" text-sm whitespace-nowrap sm:text-xl font-bold text-sprBlack opacity-80">
-                                            {rice.accessionId}
-                                        </h1>
-                                        <h6 className="text-xs font-medium text-sprGray60">
-                                            {rice.riceSeason}
-                                        </h6>
-                                        <h6 className="text-xs font-medium text-sprGray60">
-                                            {rice.riceYear}
-                                        </h6>
+                                            </div>
+                                        </div>
                                     </div>
-                                    <div className="flex items-center space-x-2 sm:pt-1 ">
-                                        <button onClick={() => {
-                                            setModalIsOpen(true)
-                                        }} className=" text-white text-xs sm:text-sm bg-gradient-to-b from-sprPrimary to-sprPrimaryDark h-6 w-10 sm:h-6 sm:w-12 rounded-full drop-shadow-md ">
-                                            view
-                                        </button>
-                                        <button
-                                            className=" bg-sprPrimary rounded-full drop-shadow-md  " onClick={() => downloadQR(rice.accessionId, rice.riceSeason, rice.riceYear)}
-                                        >
-                                            <div className=" w-6 sm:w-6 h-6"><img src={downloadIcon} alt="" /></div>
-                                        </button>
+                                ))}
+                            </> : <>
 
+                                {searched.map((rice) => (
+
+                                    <div className="flex  flex-col  p-4 pt-2 pr-6 sm:pr-4   rounded-lg bg-slate-50  drop-shadow-md  hover:bg-sprPrimaryOffLight ">
+
+                                        <div className="flex  justify-center p-4">
+                                            <QRCodeCanvas id={`qr-gen-${rice.accessionId}`} className="hidden sm:block rounded-xl" value={`${rice.accessionId}_${rice.riceSeason}_Season_${rice.riceYear}`} bgColor="#FAFAFA" fgColor="rgba(18, 20, 20, 0.8)" includeMargin={true} size={150} />
+                                            <QRCodeCanvas id={`qr-gen-${rice.accessionId}`} className="sm:hidden" value={`${rice.accessionId}_${rice.riceSeason}_Season_${rice.riceYear}`} fgColor="rgba(18, 20, 20, 0.9)" size={80} />
+                                        </div>
+                                        <div className=" flex flex-auto   justify-between items-center  ">
+                                            <div className="">
+                                                <h1 className=" text-sm whitespace-nowrap sm:text-xl font-bold text-sprBlack opacity-80">
+                                                    {rice.accessionId}
+                                                </h1>
+                                                <h6 className="text-xs font-medium text-sprGray60">
+                                                    {rice.riceSeason}
+                                                </h6>
+                                                <h6 className="text-xs font-medium text-sprGray60">
+                                                    {rice.riceYear}
+                                                </h6>
+                                            </div>
+                                            <div className="flex items-center space-x-2 sm:pt-1 ">
+                                                <button onClick={() => {
+                                                    setModalIsOpen(true)
+                                                }} className=" text-white text-xs sm:text-sm bg-gradient-to-b from-sprPrimary to-sprPrimaryDark h-6 w-10 sm:h-6 sm:w-12 rounded-full drop-shadow-md ">
+                                                    view
+                                                </button>
+                                                <button
+                                                    className=" bg-sprPrimary rounded-full drop-shadow-md  " onClick={() => downloadQR(rice.accessionId, rice.riceSeason, rice.riceYear)}
+                                                >
+                                                    <div className=" w-6 sm:w-6 h-6"><img src={downloadIcon} alt="" /></div>
+                                                </button>
+
+                                            </div>
+                                        </div>
                                     </div>
-                                </div>
-                            </div>
-                        ))}
-                    </div>}
+                                ))}
+                            </>}
+
+
+                        </div>}
 
                 </section>
 
-              
+
 
 
             </div>

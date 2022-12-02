@@ -73,7 +73,7 @@ export default function Sidebar({ onChange }) {
           <div className="flex items-center space-x-1   " >
             <div className="rounded-xl h-6 w-6">
               {/* <img className=" relative" src={riceAccessionsIcon} alt="" /> */}
-              <RiceLIcon className=" group-hover:stroke-sprInactiveGray" fill="none" stroke={state !== 3 ? "#888A89" : "white"} />
+              <RiceLIcon className=" group-hover:stroke-sprInactiveGray" fill="none" stroke={state !== 4 ? "#888A89" : "white"} />
             </div>
             <h3 className={state === 4 ? "nav-text hidden md:block text-white font-medium text-md" : "nav-text hidden  md:block text-sprInactiveGray font-medium text-md"}>Rice List</h3>
           </div>

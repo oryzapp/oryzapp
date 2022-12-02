@@ -49,7 +49,7 @@ export default function RiceAccessions() {
 	console.log('Modal id:' + modalId);
 
 
-	
+
 
 
 	// Handle Form Submit ------------------>
@@ -60,7 +60,7 @@ export default function RiceAccessions() {
 			e.preventDefault();
 			const collectionRef = collection(db, "SPR/Rice_Accessions/Accession_IDs");
 			const payLoad = {
-				searchIndex:`${state.accession} ${state.variety} ${state.source} ${state.classification}`,
+				searchIndex: `${state.accession} ${state.variety} ${state.source} ${state.classification}`,
 				accessionId: state.accession,
 				classification: state.classification,
 				variety: state.variety,
@@ -158,7 +158,7 @@ export default function RiceAccessions() {
 			e.preventDefault()
 			const docRef = doc(db, "SPR/Rice_Accessions/Accession_IDs", editId);
 			const payLoad = {
-				searchIndex:`${state.accession} ${state.variety} ${state.source} ${state.classification}`,
+				searchIndex: `${state.accession} ${state.variety} ${state.source} ${state.classification}`,
 				classification: state.classification,
 				variety: state.variety,
 				source: state.source,
@@ -288,7 +288,7 @@ export default function RiceAccessions() {
 						</div>
 
 					</div>
-				
+
 				</div>
 
 				{/* Main */}
@@ -296,7 +296,7 @@ export default function RiceAccessions() {
 				{/* List */}
 				<section className="flex-auto overflow-auto  scrollbar bg-white rounded-lg border border-slate-200 w-full">
 					{riceAccessions.length === 0 ? <div className="flex justify-center items-center pt-32 flex-col gap-8 "><EmptyIllustration /><p className="font-medium text-xl text-sprPrimaryOffLight">Plenty of space in the field </p></div> :
-						<div className="flex w-full max-h-0 sm:max-h-0 sm:max-w-0  relative bg-yellow-400">
+						<div className="flex w-full max-h-0 sm:max-h-0 sm:max-w-0 lg:max-w-full  relative bg-yellow-400">
 							<div className="hidden sm:flex flex-col  divide-y divide-slate-200 relative h-full ">
 								<div className="  text-sprPrimary bg-white sticky top-0 px-6 py-2 text-sm font-medium">
 									#
@@ -344,7 +344,7 @@ export default function RiceAccessions() {
 									</h1>
 								</div>
 								{riceAccessions.map((rice) => (
-									<div className="px-6 py-2 text-md font-medium text-sprGray60 whitespace-nowrap" >
+									<div className="p-6 py-2 text-md font-medium text-sprGray60 whitespace-nowrap" >
 										<div className="flex gap-2">
 											<button
 												// className=" text-white text-sm bg-gradient-to-b from-sprPrimary to-sprPrimaryDarkest hover:bg-gradient-to-t hover:from-sprPrimaryLight hover:to-sprPrimaryLight drop-shadow-md h-8 w-14 sm:h-6 sm:w-12 rounded-full  shadow-slate-300 "
@@ -402,7 +402,7 @@ export default function RiceAccessions() {
 					}
 				</section>
 
-				
+
 
 				{/* Modal */}
 				{/* Add Rice Accession */}
