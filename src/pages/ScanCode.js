@@ -37,18 +37,13 @@ export default function ScanCode() {
 
   }
 
-
-  // console.log(qrData);
-
-
-
   // Get All Rice Data
   const [riceDataExists, setRiceDataExists] = useState(false)
   const [riceList, setRiceList] = useState([]);
 
   useEffect(() => {
     try {
-      const collectionRef = collection(db, "SPR/Rice_Accessions/Accession_IDs");
+      const collectionRef = collectionGroup(db, "Raw_Rice_List");
       const unsub = onSnapshot(collectionRef, (snapshot) => {
         setRiceList(
           snapshot.docs.map((doc) => ({ ...doc.data(), id: doc.id }))
@@ -60,20 +55,20 @@ export default function ScanCode() {
     }
   }, []);
 
+  console.log(riceList);
+
 
   // Check if Rice Accession Exists --------->
   const [currentData, setCurrentData] = useState([])
 
   useEffect(() => {
 
-    const result = riceList.find(rice => rice.accessionId === qrData)
+    const result = riceList.find(rice => rice.id === qrData)
     if (result === undefined) {
-      // console.log('doesnt');
       setRiceDataExists(false)
     }
     else {
       setCurrentData(result)
-      // console.log('exisst');
       setRiceDataExists(true)
 
     }
@@ -87,15 +82,7 @@ export default function ScanCode() {
     setIsModalOpen(true)
   }
 
-  // Scanner
-  const scanRef = useRef(null)
-  // useEffect(() => {
-  //   console.log(scanRef.current);
-  // }, [])
-
-  // const [result, setResult] = useState('No Result')
-
-  // const scanner = new QrScanner(scanRef, result => setResult(result));
+  
 console.log('I am currentData');
 console.log(currentData);
 
@@ -124,7 +111,7 @@ console.log(currentData);
               </div>
             </div>
             <div className={isScan === true ? 'bg-slate-100 flex-auto rounded-b-lg' : 'hidden'}>
-              <video ref={scanRef}></video>
+              {/* <video ref={scanRef}></video> */}
             </div>
             <div className={isScan === false ? 'flex flex-col gap-5 justify-center items-center bg-slate-100 flex-auto rounded-b-lg  sprBorderDashed' : 'hidden'} >
               <ImageIcon fill="none" stroke="#CFD491" className="w-16" />
@@ -147,13 +134,14 @@ console.log(currentData);
                   {currentData?.accessionId}
                 </h1>
                 <h6 className="text-xs font-medium text-sprGray60">
-                  {currentData?.classification}
-
+                  {currentData?.riceSeason}
+                </h6>
+                <h6 className="text-xs font-medium text-sprGray60">
+                  {currentData?.riceYear}
                 </h6>
 
               </div>
               <button className=" text-white text-sm bg-gradient-to-b from-sprPrimary to-sprPrimaryDarkest h-8 w-16   rounded-full shadow-lg shadow-slate-300 hover:bg-gradient-to-t hover:from-sprPrimaryLight hover:to-sprPrimaryLight " onClick={() => {
-                setIsModalOpen(true)
               }}>
                 view
               </button>
@@ -173,11 +161,6 @@ console.log(currentData);
 
         </div>
       </div>
-
-
-
-
-      <ModalAccessionsInfo open={isModalOpen} modalId={currentData.accessionIdgit} closeModal={() => { setIsModalOpen(false) }} />
 
     </div >
 

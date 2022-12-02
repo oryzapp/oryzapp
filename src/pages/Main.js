@@ -20,9 +20,10 @@ const Main = () => {
 				return <Dash />
 			case 'users':
 				return <ManageUsers />
-
 			case 'rice-accessions':
 				return <RiceAccessions />
+			case 'rice-list':
+				return <RiceList />
 			case 'rice-data':
 				return <RiceData />
 			case 'rice-gallery':

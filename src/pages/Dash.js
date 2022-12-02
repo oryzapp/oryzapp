@@ -20,8 +20,9 @@ export default function Dash() {
     //             <div>Users</div>
     //     }
     // }
-    const [riceAccessions, setRiceAccessions] = useState([])
+    
     // Get All Accessions
+    const [riceAccessions, setRiceAccessions] = useState([])
     useEffect(()=>{
         const collectionRef = collection(db, "SPR/Rice_Accessions/Accession_IDs");
         const unsub = onSnapshot(collectionRef, (snapshot) => {
