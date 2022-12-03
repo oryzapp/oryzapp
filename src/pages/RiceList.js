@@ -293,7 +293,7 @@ export default function RiceList() {
 											{searchValue === '' ? <>
                                 {riceList.map((rice) => (
                                     <div className="px-6 py-3 "> 
-																		<button className="text-white text-sm bg-gradient-to-b from-sprPrimary to-sprPrimaryDark  rounded-full w-10"> view</button>
+																		<button className="text-white text-sm bg-gradient-to-b from-sprPrimary to-sprPrimaryDark  rounded-full w-10" onClick={()=>{console.log(rice.id)}}> view</button>
 																		</div>
                                 ))}
                             </> : <>
@@ -301,7 +301,7 @@ export default function RiceList() {
                                 {
                                     searched.map((rice) => (
                                         <div className="px-6 py-3 "> 
-																		<button className="text-white text-sm bg-gradient-to-b from-sprPrimary to-sprPrimaryDark  rounded-full w-10"> view</button>
+																		<button className="text-white text-sm bg-gradient-to-b from-sprPrimary to-sprPrimaryDark  rounded-full w-10" onClick={()=>{console.log(rice.id)}}> view</button>
 																		</div>
                                     ))
                                 }
@@ -340,6 +340,8 @@ export default function RiceList() {
                                             </div>
                                             <div className="flex items-center space-x-2 sm:pt-1 ">
                                                 <button onClick={() => {
+																									console.log(rice.id)
+
                                                     setModalIsOpen(true)
                                                 }} className=" text-white text-xs sm:text-sm bg-gradient-to-b from-sprPrimary to-sprPrimaryDark h-6 w-10 sm:h-6 sm:w-12 rounded-full drop-shadow-md ">
                                                     view
@@ -358,7 +360,40 @@ export default function RiceList() {
 
                                 {searched.map((rice) => (
 
-                                  <div>hello</div>
+                                    <div className="flex  flex-col  p-4 pt-2 pr-6 sm:pr-4  m-2  rounded-lg bg-slate-50  drop-shadow-md  hover:bg-sprPrimaryOffLight ">
+
+                                        <div className="flex  justify-center p-4">
+                                            <QRCodeCanvas id={`qr-gen-${rice.accessionId}`} className="hidden sm:block rounded-xl" value={`${rice.accessionId}_${rice.riceSeason}_Season_${rice.riceYear}`} bgColor="#FAFAFA" fgColor="rgba(18, 20, 20, 0.8)" includeMargin={true} size={150} />
+                                            <QRCodeCanvas id={`qr-gen-${rice.accessionId}`} className="sm:hidden" value={`${rice.accessionId}_${rice.riceSeason}_Season_${rice.riceYear}`} fgColor="rgba(18, 20, 20, 0.9)" size={80} />
+                                        </div>
+                                        <div className=" flex flex-auto   justify-between items-center  ">
+                                            <div className="">
+                                                <h1 className=" text-sm whitespace-nowrap sm:text-xl font-bold text-sprBlack opacity-80">
+                                                    {rice.accessionId}
+                                                </h1>
+                                                <h6 className="text-xs font-medium text-sprGray60">
+                                                    {rice.riceSeason}
+                                                </h6>
+                                                <h6 className="text-xs font-medium text-sprGray60">
+                                                    {rice.riceYear}
+                                                </h6>
+                                            </div>
+                                            <div className="flex items-center space-x-2 sm:pt-1 ">
+                                                <button onClick={() => {
+																									console.log(rice.id)
+                                                    setModalIsOpen(true)
+                                                }} className=" text-white text-xs sm:text-sm bg-gradient-to-b from-sprPrimary to-sprPrimaryDark h-6 w-10 sm:h-6 sm:w-12 rounded-full drop-shadow-md " >
+                                                    view
+                                                </button>
+                                                <button
+                                                    className=" bg-sprPrimary rounded-full drop-shadow-md  " onClick={() => downloadQR(rice.accessionId, rice.riceSeason, rice.riceYear)}
+                                                >
+                                                    <div className=" w-6 sm:w-6 h-6"><img src={downloadIcon} alt="" /></div>
+                                                </button>
+
+                                            </div>
+                                        </div>
+                                    </div>
                                 ))}
                             </>}
 

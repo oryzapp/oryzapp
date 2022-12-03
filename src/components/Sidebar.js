@@ -4,14 +4,6 @@ import RiceList from "./../pages/RiceList";
 import RiceAccessions from "./../pages/RiceAccessions";
 import VegetativeStage from "../pages/VegetativeStage";
 
-// import dashboardIcon from "../assets/dashboard-icon.svg"
-// import manageUsersIcon from "../assets/manage-users-icon.svg"
-// import riceAccessionsIcon from "../assets/rice-accessions-icon.svg"
-// import riceListIcon from "../assets/rice-list-icon.svg"
-// import riceDataIcon from "../assets/rice-data-icon.svg"
-// import riceGalleryIcon from "../assets/rice-gallery-icon.svg"
-// import scanQRCodeIcon from "../assets/scan-qr-code-icon.svg"
-
 import { ReactComponent as DashBIcon } from "../assets/dashboard-icon.svg";
 import { ReactComponent as MUsersIcon } from "../assets/manage-users-icon.svg";
 import { ReactComponent as RiceAccIcon } from "../assets/rice-accessions-icon.svg";
@@ -34,11 +26,13 @@ export default function Sidebar({ onChange }) {
     setState(index)
   }
 
+  const isAdmin = false;
+
   return (
     <div className=" sidenav flex  flex-col  whitespace-nowrap w-auto  mb-2 rounded-b-xl sm:rounded-l-none sm:rounded-r-xl bg-white opacity-90 sm:h-full sm:p-3  ">
       <nav className="flex flex-row  sm:flex-col ">
 
-        <button onClick={() => handleClick('dashboard', 1)} className={state === 1 ? " flex justify-center  flex-auto   sm:justify-start bg-sprPrimary rounded-lg px-3 py-2  " : " group flex justify-center  flex-auto   sm:justify-start  px-3 py-2 hover:bg-slate-200 rounded-lg   "}>
+       {isAdmin === true ?  <button onClick={() => handleClick('dashboard', 1)} className={state === 1 ? " flex justify-center  flex-auto   sm:justify-start bg-sprPrimary rounded-lg px-3 py-2  " : " group flex justify-center  flex-auto   sm:justify-start  px-3 py-2 hover:bg-slate-200 rounded-lg   "}>
           <div className="flex items-center space-x-1  "  >
             <div className="rounded-xl h-6 w-6  ">
               {/* <img className=" relative" src={dashboardIcon} alt="" /> */}
@@ -46,9 +40,9 @@ export default function Sidebar({ onChange }) {
             </div>
             <h3 className={state === 1 ? "nav-text hidden md:block text-white font-medium text-md" : "nav-text hidden  md:block text-sprInactiveGray font-medium text-md"}>Dashboard</h3>
           </div>
-        </button>
+        </button> : <></>}
 
-        <button onClick={() => handleClick('users', 2)} className={state === 2 ? "hidden sm:flex justify-center  flex-auto   sm:justify-start bg-sprPrimary rounded-lg px-3 py-2 " : "group hidden  sm:flex justify-center  flex-auto   sm:justify-start  px-3 py-2 hover:bg-slate-200 rounded-lg  "}>
+      {isAdmin === true?  <button onClick={() => handleClick('users', 2)} className={state === 2 ? "hidden sm:flex justify-center  flex-auto   sm:justify-start bg-sprPrimary rounded-lg px-3 py-2 " : "group hidden  sm:flex justify-center  flex-auto   sm:justify-start  px-3 py-2 hover:bg-slate-200 rounded-lg  "}>
           <div className="flex items-center  space-x-1   " >
             <div className="rounded-xl h-6 w-6  ">
               {/* <img className=" relative" src={manageUsersIcon} alt="" /> */}
@@ -56,11 +50,9 @@ export default function Sidebar({ onChange }) {
             </div>
             <h3 className={state === 2 ? "nav-text hidden md:block text-white font-medium text-md" : "nav-text hidden  md:block text-sprInactiveGray font-medium text-md"}>Manage Users</h3>
           </div>
-        </button>
-
-
-
-        <button onClick={() => handleClick('rice-accessions', 3)} className={state === 3 ? "flex justify-center  flex-auto   sm:justify-start bg-sprPrimary rounded-lg px-3 py-2 " : "group flex justify-center  flex-auto   sm:justify-start  px-3 py-2 hover:bg-slate-200 rounded-lg "} >
+        </button>:<></>}
+       
+    {isAdmin === true ?  <button onClick={() => handleClick('rice-accessions', 3)} className={state === 3 ? "flex justify-center  flex-auto   sm:justify-start bg-sprPrimary rounded-lg px-3 py-2 " : "group flex justify-center  flex-auto   sm:justify-start  px-3 py-2 hover:bg-slate-200 rounded-lg "} >
           <div className="flex items-center space-x-1   " >
             <div className="rounded-xl h-6 w-6">
               {/* <img className=" relative" src={riceAccessionsIcon} alt="" /> */}
@@ -68,8 +60,10 @@ export default function Sidebar({ onChange }) {
             </div>
             <h3 className={state === 3 ? "nav-text hidden md:block text-white font-medium text-md" : "nav-text hidden  md:block text-sprInactiveGray font-medium text-md"}>Rice Accessions</h3>
           </div>
-        </button>
-        <button onClick={() => handleClick('rice-list', 4)} className={state === 4 ? "flex justify-center  flex-auto   sm:justify-start bg-sprPrimary rounded-lg px-3 py-2 " : "group flex justify-center  flex-auto   sm:justify-start  px-3 py-2 hover:bg-slate-200 rounded-lg "} >
+        </button> : <></> }
+       
+
+      {isAdmin === true ?  <button onClick={() => handleClick('rice-list', 4)} className={state === 4 ? "flex justify-center  flex-auto   sm:justify-start bg-sprPrimary rounded-lg px-3 py-2 " : "group flex justify-center  flex-auto   sm:justify-start  px-3 py-2 hover:bg-slate-200 rounded-lg "} >
           <div className="flex items-center space-x-1   " >
             <div className="rounded-xl h-6 w-6">
               {/* <img className=" relative" src={riceAccessionsIcon} alt="" /> */}
@@ -77,9 +71,9 @@ export default function Sidebar({ onChange }) {
             </div>
             <h3 className={state === 4 ? "nav-text hidden md:block text-white font-medium text-md" : "nav-text hidden  md:block text-sprInactiveGray font-medium text-md"}>Rice List</h3>
           </div>
-        </button>
+        </button>:<></>}
 
-        <button onClick={() => handleClick('rice-data', 5)} className={state === 5 ? "hidden sm:flex justify-center  flex-auto   sm:justify-start bg-sprPrimary rounded-lg px-3 py-2" : " group hidden sm:flex justify-center  flex-auto   sm:justify-start  px-3 py-2 hover:bg-slate-200 rounded-lg "} >
+      {isAdmin === true ?  <button onClick={() => handleClick('rice-data', 5)} className={state === 5 ? "hidden sm:flex justify-center  flex-auto   sm:justify-start bg-sprPrimary rounded-lg px-3 py-2" : " group hidden sm:flex justify-center  flex-auto   sm:justify-start  px-3 py-2 hover:bg-slate-200 rounded-lg "} >
           <div className="flex items-center space-x-1 " >
             <div className="rounded-xl h-6 w-6 ">
               {/* <img className=" relative" src={riceDataIcon} alt="" /> */}
@@ -87,8 +81,10 @@ export default function Sidebar({ onChange }) {
             </div>
             <h3 className={state === 5 ? "nav-text hidden md:block text-white font-medium text-md" : "nav-text hidden  md:block text-sprInactiveGray font-medium text-md"}>Rice Data</h3>
           </div>
-        </button>
+        </button>:<></>
+}
 
+      
         <button onClick={() => handleClick('rice-gallery', 6)} className={state === 6 ? "flex justify-center  flex-auto   sm:justify-start bg-sprPrimary rounded-lg px-3 py-2" : "group flex justify-center  flex-auto   sm:justify-start  px-3 py-2 hover:bg-slate-200 rounded-lg "} >
           <div className="flex items-center space-x-1  ">
             <div className="rounded-xl h-6 w-6 ">

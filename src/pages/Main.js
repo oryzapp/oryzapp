@@ -13,6 +13,7 @@ import RiceTables from "./RiceTables";
 const Main = () => {
 	const [page, setPage] = useState('dashboard');
 
+	
 	const getPage = () => {
 		console.log(page)
 		switch (page) {
