@@ -84,25 +84,25 @@ export default function RiceList() {
         var searchList = []
 
 
-        if (searchValue !== "") {
+        // if (searchValue !== "") {
 
-            riceList.map((rice) => {
+        //     riceList.map((rice) => {
 
 
-                const match = rice.searchIndex.toLowerCase()
-                // console.log(match);
-                const search = match.includes(searchValue)
-                // console.log(search);
-                if (search === true) {
-                    searchList.push({
-                        accessionId: rice.accessionId,
-                        riceSeason: rice.riceSeason,
-                        riceYear: rice.riceYear
-                    })
+        //         const match = rice.searchIndex.toLowerCase()
+        //         // console.log(match);
+        //         const search = match.includes(searchValue)
+        //         // console.log(search);
+        //         if (search === true) {
+        //             searchList.push({
+        //                 accessionId: rice.accessionId,
+        //                 riceSeason: rice.riceSeason,
+        //                 riceYear: rice.riceYear
+        //             })
 
-                }
-            })
-        }
+        //         }
+        //     })
+        // }
 
 
 

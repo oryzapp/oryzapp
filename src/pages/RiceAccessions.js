@@ -213,26 +213,26 @@ export default function RiceAccessions() {
 	useEffect(() => {
 		var searchList = []
 
-		if (searchInput !== "") {
-			riceAccessions.map((rice) => {
+		// if (searchInput !== "") {
+		// 	riceAccessions.map((rice) => {
 
 
-				const match = rice.accessionId.toLowerCase()
-				const search = match.includes(searchInput)
-				if (search === true) {
-					searchList.push({
-						accessionId: rice.accessionId,
-						classification: rice.classification,
-						variety: rice.variety,
-						source: rice.source
-					})
+		// 		const match = rice.accessionId.toLowerCase()
+		// 		const search = match.includes(searchInput)
+		// 		if (search === true) {
+		// 			searchList.push({
+		// 				accessionId: rice.accessionId,
+		// 				classification: rice.classification,
+		// 				variety: rice.variety,
+		// 				source: rice.source
+		// 			})
 
-				}
-			})
-		}
+		// 		}
+		// 	})
+		// }
 
 
-		setSearched(searchList)
+		// setSearched(searchList)
 	}, [searchInput])
 
 	console.log(searched);
