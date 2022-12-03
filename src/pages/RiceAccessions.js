@@ -48,10 +48,6 @@ export default function RiceAccessions() {
 
 	console.log('Modal id:' + modalId);
 
-
-
-
-
 	// Handle Form Submit ------------------>
 	const [imageUpload, setImageUpload] = useState(null)
 

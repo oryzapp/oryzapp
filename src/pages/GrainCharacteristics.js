@@ -43,9 +43,12 @@ export default function GrainCharacteristics({ season }) {
 
 	const getRiceData=(id)=>{
 		const find = riceData.find((rice)=> rice.tagId === id )
+    console.log(find);
 		setGcRiceData(find)
 	}
+  console.log('I am gcRiceData');
   console.log(gcRiceData);
+
 
   return (
     <>
