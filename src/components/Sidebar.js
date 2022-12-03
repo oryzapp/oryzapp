@@ -13,6 +13,9 @@ import { ReactComponent as RiceGIcon } from "../assets/rice-gallery-icon.svg";
 import { ReactComponent as SQRIcon } from "../assets/scan-qr-code-icon.svg";
 
 import { useState } from "react";
+import { useEffect } from "react";
+import { onAuthStateChanged } from "firebase/auth";
+import { auth } from "../firebase-config";
 
 export default function Sidebar({ onChange }) {
   const [state, setState] = useState(1)
@@ -26,7 +29,22 @@ export default function Sidebar({ onChange }) {
     setState(index)
   }
 
-  const isAdmin = false;
+  
+
+  useEffect(()=>{
+    const unsub = onAuthStateChanged(auth, async (user) => {
+			if (user !== null) {
+				console.log(user.email);
+				console.log(user);
+			} else {
+				await auth.signOut();
+				// navigate('/login');
+        console.log('i dunno about you');
+			}
+		})
+  },[])
+
+  const isAdmin = true;
 
   return (
     <div className=" sidenav flex  flex-col  whitespace-nowrap w-auto  mb-2 rounded-b-xl sm:rounded-l-none sm:rounded-r-xl bg-white opacity-90 sm:h-full sm:p-3  ">

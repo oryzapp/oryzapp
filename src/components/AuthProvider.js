@@ -13,6 +13,7 @@ export const AuthProvider = ({ children }) => {
 		const unsubscribe = onAuthStateChanged(auth, async (user) => {
 			if (user !== null) {
 				setAuthState({ status: 'fetched' })
+				// console.log(user.email);
 			} else {
 				await auth.signOut();
 				navigate('/login');
