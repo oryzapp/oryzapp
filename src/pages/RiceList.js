@@ -83,14 +83,9 @@ export default function RiceList() {
     useEffect(() => {
         var searchList = []
 
-        if (searchValue === "") {
-            console.log('hello');
-            console.log('I am RiceList' + riceList);
-            console.log('I am searched' + searched);
-        }
+
         if (searchValue !== "") {
-            console.log('I am RiceList' + riceList);
-            console.log('I am searched' + searched);
+
             riceList.map((rice) => {
 
 
@@ -112,7 +107,7 @@ export default function RiceList() {
 
 
         setSearched(searchList)
-    }, [searchValue, searched])
+    }, [searchValue, season, year])
 
 
 
