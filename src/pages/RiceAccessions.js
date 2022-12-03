@@ -368,7 +368,7 @@ export default function RiceAccessions() {
 										<div className="px-8 py-2 text-md font-medium text-sprGray60 whitespace-nowrap bg-slate-100" > {rice.source === "" ? "---" : rice.source}</div>
 									))}</>}
 							</div>
-							<div className="hidden sm:flex flex-col flex-auto divide-y sm:divide-y bg-white divide-white h-full sticky right-0">
+							<div className="hidden sm:flex flex-col  divide-y sm:divide-y bg-white divide-white h-full sticky right-0">
 								<div className=" text-sprPrimary bg-white  px-10 py-2 sticky top-0 text-sm font-medium">
 									<h1 className="opacity-0">
 										Action
@@ -430,7 +430,7 @@ export default function RiceAccessions() {
 												view
 											</button>
 											<button
-												className="hidden lg:block p-1 bg-gradient-to-b from-sprPrimary to-sprPrimaryDarkest hover:bg-gradient-to-t hover:from-sprPrimaryLight hover:to-sprPrimaryLight   rounded-full   shadow-slate-300 "
+												className=" lg:block p-1 bg-gradient-to-b from-sprPrimary to-sprPrimaryDarkest hover:bg-gradient-to-t hover:from-sprPrimaryLight hover:to-sprPrimaryLight   rounded-full   shadow-slate-300 "
 												onClick={() => {
 													editRiceAccessionID(rice.id);
 												}}
@@ -438,7 +438,7 @@ export default function RiceAccessions() {
 												<div className="w-4 h-4"><img src={editIcon} alt="" /></div>
 											</button>
 											<button
-												className="hidden lg:block p-1 bg-gradient-to-b from-sprPrimary to-sprPrimaryDarkest rounded-full  hover:bg-gradient-to-t hover:from-sprPrimaryLight hover:to-sprPrimaryLight shadow-slate-300 "
+												className=" lg:block p-1 bg-gradient-to-b from-sprPrimary to-sprPrimaryDarkest rounded-full  hover:bg-gradient-to-t hover:from-sprPrimaryLight hover:to-sprPrimaryLight shadow-slate-300 "
 												onClick={() => {
 													// deleteRiceAccession(rice.id);
 													setDelId(rice.id)

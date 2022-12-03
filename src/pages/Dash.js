@@ -193,7 +193,7 @@ export default function Dash() {
                                 <div className="px-8 py-2 text-md font-medium text-sprGray60 whitespace-nowrap bg-slate-50"> {rice.variety === "" ? "---" : rice.variety} </div>
                             ))}
                         </div>
-                        <div className="hidden sm:flex flex-col flex-auto divide-y sm:divide-y bg-white divide-white h-full sticky right-0">
+                        <div className="hidden sm:flex flex-col divide-y sm:divide-y bg-white divide-white h-full sticky right-0 justify-center items-center">
                             <div className=" text-sprPrimary bg-white  px-10 py-2 sticky top-0 text-sm font-medium">
                                 <h1 className="opacity-0">
                                     Action

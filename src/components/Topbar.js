@@ -1,9 +1,13 @@
 import { useState } from "react";
 import { ReactComponent as OryzappLogo } from "../assets/oryzapp-logo.svg"
+import { auth } from "../firebase-config";
 
 export default function Topbar() {
 
   const [show, setShow] = useState(false)
+   const onSignOut = async () => {
+    await auth.signOut()
+  }
 
 
   return (
@@ -20,7 +24,7 @@ export default function Topbar() {
             <ul className="divide-y divide-slate-200">
               <h3>Something here</h3>
               <h3>Something here</h3>
-              <h3>Sign Out</h3>
+              <h3 onClick={onSignOut}>Sign Out</h3>
             </ul>
           </div>
         </div>
