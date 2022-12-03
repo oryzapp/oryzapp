@@ -13,7 +13,7 @@ export default function RiceGallery() {
         response.items.forEach((item) => {
           getDownloadURL(item).then((url) => {
             setImageList((prev) => [...prev, url])
-            console.log(imageList);
+            // console.log(imageList);
           })
         })
       })
@@ -22,8 +22,8 @@ export default function RiceGallery() {
       getMetadata(imageListRef)
         .then((metadata) => {
           // Metadata now contains the metadata for 'images/forest.jpg'
-          console.log('beeee');
-          console.log(metadata.size);
+          // console.log('beeee');
+          // console.log(metadata.size);
         })
         .catch((error) => {
           // Uh-oh, an error occurred!
@@ -35,7 +35,7 @@ export default function RiceGallery() {
   }, [])
 
   imageList.map((item) => {
-    console.log(item);
+    // console.log(item);
   })
 
   return (

@@ -19,8 +19,7 @@ export default function Dashboard() {
 
       <div className=" bg-sprBackground flex flex-col h-screen relative ">
         <div className="">
-          bbbb
-          <button onClick={onSignOut}>out</button>
+         
           <Topbar />
         </div>
         <div className=" px-2 py-0 flex-col-reverse h-full max-h-full flex  sm:gap-2 sm:flex-row sm:p-0 sm:pb-2 sm:pr-2 ">

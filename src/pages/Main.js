@@ -1,4 +1,4 @@
-import { useState } from "react"
+import { useEffect, useState } from "react"
 import Topbar from "../components/Topbar";
 import Sidebar from "../components/Sidebar";
 import Dash from './Dash';
@@ -9,14 +9,68 @@ import RiceData from "./RiceData";
 import RiceGallery from "./RiceGallery";
 import ScanCode from "./ScanCode";
 import RiceTables from "./RiceTables";
+import { collection, onSnapshot } from "firebase/firestore";
+import db, { auth } from "../firebase-config";
+import { onAuthStateChanged } from "firebase/auth";
+import { useNavigate } from 'react-router-dom';
+
 
 const Main = () => {
-	const [page, setPage] = useState('dashboard');
+  const navigate = useNavigate()  
 
+	const [page, setPage] = useState('dashboard');
+	const [isAdmin, setIsAdmin] = useState(false)              
+
+	const [ users, setUsers] = useState([])
+	useEffect(()=>{
+		// Users
+		const collectionRef = collection(db, 'AUTH')
+			const unsub = onSnapshot(collectionRef, (snapshot) => {
+			setUsers(
+				snapshot.docs.map((doc) => ({ ...doc.data(), id: doc.id }))
+			);
+		});
+
+		return unsub;
+	},[])
+
+// Authentication--------->
+		useEffect(()=>{
+    	const unsub = onAuthStateChanged(auth, async (user) => {
+
+		console.log(users);
+		const matchUser = users.find((dbUser)=>dbUser.email === user.email)
+		console.log(matchUser.role);
+
+			if (user !== null) {
+			
+				if(matchUser.role === 'admin'){
+					setIsAdmin(true)
+					console.log('user-is-admin');
+				}
+				if(matchUser.role === 'user'){
+					setIsAdmin(false)
+					setPage('rice-gallery')
+					console.log('user-is-not-admin');
+				}
+
+				
+				
+			} 
+			else {
+				await auth.signOut();
+				navigate('/login');
+				
+			}
+		})
+		return unsub
 	
+},[users])
+
+	// Navigation of Pages
 	const getPage = () => {
-		console.log(page)
-		switch (page) {
+		if(isAdmin === true){
+			switch (page) {
 			case 'dashboard':
 				return <Dash />
 			case 'users':
@@ -32,6 +86,17 @@ const Main = () => {
 			case 'scan-code':
 				return <ScanCode />
 
+		}
+		}
+		else{
+			switch (page) {
+			
+			case 'rice-gallery':
+				return <RiceGallery />
+			case 'scan-code':
+				return <ScanCode />
+
+		}
 		}
 	}
 
