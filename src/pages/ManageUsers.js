@@ -18,16 +18,24 @@ import editIcon from "../assets/edit-icon.svg"
 import downloadIcon from "../assets/download-icon.svg"
 import { ReactComponent as SearchIcon } from "../assets/search-icon.svg"
 import { ReactComponent as EmptyIllustration } from "../assets/empty-illustration.svg"
+import { ReactComponent as UserIcon } from '../assets/user-icon.svg';
+import { ReactComponent as AdminIcon } from '../assets/admin-icon.svg';
 import { ReactComponent as DisabledIcon } from "../assets/disabled-icon.svg"
+import { ReactComponent as View } from "../assets/view.svg"
 import ModalEditUsers from "../components/ModalEditUsers";
+import ModalChangeRole from "../components/ModalChangeRole";
 
 export default function ManageUsers() {
 
   // Open and Close Modal ------------------->
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const [isModalChangeRoleOpen, setIsModalChangeRoleOpen] = useState(false);
 
-  // Id
+  // Id, role, email
   const [modalId, setModalId] = useState('')
+  const [modalRole, setModalRole] = useState('')
+  const [modalEmail, setModalEmail] = useState('')
+  const [roleChoice, setRoleChoice] = useState('')
 
   // Search Box ----------------------->
   const [searchInput, setSearchInput] = useState('')
@@ -54,9 +62,6 @@ export default function ManageUsers() {
 
   console.log('Oryzapp Users');
   console.log(oryzappUsers);
-
-
-
 
   // DB Data to Array Search for Searching---->
   const [searched, setSearched] = useState([])
@@ -130,128 +135,115 @@ export default function ManageUsers() {
           {oryzappUsers.length === 0 ? <div className="flex justify-center items-center pt-32 flex-col gap-8 "><EmptyIllustration /><p className="font-medium text-xl text-sprPrimaryOffLight">Plenty of space in the field </p></div> :
             <div className="flex w-full max-h-0 sm:max-h-0 sm:max-w-0 lg:max-w-full  relative bg-yellow-400">
               <div className="hidden sm:flex flex-col  divide-y divide-slate-200 relative h-full ">
-                <div className="  text-sprPrimary bg-white sticky top-0 px-6 py-2 text-sm font-medium">
+                <div className="  text-sprPrimary bg-white sticky top-0 px-6 py-4 text-sm font-medium">
                   #
                 </div>
                 {
                   searchInput === '' ? <>
                     {oryzappUsers.map((rice) => (
-                      <div className="px-6 py-2 font-medium text-sprPrimaryLight"> {list = list + 1} </div>
+                      <div className="px-6 py-4 font-medium text-sprPrimaryLight"> {list = list + 1} </div>
                     ))}
                   </> :
                     <>
                       {searched.map((rice) => (
-                        <div className="px-6 py-2 font-medium text-sprPrimaryLight"> {list = list + 1} </div>
+                        <div className="px-6 py-4 font-medium text-sprPrimaryLight"> {list = list + 1} </div>
                       ))}
                     </>
                 }
               </div>
               <div className="hidden sm:flex flex-col flex-auto  divide-y divide-slate-200 relative h-full">
-                <div className="text-sprPrimary bg-white sticky top-0 px-8 py-2 text-sm font-medium">
+                <div className="text-sprPrimary bg-white sticky top-0 px-8 py-4 text-sm font-medium">
                   Email
                 </div>
                 {
                   searchInput === '' ? <>
                     {oryzappUsers.map((user) => (
-                      <div className="px-8 py-2 text-md font-medium text-sprGray60 whitespace-nowrap bg-slate-50"> {user.email === "" ? "---" : user.email} </div>
+                      <div className="px-8 py-4 text-md font-medium text-sprGray60 whitespace-nowrap bg-slate-50"> {user.email === "" ? "---" : user.email} </div>
                     ))}</> : <>
                     {searched.map((user) => (
-                      <div className="px-8 py-2 text-md font-medium text-sprGray60 whitespace-nowrap bg-slate-50">{user.email === "" ? "---" : user.email} </div>
+                      <div className="px-8 py-4 text-md font-medium text-sprGray60 whitespace-nowrap bg-slate-50">{user.email === "" ? "---" : user.email} </div>
                     ))}</>
                 }
 
               </div>
-              <div className="hidden sm:flex flex-col flex-auto  divide-y divide-slate-200 relative h-full">
-                <div className="text-sprPrimary bg-white sticky top-0 px-8 py-2 text-sm font-medium">
-                  Role
-                </div>
-                {
-                  searchInput === '' ? <>
-                    {oryzappUsers.map((user) => (
-                      <div className="px-8 py-2 text-md font-medium text-sprGray60 whitespace-nowrap bg-slate-50"> {user.role === "" ? "---" : user.role} </div>
-                    ))}</> : <>
-                    {searched.map((user) => (
-                      <div className="px-8 py-2 text-md font-medium text-sprGray60 whitespace-nowrap bg-slate-50">{user.role === "" ? "---" : user.role} </div>
-                    ))}</>
-                }
+             
 
-              </div>
-
-              <div className="hidden sm:flex flex-col  divide-y sm:divide-y bg-white divide-white h-full sticky right-0">
-                <div className=" text-sprPrimary bg-white  px-10 py-2 sticky top-0 text-sm font-medium">
+              <div className="hidden sm:flex flex-col  divide-y sm:divide-y divide-slate-200 bg-slate-50 h-full sticky right-0">
+                <div className=" text-sprPrimary bg-white  px-10 py-4 sticky top-0 text-sm font-medium">
                   <h1 className="opacity-0">
                     Action
                   </h1>
                 </div>
                 {searchInput === '' ? <>
                   {oryzappUsers.map((user) => (
-                    <div className="p-6 py-2 text-md font-medium text-sprGray60 whitespace-nowrap" >
+                    <div className="px-6 py-4 text-md font-medium text-sprGray60 whitespace-nowrap" >
                       <div className="flex gap-2">
-                        <button
-                          className=" text-white text-sm bg-gradient-to-b from-sprPrimary to-sprPrimaryDarkest rounded-full  hover:bg-gradient-to-t hover:from-sprPrimaryLight hover:to-sprPrimaryLight h-8 w-14 sm:h-6 sm:w-12 shadow-slate-300 "
-                          onClick={() => {
-                            console.log(user.id);
-                          }}
-                        >
-                          view
-                        </button>
-                        {/* Edit */}
-                        <button
-                          className=" lg:block p-1 bg-gradient-to-b from-sprPrimary to-sprPrimaryDarkest hover:bg-gradient-to-t hover:from-sprPrimaryLight hover:to-sprPrimaryLight   rounded-full   shadow-slate-300 "
-                          onClick={() => {
-                            setIsModalOpen(true)
-                            setModalId(user.id)
-                          }}
-                        >
-                          <div className="w-4 h-4"><img src={editIcon} alt="" /></div>
-                        </button>
-                        <button
-                          className=" lg:block p-1  bg-sprTertiary rounded-full  hover:bg-sprTertiary/70 shadow-slate-300 "
-                          onClick={() => {
-                            console.log(user.id);
+                       
+                        <button className=" group flex gap-1 items-center justify-center px-2  hover:bg-sprPrimaryOffLight active:bg-sprPrimary rounded-full h-6 mr-2" 
+                        onClick={()=>{
+                          setIsModalOpen(true)
+                          setModalId(user.id)
+                          setModalEmail(user.email)
+                          setModalRole(user.role)
+                        }}>
+                           <View className= 'fill-sprPrimary h-7  group-active:fill-white ' />
 
-                          }}
-                        >
-                          <DisabledIcon className="h-4 w-4 fill-white" />
-
+                               
                         </button>
+                        <button className={user.role === 'Administrator' ? " flex gap-1 items-center justify-center px-2 bg-sprPrimary rounded-full h-6": " flex gap-1 items-center justify-center px-2 bg-sprGray40 rounded-full h-6"}
+                         onClick={()=>{
+                          setIsModalChangeRoleOpen(true)
+                          setModalId(user.id)
+                          setModalEmail(user.email)
+
+                          setRoleChoice('Administrator')
+                         }
+                         }
+                         disabled={user.role === 'Administrator' ? true : false}
+                        >
+                           <AdminIcon className='fill-white h-3  ' />
+                                <h1 className='hidden lg:block text-white font-medium text-md'>Administrator</h1>
+                        </button>
+                        
+                        <button className={user.role === 'User' ? " flex gap-1 items-center justify-center px-2 bg-yellow-400 rounded-full h-6": " flex gap-1 items-center justify-center px-2 bg-sprGray40 rounded-full h-6"}
+                        onClick={()=>{
+                          setIsModalChangeRoleOpen(true)
+                          setModalId(user.id)
+                          setModalEmail(user.email)
+                          setRoleChoice('User Only')
+                         }
+                         }
+                         disabled={user.role === 'User' ? true : false}
+                        >
+                           <UserIcon className='fill-white h-4  ' />
+                                <h1 className='hidden lg:block text-white font-medium text-md'>User Only</h1>
+                        </button>
+                        
+                        <button className={user.role === 'Disabled' ? " flex gap-1 items-center justify-center px-2 bg-sprTertiary rounded-full h-6": " flex gap-1 items-center justify-center px-2 bg-sprGray40 rounded-full h-6"}
+                         onClick={()=>{
+                          setIsModalChangeRoleOpen(true)
+                          setModalId(user.id)
+                          setModalEmail(user.email)
+                          setRoleChoice('Disabled')
+                         }
+                         }
+                         disabled={user.role === 'Disabled' ? true : false}
+                        >
+                           <DisabledIcon className='stroke-white h-4  ' />
+                                <h1 className='hidden lg:block text-white font-medium text-md'>Disabled</h1>
+                        </button>
+                        
+
                       </div>
                     </div>
                   ))}
-                </> : <>{searched.map((user) => (
-                  <div className="p-6 py-2 text-md font-medium text-sprGray60 whitespace-nowrap" >
+                </> : 
+                
+                <>{searched.map((user) => (
+                  <div className="px-6 py-4 text-md font-medium text-sprGray60 whitespace-nowrap" >
                     <div className="flex gap-2">
-                      {/* View */}
-                      <button
-                        // className=" text-white text-sm bg-gradient-to-b from-sprPrimary to-sprPrimaryDarkest hover:bg-gradient-to-t hover:from-sprPrimaryLight hover:to-sprPrimaryLight drop-shadow-md h-8 w-14 sm:h-6 sm:w-12 rounded-full  shadow-slate-300 "
-                        className=" text-white text-sm bg-gradient-to-b from-spr to-sprPrimaryDarkest rounded-full  hover:bg-gradient-to-t hover:from-sprPrimaryLight hover:to-sprPrimaryLight h-8 w-14 sm:h-6 sm:w-12 shadow-slate-300 "
-                        onClick={() => {
-                          console.log(user.id);
-                        }}
-                      >
-                        view
-                      </button>
-                      {/* Edit */}
-                      <button
-                        className=" lg:block p-1 bg-gradient-to-b from-sprPrimary to-sprPrimaryDarkest hover:bg-gradient-to-t hover:from-sprPrimaryLight hover:to-sprPrimaryLight   rounded-full   shadow-slate-300 "
-                        onClick={() => {
-                          setIsModalOpen(true)
-                          setModalId(user.id)
-                        }}
-                      >
-                        <div className="w-4 h-4"><img src={editIcon} alt="" /></div>
-                      </button>
-                      {/* Disable */}
-                      <button
-                        className=" lg:block p-1  bg-sprTertiary rounded-full  hover:bg-sprTertiary/70 shadow-slate-300 "
-                        onClick={() => {
-                          console.log(user.id);
-
-                        }}
-                      >
-                        <DisabledIcon className="h-4 w-4 fill-white" />
-
-                      </button>
+                   
+                    
                     </div>
                   </div>
                 ))}</>}
@@ -265,9 +257,10 @@ export default function ManageUsers() {
 
 
       </div>
-      {/* <ModalEditUsers open={isModalOpen} closeModal={() => { setIsModalOpen(false) }} />
-       */}
-      <ModalEditUsers open={isModalOpen} closeModal={() => { setIsModalOpen(false) }} modalId={modalId} />
+     
+      <ModalEditUsers open={isModalOpen} closeModal={() => { setIsModalOpen(false) }} modalId={modalId} modalEmail={modalEmail}  modalRole={modalRole}  />
+      <ModalChangeRole open={isModalChangeRoleOpen} closeModal={() => { setIsModalChangeRoleOpen(false) }} modalId={modalId} roleChoice={roleChoice} modalEmail={modalEmail}   />
+
     </>
   );
 }

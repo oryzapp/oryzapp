@@ -44,11 +44,11 @@ const Main = () => {
 
 			if (user !== null) {
 
-				if (matchUser.role === 'admin') {
+				if (matchUser.role === 'Administrator') {
 					setIsAdmin(true)
 					console.log('user-is-admin');
 				}
-				if (matchUser.role === 'user') {
+				if (matchUser.role === 'User') {
 					setIsAdmin(false)
 					setPage('scan-code')
 					console.log('user-is-not-admin');

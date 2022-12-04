@@ -1,7 +1,6 @@
 import { writeBatch, collection, deleteDoc, doc, onSnapshot, query, where, collectionGroup } from 'firebase/firestore';
 import React from 'react'
 import ReactDom from 'react-dom'
-import closeIcon from "../assets/close.svg"
 import db from "../firebase-config";
 import { useEffect } from 'react';
 import { useState } from 'react';

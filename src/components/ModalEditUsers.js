@@ -3,11 +3,15 @@ import { ReactComponent as CloseIcon } from '../assets/close.svg';
 import { ReactComponent as UserIcon } from '../assets/user-icon.svg';
 import { ReactComponent as AdminIcon } from '../assets/admin-icon.svg';
 import { ReactComponent as DisabledIcon } from "../assets/disabled-icon.svg"
+import { useState } from 'react';
 
 
 
 
-export default function ModalEditUsers({ open, closeModal, modalId }) {
+export default function ModalEditUsers({ open, closeModal, modalId, modalEmail,modalRole }) {
+
+    console.log('---------');
+    console.log(modalRole);
 
     console.log(modalId);
     if (!open) return null;
@@ -21,20 +25,21 @@ export default function ModalEditUsers({ open, closeModal, modalId }) {
                             <CloseIcon className='group-hover:stroke-white stroke-sprGray50 hover:stroke-sprGray80 active:stroke-sprPrimary h-5' onClick={closeModal} />
                         </div>
                         <div className='h-40 w-40 bg-slate-300'></div>
-                        <h1>exampleEmail@email.com</h1>
+                        <h1 className='text-sprPrimary font-medium'>{modalEmail}</h1>
                         <div className='flex gap-1'>
-                            <div className='bg-sprGray50 flex  items-center p-2 gap-1 rounded-full'>
+                            <div className={modalRole === 'Administrator' ? "bg-sprPrimary flex  items-center p-2 gap-1 rounded-full":"hidden"}>
                                 <AdminIcon className='fill-white h-2' />
                                 <h1 className='text-white font-medium text-sm'>Administrator</h1>
                             </div>
-                            <div className='bg-sprGray50 flex  items-center p-2 gap-1 rounded-full'>
+                            <div className={modalRole === 'User' ? "bg-yellow-500 flex  items-center p-2 gap-1 rounded-full":"hidden"}>
                                 <UserIcon className='fill-white h-3' />
                                 <h1 className='text-white font-medium text-sm'>User Only</h1>
                             </div>
-                            <div className='bg-sprGray50 flex  items-center p-2 gap-1 rounded-full'>
-                                <DisabledIcon className='stroke-white h-3' />
+                            <div className={modalRole === 'Disabled' ? "bg-sprTertiary flex  items-center p-2 gap-1 rounded-full":"hidden"}>
+                                <DisabledIcon className='fill-white h-3' />
                                 <h1 className='text-white font-medium text-sm'>Disabled</h1>
                             </div>
+                            
                         </div>
 
                     </div>

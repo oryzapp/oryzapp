@@ -73,18 +73,15 @@ export default function Sidebar({ onChange }) {
 
       if (user !== null) {
 
-        if (matchUser.role === 'admin') {
+        if (matchUser.role === 'Administrator') {
           setIsAdmin(true)
           console.log('user-is-admin');
         }
-        if (matchUser.role === 'user') {
+        if (matchUser.role === 'User') {
           setIsAdmin(false)
           // setPage('rice-gallery')
           console.log('user-is-not-admin');
         }
-
-
-
       }
       else {
         await auth.signOut();
