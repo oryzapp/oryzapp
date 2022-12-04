@@ -36,6 +36,7 @@ export default function ManageUsers() {
   const [modalRole, setModalRole] = useState('')
   const [modalEmail, setModalEmail] = useState('')
   const [roleChoice, setRoleChoice] = useState('')
+  const [modalPassword, setModalPassword] = useState('')
 
   // Search Box ----------------------->
   const [searchInput, setSearchInput] = useState('')
@@ -185,6 +186,7 @@ export default function ManageUsers() {
                           setModalId(user.id)
                           setModalEmail(user.email)
                           setModalRole(user.role)
+                          setModalPassword(user.password)
                         }}>
                            <View className= 'fill-sprPrimary h-7  group-active:fill-white ' />
 
@@ -195,7 +197,6 @@ export default function ManageUsers() {
                           setIsModalChangeRoleOpen(true)
                           setModalId(user.id)
                           setModalEmail(user.email)
-
                           setRoleChoice('Administrator')
                          }
                          }
@@ -210,7 +211,7 @@ export default function ManageUsers() {
                           setIsModalChangeRoleOpen(true)
                           setModalId(user.id)
                           setModalEmail(user.email)
-                          setRoleChoice('User Only')
+                          setRoleChoice('User')
                          }
                          }
                          disabled={user.role === 'User' ? true : false}
@@ -241,11 +242,66 @@ export default function ManageUsers() {
                 
                 <>{searched.map((user) => (
                   <div className="px-6 py-4 text-md font-medium text-sprGray60 whitespace-nowrap" >
-                    <div className="flex gap-2">
-                   
-                    
+                      <div className="flex gap-2">
+                       
+                        <button className=" group flex gap-1 items-center justify-center px-2  hover:bg-sprPrimaryOffLight active:bg-sprPrimary rounded-full h-6 mr-2" 
+                        onClick={()=>{
+                          setIsModalOpen(true)
+                          setModalId(user.id)
+                          setModalEmail(user.email)
+                          setModalRole(user.role)
+                          setModalPassword(user.password)
+
+                        }}>
+                           <View className= 'fill-sprPrimary h-7  group-active:fill-white ' />
+
+                               
+                        </button>
+                        <button className={user.role === 'Administrator' ? " flex gap-1 items-center justify-center px-2 bg-sprPrimary rounded-full h-6": " flex gap-1 items-center justify-center px-2 bg-sprGray40 rounded-full h-6"}
+                         onClick={()=>{
+                          setIsModalChangeRoleOpen(true)
+                          setModalId(user.id)
+                          setModalEmail(user.email)
+                          setRoleChoice('Administrator')
+                         }
+                         }
+                         disabled={user.role === 'Administrator' ? true : false}
+                        >
+                           <AdminIcon className='fill-white h-3  ' />
+                                <h1 className='hidden lg:block text-white font-medium text-md'>Administrator</h1>
+                        </button>
+                        
+                        <button className={user.role === 'User' ? " flex gap-1 items-center justify-center px-2 bg-yellow-400 rounded-full h-6": " flex gap-1 items-center justify-center px-2 bg-sprGray40 rounded-full h-6"}
+                        onClick={()=>{
+                          setIsModalChangeRoleOpen(true)
+                          setModalId(user.id)
+                          setModalEmail(user.email)
+                          setRoleChoice('User')
+                         }
+                         }
+                         disabled={user.role === 'User' ? true : false}
+                        >
+                           <UserIcon className='fill-white h-4  ' />
+                                <h1 className='hidden lg:block text-white font-medium text-md'>User Only</h1>
+                        </button>
+                        
+                        <button className={user.role === 'Disabled' ? " flex gap-1 items-center justify-center px-2 bg-sprTertiary rounded-full h-6": " flex gap-1 items-center justify-center px-2 bg-sprGray40 rounded-full h-6"}
+                         onClick={()=>{
+                          setIsModalChangeRoleOpen(true)
+                          setModalId(user.id)
+                          setModalEmail(user.email)
+                          setRoleChoice('Disabled')
+                         }
+                         }
+                         disabled={user.role === 'Disabled' ? true : false}
+                        >
+                           <DisabledIcon className='stroke-white h-4  ' />
+                                <h1 className='hidden lg:block text-white font-medium text-md'>Disabled</h1>
+                        </button>
+                        
+
+                      </div>
                     </div>
-                  </div>
                 ))}</>}
               </div>
 
@@ -258,7 +314,7 @@ export default function ManageUsers() {
 
       </div>
      
-      <ModalEditUsers open={isModalOpen} closeModal={() => { setIsModalOpen(false) }} modalId={modalId} modalEmail={modalEmail}  modalRole={modalRole}  />
+      <ModalEditUsers open={isModalOpen} closeModal={() => { setIsModalOpen(false) }} modalId={modalId} modalEmail={modalEmail}  modalRole={modalRole} modalPassword= {modalPassword}  />
       <ModalChangeRole open={isModalChangeRoleOpen} closeModal={() => { setIsModalChangeRoleOpen(false) }} modalId={modalId} roleChoice={roleChoice} modalEmail={modalEmail}   />
 
     </>
