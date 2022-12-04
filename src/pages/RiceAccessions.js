@@ -491,7 +491,7 @@ export default function RiceAccessions() {
 					<div className="flex">
 						<h1 className="page-header text-2xl font-bold text-sprGray70">Add Rice Accession</h1>
 					</div>
-					<div className="flex-auto flex flex-col overflow-hidden">
+					<div className="flex flex-auto flex-col overflow-hidden">
 						<form
 							className="flex flex-col h-full "
 							onSubmit={isEdit === true ? submitEdit : handleSubmit}

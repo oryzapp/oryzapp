@@ -280,7 +280,7 @@ export default function RiceList() {
                                         }
                                     </>}
                                 </div>
-                                <div className=" hidden sm:flex divide-y bg-slate-50 divide-slate-300 h-fit  flex-col justify-center ">
+                                <div className=" hidden sm:flex divide-y bg-slate-100 divide-slate-300 h-fit  flex-col justify-center ">
 
                                     <div className="text-sprPrimary bg-white sticky top-0 px-6 py-2 text-sm font-medium flex items-center">
                                         <ShelfIcon className="fill-sprPrimary h-5 " />

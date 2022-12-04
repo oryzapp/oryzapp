@@ -67,7 +67,7 @@ export default function ModalSearch({ open, closeModal }) {
           <SearchIcon className='stroke-sprPrimary' />
           <div className='flex-auto relative flex items-center'>
             <input type="text" className='bg-slate-100 w-full rounded-full p-1 text-sm' placeholder='Search Accession' value={searchInput} onChange={e => setSearchInput(e.target.value)} />
-            <CloseIcon className='-m-5 h-4 rounded-full p-1 bg-sprGray30 stroke-sprGray40 hover:stroke-black active:stroke-sprPrimary' onClick={() => {
+            <CloseIcon className='-m-5 h-4 rounded-full p-1 bg-sprGray30 stroke-sprGray40 hover:stroke-sprGray50 active:stroke-sprPrimary' onClick={() => {
               setSearchInput('')
             }} />
 

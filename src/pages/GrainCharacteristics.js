@@ -59,7 +59,35 @@ export default function GrainCharacteristics({ season }) {
             <div className="hidden sm:block flex-auto divide-y divide-slate-300 ">
               <div className="px-6 py-3 font-medium whitespace-nowrap text-sprPrimary">Accession</div>
               {riceData.map((rice) => (
-                <div className="px-6 py-3 whitespace-nowrap"> {rice.accessionId === "" ? "---" : rice.accessionId}</div>
+                <div className="px-6 py-3 whitespace-nowrap"> CL-R{rice.accessionId === "" ? "---" : rice.accessionId}</div>
+              ))}
+            </div>
+          </tbody>
+        </table>
+        <table className="">
+          <thead className=" text-xs font-medium uppercase text-center bg-sprPrimaryLight">Shelf No.</thead>
+          <tbody className=" flex ">
+            <div className="hidden sm:block flex-auto divide-y divide-slate-300 ">
+              <div className="px-6 text-sm py-3 font-medium whitespace-nowrap text-sprPrimary">#</div>
+              {riceData.map((rice) => (
+                <div className="px-6 py-3 whitespace-nowrap"> {rice.shelfNum === "" ? "---" : rice.shelfNum}</div>
+              ))}
+            </div>
+          </tbody>
+        </table>
+        <table className="">
+          <thead className=" text-xs font-medium uppercase text-center bg-sprPrimaryOffLight">Year & Season</thead>
+          <tbody className=" flex ">
+            <div className="hidden sm:block flex-auto divide-y divide-slate-300 ">
+              <div className="px-6 text-sm py-3 font-medium whitespace-nowrap text-sprPrimary">Year</div>
+              {riceData.map((rice) => (
+                <div className="px-6 py-3 whitespace-nowrap"> {rice.riceYear === "" ? "---" : rice.riceYear}</div>
+              ))}
+            </div>
+            <div className="hidden sm:block flex-auto divide-y divide-slate-300 ">
+              <div className="px-6 text-sm py-3 font-medium whitespace-nowrap text-sprPrimary">Season</div>
+              {riceData.map((rice) => (
+                <div className="px-6 py-3 whitespace-nowrap"> {rice.riceSeason === "" ? "---" : rice.riceSeason}</div>
               ))}
             </div>
           </tbody>
