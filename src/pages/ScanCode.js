@@ -82,9 +82,9 @@ export default function ScanCode() {
     setIsModalOpen(true)
   }
 
-  
-console.log('I am currentData');
-console.log(currentData);
+
+  console.log('I am currentData');
+  console.log(currentData);
 
   return (
     <div className='bg-slate-50 rounded-t-xl  sm:rounded-xl h-full w-full flex flex-col  p-2'>
@@ -131,10 +131,10 @@ console.log(currentData);
             <div className={riceDataExists === true ? 'w-64  rounded-lg bg-slate-50 drop-shadow-md flex justify-between p-2 items-center' : 'hidden'}>
               <div className="">
                 <h1 className="text-xl font-bold text-sprBlack opacity-80">
-                  {currentData?.accessionId}
+                  CL-R{currentData?.accessionId}
                 </h1>
                 <h6 className="text-xs font-medium text-sprGray60">
-                  {currentData?.riceSeason}
+                  {currentData?.riceSeason} Season
                 </h6>
                 <h6 className="text-xs font-medium text-sprGray60">
                   {currentData?.riceYear}

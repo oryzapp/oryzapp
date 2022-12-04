@@ -97,28 +97,6 @@ const ModalDelete = ({ open, closeModal, modalId, delId }) => {
 
     }, [modalId])
 
-
-    // console.log('I am dryList' + dryList);
-    // dryList.map((item) => {
-    //     console.log(item.id);
-
-    // })
-    // console.log('I am wetList' + wetList);
-    wetList.map((item) => {
-        // console.log(item.id);
-
-    })
-    // console.log('I am VS DRY LIST' + vsDryList);
-    vsDryList.map((item) => {
-        // console.log(`vs` + item.id);
-
-    })
-    console.log('I am gc DRY LIST' + vsDryList);
-    gcDryList.forEach((item) => {
-        console.log(`gc` + item.id);
-
-    })
-
     const deleteRiceAccession = async (accessionId, id) => {
         try {
             console.log('Iam' + accessionId);

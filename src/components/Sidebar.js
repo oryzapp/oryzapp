@@ -24,7 +24,7 @@ import db from "../firebase-config";
 export default function Sidebar({ onChange }) {
 
   // For Navigation
-  const navigate = useNavigate()  
+  const navigate = useNavigate()
 
   const [state, setState] = useState(1)
 
@@ -33,76 +33,78 @@ export default function Sidebar({ onChange }) {
     onChange(page)
   }
 
-	const [isAdmin, setIsAdmin] = useState(false)              
+  const [isAdmin, setIsAdmin] = useState('default')
 
-// Authentication
+  // Authentication
   // useEffect(()=>{
   //   const unsub = onAuthStateChanged(auth, async (user) => {
-	// 		if (user !== null) {
-	// 			// console.log(user.email);
-	// 			// console.log(user);
-	// 		} else {
-	// 			await auth.signOut();
-	// 			navigate('/login');
+  // 		if (user !== null) {
+  // 			// console.log(user.email);
+  // 			// console.log(user);
+  // 		} else {
+  // 			await auth.signOut();
+  // 			navigate('/login');
   //       // console.log('i dunno about you');
-	// 		}
-	// 	})
+  // 		}
+  // 	})
   // },[])
 
   // Users
-	const [ users, setUsers] = useState([])
-	useEffect(()=>{
-		// Users
-		const collectionRef = collection(db, 'AUTH')
-			const unsub = onSnapshot(collectionRef, (snapshot) => {
-			setUsers(
-				snapshot.docs.map((doc) => ({ ...doc.data(), id: doc.id }))
-			);
-		});
+  const [users, setUsers] = useState([])
+  useEffect(() => {
+    // Users
+    const collectionRef = collection(db, 'AUTH')
+    const unsub = onSnapshot(collectionRef, (snapshot) => {
+      setUsers(
+        snapshot.docs.map((doc) => ({ ...doc.data(), id: doc.id }))
+      );
+    });
 
-		return unsub;
-	},[])
+    return unsub;
+  }, [])
 
   // Authentication--------------->
-  useEffect(()=>{
-    	const unsub = onAuthStateChanged(auth, async (user) => {
+  useEffect(() => {
+    const unsub = onAuthStateChanged(auth, async (user) => {
 
-		console.log(users);
-		const matchUser = users.find((dbUser)=>dbUser.email === user.email)
-		console.log(matchUser.role);
+      console.log(users);
+      const matchUser = users.find((dbUser) => dbUser.email === user.email)
+      console.log(matchUser.role);
 
-			if (user !== null) {
-			
-				if(matchUser.role === 'admin'){
-					setIsAdmin(true)
-					console.log('user-is-admin');
-				}
-				if(matchUser.role === 'user'){
-					setIsAdmin(false)
-					// setPage('rice-gallery')
-					console.log('user-is-not-admin');
-				}
+      if (user !== null) {
 
-				
-				
-			} 
-			else {
-				await auth.signOut();
-				navigate('/login');
-				
-			}
-		})
-		return unsub
-	
-},[users])
+        if (matchUser.role === 'admin') {
+          setIsAdmin(true)
+          console.log('user-is-admin');
+        }
+        if (matchUser.role === 'user') {
+          setIsAdmin(false)
+          // setPage('rice-gallery')
+          console.log('user-is-not-admin');
+        }
 
- 
+
+
+      }
+      else {
+        await auth.signOut();
+        navigate('/login');
+
+      }
+    })
+    return unsub
+
+  }, [users])
+
+
 
   return (
     <div className=" sidenav flex  flex-col  whitespace-nowrap w-auto  mb-2 rounded-b-xl sm:rounded-l-none sm:rounded-r-xl bg-white opacity-90 sm:h-full sm:p-3  ">
       <nav className="flex flex-row  sm:flex-col ">
 
-       {isAdmin === true ?  <button onClick={() => handleClick('dashboard', 1)} className={state === 1 ? " flex justify-center  flex-auto   sm:justify-start bg-sprPrimary rounded-lg px-3 py-2  " : " group flex justify-center  flex-auto   sm:justify-start  px-3 py-2 hover:bg-slate-200 rounded-lg   "}>
+        {isAdmin === 'default' ? <></> : <></>}
+
+        {isAdmin === true ? <button onClick={() => handleClick('dashboard', 1)} className={state === 1 ? " flex justify-center  flex-auto   sm:justify-start bg-sprPrimary rounded-lg px-3 py-2  " : " group flex justify-center  flex-auto   sm:justify-start  px-3 py-2 hover:bg-slate-200 rounded-lg   "}>
           <div className="flex items-center space-x-1  "  >
             <div className="rounded-xl h-6 w-6  ">
               <DashBIcon className=" group-hover:stroke-sprInactiveGray" fill="none" stroke={state !== 1 ? "#888A89" : "white"} />
@@ -111,7 +113,7 @@ export default function Sidebar({ onChange }) {
           </div>
         </button> : <></>}
 
-      {isAdmin === true?  <button onClick={() => handleClick('users', 2)} className={state === 2 ? "hidden sm:flex justify-center  flex-auto   sm:justify-start bg-sprPrimary rounded-lg px-3 py-2 " : "group hidden  sm:flex justify-center  flex-auto   sm:justify-start  px-3 py-2 hover:bg-slate-200 rounded-lg  "}>
+        {isAdmin === true ? <button onClick={() => handleClick('users', 2)} className={state === 2 ? "hidden sm:flex justify-center  flex-auto   sm:justify-start bg-sprPrimary rounded-lg px-3 py-2 " : "group hidden  sm:flex justify-center  flex-auto   sm:justify-start  px-3 py-2 hover:bg-slate-200 rounded-lg  "}>
           <div className="flex items-center  space-x-1   " >
             <div className="rounded-xl h-6 w-6  ">
               {/* <img className=" relative" src={manageUsersIcon} alt="" /> */}
@@ -119,9 +121,9 @@ export default function Sidebar({ onChange }) {
             </div>
             <h3 className={state === 2 ? "nav-text hidden md:block text-white font-medium text-md" : "nav-text hidden  md:block text-sprInactiveGray font-medium text-md"}>Manage Users</h3>
           </div>
-        </button>:<></>}
-       
-    {isAdmin === true ?  <button onClick={() => handleClick('rice-accessions', 3)} className={state === 3 ? "flex justify-center  flex-auto   sm:justify-start bg-sprPrimary rounded-lg px-3 py-2 " : "group flex justify-center  flex-auto   sm:justify-start  px-3 py-2 hover:bg-slate-200 rounded-lg "} >
+        </button> : <></>}
+
+        {isAdmin === true ? <button onClick={() => handleClick('rice-accessions', 3)} className={state === 3 ? "flex justify-center  flex-auto   sm:justify-start bg-sprPrimary rounded-lg px-3 py-2 " : "group flex justify-center  flex-auto   sm:justify-start  px-3 py-2 hover:bg-slate-200 rounded-lg "} >
           <div className="flex items-center space-x-1   " >
             <div className="rounded-xl h-6 w-6">
               {/* <img className=" relative" src={riceAccessionsIcon} alt="" /> */}
@@ -129,10 +131,10 @@ export default function Sidebar({ onChange }) {
             </div>
             <h3 className={state === 3 ? "nav-text hidden md:block text-white font-medium text-md" : "nav-text hidden  md:block text-sprInactiveGray font-medium text-md"}>Rice Accessions</h3>
           </div>
-        </button> : <></> }
-       
+        </button> : <></>}
 
-      {isAdmin === true ?  <button onClick={() => handleClick('rice-list', 4)} className={state === 4 ? "flex justify-center  flex-auto   sm:justify-start bg-sprPrimary rounded-lg px-3 py-2 " : "group flex justify-center  flex-auto   sm:justify-start  px-3 py-2 hover:bg-slate-200 rounded-lg "} >
+
+        {isAdmin === true ? <button onClick={() => handleClick('rice-list', 4)} className={state === 4 ? "flex justify-center  flex-auto   sm:justify-start bg-sprPrimary rounded-lg px-3 py-2 " : "group flex justify-center  flex-auto   sm:justify-start  px-3 py-2 hover:bg-slate-200 rounded-lg "} >
           <div className="flex items-center space-x-1   " >
             <div className="rounded-xl h-6 w-6">
               {/* <img className=" relative" src={riceAccessionsIcon} alt="" /> */}
@@ -140,9 +142,9 @@ export default function Sidebar({ onChange }) {
             </div>
             <h3 className={state === 4 ? "nav-text hidden md:block text-white font-medium text-md" : "nav-text hidden  md:block text-sprInactiveGray font-medium text-md"}>Rice List</h3>
           </div>
-        </button>:<></>}
+        </button> : <></>}
 
-      {isAdmin === true ?  <button onClick={() => handleClick('rice-data', 5)} className={state === 5 ? "hidden sm:flex justify-center  flex-auto   sm:justify-start bg-sprPrimary rounded-lg px-3 py-2" : " group hidden sm:flex justify-center  flex-auto   sm:justify-start  px-3 py-2 hover:bg-slate-200 rounded-lg "} >
+        {isAdmin === true ? <button onClick={() => handleClick('rice-data', 5)} className={state === 5 ? "hidden sm:flex justify-center  flex-auto   sm:justify-start bg-sprPrimary rounded-lg px-3 py-2" : " group hidden sm:flex justify-center  flex-auto   sm:justify-start  px-3 py-2 hover:bg-slate-200 rounded-lg "} >
           <div className="flex items-center space-x-1 " >
             <div className="rounded-xl h-6 w-6 ">
               {/* <img className=" relative" src={riceDataIcon} alt="" /> */}
@@ -150,10 +152,10 @@ export default function Sidebar({ onChange }) {
             </div>
             <h3 className={state === 5 ? "nav-text hidden md:block text-white font-medium text-md" : "nav-text hidden  md:block text-sprInactiveGray font-medium text-md"}>Rice Data</h3>
           </div>
-        </button>:<></>
-}
+        </button> : <></>
+        }
 
-      
+
         <button onClick={() => handleClick('rice-gallery', 6)} className={state === 6 ? "flex justify-center  flex-auto   sm:justify-start bg-sprPrimary rounded-lg px-3 py-2" : "group flex justify-center  flex-auto   sm:justify-start  px-3 py-2 hover:bg-slate-200 rounded-lg "} >
           <div className="flex items-center space-x-1  ">
             <div className="rounded-xl h-6 w-6 ">

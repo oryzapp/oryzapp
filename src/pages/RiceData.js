@@ -11,6 +11,7 @@ import { ReactComponent as RSicon } from "../assets/reproductive-stage-icon.svg"
 import { ReactComponent as GCicon } from "../assets/grain-characteristics-icon.svg";
 import { ReactComponent as VSicon } from "../assets/vegetative-stage-icon.svg";
 import { ReactComponent as YCicon } from "../assets/yield-components-icon.svg";
+import { ReactComponent as Shelficon } from "../assets/shelf-icon.svg";
 
 import { ReactComponent as SearchIcon } from "../assets/search-icon.svg"
 import RiceTables from "./RiceTables";
@@ -42,6 +43,7 @@ export default function RiceData() {
     accessionId: ' ',
     riceYear: '2018',
     riceSeason: 'Dry',
+    shelfNum: '',
     // vegetative
     auricleColor: '',
     coleoptileAnthocyaninColouration: '',
@@ -401,6 +403,8 @@ export default function RiceData() {
 
       const riceListDocRef = doc(db, `/SPR/Rice_Accessions/Rice_List/${season}/Raw_Rice_List/`, `${riceData.accessionId}_${season}_${riceData.riceYear}`);
       const riceListPayLoad = {
+        shelfNum: riceData.shelfNum,
+        searchIndex: ` ${riceData.accessionId} ${riceData.riceYear} ${riceData.riceSeason} Season Shelf ${riceData.shelfNum}`,
         accessionId: riceData.accessionId,
         riceYear: riceData.riceYear,
         riceSeason: riceData.riceSeason
@@ -566,50 +570,61 @@ export default function RiceData() {
               onSubmit={handleSubmit}
             >
               <div className={riceDataExists === true ? "block text-red-400" : "hidden"}>*Rice Data Already Exists</div>
-              <div className="flex whitespace-nowrap  my-2">
-                {/* Accession */}
-                <div className="drop-shadow-md flex" >
-                  <div className="bg-sprPrimaryLight text-white h-full text-sm  p-2 rounded-full pl-3 pr-10">Accession</div>
-                  <div className=" -ml-9">
-                    <select className="rounded-full py-2 text-sprPrimary text-sm " name="accessionId" id="" onChange={handleChange} required>
-                      <option value='Accession' >Accession</option>
-                      {riceAccessions.map((rice) =>
-                        <option value={rice.accessionId}  >{rice.accessionId}</option>)}
-                    </select>
+              {/* Indexes */}
+              <div className="flex whitespace-nowrap  my-2 justify-between">
+                <div className="flex gap-1 ">
+                  {/* Accession */}
+                  <div className="drop-shadow-md flex" >
+                    <div className="bg-sprPrimaryLight text-white h-full text-sm  p-2 rounded-full pl-3 pr-10">Accession</div>
+                    <div className=" -ml-9">
+                      <select className="rounded-full py-2 text-sprPrimary text-sm " name="accessionId" id="" onChange={handleChange} required>
+                        <option value='Accession' >Accession</option>
+                        {riceAccessions.map((rice) =>
+                          <option value={rice.accessionId}  >{`CL-R${rice.accessionId}`}</option>)}
+                      </select>
+                    </div>
+
+
+
                   </div>
+                  {/* Season */}
+                  <div className="drop-shadow-md flex" >
+                    <div className="bg-sprPrimaryLight text-white h-full text-sm  p-2 rounded-full pl-3 pr-10">Season</div>
+                    <div className=" -ml-9">
+                      <select className="rounded-full py-2 text-sprPrimary text-sm " value={riceData.riceSeason} name="riceSeason" onChange={handleChange}>
+                        <option value="Dry">Dry</option>
+                        <option value="Wet">Wet</option>
+                      </select>
+                    </div>
 
 
 
+                  </div>
+                  {/* Year */}
+                  <div className="drop-shadow-md flex" >
+                    <div className="bg-sprPrimaryLight text-white h-full text-sm  p-2 rounded-full pl-3 pr-10">Year</div>
+                    <div className=" -ml-9">
+                      <select className="rounded-full py-2 text-sprPrimary text-sm " value={riceData.riceYear} name="riceYear" onChange={handleChange}>
+                        {
+                          years.map((e) =>
+                            <option value={e} >{e}</option>
+
+                          )
+                        }
+                      </select>
+                    </div>
+
+
+
+                  </div>
                 </div>
-                {/* Season */}
-                <div className="drop-shadow-md flex" >
-                  <div className="bg-sprPrimaryLight text-white h-full text-sm  p-2 rounded-full pl-3 pr-10">Season</div>
-                  <div className=" -ml-9">
-                    <select className="rounded-full py-2 text-sprPrimary text-sm " value={riceData.riceSeason} name="riceSeason" onChange={handleChange}>
-                      <option value="Dry">Dry</option>
-                      <option value="Wet">Wet</option>
-                    </select>
+                {/* Shelf No. */}
+                <div className="drop-shadow-md flex relative ">
+
+                  <input className="rounded-full   w-32 pl-2 placeholder:text-sprPrimaryLight" type="text" placeholder="Shelf No." name="shelfNum" value={riceData.shelfNum} onChange={handleChange} required />
+                  <div className="bg-sprPrimaryLight text-white h-full text-sm  p-2 rounded-full  z-10 absolute right-0">
+                    <Shelficon className="h-full fill-white" />
                   </div>
-
-
-
-                </div>
-                {/* Year */}
-                <div className="drop-shadow-md flex" >
-                  <div className="bg-sprPrimaryLight text-white h-full text-sm  p-2 rounded-full pl-3 pr-10">Year</div>
-                  <div className=" -ml-9">
-                    <select className="rounded-full py-2 text-sprPrimary text-sm " value={riceData.riceYear} name="riceYear" onChange={handleChange}>
-                      {
-                        years.map((e) =>
-                          <option value={e} >{e}</option>
-
-                        )
-                      }
-                    </select>
-                  </div>
-
-
-
                 </div>
 
               </div>
