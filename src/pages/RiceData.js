@@ -570,18 +570,6 @@ export default function RiceData() {
               onSubmit={handleSubmit}
             >
               <div className={riceDataExists === true ? "block text-red-400" : "hidden"}>*Rice Data Already Exists</div>
-<<<<<<< HEAD
-              <div className="flex whitespace-nowrap  gap-2 my-2">
-                {/* Accession */}
-                <div className="drop-shadow-md flex" >
-                  <div className="bg-sprPrimaryLight text-white h-full text-sm  p-2 rounded-full pl-3 pr-10">Accession</div>
-                  <div className=" -ml-9">
-                    <select className="rounded-full py-2 text-sprPrimary text-sm " name="accessionId" id="" onChange={handleChange} required>
-                      <option value='Accession' >Accession</option>
-                      {riceAccessions.map((rice) =>
-                        <option value={rice.accessionId}  >{rice.accessionId}</option>)}
-                    </select>
-=======
               {/* Indexes */}
               <div className="flex whitespace-nowrap  my-2 justify-between">
                 <div className="flex gap-1 ">
@@ -598,7 +586,6 @@ export default function RiceData() {
 
 
 
->>>>>>> bb6aa55228464f7af96e424f8d37b797fc4a74dc
                   </div>
                   {/* Season */}
                   <div className="drop-shadow-md flex" >
