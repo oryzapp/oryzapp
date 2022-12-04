@@ -16,87 +16,87 @@ import { useNavigate } from 'react-router-dom';
 
 
 const Main = () => {
-  const navigate = useNavigate()  
+	const navigate = useNavigate()
 
 	const [page, setPage] = useState('dashboard');
-	const [isAdmin, setIsAdmin] = useState(false)              
+	const [isAdmin, setIsAdmin] = useState(false)
 
-	const [ users, setUsers] = useState([])
-	useEffect(()=>{
+	const [users, setUsers] = useState([])
+	useEffect(() => {
 		// Users
 		const collectionRef = collection(db, 'AUTH')
-			const unsub = onSnapshot(collectionRef, (snapshot) => {
+		const unsub = onSnapshot(collectionRef, (snapshot) => {
 			setUsers(
 				snapshot.docs.map((doc) => ({ ...doc.data(), id: doc.id }))
 			);
 		});
 
 		return unsub;
-	},[])
+	}, [])
 
-// Authentication--------->
-		useEffect(()=>{
-    	const unsub = onAuthStateChanged(auth, async (user) => {
+	// Authentication--------->
+	useEffect(() => {
+		const unsub = onAuthStateChanged(auth, async (user) => {
 
-		console.log(users);
-		const matchUser = users.find((dbUser)=>dbUser.email === user.email)
-		console.log(matchUser.role);
+			console.log(users);
+			const matchUser = users.find((dbUser) => dbUser.email === user.email)
+			console.log(matchUser.role);
 
 			if (user !== null) {
-			
-				if(matchUser.role === 'admin'){
+
+				if (matchUser.role === 'admin') {
 					setIsAdmin(true)
 					console.log('user-is-admin');
 				}
-				if(matchUser.role === 'user'){
+				if (matchUser.role === 'user') {
 					setIsAdmin(false)
-					setPage('rice-gallery')
+					setPage('scan-code')
 					console.log('user-is-not-admin');
 				}
 
-				
-				
-			} 
+
+
+			}
 			else {
 				await auth.signOut();
 				navigate('/login');
-				
+
 			}
 		})
 		return unsub
-	
-},[users])
+
+	}, [users])
 
 	// Navigation of Pages
 	const getPage = () => {
-		if(isAdmin === true){
+		if (isAdmin === true) {
 			switch (page) {
-			case 'dashboard':
-				return <Dash />
-			case 'users':
-				return <ManageUsers />
-			case 'rice-accessions':
-				return <RiceAccessions />
-			case 'rice-list':
-				return <RiceList />
-			case 'rice-data':
-				return <RiceData />
-			case 'rice-gallery':
-				return <RiceGallery />
-			case 'scan-code':
-				return <ScanCode />
+				case 'dashboard':
+					return <Dash />
+				case 'users':
+					return <ManageUsers />
+				case 'rice-accessions':
+					return <RiceAccessions />
+				case 'rice-list':
+					return <RiceList />
+				case 'rice-data':
+					return <RiceData />
+				case 'rice-gallery':
+					return <RiceGallery />
+				case 'scan-code':
+					return <ScanCode />
 
+			}
 		}
-		}
-		else{
+		else {
 			switch (page) {
-			
-			case 'rice-gallery':
-				return <RiceGallery />
-			case 'scan-code':
-				return <ScanCode />
 
-		}
+				case 'rice-gallery':
+					return <RiceGallery />
+				case 'scan-code':
+					return <ScanCode />
+
+			}
 		}
 	}
 
