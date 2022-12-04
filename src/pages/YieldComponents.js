@@ -50,14 +50,14 @@ export default function YieldComponents({ season }) {
 
     <>
 
-      <div className="  flex text-sprGray60 text-sm">
+      <div className="  flex flex-auto text-sprGray60 text-sm">
         <table className="">
           <thead className=" text-xs font-medium uppercase text-center bg-sprPrimaryOffLight">Accession</thead>
           <tbody className=" flex ">
             <div className="hidden sm:block flex-auto divide-y divide-slate-300 ">
-              <div className="px-6 py-3 font-medium text-sprPrimary">Accession</div>
+              <div className="px-6 py-3 font-medium whitespace-nowrap text-sprPrimary">Accession</div>
               {riceData.map((rice) => (
-                <div className="px-6 py-3"> {rice.accessionId === "" ? "---" : rice.accessionId}</div>
+                <div className="px-6 py-3 whitespace-nowrap"> {rice.accessionId === "" ? "---" : rice.accessionId}</div>
               ))}
             </div>
           </tbody>
@@ -66,15 +66,15 @@ export default function YieldComponents({ season }) {
           <thead className="text-xs font-medium uppercase text-center bg-sprPrimaryLight">Yield Components</thead>
           <tbody className=" flex ">
             <div className="hidden sm:block flex-auto divide-y divide-slate-300 ">
-              <div className="px-6 py-3 font-medium text-sprPrimary">Cavans</div>
+              <div className="px-6 py-3 font-medium whitespace-nowrap text-sprPrimary">Cavans</div>
               {riceData.map((rice) => (
-                <div className="px-6 py-3 bg-slate-50"> {rice.cavans === "" ? "---" : rice.cavans}</div>
+                <div className="px-6 py-3 bg-slate-50 whitespace-nowrap"> {rice.cavans === "" ? "---" : rice.cavans}</div>
               ))}
             </div>
             <div className="hidden sm:block flex-auto divide-y divide-slate-300 ">
-              <div className="px-6 py-3 font-medium text-sprPrimary">Kilogram</div>
+              <div className="px-6 py-3 font-medium whitespace-nowrap text-sprPrimary">Kilogram</div>
               {riceData.map((rice) => (
-                <div className="px-6 py-3"> {rice.kilogram === "" ? "---" : rice.kilogram}</div>
+                <div className="px-6 py-3 whitespace-nowrap"> {rice.kilogram === "" ? "---" : rice.kilogram}</div>
               ))}
             </div>
             <div className="hidden sm:block flex-auto divide-y divide-slate-300 ">
@@ -84,9 +84,9 @@ export default function YieldComponents({ season }) {
               ))}
             </div>
             <div className="hidden sm:block flex-auto divide-y divide-slate-300 ">
-              <div className="px-6 py-3 font-medium text-sprPrimary">Ton/Ha</div>
+              <div className="px-6 py-3 font-medium whitespace-nowrap text-sprPrimary">Ton/Ha</div>
               {riceData.map((rice) => (
-                <div className="px-6 py-3"> {rice.tonHa === "" ? "---" : rice.tonHa}</div>
+                <div className="px-6 py-3 whitespace-nowrap"> {rice.tonHa === "" ? "---" : rice.tonHa}</div>
               ))}
             </div>
           </tbody>

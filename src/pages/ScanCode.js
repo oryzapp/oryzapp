@@ -95,12 +95,12 @@ console.log(currentData);
         </h1>
       </header>
       {/* main */}
-      <div className="flex h-full relative justify-center items-center">
+      <div className="flex h-full relative justify-center items-center ">
 
         <div className=" lg:bg-white lg:drop-shadow-sm w-full flex flex-col items-center gap-5 z-10 lg:p-20 lg:mx-40 rounded-lg relative"  >
 
-          <div className=" h-72 w-64 flex flex-col  ">
-            <div className=" flex ">
+          <div className=" h-72 w-64 flex flex-col ">
+            <div className=" flex cursor-pointer">
               <div className={isScan === true ? 'w-1/2 h-10 rounded-t-lg bg-sprPrimary flex justify-center items-center' : 'w-1/2 h-10 rounded-t-lg bg-sprPrimarySuperLight flex justify-center items-center'} onClick={() => setIsScan(true)}>
                 <ScanCodeIcon fill={isScan === true ? "white" : "#CFD491"} />
               </div>
@@ -115,8 +115,8 @@ console.log(currentData);
             </div>
             <div className={isScan === false ? 'flex flex-col gap-5 justify-center items-center bg-slate-100 flex-auto rounded-b-lg  sprBorderDashed' : 'hidden'} >
               <ImageIcon fill="none" stroke="#CFD491" className="w-16" />
-              <div className="bg-sprPrimaryLight relative rounded-full ">
-                <h6 className="absolute left-4 top-1 text-white font-medium" >Choose File</h6>
+              <div className="bg-sprPrimaryLight relative rounded-full hover:bg-sprPrimary ">
+                <h6 className="absolute left-4 top-1  text-white font-medium" >Choose File</h6>
                 <input className="opacity-0 w-32" type="file" onChange={(e) => {
                   readCode(e)
                 }} />

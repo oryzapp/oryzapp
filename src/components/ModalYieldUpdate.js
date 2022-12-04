@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react'
 import db from "../firebase-config";
 import closeIcon from "../assets/close.svg";
 import { doc, serverTimestamp, updateDoc } from 'firebase/firestore';
+import { ReactComponent as CloseIcon } from '../assets/close.svg';
 
 
 
@@ -67,15 +68,17 @@ const submitEdit = async (e) => {
         <form onSubmit={submitEdit}>
 		    <div className=" fixed left-0 right-0 bottom-0 top-0 z-50 bg-black opacity-70 " />
 			<div className=" hidden sm:flex flex-col absolute left-20 right-20 bottom-32 top-16 z-50 bg-white rounded-md  p-8   md:left-52 md:right-52  lg:left-96 lg:right-96  ">
-                <div className="absolute right-5 z-50 ">
-                        <button onClick={()=>{closeModal()}} >
+                <div className="absolute right-4 top-4 z-50 ">
+                        {/* <button onClick={()=>{closeModal()}} >
                         <img className="relative" src={closeIcon} alt="" />
-                        </button>
+                        </button> */}
+                        <CloseIcon className='group-hover:stroke-white stroke-sprGray50 hover:stroke-sprGray80 active:stroke-sprPrimary h-5' onClick={closeModal}/>
                 </div>
-				<div className="flex-auto flex flex-col  overflow-hidden  bg-blue-800">
+            
+				<div className="flex-auto flex flex-col  overflow-hidden">
                 <h1 className="page-header text-2xl font-bold text-sprGray70 inline-block">Update Yield Data</h1> 
                 <p className="font-medium text-xl text-sprPrimaryDark">{modalId}</p>
-                <div className=" bg-yellow-300 flex overflow-auto flex-auto scrollbar">
+                <div className="  flex overflow-auto flex-auto pt-3 text-sprBlack scrollbar">
                     <div className='flex-auto flex flex-col'>
                     <div className="flex flex-col p-2 pb-0">
                     <div className="grid grid-cols-2 gap-4 bg-white text-sm">
@@ -96,8 +99,8 @@ const submitEdit = async (e) => {
 
 
                   </div>
-                  <div className="flex flex-col p-2 pb-0">
-                    <div className="text-xs uppercase font-medium">Aroma</div>
+                  <div className="flex flex-col pt-3 p-2 pb-0">
+                    <div className="text-xs uppercase text-sprBlack font-medium">Aroma</div>
                     <div className="grid grid-cols-2 gap-4 bg-white text-sm">
                       <div className="flex flex-col bg-white px-6">
                         <label className="text-sprPrimary" htmlFor="">Cooked Rice Aroma</label>
@@ -129,7 +132,7 @@ const submitEdit = async (e) => {
                                 type="submit"
                                 className="bg-sprPrimary rounded-full py-2 px-3 text-sm font-medium text-white shadow-slate-300"
                         >
-                                Save
+                                Update
                         </button>
                 </div>
 

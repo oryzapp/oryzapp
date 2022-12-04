@@ -37,6 +37,7 @@ import { v4 } from "uuid";
 import { QRCodeCanvas } from "qrcode.react";
 import ModalAccessionsInfo from "../components/ModalAccessionsInfo";
 import ModalDelete from "../components/ModalDelete";
+import { ReactComponent as CloseIcon } from "../assets/close.svg";
 
 export default function RiceAccessions() {
 
@@ -475,19 +476,24 @@ export default function RiceAccessions() {
 				{/* Modals */}
 				{/* Add Rice Accession */}
 				<ModalAddRiceAcc open={isModalOpen} >
-					<div className="absolute right-5 z-50 ">
-						<button onClick={() => {
+					<div className="absolute right-4 top-4 z-50 ">
+						{/* <button onClick={() => {
 							setIsModalOpen(false)
 							setIsEdit(false)
 							setState(initialState)
 						}}>
 							<img className="relative" src={closeIcon} alt="" />
-						</button>
+						</button> */}
+						<CloseIcon className='group-hover:stroke-white stroke-sprGray50 hover:stroke-sprGray80 active:stroke-sprPrimary h-5' onClick={() => {
+							setIsModalOpen(false)
+							setIsEdit(false)
+							setState(initialState)
+						}}/>
 					</div>
 					<div className="flex">
 						<h1 className="page-header text-2xl font-bold text-sprGray70">Add Rice Accession</h1>
 					</div>
-					<div className="flex-auto relative">
+					<div className="flex-auto flex flex-col overflow-hidden">
 						<form
 							className="flex flex-col h-full "
 							onSubmit={isEdit === true ? submitEdit : handleSubmit}
@@ -549,7 +555,7 @@ export default function RiceAccessions() {
 									<div className=" rounded-b-lg  sprBorderDashed w-3/4 h-3/4  flex flex-col gap-5  justify-center items-center bg-slate-100 ">
 										<ImageIcon fill="none" stroke="#CFD491" className="w-16" />
 										<div className="bg-sprPrimaryLight relative rounded-full ">
-											<h6 className="absolute left-4 top-1 text-white font-medium" >Choose Image</h6>
+											<h6 className="absolute left-3 top-1 text-white text-sm font-medium" >Choose Image</h6>
 											<input className="opacity-0 w-32" type="file" onChange={(e) => {
 												setImageUpload(e.target.files[0])
 											}} />

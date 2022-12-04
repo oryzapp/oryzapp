@@ -65,9 +65,9 @@ export default function VegetativeStage({ season }) {
           <thead className=" text-xs font-medium uppercase text-center bg-sprPrimaryLight">Auricle</thead>
           <tbody className=" flex ">
             <div className="hidden sm:block flex-auto divide-y divide-slate-300 ">
-              <div className="px-6 py-3 font-medium text-sprPrimary">Color</div>
+              <div className="px-6 py-3 font-medium whitespace-nowrap text-sprPrimary">Color</div>
               {riceData.map((rice) => (
-                <div className="px-6 py-3 bg-slate-50"> {rice.auricleColor === "" ? "---" : rice.auricleColor}</div>
+                <div className="px-6 py-3 bg-slate-50 whitespace-nowrap"> {rice.auricleColor === "" ? "---" : rice.auricleColor}</div>
               ))}
             </div>
           </tbody>
@@ -87,9 +87,9 @@ export default function VegetativeStage({ season }) {
           <thead className="text-xs font-medium uppercase text-center bg-sprPrimaryLight">Collar</thead>
           <tbody className=" flex ">
             <div className="hidden sm:block flex-auto divide-y divide-slate-300 ">
-              <div className="px-6 py-3 font-medium text-sprPrimary">Colour</div>
+              <div className="px-6 py-3 font-medium whitespace-nowrap text-sprPrimary">Colour</div>
               {riceData.map((rice) => (
-                <div className="px-6 py-3 bg-slate-50"> {rice.collarColour === "" ? "---" : rice.collarColour}</div>
+                <div className="px-6 py-3 bg-slate-50 whitespace-nowrap"> {rice.collarColour === "" ? "---" : rice.collarColour}</div>
               ))}
             </div>
           </tbody>
@@ -98,9 +98,9 @@ export default function VegetativeStage({ season }) {
           <thead className="text-xs font-medium uppercase text-center bg-sprPrimaryOffLight">Culm</thead>
           <tbody className=" flex ">
             <div className="hidden sm:block flex-auto divide-y divide-slate-300 ">
-              <div className="px-6 py-3 font-medium text-sprPrimary">Habit</div>
+              <div className="px-6 py-3 font-medium whitespace-nowrap text-sprPrimary">Habit</div>
               {riceData.map((rice) => (
-                <div className="px-6 py-3"> {rice.culmHabit === "" ? "---" : rice.culmHabit}</div>
+                <div className="px-6 py-3 whitespace-nowrap"> {rice.culmHabit === "" ? "---" : rice.culmHabit}</div>
               ))}
             </div>
             <div className="hidden sm:block flex-auto divide-y divide-slate-300 ">
@@ -110,15 +110,15 @@ export default function VegetativeStage({ season }) {
               ))}
             </div>
             <div className="hidden sm:block flex-auto divide-y divide-slate-300 ">
-              <div className="px-6 py-3 font-medium text-sprPrimary">Length</div>
+              <div className="px-6 py-3 font-medium whitespace-nowrap text-sprPrimary">Length</div>
               {riceData.map((rice) => (
-                <div className="px-6 py-3"> {rice.culmLength === "" ? "---" : rice.culmLength}</div>
+                <div className="px-6 py-3 whitespace-nowrap"> {rice.culmLength === "" ? "---" : rice.culmLength}</div>
               ))}
             </div>
             <div className="hidden sm:block flex-auto divide-y divide-slate-300 ">
-              <div className="px-6 py-3 font-medium text-sprPrimary">Number</div>
+              <div className="px-6 py-3 font-medium whitespace-nowrap text-sprPrimary">Number</div>
               {riceData.map((rice) => (
-                <div className="px-6 py-3 bg-slate-50"> {rice.culmNumber === "" ? "---" : rice.culmNumber}</div>
+                <div className="px-6 py-3 bg-slate-50 whitespace-nowrap"> {rice.culmNumber === "" ? "---" : rice.culmNumber}</div>
               ))}
             </div>
             <div className="hidden sm:block flex-auto divide-y divide-slate-300 ">
@@ -158,9 +158,9 @@ export default function VegetativeStage({ season }) {
               ))}
             </div>
             <div className="hidden sm:block flex-auto divide-y divide-slate-300 ">
-              <div className="px-6 py-3 font-medium text-sprPrimary">Strength</div>
+              <div className="px-6 py-3 font-medium whitespace-nowrap text-sprPrimary">Strength</div>
               {riceData.map((rice) => (
-                <div className="px-6 py-3"> {rice.culmStrength === "" ? "---" : rice.culmStrength}</div>
+                <div className="px-6 py-3 whitespace-nowrap"> {rice.culmStrength === "" ? "---" : rice.culmStrength}</div>
               ))}
             </div>
           </tbody>
@@ -169,15 +169,15 @@ export default function VegetativeStage({ season }) {
           <thead className="text-xs font-medium uppercase text-center bg-sprPrimaryLight">Flag Leaf</thead>
           <tbody className=" flex ">
             <div className="hidden sm:block flex-auto divide-y divide-slate-300 ">
-              <div className="px-6 py-3 font-medium text-sprPrimary">Length</div>
+              <div className="px-6 py-3 font-medium whitespace-nowrap text-sprPrimary">Length</div>
               {riceData.map((rice) => (
-                <div className="px-6 py-3 bg-slate-50"> {rice.flagLeafLegnth === "" ? "---" : rice.flagLeafLegnth}</div>
+                <div className="px-6 py-3 bg-slate-50 whitespace-nowrap"> {rice.flagLeafLegnth === "" ? "---" : rice.flagLeafLegnth}</div>
               ))}
             </div>
             <div className="hidden sm:block flex-auto divide-y divide-slate-300 ">
-              <div className="px-6 py-3 font-medium text-sprPrimary">Width</div>
+              <div className="px-6 py-3 font-medium whitespace-nowrap text-sprPrimary">Width</div>
               {riceData.map((rice) => (
-                <div className="px-6 py-3"> {rice.flagLeafWidth === "" ? "---" : rice.flagLeafWidth}</div>
+                <div className="px-6 py-3 whitespace-nowrap"> {rice.flagLeafWidth === "" ? "---" : rice.flagLeafWidth}</div>
               ))}
             </div>
             <div className="hidden sm:block flex-auto divide-y divide-slate-300 ">
@@ -204,9 +204,9 @@ export default function VegetativeStage({ season }) {
               ))}
             </div>
             <div className="hidden sm:block flex-auto divide-y divide-slate-300 ">
-              <div className="px-6 py-3 font-medium text-sprPrimary">Senesence</div>
+              <div className="px-6 py-3 font-medium whitespace-nowrap text-sprPrimary">Senesence</div>
               {riceData.map((rice) => (
-                <div className="px-6 py-3"> {rice.leafSenesence === "" ? "---" : rice.leafSenesence}</div>
+                <div className="px-6 py-3 whitespace-nowrap"> {rice.leafSenesence === "" ? "---" : rice.leafSenesence}</div>
               ))}
             </div>
           </tbody>
@@ -233,15 +233,15 @@ export default function VegetativeStage({ season }) {
               ))}
             </div>
             <div className="hidden sm:block flex-auto divide-y divide-slate-300 ">
-              <div className="px-6 py-3 font-medium text-sprPrimary">Attitude</div>
+              <div className="px-6 py-3 font-medium whitespace-nowrap text-sprPrimary">Attitude</div>
               {riceData.map((rice) => (
-                <div className="px-6 py-3"> {rice.lbAttitude === "" ? "---" : rice.lbAttitude}</div>
+                <div className="px-6 py-3 whitespace-nowrap"> {rice.lbAttitude === "" ? "---" : rice.lbAttitude}</div>
               ))}
             </div>
             <div className="hidden sm:block flex-auto divide-y divide-slate-300 ">
-              <div className="px-6 py-3 font-medium text-sprPrimary">Pubesence</div>
+              <div className="px-6 py-3 font-medium whitespace-nowrap text-sprPrimary">Pubesence</div>
               {riceData.map((rice) => (
-                <div className="px-6 py-3 bg-slate-50"> {rice.lbPubesence === "" ? "---" : rice.lbPubesence}</div>
+                <div className="px-6 py-3 bg-slate-50 whitespace-nowrap"> {rice.lbPubesence === "" ? "---" : rice.lbPubesence}</div>
               ))}
             </div>
             <div className="hidden sm:block flex-auto divide-y divide-slate-300 ">
@@ -251,15 +251,15 @@ export default function VegetativeStage({ season }) {
               ))}
             </div>
             <div className="hidden sm:block flex-auto divide-y divide-slate-300 ">
-              <div className="px-6 py-3 font-medium text-sprPrimary">Length</div>
+              <div className="px-6 py-3 font-medium whitespace-nowrap text-sprPrimary">Length</div>
               {riceData.map((rice) => (
-                <div className="px-6 py-3 bg-slate-50"> {rice.lbLength === "" ? "---" : rice.lbLength}</div>
+                <div className="px-6 py-3 bg-slate-50 whitespace-nowrap"> {rice.lbLength === "" ? "---" : rice.lbLength}</div>
               ))}
             </div>
             <div className="hidden sm:block flex-auto divide-y divide-slate-300 ">
-              <div className="px-6 py-3 font-medium text-sprPrimary">Width</div>
+              <div className="px-6 py-3 font-medium whitespace-nowrap text-sprPrimary">Width</div>
               {riceData.map((rice) => (
-                <div className="px-6 py-3"> {rice.lbWidth === "" ? "---" : rice.lbWidth}</div>
+                <div className="px-6 py-3 whitespace-nowrap"> {rice.lbWidth === "" ? "---" : rice.lbWidth}</div>
               ))}
             </div>
           </tbody>
@@ -285,15 +285,15 @@ export default function VegetativeStage({ season }) {
           <thead className="text-xs font-medium uppercase text-center bg-sprPrimaryLight">Ligule</thead>
           <tbody className=" flex ">
             <div className="hidden sm:block flex-auto divide-y divide-slate-300 ">
-              <div className="px-6 py-3 font-medium text-sprPrimary">Length</div>
+              <div className="px-6 py-3 font-medium whitespace-nowrap text-sprPrimary">Length</div>
               {riceData.map((rice) => (
-                <div className="px-6 py-3 bg-slate-50"> {rice.liguleLength === "" ? "---" : rice.liguleLength}</div>
+                <div className="px-6 py-3 bg-slate-50 whitespace-nowrap"> {rice.liguleLength === "" ? "---" : rice.liguleLength}</div>
               ))}
             </div>
             <div className="hidden sm:block flex-auto divide-y divide-slate-300 ">
-              <div className="px-6 py-3 font-medium text-sprPrimary">Shape</div>
+              <div className="px-6 py-3 font-medium whitespace-nowrap text-sprPrimary">Shape</div>
               {riceData.map((rice) => (
-                <div className="px-6 py-3"> {rice.liguleShape === "" ? "---" : rice.liguleShape}</div>
+                <div className="px-6 py-3 whitespace-nowrap"> {rice.liguleShape === "" ? "---" : rice.liguleShape}</div>
               ))}
             </div>
             <div className="hidden sm:block flex-auto divide-y divide-slate-300 ">
@@ -321,15 +321,15 @@ export default function VegetativeStage({ season }) {
               ))}
             </div>
             <div className="hidden sm:block flex-auto divide-y divide-slate-300 ">
-              <div className="px-6 py-3 font-medium text-sprPrimary">Pubesence</div>
+              <div className="px-6 py-3 font-medium whitespace-nowrap text-sprPrimary">Pubesence</div>
               {riceData.map((rice) => (
-                <div className="px-6 py-3 bg-slate-50"> {rice.ligulePubesence === "" ? "---" : rice.ligulePubesence}</div>
+                <div className="px-6 py-3 bg-slate-50 whitespace-nowrap"> {rice.ligulePubesence === "" ? "---" : rice.ligulePubesence}</div>
               ))}
             </div>
             <div className="hidden sm:block flex-auto divide-y divide-slate-300 ">
-              <div className="px-6 py-3 font-medium text-sprPrimary">Colour</div>
+              <div className="px-6 py-3 font-medium whitespace-nowrap text-sprPrimary">Colour</div>
               {riceData.map((rice) => (
-                <div className="px-6 py-3"> {rice.liguleColour === "" ? "---" : rice.liguleColour}</div>
+                <div className="px-6 py-3 whitespace-nowrap"> {rice.liguleColour === "" ? "---" : rice.liguleColour}</div>
               ))}
             </div>
           </tbody>
@@ -338,7 +338,7 @@ export default function VegetativeStage({ season }) {
           <thead className="text-xs whitespace-nowrap font-medium uppercase text-center bg-sprPrimaryOffLight">Rhizome and Stalon</thead>
           <tbody className=" flex ">
             <div className="hidden sm:block flex-auto divide-y divide-slate-300 ">
-              <div className="px-6 py-3 font-medium text-sprPrimary">Formation</div>
+              <div className="px-6 py-3 font-medium whitespace-nowrap text-sprPrimary">Formation</div>
               {riceData.map((rice) => (
                 <div className="px-6 py-3 whitespace-nowrap bg-slate-50"> {rice.rhizomeandStolonFormation === "" ? "---" : rice.rhizomeandStolonFormation}</div>
               ))}
@@ -349,9 +349,9 @@ export default function VegetativeStage({ season }) {
           <thead className="text-xs font-medium uppercase text-center bg-sprPrimaryLight">Seedling</thead>
           <tbody className=" flex ">
             <div className="hidden sm:block flex-auto divide-y divide-slate-300 ">
-              <div className="px-6 py-3 font-medium text-sprPrimary">Height</div>
+              <div className="px-6 py-3 font-medium whitespace-nowrap text-sprPrimary">Height</div>
               {riceData.map((rice) => (
-                <div className="px-6 py-3 "> {rice.seedlingHeight === "" ? "---" : rice.seedlingHeight}</div>
+                <div className="px-6 py-3 whitespace-nowrap"> {rice.seedlingHeight === "" ? "---" : rice.seedlingHeight}</div>
               ))}
             </div>
           </tbody>

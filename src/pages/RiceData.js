@@ -560,13 +560,13 @@ export default function RiceData() {
           <div className="flex ">
             <h1 className="page-header text-2xl font-bold">Add Rice Data</h1>
           </div>
-          <div className="flex-auto relative">
+          <div className="flex-auto flex flex-col overflow-hidden">
             <form
               className="flex flex-col h-full"
               onSubmit={handleSubmit}
             >
               <div className={riceDataExists === true ? "block text-red-400" : "hidden"}>*Rice Data Already Exists</div>
-              <div className="flex whitespace-nowrap  my-2">
+              <div className="flex whitespace-nowrap  gap-2 my-2">
                 {/* Accession */}
                 <div className="drop-shadow-md flex" >
                   <div className="bg-sprPrimaryLight text-white h-full text-sm  p-2 rounded-full pl-3 pr-10">Accession</div>
@@ -661,7 +661,7 @@ export default function RiceData() {
                     <div className="text-xs uppercase font-medium">Auricle</div>
                     <div className="grid grid-cols-2 gap-4 bg-white text-sm">
                       <div className="flex flex-col bg-white px-6">
-                        <div className="flex flex-col -space-y-1"><h6 className="text-xs  ">7.3.11</h6>
+                        <div className="flex flex-col -space-y-1">
                           <label className="text-sprPrimary" htmlFor="">Auricle: colour</label></div>
                         <input className="rounded-full px-1 py-px border border-sprInactiveGray focus:outline-none focus:border-none focus:ring-2 focus:ring-sprPrimary" type="text" name="auricleColor"
                           value={riceData.auricleColor} onChange={handleChange} /></div>
@@ -672,7 +672,7 @@ export default function RiceData() {
                     <div className="uppercase text-xs font-medium">Coleoptile</div>
                     <div className="grid grid-cols-2 gap-4 bg-white text-sm">
                       <div className="flex flex-col bg-white px-6">
-                        <div className="flex flex-col -space-y-1"><h6 className="text-xs">7.3.1</h6>
+                        <div className="flex flex-col -space-y-1">
                           <label className="text-sprPrimary" htmlFor="">Coleoptile: anthocyanin colouration</label></div>
                         <input className="rounded-full px-1 py-px border border-sprInactiveGray focus:border-none focus:outline-none focus:ring-2 focus:ring-sprPrimary" type="text" name="coleoptileAnthocyaninColouration"
                           value={riceData.coleoptileAnthocyaninColouration} onChange={handleChange} /></div>
@@ -685,7 +685,7 @@ export default function RiceData() {
                     <div className="uppercase text-xs font-medium">Collar</div>
                     <div className="grid grid-cols-2 gap-4 bg-white text-sm">
                       <div className="flex flex-col bg-white px-6">
-                        <div className="flex flex-col -space-y-1"><h6 className="text-xs">7.3.12</h6>
+                        <div className="flex flex-col -space-y-1">
                           <label className="text-sprPrimary" htmlFor="">Collar: colour</label></div>
                         <input className="rounded-full px-1 py-px border border-sprInactiveGray focus:border-none focus:outline-none focus:ring-2 focus:ring-sprPrimary" type="text" name="collarColour"
                           value={riceData.collarColour} onChange={handleChange} /></div>
@@ -698,57 +698,57 @@ export default function RiceData() {
                     <div className="uppercase text-xs font-medium">Culm</div>
                     <div className="grid grid-cols-2 gap-4 bg-white text-sm">
                       <div className="flex flex-col bg-white px-6">
-                        <div className="flex flex-col -space-y-1"><h6 className="text-xs">7.3.23</h6>
+                        <div className="flex flex-col -space-y-1">
                           <label className="text-sprPrimary" htmlFor="">Culm: habit</label></div>
                         <input className="rounded-full px-1 py-px border border-sprInactiveGray focus:border-none focus:outline-none focus:ring-2 focus:ring-sprPrimary" type="text" name="culmHabit"
                           value={riceData.culmHabit} onChange={handleChange} /></div>
                       <div className="flex flex-col px-6">
-                        <div className="flex flex-col -space-y-1"><h6 className="text-xs">7.3.24</h6>
+                        <div className="flex flex-col -space-y-1">
                           <label className="text-sprPrimary" htmlFor="">Culm: kneeing ability</label></div>
                         <input className="rounded-full px-1 py-px border border-sprInactiveGray focus:border-none focus:outline-none focus:ring-2 focus:ring-sprPrimary" type="text" name="culmKneeingAbility"
                           value={riceData.culmKneeingAbility} onChange={handleChange} /></div>
                       <div className="flex flex-col px-6">
-                        <div className="flex flex-col -space-y-1"><h6 className="text-xs">7.3.25</h6>
+                        <div className="flex flex-col -space-y-1">
                           <label className="text-sprPrimary" htmlFor="">Culm: length [cm]</label></div>
                         <input className="rounded-full px-1 py-px border border-sprInactiveGray focus:border-none focus:outline-none focus:ring-2 focus:ring-sprPrimary" type="text" name="culmLength"
                           value={riceData.culmLength} onChange={handleChange} /></div>
                       <div className="flex flex-col px-6">
-                        <div className="flex flex-col -space-y-1"><h6 className="text-xs">7.3.26</h6>
+                        <div className="flex flex-col -space-y-1">
                           <label className="text-sprPrimary" htmlFor="">Culm: number</label></div>
                         <input className="rounded-full px-1 py-px border border-sprInactiveGray focus:border-none focus:outline-none focus:ring-2 focus:ring-sprPrimary" type="text" name="culmNumber"
                           value={riceData.culmNumber} onChange={handleChange} /></div>
                       <div className="flex flex-col px-6">
-                        <div className="flex flex-col -space-y-1"><h6 className="text-xs">7.3.27</h6>
+                        <div className="flex flex-col -space-y-1">
                           <label className="text-sprPrimary" htmlFor="">Culm: diameter at basal internode [mm]</label></div>
                         <input className="rounded-full px-1 py-px border border-sprInactiveGray focus:border-none focus:outline-none focus:ring-2 focus:ring-sprPrimary" type="text" name="culmDiameteratBasalInternode"
                           value={riceData.culmDiameteratBasalInternode} onChange={handleChange} /></div>
                       <div className="flex flex-col bg-white px-6">
-                        <div className="flex flex-col -space-y-1"><h6 className="text-xs">7.3.28</h6>
+                        <div className="flex flex-col -space-y-1">
                           <label className="text-sprPrimary" htmlFor="">Culm: anthocyanin colouration on nodes</label></div>
                         <input className="rounded-full px-1 py-px border border-sprInactiveGray focus:border-none focus:outline-none focus:ring-2 focus:ring-sprPrimary" type="text" name="culmAnthocyaninColourationonNodes"
                           value={riceData.culmAnthocyaninColourationonNodes} onChange={handleChange} /></div>
                       <div className="flex flex-col px-6">
-                        <div className="flex flex-col -space-y-1"><h6 className="text-xs">7.3.29</h6>
+                        <div className="flex flex-col -space-y-1">
                           <label className="text-sprPrimary" htmlFor="">Culm: underlying node colour</label></div>
                         <input className="rounded-full px-1 py-px border border-sprInactiveGray focus:border-none focus:outline-none focus:ring-2 focus:ring-sprPrimary" type="text" name="culmUnderlyingNodeColour"
                           value={riceData.culmUnderlyingNodeColour} onChange={handleChange} /></div>
                       <div className="flex flex-col px-6">
-                        <div className=" flex flex-col -space-y-1"><h6 className="text-xs">7.3.30</h6>
+                        <div className=" flex flex-col -space-y-1">
                           <label className="text-sprPrimary" htmlFor="">Culm: internode anthocyanin</label></div>
                         <input className="rounded-full px-1 py-px border border-sprInactiveGray focus:border-none focus:outline-none focus:ring-2 focus:ring-sprPrimary" type="text" name="culmInternodeAnthocyanin"
                           value={riceData.culmInternodeAnthocyanin} onChange={handleChange} /></div>
                       <div className="flex flex-col px-6">
-                        <div className="flex flex-col -space-y-1"><h6 className="text-xs">7.3.31</h6>
+                        <div className="flex flex-col -space-y-1">
                           <label className="text-sprPrimary" htmlFor="">Culm: underlying internode colouration</label></div>
                         <input className="rounded-full px-1 py-px border border-sprInactiveGray focus:border-none focus:outline-none focus:ring-2 focus:ring-sprPrimary" type="text" name="culmUnderlyingInternodeColouration"
                           value={riceData.culmUnderlyingInternodeColouration} onChange={handleChange} /></div>
                       <div className="flex flex-col px-6">
-                        <div className="flex flex-col -space-y-1"><h6 className="text-xs">7.3.32</h6>
+                        <div className="flex flex-col -space-y-1">
                           <label className="text-sprPrimary" htmlFor="">Culm: lodging resistance</label></div>
                         <input className="rounded-full px-1 py-px border border-sprInactiveGray focus:border-none focus:outline-none focus:ring-2 focus:ring-sprPrimary" type="text" name="culmLodgingResistance"
                           value={riceData.culmLodgingResistance} onChange={handleChange} /></div>
                       <div className="flex flex-col px-6">
-                        <div className="flex flex-col -space-y-1"><h6 className="text-xs">7.3.33</h6>
+                        <div className="flex flex-col -space-y-1">
                           <label className="text-sprPrimary" htmlFor="">Culm: strength</label></div>
                         <input className="rounded-full px-1 py-px border border-sprInactiveGray focus:border-none focus:outline-none focus:ring-2 focus:ring-sprPrimary" type="text" name="culmStrength"
                           value={riceData.culmStrength} onChange={handleChange} /></div>
@@ -761,22 +761,22 @@ export default function RiceData() {
                     <div className="uppercase text-xs font-medium">Flag Leaf</div>
                     <div className="grid grid-cols-2 gap-4 bg-white text-sm">
                       <div className="flex flex-col px-6">
-                        <div className="flex flex-col -space-y-1"><h6 className="text-xs">7.3.20</h6>
+                        <div className="flex flex-col -space-y-1">
                           <label className="text-sprPrimary" htmlFor="">Flag leaf: length [cm]</label></div>
                         <input className="rounded-full px-1 py-px border border-sprInactiveGray focus:border-none focus:outline-none focus:ring-2 focus:ring-sprPrimary" type="text" name="flagLeafLegnth"
                           value={riceData.flagLeafLegnth} onChange={handleChange} /></div>
                       <div className="flex flex-col px-6">
-                        <div className="flex flex-col -space-y-1"><h6 className="text-xs">7.3.21</h6>
+                        <div className="flex flex-col -space-y-1">
                           <label className="text-sprPrimary" htmlFor="">Flag leaf: width [cm]</label></div>
                         <input className="rounded-full px-1 py-px border border-sprInactiveGray focus:border-none focus:outline-none focus:ring-2 focus:ring-sprPrimary" type="text" name="flagLeafWidth"
                           value={riceData.flagLeafWidth} onChange={handleChange} /></div>
                       <div className="flex flex-col px-6">
-                        <div className="flex flex-col -space-y-1"><h6 className="text-xs">7.3.22</h6>
+                        <div className="flex flex-col -space-y-1">
                           <label className="text-sprPrimary" htmlFor="">Flag leaf: attitude (early observation)</label></div>
                         <input className="rounded-full px-1 py-px border border-sprInactiveGray focus:border-none focus:outline-none focus:ring-2 focus:ring-sprPrimary" type="text" name="flagLeafAttitudeEarlyobs"
                           value={riceData.flagLeafAttitudeEarlyobs} onChange={handleChange} /></div>
                       <div className="flex flex-col px-6">
-                        <div className="flex flex-col -space-y-1"><h6 className="text-xs">7.3.34</h6>
+                        <div className="flex flex-col -space-y-1">
                           <label className="text-sprPrimary" htmlFor="">Flag leaf: attitude (late observation)</label></div>
                         <input className="rounded-full px-1 py-px border border-sprInactiveGray focus:border-none focus:outline-none focus:ring-2 focus:ring-sprPrimary" type="text" name="flagLeafAttitudeLateobs"
                           value={riceData.flagLeafAttitudeLateobs} onChange={handleChange} /></div>
@@ -789,12 +789,12 @@ export default function RiceData() {
                     <div className="uppercase text-xs font-medium">Leaf</div>
                     <div className="grid grid-cols-2 gap-4 bg-white text-sm">
                       <div className="flex flex-col bg-white px-6">
-                        <div className="flex flex-col -space-y-1"><h6 className="text-xs">7.3.10</h6>
+                        <div className="flex flex-col -space-y-1">
                           <label className="text-sprPrimary" htmlFor="">Leaf margin: pubescence</label></div>
                         <input className="rounded-full px-1 py-px border border-sprInactiveGray focus:border-none focus:outline-none focus:ring-2 focus:ring-sprPrimary" type="text" name="leafMarginPubesence"
                           value={riceData.leafMarginPubesence} onChange={handleChange} /></div>
                       <div className="flex flex-col px-6">
-                        <div className="flex flex-col -space-y-1"><h6 className="text-xs">7.3.35</h6>
+                        <div className="flex flex-col -space-y-1">
                           <label className="text-sprPrimary" htmlFor="">Leaf: senescence</label></div>
                         <input className="rounded-full px-1 py-px border border-sprInactiveGray focus:border-none focus:outline-none focus:ring-2 focus:ring-sprPrimary" type="text" name="leafSenesence"
                           value={riceData.leafSenesence} onChange={handleChange} /></div>
@@ -807,42 +807,42 @@ export default function RiceData() {
                     <div className="uppercase text-xs font-medium">Leaf Blade</div>
                     <div className="grid grid-cols-2 gap-4 bg-white text-sm">
                       <div className="flex flex-col bg-white px-6">
-                        <div className="flex flex-col -space-y-1"><h6 className="text-xs">7.3.5</h6>
+                        <div className="flex flex-col -space-y-1">
                           <label className="text-sprPrimary" htmlFor="">Leaf blade: presence/absence of anthocyanin colouration</label></div>
                         <input className="rounded-full px-1 py-px border border-sprInactiveGray focus:border-none focus:outline-none focus:ring-2 focus:ring-sprPrimary" type="text" name="lbPresenceAbsenceofAnthocyaninColouration"
                           value={riceData.lbPresenceAbsenceofAnthocyaninColouration} onChange={handleChange} /></div>
                       <div className="flex flex-col bg-white px-6">
-                        <div className="flex flex-col -space-y-1"><h6 className="text-xs">7.3.6</h6>
+                        <div className="flex flex-col -space-y-1">
                           <label className="text-sprPrimary" htmlFor="">Leaf blade: distribution of anthocyanin colouration</label></div>
                         <input className="rounded-full px-1 py-px border border-sprInactiveGray focus:border-none focus:outline-none focus:ring-2 focus:ring-sprPrimary" type="text" name="lbDistributionofAnthocyaninColouration"
                           value={riceData.lbDistributionofAnthocyaninColouration} onChange={handleChange} /></div>
                       <div className="flex flex-col px-6">
-                        <div className="flex flex-col -space-y-1"><h6 className="text-xs">7.3.7</h6>
+                        <div className="flex flex-col -space-y-1">
                           <label className="text-sprPrimary" htmlFor="">Leaf blade: intensity of green colour</label></div>
                         <input className="rounded-full px-1 py-px border border-sprInactiveGray focus:border-none focus:outline-none focus:ring-2 focus:ring-sprPrimary" type="text" name="lbIntensityofGreenColour"
                           value={riceData.lbIntensityofGreenColour} onChange={handleChange} /></div>
                       <div className="flex flex-col px-6">
-                        <div className="flex flex-col -space-y-1"><h6 className="text-xs">7.3.8</h6>
+                        <div className="flex flex-col -space-y-1">
                           <label className="text-sprPrimary" htmlFor="">Leaf blade: attitude</label></div>
                         <input className="rounded-full px-1 py-px border border-sprInactiveGray focus:border-none focus:outline-none focus:ring-2 focus:ring-sprPrimary" type="text" name="lbAttitude"
                           value={riceData.lbAttitude} onChange={handleChange} /></div>
                       <div className="flex flex-col px-6">
-                        <div className="flex flex-col -space-y-1"><h6 className="text-xs">7.3.9</h6>
+                        <div className="flex flex-col -space-y-1">
                           <label className="text-sprPrimary" htmlFor="">Leaf blade: pubescence</label></div>
                         <input className="rounded-full px-1 py-px border border-sprInactiveGray focus:border-none focus:outline-none focus:ring-2 focus:ring-sprPrimary" type="text" name="lbPubesence"
                           value={riceData.lbPubesence} onChange={handleChange} /></div>
                       <div className="flex flex-col px-6">
-                        <div className="flex flex-col -space-y-1"><h6 className="text-xs">7.3.9.1</h6>
+                        <div className="flex flex-col -space-y-1">
                           <label className="text-sprPrimary" htmlFor="">Leaf blade pubescence on blade surface</label></div>
                         <input className="rounded-full px-1 py-px border border-sprInactiveGray focus:border-none focus:outline-none focus:ring-2 focus:ring-sprPrimary" type="text" name="lbPubesenceonBladeSurface"
                           value={riceData.lbPubesenceonBladeSurface} onChange={handleChange} /></div>
                       <div className="flex flex-col px-6">
-                        <div className="flex flex-col -space-y-1"><h6 className="text-xs">7.3.18</h6>
+                        <div className="flex flex-col -space-y-1">
                           <label className="text-sprPrimary" htmlFor="">Leaf blade: length [cm]</label></div>
                         <input className="rounded-full px-1 py-px border border-sprInactiveGray focus:border-none focus:outline-none focus:ring-2 focus:ring-sprPrimary" type="text" name="lbLength"
                           value={riceData.lbLength} onChange={handleChange} /></div>
                       <div className="flex flex-col px-6">
-                        <div className="flex flex-col -space-y-1"><h6 className="text-xs">7.3.19</h6>
+                        <div className="flex flex-col -space-y-1">
                           <label className="text-sprPrimary" htmlFor="">Leaf blade: width [cm]</label></div>
                         <input className="rounded-full px-1 py-px border border-sprInactiveGray focus:border-none focus:outline-none focus:ring-2 focus:ring-sprPrimary" type="text" name="lbWidth"
                           value={riceData.lbWidth} onChange={handleChange} /></div>
@@ -855,12 +855,12 @@ export default function RiceData() {
                     <div className="uppercase text-xs font-medium">Leaf Sheath</div>
                     <div className="grid grid-cols-2 gap-4 bg-white text-sm">
                       <div className="flex flex-col bg-white px-6">
-                        <div className="flex flex-col -space-y-1"><h6 className="text-xs">7.3.3</h6>
+                        <div className="flex flex-col -space-y-1">
                           <label className="text-sprPrimary" htmlFor="">Basal leaf sheath: colour</label></div>
                         <input className="rounded-full px-1 py-px border border-sprInactiveGray focus:border-none focus:outline-none focus:ring-2 focus:ring-sprPrimary" type="text" name="basalLeafSheathColour"
                           value={riceData.basalLeafSheathColour} onChange={handleChange} /></div>
                       <div className="flex flex-col px-6">
-                        <div className="flex flex-col -space-y-1"><h6 className="text-xs">7.3.4</h6>
+                        <div className="flex flex-col -space-y-1">
                           <label className="text-sprPrimary" htmlFor="">Leaf sheath: anthocyanin colouration</label></div>
                         <input className="rounded-full px-1 py-px border border-sprInactiveGray focus:border-none focus:outline-none focus:ring-2 focus:ring-sprPrimary" type="text" name="lsAnthocyaninColouration"
                           value={riceData.lsAnthocyaninColouration} onChange={handleChange} /></div>
@@ -873,42 +873,42 @@ export default function RiceData() {
                     <div className="uppercase text-xs font-medium">Ligule</div>
                     <div className="grid grid-cols-2 gap-4 bg-white text-sm">
                       <div className="flex flex-col px-6">
-                        <div className="flex flex-col -space-y-1"><h6 className="text-xs">7.3.13</h6>
+                        <div className="flex flex-col -space-y-1">
                           <label className="text-sprPrimary" htmlFor="">Ligule length [mm]</label></div>
                         <input className="rounded-full px-1 py-px border border-sprInactiveGray focus:border-none focus:outline-none focus:ring-2 focus:ring-sprPrimary" type="text" name="liguleLength"
                           value={riceData.liguleLength} onChange={handleChange} /></div>
                       <div className="flex flex-col px-6">
-                        <div className="flex flex-col -space-y-1"><h6 className="text-xs">7.3.14</h6>
+                        <div className="flex flex-col -space-y-1">
                           <label className="text-sprPrimary" htmlFor="">Ligule shape</label></div>
                         <input className="rounded-full px-1 py-px border border-sprInactiveGray focus:border-none focus:outline-none focus:ring-2 focus:ring-sprPrimary" type="text" name="liguleShape"
                           value={riceData.liguleShape} onChange={handleChange} /></div>
                       <div className="flex flex-col bg-white px-6">
-                        <div className="flex flex-col -space-y-1"><h6 className="text-xs">7.3.14.1</h6>
+                        <div className="flex flex-col -space-y-1">
                           <label className="text-sprPrimary" htmlFor="">Ligule shape (cultivated species)</label></div>
                         <input className="rounded-full px-1 py-px  border border-sprInactiveGray focus:border-none focus:outline-none focus:ring-2 focus:ring-sprPrimary" type="text" name="liguleShapeCultivatedSpecies"
                           value={riceData.liguleShapeCultivatedSpecies} onChange={handleChange} /></div>
                       <div className="flex flex-col px-6">
-                        <div className="flex flex-col -space-y-1"><h6 className="text-xs">7.3.14.2</h6>
+                        <div className="flex flex-col -space-y-1">
                           <label className="text-sprPrimary" htmlFor="">Ligule shape (wild species)</label></div>
                         <input className="rounded-full px-1 py-px border border-sprInactiveGray focus:border-none focus:outline-none focus:ring-2 focus:ring-sprPrimary" type="text" name="liguleShapeWildSpecies"
                           value={riceData.liguleShapeWildSpecies} onChange={handleChange} /></div>
                       <div className="flex flex-col px-6">
-                        <div className="flex flex-col -space-y-1"><h6 className="text-xs">7.3.15</h6>
+                        <div className="flex flex-col -space-y-1">
                           <label className="text-sprPrimary" htmlFor="">Ligule margin shape (wild species)</label></div>
                         <input className="rounded-full px-1 py-px  border border-sprInactiveGray focus:border-none focus:outline-none focus:ring-2 focus:ring-sprPrimary" type="text" name="liguleMarginShapeWildSpecies"
                           value={riceData.liguleMarginShapeWildSpecies} onChange={handleChange} /></div>
                       <div className="flex flex-col px-6">
-                        <div className="flex flex-col -space-y-1"><h6 className="text-xs">7.3.15.1</h6>
+                        <div className="flex flex-col -space-y-1">
                           <label className="text-sprPrimary" htmlFor="">Ligule margin hairiness</label></div>
                         <input className="rounded-full px-1 py-px border border-sprInactiveGray focus:border-none focus:outline-none focus:ring-2 focus:ring-sprPrimary" type="text" name="liguleMarginHairiness"
                           value={riceData.liguleMarginHairiness} onChange={handleChange} /></div>
                       <div className="flex flex-col px-6">
-                        <div className="flex flex-col -space-y-1"><h6 className="text-xs">7.3.16</h6>
+                        <div className="flex flex-col -space-y-1">
                           <label className="text-sprPrimary" htmlFor="">Ligule pubescence</label></div>
                         <input className="rounded-full px-1 py-px border border-sprInactiveGray focus:border-none focus:outline-none focus:ring-2 focus:ring-sprPrimary" type="text" name="ligulePubesence"
                           value={riceData.ligulePubesence} onChange={handleChange} /></div>
                       <div className="flex flex-col px-6">
-                        <div className="flex flex-col -space-y-1"><h6 className="text-xs">7.3.17</h6>
+                        <div className="flex flex-col -space-y-1">
                           <label className="text-sprPrimary" htmlFor="">Ligule colour</label></div>
                         <input className="rounded-full px-1 py-px border border-sprInactiveGray focus:border-none focus:outline-none focus:ring-2 focus:ring-sprPrimary" type="text" name="liguleColour"
                           value={riceData.liguleColour} onChange={handleChange} /></div>
@@ -921,7 +921,7 @@ export default function RiceData() {
                     <div className="uppercase text-xs font-medium">Rhizome and Stolon</div>
                     <div className="grid grid-cols-2 gap-4 bg-white text-sm">
                       <div className="flex flex-col bg-white px-6">
-                        <div className="flex flex-col -space-y-1"><h6 className="text-xs">7.3.36</h6>
+                        <div className="flex flex-col -space-y-1">
                           <label className="text-sprPrimary" htmlFor="">Rhizome and stolon: formation</label></div>
                         <input className="rounded-full px-1 py-px border border-sprInactiveGray focus:border-none focus:outline-none focus:ring-2 focus:ring-sprPrimary" type="text" name="rhizomeandStolonFormation"
                           value={riceData.rhizomeandStolonFormation} onChange={handleChange} /></div>
@@ -934,7 +934,7 @@ export default function RiceData() {
                     <div className="uppercase text-xs font-medium">Seedling</div>
                     <div className="grid grid-cols-2 gap-4 bg-white text-sm">
                       <div className="flex flex-col bg-white px-6">
-                        <div className="flex flex-col -space-y-1"><h6 className="text-xs">7.3.2</h6>
+                        <div className="flex flex-col -space-y-1">
                           <label className="text-sprPrimary" htmlFor="">Seedling: height [cm]</label></div>
                         <input className="rounded-full px-1 py-px border border-sprInactiveGray focus:border-none focus:outline-none focus:ring-2 focus:ring-sprPrimary" type="text" name="seedlingHeight"
                           value={riceData.seedlingHeight} onChange={handleChange} /></div>
@@ -953,11 +953,11 @@ export default function RiceData() {
                     <div className="text-xs uppercase font-medium">Anther</div>
                     <div className="grid grid-cols-2 gap-4 bg-white text-sm">
                       <div className="flex flex-col bg-white px-6">
-                        <div className="flex flex-col -space-y-1"><h6 className="text-xs  ">7.4.3</h6>
+                        <div className="flex flex-col -space-y-1">
                           <label className="text-sprPrimary" htmlFor="">Anther: length [mm]</label></div>
                         <input className="rounded-full px-1 py-px border border-sprInactiveGray focus:border-none focus:outline-none focus:ring-2 focus:ring-sprPrimary" type="text" name="antherLength" value={riceData.antherLength} onChange={handleChange} /></div>
                       <div className="flex flex-col bg-white px-6">
-                        <div className="flex flex-col -space-y-1"><h6 className="text-xs  ">7.4.4</h6>
+                        <div className="flex flex-col -space-y-1">
                           <label className="text-sprPrimary" htmlFor="">Anther: colour</label></div>
                         <input className="rounded-full px-1 py-px border border-sprInactiveGray focus:border-none focus:outline-none focus:ring-2 focus:ring-sprPrimary" type="text" name="antherColour" value={riceData.antherColour} onChange={handleChange} /></div>
                     </div>
@@ -969,23 +969,23 @@ export default function RiceData() {
                     <div className="text-xs uppercase font-medium">Awns</div>
                     <div className="grid grid-cols-2 gap-4 bg-white text-sm">
                       <div className="flex flex-col bg-white px-6">
-                        <div className="flex flex-col -space-y-1"><h6 className="text-xs  ">7.4.8</h6>
+                        <div className="flex flex-col -space-y-1">
                           <label className="text-sprPrimary" htmlFor="">Awns: presence (wild species)</label></div>
                         <input className="rounded-full px-1 py-px border border-sprInactiveGray focus:border-none focus:outline-none focus:ring-2 focus:ring-sprPrimary" type="text" name="awnsPresenceWildSpecies" value={riceData.awnsPresenceWildSpecies} onChange={handleChange} /></div>
                       <div className="flex flex-col bg-white px-6">
-                        <div className="flex flex-col -space-y-1"><h6 className="text-xs  ">7.4.9</h6>
+                        <div className="flex flex-col -space-y-1">
                           <label className="text-sprPrimary" htmlFor="">Awns: distribution (cultivated species)</label></div>
                         <input className="rounded-full px-1 py-px border border-sprInactiveGray focus:border-none focus:outline-none focus:ring-2 focus:ring-sprPrimary" type="text" name="awnsDistributionCultivatedSpecies" value={riceData.awnsDistributionCultivatedSpecies} onChange={handleChange} /></div>
                       <div className="flex flex-col bg-white px-6">
-                        <div className="flex flex-col -space-y-1"><h6 className="text-xs  ">7.4.10</h6>
+                        <div className="flex flex-col -space-y-1">
                           <label className="text-sprPrimary" htmlFor="">Awns: colour (early observation)</label></div>
                         <input className="rounded-full px-1 py-px border border-sprInactiveGray focus:border-none focus:outline-none focus:ring-2 focus:ring-sprPrimary" type="text" name="awnsDistributionEarlyobs" value={riceData.awnsDistributionEarlyobs} onChange={handleChange} /></div>
                       <div className="flex flex-col bg-white px-6">
-                        <div className="flex flex-col -space-y-1"><h6 className="text-xs  ">7.4.11</h6>
+                        <div className="flex flex-col -space-y-1">
                           <label className="text-sprPrimary" htmlFor="">Awn length [mm]</label></div>
                         <input className="rounded-full px-1 py-px border border-sprInactiveGray focus:border-none focus:outline-none focus:ring-2 focus:ring-sprPrimary" type="text" name="awnLength" value={riceData.awnLength} onChange={handleChange} /></div>
                       <div className="flex flex-col bg-white px-6">
-                        <div className="flex flex-col -space-y-1"><h6 className="text-xs  ">7.4.12</h6>
+                        <div className="flex flex-col -space-y-1">
                           <label className="text-sprPrimary" htmlFor="">Awns: thickness [mm]</label></div>
                         <input className="rounded-full px-1 py-px border border-sprInactiveGray focus:border-none focus:outline-none focus:ring-2 focus:ring-sprPrimary" type="text" name="awnsThickness" value={riceData.awnsThickness} onChange={handleChange} /></div>
                     </div>
@@ -997,11 +997,11 @@ export default function RiceData() {
                     <div className="text-xs uppercase font-medium">Lemma</div>
                     <div className="grid grid-cols-2 gap-4 bg-white text-sm">
                       <div className="flex flex-col bg-white px-6">
-                        <div className="flex flex-col -space-y-1"><h6 className="text-xs  ">7.4.6</h6>
+                        <div className="flex flex-col -space-y-1">
                           <label className="text-sprPrimary" htmlFor="">Lemma: colour of apiculus (early observation)</label></div>
                         <input className="rounded-full px-1 py-px border border-sprInactiveGray focus:border-none focus:outline-none focus:ring-2 focus:ring-sprPrimary" type="text" name="lemmaColourofApicusearlyobs" value={riceData.lemmaColourofApicusearlyobs} onChange={handleChange} /></div>
                       <div className="flex flex-col bg-white px-6">
-                        <div className="flex flex-col -space-y-1"><h6 className="text-xs  ">7.4.7</h6>
+                        <div className="flex flex-col -space-y-1">
                           <label className="text-sprPrimary" htmlFor="">Lemma: anthocyanin colouration of area below apiculus (early observation)</label></div>
                         <input className="rounded-full px-1 py-px border border-sprInactiveGray focus:border-none focus:outline-none focus:ring-2 focus:ring-sprPrimary" type="text" name="lemmaAnthocyaninColourationofAreaBelowApiculusEarlyobs" value={riceData.lemmaAnthocyaninColourationofAreaBelowApiculusEarlyobs} onChange={handleChange} /></div>
                     </div>
@@ -1013,7 +1013,7 @@ export default function RiceData() {
                     <div className="text-xs uppercase font-medium">Lemma and Palea</div>
                     <div className="grid grid-cols-2 gap-4 bg-white text-sm">
                       <div className="flex flex-col bg-white px-6">
-                        <div className="flex flex-col -space-y-1"><h6 className="text-xs  ">7.4.5</h6>
+                        <div className="flex flex-col -space-y-1">
                           <label className="text-sprPrimary" htmlFor="">Lemma and palea: colour (early observation)</label></div>
                         <input className="rounded-full px-1 py-px border border-sprInactiveGray focus:border-none focus:outline-none focus:ring-2 focus:ring-sprPrimary" type="text" name="lemmaandPaleaColourEarlyobs" value={riceData.lemmaandPaleaColourEarlyobs} onChange={handleChange} /></div>
                     </div>
@@ -1025,7 +1025,7 @@ export default function RiceData() {
                     <div className="text-xs uppercase font-medium">Male Sterility</div>
                     <div className="grid grid-cols-2 gap-4 bg-white text-sm">
                       <div className="flex flex-col bg-white px-6">
-                        <div className="flex flex-col -space-y-1"><h6 className="text-xs  ">7.4.1</h6>
+                        <div className="flex flex-col -space-y-1">
                           <label className="text-sprPrimary" htmlFor="">Male sterility</label></div>
                         <input className="rounded-full px-1 py-px border border-sprInactiveGray focus:border-none focus:outline-none focus:ring-2 focus:ring-sprPrimary" type="text" name="maleSterility" value={riceData.maleSterility} onChange={handleChange} /></div>
                     </div>
@@ -1035,7 +1035,7 @@ export default function RiceData() {
                     <div className="text-xs uppercase font-medium">Stigma</div>
                     <div className="grid grid-cols-2 gap-4 bg-white text-sm">
                       <div className="flex flex-col bg-white px-6">
-                        <div className="flex flex-col -space-y-1"><h6 className="text-xs  ">7.4.2</h6>
+                        <div className="flex flex-col -space-y-1">
                           <label className="text-sprPrimary" htmlFor="">Stigma Colour</label></div>
                         <input className="rounded-full px-1 py-px border border-sprInactiveGray focus:border-none focus:outline-none focus:ring-2 focus:ring-sprPrimary" type="text" name="stigmaColour" value={riceData.stigmaColour} onChange={handleChange} /></div>
                     </div>
@@ -1047,47 +1047,47 @@ export default function RiceData() {
                     <div className="text-xs uppercase font-medium">Panicle</div>
                     <div className="grid grid-cols-2 gap-4 bg-white text-sm">
                       <div className="flex flex-col bg-white px-6">
-                        <div className="flex flex-col -space-y-1"><h6 className="text-xs  ">7.4.13</h6>
+                        <div className="flex flex-col -space-y-1">
                           <label className="text-sprPrimary" htmlFor="">Panicle: arrangement of primary branches</label></div>
                         <input className="rounded-full px-1 py-px border border-sprInactiveGray focus:border-none focus:outline-none focus:ring-2 focus:ring-sprPrimary" type="text" name="panicleArrangementofPrimaryBranches" value={riceData.panicleArrangementofPrimaryBranches} onChange={handleChange} /></div>
                       <div className="flex flex-col bg-white px-6">
-                        <div className="flex flex-col -space-y-1"><h6 className="text-xs  ">7.4.14</h6>
+                        <div className="flex flex-col -space-y-1">
                           <label className="text-sprPrimary" htmlFor="">Panicle: number of basal primary branches</label></div>
                         <input className="rounded-full px-1 py-px border border-sprInactiveGray focus:border-none focus:outline-none focus:ring-2 focus:ring-sprPrimary" type="text" name="panicleNumberofBasalPrimaryBranches" value={riceData.panicleNumberofBasalPrimaryBranches} onChange={handleChange} /></div>
                       <div className="flex flex-col bg-white px-6">
-                        <div className="flex flex-col -space-y-1"><h6 className="text-xs  ">7.4.15</h6>
+                        <div className="flex flex-col -space-y-1">
                           <label className="text-sprPrimary" htmlFor="">Panicle: distance from base to lowest spikelet insertion [mm]</label></div>
                         <input className="rounded-full px-1 py-px border border-sprInactiveGray focus:border-none focus:outline-none focus:ring-2 focus:ring-sprPrimary" type="text" name="panicleDistancefromBasetoLowestSpikeletInsertion" value={riceData.panicleDistancefromBasetoLowestSpikeletInsertion} onChange={handleChange} /></div>
                       <div className="flex flex-col bg-white px-6">
-                        <div className="flex flex-col -space-y-1"><h6 className="text-xs  ">7.4.16</h6>
+                        <div className="flex flex-col -space-y-1">
                           <label className="text-sprPrimary" htmlFor="">Panicle: texture of main axis</label></div>
                         <input className="rounded-full px-1 py-px border border-sprInactiveGray focus:border-none focus:outline-none focus:ring-2 focus:ring-sprPrimary" type="text" name="panicleTextureofMainAxis" value={riceData.panicleTextureofMainAxis} onChange={handleChange} /></div>
                       <div className="flex flex-col bg-white px-6">
-                        <div className="flex flex-col -space-y-1"><h6 className="text-xs  ">7.4.17</h6>
+                        <div className="flex flex-col -space-y-1">
                           <label className="text-sprPrimary" htmlFor="">Panicle: number per plant</label></div>
                         <input className="rounded-full px-1 py-px border border-sprInactiveGray focus:border-none focus:outline-none focus:ring-2 focus:ring-sprPrimary" type="text" name="panicleNumberPerPlant" value={riceData.panicleNumberPerPlant} onChange={handleChange} /></div>
                       <div className="flex flex-col bg-white px-6">
-                        <div className="flex flex-col -space-y-1"><h6 className="text-xs  ">7.4.18</h6>
+                        <div className="flex flex-col -space-y-1">
                           <label className="text-sprPrimary" htmlFor="">Panicle: length [cm]</label></div>
                         <input className="rounded-full px-1 py-px border border-sprInactiveGray focus:border-none focus:outline-none focus:ring-2 focus:ring-sprPrimary" type="text" name="panicleLength" value={riceData.panicleLength} onChange={handleChange} /></div>
                       <div className="flex flex-col bg-white px-6">
-                        <div className="flex flex-col -space-y-1"><h6 className="text-xs  ">7.4.19</h6>
+                        <div className="flex flex-col -space-y-1">
                           <label className="text-sprPrimary" htmlFor="">Panicle: attitude of main axis</label></div>
                         <input className="rounded-full px-1 py-px border border-sprInactiveGray focus:border-none focus:outline-none focus:ring-2 focus:ring-sprPrimary" type="text" name="panicleAttitudeofMainAxis" value={riceData.panicleAttitudeofMainAxis} onChange={handleChange} /></div>
                       <div className="flex flex-col bg-white px-6">
-                        <div className="flex flex-col -space-y-1"><h6 className="text-xs  ">7.4.20</h6>
+                        <div className="flex flex-col -space-y-1">
                           <label className="text-sprPrimary" htmlFor="">Panicle: attitude of branches</label></div>
                         <input className="rounded-full px-1 py-px border border-sprInactiveGray focus:border-none focus:outline-none focus:ring-2 focus:ring-sprPrimary" type="text" name="panicleAttitudeofBranches" value={riceData.panicleAttitudeofBranches} onChange={handleChange} /></div>
                       <div className="flex flex-col bg-white px-6">
-                        <div className="flex flex-col -space-y-1"><h6 className="text-xs  ">7.4.21</h6>
+                        <div className="flex flex-col -space-y-1">
                           <label className="text-sprPrimary" htmlFor="">Panicle: secondary branching</label></div>
                         <input className="rounded-full px-1 py-px border border-sprInactiveGray focus:border-none focus:outline-none focus:ring-2 focus:ring-sprPrimary" type="text" name="panicleSecondaryBranching" value={riceData.panicleSecondaryBranching} onChange={handleChange} /></div>
                       <div className="flex flex-col bg-white px-6">
-                        <div className="flex flex-col -space-y-1"><h6 className="text-xs  ">7.4.22</h6>
+                        <div className="flex flex-col -space-y-1">
                           <label className="text-sprPrimary" htmlFor="">Panicle: exsertion</label></div>
                         <input className="rounded-full px-1 py-px border border-sprInactiveGray focus:border-none focus:outline-none focus:ring-2 focus:ring-sprPrimary" type="text" name="panicleExsertion" value={riceData.panicleExsertion} onChange={handleChange} /></div>
                       <div className="flex flex-col bg-white px-6">
-                        <div className="flex flex-col -space-y-1"><h6 className="text-xs  ">7.4.23</h6>
+                        <div className="flex flex-col -space-y-1">
                           <label className="text-sprPrimary" htmlFor="">Panicle: shattering</label></div>
                         <input className="rounded-full px-1 py-px border border-sprInactiveGray focus:border-none focus:outline-none focus:ring-2 focus:ring-sprPrimary" type="text" name="panicleShattering" value={riceData.panicleShattering} onChange={handleChange} /></div>
                     </div>
@@ -1104,7 +1104,7 @@ export default function RiceData() {
                     <div className="text-xs uppercase font-medium">Awn</div>
                     <div className="grid grid-cols-2 gap-4 bg-white text-sm">
                       <div className="flex flex-col bg-white px-6">
-                        <div className="flex flex-col -space-y-1"><h6 className="text-xs  ">7.5.3</h6>
+                        <div className="flex flex-col -space-y-1">
                           <label className="text-sprPrimary" htmlFor="" >Awn colour (late observation) </label></div>
                         <input className="rounded-full px-1 py-px border border-sprInactiveGray focus:border-none focus:outline-none focus:ring-2 focus:ring-sprPrimary" type="text" name="awnColour" value={riceData.awnColour} onChange={handleChange} /></div>
                     </div>
@@ -1116,19 +1116,19 @@ export default function RiceData() {
                     <div className="text-xs uppercase font-medium">Caryopsis</div>
                     <div className="grid grid-cols-2 gap-4 bg-white text-sm">
                       <div className="flex flex-col bg-white px-6">
-                        <div className="flex flex-col -space-y-1"><h6 className="text-xs  ">7.5.20</h6>
+                        <div className="flex flex-col -space-y-1">
                           <label className="text-sprPrimary" htmlFor="">Caryopsis: length [mm]</label></div>
                         <input className="rounded-full px-1 py-px border border-sprInactiveGray focus:border-none focus:outline-none focus:ring-2 focus:ring-sprPrimary" type="text" name="caryopsisLength" value={riceData.caryopsisLength} onChange={handleChange} /></div>
                       <div className="flex flex-col bg-white px-6">
-                        <div className="flex flex-col -space-y-1"><h6 className="text-xs  ">7.5.21</h6>
+                        <div className="flex flex-col -space-y-1">
                           <label className="text-sprPrimary" htmlFor="">Caryopsis: width [mm]</label></div>
                         <input className="rounded-full px-1 py-px border border-sprInactiveGray focus:border-none focus:outline-none focus:ring-2 focus:ring-sprPrimary" type="text" name="caryopsisWidth" value={riceData.caryopsisWidth} onChange={handleChange} /></div>
                       <div className="flex flex-col bg-white px-6">
-                        <div className="flex flex-col -space-y-1"><h6 className="text-xs  ">7.5.22</h6>
+                        <div className="flex flex-col -space-y-1">
                           <label className="text-sprPrimary" htmlFor="">Caryopsis: shape</label></div>
                         <input className="rounded-full px-1 py-px border border-sprInactiveGray focus:border-none focus:outline-none focus:ring-2 focus:ring-sprPrimary" type="text" name="caryopsisShape" value={riceData.caryopsisShape} onChange={handleChange} /></div>
                       <div className="flex flex-col bg-white px-6">
-                        <div className="flex flex-col -space-y-1"><h6 className="text-xs  ">7.5.23</h6>
+                        <div className="flex flex-col -space-y-1">
                           <label className="text-sprPrimary" htmlFor="">Caryopsis: pericarp colour</label></div>
                         <input className="rounded-full px-1 py-px border border-sprInactiveGray focus:border-none focus:outline-none focus:ring-2 focus:ring-sprPrimary" type="text" name="caryopsisPericarpColour" value={riceData.caryopsisPericarpColour} onChange={handleChange} /></div>
                     </div>
@@ -1140,7 +1140,7 @@ export default function RiceData() {
                     <div className="text-xs uppercase font-medium">Endosperm</div>
                     <div className="grid grid-cols-2 gap-4 bg-white text-sm">
                       <div className="flex flex-col bg-white px-6">
-                        <div className="flex flex-col -space-y-1"><h6 className="text-xs  ">7.5.24</h6>
+                        <div className="flex flex-col -space-y-1">
                           <label className="text-sprPrimary" htmlFor="">Endosperm type</label></div>
                         <input className="rounded-full px-1 py-px border border-sprInactiveGray focus:border-none focus:outline-none focus:ring-2 focus:ring-sprPrimary" type="text" name="endorspermType" value={riceData.endorspermType} onChange={handleChange} /></div>
                     </div>
@@ -1152,23 +1152,23 @@ export default function RiceData() {
                     <div className="text-xs uppercase font-medium">Grain</div>
                     <div className="grid grid-cols-2 gap-4 bg-white text-sm">
                       <div className="flex flex-col bg-white px-6">
-                        <div className="flex flex-col -space-y-1"><h6 className="text-xs  ">7.5.15</h6>
+                        <div className="flex flex-col -space-y-1">
                           <label className="text-sprPrimary" htmlFor="">Grain: length [mm]</label></div>
                         <input className="rounded-full px-1 py-px border border-sprInactiveGray focus:border-none focus:outline-none focus:ring-2 focus:ring-sprPrimary" type="text" name="grainLength" value={riceData.grainLength} onChange={handleChange} /></div>
                       <div className="flex flex-col bg-white px-6">
-                        <div className="flex flex-col -space-y-1"><h6 className="text-xs  ">7.5.16</h6>
+                        <div className="flex flex-col -space-y-1">
                           <label className="text-sprPrimary" htmlFor="">Grain: width [mm]</label></div>
                         <input className="rounded-full px-1 py-px border border-sprInactiveGray focus:border-none focus:outline-none focus:ring-2 focus:ring-sprPrimary" type="text" name="grainWidth" value={riceData.grainWidth} onChange={handleChange} /></div>
                       <div className="flex flex-col bg-white px-6">
-                        <div className="flex flex-col -space-y-1"><h6 className="text-xs  ">7.5.17</h6>
+                        <div className="flex flex-col -space-y-1">
                           <label className="text-sprPrimary" htmlFor="">Grain: thickness [mm]</label></div>
                         <input className="rounded-full px-1 py-px border border-sprInactiveGray focus:border-none focus:outline-none focus:ring-2 focus:ring-sprPrimary" type="text" name="grainThickness" value={riceData.grainThickness} onChange={handleChange} /></div>
                       <div className="flex flex-col bg-white px-6">
-                        <div className="flex flex-col -space-y-1"><h6 className="text-xs  ">7.5.18</h6>
+                        <div className="flex flex-col -space-y-1">
                           <label className="text-sprPrimary" htmlFor="">Grain: 100-grain weight [g]</label></div>
                         <input className="rounded-full px-1 py-px border border-sprInactiveGray focus:border-none focus:outline-none focus:ring-2 focus:ring-sprPrimary" type="text" name="grain100GrainWeight" value={riceData.grain100GrainWeight} onChange={handleChange} /></div>
                       <div className="flex flex-col bg-white px-6">
-                        <div className="flex flex-col -space-y-1"><h6 className="text-xs  ">7.5.19</h6>
+                        <div className="flex flex-col -space-y-1">
                           <label className="text-sprPrimary" htmlFor="">Grain: 10-grain weight [g]</label></div>
                         <input className="rounded-full px-1 py-px border border-sprInactiveGray focus:border-none focus:outline-none focus:ring-2 focus:ring-sprPrimary" type="text" name="grain10GrainWeight" value={riceData.grain10GrainWeight} onChange={handleChange} /></div>
                     </div>
@@ -1180,19 +1180,19 @@ export default function RiceData() {
                     <div className="text-xs uppercase font-medium">Lemma</div>
                     <div className="grid grid-cols-2 gap-4 bg-white text-sm">
                       <div className="flex flex-col bg-white px-6">
-                        <div className="flex flex-col -space-y-1"><h6 className="text-xs  ">7.5.6</h6>
+                        <div className="flex flex-col -space-y-1">
                           <label className="text-sprPrimary" htmlFor="">Lemma: anthocyanin colouration of keel</label></div>
                         <input className="rounded-full px-1 py-px border border-sprInactiveGray focus:border-none focus:outline-none focus:ring-2 focus:ring-sprPrimary" type="text" name="lemmaAnthocyaninColourationofKeel" value={riceData.lemmaAnthocyaninColourationofKeel} onChange={handleChange} /></div>
                       <div className="flex flex-col bg-white px-6">
-                        <div className="flex flex-col -space-y-1"><h6 className="text-xs  ">7.5.7</h6>
+                        <div className="flex flex-col -space-y-1">
                           <label className="text-sprPrimary" htmlFor="">Lemma: anthocyanin colouration of area below apiculus (late observation)</label></div>
                         <input className="rounded-full px-1 py-px border border-sprInactiveGray focus:border-none focus:outline-none focus:ring-2 focus:ring-sprPrimary" type="text" name="lemmaAnthocyaninColourationofAreaBelowApiculusLateobs" value={riceData.lemmaAnthocyaninColourationofAreaBelowApiculusLateobs} onChange={handleChange} /></div>
                       <div className="flex flex-col bg-white px-6">
-                        <div className="flex flex-col -space-y-1"><h6 className="text-xs  ">7.5.8</h6>
+                        <div className="flex flex-col -space-y-1">
                           <label className="text-sprPrimary" htmlFor="">Lemma: colour of apiculus (late observation)</label></div>
                         <input className="rounded-full px-1 py-px border border-sprInactiveGray focus:border-none focus:outline-none focus:ring-2 focus:ring-sprPrimary" type="text" name="lemmaColourofApiculusLateobs" value={riceData.lemmaColourofApiculusLateobs} onChange={handleChange} /></div>
                       <div className="flex flex-col bg-white px-6">
-                        <div className="flex flex-col -space-y-1"><h6 className="text-xs  ">7.5.9</h6>
+                        <div className="flex flex-col -space-y-1">
                           <label className="text-sprPrimary" htmlFor="">Lemma: shape of apiculus</label></div>
                         <input className="rounded-full px-1 py-px border border-sprInactiveGray focus:border-none focus:outline-none focus:ring-2 focus:ring-sprPrimary" type="text" name="lemmaShapeofApiculus" value={riceData.lemmaShapeofApiculus} onChange={handleChange} /></div>
                     </div>
@@ -1204,11 +1204,11 @@ export default function RiceData() {
                     <div className="text-xs uppercase font-medium">Lemma and Palea</div>
                     <div className="grid grid-cols-2 gap-4 bg-white text-sm">
                       <div className="flex flex-col bg-white px-6">
-                        <div className="flex flex-col -space-y-1"><h6 className="text-xs  ">7.5.4</h6>
+                        <div className="flex flex-col -space-y-1">
                           <label className="text-sprPrimary" htmlFor="">Lemma and palea pubescence</label></div>
                         <input className="rounded-full px-1 py-px border border-sprInactiveGray focus:border-none focus:outline-none focus:ring-2 focus:ring-sprPrimary" type="text" name="lemmaandPaleaPubesence" value={riceData.lemmaandPaleaPubesence} onChange={handleChange} /></div>
                       <div className="flex flex-col bg-white px-6">
-                        <div className="flex flex-col -space-y-1"><h6 className="text-xs  ">7.5.5</h6>
+                        <div className="flex flex-col -space-y-1">
                           <label className="text-sprPrimary" htmlFor="">Lemma and palea colour (late observation)</label></div>
                         <input className="rounded-full px-1 py-px border border-sprInactiveGray focus:border-none focus:outline-none focus:ring-2 focus:ring-sprPrimary" type="text" name="lemmaandPaleaColourLateobs" value={riceData.lemmaandPaleaColourLateobs} onChange={handleChange} /></div>
                     </div>
@@ -1220,11 +1220,11 @@ export default function RiceData() {
                     <div className="text-xs uppercase font-medium">Panicle</div>
                     <div className="grid grid-cols-2 gap-4 bg-white text-sm">
                       <div className="flex flex-col bg-white px-6">
-                        <div className="flex flex-col -space-y-1"><h6 className="text-xs  ">7.5.1</h6>
+                        <div className="flex flex-col -space-y-1">
                           <label className="text-sprPrimary" htmlFor="">Panicle: length (late observation)</label></div>
                         <input className="rounded-full px-1 py-px border border-sprInactiveGray focus:border-none focus:outline-none focus:ring-2 focus:ring-sprPrimary" type="text" name="panicleLengthLateobs" value={riceData.panicleLengthLateobs} onChange={handleChange} /></div>
                       <div className="flex flex-col bg-white px-6">
-                        <div className="flex flex-col -space-y-1"><h6 className="text-xs  ">7.5.2</h6>
+                        <div className="flex flex-col -space-y-1">
                           <label className="text-sprPrimary" htmlFor="">Panicle: threshability</label></div>
                         <input className="rounded-full px-1 py-px border border-sprInactiveGray focus:border-none focus:outline-none focus:ring-2 focus:ring-sprPrimary" type="text" name="panicleThreshability" value={riceData.panicleThreshability} onChange={handleChange} /></div>
                     </div>
@@ -1236,7 +1236,7 @@ export default function RiceData() {
                     <div className="text-xs uppercase font-medium">Spikelet</div>
                     <div className="grid grid-cols-2 gap-4 bg-white text-sm">
                       <div className="flex flex-col bg-white px-6">
-                        <div className="flex flex-col -space-y-1"><h6 className="text-xs  ">7.5.14</h6>
+                        <div className="flex flex-col -space-y-1">
                           <label className="text-sprPrimary" htmlFor="">Spikelet: fertility</label></div>
                         <input className="rounded-full px-1 py-px border border-sprInactiveGray focus:border-none focus:outline-none focus:ring-2 focus:ring-sprPrimary" type="text" name="spikeletFertility" value={riceData.spikeletFertility} onChange={handleChange} /></div>
                     </div>
@@ -1248,19 +1248,19 @@ export default function RiceData() {
                     <div className="text-xs uppercase font-medium">Sterile Lemma</div>
                     <div className="grid grid-cols-2 gap-4 bg-white text-sm">
                       <div className="flex flex-col bg-white px-6">
-                        <div className="flex flex-col -space-y-1"><h6 className="text-xs  ">7.5.10</h6>
+                        <div className="flex flex-col -space-y-1">
                           <label className="text-sprPrimary" htmlFor="">Sterile lemma length [mm]</label></div>
                         <input className="rounded-full px-1 py-px border border-sprInactiveGray focus:border-none focus:outline-none focus:ring-2 focus:ring-sprPrimary" type="text" name="sterileLemmaLength" value={riceData.sterileLemmaLength} onChange={handleChange} /></div>
                       <div className="flex flex-col bg-white px-6">
-                        <div className="flex flex-col -space-y-1"><h6 className="text-xs  ">7.5.11</h6>
+                        <div className="flex flex-col -space-y-1">
                           <label className="text-sprPrimary" htmlFor="">Longer sterile lemma length [mm]</label></div>
                         <input className="rounded-full px-1 py-px border border-sprInactiveGray focus:border-none focus:outline-none focus:ring-2 focus:ring-sprPrimary" type="text" name="longerSterileLemmaLength" value={riceData.longerSterileLemmaLength} onChange={handleChange} /></div>
                       <div className="flex flex-col bg-white px-6">
-                        <div className="flex flex-col -space-y-1"><h6 className="text-xs  ">7.5.12</h6>
+                        <div className="flex flex-col -space-y-1">
                           <label className="text-sprPrimary" htmlFor="">Sterile lemma shape</label></div>
                         <input className="rounded-full px-1 py-px border border-sprInactiveGray focus:border-none focus:outline-none focus:ring-2 focus:ring-sprPrimary" type="text" name="sterileLemmaShape" value={riceData.sterileLemmaShape} onChange={handleChange} /></div>
                       <div className="flex flex-col bg-white px-6">
-                        <div className="flex flex-col -space-y-1"><h6 className="text-xs  ">7.5.13</h6>
+                        <div className="flex flex-col -space-y-1">
                           <label className="text-sprPrimary" htmlFor="">Sterile lemma: colour</label></div>
                         <input className="rounded-full px-1 py-px border border-sprInactiveGray focus:border-none focus:outline-none focus:ring-2 focus:ring-sprPrimary" type="text" name="sterileLemmaColour" value={riceData.sterileLemmaColour} onChange={handleChange} /></div>
                     </div>

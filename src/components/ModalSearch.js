@@ -3,7 +3,8 @@ import React from 'react'
 import { useState } from 'react';
 import { useEffect } from 'react';
 import { ReactComponent as SearchIcon } from "../assets/search-icon.svg"
-import closeIcon from "../assets/close.svg";
+// import closeIcon from "../assets/close.svg";
+import { ReactComponent as CloseIcon } from '../assets/close.svg';
 
 import db from "../firebase-config";
 import ModalAccessionsInfo from './ModalAccessionsInfo';
@@ -56,16 +57,17 @@ export default function ModalSearch({ open, closeModal }) {
     <div>
       <div className=" fixed left-0 right-0 bottom-0 top-0 z-50 bg-black opacity-70 " />
       <div className=" hidden sm:flex gap-3 flex-col absolute left-20 right-20 bottom-32 top-16 z-50 bg-white rounded-md  p-8   md:left-52 md:right-52   lg:bottom-40 lg:left-96 lg:right-96  ">
-        <div className="absolute right-5 z-50 ">
-          <button onClick={() => { closeModal() }} >
+        <div className="absolute top-3 right-3 z-50 ">
+          {/* <button onClick={() => { closeModal() }} >
             <img className="relative" src={closeIcon} alt="" />
-          </button>
+          </button> */}
+          <CloseIcon className='group-hover:stroke-white stroke-sprGray50 hover:stroke-sprGray80 active:stroke-sprPrimary h-5' onClick={closeModal}/>
         </div>
-        <div className='flex gap-2 items-center'>
+        <div className='flex pt-3 gap-2 items-center'>
           <SearchIcon className='stroke-sprPrimary' />
           <div className='flex-auto relative flex items-center'>
             <input type="text" className='bg-slate-100 w-full rounded-full p-1 text-sm' placeholder='Search Accession' value={searchInput} onChange={e => setSearchInput(e.target.value)} />
-            <img src={closeIcon} className='-m-5 h-3 hover:stroke-black' onClick={() => {
+            <CloseIcon className='-m-5 h-4 rounded-full p-1 bg-sprGray30 stroke-sprGray40 hover:stroke-black active:stroke-sprPrimary' onClick={() => {
               setSearchInput('')
             }} />
 

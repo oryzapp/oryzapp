@@ -62,9 +62,9 @@ export default function ReproductiveStage({ season }) {
           <thead className="text-xs font-medium uppercase text-center bg-sprPrimaryOffLight">Accession</thead>
           <tbody className=" flex ">
             <div className="hidden sm:block flex-auto divide-y divide-slate-300 ">
-              <div className="px-6 py-3 font-medium text-sprPrimary">Accession</div>
+              <div className="px-6 py-3 font-medium whitespace-nowrap text-sprPrimary">Accession</div>
               {riceData.map((rice) => (
-                <div className="px-6 py-3"> {rice.accessionId === "" ? "---" : rice.accessionId}</div>
+                <div className="px-6 py-3 whitespace-nowrap"> {rice.accessionId === "" ? "---" : rice.accessionId}</div>
               ))}
             </div>
           </tbody>
@@ -73,15 +73,15 @@ export default function ReproductiveStage({ season }) {
           <thead className="text-xs uppercase font-medium text-center bg-sprPrimaryLight">Anther</thead>
           <tbody className=" flex ">
             <div className="hidden sm:block flex-auto divide-y divide-slate-300 ">
-              <div className="px-6 py-3 font-medium text-sprPrimary">Length</div>
+              <div className="px-6 py-3 font-medium whitespace-nowrap text-sprPrimary">Length</div>
               {riceData.map((rice) => (
                 <div className="px-6 py-3 bg-slate-50 whitespace-nowrap"> {rice.antherLength === "" ? "---" : rice.antherLength}</div>
               ))}
             </div>
             <div className="hidden sm:block flex-auto divide-y divide-slate-300 ">
-              <div className="px-6 py-3 font-medium text-sprPrimary">Colour</div>
+              <div className="px-6 py-3 font-medium whitespace-nowrap text-sprPrimary">Colour</div>
               {riceData.map((rice) => (
-                <div className="px-6 py-3"> {rice.antherColour === "" ? "---" : rice.antherColour}</div>
+                <div className="px-6 py-3 whitespace-nowrap"> {rice.antherColour === "" ? "---" : rice.antherColour}</div>
               ))}
             </div>
           </tbody>
@@ -108,9 +108,9 @@ export default function ReproductiveStage({ season }) {
               ))}
             </div>
             <div className="hidden sm:block flex-auto divide-y divide-slate-300 ">
-              <div className="px-6 py-3 font-medium text-sprPrimary">Length</div>
+              <div className="px-6 py-3 font-medium whitespace-nowrap text-sprPrimary">Length</div>
               {riceData.map((rice) => (
-                <div className="px-6 py-3"> {rice.awnLength === "" ? "---" : rice.awnLength}</div>
+                <div className="px-6 py-3 whitespace-nowrap"> {rice.awnLength === "" ? "---" : rice.awnLength}</div>
               ))}
             </div>
             <div className="hidden sm:block flex-auto divide-y divide-slate-300 ">
@@ -153,9 +153,9 @@ export default function ReproductiveStage({ season }) {
           <thead className="text-xs uppercase font-medium text-center bg-sprPrimaryLight">Male Sterility</thead>
           <tbody className=" flex ">
             <div className="hidden sm:block flex-auto divide-y divide-slate-300 ">
-              <div className="px-6 py-3 font-medium text-sprPrimary">Sterility</div>
+              <div className="px-6 py-3 font-medium whitespace-nowrap text-sprPrimary">Sterility</div>
               {riceData.map((rice) => (
-                <div className="px-6 py-3 bg-slate-50"> {rice.maleSterility === "" ? "---" : rice.maleSterility}</div>
+                <div className="px-6 py-3 whitespace-nowrap bg-slate-50"> {rice.maleSterility === "" ? "---" : rice.maleSterility}</div>
               ))}
             </div>
           </tbody>
@@ -164,9 +164,9 @@ export default function ReproductiveStage({ season }) {
           <thead className="text-xs uppercase font-medium text-center bg-sprPrimaryOffLight">Stigma</thead>
           <tbody className=" flex ">
             <div className="hidden sm:block flex-auto divide-y divide-slate-300 ">
-              <div className="px-6 py-3 font-medium text-sprPrimary">Colour</div>
+              <div className="px-6 py-3 font-medium whitespace-nowrap text-sprPrimary">Colour</div>
               {riceData.map((rice) => (
-                <div className="px-6 py-3"> {rice.stigmaColour === "" ? "---" : rice.stigmaColour}</div>
+                <div className="px-6 py-3 whitespace-nowrap"> {rice.stigmaColour === "" ? "---" : rice.stigmaColour}</div>
               ))}
             </div>
           </tbody>
@@ -205,9 +205,9 @@ export default function ReproductiveStage({ season }) {
               ))}
             </div>
             <div className="hidden sm:block flex-auto divide-y divide-slate-300 ">
-              <div className="px-6 py-3 font-medium text-sprPrimary">Length</div>
+              <div className="px-6 py-3 font-medium whitespace-nowrap text-sprPrimary">Length</div>
               {riceData.map((rice) => (
-                <div className="px-6 py-3"> {rice.panicleLength === "" ? "---" : rice.panicleLength}</div>
+                <div className="px-6 py-3 whitespace-nowrap"> {rice.panicleLength === "" ? "---" : rice.panicleLength}</div>
               ))}
             </div>
             <div className="hidden sm:block flex-auto divide-y divide-slate-300 ">
@@ -229,15 +229,15 @@ export default function ReproductiveStage({ season }) {
               ))}
             </div>
             <div className="hidden sm:block flex-auto divide-y divide-slate-300 ">
-              <div className="px-6 py-3 font-medium text-sprPrimary">Exsertion</div>
+              <div className="px-6 py-3 font-medium whitespace-nowrap text-sprPrimary">Exsertion</div>
               {riceData.map((rice) => (
-                <div className="px-6 py-3"> {rice.panicleExsertion === "" ? "---" : rice.panicleExsertion}</div>
+                <div className="px-6 py-3 whitespace-nowrap"> {rice.panicleExsertion === "" ? "---" : rice.panicleExsertion}</div>
               ))}
             </div>
             <div className="hidden sm:block flex-auto divide-y divide-slate-300 ">
-              <div className="px-6 py-3 font-medium text-sprPrimary">Shattering</div>
+              <div className="px-6 py-3 font-medium whitespace-nowrap text-sprPrimary">Shattering</div>
               {riceData.map((rice) => (
-                <div className="px-6 py-3 bg-slate-50"> {rice.panicleShattering === "" ? "---" : rice.panicleShattering}</div>
+                <div className="px-6 py-3 whitespace-nowrap bg-slate-50"> {rice.panicleShattering === "" ? "---" : rice.panicleShattering}</div>
               ))}
             </div>
           </tbody>
