@@ -53,9 +53,11 @@ const Main = () => {
 					setPage('scan-code')
 					console.log('user-is-not-admin');
 				}
+				else {
+				await auth.signOut();
+				navigate('/login');
 
-
-
+			}
 			}
 			else {
 				await auth.signOut();

@@ -82,6 +82,11 @@ export default function Sidebar({ onChange }) {
           // setPage('rice-gallery')
           console.log('user-is-not-admin');
         }
+         else {
+        await auth.signOut();
+        navigate('/login');
+
+      }
       }
       else {
         await auth.signOut();

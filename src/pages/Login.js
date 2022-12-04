@@ -81,8 +81,8 @@ export default function Login() {
 				const payLoad = {
 					email: state.email,
 					password: enPass,
-					role: 'user',
-					searchIndex: `${state.email} user`
+					role: 'User',
+					searchIndex: `${state.email} User`
 				}
 				await addDoc(collectionRef, payLoad);
 			}
