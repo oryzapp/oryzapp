@@ -413,7 +413,7 @@ export default function RiceData() {
       const riceListDocRef = doc(db, `/SPR/Rice_Accessions/Rice_List/${season}/Raw_Rice_List/`, `${riceData.accessionId}_${season}_${riceData.riceYear}`);
       const riceListPayLoad = {
         shelfNum: riceData.shelfNum,
-        searchIndex: ` ${riceData.accessionId} ${riceData.riceYear} ${riceData.riceSeason} Season Shelf ${riceData.shelfNum}`,
+        searchIndex: `CL-R ${riceData.accessionId} ${riceData.riceYear} ${riceData.riceSeason} Season Shelf ${riceData.shelfNum}`,
         accessionId: riceData.accessionId,
         riceYear: riceData.riceYear,
         riceSeason: riceData.riceSeason

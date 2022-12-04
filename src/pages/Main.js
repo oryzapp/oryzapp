@@ -53,7 +53,7 @@ const Main = () => {
 					setPage('scan-code')
 					console.log('user-is-not-admin');
 				}
-				else {
+				 if(matchUser.role === 'Disabled') {
 				await auth.signOut();
 				navigate('/login');
 

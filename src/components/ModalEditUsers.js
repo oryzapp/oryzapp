@@ -3,6 +3,8 @@ import { ReactComponent as CloseIcon } from '../assets/close.svg';
 import { ReactComponent as UserIcon } from '../assets/user-icon.svg';
 import { ReactComponent as AdminIcon } from '../assets/admin-icon.svg';
 import { ReactComponent as DisabledIcon } from "../assets/disabled-icon.svg"
+import downloadIcon from '../assets/download-icon.svg'
+
 import { useState } from 'react';
 import { QRCodeCanvas } from 'qrcode.react';
 import { decode, encode } from 'string-encode-decode';
@@ -12,12 +14,25 @@ import { decode, encode } from 'string-encode-decode';
 
 export default function ModalEditUsers({ open, closeModal, modalId, modalEmail,modalRole, modalPassword }) {
 
-    console.log('---------');
-    console.log(modalRole);
-    console.log(modalPassword);
-    console.log(decode (modalPassword));
+    const toQRCode = {
+        email: modalEmail,
+        password: modalPassword
+    }
 
-    console.log(modalId);
+     // Download QR Code-------------->
+    const downloadQR = () => {
+        const canvas = document.getElementById(`qr-gen`);
+        const pngUrl = canvas
+            .toDataURL("image/png")
+            .replace("image/png", "image/octet-stream");
+        let downloadLink = document.createElement("a");
+        downloadLink.href = pngUrl;
+        downloadLink.download = `${modalEmail}.png`;
+        document.body.appendChild(downloadLink);
+        downloadLink.click();
+        document.body.removeChild(downloadLink);
+    }
+
     if (!open) return null;
     return (
         <div>
@@ -28,9 +43,15 @@ export default function ModalEditUsers({ open, closeModal, modalId, modalEmail,m
                         <div className="absolute top-4  right-4 z-50 ">
                             <CloseIcon className='group-hover:stroke-white stroke-sprGray50 hover:stroke-sprGray80 active:stroke-sprPrimary h-5' onClick={closeModal} />
                         </div>
-                        <div className='h-52 w-52 bg-slate-200 flex items-center justify-center'>
+                        <div className='h-52 w-52 bg-slate-200 hover:bg-sprPrimaryOffLight active:bg-sprPrimary flex items-center justify-center relative rounded-sm' 
+                            onClick={downloadQR}
+                        >
+
                             {/* <QRCodeCanvas id={`qr-gen-${rice.accessionId}`} className="hidden sm:block rounded-xl" value={`${rice.accessionId}_${rice.riceSeason}_Season_${rice.riceYear}`} bgColor="#FAFAFA" fgColor="rgba(18, 20, 20, 0.8)" includeMargin={true} size={150} /> */}
-                            <QRCodeCanvas className='rounded-md' value={{email: modalEmail, password: modalPassword}}  includeMargin={true} size={160}/>
+                            <QRCodeCanvas id='qr-gen' className='rounded-md' value={JSON.stringify(toQRCode)}  includeMargin={true} size={160}/>
+                            <div className='bg-sprPrimary/30 h-5 w-5  rounded-full  absolute right-1 top-1' >
+                                <img src={downloadIcon} alt="" />
+                            </div>
                         </div>
                         <h1 className='text-sprPrimary font-medium'>{modalEmail}</h1>
                         <div className='flex gap-1'>

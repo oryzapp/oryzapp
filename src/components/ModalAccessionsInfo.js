@@ -6,6 +6,7 @@ import { ReactComponent as CloseIcon } from "../assets/close.svg"
 import { ReactComponent as CalendarIcon } from "../assets/calendar-icon.svg"
 import { ReactComponent as WetIcon } from "../assets/wet-icon.svg"
 import { ReactComponent as DryIcon } from "../assets/dry-icon.svg"
+import { ReactComponent as EmptyIllTwo } from "../assets/empty-illustration-2.svg"
 import { useState } from "react";
 import db from "../firebase-config";
 
@@ -179,7 +180,11 @@ export default function ModalAccessionsInfo({ open, modalId, closeModal }) {
 
                         </div>
                         <div className="bg-sprPrimaryOffLight flex-auto overflow-auto scrollbar rounded-b-md rounded-r-md">
-                            {vsData.length === 0 && rsData.length === 0 && gcData.length === 0 && ycData.length === 0 ? <div>Empty Image</div> :
+                            {vsData.length === 0 && rsData.length === 0 && gcData.length === 0 && ycData.length === 0 ? 
+                            <div className="h-full flex flex-col justify-center items-center gap-3">
+                                <EmptyIllTwo className="stroke-white"/>
+                                <h1 className="text-xl font-medium text-white">Plenty more room here</h1>
+                            </div> :
                               <div className="  max-h-0  p-4">
 
                               {vsData.map((vsData) => (

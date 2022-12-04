@@ -9,9 +9,6 @@ import Mainbar from '../components/Mainbar';
 export default function Dashboard() {
   const { status } = useAuthState();
 
-  const onSignOut = async () => {
-    await auth.signOut()
-  }
 
   if (status === 'fetched') {
 
