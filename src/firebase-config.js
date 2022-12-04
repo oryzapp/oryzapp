@@ -1,6 +1,6 @@
 import { initializeApp } from "firebase/app";
 import { getFirestore } from "firebase/firestore"
-import { getAuth, onAuthStateChanged, signInWithEmailAndPassword } from "firebase/auth"
+import { createUserWithEmailAndPassword, getAuth, onAuthStateChanged, signInWithEmailAndPassword } from "firebase/auth"
 import { useState } from "react";
 import { useEffect } from "react";
 import { getStorage } from 'firebase/storage'
@@ -23,6 +23,10 @@ export const storage = getStorage(app)
 
 export function login(email, password) {
   return signInWithEmailAndPassword(auth, email, password)
+}
+
+export function signup(email, password) {
+  return createUserWithEmailAndPassword(auth, email, password)
 }
 
 

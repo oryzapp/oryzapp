@@ -6,6 +6,7 @@ import downloadIcon from '../assets/download-icon.svg'
 import closeIcon from '../assets/close.svg'
 
 import { ReactComponent as SearchIcon } from '../assets/search-icon.svg'
+import { ReactComponent as ShelfIcon } from '../assets/shelf-icon.svg'
 import { ReactComponent as GridIcon } from '../assets/grid-icon.svg'
 import { ReactComponent as ListIcon } from '../assets/list-icon.svg'
 import { ReactComponent as EmptyIllustration } from '../assets/empty-illustration.svg'
@@ -83,26 +84,21 @@ export default function RiceList() {
     useEffect(() => {
         var searchList = []
 
-        if (searchValue === "") {
-            console.log('hello');
-            console.log('I am RiceList' + riceList);
-            console.log('I am searched' + searched);
-        }
+
         if (searchValue !== "") {
-            console.log('I am RiceList' + riceList);
-            console.log('I am searched' + searched);
+
             riceList.map((rice) => {
 
 
                 const match = rice.searchIndex.toLowerCase()
-                // console.log(match);
                 const search = match.includes(searchValue)
                 // console.log(search);
                 if (search === true) {
                     searchList.push({
                         accessionId: rice.accessionId,
                         riceSeason: rice.riceSeason,
-                        riceYear: rice.riceYear
+                        riceYear: rice.riceYear,
+                        shelfNum: rice.shelfNum
                     })
 
                 }
@@ -112,7 +108,7 @@ export default function RiceList() {
 
 
         setSearched(searchList)
-    }, [searchValue, searched])
+    }, [searchValue, season, year])
 
 
 
@@ -242,13 +238,13 @@ export default function RiceList() {
                                     <div className="text-sprPrimary bg-white sticky top-0 px-6 py-2 text-sm font-medium ">Accession</div>
                                     {searchValue === '' ? <>
                                         {riceList.map((rice) => (
-                                            <div className="px-6 py-3 text-sprGray60 font-medium "> {rice.accessionId}</div>
+                                            <div className="px-6 py-3 text-sprGray60 font-medium "> CL-R{rice.accessionId}</div>
                                         ))}
                                     </> : <>
 
                                         {
                                             searched.map((rice) => (
-                                                <div className="px-6 py-3 text-sprGray60 font-medium"> {rice.accessionId}</div>
+                                                <div className="px-6 py-3 text-sprGray60 font-medium"> CL-R{rice.accessionId}</div>
                                             ))
                                         }
                                     </>}
@@ -280,6 +276,25 @@ export default function RiceList() {
                                         {
                                             searched.map((rice) => (
                                                 <div className="px-6 py-3 text-sprGray60 font-medium"> {rice.riceSeason}</div>
+                                            ))
+                                        }
+                                    </>}
+                                </div>
+                                <div className=" hidden sm:flex divide-y bg-slate-50 divide-slate-300 h-fit  flex-col justify-center ">
+
+                                    <div className="text-sprPrimary bg-white sticky top-0 px-6 py-2 text-sm font-medium flex items-center">
+                                        <ShelfIcon className="fill-sprPrimary h-5 " />
+                                        {/* <p className="">Shelf</p> */}
+                                    </div>
+                                    {searchValue === '' ? <>
+                                        {riceList.map((rice) => (
+                                            <div className="px-6 py-3 text-sprGray60 font-medium"># {rice.shelfNum}</div>
+                                        ))}
+                                    </> : <>
+
+                                        {
+                                            searched.map((rice) => (
+                                                <div className="px-6 py-3 text-sprGray60 font-medium"># {rice.shelfNum}</div>
                                             ))
                                         }
                                     </>}
@@ -327,14 +342,18 @@ export default function RiceList() {
                                             <div className=" flex flex-auto   justify-between items-center  ">
                                                 <div className="">
                                                     <h1 className=" text-sm whitespace-nowrap sm:text-xl font-bold text-sprBlack opacity-80">
-                                                        {rice.accessionId}
+                                                        CL-R{rice.accessionId}
                                                     </h1>
                                                     <h6 className="text-xs font-medium text-sprGray60">
-                                                        {rice.riceSeason}
+                                                        {rice.riceSeason} Season
                                                     </h6>
                                                     <h6 className="text-xs font-medium text-sprGray60">
-                                                        {rice.riceYear}
+                                                        Year: {rice.riceYear}
                                                     </h6>
+                                                    <div className="flex  items-center  font-medium text-sprGray60">
+                                                        <ShelfIcon className="fill-sprPrimary h-5 " />
+                                                        <p className="text-md" ># {rice.shelfNum}</p>
+                                                    </div>
                                                 </div>
                                                 <div className="flex items-center space-x-2 sm:pt-1 ">
                                                     <button onClick={() => {
@@ -375,6 +394,10 @@ export default function RiceList() {
                                                     <h6 className="text-xs font-medium text-sprGray60">
                                                         {rice.riceYear}
                                                     </h6>
+                                                    <div className="flex  items-center  font-medium text-sprGray60">
+                                                        <ShelfIcon className="fill-sprPrimary h-5 " />
+                                                        <p className="text-md" ># {rice.shelfNum}</p>
+                                                    </div>
                                                 </div>
                                                 <div className="flex items-center space-x-2 sm:pt-1 ">
                                                     <button onClick={() => {

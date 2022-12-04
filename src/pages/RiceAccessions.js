@@ -216,9 +216,7 @@ export default function RiceAccessions() {
 
 		if (searchInput !== "") {
 			riceAccessions.map((rice) => {
-
-
-				const match = rice.accessionId.toLowerCase()
+				const match = rice.searchIndex.toLowerCase()
 				const search = match.includes(searchInput)
 				if (search === true) {
 					searchList.push({
@@ -317,10 +315,10 @@ export default function RiceAccessions() {
 								{
 									searchInput === '' ? <>
 										{riceAccessions.map((rice) => (
-											<div className="px-8 py-2 text-md font-medium text-sprGray60 whitespace-nowrap bg-slate-50"> {rice.accessionId === "" ? "---" : rice.accessionId} </div>
+											<div className="px-8 py-2 text-md font-medium text-sprGray60 whitespace-nowrap bg-slate-50"> CL-R{rice.accessionId === "" ? "---" : rice.accessionId} </div>
 										))}</> : <>
 										{searched.map((rice) => (
-											<div className="px-8 py-2 text-md font-medium text-sprGray60 whitespace-nowrap bg-slate-50"> {rice.accessionId === "" ? "---" : rice.accessionId} </div>
+											<div className="px-8 py-2 text-md font-medium text-sprGray60 whitespace-nowrap bg-slate-50"> CL-R{rice.accessionId === "" ? "---" : rice.accessionId} </div>
 										))}</>
 								}
 
@@ -387,7 +385,7 @@ export default function RiceAccessions() {
 													view
 												</button>
 												<button
-													className="hidden lg:block p-1 bg-gradient-to-b from-sprPrimary to-sprPrimaryDarkest hover:bg-gradient-to-t hover:from-sprPrimaryLight hover:to-sprPrimaryLight   rounded-full   shadow-slate-300 "
+													className=" lg:block p-1 bg-gradient-to-b from-sprPrimary to-sprPrimaryDarkest hover:bg-gradient-to-t hover:from-sprPrimaryLight hover:to-sprPrimaryLight   rounded-full   shadow-slate-300 "
 													onClick={() => {
 														editRiceAccessionID(rice.id);
 													}}
@@ -395,7 +393,7 @@ export default function RiceAccessions() {
 													<div className="w-4 h-4"><img src={editIcon} alt="" /></div>
 												</button>
 												<button
-													className="hidden lg:block p-1 bg-gradient-to-b from-sprPrimary to-sprPrimaryDarkest rounded-full  hover:bg-gradient-to-t hover:from-sprPrimaryLight hover:to-sprPrimaryLight shadow-slate-300 "
+													className=" lg:block p-1 bg-gradient-to-b from-sprPrimary to-sprPrimaryDarkest rounded-full  hover:bg-gradient-to-t hover:from-sprPrimaryLight hover:to-sprPrimaryLight shadow-slate-300 "
 													onClick={() => {
 														// deleteRiceAccession(rice.id);
 														setDelId(rice.id)
@@ -503,16 +501,19 @@ export default function RiceAccessions() {
 									<div className={accessionExists === true ? "block text-red-500 text-sm" : "hidden"}>*Accession already exists</div>
 
 								</div>
-								<input
-									className=" w-full text-4xl font-medium py-px placeholder-sprPrimaryLight/50 text-sprPrimary focus:outline-none focus:ring-transparent bg-transparent"
-									type="text"
-									placeholder="CL-XXXX"
-									name="accession"
-									value={state.accession}
-									onChange={handleChange}
-									required
-									readOnly={isEdit === true ? true : false}
-								/>
+								<div className="flex">
+									<p className="text-4xl font-medium whitespace-nowrap text-sprPrimary">CL-R</p>
+									<input
+										className=" w-full text-4xl font-medium  placeholder-sprPrimaryLight/50 text-sprPrimary focus:outline-none focus:ring-transparent bg-transparent"
+										type="text"
+										placeholder="XXXX"
+										name="accession"
+										value={state.accession}
+										onChange={handleChange}
+										required
+										readOnly={isEdit === true ? true : false}
+									/>
+								</div>
 							</div>
 							<div className="flex flex-auto flex-col lg:flex-row pb-20  w-full">
 								<div className="flex flex-col  -space-y-2  w-1/2">
@@ -603,3 +604,5 @@ export default function RiceAccessions() {
 	);
 }
 
+
+// Delete all using batch
