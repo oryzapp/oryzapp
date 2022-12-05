@@ -10,7 +10,8 @@ import { ReactComponent as ShelfIcon } from '../assets/shelf-icon.svg'
 import { ReactComponent as GridIcon } from '../assets/grid-icon.svg'
 import { ReactComponent as ListIcon } from '../assets/list-icon.svg'
 import { ReactComponent as EmptyIllustration } from '../assets/empty-illustration.svg'
-import { ReactComponent as FilterIcon } from '../assets/filter-icon.svg'
+import { ReactComponent as ExcelIcon } from "../assets/excel-icon.svg"
+
 import ModalRiceList from "../components/ModalRiceList";
 
 export default function RiceList() {
@@ -108,6 +109,24 @@ export default function RiceList() {
 
         setSearched(searchList)
     }, [searchValue, season, year])
+
+    // Export Excel
+	  const exportExcel = () => {
+        var XLSX = require("xlsx");
+        console.log('exporting');
+        var wb= XLSX.utils.book_new()
+		if(searchValue === ''){
+			var ws = XLSX.utils.json_to_sheet(riceList)
+		}
+		else{
+			var ws = XLSX.utils.json_to_sheet(searched)
+		}
+
+
+        XLSX.utils.book_append_sheet(wb,ws,`Special Purpose Rice Rice List`)
+
+        XLSX.writeFile(wb, `Special_Purpose_Rice_Rice_List.xlsx`)
+    }
 
 
 
@@ -311,8 +330,11 @@ export default function RiceList() {
                                     </>}
                                 </div>
                                 <div className=" hidden sm:flex divide-y bg-white divide-slate-300 h-fit  flex-col justify-center ">
-                                    <div className="text-sprPrimary bg-white sticky top-0 px-6 py-2 text-sm font-medium ">
-                                        <p className="opacity-0">Action</p>
+                                    <div className="text-sprPrimary bg-white flex justify-center sticky top-0 px-6 py-2 text-sm font-medium ">
+                                        <h1 className="group" onClick={()=>{exportExcel()}}>
+                                    <ExcelIcon className='stroke-sprPrimary h-5 hover:stroke-sprPrimarySuperLight active:stroke-sprPrimary'/>
+                                    <small className=' hidden group-hover:block absolute whitespace-nowrap right-2 bg-sprGray60 rounded-sm p-1 text-white' >Export as Excel</small>
+									</h1>
                                     </div>
                                     {searchValue === '' ? <>
                                         {riceList.map((rice) => (

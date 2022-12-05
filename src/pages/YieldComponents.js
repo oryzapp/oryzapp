@@ -3,6 +3,7 @@ import { useEffect, useState } from "react";
 import { useOutletContext } from "react-router-dom";
 import db from "../firebase-config";
 import { ReactComponent as EditIcon } from '../assets/edit-icon.svg'
+import { ReactComponent as ExcelIcon } from '../assets/excel-icon.svg'
 import ModalYieldUpdate from "../components/ModalYieldUpdate";
 
 
@@ -46,6 +47,23 @@ export default function YieldComponents({ season }) {
 		const find = riceData.find((rice)=> rice.tagId === id )
 		setYcRiceData(find)
 	}
+
+  
+   // Export Excel
+	  const exportExcel = () => {
+        var XLSX = require("xlsx");
+        console.log('exporting');
+        var wb= XLSX.utils.book_new()
+			  var ws = XLSX.utils.json_to_sheet(riceData)
+	
+
+
+        XLSX.utils.book_append_sheet(wb,ws,`SPR_YC`)
+
+        XLSX.writeFile(wb, `Special_Purpose_Rice_Yield_Components.xlsx`)
+    }
+
+
   return (
 
     <>
@@ -144,8 +162,11 @@ export default function YieldComponents({ season }) {
           </tbody>
         </table>
         <table className=" text-sm sticky right-0 ">
-          <thead className="text-xs font-medium uppercase text-center bg-white">
-            <p className="opacity-0">Action</p>
+          <thead className="text-xs font-medium uppercase text-center bg-white flex justify-center">
+             <h1 className="group" onClick={()=>{exportExcel()}}>
+                                    <ExcelIcon className='stroke-sprPrimary h-5 hover:stroke-sprPrimarySuperLight active:stroke-sprPrimary'/>
+                                    <small className=' hidden group-hover:block absolute whitespace-nowrap right-2 bg-sprGray60 rounded-sm p-1 text-white capitalize' >Export as Excel</small>
+									</h1>
           </thead>
           <tbody className=" flex bg-white   ">
             <div className="hidden sm:block flex-auto divide-y divide-slate-300  ">
