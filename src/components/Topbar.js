@@ -1,13 +1,31 @@
+import { onAuthStateChanged } from "firebase/auth";
+import { useEffect } from "react";
 import { useState } from "react";
 import { ReactComponent as OryzappLogo } from "../assets/oryzapp-logo.svg"
 import { auth } from "../firebase-config";
+import ModalClick from "./ModalClick";
+import ModalTopbar from "./ModalClick";
+import ModalSignout from "./ModalSignout";
 
 export default function Topbar() {
 
-  const [show, setShow] = useState(false)
+
+  // Log Out
    const onSignOut = async () => {
     await auth.signOut()
   }
+  const [user,setUser] = useState([])
+  useEffect(()=>{
+		const unsub = onAuthStateChanged(auth, async (user) => {
+      setUser(user)
+      console.log(user);
+      console.log(user.email);
+    })
+    return unsub
+
+  })
+
+  const [isModalOpen, setIsModalOpen] = useState(false)
 
 
   return (
@@ -17,17 +35,13 @@ export default function Topbar() {
       </div>
       <div className=" h-6 w-full flex flex-auto gap-2 justify-end">
         <p className="hidden sm:block">
-          Kumusta, <strong className="text-sprPrimary">Juaan</strong>
+          Kumusta, <strong className="text-sprPrimary">{user.email}</strong>
         </p>
-        <div className="h-6 w-6 rounded-full bg-black relative" onClick={() => { setShow(true) }}>
-          <div className={show === true ? "bg-white rounded-md drop-shadow-md z-50 absolute right-0 top-10 p-2" : "hidden"}>
-            <ul className="divide-y divide-slate-200">
-              
-              <h3 onClick={onSignOut} className="whitespace-nowrap" >Sign Out</h3>
-            </ul>
-          </div>
+        <div className="h-6 w-6 rounded-full bg-black relative" onClick={() => { setIsModalOpen(true)}}>
+        
         </div>
       </div>
+      <ModalClick open={isModalOpen} closeModal={()=>{setIsModalOpen(false)}}/>
     </div>
   );
 }

@@ -38,7 +38,6 @@ const Main = () => {
 	useEffect(() => {
 		const unsub = onAuthStateChanged(auth, async (user) => {
 
-			console.log(users);
 			const matchUser = users.find((dbUser) => dbUser.email === user.email)
 			console.log(matchUser.role);
 

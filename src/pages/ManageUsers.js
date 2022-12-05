@@ -118,7 +118,7 @@ export default function ManageUsers() {
                   type="text"
                   placeholder="Find a Rice"
                   value={searchInput}
-                // onChange={handleSearchInput}
+                onChange={handleSearchInput}
                 />
                 <button className="  h-full px-2 rounded-full absolute right-0  bg-sprPrimaryLight">
                   <SearchIcon stroke=" white" />

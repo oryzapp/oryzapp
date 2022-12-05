@@ -14,7 +14,6 @@ export default function ModalChangeRole({open, closeModal, modalId, roleChoice, 
             break;
         case 'User':
             color = 'yellow-500'
-            
             break;
         case 'Disabled':
             color = 'sprTertiary'
@@ -48,8 +47,8 @@ export default function ModalChangeRole({open, closeModal, modalId, roleChoice, 
                       
                         <CloseIcon className='group-hover:stroke-white stroke-sprGray50 hover:stroke-sprGray80 active:stroke-sprPrimary h-5' onClick={closeModal}/>
                     </div>
-                    <h1 className='text-lg font-medium text-center whitespace-pre-line'>Are you sure you want to set </h1><h3 className={`text-md text-${color}`}>{modalEmail}</h3>
-                    as <h1 className={`font-medium text-xl text-${color} `}> {roleChoice}?</h1>
+                    <h1 className='text-lg font-medium text-center whitespace-pre-line'>Are you sure you want to set </h1><h3 className={`text-md text-${color} `}>{modalEmail}</h3>
+                    as <h1 className={`font-medium text-xl text-${color}`}> {roleChoice}?</h1>
                     <div className='flex gap-3 mt-6'>
                         <button onClick={closeModal} className='rounded-full   bg-sprGray40 p-2  text-white hover:bg-sprGray10 hover:text-sprGray50 active:bg-sprGray60' >Cancel</button>
                         <button onClick={changeRole} className={`rounded-full   bg-${color} p-2 text-white hover:bg-${color}/50 hover:text-${color} active:bg-${color} active:text-white`}>Set as {roleChoice}</button>

@@ -113,71 +113,64 @@ export default function Sidebar({ onChange }) {
             </div>
             <h3 className={state === 1 ? "nav-text hidden md:block text-white font-medium text-md" : "nav-text hidden  md:block text-sprInactiveGray font-medium text-md"}>Dashboard</h3>
           </div>
-        </button> : <></>}
+        </button> : <div className="bg-slate-100 w-44 h-8 rounded-md mb-2" ></div>}
 
         {isAdmin === true ? <button onClick={() => handleClick('users', 2)} className={state === 2 ? "hidden sm:flex justify-center  flex-auto   sm:justify-start bg-sprPrimary rounded-lg px-3 py-2 " : "group hidden  sm:flex justify-center  flex-auto   sm:justify-start  px-3 py-2 hover:bg-slate-200 rounded-lg  "}>
           <div className="flex items-center  space-x-1   " >
             <div className="rounded-xl h-6 w-6  ">
-              {/* <img className=" relative" src={manageUsersIcon} alt="" /> */}
               <MUsersIcon className=" group-hover:stroke-sprInactiveGray" fill="none" stroke={state !== 2 ? "#888A89" : "white"} />
             </div>
             <h3 className={state === 2 ? "nav-text hidden md:block text-white font-medium text-md" : "nav-text hidden  md:block text-sprInactiveGray font-medium text-md"}>Manage Users</h3>
           </div>
-        </button> : <></>}
+        </button> : <div className="bg-slate-100 w-44 h-8 rounded-md mb-2" ></div>}
 
         {isAdmin === true ? <button onClick={() => handleClick('rice-accessions', 3)} className={state === 3 ? "flex justify-center  flex-auto   sm:justify-start bg-sprPrimary rounded-lg px-3 py-2 " : "group flex justify-center  flex-auto   sm:justify-start  px-3 py-2 hover:bg-slate-200 rounded-lg "} >
           <div className="flex items-center space-x-1   " >
             <div className="rounded-xl h-6 w-6">
-              {/* <img className=" relative" src={riceAccessionsIcon} alt="" /> */}
               <RiceAccIcon className=" group-hover:stroke-sprInactiveGray" fill="none" stroke={state !== 3 ? "#888A89" : "white"} />
             </div>
             <h3 className={state === 3 ? "nav-text hidden md:block text-white font-medium text-md" : "nav-text hidden  md:block text-sprInactiveGray font-medium text-md"}>Rice Accessions</h3>
           </div>
-        </button> : <></>}
+        </button> :<div className="bg-slate-100 w-44 h-8 rounded-md mb-2" ></div>}
 
 
         {isAdmin === true ? <button onClick={() => handleClick('rice-list', 4)} className={state === 4 ? "flex justify-center  flex-auto   sm:justify-start bg-sprPrimary rounded-lg px-3 py-2 " : "group flex justify-center  flex-auto   sm:justify-start  px-3 py-2 hover:bg-slate-200 rounded-lg "} >
           <div className="flex items-center space-x-1   " >
             <div className="rounded-xl h-6 w-6">
-              {/* <img className=" relative" src={riceAccessionsIcon} alt="" /> */}
               <RiceLIcon className=" group-hover:stroke-sprInactiveGray" fill="none" stroke={state !== 4 ? "#888A89" : "white"} />
             </div>
             <h3 className={state === 4 ? "nav-text hidden md:block text-white font-medium text-md" : "nav-text hidden  md:block text-sprInactiveGray font-medium text-md"}>Rice List</h3>
           </div>
-        </button> : <></>}
+        </button> : <div className="bg-slate-100 w-44 h-8 rounded-md mb-2" ></div>}
 
         {isAdmin === true ? <button onClick={() => handleClick('rice-data', 5)} className={state === 5 ? "hidden sm:flex justify-center  flex-auto   sm:justify-start bg-sprPrimary rounded-lg px-3 py-2" : " group hidden sm:flex justify-center  flex-auto   sm:justify-start  px-3 py-2 hover:bg-slate-200 rounded-lg "} >
           <div className="flex items-center space-x-1 " >
             <div className="rounded-xl h-6 w-6 ">
-              {/* <img className=" relative" src={riceDataIcon} alt="" /> */}
               <RiceDIcon className=" group-hover:stroke-sprInactiveGray" fill="none" stroke={state !== 5 ? "#888A89" : "white"} />
             </div>
             <h3 className={state === 5 ? "nav-text hidden md:block text-white font-medium text-md" : "nav-text hidden  md:block text-sprInactiveGray font-medium text-md"}>Rice Data</h3>
           </div>
-        </button> : <></>
-        }
+        </button> :<div className="bg-slate-100 w-44 h-8 rounded-md mb-2" ></div>}
 
 
-        <button onClick={() => handleClick('rice-gallery', 6)} className={state === 6 ? "flex justify-center  flex-auto   sm:justify-start bg-sprPrimary rounded-lg px-3 py-2" : "group flex justify-center  flex-auto   sm:justify-start  px-3 py-2 hover:bg-slate-200 rounded-lg "} >
+        {isAdmin === true || isAdmin === false? <button onClick={() => handleClick('rice-gallery', 6)} className={state === 6 ? "flex justify-center  flex-auto   sm:justify-start bg-sprPrimary rounded-lg px-3 py-2" : "group flex justify-center  flex-auto   sm:justify-start  px-3 py-2 hover:bg-slate-200 rounded-lg "} >
           <div className="flex items-center space-x-1  ">
             <div className="rounded-xl h-6 w-6 ">
-              {/* <img className=" relative" src={riceGalleryIcon} alt="" /> */}
               <RiceGIcon className=" group-hover:stroke-sprInactiveGray" fill="none" stroke={state !== 6 ? "#888A89" : "white"} />
             </div>
             <h3 className={state === 6 ? "nav-text hidden md:block text-white font-medium text-md" : "nav-text hidden  md:block text-sprInactiveGray font-medium text-md"}>Rice Gallery</h3>
           </div>
-        </button>
+        </button>:<div className="bg-slate-100 w-44 h-8 rounded-md mb-2" ></div>}
 
-        <button onClick={() => handleClick('scan-code', 7)} className={state === 7 ? " flex justify-center  flex-auto   sm:justify-start bg-sprPrimary rounded-lg px-3 py-2 order-first sm:order-last" : "group flex justify-center  flex-auto   sm:justify-start  px-3 py-2 hover:bg-slate-200 rounded-lg order-first sm:order-last"} >
+        {isAdmin === true || isAdmin === false?<button onClick={() => handleClick('scan-code', 7)} className={state === 7 ? " flex justify-center  flex-auto   sm:justify-start bg-sprPrimary rounded-lg px-3 py-2 order-first sm:order-last" : "group flex justify-center  flex-auto   sm:justify-start  px-3 py-2 hover:bg-slate-200 rounded-lg order-first sm:order-last"} >
           <div className="flex items-center space-x-1  ">
             <div className="rounded-xl h-6 w-6 ">
-              {/* <img className="" src={scanQRCodeIcon} alt="" /> */}
               <SQRIcon className=" group-hover:stroke-sprInactiveGray" fill="none" stroke={state !== 7 ? "#888A89" : "white"} />
             </div>
             <h3 className={state === 7 ? "nav-text hidden md:block text-white font-medium text-md" : "nav-text hidden  md:block text-sprInactiveGray font-medium text-md"}>Scan Code</h3>
 
           </div>
-        </button>
+        </button>:<div className="bg-slate-100 w-44 h-8 rounded-md mb-2" ></div> }
 
       </nav>
     </div >
