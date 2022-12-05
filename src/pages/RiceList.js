@@ -11,6 +11,7 @@ import { ReactComponent as GridIcon } from '../assets/grid-icon.svg'
 import { ReactComponent as ListIcon } from '../assets/list-icon.svg'
 import { ReactComponent as EmptyIllustration } from '../assets/empty-illustration.svg'
 import { ReactComponent as FilterIcon } from '../assets/filter-icon.svg'
+import ModalRiceList from "../components/ModalRiceList";
 
 export default function RiceList() {
 
@@ -130,6 +131,18 @@ export default function RiceList() {
     }
 
     var list = 0;
+
+    // currentData for Modal 
+  const [isModalOpen, setIsModalOpen] = useState(false)
+
+    const[currentData, setCurrentData] = useState(
+        {
+            accessionId: '',
+            riceSeason: '',
+            riceYear: '',
+            shelfNum: '',
+        }
+    )
 
     return (
         <>
@@ -304,7 +317,18 @@ export default function RiceList() {
                                     {searchValue === '' ? <>
                                         {riceList.map((rice) => (
                                             <div className="px-6 py-3 ">
-                                                <button className="text-white text-sm bg-gradient-to-b from-sprPrimary to-sprPrimaryDark  rounded-full w-10" onClick={() => { console.log(rice.id) }}> view</button>
+                                                <button className="text-white text-sm bg-gradient-to-b from-sprPrimary to-sprPrimaryDark  rounded-full w-10" onClick={() => { 
+                                                   setCurrentData({
+                                                    accessionId: rice.accessionId,
+                                                    riceSeason: rice.riceSeason,
+                                                    riceYear: rice.riceYear,
+                                                    shelfNum: rice.shelfNum
+                                                   })
+
+                                                   setIsModalOpen(true)
+                                                }}
+                                                
+                                                > view</button>
                                             </div>
                                         ))}
                                     </> : <>
@@ -312,7 +336,16 @@ export default function RiceList() {
                                         {
                                             searched.map((rice) => (
                                                 <div className="px-6 py-3 ">
-                                                    <button className="text-white text-sm bg-gradient-to-b from-sprPrimary to-sprPrimaryDark  rounded-full w-10" onClick={() => { console.log(rice.id) }}> view</button>
+                                                    <button className="text-white text-sm bg-gradient-to-b from-sprPrimary to-sprPrimaryDark  rounded-full w-10" onClick={() => {
+                                                         setCurrentData({
+                                                    accessionId: rice.accessionId,
+                                                    riceSeason: rice.riceSeason,
+                                                    riceYear: rice.riceYear,
+                                                    shelfNum: rice.shelfNum
+                                                   })
+
+                                                   setIsModalOpen(true)
+                                                    }}> view</button>
                                                 </div>
                                             ))
                                         }
@@ -355,9 +388,14 @@ export default function RiceList() {
                                                 </div>
                                                 <div className="flex items-center space-x-2 sm:pt-1 ">
                                                     <button onClick={() => {
-                                                        console.log(rice.id)
+                                                         setCurrentData({
+                                                    accessionId: rice.accessionId,
+                                                    riceSeason: rice.riceSeason,
+                                                    riceYear: rice.riceYear,
+                                                    shelfNum: rice.shelfNum
+                                                   })
 
-                                                        setModalIsOpen(true)
+                                                   setIsModalOpen(true)
                                                     }} className=" text-white text-xs sm:text-sm bg-gradient-to-b from-sprPrimary to-sprPrimaryDark h-6 w-10 sm:h-6 sm:w-12 rounded-full drop-shadow-md ">
                                                         view
                                                     </button>
@@ -399,8 +437,14 @@ export default function RiceList() {
                                                 </div>
                                                 <div className="flex items-center space-x-2 sm:pt-1 ">
                                                     <button onClick={() => {
-                                                        console.log(rice.id)
-                                                        setModalIsOpen(true)
+                                                         setCurrentData({
+                                                    accessionId: rice.accessionId,
+                                                    riceSeason: rice.riceSeason,
+                                                    riceYear: rice.riceYear,
+                                                    shelfNum: rice.shelfNum
+                                                   })
+
+                                                   setIsModalOpen(true)
                                                     }} className=" text-white text-xs sm:text-sm bg-gradient-to-b from-sprPrimary to-sprPrimaryDark h-6 w-10 sm:h-6 sm:w-12 rounded-full drop-shadow-md " >
                                                         view
                                                     </button>
@@ -426,228 +470,9 @@ export default function RiceList() {
                 </section>
 
 
-                {/* <section className={listOn === true ? "flex-auto overflow-auto  scrollbar rounded-lg border border-slate-200 " : "hidden"}>
-                    {riceList.length === 0 ? <div className="flex justify-center items-center pt-32 flex-col gap-8 "><EmptyIllustration /><p className="font-medium text-xl text-sprPrimaryOffLight">Plenty of space in the field </p></div> : <div className="flex h-96">
-                        <div className="hidden sm:block divide-y bg-white divide-slate-300 h-fit">
-                        <div className="text-sprPrimary bg-white sticky top-0 px-8 py-2 text-sm font-medium">
-
-                                #</div>
-                            {searchValue === '' ? <>
-                                {riceList.map((rice) => (
-                                    <div className="px-6 py-3 text-sprPrimaryDark"> {list = list + 1}</div>
-                                ))}
-                            </> : <>
-
-                                {
-                                    searched.map((rice) => (
-                                        <div className="px-6 py-3 text-sprPrimaryDark"> {list = list + 1}</div>
-                                    ))
-                                }
-                            </>}
-                        </div>
-                        <div className="hidden sm:block flex-auto divide-y bg-slate-50 divide-slate-300 h-fit">
-                        <div className="text-sprPrimary bg-white sticky top-0 px-8 py-2 text-sm font-medium">
-
-                                Accession</div>
-                            {searchValue === '' ? <>
-                                {riceList.map((rice) => (
-                                    <div className="px-6 py-3"> {rice.accessionId}</div>
-                                ))}
-                            </> : <>
-
-                                {
-                                    searched.map((rice) => (
-                                        <div className="px-6 py-3"> {rice.accessionId}</div>
-                                    ))
-                                }
-                            </>}
-                        </div>
-                        <div className=" hidden sm:block flex-auto divide-y bg-slate-100 divide-slate-300 h-fit">
-                        <div className="text-sprPrimary bg-white sticky top-0 px-8 py-2 text-sm font-medium">
-
-                                Season </div>
-                            {searchValue === '' ? <>
-                                {riceList.map((rice) => (
-                                    <div className="px-6 py-3"> {rice.riceSeason}</div>
-                                ))}
-                            </> : <>
-
-                                {
-                                    searched.map((rice) => (
-                                        <div className="px-6 py-3"> {rice.riceSeason}</div>
-                                    ))
-                                }
-                            </>}
-                        </div>
-                        <div className="hidden sm:block flex-auto divide-y bg-slate-50 divide-slate-300 h-fit">
-                        <div className="text-sprPrimary bg-white sticky top-0 px-8 py-2 text-sm font-medium">
-
-                                Year</div>
-                            {searchValue === '' ? <>
-                                {riceList.map((rice) => (
-                                    <div className="px-6 py-3"> {rice.riceYear}</div>
-                                ))}
-                            </> : <>
-
-                                {
-                                    searched.map((rice) => (
-                                        <div className="px-6 py-3"> {rice.riceYear}</div>
-                                    ))
-                                }
-                            </>}
-                        </div>
-                        <div className="  w-full sm:w-auto ">
-                        <div className=" text-sprPrimary bg-white sticky top-0 px-8 py-2 text-sm font-medium">
-
-                                <p className="opacity-0">Action</p></div>
-                            {searchValue === '' ? <>
-                                {riceList.map((rice) => (
-                                    <div className="px-6 py-3 flex items-center justify-between gap-2 bg-slate-100 sm:bg-white m-1 sm:m-0 rounded-lg ">
-                                        <div className=" sm:hidden">
-                                            <h1 className="text-xl font-bold text-sprBlack opacity-80">
-                                                {rice.accessionId}
-                                            </h1>
-                                            <h6 className="text-xs font-medium text-sprGray60">
-                                                {rice.riceSeason}
-                                            </h6>
-                                            <h6 className="text-xs font-medium text-sprGray60">
-                                                {rice.riceYear}
-                                            </h6>
-                                        </div>
-                                        <button
-                                            className=" text-white text-sm bg-gradient-to-b from-sprPrimary to-sprPrimaryDark  sm:h-6 sm:w-12 rounded-full shadow-lg shadow-slate-300 "
-                                            onClick={() => {
-                                                console.log("hi");
-                                            }}
-                                        >
-                                            view
-                                        </button>
-
-                                    </div>
-                                ))}
-                            </> : <>
-
-                                {searched.map((rice) => (
-                                    <div className="px-6 py-3 flex items-center justify-between gap-2 bg-slate-100 sm:bg-white m-1 sm:m-0 rounded-lg ">
-                                        <div className=" sm:hidden">
-                                            <h1 className="text-xl font-bold text-sprBlack opacity-80">
-                                                {rice.accessionId}
-                                            </h1>
-                                            <h6 className="text-xs font-medium text-sprGray60">
-                                                {rice.riceSeason}
-                                            </h6>
-                                            <h6 className="text-xs font-medium text-sprGray60">
-                                                {rice.riceYear}
-                                            </h6>
-                                        </div>
-                                        <button
-                                            className=" text-white text-sm bg-gradient-to-b from-sprPrimary to-sprPrimaryDark h-8 w-14 sm:h-6 sm:w-12 rounded-full shadow-lg shadow-slate-300 "
-                                            onClick={() => {
-                                                console.log("hi");
-                                            }}
-                                        >
-                                            view
-                                        </button>
-
-                                    </div>
-                                ))}
-                            </>}
-
-                        </div>
-                    </div>}
-                </section >
-
-                <section className={listOn === false ? "flex-auto overflow-auto  scrollbar rounded-lg border border-slate-200" : "hidden"}>
-                    {riceList.length === 0 ? <div className="flex justify-center items-center flex-col gap-8 pt-32 "><EmptyIllustration /><p className="font-medium text-xl text-sprPrimaryOffLight">Plenty of space in the field </p></div> :
-                        <div className=" grid grid-cols-2 sm:grid-cols-2 md:grid-cols-4  gap-2  grid-colors-black p-2  " >
-                            {searchValue === '' ? <>
-                                {riceList.map((rice) => (
-
-                                    <div className="flex  flex-col  p-4 pt-2 pr-6 sm:pr-4   rounded-lg bg-slate-50  drop-shadow-md  hover:bg-sprPrimaryOffLight ">
-
-                                        <div className="flex  justify-center p-4">
-                                            <QRCodeCanvas id={`qr-gen-${rice.accessionId}`} className="hidden sm:block rounded-xl" value={`${rice.accessionId}_${rice.riceSeason}_Season_${rice.riceYear}`} bgColor="#FAFAFA" fgColor="rgba(18, 20, 20, 0.8)" includeMargin={true} size={150} />
-                                            <QRCodeCanvas id={`qr-gen-${rice.accessionId}`} className="sm:hidden" value={`${rice.accessionId}_${rice.riceSeason}_Season_${rice.riceYear}`} fgColor="rgba(18, 20, 20, 0.9)" size={80} />
-                                        </div>
-                                        <div className=" flex flex-auto   justify-between items-center  ">
-                                            <div className="">
-                                                <h1 className=" text-sm whitespace-nowrap sm:text-xl font-bold text-sprBlack opacity-80">
-                                                    {rice.accessionId}
-                                                </h1>
-                                                <h6 className="text-xs font-medium text-sprGray60">
-                                                    {rice.riceSeason}
-                                                </h6>
-                                                <h6 className="text-xs font-medium text-sprGray60">
-                                                    {rice.riceYear}
-                                                </h6>
-                                            </div>
-                                            <div className="flex items-center space-x-2 sm:pt-1 ">
-                                                <button onClick={() => {
-                                                    setModalIsOpen(true)
-                                                }} className=" text-white text-xs sm:text-sm bg-gradient-to-b from-sprPrimary to-sprPrimaryDark h-6 w-10 sm:h-6 sm:w-12 rounded-full drop-shadow-md ">
-                                                    view
-                                                </button>
-                                                <button
-                                                    className=" bg-sprPrimary rounded-full drop-shadow-md  " onClick={() => downloadQR(rice.accessionId, rice.riceSeason, rice.riceYear)}
-                                                >
-                                                    <div className=" w-6 sm:w-6 h-6"><img src={downloadIcon} alt="" /></div>
-                                                </button>
-
-                                            </div>
-                                        </div>
-                                    </div>
-                                ))}
-                            </> : <>
-
-                                {searched.map((rice) => (
-
-                                    <div className="flex  flex-col  p-4 pt-2 pr-6 sm:pr-4   rounded-lg bg-slate-50  drop-shadow-md  hover:bg-sprPrimaryOffLight ">
-
-                                        <div className="flex  justify-center p-4">
-                                            <QRCodeCanvas id={`qr-gen-${rice.accessionId}`} className="hidden sm:block rounded-xl" value={`${rice.accessionId}_${rice.riceSeason}_Season_${rice.riceYear}`} bgColor="#FAFAFA" fgColor="rgba(18, 20, 20, 0.8)" includeMargin={true} size={150} />
-                                            <QRCodeCanvas id={`qr-gen-${rice.accessionId}`} className="sm:hidden" value={`${rice.accessionId}_${rice.riceSeason}_Season_${rice.riceYear}`} fgColor="rgba(18, 20, 20, 0.9)" size={80} />
-                                        </div>
-                                        <div className=" flex flex-auto   justify-between items-center  ">
-                                            <div className="">
-                                                <h1 className=" text-sm whitespace-nowrap sm:text-xl font-bold text-sprBlack opacity-80">
-                                                    {rice.accessionId}
-                                                </h1>
-                                                <h6 className="text-xs font-medium text-sprGray60">
-                                                    {rice.riceSeason}
-                                                </h6>
-                                                <h6 className="text-xs font-medium text-sprGray60">
-                                                    {rice.riceYear}
-                                                </h6>
-                                            </div>
-                                            <div className="flex items-center space-x-2 sm:pt-1 ">
-                                                <button onClick={() => {
-                                                    setModalIsOpen(true)
-                                                }} className=" text-white text-xs sm:text-sm bg-gradient-to-b from-sprPrimary to-sprPrimaryDark h-6 w-10 sm:h-6 sm:w-12 rounded-full drop-shadow-md ">
-                                                    view
-                                                </button>
-                                                <button
-                                                    className=" bg-sprPrimary rounded-full drop-shadow-md  " onClick={() => downloadQR(rice.accessionId, rice.riceSeason, rice.riceYear)}
-                                                >
-                                                    <div className=" w-6 sm:w-6 h-6"><img src={downloadIcon} alt="" /></div>
-                                                </button>
-
-                                            </div>
-                                        </div>
-                                    </div>
-                                ))}
-                            </>}
-
-
-                        </div>}
-
-                </section> */}
-
-
-
-
             </div>
 
-
+                <ModalRiceList open={isModalOpen} closeModal={()=>{setIsModalOpen(false)}} currentData={currentData} />
         </>
     );
 }

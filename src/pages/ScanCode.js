@@ -13,6 +13,7 @@ import { ReactComponent as ImageIcon } from '../assets/image-icon.svg'
 import ModalViewAccessionOnly from "../components/ModalViewAccessionOnly";
 import { useRef } from "react";
 import ModalAccessionsInfo from "../components/ModalAccessionsInfo";
+import ModalRiceList from "../components/ModalRiceList";
 export default function ScanCode() {
 
 
@@ -77,11 +78,6 @@ export default function ScanCode() {
   // Scan or Upload Image
   const [isScan, setIsScan] = useState(true)
 
-  // Open View Rice Info Modal
-  const openViewInfoModal = () => {
-    setIsModalOpen(true)
-  }
-
 
   console.log('I am currentData');
   console.log(currentData);
@@ -95,12 +91,9 @@ const startScanning = async () =>{
 const qrScanner = new QrScanner(video,result =>
 		{ 
       setQrData(result.data)
-
-      console.log(qrData);
-
 		setTimeout(()=>{
 			qrScanner.destroy()
-		}, 1000)
+		}, 15000)
 		}, 
 		{
 		highlightScanRegion: true,
@@ -108,9 +101,10 @@ const qrScanner = new QrScanner(video,result =>
 		}
 		)
 		qrScanner.start()
-		// 	setTimeout(()=>{
-		// 	qrScanner.destroy()
-		// }, 5000)
+    setTimeout(()=>{
+			qrScanner.destroy()
+		}, 5000)
+		
 
 }
 console.log('I am data');
@@ -130,10 +124,18 @@ console.log(qrData);
 
           <div className=" h-72 w-64 flex flex-col ">
             <div className=" flex cursor-pointer">
-              <div className={isScan === true ? 'w-1/2 h-10 rounded-t-lg bg-sprPrimary flex justify-center items-center' : 'w-1/2 h-10 rounded-t-lg bg-sprPrimarySuperLight flex justify-center items-center'} onClick={() => setIsScan(true)}>
+              <div className={isScan === true ? 'w-1/2 h-10 rounded-t-lg bg-sprPrimary flex justify-center items-center' : 'w-1/2 h-10 rounded-t-lg bg-sprPrimarySuperLight flex justify-center items-center'} 
+              onClick={() => {
+              setIsScan(true)
+              setQrData('No Result')}
+              }>
                 <ScanCodeIcon fill={isScan === true ? "white" : "#CFD491"} />
               </div>
-              <div className={isScan === false ? 'w-1/2 h-10 rounded-t-lg bg-sprPrimary flex justify-center items-center' : 'w-1/2 h-10 rounded-t-lg bg-sprPrimarySuperLight flex justify-center items-center'} onClick={() => setIsScan(false)}>
+              <div className={isScan === false ? 'w-1/2 h-10 rounded-t-lg bg-sprPrimary flex justify-center items-center' : 'w-1/2 h-10 rounded-t-lg bg-sprPrimarySuperLight flex justify-center items-center'} 
+              onClick={() => {
+                setIsScan(false)
+                setQrData('No Result')
+                }}>
 
 
                 <ImageIcon className="w-7" fill="none" stroke={isScan === false ? "white" : "#CFD491"} />
@@ -170,15 +172,14 @@ console.log(qrData);
                 <h1 className="text-xl font-bold text-sprBlack opacity-80">
                   CL-R{currentData?.accessionId}
                 </h1>
+                
                 <h6 className="text-xs font-medium text-sprGray60">
-                  {currentData?.riceSeason} Season
-                </h6>
-                <h6 className="text-xs font-medium text-sprGray60">
-                  {currentData?.riceYear}
+                  Shelf #{currentData?.shelfNum}
                 </h6>
 
               </div>
               <button className=" text-white text-sm bg-gradient-to-b from-sprPrimary to-sprPrimaryDarkest h-8 w-16   rounded-full shadow-lg shadow-slate-300 hover:bg-gradient-to-t hover:from-sprPrimaryLight hover:to-sprPrimaryLight " onClick={() => {
+              setIsModalOpen(true)
               }}>
                 view
               </button>
@@ -198,6 +199,8 @@ console.log(qrData);
 
         </div>
       </div>
+{/* Modal */}
+            <ModalRiceList open={isModalOpen} closeModal={()=>{setIsModalOpen(false)}} currentData={currentData}/>
 
     </div >
 
