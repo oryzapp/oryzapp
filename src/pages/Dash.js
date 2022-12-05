@@ -3,11 +3,11 @@ import { ReactComponent as AromIcon } from '../assets/aromatic-icon.svg'
 import { ReactComponent as PigIcon } from '../assets/pigmented-icon.svg'
 import { ReactComponent as GlutIcon } from '../assets/glutinous-icon.svg'
 import { ReactComponent as SearchIcon } from '../assets/search-icon.svg'
+import { ReactComponent as ExcelIcon } from '../assets/excel-icon.svg'
 import ModalSearch from '../components/ModalSearch'
 import { collection, onSnapshot } from 'firebase/firestore'
 import db from "../firebase-config";
 import ModalAccessionsInfo from '../components/ModalAccessionsInfo'
-import { writeXLSX } from 'xlsx'
 
 
 export default function Dash() {
@@ -208,8 +208,9 @@ export default function Dash() {
                         </div>
                         <div className="hidden sm:flex flex-col divide-y sm:divide-y bg-white divide-white h-full sticky right-0 justify-center items-center">
                             <div className=" text-sprPrimary bg-white  px-10 py-2 sticky top-0 text-sm font-medium">
-                                <h1 className="" onClick={()=>{exportExcel()}}>
-                                    Excel
+                                <h1 className="group" onClick={()=>{exportExcel()}}>
+                                    <ExcelIcon className='stroke-sprPrimary h-5 hover:stroke-sprPrimarySuperLight active:stroke-sprPrimary'/>
+                                    <small className=' hidden group-hover:block absolute whitespace-nowrap right-2 bg-sprGray60 rounded-sm p-1 text-white' >Export as Excel</small>
                                 </h1>
                             </div>
                             {searched.map((rice) => (
@@ -242,78 +243,3 @@ export default function Dash() {
         </>
     )
 }
-
-
-    //   <div className={showTable === true && classification === 'Aromatic' ? ` bg-sprPrimary flex-auto group hover:bg-sprPrimaryOffLight flex flex-col justify-center items-center rounded-xl drop-shadow-sm p-4 sm:h-24` : "bg-white flex-auto group hover:bg-sprPrimaryOffLight flex flex-col justify-center items-center rounded-xl drop-shadow-sm p-4 "} onClick={() => {
-    //                             setShowTable(true)
-    //                             setClassification('Aromatic')
-    //                         }}>
-    //                             <AromIcon className={showTable === true && classification === 'Aromatic' ? " h-12  group-hover:stroke-white" : " h-12 sm:h-20 group-hover:stroke-white"} stroke={showTable === true && classification === 'Aromatic' ? "white" : "#AFBE00"} />
-    //                             <h1 className={showTable === true && classification === 'Aromatic' ? "text-white font-medium text-lg sm:text-md  group-hover:text-white" : "text-sprPrimary font-medium text-lg sm:text-xl  group-hover:text-white"}>Aromatic</h1>
-    //                         </div>
-    //                         <div className={showTable === true && classification === 'Pigmented' ? "bg-sprPrimary flex-auto group hover:bg-sprPrimaryOffLight flex flex-col justify-center items-center rounded-xl drop-shadow-sm p-4  sm:h-24" : "bg-white flex-auto group hover:bg-sprPrimaryOffLight flex flex-col justify-center items-center rounded-xl drop-shadow-sm p-4 md:p-10 "} onClick={() => {
-    //                             setShowTable(true)
-    //                             setClassification('Pigmented')
-    //                         }}>
-    //                             <PigIcon className={showTable === true ? " h-12 sm:h-10 group-hover:stroke-white" : " h-12 sm:h-20 group-hover:stroke-white"} stroke={showTable === true && classification === 'Pigmented' ? "white" : "#AFBE00"} />
-    //                             <h1 className={showTable === true && classification === 'Pigmented' ? "text-white font-medium text-lg sm:text-md  group-hover:text-white" : "text-sprPrimary font-medium text-lg sm:text-xl  group-hover:text-white"}>Pigmented</h1>
-    //                         </div>
-    //                         <div className={showTable === true && classification === 'Glutinous' ? "bg-sprPrimary flex-auto group hover:bg-sprPrimaryOffLight flex flex-col justify-center items-center rounded-xl drop-shadow-sm p-4 md:p-10" : "bg-white flex-auto group hover:bg-sprPrimaryOffLight flex flex-col justify-center items-center rounded-xl drop-shadow-sm p-4 md:p-10 "} onClick={() => {
-    //                             setShowTable(true)
-    //                             setClassification('Glutinous')
-    //                         }}>
-    //                             <GlutIcon className={showTable === true ? " h-12 sm:h-10 group-hover:stroke-white" : " h-12 sm:h-20 group-hover:stroke-white"} stroke={showTable === true && classification === 'Glutinous' ? "white" : "#AFBE00"} />
-    //                             <h1 className={showTable === true && classification === 'Glutinous' ? "text-white font-medium text-lg sm:text-md  group-hover:text-white" : "text-sprPrimary font-medium text-lg sm:text-xl  group-hover:text-white"}>Glutinous</h1>
-    //                         </div>
-
-
-
-// <div className='bg-white drop-shadow-sm  flex-auto w-full flex  h-20  overflow-auto scrollbar'>
-//     <div className=' flex-auto flex rounded-xl '>
-//         <section className='bg-slate-50 divide-y divide-slate-300 py-2  '>
-//             <div className=' px-4'>#</div>
-//             {searched.map((rice) => (
-//                 <div className='py-3 px-4'>{list = list + 1}</div>
-//             ))}
-
-//         </section>
-//         <section className='bg-slate-100 divide-y divide-slate-300 py-2 flex-auto'>
-//             <div className='px-4'>Accession</div>
-//             {searched.map((rice) => (
-//                 <div className='py-3 px-4'>{rice.accession}</div>
-//             ))}
-//         </section>
-//         <section className='bg-slate-50 divide-y divide-slate-300 py-2 flex-auto'>
-//             <div className='px-4'>Classification</div>
-//             {searched.map((rice) => (
-//                 <div className='py-3 px-4 whitespace-nowrap'>{rice.classification}</div>
-//             ))}
-//         </section>
-//         <section className='bg-slate-100 divide-y divide-slate-300 py-2 flex-auto'>
-//             <div className='px-4'>Source</div>
-//             {searched.map((rice) => (
-//                 <div className='py-3 px-4 whitespace-nowrap'>{rice.source}</div>
-//             ))}
-//         </section>
-//         <section className='bg-slate-50 divide-y divide-slate-300 py-2 flex-auto'>
-//             <div className='px-4'>Variety</div>
-//             {searched.map((rice) => (
-//                 <div className='py-3 px-4 whitespace-nowrap'>{rice.variety}</div>
-//             ))}
-//         </section>
-//         <section className='bg-white divide-y divide-slate-300 py-2  fixed right-0'>
-//             <div className='px-4 opacity-0'>Action</div>
-//             {searched.map((rice) => (
-//                 <div className='py-3 px-4'>
-//                     <button className='text-white text-sm bg-gradient-to-b from-sprPrimary to-sprPrimaryDarkest rounded-full  hover:bg-gradient-to-t hover:from-sprPrimaryLight hover:to-sprPrimaryLight h-8 w-14  shadow-slate-300  '
-//                         onClick={() => {
-//                             setCurrentId(rice.accession)
-//                             setIsModalOpen(true)
-//                         }}
-//                     >view</button>
-//                 </div>
-//             ))}
-//         </section>
-
-//     </div>
-// </div>

@@ -31,8 +31,7 @@ import downloadIcon from "../assets/download-icon.svg"
 import { ReactComponent as SearchIcon } from "../assets/search-icon.svg"
 import { ReactComponent as EmptyIllustration } from "../assets/empty-illustration.svg"
 import { ReactComponent as ImageIcon } from "../assets/image-icon.svg"
-import { ReactComponent as ListIcon } from "../assets/list-icon.svg"
-import { ReactComponent as GridIcon } from "../assets/grid-icon.svg"
+import { ReactComponent as ExcelIcon } from "../assets/excel-icon.svg"
 import { v4 } from "uuid";
 import { QRCodeCanvas } from "qrcode.react";
 import ModalAccessionsInfo from "../components/ModalAccessionsInfo";
@@ -245,6 +244,24 @@ export default function RiceAccessions() {
 	const [delId, setDelId] = useState('')
 	console.log(delId);
 
+	// Export Excel
+	  const exportExcel = () => {
+        var XLSX = require("xlsx");
+        console.log('exporting');
+        var wb= XLSX.utils.book_new()
+		if(searchInput === ''){
+			var ws = XLSX.utils.json_to_sheet(riceAccessions)
+		}
+		else{
+			var ws = XLSX.utils.json_to_sheet(searched)
+		}
+
+
+        XLSX.utils.book_append_sheet(wb,ws,`Special Purpose Rice Accessions`)
+
+        XLSX.writeFile(wb, `Special_Purpose_Rice_Accessions.xlsx`)
+    }
+
 
 
 	return (
@@ -364,9 +381,10 @@ export default function RiceAccessions() {
 									))}</>}
 							</div>
 							<div className="hidden sm:flex flex-col  divide-y sm:divide-y bg-white divide-white h-full sticky right-0">
-								<div className=" text-sprPrimary bg-white  px-10 py-2 sticky top-0 text-sm font-medium">
-									<h1 className="opacity-0">
-										Action
+								<div className=" text-sprPrimary flex justify-center bg-white  px-10 py-2 sticky top-0 text-sm font-medium">
+										  <h1 className="group" onClick={()=>{exportExcel()}}>
+                                    <ExcelIcon className='stroke-sprPrimary h-5 hover:stroke-sprPrimarySuperLight active:stroke-sprPrimary'/>
+                                    <small className=' hidden group-hover:block absolute whitespace-nowrap right-2 bg-sprGray60 rounded-sm p-1 text-white' >Export as Excel</small>
 									</h1>
 								</div>
 								{searchInput === '' ? <>
