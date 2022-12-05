@@ -2,10 +2,11 @@ import { onAuthStateChanged } from "firebase/auth";
 import { useEffect } from "react";
 import { useState } from "react";
 import { ReactComponent as OryzappLogo } from "../assets/oryzapp-logo.svg"
+import { ReactComponent as ProfileIcon } from "../assets/profile.svg"
 import { auth } from "../firebase-config";
 import ModalClick from "./ModalClick";
 import ModalTopbar from "./ModalClick";
-import ModalSignout from "./ModalSignout";
+import ModalSignout from "./ModalTopbarBox";
 
 export default function Topbar() {
 
@@ -32,8 +33,8 @@ export default function Topbar() {
         <p className="hidden sm:block">
           Kumusta, <strong className="text-sprPrimary">{user?.email}</strong>
         </p>
-        <div className="h-6 w-6 rounded-full bg-black relative" onClick={() => { setIsModalOpen(true)}}>
-        
+        <div className="h-6 w-6 rounded-full bg-sprPrimaryLight/20 relative" onClick={() => { setIsModalOpen(true)}}>
+          <ProfileIcon className="fill-sprPrimary"/>
         </div>
       </div>
       <ModalClick open={isModalOpen} closeModal={()=>{setIsModalOpen(false)}}/>

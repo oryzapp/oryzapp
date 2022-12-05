@@ -418,8 +418,8 @@ export default function VegetativeStage({ season }) {
         <table className=" text-sm sticky right-0 ">
           <thead className="text-xs font-medium uppercase text-center bg-white flex justify-center">
              <h1 className="group" onClick={()=>{exportExcel()}}>
-                                    <ExcelIcon className='stroke-sprPrimary h-5 hover:stroke-sprPrimarySuperLight active:stroke-sprPrimary'/>
-                                    <small className=' hidden group-hover:block absolute whitespace-nowrap right-2 bg-sprGray60 rounded-sm p-1 text-white capitalize' >Export as Excel</small>
+                                    <ExcelIcon className='stroke-sprPrimary h-5 hover:stroke-sprPrimarySuperLight active:stroke-sprPrimary '/>
+                                    <small className=' hidden group-hover:block absolute whitespace-nowrap right-2 bg-sprGray60 rounded-sm p-1 text-white capitalize text-xs' >Export as Excel</small>
 									</h1>
           </thead>
           <tbody className=" flex bg-white   ">

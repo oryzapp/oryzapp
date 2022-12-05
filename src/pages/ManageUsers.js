@@ -206,7 +206,8 @@ export default function ManageUsers() {
                                 <h1 className='hidden lg:block text-white font-medium text-md'>Administrator</h1>
                         </button>
                         
-                        <button className={user.role === 'User' ? " flex gap-1 items-center justify-center px-2 bg-yellow-400 rounded-full h-6": " flex gap-1 items-center justify-center px-2 bg-sprGray/30 rounded-full h-6"}
+                         {user.email !== 'clsuspecialpurposerice@gmail.com'?<>
+                            <button className={user.role === 'User' ? " flex gap-1 items-center justify-center px-2 bg-yellow-400 rounded-full h-6": " flex gap-1 items-center justify-center px-2 bg-sprGray/30 rounded-full h-6"}
                         onClick={()=>{
                           setIsModalChangeRoleOpen(true)
                           setModalId(user.id)
@@ -232,7 +233,8 @@ export default function ManageUsers() {
                         >
                            <DisabledIcon className='stroke-white h-4  ' />
                                 <h1 className='hidden lg:block text-white font-medium text-md'>Disabled</h1>
-                        </button>
+                        </button></>:
+                        <></>}
                         
 
                       </div>
@@ -271,7 +273,8 @@ export default function ManageUsers() {
                                 <h1 className='hidden lg:block text-white font-medium text-md'>Administrator</h1>
                         </button>
                         
-                        <button className={user.role === 'User' ? " flex gap-1 items-center justify-center px-2 bg-yellow-400 rounded-full h-6": " flex gap-1 items-center justify-center px-2 bg-sprGray/30 rounded-full h-6"}
+                         {user.email !== 'clsuspecialpurposerice@gmail.com'?<>
+                            <button className={user.role === 'User' ? " flex gap-1 items-center justify-center px-2 bg-yellow-400 rounded-full h-6": " flex gap-1 items-center justify-center px-2 bg-sprGray/30 rounded-full h-6"}
                         onClick={()=>{
                           setIsModalChangeRoleOpen(true)
                           setModalId(user.id)
@@ -297,7 +300,8 @@ export default function ManageUsers() {
                         >
                            <DisabledIcon className='stroke-white h-4  ' />
                                 <h1 className='hidden lg:block text-white font-medium text-md'>Disabled</h1>
-                        </button>
+                        </button></>:
+                        <></>}
                         
 
                       </div>

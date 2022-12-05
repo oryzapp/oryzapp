@@ -59,7 +59,7 @@ export default function ModalSearch({ open, closeModal }) {
   return (
     <div>
       <div className=" fixed left-0 right-0 bottom-0 top-0 z-50 bg-black opacity-70 " />
-      <div className=" hidden sm:flex gap-3 flex-col absolute left-20 right-20 bottom-32 top-16 z-50 bg-white rounded-md  p-8   md:left-52 md:right-52   lg:bottom-40 lg:left-96 lg:right-96  ">
+      <div className="flex gap-3 flex-col absolute left-20 right-20 bottom-32 top-16 z-50 bg-white rounded-md  p-8   md:left-52 md:right-52   lg:bottom-40 lg:left-96 lg:right-96  ">
         <div className="absolute top-3 right-3 z-50 ">
           <CloseIcon className='group-hover:stroke-white stroke-sprGray50 hover:stroke-sprGray80 active:stroke-sprPrimary h-5' onClick={closeModal}/>
         </div>

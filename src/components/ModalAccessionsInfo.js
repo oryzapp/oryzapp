@@ -157,14 +157,14 @@ export default function ModalAccessionsInfo({ open, modalId, closeModal }) {
                             </div>
                             <div className={season === 'Wet_Season' ? "cursor-pointer flex-auto bg-sprPrimary flex  p-2 justify-center items-center rounded-t-lg gap-2" : "cursor-pointer flex-auto bg-slate-200 flex  p-2 justify-center items-center rounded-t-lg gap-2"}>
                                 <WetIcon fill={season === 'Wet_Season' ? "white" : "rgba(18, 20, 20, 0.5)"} className="h-6" />
-                                <h1 className={season === 'Wet_Season' ? " text-white text-md font-medium" : " text-sprGray50 text-md font-medium"} onClick={() => {
+                                <h1 className={season === 'Wet_Season' ? " text-white text-md font-medium whitespace-nowrap" : " text-sprGray50 text-md font-medium whitespace-nowrap"} onClick={() => {
                                     setSeason('Wet_Season')
                                 }}>Wet Season</h1>
 
                             </div>
                             <div className={season === 'Dry_Season' ? "cursor-pointer flex-auto bg-sprPrimary flex  p-2 justify-center items-center rounded-t-lg gap-2" : "cursor-pointer flex-auto bg-slate-200 flex  p-2 justify-center items-center rounded-t-lg gap-2"}>
                                 <DryIcon stroke={season === 'Dry_Season' ? "white" : "rgba(18, 20, 20, 0.5)"} className="h-6" />
-                                <h1 className={season === 'Dry_Season' ? " text-white text-md font-medium" : " text-sprGray50 text-md font-medium"} onClick={() => {
+                                <h1 className={season === 'Dry_Season' ? " text-white text-md font-medium whitespace-nowrap" : " text-sprGray50 text-md font-medium whitespace-nowrap"} onClick={() => {
                                     setSeason('Dry_Season')
                                 }}>Dry Season</h1>
 

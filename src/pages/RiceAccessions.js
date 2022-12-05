@@ -471,14 +471,39 @@ export default function RiceAccessions() {
 							</div>
 
 							{/* Mobile */}
-							<div className="bg-yellow-300 w-full flex sm:hidden flex-col divide-y divide-slate-300">
+							<div className="bg-yellow-300 w-full flex  sm:hidden flex-col mx-2 gap-2 ">
+								{ searchInput === ''?
+								<>
 								{riceAccessions.map((rice) => (
+									<div className="flex justify-between items-center  bg-slate-50">
 									<div className="flex flex-col -space-y-3">
-										<div className="px-6 py-2 text-2xl font-bold text-sprGray"> {rice.accessionId} </div>
+										<div className="px-6 py-4 text-3xl font-bold text-sprGray80"> CL-R{rice.accessionId} </div>
 										<div className="px-6 py-2 text-md font-normal text-sprPrimaryLight"> {rice.classification === '' ? "---" : rice.classification} </div>
+										<div className="px-6 py-2 text-md font-normal text-sprPrimaryLight"> {rice.variety === '' ? "---" : rice.variety} </div>
+									</div>
+										<button className="mr-8 bg-sprPrimary hover:bg-sprPrimaryLight active:bg-sprPrimary rounded-full p-1 px-2 text-white font-medium text-xl" onClick={() => {
+													setIsRiceInfoModalOpen(true)
+													setModalId(rice.accessionId)
 
+												}}>view</button>
 									</div>
 								))}
+								</>:
+								<>
+								{searched.map((rice) => (
+									<div className="flex justify-between items-center  bg-slate-50">
+									<div className="flex flex-col -space-y-3">
+										<div className="px-6 py-4 text-3xl font-bold text-sprGray80"> CL-R{rice.accessionId} </div>
+										<div className="px-6 py-2 text-md font-normal text-sprPrimaryLight"> {rice.classification === '' ? "---" : rice.classification} </div>
+										<div className="px-6 py-2 text-md font-normal text-sprPrimaryLight"> {rice.variety === '' ? "---" : rice.variety} </div>
+									</div>
+										<button className="mr-8 bg-sprPrimary hover:bg-sprPrimaryLight active:bg-sprPrimary rounded-full p-1 px-2 text-white font-medium text-xl" onClick={() => {
+													setIsRiceInfoModalOpen(true)
+													setModalId(rice.accessionId)
+
+												}}>view</button>
+									</div>
+								))}</>}
 
 
 							</div>

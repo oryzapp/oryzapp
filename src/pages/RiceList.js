@@ -171,13 +171,17 @@ export default function RiceList() {
                     <h1 className="text-3xl font-bold text-sprBlack opacity-80 ">
                         Rice List</h1>
                     <div className="relative sm:hidden ">
-                        <input
-                            className=" pl-2 py-2  w-36  text-sm placeholder:text-sprPrimary/50 text-sprPrimary focus:outline-none focus:border-none  rounded-full "
+                        <form>
+                            <input
+                            className=" pl-2 py-2  w-36  text-sm h-5 placeholder:text-sprPrimary/50 text-sprPrimary focus:outline-none focus:border-none  rounded-full drop-shadow-sm"
                             type="text"
+                            value={searchValue}
+                                        onChange={searchInputChange}
                         />
                         <button className="  h-full px-2 rounded-full absolute right-0 ">
                             <SearchIcon stroke="#AFBE00" />
                         </button>
+                        </form>
                     </div>
                 </header>
                 {/* Options */}
@@ -246,7 +250,7 @@ export default function RiceList() {
                 {/* Main */}
 
                 <section className={listOn === true ? "flex-auto overflow-auto  scrollbar bg-white rounded-lg border border-slate-200 w-full" : "hidden"}>
-                    <div className="flex w-full h-full   sm:max-w-92 lg:max-w-full relative  justify-center">
+                    <div className="hidden sm:flex w-full h-full   sm:max-w-92 lg:max-w-full relative  justify-center ">
                         {riceList.length === 0 ? <div className="flex  w-full items-center justify-center flex-col "><EmptyIllustration /><p className="font-medium text-xl text-sprPrimaryOffLight whitespace-nowrap">Plenty of space in the field </p></div> :
                             <div className="bg-red-900 flex max-h-0 w-full ">
                                 <div className=" hidden sm:flex divide-y bg-white divide-slate-300 h-fit flex-col justify-center">
@@ -377,7 +381,62 @@ export default function RiceList() {
                             </div>
 
                         }
+                    
                     </div>
+                     {/* Mobile */}
+                        
+                        <div className="flex sm:hidden bg-yellow-400 max-h-0 flex-col gap-2">
+                           {searchValue === ''?<>
+                            {riceList.map((rice)=>(
+                                <div className="flex justify-between items-center  bg-slate-50">
+									<div className="flex flex-col -space-y-3">
+										<div className="px-6 py-4 text-3xl font-bold text-sprGray80">CL-R{rice.accessionId}</div>
+										<div className="px-6 py-2 text-md font-normal text-sprPrimaryLight">{rice.riceSeason} Season</div>
+										<div className="px-6 py-2 text-md font-normal text-sprPrimaryLight">{rice.riceYear}</div>
+										<div className="px-6 py-2 text-md font-normal text-sprPrimaryLight flex gap-1">
+                                                        <ShelfIcon className="fill-sprPrimary h-5 " />
+                                            
+                                            #{rice.shelfNum}</div>
+									</div>
+										<button className="mr-8 bg-sprPrimary hover:bg-sprPrimaryLight active:bg-sprPrimary rounded-full p-1 px-2 text-white font-medium text-xl" onClick={() => {
+													setCurrentData({
+                                                    accessionId: rice.accessionId,
+                                                    riceSeason: rice.riceSeason,
+                                                    riceYear: rice.riceYear,
+                                                    shelfNum: rice.shelfNum
+                                                   })
+
+                                                   setIsModalOpen(true)
+
+												}}>view</button>
+									</div>
+                            ))}</>:<>
+                             {searched.map((rice)=>(
+                                <div className="flex justify-between items-center  bg-slate-50">
+									<div className="flex flex-col -space-y-3">
+										<div className="px-6 py-4 text-3xl font-bold text-sprGray80">CL-R{rice.accessionId}</div>
+										<div className="px-6 py-2 text-md font-normal text-sprPrimaryLight">{rice.riceSeason} Season</div>
+										<div className="px-6 py-2 text-md font-normal text-sprPrimaryLight">{rice.riceYear}</div>
+										<div className="px-6 py-2 text-md font-normal text-sprPrimaryLight flex gap-1">
+                                                        <ShelfIcon className="fill-sprPrimary h-5 " />
+                                            
+                                            #{rice.shelfNum}</div>
+									</div>
+										<button className="mr-8 bg-sprPrimary hover:bg-sprPrimaryLight active:bg-sprPrimary rounded-full p-1 px-2 text-white font-medium text-xl" onClick={() => {
+													setCurrentData({
+                                                    accessionId: rice.accessionId,
+                                                    riceSeason: rice.riceSeason,
+                                                    riceYear: rice.riceYear,
+                                                    shelfNum: rice.shelfNum
+                                                   })
+
+                                                   setIsModalOpen(true)
+
+												}}>view</button>
+									</div>
+                            ))}</>}
+                        </div>
+							
                 </section>
                 <section className={listOn === false ? "flex-auto overflow-auto  scrollbar bg-white rounded-lg border border-slate-200 w-full" : "hidden"}>
                     <div className="flex w-full h-full   sm:max-w-92 lg:max-w-full relative  justify-center">
@@ -444,7 +503,7 @@ export default function RiceList() {
                                             <div className=" flex flex-auto   justify-between items-center  ">
                                                 <div className="">
                                                     <h1 className=" text-sm whitespace-nowrap sm:text-xl font-bold text-sprBlack opacity-80">
-                                                        {rice.accessionId}
+                                                        CL-R{rice.accessionId}
                                                     </h1>
                                                     <h6 className="text-xs font-medium text-sprGray60">
                                                         {rice.riceSeason}
@@ -481,15 +540,14 @@ export default function RiceList() {
                                         </div>
                                     ))}
                                 </>}
-
-
-
-
                             </div>
 
                         }
                     </div>
+
+                          
                 </section>
+             
 
 
             </div>
