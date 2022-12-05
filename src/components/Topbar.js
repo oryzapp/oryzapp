@@ -10,16 +10,11 @@ import ModalSignout from "./ModalSignout";
 export default function Topbar() {
 
 
-  // Log Out
-   const onSignOut = async () => {
-    await auth.signOut()
-  }
   const [user,setUser] = useState([])
   useEffect(()=>{
 		const unsub = onAuthStateChanged(auth, async (user) => {
       setUser(user)
-      console.log(user);
-      console.log(user.email);
+      
     })
     return unsub
 
@@ -35,7 +30,7 @@ export default function Topbar() {
       </div>
       <div className=" h-6 w-full flex flex-auto gap-2 justify-end">
         <p className="hidden sm:block">
-          Kumusta, <strong className="text-sprPrimary">{user.email}</strong>
+          Kumusta, <strong className="text-sprPrimary">{user?.email}</strong>
         </p>
         <div className="h-6 w-6 rounded-full bg-black relative" onClick={() => { setIsModalOpen(true)}}>
         

@@ -106,6 +106,12 @@ export default function Login() {
 			
 			// Check If existing and Disabled
 			const matchUser = users?.find((dbUser) => dbUser?.email === state?.email)
+			if(matchUser.email === state?.email){
+				setFirebaseError(true)
+				setTimeout(() => { setErrorPassword(false) }, 5000)
+				
+
+			}
 		
 			// Saving to Database
 			if (state.password.length <= 6) {
@@ -136,7 +142,7 @@ export default function Login() {
 			setTimeout(()=>{
 				setFirebaseError(false)
 				setFirebaseErrMess('')
-			},20000)
+			},10000)
 		}
 	}
 

@@ -8,12 +8,15 @@ import { ReactComponent as CloseIcon } from '../assets/close.svg';
 
 import db from "../firebase-config";
 import ModalAccessionsInfo from './ModalAccessionsInfo';
+import { useRef } from 'react';
 
 
 export default function ModalSearch({ open, closeModal }) {
   const [riceAccessions, setRiceAccessions] = useState([])
+  const searchRef = useRef(null)
   // Get All Accessions
   useEffect(() => {
+    
     const collectionRef = collection(db, "SPR/Rice_Accessions/Accession_IDs");
     const unsub = onSnapshot(collectionRef, (snapshot) => {
       setRiceAccessions(
@@ -29,13 +32,12 @@ export default function ModalSearch({ open, closeModal }) {
 
     var searchList = []
     if (searchInput !== '') {
-      console.log('I am Find');
       riceAccessions.map((rice) => {
         const match = rice.searchIndex.toLowerCase()
         const search = match.includes(searchInput)
         if (search === true) {
-          console.log('I exist' + rice.accessionId)
           searchList.push({
+            id:rice.id,
             accession: rice.accessionId,
             variety: rice.variety,
             classification: rice.classification,
@@ -44,30 +46,28 @@ export default function ModalSearch({ open, closeModal }) {
         }
       })
     }
-    else {
-      console.log('none');
-    }
     setSearched(searchList)
   }, [searchInput])
 
+
+
   const [isModalOpen, setIsModalOpen] = useState(false)
   const [currentAccessionId, setCurrentAccessionId] = useState('')
+
+  var key = 0;
   if (!open) return null;
   return (
     <div>
       <div className=" fixed left-0 right-0 bottom-0 top-0 z-50 bg-black opacity-70 " />
       <div className=" hidden sm:flex gap-3 flex-col absolute left-20 right-20 bottom-32 top-16 z-50 bg-white rounded-md  p-8   md:left-52 md:right-52   lg:bottom-40 lg:left-96 lg:right-96  ">
         <div className="absolute top-3 right-3 z-50 ">
-          {/* <button onClick={() => { closeModal() }} >
-            <img className="relative" src={closeIcon} alt="" />
-          </button> */}
           <CloseIcon className='group-hover:stroke-white stroke-sprGray50 hover:stroke-sprGray80 active:stroke-sprPrimary h-5' onClick={closeModal}/>
         </div>
         <div className='flex pt-3 gap-2 items-center'>
           <SearchIcon className='stroke-sprPrimary' />
           <div className='flex-auto relative flex items-center'>
-            <input type="text" className='bg-slate-100 w-full rounded-full p-1 text-sm' placeholder='Search Accession' value={searchInput} onChange={e => setSearchInput(e.target.value)} />
-            <CloseIcon className='-m-5 h-4 rounded-full p-1 bg-sprGray30 stroke-sprGray40 hover:stroke-sprGray50 active:stroke-sprPrimary' onClick={() => {
+            <input ref={searchRef} type="text" className='bg-slate-100 w-full rounded-full p-1 text-sm' placeholder='Search Accession' value={searchInput} onChange={e => setSearchInput(e.target.value)} />
+            <CloseIcon className='-m-5 h-4 rounded-full p-1 hover:bg-sprGray10 stroke-sprGray40 hover:stroke-sprGray50 active:stroke-sprPrimary' onClick={() => {
               setSearchInput('')
             }} />
 
@@ -82,11 +82,11 @@ export default function ModalSearch({ open, closeModal }) {
                   setIsModalOpen(true)
                   setCurrentAccessionId(item.accession)
                 }}>
-                  <div className='text-xl font-bold'>{item.accession}</div>
+                  <div className='text-xl font-bold'>CL-R{item.accession}</div>
                   <div className='flex flex-col '>
-                    <div className='text-xs font-medium text-sprGray80'>{item.variety}</div>
-                    <div className='text-xs font-medium text-sprGray80'>{item.source}</div>
-                    <div className='text-xs font-medium text-sprGray80'>{item.classification}</div>
+                    <div className='text-xs font-medium text-sprGray80' key={`${item.id}${key+=1}`}>{item.variety}</div>
+                    <div className='text-xs font-medium text-sprGray80' key={`${item.id}${key+=1}`}>{item.source}</div>
+                    <div className='text-xs font-medium text-sprGray80'key={`${item.id}${key+=1}`}>{item.classification}</div>
                   </div>
                 </div>
               ))}</div> :

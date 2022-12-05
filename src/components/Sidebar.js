@@ -35,20 +35,6 @@ export default function Sidebar({ onChange }) {
 
   const [isAdmin, setIsAdmin] = useState('default')
 
-  // Authentication
-  // useEffect(()=>{
-  //   const unsub = onAuthStateChanged(auth, async (user) => {
-  // 		if (user !== null) {
-  // 			// console.log(user.email);
-  // 			// console.log(user);
-  // 		} else {
-  // 			await auth.signOut();
-  // 			navigate('/login');
-  //       // console.log('i dunno about you');
-  // 		}
-  // 	})
-  // },[])
-
   // Users
   const [users, setUsers] = useState([])
   useEffect(() => {
@@ -66,26 +52,19 @@ export default function Sidebar({ onChange }) {
   // Authentication--------------->
   useEffect(() => {
     const unsub = onAuthStateChanged(auth, async (user) => {
-
-      console.log(users);
-      const matchUser = users.find((dbUser) => dbUser.email === user.email)
-      console.log(matchUser.role);
-
-      if (user !== null) {
+      try {
+        if (user !== null) {
+        const matchUser = users.find((dbUser) => dbUser.email === user.email)
 
         if (matchUser.role === 'Administrator') {
           setIsAdmin(true)
-          console.log('user-is-admin');
         }
         if (matchUser.role === 'User') {
           setIsAdmin(false)
-          // setPage('rice-gallery')
-          console.log('user-is-not-admin');
         }
         if(matchUser.role === 'Disabled') {
         await auth.signOut();
         navigate('/login');
-
       }
       }
       else {
@@ -93,6 +72,12 @@ export default function Sidebar({ onChange }) {
         navigate('/login');
 
       }
+        
+      } catch (error) {
+        console.log(error);
+      }
+      
+      
     })
     return unsub
 
@@ -113,7 +98,7 @@ export default function Sidebar({ onChange }) {
             </div>
             <h3 className={state === 1 ? "nav-text hidden md:block text-white font-medium text-md" : "nav-text hidden  md:block text-sprInactiveGray font-medium text-md"}>Dashboard</h3>
           </div>
-        </button> : <div className="bg-slate-100 w-44 h-8 rounded-md mb-2" ></div>}
+        </button> : <></>}
 
         {isAdmin === true ? <button onClick={() => handleClick('users', 2)} className={state === 2 ? "hidden sm:flex justify-center  flex-auto   sm:justify-start bg-sprPrimary rounded-lg px-3 py-2 " : "group hidden  sm:flex justify-center  flex-auto   sm:justify-start  px-3 py-2 hover:bg-slate-200 rounded-lg  "}>
           <div className="flex items-center  space-x-1   " >
@@ -122,7 +107,7 @@ export default function Sidebar({ onChange }) {
             </div>
             <h3 className={state === 2 ? "nav-text hidden md:block text-white font-medium text-md" : "nav-text hidden  md:block text-sprInactiveGray font-medium text-md"}>Manage Users</h3>
           </div>
-        </button> : <div className="bg-slate-100 w-44 h-8 rounded-md mb-2" ></div>}
+        </button> : <></>}
 
         {isAdmin === true ? <button onClick={() => handleClick('rice-accessions', 3)} className={state === 3 ? "flex justify-center  flex-auto   sm:justify-start bg-sprPrimary rounded-lg px-3 py-2 " : "group flex justify-center  flex-auto   sm:justify-start  px-3 py-2 hover:bg-slate-200 rounded-lg "} >
           <div className="flex items-center space-x-1   " >
@@ -131,7 +116,7 @@ export default function Sidebar({ onChange }) {
             </div>
             <h3 className={state === 3 ? "nav-text hidden md:block text-white font-medium text-md" : "nav-text hidden  md:block text-sprInactiveGray font-medium text-md"}>Rice Accessions</h3>
           </div>
-        </button> :<div className="bg-slate-100 w-44 h-8 rounded-md mb-2" ></div>}
+        </button> :<></>}
 
 
         {isAdmin === true ? <button onClick={() => handleClick('rice-list', 4)} className={state === 4 ? "flex justify-center  flex-auto   sm:justify-start bg-sprPrimary rounded-lg px-3 py-2 " : "group flex justify-center  flex-auto   sm:justify-start  px-3 py-2 hover:bg-slate-200 rounded-lg "} >
@@ -141,7 +126,7 @@ export default function Sidebar({ onChange }) {
             </div>
             <h3 className={state === 4 ? "nav-text hidden md:block text-white font-medium text-md" : "nav-text hidden  md:block text-sprInactiveGray font-medium text-md"}>Rice List</h3>
           </div>
-        </button> : <div className="bg-slate-100 w-44 h-8 rounded-md mb-2" ></div>}
+        </button> : <></>}
 
         {isAdmin === true ? <button onClick={() => handleClick('rice-data', 5)} className={state === 5 ? "hidden sm:flex justify-center  flex-auto   sm:justify-start bg-sprPrimary rounded-lg px-3 py-2" : " group hidden sm:flex justify-center  flex-auto   sm:justify-start  px-3 py-2 hover:bg-slate-200 rounded-lg "} >
           <div className="flex items-center space-x-1 " >
@@ -150,7 +135,7 @@ export default function Sidebar({ onChange }) {
             </div>
             <h3 className={state === 5 ? "nav-text hidden md:block text-white font-medium text-md" : "nav-text hidden  md:block text-sprInactiveGray font-medium text-md"}>Rice Data</h3>
           </div>
-        </button> :<div className="bg-slate-100 w-44 h-8 rounded-md mb-2" ></div>}
+        </button> :<></>}
 
 
         {isAdmin === true || isAdmin === false? <button onClick={() => handleClick('rice-gallery', 6)} className={state === 6 ? "flex justify-center  flex-auto   sm:justify-start bg-sprPrimary rounded-lg px-3 py-2" : "group flex justify-center  flex-auto   sm:justify-start  px-3 py-2 hover:bg-slate-200 rounded-lg "} >
@@ -160,7 +145,7 @@ export default function Sidebar({ onChange }) {
             </div>
             <h3 className={state === 6 ? "nav-text hidden md:block text-white font-medium text-md" : "nav-text hidden  md:block text-sprInactiveGray font-medium text-md"}>Rice Gallery</h3>
           </div>
-        </button>:<div className="bg-slate-100 w-44 h-8 rounded-md mb-2" ></div>}
+        </button>:<></>}
 
         {isAdmin === true || isAdmin === false?<button onClick={() => handleClick('scan-code', 7)} className={state === 7 ? " flex justify-center  flex-auto   sm:justify-start bg-sprPrimary rounded-lg px-3 py-2 order-first sm:order-last" : "group flex justify-center  flex-auto   sm:justify-start  px-3 py-2 hover:bg-slate-200 rounded-lg order-first sm:order-last"} >
           <div className="flex items-center space-x-1  ">
@@ -170,7 +155,7 @@ export default function Sidebar({ onChange }) {
             <h3 className={state === 7 ? "nav-text hidden md:block text-white font-medium text-md" : "nav-text hidden  md:block text-sprInactiveGray font-medium text-md"}>Scan Code</h3>
 
           </div>
-        </button>:<div className="bg-slate-100 w-44 h-8 rounded-md mb-2" ></div> }
+        </button>:<></> }
 
       </nav>
     </div >

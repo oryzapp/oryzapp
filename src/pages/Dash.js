@@ -7,6 +7,7 @@ import ModalSearch from '../components/ModalSearch'
 import { collection, onSnapshot } from 'firebase/firestore'
 import db from "../firebase-config";
 import ModalAccessionsInfo from '../components/ModalAccessionsInfo'
+import { writeXLSX } from 'xlsx'
 
 
 export default function Dash() {
@@ -64,7 +65,18 @@ export default function Dash() {
         })
         setSearched(searchList)
     }, [classification])
-    console.log(searched);
+
+    const exportExcel = () => {
+        var XLSX = require("xlsx");
+        console.log('exporting');
+        var wb= XLSX.utils.book_new(),
+        ws = XLSX.utils.json_to_sheet(searched)
+
+        XLSX.utils.book_append_sheet(wb,ws,`Special Purpose Rice ${classification}`)
+
+        XLSX.writeFile(wb, `Special_Purpose_Rice_${classification}.xlsx`)
+    }
+
     var list = 0;
     return (
         <>
@@ -85,6 +97,7 @@ export default function Dash() {
                             className="  w-full pl-2 py-2 text-sm placeholder:text-sprPrimary/50 text-sprPrimary focus:outline-none focus:border-none  rounded-full "
                             type="text"
                             placeholder="Find a Rice"
+                            
                         />
                         <button className="  h-full px-2 rounded-full absolute right-0 bg-sprPrimaryLight">
                             <SearchIcon stroke="white" />
@@ -166,7 +179,7 @@ export default function Dash() {
                                 Accessions
                             </div>
                             {searched.map((rice) => (
-                                <div className="px-8 py-2 text-md font-medium text-sprGray60 whitespace-nowrap bg-slate-50"> {rice.accession === "" ? "---" : rice.accession} </div>
+                                <div className="px-8 py-2 text-md font-medium text-sprGray60 whitespace-nowrap bg-slate-50"> {rice.accession === "" ? "---" : `CL-R${rice.accession}`} </div>
                             ))}
                         </div>
                         <div className="hidden sm:flex flex-col flex-auto  divide-y divide-slate-200 relative h-full">
@@ -195,8 +208,8 @@ export default function Dash() {
                         </div>
                         <div className="hidden sm:flex flex-col divide-y sm:divide-y bg-white divide-white h-full sticky right-0 justify-center items-center">
                             <div className=" text-sprPrimary bg-white  px-10 py-2 sticky top-0 text-sm font-medium">
-                                <h1 className="opacity-0">
-                                    Action
+                                <h1 className="" onClick={()=>{exportExcel()}}>
+                                    Excel
                                 </h1>
                             </div>
                             {searched.map((rice) => (

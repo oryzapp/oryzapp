@@ -38,19 +38,16 @@ const Main = () => {
 	useEffect(() => {
 		const unsub = onAuthStateChanged(auth, async (user) => {
 
-			const matchUser = users.find((dbUser) => dbUser.email === user.email)
-			console.log(matchUser.role);
-
-			if (user !== null) {
+			try {
+				if (user !== null) {
+				const matchUser = users.find((dbUser) => dbUser.email === user.email)
 
 				if (matchUser.role === 'Administrator') {
 					setIsAdmin(true)
-					console.log('user-is-admin');
 				}
 				if (matchUser.role === 'User') {
 					setIsAdmin(false)
 					setPage('scan-code')
-					console.log('user-is-not-admin');
 				}
 				 if(matchUser.role === 'Disabled') {
 				await auth.signOut();
@@ -63,6 +60,12 @@ const Main = () => {
 				navigate('/login');
 
 			}
+				
+			} catch (error) {
+				console.log(error);
+			}
+			
+			
 		})
 		return unsub
 

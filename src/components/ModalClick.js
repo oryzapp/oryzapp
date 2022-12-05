@@ -6,8 +6,8 @@ export default function ModalClick({open, closeModal}) {
 
   return (
     <div>
-    <div className='absolute top-0 bottom-0 right-0 left-0 z-20' onClick={closeModal}></div>
-<ModalSignout/>
+    <div className='absolute top-0 bottom-0 right-0 left-0 z-20' ></div>
+<ModalSignout />
     </div>
   )
 }

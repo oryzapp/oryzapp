@@ -13,9 +13,6 @@ import db from "../firebase-config";
 
 
 export default function ModalAccessionsInfo({ open, modalId, closeModal }) {
-    console.log('I am Modal');
-    console.log(modalId);
-
     const [riceAccessions, setRiceAccessions] = useState([])
 
     useEffect(() => {
@@ -113,12 +110,7 @@ export default function ModalAccessionsInfo({ open, modalId, closeModal }) {
 
     const years = [2018, 2019, 2020, 2021, 2022, 2023, 2024, 2025, 2026, 2027, 2028, 2030]
 
-    if(vsData.length === 0 && rsData.length === 0 && gcData.length === 0 && ycData.length === 0){
-        console.log('Empty');
-    }
-    else{
-        console.log('not empty');
-    }
+   
 
     if (!open) return null;
     return ReactDom.createPortal(
