@@ -22,9 +22,8 @@ export default function Topbar() {
         <div className="h-6 w-6 rounded-full bg-black relative" onClick={() => { setShow(true) }}>
           <div className={show === true ? "bg-white rounded-md drop-shadow-md z-50 absolute right-0 top-10 p-2" : "hidden"}>
             <ul className="divide-y divide-slate-200">
-              <h3>Something here</h3>
-              <h3>Something here</h3>
-              <h3 onClick={onSignOut}>Sign Out</h3>
+              
+              <h3 onClick={onSignOut} className="whitespace-nowrap" >Sign Out</h3>
             </ul>
           </div>
         </div>

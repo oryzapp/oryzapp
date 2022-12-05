@@ -205,8 +205,9 @@ export default function Dash() {
                                         <button
                                             className=" text-white text-sm bg-gradient-to-b from-sprPrimary to-sprPrimaryDarkest rounded-full  hover:bg-gradient-to-t hover:from-sprPrimaryLight hover:to-sprPrimaryLight h-8 w-14 sm:h-6 sm:w-12 shadow-slate-300 "
                                             onClick={() => {
-
-
+                                                setIsModalOpen(true)
+                                                setCurrentId(rice.accession)
+                                                console.log(rice.accession)
                                             }}
                                         >
                                             view

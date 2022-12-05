@@ -133,7 +133,7 @@ export default function ModalAccessionsInfo({ open, modalId, closeModal }) {
                 {/* main */}
                 <div className=" flex-auto flex flex-col gap-2">
                     <div className=" w-full h-1/4 flex ">
-                        <div className="  bg-yellow-300 w-1/4  rounded-md">
+                        <div className="  bg-slate-100 w-1/4  rounded-md">
                             <div className=" h-full rounded-md"></div>
                         </div>
 

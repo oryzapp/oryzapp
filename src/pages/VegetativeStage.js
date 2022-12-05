@@ -2,6 +2,7 @@ import { collection, collectionGroup, onSnapshot, orderBy, query } from "firebas
 import { useEffect, useState } from "react";
 import db from "../firebase-config";
 import { ReactComponent as EditIcon } from '../assets/edit-icon.svg'
+import { ReactComponent as CloseIcon } from '../assets/close.svg'
 import ModalVegetativeUpdate from "../components/ModalVegetativeUpdate";
 
 
@@ -45,9 +46,20 @@ export default function VegetativeStage({ season }) {
 	}
 	console.log('I am VS RIce Data inside vegetative stage');
 	console.log(vsRiceData.tagId);
-	
+
+
+  const[isAuricleOn, setIsAuricleOn] = useState(true)
+  console.log(isAuricleOn);
   return (
     <>
+    <div className="flex flex-col">
+      <div className=" flex p-1">
+        <div>v</div>
+        {isAuricleOn === true ? <div className="flex items-center gap-1 bg-sprPrimarySuperLight hover:bg-sprPrimaryOffLight cursor-pointer rounded-full px-1 ">
+          <CloseIcon className="h-2 stroke-sprGray60 hover:stroke-sprGray40 active:stroke-sprGray90" onClick={()=>setIsAuricleOn(false)} />
+          <small className="text-xs ">Auricle</small>
+        </div>:<></>}
+      </div>
       <div className=" flex  text-sprGray60 relative">
         <table className=" text-sm">
 					
@@ -89,16 +101,17 @@ export default function VegetativeStage({ season }) {
             </div>
           </tbody>
         </table>
-        <table className=" text-sm">
-          <thead className=" text-xs font-medium uppercase text-center bg-sprPrimaryLight">Auricle</thead>
-          <tbody className=" flex ">
+        {/* Auricle */}
+        <table className={isAuricleOn === true ? "text-sm" : "hidden"}>
+          <div className=" text-xs font-medium uppercase text-center bg-sprPrimaryLight">Auricle</div>
+          <div className=" flex ">
             <div className="hidden sm:block flex-auto divide-y divide-slate-300 ">
               <div className="px-6 py-3 font-medium whitespace-nowrap text-sprPrimary">Color</div>
               {riceData.map((rice) => (
                 <div className="px-6 py-3 bg-slate-50 whitespace-nowrap"> {rice.auricleColor === "" ? "---" : rice.auricleColor}</div>
               ))}
             </div>
-          </tbody>
+          </div>
         </table>
         <table className=" text-sm">
           <thead className="text-xs font-medium uppercase text-center bg-sprPrimaryOffLight">Coleoptile</thead>
@@ -384,7 +397,6 @@ export default function VegetativeStage({ season }) {
             </div>
           </tbody>
         </table>
-
         <table className=" text-sm sticky right-0 ">
           <thead className="text-xs font-medium uppercase text-center bg-white">
             <p className="opacity-0">Action</p>
@@ -418,6 +430,7 @@ export default function VegetativeStage({ season }) {
 
       </div>
 
+    </div>
 
 
     </>

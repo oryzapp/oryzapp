@@ -4,7 +4,7 @@ import { useState, useEffect } from "react"
 import { useNavigate } from "react-router-dom"
 import { useAuth, login, signup } from "../firebase-config"
 import { ReactComponent as OryzappLogo } from "../assets/oryzapp-logo.svg"
-import { addDoc, collection, onSnapshot, setDoc } from "firebase/firestore"
+import { addDoc, collection, doc, onSnapshot, setDoc } from "firebase/firestore"
 import db from "../firebase-config";
 import { decode, encode } from "string-encode-decode"
 import { auth } from "../firebase-config";
@@ -47,150 +47,153 @@ export default function Login() {
 	// print errors
 	const [error, setError] = useState(false)
 	const [errorPassword, setErrorPassword] = useState(false)
+	const [disabledError,setDisabledError] = useState(false)
+	const [firebaseError, setFirebaseError] = useState(false)
+	const [firebaseErrMess, setFirebaseErrMess] = useState('')
 
+	// Login--------------->
 	const handleLogIn = async (e) => {
 
 
 		try {
 			e.preventDefault();
-			await login(state.email, state.password)
-			console.log('try state');
-			console.log(state);
+			const matchUser = users?.find((dbUser) => dbUser?.email === state?.email)
+			if(matchUser.role === 'Disabled'){
+					setDisabledError(true)
+					setTimeout(()=>{
+						setDisabledError(false)
+						setState(initialState)
 
-			setError(false)
+					},3000)
+
+			}
+			else{
+			await login(state.email, state.password)
 			navigate('/')
+			}
+			
 
 		} catch (error) {
-			console.log('umm waht');
 			console.log(state);
 			setError(true)
-			// setTimeout(() => { setError(false) }, 20000)
-			setState(initialState)
+			setTimeout(()=>{
+						setError(false)
+						setState(initialState)
+
+			},3000)
 
 		}
 	}
 
+	// Users----------------->
+  const [users, setUsers] = useState([])
+  useEffect(() => {
+    const collectionRef = collection(db, 'AUTH')
+    const unsub = onSnapshot(collectionRef, (snapshot) => {
+      setUsers(
+        snapshot.docs.map((doc) => ({ ...doc.data(), id: doc.id }))
+      );
+    });
 
+    return unsub;
+  }, [])
 
 
 	const handleSignUp = async (e) => {
 		try {
-			e.preventDefault();
+			e.preventDefault(); 
+			
+			// Check If existing and Disabled
+			const matchUser = users?.find((dbUser) => dbUser?.email === state?.email)
+		
 			// Saving to Database
 			if (state.password.length <= 6) {
 				setErrorPassword(true)
-				setTimeout(() => { setErrorPassword(false) }, 20000)
+				setTimeout(() => { setErrorPassword(false) }, 5000)
 			}
+			// Is User Disabled
+			
 			else {
 				// Encrypt Password to save to database
 				const enPass = encode(state.password)
-				console.log(enPass);
 
-				const collectionRef = collection(db, "AUTH")
+				const collectionRef = doc(db, "AUTH",state.email)
 				const payLoad = {
 					email: state.email,
 					password: enPass,
 					role: 'User',
 					searchIndex: `${state.email} User`
 				}
-				await addDoc(collectionRef, payLoad);
+				await setDoc(collectionRef, payLoad);
 			}
 			// Signing Up
 			await signup(state.email, state.password)
 			navigate('/')
 		} catch (error) {
-			// setError(true)
-			console.log(error);
+			setFirebaseError(true)
+			setFirebaseErrMess(error.message)
+			setTimeout(()=>{
+				setFirebaseError(false)
+				setFirebaseErrMess('')
+			},20000)
 		}
 	}
 
-	// Qr Scanner
 
-
-	const scanRef = useRef(null)
-
+// Qr Scanner log In
+const scanRef = useRef(null)
 
 const video = document.getElementById('qr-scan')              
 
 const startScanning = async () =>{
-const qrScanner = new QrScanner(video,result =>
-		{ 
-		console.log(result.data)
-		const parsed = JSON.parse(result.data)
-		console.log(parsed.email);
-		console.log(decode(parsed.password));
-		const scannedEmail = parsed.email
-		const scannedPassword = decode(parsed.password)
-		
-		// setState({
-		// 	email: scannedEmail,
-		// 	password: scannedPassword
-		// })
+try {
+	const qrScanner = new QrScanner(video,result =>
+	{ 
+		try {
+			const parsed = JSON.parse(result.data)
+			const scannedEmail = parsed.email
+			const scannedPassword = decode(parsed.password)
+			
+			const logginIn = async () =>{
+				await login(scannedEmail, scannedPassword)
+				navigate('/')
+			}
 
-		// console.log('setState');
-		// console.log(state);
-		
-		const logginIn = async () =>{
-			await login(scannedEmail, scannedPassword)
-			navigate('/')
-		}
+			const matchUser = users?.find((dbUser) => dbUser?.email === scannedEmail)
+			
+			if(matchUser.role === 'Disabled'){
+					setDisabledError(true)
+					setTimeout(()=>{
+						setDisabledError(false)
+					},10000)
 
-		logginIn()
-
-
-		setTimeout(()=>{
-			qrScanner.destroy()
-		}, 1000)
-		}, 
-		{
+			}
+			else{
+				logginIn()
+				setTimeout(()=>{
+				qrScanner.destroy()
+				}, 1000)
+			}		
+			} 
+		catch (error) 
+			{
+				console.log(error);
+			}
+	}, 	
+	{
 		highlightScanRegion: true,
 		highlightCodeOutline: true,
-		}
-		)
-		qrScanner.start()
+	})
+
+
+	qrScanner.start()
+	setTimeout(()=>{
+				qrScanner.destroy()
+			}, 15000)
+} catch (error) {
+	console.log(error);
 }
-
-// 	// Users
-//   const [users, setUsers] = useState([])
-//   useEffect(() => {
-//     // Users
-//     const collectionRef = collection(db, 'AUTH')
-//     const unsub = onSnapshot(collectionRef, (snapshot) => {
-//       setUsers(
-//         snapshot.docs.map((doc) => ({ ...doc.data(), id: doc.id }))
-//       );
-//     });
-
-//     return unsub;
-//   }, [])
-
-//   // Authentication--------------->
-
-//   const [isDisabled, setisDisabled] = useState(false)
-
-//   useEffect(() => {
-// 	console.log('mami');
-//     const unsub = onAuthStateChanged(auth, async (user) => {
-
-//       const matchUser = users.find((dbUser) => dbUser.email === user.email)
-
-//       if (user !== null) {
-//         if(matchUser.role === 'Disabled') {
-// 			console.log(isDisabled);
-// 			console.log('errpr');
-// 			setTimeout(()=>{
-// 			setisDisabled(true)
-// 			console.log(isDisabled);
-// 			}, 5000)
-// 		}
-//       }
-     
-//     })
-//     return unsub
-
-//   }, [users])
-
-//   console.log(isDisabled);
+}
 
 
 
@@ -200,7 +203,8 @@ const qrScanner = new QrScanner(video,result =>
 				<div className=" m-2 mb-6">
 					<OryzappLogo className="h-10" />
 				</div>
-				{/* {isDisabled == true ? <div className="text-sprTertiary/80 text-sm text-center">Sorry your account is disabled</div> : <></>} */}
+				{firebaseError === true ? <div className="text-sprTertiary/80 text-sm text-center">{firebaseErrMess === 'Firebase: Error (auth/email-already-in-use).'?'*Email Already in Use':''}</div>:<></>}
+				{disabledError == true ? <div className="text-sprTertiary/80 text-sm text-center">*Sorry your account is disabled</div> : <></>}
 				{errorPassword == true ? <div className="text-sprTertiary/80 text-sm text-center">*Password should be at least 8 characters</div> : <></>}
 				{error == true ? <div className="text-sprTertiary/80 text-sm text-center">*Incorrect username or password</div> : <></>}
 				<div className={loginWithUsername === 'signup' ? "w-52 h-52 rounded-lg " : " hidden"}>
@@ -263,14 +267,7 @@ const qrScanner = new QrScanner(video,result =>
 					setError(false)
 					
 				}}><p className="font-light text-sprGray">Don't have an account?</p> <p className="text-yellow-500 font-light underline">Sign Up</p></div>
-
-
 				{/* <div className="w-full h-32 "></div> */}
-
-
-
-
-
 
 			</div>
 		</div>
