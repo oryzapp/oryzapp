@@ -48,7 +48,7 @@ export default function ModalEditUsers({ open, closeModal, modalId, modalEmail,m
                         >
 
                             {/* <QRCodeCanvas id={`qr-gen-${rice.accessionId}`} className="hidden sm:block rounded-xl" value={`${rice.accessionId}_${rice.riceSeason}_Season_${rice.riceYear}`} bgColor="#FAFAFA" fgColor="rgba(18, 20, 20, 0.8)" includeMargin={true} size={150} /> */}
-                            <QRCodeCanvas id='qr-gen' className='rounded-md' value={JSON.stringify(toQRCode)}  includeMargin={true} size={160}/>
+                            <QRCodeCanvas id='qr-gen' className='rounded-md' value={JSON.stringify(toQRCode)}  includeMargin={true} size={160} />
                             <div className='bg-sprPrimary/30 h-5 w-5  rounded-full  absolute right-1 top-1' >
                                 <img src={downloadIcon} alt="" />
                             </div>

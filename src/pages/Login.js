@@ -8,25 +8,29 @@ import { addDoc, collection, setDoc } from "firebase/firestore"
 import db from "../firebase-config";
 import { decode, encode } from "string-encode-decode"
 import { auth } from "../firebase-config";
+import QrScanner from "qr-scanner"
+import { async } from "@firebase/util"
 
 
 
 
 export default function Login() {
+
 	const [loginWithUsername, setLoginWithusername] = useState(false)
 	const currentUser = useAuth()
 	const navigate = useNavigate()
 
+	// email and password input
 	const [state, setState] = useState({
 		email: '',
 		password: ''
 	})
-
+	// reset email and password input
 	const initialState = {
 		email: '',
 		password: ''
 	}
-
+	// When inputs change
 	const handleChange = (e) => {
 		setState(
 			{
@@ -39,6 +43,7 @@ export default function Login() {
 
 	})
 
+	// print errors
 	const [error, setError] = useState(false)
 	const [errorPassword, setErrorPassword] = useState(false)
 
@@ -48,10 +53,15 @@ export default function Login() {
 		try {
 			e.preventDefault();
 			await login(state.email, state.password)
+			console.log('try state');
+			console.log(state);
+
 			setError(false)
 			navigate('/')
 
 		} catch (error) {
+			console.log('umm waht');
+			console.log(state);
 			setError(true)
 			// setTimeout(() => { setError(false) }, 20000)
 			setState(initialState)
@@ -60,17 +70,15 @@ export default function Login() {
 	}
 
 
+
+
 	const handleSignUp = async (e) => {
-
-
 		try {
 			e.preventDefault();
-
 			// Saving to Database
 			if (state.password.length <= 6) {
 				setErrorPassword(true)
 				setTimeout(() => { setErrorPassword(false) }, 20000)
-
 			}
 			else {
 				// Encrypt Password to save to database
@@ -86,20 +94,61 @@ export default function Login() {
 				}
 				await addDoc(collectionRef, payLoad);
 			}
-
-
 			// Signing Up
 			await signup(state.email, state.password)
-			// await auth.signOut();
-			// navigate('/login');
 			navigate('/')
-
 		} catch (error) {
-
 			// setError(true)
 			console.log(error);
 		}
 	}
+
+	// Qr Scanner
+
+
+	const scanRef = useRef(null)
+
+	const [isStopped, setIsStopped] = useState(true)
+
+const video = document.getElementById('qr-scan')              
+
+const startScanning = async () =>{
+const qrScanner = new QrScanner(video,result =>
+		{ 
+		console.log(result.data)
+		const parsed = JSON.parse(result.data)
+		console.log(parsed.email);
+		console.log(decode(parsed.password));
+		const scannedEmail = parsed.email
+		const scannedPassword = decode(parsed.password)
+		
+		// setState({
+		// 	email: scannedEmail,
+		// 	password: scannedPassword
+		// })
+
+		// console.log('setState');
+		// console.log(state);
+		
+		const logginIn = async () =>{
+			await login(scannedEmail, scannedPassword)
+			navigate('/')
+		}
+
+		logginIn()
+
+
+		setTimeout(()=>{
+			qrScanner.destroy()
+		}, 3000)
+		}, 
+		{
+		highlightScanRegion: true,
+		highlightCodeOutline: true,
+		}
+		)
+		qrScanner.start()
+}
 
 
 
@@ -144,7 +193,13 @@ export default function Login() {
 					</form>
 				</div>
 				<div className={loginWithUsername === false ? "bg-slate-200 w-52 h-52 rounded-lg" : "hidden"}>
+					<video id="qr-scan" ref={scanRef} className="h-full w-full"></video>
 				</div>
+					<button onClick={()=>{
+						startScanning()
+
+
+						setIsStopped(false)}}>Scan Code</button>
 
 				<div className="mb-4 text-slate-500">OR</div>
 
@@ -152,16 +207,21 @@ export default function Login() {
 					setLoginWithusername(true)
 					setState(initialState)
 					setError(false)
+					setIsStopped(true)
 				}}><u className="text-yellow-500 font-light underline">Log In with Username</u></div>
 				<div className={loginWithUsername === false ? "hidden" : "cursor-pointer"} onClick={() => {
 					setState(initialState)
 					setLoginWithusername(false)
 					setError(false)
+					setIsStopped(true)
+
 				}}><u className="text-yellow-500 font-light" >Log In with Scanner</u></div>
 				<div className={loginWithUsername !== true ? "hidden" : "pt-2 cursor-pointer flex text-sm"} onClick={() => {
 					setState(initialState)
 					setLoginWithusername('signup')
 					setError(false)
+					setIsStopped(false)
+					
 				}}><p className="font-light text-sprGray">Don't have an account?</p> <p className="text-yellow-500 font-light underline">Sign Up</p></div>
 
 

@@ -88,8 +88,6 @@ export default function RiceList() {
         if (searchValue !== "") {
 
             riceList.map((rice) => {
-
-
                 const match = rice.searchIndex.toLowerCase()
                 const search = match.includes(searchValue)
                 // console.log(search);
