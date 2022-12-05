@@ -86,6 +86,35 @@ export default function ScanCode() {
   console.log('I am currentData');
   console.log(currentData);
 
+  // Scan with Webcam
+const video = document.getElementById('qr-scan')              
+
+
+console.log(qrData);
+const startScanning = async () =>{
+const qrScanner = new QrScanner(video,result =>
+		{ 
+      setQrData(result.data)
+
+      console.log(qrData);
+
+		setTimeout(()=>{
+			qrScanner.destroy()
+		}, 1000)
+		}, 
+		{
+		highlightScanRegion: true,
+		highlightCodeOutline: true,
+		}
+		)
+		qrScanner.start()
+		// 	setTimeout(()=>{
+		// 	qrScanner.destroy()
+		// }, 5000)
+
+}
+console.log('I am data');
+console.log(qrData);
   return (
     <div className='bg-slate-50 rounded-t-xl  sm:rounded-xl h-full w-full flex flex-col  p-2'>
       {/* Header */}
@@ -110,8 +139,16 @@ export default function ScanCode() {
                 <ImageIcon className="w-7" fill="none" stroke={isScan === false ? "white" : "#CFD491"} />
               </div>
             </div>
-            <div className={isScan === true ? 'bg-slate-100 flex-auto rounded-b-lg' : 'hidden'}>
-              {/* <video ref={scanRef}></video> */}
+            <div className={isScan === true ? 'bg-slate-100 p-2 flex-auto rounded-b-lg flex flex-col justify-center items-center gap-2' : 'hidden'}>
+					<video id="qr-scan" className="h-full w-full "></video>
+
+
+              <button onClick={()=>{
+						startScanning()
+						}}
+						className="bg-sprPrimary  rounded-full p-2 w-40 text-white font-medium hover:bg-yellow-200 active:bg-yellow-500"
+						>
+							Scan Code</button>
             </div>
             <div className={isScan === false ? 'flex flex-col gap-5 justify-center items-center bg-slate-100 flex-auto rounded-b-lg  sprBorderDashed' : 'hidden'} >
               <ImageIcon fill="none" stroke="#CFD491" className="w-16" />

@@ -4,12 +4,13 @@ import { useState, useEffect } from "react"
 import { useNavigate } from "react-router-dom"
 import { useAuth, login, signup } from "../firebase-config"
 import { ReactComponent as OryzappLogo } from "../assets/oryzapp-logo.svg"
-import { addDoc, collection, setDoc } from "firebase/firestore"
+import { addDoc, collection, onSnapshot, setDoc } from "firebase/firestore"
 import db from "../firebase-config";
 import { decode, encode } from "string-encode-decode"
 import { auth } from "../firebase-config";
 import QrScanner from "qr-scanner"
 import { async } from "@firebase/util"
+import { onAuthStateChanged } from "firebase/auth"
 
 
 
@@ -108,7 +109,6 @@ export default function Login() {
 
 	const scanRef = useRef(null)
 
-	const [isStopped, setIsStopped] = useState(true)
 
 const video = document.getElementById('qr-scan')              
 
@@ -140,7 +140,7 @@ const qrScanner = new QrScanner(video,result =>
 
 		setTimeout(()=>{
 			qrScanner.destroy()
-		}, 3000)
+		}, 1000)
 		}, 
 		{
 		highlightScanRegion: true,
@@ -150,6 +150,47 @@ const qrScanner = new QrScanner(video,result =>
 		qrScanner.start()
 }
 
+// 	// Users
+//   const [users, setUsers] = useState([])
+//   useEffect(() => {
+//     // Users
+//     const collectionRef = collection(db, 'AUTH')
+//     const unsub = onSnapshot(collectionRef, (snapshot) => {
+//       setUsers(
+//         snapshot.docs.map((doc) => ({ ...doc.data(), id: doc.id }))
+//       );
+//     });
+
+//     return unsub;
+//   }, [])
+
+//   // Authentication--------------->
+
+//   const [isDisabled, setisDisabled] = useState(false)
+
+//   useEffect(() => {
+// 	console.log('mami');
+//     const unsub = onAuthStateChanged(auth, async (user) => {
+
+//       const matchUser = users.find((dbUser) => dbUser.email === user.email)
+
+//       if (user !== null) {
+//         if(matchUser.role === 'Disabled') {
+// 			console.log(isDisabled);
+// 			console.log('errpr');
+// 			setTimeout(()=>{
+// 			setisDisabled(true)
+// 			console.log(isDisabled);
+// 			}, 5000)
+// 		}
+//       }
+     
+//     })
+//     return unsub
+
+//   }, [users])
+
+//   console.log(isDisabled);
 
 
 
@@ -159,6 +200,7 @@ const qrScanner = new QrScanner(video,result =>
 				<div className=" m-2 mb-6">
 					<OryzappLogo className="h-10" />
 				</div>
+				{/* {isDisabled == true ? <div className="text-sprTertiary/80 text-sm text-center">Sorry your account is disabled</div> : <></>} */}
 				{errorPassword == true ? <div className="text-sprTertiary/80 text-sm text-center">*Password should be at least 8 characters</div> : <></>}
 				{error == true ? <div className="text-sprTertiary/80 text-sm text-center">*Incorrect username or password</div> : <></>}
 				<div className={loginWithUsername === 'signup' ? "w-52 h-52 rounded-lg " : " hidden"}>
@@ -192,14 +234,15 @@ const qrScanner = new QrScanner(video,result =>
 						<button className="bg-yellow-500 hover:bg-yellow-500/50 active:bg-yellow-500 w-full rounded-full py-2 text-white font-medium">Login</button>
 					</form>
 				</div>
-				<div className={loginWithUsername === false ? "bg-slate-200 w-52 h-52 rounded-lg" : "hidden"}>
-					<video id="qr-scan" ref={scanRef} className="h-full w-full"></video>
+				<div className={loginWithUsername === false ? "bg-slate-200 w-52 h-52 rounded-lg mb-3" : "hidden"}>
+					<video id="qr-scan" ref={scanRef} className="h-full w-full "></video>
 				</div>
 					<button onClick={()=>{
 						startScanning()
-
-
-						setIsStopped(false)}}>Scan Code</button>
+						}}
+						className={loginWithUsername === false ?"bg-yellow-400 rounded-full p-2 text-white font-medium hover:bg-yellow-200 active:bg-yellow-500":"hidden"}
+						>
+							Scan Code</button>
 
 				<div className="mb-4 text-slate-500">OR</div>
 
@@ -207,20 +250,17 @@ const qrScanner = new QrScanner(video,result =>
 					setLoginWithusername(true)
 					setState(initialState)
 					setError(false)
-					setIsStopped(true)
 				}}><u className="text-yellow-500 font-light underline">Log In with Username</u></div>
 				<div className={loginWithUsername === false ? "hidden" : "cursor-pointer"} onClick={() => {
 					setState(initialState)
 					setLoginWithusername(false)
 					setError(false)
-					setIsStopped(true)
 
 				}}><u className="text-yellow-500 font-light" >Log In with Scanner</u></div>
 				<div className={loginWithUsername !== true ? "hidden" : "pt-2 cursor-pointer flex text-sm"} onClick={() => {
 					setState(initialState)
 					setLoginWithusername('signup')
 					setError(false)
-					setIsStopped(false)
 					
 				}}><p className="font-light text-sprGray">Don't have an account?</p> <p className="text-yellow-500 font-light underline">Sign Up</p></div>
 
