@@ -58,9 +58,12 @@ const Main = () => {
 
 				if (matchUser.role === 'Administrator') {
 					setIsAdmin(true)
-					if(windowWidth <= 480 ){
-						setPage('scan-code')
-					}
+					// if(windowWidth <= 480 ){
+					// 	setPage('scan-code')
+					// }
+					// else{
+					// 	setPage('dashboard')
+					// }
 				}
 				if (matchUser.role === 'User') {
 					setIsAdmin(false)
