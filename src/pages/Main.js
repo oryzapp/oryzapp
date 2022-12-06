@@ -34,6 +34,20 @@ const Main = () => {
 		return unsub;
 	}, [])
 
+	 // Window Width------------>
+  const [windowWidth, setWindowWidth] = useState(window.innerWidth)
+
+  const handleResize = () => {
+    setWindowWidth(window.innerWidth)
+  }
+
+  useEffect(()=>{
+    window.addEventListener('resize', handleResize)
+  },[])
+
+  console.log(windowWidth);
+
+
 	// Authentication--------->
 	useEffect(() => {
 		const unsub = onAuthStateChanged(auth, async (user) => {
@@ -44,6 +58,9 @@ const Main = () => {
 
 				if (matchUser.role === 'Administrator') {
 					setIsAdmin(true)
+					if(windowWidth <= 480 ){
+						setPage('scan-code')
+					}
 				}
 				if (matchUser.role === 'User') {
 					setIsAdmin(false)
@@ -69,7 +86,7 @@ const Main = () => {
 		})
 		return unsub
 
-	}, [users])
+	}, [users, windowWidth])
 
 	// Navigation of Pages
 	const getPage = () => {
