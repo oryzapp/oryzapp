@@ -236,6 +236,28 @@ export default function Dash() {
                                 </div>
                             ))}
                         </div>
+                        
+                        {/* Mobile */}
+                        <div className='w-full sm:hidden flex flex-col gap-2 p-2'>
+                             {searched.map((rice)=>(
+                                <div className="flex justify-between items-center  bg-slate-50">
+									<div className="flex flex-col -space-y-3">
+										<div className="px-6 py-4 text-3xl font-bold text-sprGray80">CL-R{rice.accession}</div>
+										<div className="px-6 py-2 text-md font-normal text-sprPrimaryLight">{rice.classification} Season</div>
+										<div className="px-6 py-2 text-md font-normal text-sprPrimaryLight">{rice.variety}</div>
+										<div className="px-6 py-2 text-md font-normal text-sprPrimaryLight">{rice.source}</div>
+										
+									</div>
+										<button className="mr-8 bg-sprPrimary hover:bg-sprPrimaryLight active:bg-sprPrimary rounded-full p-1 px-2 text-white font-medium text-xl" 
+                                        onClick={() => {
+                                                setIsModalOpen(true)
+                                                setCurrentId(rice.accession)
+                                                console.log(rice.accession)
+                                            }}
+												>view</button>
+									</div>
+                            ))}
+                        </div>
 
 
                     </div>

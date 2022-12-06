@@ -385,7 +385,7 @@ export default function RiceList() {
                     </div>
                      {/* Mobile */}
                         
-                        <div className="flex sm:hidden bg-yellow-400 max-h-0 flex-col gap-2">
+                        <div className="flex sm:hidden  max-h-0 flex-col gap-2 p-2">
                            {searchValue === ''?<>
                             {riceList.map((rice)=>(
                                 <div className="flex justify-between items-center  bg-slate-50">

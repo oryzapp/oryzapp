@@ -471,7 +471,7 @@ export default function RiceAccessions() {
 							</div>
 
 							{/* Mobile */}
-							<div className="bg-yellow-300 w-full flex  sm:hidden flex-col mx-2 gap-2 ">
+							<div className="w-full flex  sm:hidden flex-col mx-2 gap-2 py-2 ">
 								{ searchInput === ''?
 								<>
 								{riceAccessions.map((rice) => (
