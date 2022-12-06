@@ -103,16 +103,15 @@ export default function Login() {
 	const handleSignUp = async (e) => {
 		try {
 			e.preventDefault(); 
+			console.log('ok');
 			
 			// Check If existing and Disabled
-			const matchUser = users?.find((dbUser) => dbUser?.email === state?.email)
-			if(matchUser.email === state?.email){
-				setFirebaseError(true)
-				setTimeout(() => { setErrorPassword(false) }, 5000)
+			// const matchUser = users?.find((dbUser) => dbUser?.email === state?.email)
+			// if(matchUser.email === state?.email){
+			// 	setFirebaseError(true)
+			// 	setTimeout(() => { setErrorPassword(false) }, 5000)
 				
-
-			}
-		
+			// }
 			// Saving to Database
 			if (state.password.length <= 6) {
 				setErrorPassword(true)
@@ -132,6 +131,7 @@ export default function Login() {
 					searchIndex: `${state.email} User`
 				}
 				await setDoc(collectionRef, payLoad);
+				console.log('hello');
 			}
 			// Signing Up
 			await signup(state.email, state.password)
@@ -225,7 +225,7 @@ try {
 							<label htmlFor="" className=" text-sprPrimary">Password</label>
 							<input onChange={handleChange} type="password" name="password" value={state.password} className="rounded-full h-8 p-3 text-gray-700" required />
 						</div>
-						<button className="bg-sprPrimary  w-full rounded-full py-2 text-white font-medium" >Sign Up</button>
+						<button className="bg-sprPrimary  w-full rounded-full py-2 text-white font-medium" type='submit'>Sign Up</button>
 					</form>
 
 				</div>
@@ -242,7 +242,7 @@ try {
 
 							<input onChange={handleChange} type="password" name="password" value={state.password} className="rounded-full h-8 p-3 text-gray-700" required />
 						</div>
-						<button className="bg-yellow-500 hover:bg-yellow-500/50 active:bg-yellow-500 w-full rounded-full py-2 text-white font-medium">Login</button>
+						<button className="bg-yellow-500 hover:bg-yellow-500/50 active:bg-yellow-500 w-full rounded-full py-2 text-white font-medium" type='submit'>Login</button>
 					</form>
 				</div>
 				<div className={loginWithUsername === false ? "bg-slate-200 w-52 h-52 rounded-lg mb-3" : "hidden"}>
