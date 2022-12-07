@@ -124,17 +124,17 @@ export default function ModalAccessionsInfo({ open, modalId, closeModal }) {
                 </div>
                 {/* main */}
                 <div className=" flex-auto flex flex-col gap-2">
-                    <div className=" w-full h-1/4 flex ">
-                        <div className="  bg-slate-100 w-1/4  rounded-md">
+                    <div className="w-full h-1/4 flex ">
+                        <div className="  bg-slate-100  sm:w-1/4  rounded-md">
                             <div className=" h-full rounded-md"></div>
                         </div>
 
                         {riceAccessions.map((rice) => (
                             <div className=" flex flex-col flex-auto p-3 pt-0">
-                                <h1 className="text-4xl text-sprPrimaryDarkest font-semibold ">CL-R{rice.accessionId}</h1>
-                                <h1 className="text-lg text-sprGray60 font-medium">Source: {rice.source === '' ? "---" : rice.source}</h1>
-                                <h1 className="text-lg text-sprGray60 font-medium">Variety: {rice.variety === '' ? "---" : rice.variety}</h1>
-                                <h1 className="text-lg text-sprGray60 font-medium"> Classification: {rice.classification === ''? "---" : rice.classification}</h1>
+                                <h1 className=" text-xl sm:text-4xl text-sprPrimaryDarkest font-semibold ">CL-R{rice.accessionId}</h1>
+                                <h1 className="sm:text-lg text-sprGray60 font-medium">Source: {rice.source === '' ? "---" : rice.source}</h1>
+                                <h1 className="sm:text-lg text-sprGray60 font-medium">Variety: {rice.variety === '' ? "---" : rice.variety}</h1>
+                                <h1 className="sm:text-lg text-sprGray60 font-medium"> Classification: {rice.classification === ''? "---" : rice.classification}</h1>
 
 
                             </div>
@@ -143,7 +143,7 @@ export default function ModalAccessionsInfo({ open, modalId, closeModal }) {
 
                     </div>
                     <div className=" w-full flex-auto flex flex-col ">
-                        <div className="  flex gap-3  w-3/4">
+                        <div className="  flex gap-3  sm:w-3/4">
                             <div className="flex-auto bg-sprPrimaryOffLight flex p-2 justify-center gap-2 rounded-t-lg">
                                 <CalendarIcon stroke="#AFBE00" className="h-6" />
                                 <select className=" bg-transparent text-sprPrimary text-md font-medium " name="riceYear" onChange={(e) => { setYear(e.target.value) }}>
@@ -155,30 +155,28 @@ export default function ModalAccessionsInfo({ open, modalId, closeModal }) {
                                     }
                                 </select>
                             </div>
-                            <div className={season === 'Wet_Season' ? "cursor-pointer flex-auto bg-sprPrimary flex  p-2 justify-center items-center rounded-t-lg gap-2" : "cursor-pointer flex-auto bg-slate-200 flex  p-2 justify-center items-center rounded-t-lg gap-2"}>
-                                <WetIcon fill={season === 'Wet_Season' ? "white" : "rgba(18, 20, 20, 0.5)"} className="h-6" />
-                                <h1 className={season === 'Wet_Season' ? " text-white text-md font-medium whitespace-nowrap" : " text-sprGray50 text-md font-medium whitespace-nowrap"} onClick={() => {
+                            <div className={season === 'Wet_Season' ? "cursor-pointer flex-auto bg-sprPrimary flex  p-2 justify-center items-center rounded-t-lg gap-2" : "cursor-pointer flex-auto bg-slate-200 flex  p-2 justify-center items-center rounded-t-lg gap-2"} onClick={() => {
                                     setSeason('Wet_Season')
-                                }}>Wet Season</h1>
-
+                                }}>
+                                <WetIcon fill={season === 'Wet_Season' ? "white" : "rgba(18, 20, 20, 0.5)"} className="h-6" />
+                                <h1 className={season === 'Wet_Season' ? " text-white text-md font-medium whitespace-nowrap hidden sm:block" : " text-sprGray50 text-md font-medium whitespace-nowrap hidden sm:block"} >Wet Season</h1>
                             </div>
-                            <div className={season === 'Dry_Season' ? "cursor-pointer flex-auto bg-sprPrimary flex  p-2 justify-center items-center rounded-t-lg gap-2" : "cursor-pointer flex-auto bg-slate-200 flex  p-2 justify-center items-center rounded-t-lg gap-2"}>
-                                <DryIcon stroke={season === 'Dry_Season' ? "white" : "rgba(18, 20, 20, 0.5)"} className="h-6" />
-                                <h1 className={season === 'Dry_Season' ? " text-white text-md font-medium whitespace-nowrap" : " text-sprGray50 text-md font-medium whitespace-nowrap"} onClick={() => {
+                            <div className={season === 'Dry_Season' ? "cursor-pointer flex-auto bg-sprPrimary flex  p-2 justify-center items-center rounded-t-lg gap-2" : "cursor-pointer flex-auto bg-slate-200 flex  p-2 justify-center items-center rounded-t-lg gap-2"}  onClick={() => {
                                     setSeason('Dry_Season')
-                                }}>Dry Season</h1>
+                                }}>
+                                <DryIcon stroke={season === 'Dry_Season' ? "white" : "rgba(18, 20, 20, 0.5)"} className="h-6" />
+                                <h1 className={season === 'Dry_Season' ? " text-white text-md font-medium whitespace-nowrap hidden sm:block" : " text-sprGray50 text-md font-medium whitespace-nowrap hidden sm:block"}>Dry Season</h1>
 
                             </div>
 
                         </div>
-                        <div className="bg-sprPrimaryOffLight flex-auto overflow-auto scrollbar rounded-b-md rounded-r-md">
+                        <div className="bg-sprPrimaryOffLight flex-auto overflow-auto scrollbar rounded-b-md rounded-r-md ">
                             {vsData.length === 0 && rsData.length === 0 && gcData.length === 0 && ycData.length === 0 ? 
                             <div className="h-full flex flex-col justify-center items-center gap-3">
                                 <EmptyIllTwo className="stroke-white"/>
                                 <h1 className="text-xl font-medium text-white">Plenty more room here</h1>
                             </div> :
-                              <div className="  max-h-0  p-4">
-
+                            <div className="  max-h-0  p-4">
                               {vsData.map((vsData) => (
                                   <div className="bg-white p-2 rounded-md text-sm">
                                       {/* vegetative stage */}
@@ -356,7 +354,6 @@ export default function ModalAccessionsInfo({ open, modalId, closeModal }) {
                               )
 
                               )}
-
                               {rsData.map((rsData) => (
                                   <div className="bg-white p-2 mt-4 rounded-md text-sm">
                                       <h1 className="text-sm uppercase font-medium text-sprPrimary">Reproductive Stage</h1>
@@ -476,7 +473,6 @@ export default function ModalAccessionsInfo({ open, modalId, closeModal }) {
                                       </div>
                                   </div>
                               ))}
-
                               {gcData.map((gcData) => (
                                   <div className="bg-white p-2 rounded-md mt-4 text-sm">
                                       {/* grain Characteristics */}
@@ -631,8 +627,7 @@ export default function ModalAccessionsInfo({ open, modalId, closeModal }) {
                                           {ycData.leafAroma === "" ? "---" : ycData.leafAroma}</div>
                                   </div>
                               ))}
-
-                          </div>
+                            </div>
                             }
                           
                         </div>

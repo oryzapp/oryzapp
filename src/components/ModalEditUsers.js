@@ -36,10 +36,10 @@ export default function ModalEditUsers({ open, closeModal, modalId, modalEmail,m
     if (!open) return null;
     return (
         <div>
-            <form>
-                <div className=" fixed left-0 right-0 bottom-0 top-0 z-50 bg-black opacity-70 " />
-                <div className=" flex flex-col fixed left-0 right-0 bottom-0 top-0  z-50  justify-center items-center ">
-                    <div className='h-96 w-96 bg-white rounded-md relative flex justify-center items-center flex-col p-4 gap-2 '>
+            <div className=" fixed left-0 right-0 bottom-0 top-0 z-50 bg-black  opacity-30 " />
+                <div className=" flex flex-col fixed left-0 right-0 bottom-0 top-0 z-50    justify-center items-center " onClick={()=>{console.log('hiuui');}}  >
+            <form className=''>
+                    <div className=' h-96 w-96 bg-white rounded-md relative flex justify-center items-center flex-col p-4 gap-2 '>
                         <div className="absolute top-4  right-4 z-50 ">
                             <CloseIcon className='group-hover:stroke-white stroke-sprGray50 hover:stroke-sprGray80 active:stroke-sprPrimary h-5' onClick={closeModal} />
                         </div>
@@ -71,8 +71,8 @@ export default function ModalEditUsers({ open, closeModal, modalId, modalEmail,m
 
                     </div>
 
-                </div>
             </form>
+                </div>
 
 
         </div>

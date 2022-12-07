@@ -49,6 +49,10 @@ export default function ModalSearch({ open, closeModal }) {
     setSearched(searchList)
   }, [searchInput])
 
+  useEffect(()=>{
+    const inputSearch = document.getElementById('input-search')
+    inputSearch?.focus()
+  },[open])
 
 
   const [isModalOpen, setIsModalOpen] = useState(false)
@@ -58,15 +62,15 @@ export default function ModalSearch({ open, closeModal }) {
   if (!open) return null;
   return (
     <div>
-      <div className=" fixed left-0 right-0 bottom-0 top-0 z-50 bg-black opacity-70 " />
-      <div className="flex gap-3 flex-col absolute left-20 right-20 bottom-32 top-16 z-50 bg-white rounded-md  p-8   md:left-52 md:right-52   lg:bottom-40 lg:left-96 lg:right-96  ">
+      <div className=" fixed left-0 right-0 bottom-0 top-0 z-50 bg-black opacity-70 " onClick={closeModal} />
+      <div className="flex gap-3 flex-col absolute left-20 right-20 bottom-32 top-16 z-50 bg-white rounded-md  p-8   md:left-52 md:right-52   lg:bottom-40 lg:left-96 lg:right-96  " >
         <div className="absolute top-3 right-3 z-50 ">
           <CloseIcon className='group-hover:stroke-white stroke-sprGray50 hover:stroke-sprGray80 active:stroke-sprPrimary h-5' onClick={closeModal}/>
         </div>
         <div className='flex pt-3 gap-2 items-center'>
           <SearchIcon className='stroke-sprPrimary' />
           <div className='flex-auto relative flex items-center'>
-            <input ref={searchRef} type="text" className='bg-slate-100 w-full rounded-full p-1 text-sm' placeholder='Search Accession' value={searchInput} onChange={e => setSearchInput(e.target.value)} />
+            <input ref={searchRef} type="text" id='input-search' className=' bg-slate-100 w-full rounded-full p-1 text-sm focus:outline-none focus:ring-1 focus:ring-sprPrimary focus:bg-sprPrimaryOffLight/30' placeholder='Search Accession' value={searchInput} onChange={e => setSearchInput(e.target.value)} />
             <CloseIcon className='-m-5 h-4 rounded-full p-1 hover:bg-sprGray10 stroke-sprGray40 hover:stroke-sprGray50 active:stroke-sprPrimary' onClick={() => {
               setSearchInput('')
             }} />

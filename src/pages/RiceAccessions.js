@@ -13,7 +13,6 @@ import {
 } from "firebase/firestore";
 import { useEffect, useState } from "react";
 import ModalAddRiceAcc from "../components/ModalAddRiceAcc";
-import ModalRiceInfo from "../components/ModalAccessionsInfo";
 import db from "../firebase-config";
 import { storage } from "../firebase-config";
 import { ref, uploadBytes } from "firebase/storage"
@@ -261,6 +260,12 @@ export default function RiceAccessions() {
 
         XLSX.writeFile(wb, `Special_Purpose_Rice_Accessions.xlsx`)
     }
+
+	useEffect(()=>{
+		const accessionInput = document.getElementById('input-accession')
+		console.log(accessionInput);
+		accessionInput?.focus()
+	},[isModalOpen])
 
 
 
@@ -517,14 +522,7 @@ export default function RiceAccessions() {
 				{/* Modals */}
 				{/* Add Rice Accession */}
 				<ModalAddRiceAcc open={isModalOpen} >
-					<div className="absolute right-4 top-4 z-50 ">
-						{/* <button onClick={() => {
-							setIsModalOpen(false)
-							setIsEdit(false)
-							setState(initialState)
-						}}>
-							<img className="relative" src={closeIcon} alt="" />
-						</button> */}
+					<div className="absolute right-4 top-4 z-50  ">
 						<CloseIcon className='group-hover:stroke-white stroke-sprGray50 hover:stroke-sprGray80 active:stroke-sprPrimary h-5' onClick={() => {
 							setIsModalOpen(false)
 							setIsEdit(false)
@@ -532,22 +530,22 @@ export default function RiceAccessions() {
 						}}/>
 					</div>
 					<div className="flex">
-						<h1 className="page-header text-2xl font-bold text-sprGray70">Add Rice Accession</h1>
+						<h1 className="page-header text-2xl font-bold text-sprGray70">{isEdit === false ? 'Add Rice Accession':'Edit Rice Accession'}</h1>
 					</div>
-					<div className="flex flex-auto flex-col overflow-hidden">
-						<form
-							className="flex flex-col h-full "
-							onSubmit={isEdit === true ? submitEdit : handleSubmit}
-						>
-							<div className="p-4">
+					<div className="flex flex-auto flex-col overflow-hidden ">
+						<form className="flex flex-col h-full "
+					onSubmit={isEdit === true ? submitEdit : handleSubmit}>
+						<div className=" flex-auto flex flex-col overflow-auto scrollbar">
+						<div className="p-4 " >
 								<div className={isEdit === true ? "hidden" : "block"}>
 									<div className={accessionExists === true ? "block text-red-500 text-sm" : "hidden"}>*Accession already exists</div>
 
 								</div>
 								<div className="flex">
-									<p className="text-4xl font-medium whitespace-nowrap text-sprPrimary">CL-R</p>
+									<p className="text-2xl sm:text-4xl font-medium whitespace-nowrap text-sprPrimary">CL-R</p>
 									<input
-										className=" w-full text-4xl font-medium  placeholder-sprPrimaryLight/50 text-sprPrimary focus:outline-none focus:ring-transparent bg-transparent"
+										id="input-accession"
+										className=" caret-sprPrimary w-full text-2xl sm:text-4xl font-medium  placeholder-sprPrimaryLight/20 text-sprPrimary focus:outline-none focus:ring-transparent bg-transparent"
 										type="text"
 										placeholder="XXXX"
 										name="accession"
@@ -557,36 +555,35 @@ export default function RiceAccessions() {
 										readOnly={isEdit === true ? true : false}
 									/>
 								</div>
+								<p className="text-sprPrimaryLight text-sm">Enter Rice Accession ID above</p>
 							</div>
-							<div className="flex flex-auto flex-col lg:flex-row pb-20  w-full">
-								<div className="flex flex-col  -space-y-2  w-1/2">
-
-
-									<div className="p-4  flex flex-col ">
+						<div className="flex flex-auto flex-row  w-full ">
+								<div className="flex flex-col justify-center -space-y-2  w-1/2  mb-4">
+									<div className="p-1 sm:p-2  flex flex-col ">
 										<label className="text-sprPrimary">Variety</label>
 										<input
 
-											className="rounded-full p-2  border border-sprPrimary focus:outline-none focus:ring-1 focus:ring-sprPrimary focus:bg-sprPrimaryLight/30"
+											className="caret-sprPrimary rounded-full sm:p-2  border border-sprPrimary focus:outline-none focus:ring-1 focus:ring-sprPrimary focus:bg-sprPrimaryOffLight/30"
 											type="text"
 											name="variety"
 											value={state.variety}
 											onChange={handleChange}
 										/>
 									</div>
-									<div className="p-4  flex flex-col">
+									<div className="p-1 sm:p-2  flex flex-col">
 										<label className="text-sprPrimary">Source</label>
 										<input
-											className="rounded-full p-2 border border-sprPrimary focus:outline-none focus:ring-1 focus:ring-sprPrimary focus:bg-sprPrimaryLight/30"
+											className="caret-sprPrimary rounded-full sm:p-2 border border-sprPrimary focus:outline-none focus:ring-1 focus:ring-sprPrimary focus:bg-sprPrimaryOffLight/30"
 											type="text"
 											name="source"
 											value={state.source}
 											onChange={handleChange}
 										/>
 									</div>
-									<div className="p-4  flex flex-col">
-										<label className="text-sprPrimary">Classification</label>
+									<div className="p-1 sm:p-2  flex flex-col">
+										<label className="caret-sprPrimary text-sprPrimary">Classification</label>
 										<input
-											className="rounded-full p-2 border border-sprPrimary focus:outline-none focus:ring-1 focus:ring-sprPrimary focus:bg-sprPrimaryLight/30"
+											className="rounded-full sm:p-2 border border-sprPrimary focus:outline-none focus:ring-1 focus:ring-sprPrimaryfocus:bg-sprPrimaryOffLight/30"
 											type="text"
 											name="classification"
 											value={state.classification}
@@ -594,23 +591,23 @@ export default function RiceAccessions() {
 										/>
 									</div>
 								</div>
-								<div className="flex justify-center items-center   w-1/2">
-
-									<div className=" rounded-b-lg  sprBorderDashed w-3/4 h-3/4  flex flex-col gap-5  justify-center items-center bg-slate-100 ">
-										<ImageIcon fill="none" stroke="#CFD491" className="w-16" />
-										<div className="bg-sprPrimaryLight relative rounded-full ">
-											<h6 className="absolute left-3 top-1 text-white text-sm font-medium" >Choose Image</h6>
-											<input className="opacity-0 w-32" type="file" onChange={(e) => {
+								<div className="flex justify-center items-center    w-1/2 ">
+									<div className="group  rounded-b-lg  sprBorderDashed w-28 h-28 sm:w-52 sm:h-52  flex flex-col sm:gap-5 p-4  justify-center items-center bg-slate-100 ">
+										<ImageIcon fill="none" stroke="#CFD491" className="w-12 sm:w-16" />
+										<div className="bg-sprPrimaryLight group-hover:bg-sprPrimaryOffLight group-active:bg-sprPrimary relative rounded-full   ">
+											<h6 className="absolute  left-1 top-2 sm:left-3 sm:top-1  text-white text-xs sm:text-sm  whitespace-nowrap font-medium" >Choose Image</h6>
+											<input className="opacity-0 w-24 sm:w-32 " type="file" onChange={(e) => {
 												setImageUpload(e.target.files[0])
 											}} />
 
 										</div>
 									</div>
 								</div>
-							</div>
-							<div className="text-right space-x-2">
+						</div>
+						</div>
+						<div className="text-right space-x-2 p-1">
 								<button
-									className="bg-sprGray30 rounded-full py-2 px-3 text-sm font-medium text-white shadow-slate-300"
+									className="bg-sprGray30 hover:bg-sprGray10 active:bg-sprGray50 rounded-full py-2 px-3 text-sm font-medium text-white shadow-slate-300"
 									onClick={() => {
 										setIsModalOpen(false);
 										setState(initialState)
@@ -622,14 +619,18 @@ export default function RiceAccessions() {
 
 								<button
 									type="submit"
-									className="bg-sprPrimary rounded-full py-2 px-3 text-sm font-medium text-white shadow-slate-300"
+									className="bg-gradient-to-b from-sprPrimary to-sprPrimaryDarkest  active:bg-gradient-to-b active:from-sprPrimary active:to-sprPrimaryDarkest hover:bg-gradient-to-t hover:from-sprPrimaryLight hover:to-sprPrimaryLight rounded-full py-2 px-3 text-sm font-medium text-white shadow-slate-300"
 
 								>
 									Save
 								</button>
 							</div>
+
 						</form>
+							
 					</div>
+						
+					
 				</ModalAddRiceAcc>
 
 				{/* Rice Accession Info */}

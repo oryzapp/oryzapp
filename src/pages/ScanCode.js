@@ -10,7 +10,6 @@ import BackgroundImage from '../assets/background-image.svg'
 // Icons
 import { ReactComponent as ScanCodeIcon } from '../assets/qr-code-icon.svg'
 import { ReactComponent as ImageIcon } from '../assets/image-icon.svg'
-import ModalViewAccessionOnly from "../components/ModalViewAccessionOnly";
 import { useRef } from "react";
 import ModalAccessionsInfo from "../components/ModalAccessionsInfo";
 import ModalRiceList from "../components/ModalRiceList";

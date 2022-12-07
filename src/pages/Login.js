@@ -255,14 +255,14 @@ try {
 					setLoginWithusername(true)
 					setState(initialState)
 					setError(false)
-				}}><u className="text-yellow-500 font-light underline">Log In with Username</u></div>
+				}}><u className="text-yellow-500 font-light underline">Log In with Email</u></div>
 				<div className={loginWithUsername === false ? "hidden" : "cursor-pointer"} onClick={() => {
 					setState(initialState)
 					setLoginWithusername(false)
 					setError(false)
 
 				}}><u className="text-yellow-500 font-light" >Log In with Scanner</u></div>
-				<div className={loginWithUsername !== true ? "hidden" : "pt-2 cursor-pointer flex text-sm"} onClick={() => {
+				<div className={loginWithUsername === 'signup' ? "hidden" : "pt-2 cursor-pointer flex text-sm"} onClick={() => {
 					setState(initialState)
 					setLoginWithusername('signup')
 					setError(false)
