@@ -103,15 +103,6 @@ export default function Login() {
 	const handleSignUp = async (e) => {
 		try {
 			e.preventDefault(); 
-			console.log('ok');
-			
-			// Check If existing and Disabled
-			// const matchUser = users?.find((dbUser) => dbUser?.email === state?.email)
-			// if(matchUser.email === state?.email){
-			// 	setFirebaseError(true)
-			// 	setTimeout(() => { setErrorPassword(false) }, 5000)
-				
-			// }
 			// Saving to Database
 			if (state.password.length <= 6) {
 				setErrorPassword(true)
@@ -154,12 +145,15 @@ const video = document.getElementById('qr-scan')
 
 const startScanning = async () =>{
 try {
+	
 	const qrScanner = new QrScanner(video,result =>
 	{ 
 		try {
 			const parsed = JSON.parse(result.data)
 			const scannedEmail = parsed.email
 			const scannedPassword = decode(parsed.password)
+			console.log(scannedEmail);
+			console.log(scannedPassword);
 			
 			const logginIn = async () =>{
 				await login(scannedEmail, scannedPassword)
