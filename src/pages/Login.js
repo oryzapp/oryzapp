@@ -123,10 +123,11 @@ export default function Login() {
 				}
 				await setDoc(collectionRef, payLoad);
 				console.log('hello');
-			}
-			// Signing Up
+					// Signing Up
 			await signup(state.email, state.password)
 			navigate('/')
+			}
+		
 		} catch (error) {
 			setFirebaseError(true)
 			setFirebaseErrMess(error.message)
@@ -205,8 +206,8 @@ try {
 					<OryzappLogo className="h-10" />
 				</div>
 				{firebaseError === true ? <div className="text-sprTertiary/80 text-sm text-center">{firebaseErrMess === 'Firebase: Error (auth/email-already-in-use).'?'*Email Already in Use':''}</div>:<></>}
-				{disabledError == true ? <div className="text-sprTertiary/80 text-sm text-center">*Sorry your account is disabled</div> : <></>}
-				{errorPassword == true ? <div className="text-sprTertiary/80 text-sm text-center">*Password should be at least 8 characters</div> : <></>}
+				{disabledError === true ? <div className="text-sprTertiary/80 text-sm text-center">*Sorry your account is disabled</div> : <></>}
+				{errorPassword === true ? <div className="text-sprTertiary/80 text-sm text-center">*Password should be at least 8 characters</div> : <></>}
 				{error == true ? <div className="text-sprTertiary/80 text-sm text-center">*Incorrect username or password</div> : <></>}
 				<div className={loginWithUsername === 'signup' ? "w-52 h-52 rounded-lg " : " hidden"}>
 					<form onSubmit={handleSignUp}>
