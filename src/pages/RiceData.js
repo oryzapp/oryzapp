@@ -30,13 +30,13 @@ export default function RiceData() {
   const getPage = () => {
     switch (page) {
       case 'vegetative-stage':
-        return <VegetativeStage season={seasonToOutlet} />
+        return <VegetativeStage  />
       case 'reproductive-stage':
-        return <ReproductiveStage season={seasonToOutlet} />
+        return <ReproductiveStage  />
       case 'grain-characteristics':
-        return <GrainCharacteristics season={seasonToOutlet} />
+        return <GrainCharacteristics  />
       case 'yield-components':
-        return <YieldComponents season={seasonToOutlet} />
+        return <YieldComponents />
     }
   }
   const [isModalOpen, setIsModalOpen] = useState(false)
@@ -530,13 +530,11 @@ export default function RiceData() {
 
           </div>
 
-          <div className=" h-full w-full flex  flex-auto overflow-auto scrollbar">
+          <div className="  w-full max-h-full flex  flex-auto overflow-auto scrollbar">
 
-            <div className="  flex flex-auto max-w-0 max-h-0 divide-y divide-slate-400 ">
               {getPage()}
-
-
-            </div>
+            {/* <div className="  flex flex-auto max-w-0 max-h-0 divide-y divide-slate-400 ">
+            </div> */}
           </div>
         </section>
         {/* Modal */}

@@ -90,7 +90,7 @@ export default function GrainCharacteristics() {
 
 
   return (
-    <>
+    <div className="  flex flex-auto max-w-0 max-h-0 divide-y divide-slate-400 ">
    <div className="flex flex-col">
    <div className="flex p-1 bg-sprPrimaryOffLight/40 gap-2">
          {/* Search Bar */}
@@ -410,8 +410,6 @@ export default function GrainCharacteristics() {
       </div>
 
    </div>
-    </>
-
-
+    </div>
   )
 }
