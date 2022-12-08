@@ -103,38 +103,45 @@ export default function Login() {
 	const handleSignUp = async (e) => {
 		try {
 			e.preventDefault(); 
-			// Saving to Database
-			if (state.password.length <= 6) {
-				setErrorPassword(true)
-				setTimeout(() => { setErrorPassword(false) }, 5000)
-			}
-			// Is User Disabled
-			
-			else {
-				// Encrypt Password to save to database
-				const enPass = encode(state.password)
 
-				const collectionRef = doc(db, "AUTH",state.email)
-				const payLoad = {
-					email: state.email,
-					password: enPass,
-					role: 'User',
-					searchIndex: `${state.email} User`
-				}
-				await setDoc(collectionRef, payLoad);
-				console.log('hello');
-					// Signing Up
-			await signup(state.email, state.password)
-			navigate('/')
+			const matchUser = users?.find((dbUser) => dbUser?.email === state?.email)
+			console.log(matchUser);
+			if( matchUser !== undefined){
+				setFirebaseError(true)
+				setTimeout(()=>{
+					setFirebaseError(false)
+				},5000)
 			}
+			else{
+				if (state.password.length <= 6) {
+					setErrorPassword(true)
+					setTimeout(() => { setErrorPassword(false) }, 5000)
+				}
+				else{
+					// Encrypt Password to save to database
+					const enPass = encode(state.password)
+
+					const collectionRef = doc(db, "AUTH",state.email)
+					const payLoad = {
+						email: state.email,
+						password: enPass,
+						role: 'User',
+						searchIndex: `${state.email} User`
+					}
+					// Store Credentials
+					await setDoc(collectionRef, payLoad);
+
+					// Signing Up
+					await signup(state.email, state.password)
+					navigate('/')
+
+				}
+
+			 }
 		
+			
 		} catch (error) {
-			setFirebaseError(true)
-			setFirebaseErrMess(error.message)
-			setTimeout(()=>{
-				setFirebaseError(false)
-				setFirebaseErrMess('')
-			},10000)
+			console.log(error);
 		}
 	}
 
@@ -205,7 +212,8 @@ try {
 				<div className=" m-2 mb-6">
 					<OryzappLogo className="h-10" />
 				</div>
-				{firebaseError === true ? <div className="text-sprTertiary/80 text-sm text-center">{firebaseErrMess === 'Firebase: Error (auth/email-already-in-use).'?'*Email Already in Use':''}</div>:<></>}
+				{firebaseError === true ? <div className="text-sprTertiary/80 text-sm text-center">*Email already in use</div>:<></>}
+				{/* {firebaseError === true ? <div className="text-sprTertiary/80 text-sm text-center">{firebaseErrMess === 'Firebase: Error (auth/email-already-in-use).'?'*Email Already in Use':''}</div>:<></>} */}
 				{disabledError === true ? <div className="text-sprTertiary/80 text-sm text-center">*Sorry your account is disabled</div> : <></>}
 				{errorPassword === true ? <div className="text-sprTertiary/80 text-sm text-center">*Password should be at least 8 characters</div> : <></>}
 				{error == true ? <div className="text-sprTertiary/80 text-sm text-center">*Incorrect username or password</div> : <></>}
