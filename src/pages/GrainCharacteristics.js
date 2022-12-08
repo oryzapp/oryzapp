@@ -1,8 +1,7 @@
-import { collection, collectionGroup, onSnapshot, orderBy, query, where } from "firebase/firestore";
+import { collection, collectionGroup, onSnapshot, query, where } from "firebase/firestore";
 import { useEffect, useState } from "react";
 import { ReactComponent as EditIcon } from '../assets/edit-icon.svg'
 import { ReactComponent as ExcelIcon } from '../assets/excel-icon.svg'
-import { ReactComponent as SearchIcon } from "../assets/search-icon.svg"
 
 import ModalGrainUpdate from "../components/ModalGrainUpdate";
 
@@ -11,19 +10,7 @@ import db from "../firebase-config";
 
 
 
-export default function GrainCharacteristics() {
-    // Season Filter
-    const [season, setSeason] = useState('All')
-    const changeSeason = (e) => {
-      setSeason(e.target.value)
-    }
- 
-     // Year Filter ---------------> 
-    const [year, setYear] = useState('All')
-     const years = [2018, 2019, 2020, 2021, 2022, 2023, 2024, 2025, 2026, 2027, 2028, 2030]
-     const changeYear = (e) => {
-         setYear(e.target.value)
-     }
+export default function GrainCharacteristics({filterSeason, filterYear, searchInput}) {
  
   // List All and Filter ------------------->
   const [riceData, setRiceData] = useState([])
@@ -31,33 +18,33 @@ export default function GrainCharacteristics() {
  
     var riceCollectionRef;
  
-    if (season === 'All' && year === 'All') {
+    if (filterSeason === 'All' && filterYear === 'All') {
         riceCollectionRef = collectionGroup(db, "GC_Raw_Rice_Data");
  
     }
-    if (season === 'All' && year !== 'All') {
-        riceCollectionRef = query(collectionGroup(db, "GC_Raw_Rice_Data"), where("riceYear", "==", year));
+    if (filterSeason === 'All' && filterYear !== 'All') {
+        riceCollectionRef = query(collectionGroup(db, "GC_Raw_Rice_Data"), where("riceYear", "==", filterYear));
     }
-    if (season === 'Wet_Season' && year === 'All') {
-      riceCollectionRef = query(collection(db, `/SPR/Rice_Seasons/Seasons/${season}/Stages/Grain_Characteristics/GC_Raw_Rice_Data`))
+    if (filterSeason === 'Wet_Season' && filterYear === 'All') {
+      riceCollectionRef = query(collection(db, `/SPR/Rice_Seasons/Seasons/${filterSeason}/Stages/Grain_Characteristics/GC_Raw_Rice_Data`))
  
     }
-    if (season === 'Dry_Season' && year === 'All') {
-      riceCollectionRef = query(collection(db, `/SPR/Rice_Seasons/Seasons/${season}/Stages/Grain_Characteristics/GC_Raw_Rice_Data`))
+    if (filterSeason === 'Dry_Season' && filterYear === 'All') {
+      riceCollectionRef = query(collection(db, `/SPR/Rice_Seasons/Seasons/${filterSeason}/Stages/Grain_Characteristics/GC_Raw_Rice_Data`))
  
     }
-    if (season === 'Dry_Season' && year !== 'All') {
-        riceCollectionRef = query(collection(db, `/SPR/Rice_Seasons/Seasons/${season}/Stages/Grain_Characteristics/GC_Raw_Rice_Data`), where("riceYear", "==", year))
+    if (filterSeason === 'Dry_Season' && filterYear !== 'All') {
+        riceCollectionRef = query(collection(db, `/SPR/Rice_Seasons/Seasons/${filterSeason}/Stages/Grain_Characteristics/GC_Raw_Rice_Data`), where("riceYear", "==", filterYear))
     }
-    if (season === 'Wet_Season' && year !== 'All') {
-        riceCollectionRef = query(collection(db, `/SPR/Rice_Seasons/Seasons/${season}/Stages/Grain_Characteristics/GC_Raw_Rice_Data`), where("riceYear", "==", year))
+    if (filterSeason === 'Wet_Season' && filterYear !== 'All') {
+        riceCollectionRef = query(collection(db, `/SPR/Rice_Seasons/Seasons/${filterSeason}/Stages/Grain_Characteristics/GC_Raw_Rice_Data`), where("riceYear", "==", filterYear))
     }
  
     onSnapshot(riceCollectionRef, (snapshot) => {
       setRiceData(snapshot.docs.map((doc) => ({ ...doc.data(), id: doc.id })));
     });
  
-  }, [season,year]);
+  }, [filterSeason, filterYear]);
 
    // Update Grain Characteristics
    const [isModalOpen, setIsModalOpen] = useState(false)
@@ -92,8 +79,7 @@ export default function GrainCharacteristics() {
   return (
     <div className="  flex flex-auto max-w-0 max-h-0 divide-y divide-slate-400 ">
    <div className="flex flex-col">
-   <div className="flex p-1 bg-sprPrimaryOffLight/40 gap-2">
-         {/* Search Bar */}
+      {/* <div className="flex p-1 bg-sprPrimaryOffLight/40 gap-2">
          <div className="relative ">
               <input
                 className=" pl-2  text-sm placeholder:text-sprPrimary/80 text-sprPrimary focus:border-none  rounded-full shadow-inner shadow-slate-200 focus:outline-none focus:ring-1 focus:ring-sprPrimary  "
@@ -105,7 +91,6 @@ export default function GrainCharacteristics() {
                 <SearchIcon className="stroke-white h-3" />
               </button>
           </div>
-        {/* Season */}
         <div className=" flex" >
         <div className="bg-sprPrimaryLight text-white  text-sm rounded-full pl-2 pr-10 flex items-center">
           <p>Season</p>
@@ -121,7 +106,6 @@ export default function GrainCharacteristics() {
 
 
         </div>
-        {/* Year */}
         <div className=" flex" >
         <div className="bg-sprPrimaryLight text-white  text-sm rounded-full pl-2 pr-10 flex items-center">
           <p>Year</p>
@@ -141,7 +125,7 @@ export default function GrainCharacteristics() {
 
 
         </div>
-      </div>
+      </div> */}
       <div className="  flex text-sm text-sprGray60">
         <table className="">
           <thead className="text-xs uppercase font-medium text-center bg-sprPrimaryOffLight">Accession</thead>

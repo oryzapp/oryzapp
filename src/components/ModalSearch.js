@@ -62,10 +62,16 @@ export default function ModalSearch({ open, closeModal }) {
   if (!open) return null;
   return (
     <div>
-      <div className=" fixed left-0 right-0 bottom-0 top-0 z-50 bg-black opacity-70 " onClick={closeModal} />
+      <div className=" fixed left-0 right-0 bottom-0 top-0 z-50 bg-black opacity-70 " onClick={()=>{
+        closeModal()
+        setSearchInput('')
+      }} />
       <div className="flex gap-3 flex-col absolute left-20 right-20 bottom-32 top-16 z-50 bg-white rounded-md  p-8   md:left-52 md:right-52   lg:bottom-40 lg:left-96 lg:right-96  " >
         <div className="absolute top-3 right-3 z-50 ">
-          <CloseIcon className='group-hover:stroke-white stroke-sprGray50 hover:stroke-sprGray80 active:stroke-sprPrimary h-5' onClick={closeModal}/>
+          <CloseIcon className='group-hover:stroke-white stroke-sprGray50 hover:stroke-sprGray80 active:stroke-sprPrimary h-5' onClick={()=>{
+        closeModal()
+        setSearchInput('')
+      }}/>
         </div>
         <div className='flex pt-3 gap-2 items-center'>
           <SearchIcon className='stroke-sprPrimary' />
@@ -82,11 +88,11 @@ export default function ModalSearch({ open, closeModal }) {
           {
             searchInput !== '' ?
               <div>{searched.map((item) => (
-                <div className='bg-slate-200 m-2 rounded-md p-2 hover:bg-sprPrimaryOffLight active:bg-sprPrimary' onClick={() => {
+                <div className='bg-white m-2 rounded-md p-2 hover:bg-sprPrimaryOffLight/80 active:bg-sprPrimary' onClick={() => {
                   setIsModalOpen(true)
                   setCurrentAccessionId(item.accession)
                 }}>
-                  <div className='text-xl font-bold'>CL-R{item.accession}</div>
+                  <div className='text-xl font-bold text-sprPrimaryDark'>CL-R{item.accession}</div>
                   <div className='flex flex-col '>
                     <div className='text-xs font-medium text-sprGray80' key={`${item.id}${key+=1}`}>{item.variety}</div>
                     <div className='text-xs font-medium text-sprGray80' key={`${item.id}${key+=1}`}>{item.source}</div>

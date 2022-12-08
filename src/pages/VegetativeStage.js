@@ -1,29 +1,14 @@
-import { collection, collectionGroup, onSnapshot, orderBy, query, where } from "firebase/firestore";
+import { collection, collectionGroup, onSnapshot, query, where } from "firebase/firestore";
 import { useEffect, useState } from "react";
 import db from "../firebase-config";
 import { ReactComponent as EditIcon } from '../assets/edit-icon.svg'
-import { ReactComponent as CloseIcon } from '../assets/close.svg'
 import { ReactComponent as ExcelIcon } from "../assets/excel-icon.svg"
-import { ReactComponent as SearchIcon } from "../assets/search-icon.svg"
 
 
 import ModalVegetativeUpdate from "../components/ModalVegetativeUpdate";
 
 
-export default function VegetativeStage() {
-
-  // Season Filter
-  const [season, setSeason] = useState('All')
-    const changeSeason = (e) => {
-      setSeason(e.target.value)
-    }
-
-     // Year Filter ---------------> 
-    const [year, setYear] = useState('All')
-     const years = [2018, 2019, 2020, 2021, 2022, 2023, 2024, 2025, 2026, 2027, 2028, 2030]
-     const changeYear = (e) => {
-         setYear(e.target.value)
-     }
+export default function VegetativeStage({filterSeason, filterYear, searchInput}) {
 
   // List All and Filter ------------------->
   const [riceData, setRiceData] = useState([])
@@ -31,33 +16,32 @@ export default function VegetativeStage() {
 
     var riceCollectionRef;
 
-    if (season === 'All' && year === 'All') {
+    if (filterSeason === 'All' && filterYear === 'All') {
         riceCollectionRef = collectionGroup(db, "VS_Raw_Rice_Data");
 
     }
-    if (season === 'All' && year !== 'All') {
-        riceCollectionRef = query(collectionGroup(db, "VS_Raw_Rice_Data"), where("riceYear", "==", year));
+    if (filterSeason === 'All' && filterYear !== 'All') {
+        riceCollectionRef = query(collectionGroup(db, "VS_Raw_Rice_Data"), where("riceYear", "==", filterYear));
     }
-    if (season === 'Wet_Season' && year === 'All') {
-      riceCollectionRef = query(collection(db, `/SPR/Rice_Seasons/Seasons/${season}/Stages/Vegetative_Stage/VS_Raw_Rice_Data`))
+    if (filterSeason === 'Wet_Season' && filterYear === 'All') {
+      riceCollectionRef = query(collection(db, `/SPR/Rice_Seasons/Seasons/${filterSeason}/Stages/Vegetative_Stage/VS_Raw_Rice_Data`))
+    }
+    if (filterSeason === 'Dry_Season' && filterYear === 'All') {
+      riceCollectionRef = query(collection(db, `/SPR/Rice_Seasons/Seasons/${filterSeason}/Stages/Vegetative_Stage/VS_Raw_Rice_Data`))
 
     }
-    if (season === 'Dry_Season' && year === 'All') {
-      riceCollectionRef = query(collection(db, `/SPR/Rice_Seasons/Seasons/${season}/Stages/Vegetative_Stage/VS_Raw_Rice_Data`))
-
+    if (filterSeason === 'Dry_Season' && filterYear !== 'All') {
+        riceCollectionRef = query(collection(db, `/SPR/Rice_Seasons/Seasons/${filterSeason}/Stages/Vegetative_Stage/VS_Raw_Rice_Data`), where("riceYear", "==", filterYear))
     }
-    if (season === 'Dry_Season' && year !== 'All') {
-        riceCollectionRef = query(collection(db, `/SPR/Rice_Seasons/Seasons/${season}/Stages/Vegetative_Stage/VS_Raw_Rice_Data`), where("riceYear", "==", year))
-    }
-    if (season === 'Wet_Season' && year !== 'All') {
-        riceCollectionRef = query(collection(db, `/SPR/Rice_Seasons/Seasons/${season}/Stages/Vegetative_Stage/VS_Raw_Rice_Data`), where("riceYear", "==", year))
+    if (filterSeason === 'Wet_Season' && filterYear !== 'All') {
+        riceCollectionRef = query(collection(db, `/SPR/Rice_Seasons/Seasons/${filterSeason}/Stages/Vegetative_Stage/VS_Raw_Rice_Data`), where("riceYear", "==", filterYear))
     }
 
     onSnapshot(riceCollectionRef, (snapshot) => {
       setRiceData(snapshot.docs.map((doc) => ({ ...doc.data(), id: doc.id })));
     });
 
-  }, [season,year]);
+  }, [filterSeason,filterYear]);
 
   // Update Vegetative Stage
 	const [isModalOpen, setIsModalOpen] = useState(false)
@@ -77,8 +61,7 @@ export default function VegetativeStage() {
 	console.log(vsRiceData.tagId);
 
 
-  const[isAuricleOn, setIsAuricleOn] = useState(true)
-  console.log(isAuricleOn);
+  
 
   // Export Excel
 	  const exportExcel = () => {
@@ -96,72 +79,17 @@ export default function VegetativeStage() {
     
   
   return (
-    <>
+    <div className="  flex flex-auto max-w-0 max-h-0  ">
+
     <div className="flex flex-col">
-      <div className="flex p-1 bg-sprPrimaryOffLight/40 gap-2">
-         {/* Search Bar */}
-         <div className="relative ">
-              <input
-                className=" pl-2  text-sm placeholder:text-sprPrimary/80 text-sprPrimary focus:border-none  rounded-full shadow-inner shadow-slate-200 focus:outline-none focus:ring-1 focus:ring-sprPrimary  "
-                type="text"
-                placeholder="Find a Rice"
-                
-              />
-              <button className="  h-full px-1 rounded-full absolute right-0 bg-sprPrimary">
-                <SearchIcon className="stroke-white h-3" />
-              </button>
-          </div>
-        {/* Season */}
-        <div className=" flex" >
-        <div className="bg-sprPrimaryLight text-white  text-sm rounded-full pl-2 pr-10 flex items-center">
-          <p>Season</p>
-        </div>
-        <div className=" -ml-9">
-          <select value={season} name="riceSeason" onChange={changeSeason}  className="rounded-full  text-sprPrimary text-sm  focus:outline-none focus:ring-1 focus:ring-sprPrimary border border-white ">
-            <option value="All">All</option>
-            <option value="Dry_Season">Dry</option>
-            <option value="Wet_Season">Wet</option>
-          </select>
-        </div>
-
-
-
-        </div>
-        {/* Year */}
-        <div className=" flex" >
-        <div className="bg-sprPrimaryLight text-white  text-sm rounded-full pl-2 pr-10 flex items-center">
-          <p>Year</p>
-        </div>
-        <div className=" -ml-9">
-          <select value={year} name="riceYear" onChange={changeYear}  className="rounded-full  text-sprPrimary text-sm  focus:outline-none focus:ring-1 focus:ring-sprPrimary border border-white ">
-            <option value="All">All</option>
-            {
-                                        years.map((e) =>
-                                            <option value={e} >{e}</option>
-
-                                        )
-                                    }
-          </select>
-        </div>
-
-
-
-        </div>
-      </div>
-      {/* For Filtering// Don't Erase */}
-      {/* <div className=" flex p-1">
-        {isAuricleOn === true ? <div className="flex items-center gap-1 bg-sprPrimarySuperLight hover:bg-sprPrimaryOffLight cursor-pointer rounded-full px-1 ">
-          <CloseIcon className="h-2 stroke-sprGray60 hover:stroke-sprGray40 active:stroke-sprGray90" onClick={()=>setIsAuricleOn(false)} />
-          <small className="text-xs ">Auricle</small>
-        </div>:<></>}
-      </div> */}
+    
       <div className=" flex  text-sprGray60 relative">
         {/* Accession */}
-        <table className=" text-sm">
-          <thead className="text-xs font-medium uppercase text-center bg-sprPrimaryOffLight">Accession </thead>
+        <table className=" text-sm relative">
+          <thead className="text-xs font-medium uppercase text-center bg-sprPrimaryOffLight sticky top-0 z-50">Accession </thead>
           <tbody className=" flex ">
-            <div className="hidden sm:block flex-auto divide-y divide-slate-300 ">
-              <div className="px-6 py-3 font-medium text-sprPrimary">Accession</div>
+            <div className="hidden sm:block flex-auto divide-y divide-slate-300 relative ">
+              <div className="px-6 py-3 font-medium text-sprPrimary sticky top-3 bg-white">Accession</div>
               {riceData.map((rice) => (
                 <div className="px-6 py-3"> CL-R{rice.accessionId === "" ? "---" : rice.accessionId}</div>
               ))}
@@ -169,8 +97,8 @@ export default function VegetativeStage() {
           </tbody>
         </table>
         {/* ShelfNum */}
-        <table className="">
-          <thead className=" text-xs font-medium uppercase text-center bg-sprPrimaryLight">Shelf No.</thead>
+        <table className=" relative">
+          <thead className=" text-xs font-medium uppercase text-center bg-sprPrimaryLight  sticky top-0">Shelf No.</thead>
           <tbody className=" flex ">
             <div className="hidden sm:block flex-auto divide-y divide-slate-300 ">
               <div className="px-6 py-3 font-medium text-sm whitespace-nowrap text-sprPrimary">#</div>
@@ -181,8 +109,8 @@ export default function VegetativeStage() {
           </tbody>
         </table>
         {/* RiceYear */}
-        <table className="">
-          <thead className=" text-xs font-medium uppercase text-center bg-sprPrimaryOffLight">Year & Season</thead>
+        <table className="relative">
+          <thead className=" text-xs font-medium uppercase text-center bg-sprPrimaryOffLight  sticky top-0">Year & Season</thead>
           <tbody className=" flex ">
             <div className="hidden sm:block flex-auto divide-y divide-slate-300 ">
               <div className="px-6 text-sm py-3 font-medium whitespace-nowrap text-sprPrimary">Year</div>
@@ -199,7 +127,7 @@ export default function VegetativeStage() {
           </tbody>
         </table>
         {/* Auricle */}
-        <table className={isAuricleOn === true ? "text-sm" : "hidden"}>
+        <table className="text-sm">
           <div className=" text-xs font-medium uppercase text-center bg-sprPrimaryLight">Auricle</div>
           <div className=" flex ">
             <div className="hidden sm:block flex-auto divide-y divide-slate-300 ">
@@ -495,12 +423,18 @@ export default function VegetativeStage() {
           </tbody>
         </table>
         <table className=" text-sm sticky right-0 ">
-          <thead className="text-xs font-medium uppercase text-center bg-white flex justify-center">
+          {/* <thead className="text-xs font-medium uppercase text-center bg-white flex justify-center">
+             <h1 className="group" onClick={()=>{exportExcel()}}>
+                                    <ExcelIcon className='stroke-sprPrimary h-4 hover:stroke-sprPrimarySuperLight active:stroke-sprPrimary '/>
+                                    <small className=' hidden group-hover:block absolute whitespace-nowrap right-2 bg-sprGray60 rounded-sm p-1 text-white capitalize text-xs' >Export as Excel</small>
+									</h1>
+          </thead> */}
+             <thead className="text-xs font-medium uppercase text-center bg-white flex justify-center">
           <h1 className="opacity-0">I</h1>
           </thead>
           <tbody className=" flex bg-white   ">
             <div className="hidden sm:block flex-auto divide-y divide-slate-300  ">
-              <div className=" py-3 font-medium text-sprPrimary flex justify-center">
+            <div className=" py-3 font-medium text-sprPrimary flex justify-center">
               <h1 className="group" onClick={()=>{exportExcel()}}>
                                     <ExcelIcon className='stroke-sprPrimary h-5 hover:stroke-sprPrimarySuperLight active:stroke-sprPrimary '/>
                                     <small className=' hidden group-hover:block absolute whitespace-nowrap right-2 bg-sprGray60 rounded-sm p-1 text-white capitalize text-xs' >Export as Excel</small>
@@ -536,6 +470,6 @@ export default function VegetativeStage() {
     </div>
 
 
-    </>
+    </div>
   );
 }

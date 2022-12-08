@@ -1,7 +1,6 @@
-import { Link, Outlet } from "react-router-dom";
 import ModalAddRiceData from "../components/ModalAddRiceData";
 import { useEffect, useState } from "react";
-import { addDoc, collection, collectionGroup, doc, getDoc, getDocs, onSnapshot, orderBy, query, serverTimestamp, setDoc, where } from "firebase/firestore";
+import { collection, collectionGroup, doc, onSnapshot, orderBy, query, serverTimestamp, setDoc } from "firebase/firestore";
 import db from "../firebase-config";
 
 // Icons
@@ -30,15 +29,18 @@ export default function RiceData() {
   const getPage = () => {
     switch (page) {
       case 'vegetative-stage':
-        return <VegetativeStage  />
+        return <VegetativeStage filterSeason={filterSeason} filterYear={filterYear} />
       case 'reproductive-stage':
-        return <ReproductiveStage  />
+        return <ReproductiveStage filterSeason={filterSeason} filterYear={filterYear} />
       case 'grain-characteristics':
-        return <GrainCharacteristics  />
+        return <GrainCharacteristics  filterSeason={filterSeason} filterYear={filterYear}/>
       case 'yield-components':
-        return <YieldComponents />
+        return <YieldComponents filterSeason={filterSeason} filterYear={filterYear}/>
+        default:
+          break;
     }
   }
+
   const [isModalOpen, setIsModalOpen] = useState(false)
   // Rice Data Inputs
   const [riceData, setRiceData] = useState({
@@ -441,23 +443,10 @@ export default function RiceData() {
     }
   };
 
-
-  // Stages Nav Active State ---------------->
-  const [state, setState] = useState(1)
-  const activeOn = (index) => {
-    setState(index)
-  }
-
   // Stages Nav ---------------->
   const [toggleState, setToggleState] = useState(1)
   const toggleTab = (index) => {
     setToggleState(index)
-  }
-
-  // Change Seasons
-  const [seasonToOutlet, setSeasonToOutlet] = useState('All')
-  const changeSeason = (e) => {
-    setSeasonToOutlet(e.target.value)
   }
 
 
@@ -474,7 +463,7 @@ export default function RiceData() {
     return unsub;
   }, []);
 
-  // Get All Rice List to check if Exisiting
+  // Get All Rice List to check if Exisiting -------------->
   const [riceDataExists, setRiceDataExists] = useState(false)
   const [riceList, setRiceList] = useState([]);
 
@@ -488,11 +477,6 @@ export default function RiceData() {
     return unsub;
   }, []);
 
-
-  console.log('Add Rice Data UsEffect');
-  console.log(riceData.accessionId);
-  console.log(season);
-  console.log(riceData.riceYear);
   useEffect(() => {
 
     const result = riceList.find(rice => rice.id === `${riceData.accessionId}_${season}_${riceData.riceYear}`)
@@ -504,12 +488,31 @@ export default function RiceData() {
       console.log('exisst');
       setRiceDataExists(true)
     }
-  }, [riceData.accessionId, season, riceData.riceYear])
+  }, [riceData.accessionId, season, riceData.riceYear, riceList])
 
 
 
+  
+  // Passing of Filter Choices to Stages
   const years = [2018, 2019, 2020, 2021, 2022, 2023, 2024, 2025, 2026, 2027, 2028, 2030]
-  console.log(riceData.riceSeason);
+  const [ activeStage, setActiveStage] = useState('Vegetative_Stage')
+  const [filterSeason, setFilterSeason] = useState('All')
+  const [filterYear, setFilterYear] = useState('All')
+
+   // Change Seasons
+   const getSeasonFilter = (e) => {
+     setFilterSeason(e.target.value)
+     
+   }
+   const getYearFilter = (e) => {
+     setFilterYear(e.target.value)
+   }
+ 
+
+  console.log('Below me is trial function');
+ console.log(activeStage);
+ console.log(filterSeason);
+ console.log(filterYear);
 
   return (
     <>
@@ -523,11 +526,57 @@ export default function RiceData() {
         </header>
       
         {/* Main */}
-        <section className=" w-full flex flex-auto overflow-auto rounded-lg scrollbar  mt-2 border  border-slate-200" >
+        {/* Filters */}
+        <div className="bg-sprPrimaryLight ml-9 rounded-t-lg">
+           <div className="flex p-1  gap-2">
+         <div className="relative ">
+              <input
+                className=" pl-2  text-sm placeholder:text-sprPrimary/80 text-sprPrimary focus:border-none  rounded-full shadow-inner shadow-slate-200 focus:outline-none focus:ring-1 focus:ring-sprPrimary  "
+                type="text"
+                placeholder="Find a Rice"
+                
+              />
+              <button className="  h-full px-1 rounded-full absolute right-0 bg-sprPrimary">
+                <SearchIcon className="stroke-white h-3" />
+              </button>
+          </div>
+        <div className=" flex" >
+        <div className="bg-sprPrimaryLight text-white  text-sm rounded-full pl-2 pr-10 flex items-center">
+          <p>Season</p>
+        </div>
+        <div className=" -ml-9">
+          <select value={filterSeason} name="riceSeason" onChange={getSeasonFilter}  className="rounded-full  text-sprPrimary text-sm  focus:outline-none focus:ring-1 focus:ring-sprPrimary border border-white ">
+            <option value="All">All</option>
+            <option value="Dry_Season">Dry</option>
+            <option value="Wet_Season">Wet</option>
+          </select>
+        </div>
+        </div>
+        <div className=" flex" >
+        <div className="bg-sprPrimaryLight text-white  text-sm rounded-full pl-2 pr-10 flex items-center">
+          <p>Year</p>
+        </div>
+        <div className=" -ml-9">
+          <select value={filterYear} name="riceSeason" onChange={getYearFilter}  className="rounded-full  text-sprPrimary text-sm  focus:outline-none focus:ring-1 focus:ring-sprPrimary border border-white ">
+            <option value="All">All</option>
+            {
+                                        years.map((e) =>
+                                            <option value={e} >{e}</option>
+
+                                        )
+                                    }
+          </select>
+        </div>
+
+
+
+        </div>
+      </div>
+        </div>
+        {/* Table */}
+        <section className=" w-full flex flex-auto overflow-auto rounded-lg rounded-tl-lg rounded-t-none scrollbar   border  border-slate-200" >
           <div className="">
-
-            <RiceTables onChange={setPage} />
-
+            <RiceTables onChange={setPage} activeStage= {setActiveStage}/>
           </div>
 
           <div className="  w-full max-h-full flex  flex-auto overflow-auto scrollbar">
