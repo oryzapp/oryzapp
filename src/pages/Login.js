@@ -51,6 +51,8 @@ export default function Login() {
 	const [disabledError,setDisabledError] = useState(false)
 	const [firebaseError, setFirebaseError] = useState(false)
 	const [firebaseErrMess, setFirebaseErrMess] = useState('')
+	const [errorMessage, setErrorMessage] = useState('error')
+	const [isError, setIsError] = useState(false)
 
 	// Login--------------->
 	const handleLogIn = async (e) => {
@@ -58,30 +60,45 @@ export default function Login() {
 
 		try {
 			e.preventDefault();
+
 			const matchUser = users?.find((dbUser) => dbUser?.email === state?.email)
-			if(matchUser.role === 'Disabled'){
-					setDisabledError(true)
-					setTimeout(()=>{
-						setDisabledError(false)
-						setState(initialState)
 
-					},3000)
-
+			if( matchUser === undefined){
+				setIsError(true)
+				setErrorMessage('* Account does not exist')
+				setState(initialState)
+				setTimeout(()=>{
+					setIsError(false)
+				},5000)
+				
 			}
 			else{
-			await login(state.email, state.password)
-			navigate('/')
+				if(matchUser.role === 'Disabled'){
+				setIsError(true)
+				setErrorMessage('*Account is Disabled')
+				setTimeout(()=>{
+					setIsError(false)
+				},5000)
+				}
+				else{
+					setIsError(false)
+					await login(state.email, state.password)
+					navigate('/')
+				}
 			}
-			
 
 		} catch (error) {
-			console.log(state);
-			setError(true)
+			setIsError(true)
+			setErrorMessage('* Incorrect email or password')
+			console.log(error.message);
 			setTimeout(()=>{
-						setError(false)
-						setState(initialState)
-
-			},3000)
+				setIsError(false)
+			},5000)
+			setState({ 
+				email:state.email,
+				password:''
+			})
+			
 
 		}
 	}
@@ -107,20 +124,23 @@ export default function Login() {
 			const matchUser = users?.find((dbUser) => dbUser?.email === state?.email)
 			console.log(matchUser);
 			if( matchUser !== undefined){
-				setFirebaseError(true)
-				setTimeout(()=>{
-					setFirebaseError(false)
-				},5000)
+				setIsError(true)
+				setErrorMessage('* Email already in use')
 			}
 			else{
 				if (state.password.length <= 6) {
-					setErrorPassword(true)
-					setTimeout(() => { setErrorPassword(false) }, 5000)
+					
+					setIsError(true)
+					setErrorMessage('* Password should be at least 8 Characters')
+					setState({ 
+						email:state.email,
+						password:''
+					})
 				}
 				else{
 					// Encrypt Password to save to database
+					setIsError(false)
 					const enPass = encode(state.password)
-
 					const collectionRef = doc(db, "AUTH",state.email)
 					const payLoad = {
 						email: state.email,
@@ -171,11 +191,9 @@ try {
 			const matchUser = users?.find((dbUser) => dbUser?.email === scannedEmail)
 			
 			if(matchUser.role === 'Disabled'){
-					setDisabledError(true)
-					setTimeout(()=>{
-						setDisabledError(false)
-					},10000)
-
+				setIsError(true)
+				setErrorMessage('* Sorry your account is disabled')
+					
 			}
 			else{
 				logginIn()
@@ -212,11 +230,8 @@ try {
 				<div className=" m-2 mb-6">
 					<OryzappLogo className="h-10" />
 				</div>
-				{firebaseError === true ? <div className="text-sprTertiary/80 text-sm text-center">*Email already in use</div>:<></>}
+				{isError === true ? <div className="text-sprTertiary/80 text-sm text-center">{errorMessage}</div>:<></>}
 				{/* {firebaseError === true ? <div className="text-sprTertiary/80 text-sm text-center">{firebaseErrMess === 'Firebase: Error (auth/email-already-in-use).'?'*Email Already in Use':''}</div>:<></>} */}
-				{disabledError === true ? <div className="text-sprTertiary/80 text-sm text-center">*Sorry your account is disabled</div> : <></>}
-				{errorPassword === true ? <div className="text-sprTertiary/80 text-sm text-center">*Password should be at least 8 characters</div> : <></>}
-				{error == true ? <div className="text-sprTertiary/80 text-sm text-center">*Incorrect username or password</div> : <></>}
 				<div className={loginWithUsername === 'signup' ? "w-52 h-52 rounded-lg " : " hidden"}>
 					<form onSubmit={handleSignUp}>
 						<div className="flex flex-col pb-3">
@@ -263,12 +278,13 @@ try {
 				<div className={loginWithUsername === true ? "hidden" : "cursor-pointer"} onClick={() => {
 					setLoginWithusername(true)
 					setState(initialState)
-					setError(false)
+				setIsError(false)
 				}}><u className="text-yellow-500 font-light underline">Log In with Email</u></div>
+
 				<div className={loginWithUsername === false ? "hidden" : "cursor-pointer"} onClick={() => {
 					setState(initialState)
 					setLoginWithusername(false)
-					setError(false)
+				setIsError(false)
 
 				}}><u className="text-yellow-500 font-light" >Log In with Scanner</u></div>
 				<div className={loginWithUsername === 'signup' ? "hidden" : "pt-2 cursor-pointer flex text-sm"} onClick={() => {
