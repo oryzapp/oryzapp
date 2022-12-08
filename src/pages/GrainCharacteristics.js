@@ -373,15 +373,18 @@ export default function GrainCharacteristics() {
         </table>
 
         <table className=" text-sm sticky right-0 ">
-         <thead className="text-xs font-medium uppercase text-center bg-white flex justify-center">
-             <h1 className="group" onClick={()=>{exportExcel()}}>
-                                    <ExcelIcon className='stroke-sprPrimary h-4 hover:stroke-sprPrimarySuperLight active:stroke-sprPrimary'/>
-                                    <small className=' hidden group-hover:block absolute whitespace-nowrap right-2 bg-sprGray60 rounded-sm p-1 text-white capitalize text-xs' >Export as Excel</small>
-									</h1>
+        <thead className="text-xs font-medium uppercase text-center bg-white flex justify-center">
+          <h1 className="opacity-0">I</h1>
           </thead>
           <tbody className=" flex bg-white   ">
             <div className="hidden sm:block flex-auto divide-y divide-slate-300  ">
-              <div className=" py-3 font-medium text-sprPrimary opacity-0">Action</div>
+              <div className=" py-3 font-medium text-sprPrimary flex justify-center">
+              <h1 className="group" onClick={()=>{exportExcel()}}>
+                                    <ExcelIcon className='stroke-sprPrimary h-5 hover:stroke-sprPrimarySuperLight active:stroke-sprPrimary '/>
+                                    <small className=' hidden group-hover:block absolute whitespace-nowrap right-2 bg-sprGray60 rounded-sm p-1 text-white capitalize text-xs' >Export as Excel</small>
+									</h1>
+
+              </div>
               {riceData.map((rice) => (
                 <div className=" px-1 py-2 flex gap-1 border-l border-slate-400">
                   <button
