@@ -1,15 +1,38 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { auth } from '../firebase-config'
 import ModalProfile from './ModalProfile'
 import {ReactComponent as OutIcon} from '../assets/logout.svg'
+import { onAuthStateChanged } from 'firebase/auth'
+import { collection, doc, getDoc, setDoc } from 'firebase/firestore'
+import db from "../firebase-config";
+
 
 export default function ModalTopbarBox() {
     const navigate = useNavigate()
 
-     const onSignOut = async () => {
-    await auth.signOut()
-				navigate('/login');
+    const [user, setUser] = useState('')
+    useEffect(() => {
+      const unsub = onAuthStateChanged(auth, async (user) => {
+        setUser(user.email)
+      })
+    },[])
+
+      const onSignOut = async () => {
+
+	    const docRef = doc(db, 'AUTH',user)
+      const docSnap = await getDoc(docRef);
+
+      // console.log(docSnap.data().type);
+      const payLoad = {
+        type:'Old',
+      }
+
+      // Store Credentials
+      await setDoc(docRef, payLoad);
+
+      await auth.signOut()
+			navigate('/login');
     
   }
 

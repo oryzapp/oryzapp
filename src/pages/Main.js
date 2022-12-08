@@ -13,6 +13,7 @@ import { collection, onSnapshot } from "firebase/firestore";
 import db, { auth } from "../firebase-config";
 import { onAuthStateChanged } from "firebase/auth";
 import { useNavigate } from 'react-router-dom';
+import ModalSuccess from "../components/ModalSuccess";
 
 
 const Main = () => {
@@ -34,6 +35,7 @@ const Main = () => {
 		return unsub;
 	}, [])
 
+	
 	 // Window Width------------>
   const [windowWidth, setWindowWidth] = useState(window.innerWidth)
 
@@ -47,6 +49,10 @@ const Main = () => {
 
   console.log(windowWidth);
 
+  		// prompts
+	const [isPromptOpen, setIsPromptOpen] = useState(true)
+	const message = 'Signed Up Succesfully!'
+
 
 	// Authentication--------->
 	useEffect(() => {
@@ -54,7 +60,14 @@ const Main = () => {
 
 			try {
 				if (user !== null) {
+				console.log(user?.type);
 				const matchUser = users.find((dbUser) => dbUser.email === user.email)
+
+				if(user.type === 'New'){
+					setIsPromptOpen(true)
+				}
+
+
 
 				if (matchUser.role === 'Administrator') {
 					setIsAdmin(true)
@@ -125,6 +138,8 @@ const Main = () => {
 	}
 
 	return (
+		<>
+			<ModalSuccess open={isPromptOpen} close={()=>{setIsPromptOpen(false)}} message={message}/>
 		<div className=" bg-sprBackground flex flex-col h-screen relative ">
 			<div className="">
 				<Topbar />
@@ -135,6 +150,7 @@ const Main = () => {
 
 			</div>
 		</div>
+		</>
 	)
 }
 
