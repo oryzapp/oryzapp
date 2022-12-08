@@ -173,7 +173,7 @@ const ModalDelete = ({ open, closeModal, modalId, delId }) => {
                         </button> */}
                         <CloseIcon className='group-hover:stroke-white stroke-sprGray50 hover:stroke-sprGray80 active:stroke-sprPrimary h-5' onClick={closeModal}/>
                     </div>
-                    <h1 className='text-lg font-medium text-center'>Are you sure you want to delete <big className='text-sprPrimaryDark'>{modalId}</big> ?</h1>
+                    <h1 className='text-lg font-medium text-center'>Are you sure you want to delete <big className='text-sprPrimaryDark'>CL-R{modalId}</big> ?</h1>
                     <h1 className='text-sm text-center text-sprGray70'>This will also delete all Rice Data containing the Rice Accession</h1>
                     <div className='flex gap-3 mt-6'>
                         <button onClick={closeModal} className='rounded-full   bg-sprGray40 p-2  text-white hover:bg-sprGray10 hover:text-sprGray50'>Cancel</button>

@@ -1,7 +1,9 @@
-import { collection, collectionGroup, onSnapshot, orderBy, query } from "firebase/firestore";
+import { collection, collectionGroup, onSnapshot, orderBy, query, where } from "firebase/firestore";
 import { useEffect, useState } from "react";
 import { ReactComponent as EditIcon } from '../assets/edit-icon.svg'
 import { ReactComponent as ExcelIcon } from '../assets/excel-icon.svg'
+import { ReactComponent as SearchIcon } from "../assets/search-icon.svg"
+
 import ModalGrainUpdate from "../components/ModalGrainUpdate";
 
 import db from "../firebase-config";
@@ -9,28 +11,53 @@ import db from "../firebase-config";
 
 
 
-export default function GrainCharacteristics({ season }) {
-  // List and Filter ---------------------------->
+export default function GrainCharacteristics() {
+    // Season Filter
+    const [season, setSeason] = useState('All')
+    const changeSeason = (e) => {
+      setSeason(e.target.value)
+    }
+ 
+     // Year Filter ---------------> 
+    const [year, setYear] = useState('All')
+     const years = [2018, 2019, 2020, 2021, 2022, 2023, 2024, 2025, 2026, 2027, 2028, 2030]
+     const changeYear = (e) => {
+         setYear(e.target.value)
+     }
+ 
+  // List All and Filter ------------------->
   const [riceData, setRiceData] = useState([])
   useEffect(() => {
-
-    let riceCollectionRef = collectionGroup(db, "GC_Raw_Rice_Data");
-
-    if (season === 'All') {
-      riceCollectionRef = collectionGroup(db, "GC_Raw_Rice_Data");
+ 
+    var riceCollectionRef;
+ 
+    if (season === 'All' && year === 'All') {
+        riceCollectionRef = collectionGroup(db, "GC_Raw_Rice_Data");
+ 
     }
-    if (season === "Wet_Season") {
+    if (season === 'All' && year !== 'All') {
+        riceCollectionRef = query(collectionGroup(db, "GC_Raw_Rice_Data"), where("riceYear", "==", year));
+    }
+    if (season === 'Wet_Season' && year === 'All') {
       riceCollectionRef = query(collection(db, `/SPR/Rice_Seasons/Seasons/${season}/Stages/Grain_Characteristics/GC_Raw_Rice_Data`))
+ 
     }
-    if (season === "Dry_Season") {
+    if (season === 'Dry_Season' && year === 'All') {
       riceCollectionRef = query(collection(db, `/SPR/Rice_Seasons/Seasons/${season}/Stages/Grain_Characteristics/GC_Raw_Rice_Data`))
+ 
     }
-
+    if (season === 'Dry_Season' && year !== 'All') {
+        riceCollectionRef = query(collection(db, `/SPR/Rice_Seasons/Seasons/${season}/Stages/Grain_Characteristics/GC_Raw_Rice_Data`), where("riceYear", "==", year))
+    }
+    if (season === 'Wet_Season' && year !== 'All') {
+        riceCollectionRef = query(collection(db, `/SPR/Rice_Seasons/Seasons/${season}/Stages/Grain_Characteristics/GC_Raw_Rice_Data`), where("riceYear", "==", year))
+    }
+ 
     onSnapshot(riceCollectionRef, (snapshot) => {
       setRiceData(snapshot.docs.map((doc) => ({ ...doc.data(), id: doc.id })));
     });
-
-  }, [season]);
+ 
+  }, [season,year]);
 
    // Update Grain Characteristics
    const [isModalOpen, setIsModalOpen] = useState(false)
@@ -64,6 +91,57 @@ export default function GrainCharacteristics({ season }) {
 
   return (
     <>
+   <div className="flex flex-col">
+   <div className="flex p-1 bg-sprPrimaryOffLight/40 gap-2">
+         {/* Search Bar */}
+         <div className="relative ">
+              <input
+                className=" pl-2  text-sm placeholder:text-sprPrimary/80 text-sprPrimary focus:border-none  rounded-full shadow-inner shadow-slate-200 focus:outline-none focus:ring-1 focus:ring-sprPrimary  "
+                type="text"
+                placeholder="Find a Rice"
+                
+              />
+              <button className="  h-full px-1 rounded-full absolute right-0 bg-sprPrimary">
+                <SearchIcon className="stroke-white h-3" />
+              </button>
+          </div>
+        {/* Season */}
+        <div className=" flex" >
+        <div className="bg-sprPrimaryLight text-white  text-sm rounded-full pl-2 pr-10 flex items-center">
+          <p>Season</p>
+        </div>
+        <div className=" -ml-9">
+          <select value={season} name="riceSeason" onChange={changeSeason}  className="rounded-full  text-sprPrimary text-sm  focus:outline-none focus:ring-1 focus:ring-sprPrimary border border-white ">
+            <option value="All">All</option>
+            <option value="Dry_Season">Dry</option>
+            <option value="Wet_Season">Wet</option>
+          </select>
+        </div>
+
+
+
+        </div>
+        {/* Year */}
+        <div className=" flex" >
+        <div className="bg-sprPrimaryLight text-white  text-sm rounded-full pl-2 pr-10 flex items-center">
+          <p>Year</p>
+        </div>
+        <div className=" -ml-9">
+          <select value={year} name="riceYear" onChange={changeYear}  className="rounded-full  text-sprPrimary text-sm  focus:outline-none focus:ring-1 focus:ring-sprPrimary border border-white ">
+            <option value="All">All</option>
+            {
+                                        years.map((e) =>
+                                            <option value={e} >{e}</option>
+
+                                        )
+                                    }
+          </select>
+        </div>
+
+
+
+        </div>
+      </div>
       <div className="  flex text-sm text-sprGray60">
         <table className="">
           <thead className="text-xs uppercase font-medium text-center bg-sprPrimaryOffLight">Accession</thead>
@@ -297,7 +375,7 @@ export default function GrainCharacteristics({ season }) {
         <table className=" text-sm sticky right-0 ">
          <thead className="text-xs font-medium uppercase text-center bg-white flex justify-center">
              <h1 className="group" onClick={()=>{exportExcel()}}>
-                                    <ExcelIcon className='stroke-sprPrimary h-5 hover:stroke-sprPrimarySuperLight active:stroke-sprPrimary'/>
+                                    <ExcelIcon className='stroke-sprPrimary h-4 hover:stroke-sprPrimarySuperLight active:stroke-sprPrimary'/>
                                     <small className=' hidden group-hover:block absolute whitespace-nowrap right-2 bg-sprGray60 rounded-sm p-1 text-white capitalize text-xs' >Export as Excel</small>
 									</h1>
           </thead>
@@ -328,6 +406,7 @@ export default function GrainCharacteristics({ season }) {
         <ModalGrainUpdate open={isModalOpen} closeModal={()=>{setIsModalOpen(false)}} modalId={modalId}  modalYear={modalYear} modalSeason={modalSeason} gcRiceData={gcRiceData}/>
       </div>
 
+   </div>
     </>
 
 

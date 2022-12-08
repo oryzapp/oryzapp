@@ -555,7 +555,7 @@ export default function RiceAccessions() {
 										readOnly={isEdit === true ? true : false}
 									/>
 								</div>
-								<p className="text-sprPrimaryLight text-sm">Enter Rice Accession ID above</p>
+								<p className="text-sprPrimaryLight text-sm">{isEdit === false ? 'Enter Rice Accession ID Above':'------------------'}</p>
 							</div>
 						<div className="flex flex-auto flex-row  w-full ">
 								<div className="flex flex-col justify-center -space-y-2  w-1/2  mb-4">
@@ -622,7 +622,7 @@ export default function RiceAccessions() {
 									className="bg-gradient-to-b from-sprPrimary to-sprPrimaryDarkest  active:bg-gradient-to-b active:from-sprPrimary active:to-sprPrimaryDarkest hover:bg-gradient-to-t hover:from-sprPrimaryLight hover:to-sprPrimaryLight rounded-full py-2 px-3 text-sm font-medium text-white shadow-slate-300"
 
 								>
-									Save
+									{isEdit === false ? 'Save':'Update'}
 								</button>
 							</div>
 

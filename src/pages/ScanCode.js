@@ -1,6 +1,4 @@
 import { useEffect, useState } from "react";
-import ModalRiceInfo from "../components/ModalAccessionsInfo";
-import closeIcon from '../assets/close.svg'
 import QrScanner from "qr-scanner";
 import { collection, collectionGroup, doc, getDoc, onSnapshot, query, where } from "firebase/firestore";
 import db from '../firebase-config'
@@ -10,8 +8,6 @@ import BackgroundImage from '../assets/background-image.svg'
 // Icons
 import { ReactComponent as ScanCodeIcon } from '../assets/qr-code-icon.svg'
 import { ReactComponent as ImageIcon } from '../assets/image-icon.svg'
-import { useRef } from "react";
-import ModalAccessionsInfo from "../components/ModalAccessionsInfo";
 import ModalRiceList from "../components/ModalRiceList";
 export default function ScanCode() {
 
@@ -117,7 +113,8 @@ console.log(qrData);
         </h1>
       </header>
       {/* main */}
-      <div className="flex h-full relative justify-center items-center ">
+      <section className="flex-auto overflow-auto  scrollbar bg-white rounded-lg border border-slate-200 w-full">
+      <div className="flex w-full h-full sm:max-h-full lg:max-w-full relative items-center ">
 
         <div className=" lg:bg-white lg:drop-shadow-sm w-full flex flex-col items-center gap-5 z-10 lg:p-20 lg:mx-40 rounded-lg relative"  >
 
@@ -198,6 +195,9 @@ console.log(qrData);
 
         </div>
       </div>
+ 
+</section>
+    
 {/* Modal */}
             <ModalRiceList open={isModalOpen} closeModal={()=>{setIsModalOpen(false)}} currentData={currentData}/>
 

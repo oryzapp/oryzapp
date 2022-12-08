@@ -190,7 +190,6 @@ export default function RiceList() {
                         {/* Search bar */}
                         <div className="relative ">
                             <div className="relative drop-shadow-md hidden sm:block z-20">
-                                <form>
                                     <input
                                         className=" pl-2 py-2   text-sm placeholder:text-sprPrimary/50 text-sprPrimary focus:outline-none focus:border-none  rounded-full "
                                         type="text"
@@ -201,7 +200,6 @@ export default function RiceList() {
                                     <button className="  h-full px-2 rounded-full absolute right-0 bg-sprPrimaryLight ">
                                         <SearchIcon stroke="white" />
                                     </button>
-                                </form>
                             </div>
 
                         </div>
