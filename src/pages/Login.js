@@ -11,6 +11,7 @@ import { auth } from "../firebase-config";
 import QrScanner from "qr-scanner"
 import { async } from "@firebase/util"
 import { onAuthStateChanged } from "firebase/auth"
+import ModalSuccess from "../components/ModalSuccess"
 
 
 
@@ -46,13 +47,24 @@ export default function Login() {
 	})
 
 	// print errors
-	const [error, setError] = useState(false)
-	const [errorPassword, setErrorPassword] = useState(false)
-	const [disabledError,setDisabledError] = useState(false)
-	const [firebaseError, setFirebaseError] = useState(false)
-	const [firebaseErrMess, setFirebaseErrMess] = useState('')
 	const [errorMessage, setErrorMessage] = useState('error')
 	const [isError, setIsError] = useState(false)
+	// prompts
+	const [isPromptOpen, setIsPromptOpen] = useState(true)
+
+
+	// Users----------------->
+	const [users, setUsers] = useState([])
+	useEffect(() => {
+	  const collectionRef = collection(db, 'AUTH')
+	  const unsub = onSnapshot(collectionRef, (snapshot) => {
+		setUsers(
+		  snapshot.docs.map((doc) => ({ ...doc.data(), id: doc.id }))
+		);
+	  });
+  
+	  return unsub;
+	}, [])
 
 	// Login--------------->
 	const handleLogIn = async (e) => {
@@ -102,21 +114,7 @@ export default function Login() {
 
 		}
 	}
-
-	// Users----------------->
-  const [users, setUsers] = useState([])
-  useEffect(() => {
-    const collectionRef = collection(db, 'AUTH')
-    const unsub = onSnapshot(collectionRef, (snapshot) => {
-      setUsers(
-        snapshot.docs.map((doc) => ({ ...doc.data(), id: doc.id }))
-      );
-    });
-
-    return unsub;
-  }, [])
-
-
+// Sign Up User
 	const handleSignUp = async (e) => {
 		try {
 			e.preventDefault(); 
@@ -148,6 +146,7 @@ export default function Login() {
 						role: 'User',
 						searchIndex: `${state.email} User`
 					}
+					setIsPromptOpen(true)
 					// Store Credentials
 					await setDoc(collectionRef, payLoad);
 
@@ -164,7 +163,6 @@ export default function Login() {
 			console.log(error);
 		}
 	}
-
 
 // Qr Scanner log In
 const scanRef = useRef(null)
@@ -222,10 +220,11 @@ try {
 }
 }
 
-
+// For Prompt
 
 	return (
 		<div className="h-full bg-white absolute top-0 bottom-0 right-0 left-0 flex justify-center items-center">
+			<ModalSuccess open={isPromptOpen} close={()=>{setIsPromptOpen(false)}}/>
 			<div className="bg-slate-100  p-4 pt-10 -mt-16 rounded-xl  w-80 flex flex-col items-center justify-center drop-shadow-xl ">
 				<div className=" m-2 mb-6">
 					<OryzappLogo className="h-10" />
@@ -290,7 +289,7 @@ try {
 				<div className={loginWithUsername === 'signup' ? "hidden" : "pt-2 cursor-pointer flex text-sm"} onClick={() => {
 					setState(initialState)
 					setLoginWithusername('signup')
-					setError(false)
+					setIsError(false)
 					
 				}}><p className="font-light text-sprGray">Don't have an account?</p> <p className="text-yellow-500 font-light underline">Sign Up</p></div>
 				{/* <div className="w-full h-32 "></div> */}
