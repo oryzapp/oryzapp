@@ -14,9 +14,12 @@ export default function ModalTopbarBox() {
     const [user, setUser] = useState('')
     useEffect(() => {
       const unsub = onAuthStateChanged(auth, async (user) => {
-        setUser(user.email)
+        setUser(user?.email)
       })
     },[])
+
+    console.log('I am in topbar box');
+    console.log(user);
 
       const onSignOut = async () => {
 
@@ -25,7 +28,11 @@ export default function ModalTopbarBox() {
 
       // console.log(docSnap.data().type);
       const payLoad = {
-        type:'Old',
+       email: docSnap.data().email,
+						password: docSnap.data().password,
+						role: docSnap.data().role,
+						type:'Old',
+						searchIndex: docSnap.data().email
       }
 
       // Store Credentials

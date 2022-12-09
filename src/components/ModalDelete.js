@@ -97,8 +97,12 @@ const ModalDelete = ({ open, closeModal, modalId, delId }) => {
 
     }, [modalId])
 
+
+    const [deleteList, setDeleteList] = useState([])
     const deleteRiceAccession = async (accessionId, id) => {
         try {
+
+            var deleteList = [];
             console.log('Iam' + accessionId);
             const batch = writeBatch(db)
 
