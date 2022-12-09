@@ -34,6 +34,8 @@ export default function ModalAccessionsInfo({ open, modalId, closeModal }) {
         }
 
     }, [open])
+    console.log('I am modal');
+    console.log(riceAccessions);
 
     const [season, setSeason] = useState('Wet_Season')
     const [year, setYear] = useState('2018')
@@ -125,8 +127,11 @@ export default function ModalAccessionsInfo({ open, modalId, closeModal }) {
                 {/* main */}
                 <div className=" flex-auto flex flex-col gap-2">
                     <div className="w-full h-1/4 flex ">
-                        <div className="  bg-slate-100  sm:w-1/4  rounded-md">
-                            <div className=" h-full rounded-md"></div>
+                        <div className="  bg-slate-100  sm:w-1/3  rounded-md">
+                           
+                            {riceAccessions.map((rice)=>(
+                                <div>{rice.imageUrl === ''? <div className=" h-full rounded-md"></div>:<img src={rice.imageUrl} alt="" className=" rounded-md h-full"/>}</div>
+                            ))}
                         </div>
 
                         {riceAccessions.map((rice) => (
