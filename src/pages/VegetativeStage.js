@@ -423,12 +423,6 @@ export default function VegetativeStage({filterSeason, filterYear, searchInput})
           </tbody>
         </table>
         <table className=" text-sm sticky right-0 z-100">
-          {/* <thead className="text-xs font-medium uppercase text-center bg-white flex justify-center">
-             <h1 className="group" onClick={()=>{exportExcel()}}>
-                                    <ExcelIcon className='stroke-sprPrimary h-4 hover:stroke-sprPrimarySuperLight active:stroke-sprPrimary '/>
-                                    <small className=' hidden group-hover:block absolute whitespace-nowrap right-2 bg-sprGray60 rounded-sm p-1 text-white capitalize text-xs' >Export as Excel</small>
-									</h1>
-          </thead> */}
           <thead className="text-xs font-medium uppercase text-center bg-white flex justify-center sticky top-0">
           <h1 className="opacity-0">I</h1>
           </thead>

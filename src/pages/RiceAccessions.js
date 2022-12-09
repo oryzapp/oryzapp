@@ -15,7 +15,7 @@ import { useEffect, useState } from "react";
 import ModalAddRiceAcc from "../components/ModalAddRiceAcc";
 import db from "../firebase-config";
 import { storage } from "../firebase-config";
-import { ref, uploadBytes } from "firebase/storage"
+import { getDownloadURL, ref, uploadBytes } from "firebase/storage"
 import {
 	addRiceAccession,
 	editRiceAccessionID,
@@ -50,36 +50,42 @@ export default function RiceAccessions() {
 	// Handle Form Submit ------------------>
 	const [imageUpload, setImageUpload] = useState(null)
 
+	const [imageUrl,setImageUrl] = useState('')
+
 	const handleSubmit = async (e) => {
 		try {
 			e.preventDefault();
-			const collectionRef = collection(db, "SPR/Rice_Accessions/Accession_IDs");
-			const payLoad = {
+			
+			if (accessionExists === true) {
+				alert('Change Accession')
+			}
+			else {
+				const imageRef = ref(storage, `images/${state.accession} `)
+				if (imageUpload !== null) {
+					await uploadBytes(imageRef, imageUpload)
+					await getDownloadURL(imageRef).then(url=>setImageUrl(url))
+					console.log('inside if');
+					console.log(imageUrl);
+				}
+				console.log('outside if');
+					console.log(imageUrl);
+
+				const collectionRef = collection(db, "SPR/Rice_Accessions/Accession_IDs");
+				const payLoad = {
 				searchIndex: `${state.accession} ${state.variety} ${state.source} ${state.classification}`,
 				accessionId: state.accession,
 				classification: state.classification,
 				variety: state.variety,
 				source: state.source,
+				imageUrl:imageUrl,
 				timestamp: serverTimestamp(),
 			};
-
-			if (accessionExists === true) {
-				alert('Change Accession')
-			}
-			else {
-				if (imageUpload !== null) {
-					const imageRef = ref(storage, `images/${state.accession} `)
-					uploadBytes(imageRef, imageUpload).then(() => {
-						alert("image uploaded")
-					})
-				}
-
+			console.log(payLoad);
 				await addDoc(collectionRef, payLoad);
-
-
-
 				setIsModalOpen(false)
 				setState(initialState)
+			alert('Saved!')
+
 			}
 		} catch (error) {
 			alert(error);
@@ -102,7 +108,7 @@ export default function RiceAccessions() {
 	}
 
 	const handleChange = (e) => {
-		setState({
+		setState({                                                                                
 			...state,
 			[e.target.name]: e.target.value,
 		});
@@ -151,25 +157,27 @@ export default function RiceAccessions() {
 	const submitEdit = async (e) => {
 		try {
 			e.preventDefault()
+		
+			if (imageUpload !== null) {
+				const imageRef = ref(storage, `images/${state.accession} `)
+				await uploadBytes(imageRef, imageUpload)
+				await getDownloadURL(imageRef).then(url=>setImageUrl(url))
+			}
 			const docRef = doc(db, "SPR/Rice_Accessions/Accession_IDs", editId);
 			const payLoad = {
 				searchIndex: `${state.accession} ${state.variety} ${state.source} ${state.classification}`,
 				classification: state.classification,
 				variety: state.variety,
 				source: state.source,
+				imageUrl:imageUrl,
 				timestamp: serverTimestamp(),
 			};
 
-			if (imageUpload !== null) {
-				const imageRef = ref(storage, `images/${state.accession} `)
-				uploadBytes(imageRef, imageUpload).then(() => {
-					alert("image uploaded")
-				})
-			}
 			await updateDoc(docRef, payLoad);
 			setIsModalOpen(false)
 			setState(initialState)
 			setIsEdit(false)
+			alert('updated!')
 		} catch (error) {
 			console.log(error);
 		}

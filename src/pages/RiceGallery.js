@@ -49,9 +49,9 @@ export default function RiceGallery() {
           <div className="flex w-full max-h-0 lg:max-w-full relative bg-yellow-400">
             <div className=" grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 p-3">
                       {imageList.map((item) => (
-                        <div className="bg-sprPrimarySuperLight m-1 p-2 flex justify-center items-start relative rounded-xl flex-col">
+                        <div className="bg-white m-1 p-2 flex justify-center items-start relative rounded-xl flex-col border border-slate-100 drop-shadow-sm hover:bg-sprPrimarySuperLight">
                           <div className="h-40 bg-white  rounded-md">
-                        <img className="w-full" src={item.url} />
+                        <img className="w-full rounded-md" src={item.url} />
 
                           </div>
                         <div className="">
