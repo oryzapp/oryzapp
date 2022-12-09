@@ -35,7 +35,6 @@ const Main = () => {
 		return unsub;
 	}, [])
 
-	
 	 // Window Width------------>
   const [windowWidth, setWindowWidth] = useState(window.innerWidth)
 
@@ -50,24 +49,23 @@ const Main = () => {
   console.log(windowWidth);
 
   		// prompts
-	const [isPromptOpen, setIsPromptOpen] = useState(true)
-	const message = 'Signed Up Succesfully!'
+		  const [isPromptOpen, setIsPromptOpen] = useState(false)
+		  const message = 'Signed Up Succesfully!'
+		  console.log(isPromptOpen);
 
 
-	// Authentication--------->
+	// Authentication // Current user--------->
 	useEffect(() => {
 		const unsub = onAuthStateChanged(auth, async (user) => {
-
 			try {
 				if (user !== null) {
 				console.log(user?.type);
 				const matchUser = users.find((dbUser) => dbUser.email === user.email)
-
-				if(user.type === 'New'){
+					console.log('hello old');
+				if(matchUser.type === 'New'){
+					console.log('hello New');
 					setIsPromptOpen(true)
 				}
-
-
 
 				if (matchUser.role === 'Administrator') {
 					setIsAdmin(true)

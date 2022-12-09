@@ -133,14 +133,14 @@ export default function Login() {
 						password: enPass,
 						role: 'User',
 						type:'New',
-						searchIndex: `${state.email} User`
+						searchIndex: `${state.email} `
 					}
 					// Store Credentials
 					await setDoc(collectionRef, payLoad);
 					
 					// Signing Up
 					await signup(state.email, state.password)
-					
+				
 					navigate('/')
 
 				}
