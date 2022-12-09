@@ -133,10 +133,10 @@ export default function ReproductiveStage({filterSeason, filterYear, searchInput
           </div> */}
       <div className="  flex text-sm text-sprGray60">
         <table className="">
-          <thead className="text-xs font-medium uppercase text-center bg-sprPrimaryOffLight">Accession</thead>
+          <thead className="text-xs font-medium uppercase text-center bg-sprPrimaryOffLight sticky top-0 z-50">Accession</thead>
           <tbody className=" flex ">
             <div className="hidden sm:block flex-auto divide-y divide-slate-300 ">
-              <div className="px-6 py-3 font-medium whitespace-nowrap text-sprPrimary">Accession</div>
+              <div className="px-6 py-3 font-medium whitespace-nowrap text-sprPrimary sticky top-4 bg-white">Accession</div>
               {riceData.map((rice) => (
                 <div className="px-6 py-3 whitespace-nowrap">CL-R{rice.accessionId === "" ? "---" : rice.accessionId}</div>
               ))}
@@ -144,10 +144,10 @@ export default function ReproductiveStage({filterSeason, filterYear, searchInput
           </tbody>
         </table>
         <table className="">
-          <thead className=" text-xs font-medium uppercase text-center bg-sprPrimaryLight">Shelf No.</thead>
+          <thead className=" text-xs font-medium uppercase text-center bg-sprPrimaryLight sticky top-0 z-50">Shelf No.</thead>
           <tbody className=" flex ">
             <div className="hidden sm:block flex-auto divide-y divide-slate-300 ">
-              <div className="px-6 py-3 font-medium whitespace-nowrap text-sprPrimary">#</div>
+              <div className="px-6 py-3 font-medium whitespace-nowrap text-sprPrimary sticky top-4 bg-white">#</div>
               {riceData.map((rice) => (
                 <div className="px-6 py-3 whitespace-nowrap"> {rice.shelfNum === "" ? "---" : rice.shelfNum}</div>
               ))}
@@ -155,16 +155,16 @@ export default function ReproductiveStage({filterSeason, filterYear, searchInput
           </tbody>
         </table>
         <table className="">
-          <thead className=" text-xs font-medium uppercase text-center bg-sprPrimaryOffLight">Year & Season</thead>
+          <thead className=" text-xs font-medium uppercase text-center bg-sprPrimaryOffLight sticky top-0 z-50">Year & Season</thead>
           <tbody className=" flex ">
             <div className="hidden sm:block flex-auto divide-y divide-slate-300 ">
-              <div className="px-6 py-3 font-medium whitespace-nowrap text-sprPrimary">Year</div>
+              <div className="px-6 py-3 font-medium whitespace-nowrap text-sprPrimary sticky top-4 bg-white">Year</div>
               {riceData.map((rice) => (
                 <div className="px-6 py-3 whitespace-nowrap"> {rice.riceYear === "" ? "---" : rice.riceYear}</div>
               ))}
             </div>
             <div className="hidden sm:block flex-auto divide-y divide-slate-300 ">
-              <div className="px-6 py-3 font-medium whitespace-nowrap text-sprPrimary">Season</div>
+              <div className="px-6 py-3 font-medium whitespace-nowrap text-sprPrimary sticky top-4 bg-white">Season</div>
               {riceData.map((rice) => (
                 <div className="px-6 py-3 whitespace-nowrap"> {rice.riceSeason === "" ? "---" : rice.riceSeason}</div>
               ))}
@@ -172,16 +172,16 @@ export default function ReproductiveStage({filterSeason, filterYear, searchInput
           </tbody>
         </table>
         <table className="">
-          <thead className="text-xs uppercase font-medium text-center bg-sprPrimaryLight">Anther</thead>
+          <thead className="text-xs uppercase font-medium text-center bg-sprPrimaryLight sticky top-0 z-50">Anther</thead>
           <tbody className=" flex ">
             <div className="hidden sm:block flex-auto divide-y divide-slate-300 ">
-              <div className="px-6 py-3 font-medium whitespace-nowrap text-sprPrimary">Length</div>
+              <div className="px-6 py-3 font-medium whitespace-nowrap text-sprPrimary sticky top-4 bg-white">Length</div>
               {riceData.map((rice) => (
                 <div className="px-6 py-3 bg-slate-50 whitespace-nowrap"> {rice.antherLength === "" ? "---" : rice.antherLength}</div>
               ))}
             </div>
             <div className="hidden sm:block flex-auto divide-y divide-slate-300 ">
-              <div className="px-6 py-3 font-medium whitespace-nowrap text-sprPrimary">Colour</div>
+              <div className="px-6 py-3 font-medium whitespace-nowrap text-sprPrimary sticky top-4 bg-white">Colour</div>
               {riceData.map((rice) => (
                 <div className="px-6 py-3 whitespace-nowrap"> {rice.antherColour === "" ? "---" : rice.antherColour}</div>
               ))}
@@ -189,34 +189,34 @@ export default function ReproductiveStage({filterSeason, filterYear, searchInput
           </tbody>
         </table>
         <table className="">
-          <thead className="text-xs uppercase font-medium text-center bg-sprPrimaryOffLight">Awns</thead>
+          <thead className="text-xs uppercase font-medium text-center bg-sprPrimaryOffLight sticky top-0 z-50">Awns</thead>
           <tbody className=" flex ">
             <div className="hidden sm:block flex-auto divide-y divide-slate-300 ">
-              <div className="px-6 py-3 font-medium whitespace-nowrap text-sprPrimary">Presence Wild Species</div>
+              <div className="px-6 py-3 font-medium whitespace-nowrap text-sprPrimary sticky top-4 bg-white">Presence Wild Species</div>
               {riceData.map((rice) => (
                 <div className="px-6 py-3 whitespace-nowrap bg-slate-50"> {rice.awnsPresenceWildSpecies === "" ? "---" : rice.awnsPresenceWildSpecies}</div>
               ))}
             </div>
             <div className="hidden sm:block flex-auto divide-y divide-slate-300 ">
-              <div className="px-6 py-3 font-medium whitespace-nowrap text-sprPrimary">Distribution Cultivated Species</div>
+              <div className="px-6 py-3 font-medium whitespace-nowrap text-sprPrimary sticky top-4 bg-white">Distribution Cultivated Species</div>
               {riceData.map((rice) => (
                 <div className="px-6 py-3 whitespace-nowrap"> {rice.awnsDistributionCultivatedSpecies === "" ? "---" : rice.awnsDistributionCultivatedSpecies}</div>
               ))}
             </div>
             <div className="hidden sm:block flex-auto divide-y divide-slate-300 ">
-              <div className="px-6 py-3 font-medium whitespace-nowrap text-sprPrimary">Distribution Early Observation</div>
+              <div className="px-6 py-3 font-medium whitespace-nowrap text-sprPrimary sticky top-4 bg-white">Distribution Early Observation</div>
               {riceData.map((rice) => (
                 <div className="px-6 py-3 whitespace-nowrap bg-slate-50"> {rice.awnsDistributionEarlyobs === "" ? "---" : rice.awnsDistributionEarlyobs}</div>
               ))}
             </div>
             <div className="hidden sm:block flex-auto divide-y divide-slate-300 ">
-              <div className="px-6 py-3 font-medium whitespace-nowrap text-sprPrimary">Length</div>
+              <div className="px-6 py-3 font-medium whitespace-nowrap text-sprPrimary sticky top-4 bg-white">Length</div>
               {riceData.map((rice) => (
                 <div className="px-6 py-3 whitespace-nowrap"> {rice.awnLength === "" ? "---" : rice.awnLength}</div>
               ))}
             </div>
             <div className="hidden sm:block flex-auto divide-y divide-slate-300 ">
-              <div className="px-6 py-3 font-medium whitespace-nowrap text-sprPrimary">Awns Thickness</div>
+              <div className="px-6 py-3 font-medium whitespace-nowrap text-sprPrimary sticky top-4 bg-white">Awns Thickness</div>
               {riceData.map((rice) => (
                 <div className="px-6 py-3 whitespace-nowrap bg-slate-50"> {rice.awnsThickness === "" ? "---" : rice.awnsThickness}</div>
               ))}
@@ -224,16 +224,16 @@ export default function ReproductiveStage({filterSeason, filterYear, searchInput
           </tbody>
         </table>
         <table className="">
-          <thead className="text-xs uppercase font-medium text-center bg-sprPrimaryLight">Lemma</thead>
+          <thead className="text-xs uppercase font-medium text-center bg-sprPrimaryLight sticky top-0 z-50">Lemma</thead>
           <tbody className=" flex ">
             <div className="hidden sm:block flex-auto divide-y divide-slate-300 ">
-              <div className="px-6 py-3 font-medium whitespace-nowrap text-sprPrimary">Colour of Apicus Early Observation</div>
+              <div className="px-6 py-3 font-medium whitespace-nowrap text-sprPrimary sticky top-4 bg-white">Colour of Apicus Early Observation</div>
               {riceData.map((rice) => (
                 <div className="px-6 py-3 whitespace-nowrap"> {rice.lemmaColourofApicusearlyobs === "" ? "---" : rice.lemmaColourofApicusearlyobs}</div>
               ))}
             </div>
             <div className="hidden sm:block flex-auto divide-y divide-slate-300 ">
-              <div className="px-6 py-3 font-medium whitespace-nowrap text-sprPrimary">Anthocyanin Colouration of Area Below Apiculus Early Observation</div>
+              <div className="px-6 py-3 font-medium whitespace-nowrap text-sprPrimary sticky top-4 bg-white">Anthocyanin Colouration of Area Below Apiculus Early Observation</div>
               {riceData.map((rice) => (
                 <div className="px-6 py-3 whitespace-nowrap bg-slate-50"> {rice.lemmaAnthocyaninColourationofAreaBelowApiculusEarlyobs === "" ? "---" : rice.lemmaAnthocyaninColourationofAreaBelowApiculusEarlyobs}</div>
               ))}
@@ -241,10 +241,10 @@ export default function ReproductiveStage({filterSeason, filterYear, searchInput
           </tbody>
         </table>
         <table className="">
-          <thead className="whitespace-nowrap text-xs uppercase font-medium text-center bg-sprPrimaryOffLight">Lemma and Palea</thead>
+          <thead className="whitespace-nowrap text-xs uppercase font-medium text-center bg-sprPrimaryOffLight sticky top-0 z-50">Lemma and Palea</thead>
           <tbody className=" flex ">
             <div className="hidden sm:block flex-auto divide-y divide-slate-300 ">
-              <div className="px-6 py-3 font-medium whitespace-nowrap text-sprPrimary">Colour Early Observation</div>
+              <div className="px-6 py-3 font-medium whitespace-nowrap text-sprPrimary sticky top-4 bg-white">Colour Early Observation</div>
               {riceData.map((rice) => (
                 <div className="px-6 py-3 whitespace-nowrap"> {rice.lemmaandPaleaColourEarlyobs === "" ? "---" : rice.lemmaandPaleaColourEarlyobs}</div>
               ))}
@@ -252,10 +252,10 @@ export default function ReproductiveStage({filterSeason, filterYear, searchInput
           </tbody>
         </table>
         <table className="">
-          <thead className="text-xs uppercase font-medium text-center bg-sprPrimaryLight">Male Sterility</thead>
+          <thead className="text-xs uppercase font-medium text-center bg-sprPrimaryLight sticky top-0 z-50">Male Sterility</thead>
           <tbody className=" flex ">
             <div className="hidden sm:block flex-auto divide-y divide-slate-300 ">
-              <div className="px-6 py-3 font-medium whitespace-nowrap text-sprPrimary">Sterility</div>
+              <div className="px-6 py-3 font-medium whitespace-nowrap text-sprPrimary sticky top-4 bg-white">Sterility</div>
               {riceData.map((rice) => (
                 <div className="px-6 py-3 whitespace-nowrap bg-slate-50"> {rice.maleSterility === "" ? "---" : rice.maleSterility}</div>
               ))}
@@ -263,10 +263,10 @@ export default function ReproductiveStage({filterSeason, filterYear, searchInput
           </tbody>
         </table>
         <table className="">
-          <thead className="text-xs uppercase font-medium text-center bg-sprPrimaryOffLight">Stigma</thead>
+          <thead className="text-xs uppercase font-medium text-center bg-sprPrimaryOffLight sticky top-0 z-50">Stigma</thead>
           <tbody className=" flex ">
             <div className="hidden sm:block flex-auto divide-y divide-slate-300 ">
-              <div className="px-6 py-3 font-medium whitespace-nowrap text-sprPrimary">Colour</div>
+              <div className="px-6 py-3 font-medium whitespace-nowrap text-sprPrimary sticky top-4 bg-white">Colour</div>
               {riceData.map((rice) => (
                 <div className="px-6 py-3 whitespace-nowrap"> {rice.stigmaColour === "" ? "---" : rice.stigmaColour}</div>
               ))}
@@ -274,70 +274,70 @@ export default function ReproductiveStage({filterSeason, filterYear, searchInput
           </tbody>
         </table>
         <table className="">
-          <thead className="text-xs uppercase font-medium text-center bg-sprPrimaryLight">Panicle</thead>
+          <thead className="text-xs uppercase font-medium text-center bg-sprPrimaryLight sticky top-0 z-50">Panicle</thead>
           <tbody className=" flex ">
             <div className="hidden sm:block flex-auto divide-y divide-slate-300 ">
-              <div className="px-6 py-3 font-medium whitespace-nowrap text-sprPrimary">Arrangement of Primary Branches</div>
+              <div className="px-6 py-3 font-medium whitespace-nowrap text-sprPrimary sticky top-4 bg-white">Arrangement of Primary Branches</div>
               {riceData.map((rice) => (
                 <div className="px-6 py-3 whitespace-nowrap bg-slate-50"> {rice.panicleArrangementofPrimaryBranches === "" ? "---" : rice.panicleArrangementofPrimaryBranches}</div>
               ))}
             </div>
             <div className="hidden sm:block flex-auto divide-y divide-slate-300 ">
-              <div className="px-6 py-3 font-medium whitespace-nowrap text-sprPrimary">Number of Basal Primary Branches</div>
+              <div className="px-6 py-3 font-medium whitespace-nowrap text-sprPrimary sticky top-4 bg-white">Number of Basal Primary Branches</div>
               {riceData.map((rice) => (
                 <div className="px-6 py-3 whitespace-nowrap"> {rice.panicleNumberofBasalPrimaryBranches === "" ? "---" : rice.panicleNumberofBasalPrimaryBranches}</div>
               ))}
             </div>
-            <div className="hidden sm:block flex-auto divide-y divide-slate-300 ">
-              <div className="px-6 py-3 font-medium whitespace-nowrap text-sprPrimary">Distance from Base to Lowest Spikelet Insertion</div>
+            <div className="hidden sm:block flex-auto divide-y divide-slate-300 "> 
+              <div className="px-6 py-3 font-medium whitespace-nowrap text-sprPrimary sticky top-4 bg-white">Distance from Base to Lowest Spikelet Insertion</div>
               {riceData.map((rice) => (
                 <div className="px-6 py-3 whitespace-nowrap bg-slate-50"> {rice.panicleDistancefromBasetoLowestSpikeletInsertion === "" ? "---" : rice.panicleDistancefromBasetoLowestSpikeletInsertion}</div>
               ))}
             </div>
             <div className="hidden sm:block flex-auto divide-y divide-slate-300 ">
-              <div className="px-6 py-3 font-medium whitespace-nowrap text-sprPrimary">Texture of Main Axis</div>
+              <div className="px-6 py-3 font-medium whitespace-nowrap text-sprPrimary sticky top-4 bg-white">Texture of Main Axis</div>
               {riceData.map((rice) => (
                 <div className="px-6 py-3 whitespace-nowrap"> {rice.panicleTextureofMainAxis === "" ? "---" : rice.panicleTextureofMainAxis}</div>
               ))}
             </div>
             <div className="hidden sm:block flex-auto divide-y divide-slate-300 ">
-              <div className="px-6 py-3 font-medium whitespace-nowrap text-sprPrimary">pNumber Per Plant</div>
+              <div className="px-6 py-3 font-medium whitespace-nowrap text-sprPrimary sticky top-4 bg-white">Number Per Plant</div>
               {riceData.map((rice) => (
                 <div className="px-6 py-3 whitespace-nowrap bg-slate-50"> {rice.panicleNumberPerPlant === "" ? "---" : rice.panicleNumberPerPlant}</div>
               ))}
             </div>
             <div className="hidden sm:block flex-auto divide-y divide-slate-300 ">
-              <div className="px-6 py-3 font-medium whitespace-nowrap text-sprPrimary">Length</div>
+              <div className="px-6 py-3 font-medium whitespace-nowrap text-sprPrimary sticky top-4 bg-white">Length</div>
               {riceData.map((rice) => (
                 <div className="px-6 py-3 whitespace-nowrap"> {rice.panicleLength === "" ? "---" : rice.panicleLength}</div>
               ))}
             </div>
             <div className="hidden sm:block flex-auto divide-y divide-slate-300 ">
-              <div className="px-6 py-3 font-medium whitespace-nowrap text-sprPrimary">Attitude of Main Axis</div>
+              <div className="px-6 py-3 font-medium whitespace-nowrap text-sprPrimary sticky top-4 bg-white">Attitude of Main Axis</div>
               {riceData.map((rice) => (
                 <div className="px-6 py-3 whitespace-nowrap bg-slate-50"> {rice.panicleAttitudeofMainAxis === "" ? "---" : rice.panicleAttitudeofMainAxis}</div>
               ))}
             </div>
             <div className="hidden sm:block flex-auto divide-y divide-slate-300 ">
-              <div className="px-6 py-3 font-medium whitespace-nowrap text-sprPrimary">Attitude of Branches</div>
+              <div className="px-6 py-3 font-medium whitespace-nowrap text-sprPrimary sticky top-4 bg-white">Attitude of Branches</div>
               {riceData.map((rice) => (
                 <div className="px-6 py-3 whitespace-nowrap"> {rice.panicleAttitudeofBranches === "" ? "---" : rice.panicleAttitudeofBranches}</div>
               ))}
             </div>
             <div className="hidden sm:block flex-auto divide-y divide-slate-300 ">
-              <div className="px-6 py-3 font-medium whitespace-nowrap text-sprPrimary">Secondary Branching</div>
+              <div className="px-6 py-3 font-medium whitespace-nowrap text-sprPrimary sticky top-4 bg-white">Secondary Branching</div>
               {riceData.map((rice) => (
                 <div className="px-6 py-3 whitespace-nowrap bg-slate-50"> {rice.panicleSecondaryBranching === "" ? "---" : rice.panicleSecondaryBranching}</div>
               ))}
             </div>
             <div className="hidden sm:block flex-auto divide-y divide-slate-300 ">
-              <div className="px-6 py-3 font-medium whitespace-nowrap text-sprPrimary">Exsertion</div>
+              <div className="px-6 py-3 font-medium whitespace-nowrap text-sprPrimary sticky top-4 bg-white">Exsertion</div>
               {riceData.map((rice) => (
                 <div className="px-6 py-3 whitespace-nowrap"> {rice.panicleExsertion === "" ? "---" : rice.panicleExsertion}</div>
               ))}
             </div>
             <div className="hidden sm:block flex-auto divide-y divide-slate-300 ">
-              <div className="px-6 py-3 font-medium whitespace-nowrap text-sprPrimary">Shattering</div>
+              <div className="px-6 py-3 font-medium whitespace-nowrap text-sprPrimary sticky top-4 bg-white">Shattering</div>
               {riceData.map((rice) => (
                 <div className="px-6 py-3 whitespace-nowrap bg-slate-50"> {rice.panicleShattering === "" ? "---" : rice.panicleShattering}</div>
               ))}
@@ -345,17 +345,17 @@ export default function ReproductiveStage({filterSeason, filterYear, searchInput
           </tbody>
         </table>
 
-        <table className=" text-sm sticky right-0 ">
-        <thead className="text-xs font-medium uppercase text-center bg-white flex justify-center">
+       <table className=" text-sm sticky right-0 z-100">
+          <thead className="text-xs font-medium uppercase text-center bg-white flex justify-center sticky top-0">
           <h1 className="opacity-0">I</h1>
           </thead>
           <tbody className=" flex bg-white   ">
-            <div className="hidden sm:block flex-auto divide-y divide-slate-300  ">
-              <div className=" py-3 font-medium text-sprPrimary flex justify-center">
-              <h1 className="group" onClick={()=>{exportExcel()}}>
-                                    <ExcelIcon className='stroke-sprPrimary h-5 hover:stroke-sprPrimarySuperLight active:stroke-sprPrimary '/>
+            <div className="hidden sm:block flex-auto divide-y divide-slate-300 bg-white">
+            <div className=" py-3 font-medium text-sprPrimaryflex justify-center border-l border-slate-300 sticky top-4 bg-white">
+              <div className="group" onClick={()=>{exportExcel()}}>
+                                    <ExcelIcon className='stroke-sprPrimary  pl-1 h-5 hover:stroke-sprPrimarySuperLight active:stroke-sprPrimary '/>
                                     <small className=' hidden group-hover:block absolute whitespace-nowrap right-2 bg-sprGray60 rounded-sm p-1 text-white capitalize text-xs' >Export as Excel</small>
-									</h1>
+									</div>
 
               </div>
               {riceData.map((rice) => (
@@ -363,11 +363,12 @@ export default function ReproductiveStage({filterSeason, filterYear, searchInput
                   <button
                     className=" p-1 mb-1   bg-gradient-to-b from-sprPrimary to-sprPrimaryDarkest hover:bg-gradient-to-t hover:from-sprPrimaryLight hover:to-sprPrimaryLight   rounded-full   shadow-slate-300 "
                     onClick={() => {
-                      setIsModalOpen(true)
-                      setModalId(rice.id)
-                      setModalSeason(rice.riceSeason)
-                      setModalYear(rice.riceYear)
-                      getRiceData(rice.id)
+											setIsModalOpen(true)
+											setModalId(rice.id)
+											setModalYear(rice.riceYear)
+											setModalSeason(rice.riceSeason)
+											getRiceData(rice.id)
+
                     }}
                   >
                     <EditIcon className="h-4" />

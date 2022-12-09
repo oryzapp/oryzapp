@@ -49,8 +49,6 @@ export default function Login() {
 	// print errors
 	const [errorMessage, setErrorMessage] = useState('error')
 	const [isError, setIsError] = useState(false)
-	// prompts
-	const [isPromptOpen, setIsPromptOpen] = useState(true)
 
 
 	// Users----------------->
@@ -142,10 +140,7 @@ export default function Login() {
 					
 					// Signing Up
 					await signup(state.email, state.password)
-					setIsPromptOpen(true)
-					setTimeout(()=>{
-						setIsPromptOpen(false)
-					},3000)
+					
 					navigate('/')
 
 				}
@@ -214,13 +209,11 @@ try {
 }
 }
 
-const message = 'Signed Up Succesfully!'
 
 // For Prompt
 
 	return (
 		<div className="h-full bg-white absolute top-0 bottom-0 right-0 left-0 flex justify-center items-center">
-			<ModalSuccess open={isPromptOpen} close={()=>{setIsPromptOpen(false)}} message={message}/>
 			<div className="bg-slate-100  p-4 pt-10 -mt-16 rounded-xl  w-80 flex flex-col items-center justify-center drop-shadow-xl ">
 				<div className=" m-2 mb-6">
 					<OryzappLogo className="h-10" />

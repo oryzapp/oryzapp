@@ -129,10 +129,10 @@ useEffect(() => {
         </div> */}
       <div className="  flex flex-auto text-sprGray60 text-sm">
         <table className="">
-          <thead className=" text-xs font-medium uppercase text-center bg-sprPrimaryOffLight">Accession</thead>
+          <thead className=" text-xs font-medium uppercase text-center bg-sprPrimaryOffLight sticky top-0 z-50">Accession</thead>
           <tbody className=" flex ">
             <div className="hidden sm:block flex-auto divide-y divide-slate-300 ">
-              <div className="px-6 py-3 font-medium whitespace-nowrap text-sprPrimary">Accession</div>
+              <div className="px-6 py-3 font-medium whitespace-nowrap text-sprPrimary sticky top-4 bg-white">Accession</div>
               {riceData.map((rice) => (
                 <div className="px-6 py-3 whitespace-nowrap"> CL-R{rice.accessionId === "" ? "---" : rice.accessionId}</div>
               ))}
@@ -140,10 +140,10 @@ useEffect(() => {
           </tbody>
         </table>
         <table className="">
-          <thead className=" text-xs font-medium uppercase text-center bg-sprPrimaryLight">Shelf No.</thead>
+          <thead className=" text-xs font-medium uppercase text-center bg-sprPrimaryLight sticky top-0 z-50">Shelf No.</thead>
           <tbody className=" flex ">
             <div className="hidden sm:block flex-auto divide-y divide-slate-300 ">
-              <div className="px-6 py-3 font-medium whitespace-nowrap text-sprPrimary">#</div>
+              <div className="px-6 py-3 font-medium whitespace-nowrap text-sprPrimary sticky top-4 bg-white">#</div>
               {riceData.map((rice) => (
                 <div className="px-6 py-3 whitespace-nowrap"> {rice.shelfNum === "" ? "---" : rice.shelfNum}</div>
               ))}
@@ -151,16 +151,16 @@ useEffect(() => {
           </tbody>
         </table>
         <table className="">
-          <thead className=" text-xs font-medium uppercase text-center bg-sprPrimaryOffLight">Year & Season</thead>
+          <thead className=" text-xs font-medium uppercase text-center bg-sprPrimaryOffLight sticky top-0 z-50">Year & Season</thead>
           <tbody className=" flex ">
             <div className="hidden sm:block flex-auto divide-y divide-slate-300 ">
-              <div className="px-6 py-3 font-medium whitespace-nowrap text-sprPrimary">Year</div>
+              <div className="px-6 py-3 font-medium whitespace-nowrap text-sprPrimary sticky top-4 bg-white">Year</div>
               {riceData.map((rice) => (
                 <div className="px-6 py-3 whitespace-nowrap"> {rice.riceYear === "" ? "---" : rice.riceYear}</div>
               ))}
             </div>
             <div className="hidden sm:block flex-auto divide-y divide-slate-300 ">
-              <div className="px-6 py-3 font-medium whitespace-nowrap text-sprPrimary">Season</div>
+              <div className="px-6 py-3 font-medium whitespace-nowrap text-sprPrimary sticky top-4 bg-white">Season</div>
               {riceData.map((rice) => (
                 <div className="px-6 py-3 whitespace-nowrap"> {rice.riceSeason === "" ? "---" : rice.riceSeason}</div>
               ))}
@@ -168,28 +168,28 @@ useEffect(() => {
           </tbody>
         </table>
         <table className="">
-          <thead className="text-xs font-medium uppercase text-center bg-sprPrimaryLight">Yield Components</thead>
+          <thead className="text-xs font-medium uppercase text-center bg-sprPrimaryLight sticky top-0 z-50">Yield Components</thead>
           <tbody className=" flex ">
             <div className="hidden sm:block flex-auto divide-y divide-slate-300 ">
-              <div className="px-6 py-3 font-medium whitespace-nowrap text-sprPrimary">Cavans</div>
+              <div className="px-6 py-3 font-medium whitespace-nowrap text-sprPrimary sticky top-4 bg-white">Cavans</div>
               {riceData.map((rice) => (
                 <div className="px-6 py-3 bg-slate-50 whitespace-nowrap"> {rice.cavans === "" ? "---" : rice.cavans}</div>
               ))}
             </div>
             <div className="hidden sm:block flex-auto divide-y divide-slate-300 ">
-              <div className="px-6 py-3 font-medium whitespace-nowrap text-sprPrimary">Kilogram</div>
+              <div className="px-6 py-3 font-medium whitespace-nowrap text-sprPrimary sticky top-4 bg-white">Kilogram</div>
               {riceData.map((rice) => (
                 <div className="px-6 py-3 whitespace-nowrap"> {rice.kilogram === "" ? "---" : rice.kilogram}</div>
               ))}
             </div>
             <div className="hidden sm:block flex-auto divide-y divide-slate-300 ">
-              <div className="px-6 py-3 font-medium whitespace-nowrap text-sprPrimary">Grain Yield</div>
+              <div className="px-6 py-3 font-medium whitespace-nowrap text-sprPrimary sticky top-4 bg-white">Grain Yield</div>
               {riceData.map((rice) => (
                 <div className="px-6 py-3 whitespace-nowrap bg-slate-50"> {rice.grainYield === "" ? "---" : rice.grainYield}</div>
               ))}
             </div>
             <div className="hidden sm:block flex-auto divide-y divide-slate-300 ">
-              <div className="px-6 py-3 font-medium whitespace-nowrap text-sprPrimary">Ton/Ha</div>
+              <div className="px-6 py-3 font-medium whitespace-nowrap text-sprPrimary sticky top-4 bg-white">Ton/Ha</div>
               {riceData.map((rice) => (
                 <div className="px-6 py-3 whitespace-nowrap"> {rice.tonHa === "" ? "---" : rice.tonHa}</div>
               ))}
@@ -198,39 +198,39 @@ useEffect(() => {
 
         </table>
         <table className="">
-          <thead className="text-xs font-medium uppercase text-center bg-sprPrimaryOffLight">Aroma</thead>
+          <thead className="text-xs font-medium uppercase text-center bg-sprPrimaryOffLight sticky top-0 z-50">Aroma</thead>
           <tbody className=" flex ">
             <div className="hidden sm:block flex-auto divide-y divide-slate-300 ">
-              <div className="px-6 py-3 font-medium whitespace-nowrap text-sprPrimary">Cooked Rice</div>
+              <div className="px-6 py-3 font-medium whitespace-nowrap text-sprPrimary sticky top-4 bg-white">Cooked Rice</div>
               {riceData.map((rice) => (
                 <div className="px-6 py-3 v bg-slate-50"> {rice.cookedRiceAroma === "" ? "---" : rice.cookedRiceAroma}</div>
               ))}
             </div>
             <div className="hidden sm:block flex-auto divide-y divide-slate-300 ">
-              <div className="px-6 py-3 font-medium text-sprPrimary">Grain</div>
+              <div className="px-6 py-3 font-medium text-sprPrimary sticky top-4 bg-white">Grain</div>
               {riceData.map((rice) => (
                 <div className="px-6 py-3"> {rice.grainAroma === "" ? "---" : rice.grainAroma}</div>
               ))}
             </div>
             <div className="hidden sm:block flex-auto divide-y divide-slate-300 ">
-              <div className="px-6 py-3 font-medium text-sprPrimary">Leaf</div>
+              <div className="px-6 py-3 font-medium text-sprPrimary sticky top-4 bg-white">Leaf</div>
               {riceData.map((rice) => (
                 <div className="px-6 py-3 bg-slate-50"> {rice.leafAroma === "" ? "---" : rice.leafAroma}</div>
               ))}
             </div>
           </tbody>
         </table>
-        <table className=" text-sm sticky right-0 ">
-        <thead className="text-xs font-medium uppercase text-center bg-white flex justify-center">
-          <h1 className="opacity-0">EXPORT</h1>
+        <table className=" text-sm sticky right-0 z-100">
+          <thead className="text-xs font-medium uppercase text-center bg-white flex justify-center sticky top-0">
+          <h1 className="opacity-0">I</h1>
           </thead>
           <tbody className=" flex bg-white   ">
-            <div className="hidden sm:block flex-auto divide-y divide-slate-300  ">
-              <div className=" py-3 font-medium text-sprPrimary flex justify-center">
-              <h1 className="group" onClick={()=>{exportExcel()}}>
-                                    <ExcelIcon className='stroke-sprPrimary h-5 hover:stroke-sprPrimarySuperLight active:stroke-sprPrimary '/>
+            <div className="hidden sm:block flex-auto divide-y divide-slate-300 bg-white">
+            <div className=" py-3 font-medium text-sprPrimaryflex justify-center border-l border-slate-300 sticky top-4 bg-white">
+              <div className="group" onClick={()=>{exportExcel()}}>
+                                    <ExcelIcon className='stroke-sprPrimary  pl-1 h-5 hover:stroke-sprPrimarySuperLight active:stroke-sprPrimary '/>
                                     <small className=' hidden group-hover:block absolute whitespace-nowrap right-2 bg-sprGray60 rounded-sm p-1 text-white capitalize text-xs' >Export as Excel</small>
-									</h1>
+									</div>
 
               </div>
               {riceData.map((rice) => (
@@ -238,12 +238,12 @@ useEffect(() => {
                   <button
                     className=" p-1 mb-1   bg-gradient-to-b from-sprPrimary to-sprPrimaryDarkest hover:bg-gradient-to-t hover:from-sprPrimaryLight hover:to-sprPrimaryLight   rounded-full   shadow-slate-300 "
                     onClick={() => {
-                      console.log(rice.id);
-                      setIsModalOpen(true)
-                      getRiceData(rice.id)
-                      setModalId(rice.id)
-                      setModalSeason(rice.riceSeason)
-                      setModalYear(rice.riceYear)
+											setIsModalOpen(true)
+											setModalId(rice.id)
+											setModalYear(rice.riceYear)
+											setModalSeason(rice.riceSeason)
+											getRiceData(rice.id)
+
                     }}
                   >
                     <EditIcon className="h-4" />
