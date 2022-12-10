@@ -10,6 +10,9 @@ import { ReactComponent as CloseIcon } from '../assets/close.svg';
 
 const ModalDelete = ({ open, closeModal, modalId, delId }) => {
 
+    console.log('I am MOdal Delete');
+    console.log(delId);
+
     const [dryList, setDryList] = useState([])
     const [wetList, setWetList] = useState([])
     const [vsDryList, setVsDryList] = useState([])

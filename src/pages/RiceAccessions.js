@@ -60,15 +60,16 @@ export default function RiceAccessions() {
 				alert('Change Accession')
 			}
 			else {
+				let downloadURL = '';
 				const imageRef = ref(storage, `images/${state.accession} `)
 				if (imageUpload !== null) {
 					await uploadBytes(imageRef, imageUpload)
-					await getDownloadURL(imageRef).then(url=>setImageUrl(url))
+					await getDownloadURL(imageRef).then(url=>downloadURL = url)
 					console.log('inside if');
-					console.log(imageUrl);
+					console.log(downloadURL);
 				}
 				console.log('outside if');
-					console.log(imageUrl);
+					console.log(downloadURL);
 
 				const collectionRef = collection(db, "SPR/Rice_Accessions/Accession_IDs");
 				const payLoad = {
@@ -77,14 +78,17 @@ export default function RiceAccessions() {
 				classification: state.classification,
 				variety: state.variety,
 				source: state.source,
-				imageUrl:imageUrl,
+				imageUrl:downloadURL,
 				timestamp: serverTimestamp(),
 			};
 			console.log(payLoad);
 				await addDoc(collectionRef, payLoad);
 				setIsModalOpen(false)
 				setState(initialState)
-			alert('Saved!')
+				setImageUrl('')
+
+			// alert('Saved!')
+			console.log('saved');
 
 			}
 		} catch (error) {
@@ -157,11 +161,11 @@ export default function RiceAccessions() {
 	const submitEdit = async (e) => {
 		try {
 			e.preventDefault()
-		
+			let downloadURL = '';
 			if (imageUpload !== null) {
 				const imageRef = ref(storage, `images/${state.accession} `)
 				await uploadBytes(imageRef, imageUpload)
-				await getDownloadURL(imageRef).then(url=>setImageUrl(url))
+				await getDownloadURL(imageRef).then(url=>downloadURL = url)
 			}
 			const docRef = doc(db, "SPR/Rice_Accessions/Accession_IDs", editId);
 			const payLoad = {
@@ -169,15 +173,17 @@ export default function RiceAccessions() {
 				classification: state.classification,
 				variety: state.variety,
 				source: state.source,
-				imageUrl:imageUrl,
+				imageUrl:downloadURL,
 				timestamp: serverTimestamp(),
 			};
 
 			await updateDoc(docRef, payLoad);
 			setIsModalOpen(false)
 			setState(initialState)
+			setImageUrl('')
 			setIsEdit(false)
-			alert('updated!')
+			// alert('updated!')
+			console.log('updated');
 		} catch (error) {
 			console.log(error);
 		}
@@ -226,6 +232,7 @@ export default function RiceAccessions() {
 				const search = match.includes(searchInput)
 				if (search === true) {
 					searchList.push({
+						id:rice.id,
 						accessionId: rice.accessionId,
 						classification: rice.classification,
 						variety: rice.variety,
