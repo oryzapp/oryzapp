@@ -36,6 +36,7 @@ import { QRCodeCanvas } from "qrcode.react";
 import ModalAccessionsInfo from "../components/ModalAccessionsInfo";
 import ModalDelete from "../components/ModalDelete";
 import { ReactComponent as CloseIcon } from "../assets/close.svg";
+import ModalSuccess from "../components/ModalSuccess";
 
 export default function RiceAccessions() {
 
@@ -51,9 +52,11 @@ export default function RiceAccessions() {
 	const [imageUpload, setImageUpload] = useState(null)
 
 	const [imageUrl,setImageUrl] = useState('')
+	const [isPromptOpen, setIsPromptOpen] = useState(false)
+	const [message, setMessage] = useState('')
 
 	
-
+	console.log(imageUpload);
 
 	const handleSubmit = async (e) => {
 		try {
@@ -99,10 +102,11 @@ export default function RiceAccessions() {
 				setIsModalOpen(false)
 				setState(initialState)
 				setImageUrl('')
-
-			// alert('Saved!')
-			console.log('saved');
-
+				setMessage('Accession Added Successfully')
+				setIsPromptOpen(true)
+				setTimeout(()=>{
+					setIsPromptOpen(false)
+				}, 3000)
 			}
 		} catch (error) {
 			alert(error);
@@ -205,8 +209,11 @@ export default function RiceAccessions() {
 			setState(initialState)
 			setImageUrl('')
 			setIsEdit(false)
-			// alert('updated!')
-			console.log('updated');
+			setMessage('Accession Updated Successfully')
+			setIsPromptOpen(true)
+			setTimeout(()=>{
+				setIsPromptOpen(false)
+			}, 3000)
 		} catch (error) {
 			console.log(error);
 		}
@@ -222,9 +229,8 @@ export default function RiceAccessions() {
 		e.preventDefault()
 	}
 
-	// Display on Search -------------------->
+	// Display  -------------------->
 	const [riceAccessions, setRiceAccessions] = useState([]);
-
 
 	// Display All -------------------->
 	useEffect(() => {
@@ -234,6 +240,7 @@ export default function RiceAccessions() {
 				setRiceAccessions(
 					snapshot.docs.map((doc) => ({ ...doc.data(), id: doc.id }))
 				);
+				// setRiceAccessions(riceAccessions.sort())
 			});
 
 			return unsub;
@@ -241,6 +248,14 @@ export default function RiceAccessions() {
 			console.log(error);
 		}
 	}, [searchInput]);
+
+	console.log('I am rice accession sorted');
+	console.log(riceAccessions);
+	
+	// Sort Rice Accesssions
+	riceAccessions.sort((a,b)=>{
+		return a.accessionId - b.accessionId
+	})
 
 
 
@@ -308,8 +323,12 @@ export default function RiceAccessions() {
 
 
 
+
+
 	return (
 		<>
+				<ModalSuccess open={isPromptOpen} close={()=>{setIsPromptOpen(false)}} message={message}/>
+
 			<div className='h-full w-full flex flex-col rounded-t-xl  sm:rounded-xl bg-slate-50 opacity-90 p-2'>
 
 				{/* Header */}
@@ -561,6 +580,8 @@ export default function RiceAccessions() {
 
 
 				{/* Modals */}
+				{/* Success Prompt */}
+
 				{/* Add Rice Accession */}
 				<ModalAddRiceAcc open={isModalOpen} >
 					<div className="absolute right-4 top-4 z-50  ">
@@ -642,6 +663,7 @@ export default function RiceAccessions() {
 											}} />
 
 										</div>
+											{imageUpload !== null ? <>{imageUpload.name}</>:<></>}
 									</div>
 								</div>
 						</div>

@@ -2,6 +2,7 @@ import React from 'react'
 import {ReactComponent as SuccessIcon} from '../assets/success.svg'
 
 export default function ModalSuccess({open, close, message} ) {
+  console.log(message);
   if (!open) return null;
   return (
    <div className='absolute h-screen w-screen flex justify-center items-center '>
