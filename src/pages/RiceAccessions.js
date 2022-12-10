@@ -52,6 +52,9 @@ export default function RiceAccessions() {
 
 	const [imageUrl,setImageUrl] = useState('')
 
+	
+
+
 	const handleSubmit = async (e) => {
 		try {
 			e.preventDefault();
@@ -61,12 +64,21 @@ export default function RiceAccessions() {
 			}
 			else {
 				let downloadURL = '';
+				let imageType = ''
 				const imageRef = ref(storage, `images/${state.accession} `)
 				if (imageUpload !== null) {
 					await uploadBytes(imageRef, imageUpload)
 					await getDownloadURL(imageRef).then(url=>downloadURL = url)
 					console.log('inside if');
 					console.log(downloadURL);
+
+					if(imageUpload.type === 'image/png'){
+						imageType = '.png'
+					}
+
+					if(imageUpload.type === 'image/jpeg' || imageUpload.type === 'image/jpg' ){
+						imageType = '.jpg'
+					}
 				}
 				console.log('outside if');
 					console.log(downloadURL);
@@ -79,6 +91,7 @@ export default function RiceAccessions() {
 				variety: state.variety,
 				source: state.source,
 				imageUrl:downloadURL,
+				imageFilename: `${state.accession}`,
 				timestamp: serverTimestamp(),
 			};
 			console.log(payLoad);
@@ -118,7 +131,7 @@ export default function RiceAccessions() {
 		});
 	};
 
-	// Check Accession If Exists
+	// Check Accession If Exists--------------->
 	const [accessionExists, setAccessionExists] = useState(false)
 	useEffect(() => {
 
@@ -162,10 +175,19 @@ export default function RiceAccessions() {
 		try {
 			e.preventDefault()
 			let downloadURL = '';
+			let imageType ='';
 			if (imageUpload !== null) {
 				const imageRef = ref(storage, `images/${state.accession} `)
 				await uploadBytes(imageRef, imageUpload)
 				await getDownloadURL(imageRef).then(url=>downloadURL = url)
+				console.log('images');
+				if(imageUpload.type === 'image/png'){
+					imageType = '.png'
+				}
+
+				if(imageUpload.type === 'image/jpeg' || imageUpload.type === 'image/jpg' ){
+					imageType = '.jpg'
+				}
 			}
 			const docRef = doc(db, "SPR/Rice_Accessions/Accession_IDs", editId);
 			const payLoad = {
@@ -174,6 +196,7 @@ export default function RiceAccessions() {
 				variety: state.variety,
 				source: state.source,
 				imageUrl:downloadURL,
+				imageFilename: `${state.accession}`,
 				timestamp: serverTimestamp(),
 			};
 
@@ -256,6 +279,7 @@ export default function RiceAccessions() {
 	// Delete Modal----------------->
 	const [isDelModalOpen, setIsDelModalOpen] = useState(false)
 	const [delId, setDelId] = useState('')
+	const [delUrl, setDelUrl] = useState('')
 	console.log(delId);
 
 	// Export Excel
@@ -436,9 +460,10 @@ export default function RiceAccessions() {
 														// deleteRiceAccession(rice.id);
 														setDelId(rice.id)
 														setModalId(rice.accessionId)
+													setDelUrl(rice.imageUrl);
 
 														setIsDelModalOpen(true)
-														console.log('delId');
+														
 
 													}}
 												>
@@ -476,6 +501,7 @@ export default function RiceAccessions() {
 													// deleteRiceAccession(rice.id);
 													setDelId(rice.id)
 													setModalId(rice.accessionId)
+													setDelUrl(rice.imageUrl);
 
 													setIsDelModalOpen(true)
 													console.log('delId');
@@ -654,7 +680,7 @@ export default function RiceAccessions() {
 				</ModalAccessionsInfo>
 
 				{/* Delete Prompt */}
-				<ModalDelete open={isDelModalOpen} closeModal={() => { setIsDelModalOpen(false) }} modalId={modalId} delId={delId}>
+				<ModalDelete open={isDelModalOpen} closeModal={() => { setIsDelModalOpen(false) }} modalId={modalId} delId={delId} delUrl={delUrl}>
 
 				</ModalDelete>
 			</div>

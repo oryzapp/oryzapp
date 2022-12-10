@@ -1,17 +1,18 @@
 import { writeBatch, collection, deleteDoc, doc, onSnapshot, query, where, collectionGroup } from 'firebase/firestore';
 import React from 'react'
 import ReactDom from 'react-dom'
-import db from "../firebase-config";
+import db, { storage } from "../firebase-config";
 import { useEffect } from 'react';
 import { useState } from 'react';
 import { ReactComponent as CloseIcon } from '../assets/close.svg';
+import { deleteObject, ref } from 'firebase/storage';
 
 
 
-const ModalDelete = ({ open, closeModal, modalId, delId }) => {
+const ModalDelete = ({ open, closeModal, modalId, delId, delUrl }) => {
 
     console.log('I am MOdal Delete');
-    console.log(delId);
+    console.log(delUrl);
 
     const [dryList, setDryList] = useState([])
     const [wetList, setWetList] = useState([])
@@ -111,7 +112,7 @@ const ModalDelete = ({ open, closeModal, modalId, delId }) => {
 
 
             const docRef = doc(db, "SPR/Rice_Accessions/Accession_IDs", id);
-
+            const imageRef= ref(storage, delUrl)
 
             dryList.forEach((rice) => {
                 batch.delete(doc(db, "SPR/Rice_Accessions/Rice_List/Dry_Season/Raw_Rice_List", rice.id))
@@ -158,6 +159,7 @@ const ModalDelete = ({ open, closeModal, modalId, delId }) => {
 
             await batch.commit()
             await deleteDoc(docRef);
+            await deleteObject(imageRef)
 
             return alert('Accession Delted')
 
