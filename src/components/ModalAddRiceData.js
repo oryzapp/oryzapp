@@ -6,9 +6,8 @@ const ModalAddRiceData = ({open, children, onClose}) => {
   
   return ReactDom.createPortal (
    <>
-    <div className=" fixed left-0 right-0 bottom-0 top-0 z-50 bg-black opacity-70 "/>
-    {/* <div className=" flex flex-col absolute left-20 right-20 bottom-16 top-16 z-50 bg-white rounded-md  px-6 pt-10 pb-6  md:left-52 md:right-52  lg:left-80 lg:right-80 overflow-hidden "> */}
-    <div className=" hidden sm:flex flex-col absolute left-20 right-20 bottom-16 top-16 z-50 bg-white rounded-md  p-8  px-6 md:left-52 md:right-52  lg:left-80 lg:right-80  ">
+    <div className=" fixed left-0 right-0 bottom-0 top-0  bg-black opacity-70 " onClick={onClose}/>
+    <div className=" hidden sm:flex flex-col absolute left-20 right-20 bottom-16 top-16  bg-white rounded-md  p-8  px-6 md:left-52 md:right-52  lg:left-80 lg:right-80  ">
      
       {children}
     </div>

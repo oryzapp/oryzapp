@@ -49,7 +49,6 @@ export default function RiceAccessions() {
 	// Handle Form Submit ------------------>
 	const [imageUpload, setImageUpload] = useState(null)
 
-	const [imageUrl,setImageUrl] = useState('')
 	const [isPromptOpen, setIsPromptOpen] = useState(false)
 	const [message, setMessage] = useState('')
 
@@ -91,7 +90,6 @@ export default function RiceAccessions() {
 				await addDoc(collectionRef, payLoad);
 				setIsModalOpen(false)
 				setState(initialState)
-				setImageUrl('')
 				setMessage('Accession Added Successfully')
 				setIsPromptOpen(true)
 				setTimeout(()=>{
@@ -196,7 +194,6 @@ export default function RiceAccessions() {
 			await updateDoc(docRef, payLoad);
 			setIsModalOpen(false)
 			setState(initialState)
-			setImageUrl('')
 			setIsEdit(false)
 			setMessage('Accession Updated Successfully')
 			setIsPromptOpen(true)
@@ -647,6 +644,7 @@ export default function RiceAccessions() {
 										setIsModalOpen(false);
 										setState(initialState)
 										setIsEdit(false)
+										setImageUpload(null)
 									}}
 								>
 									Cancel

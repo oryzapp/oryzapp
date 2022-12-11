@@ -12,6 +12,11 @@ import { ReactComponent as VSicon } from "../assets/vegetative-stage-icon.svg";
 import { ReactComponent as YCicon } from "../assets/yield-components-icon.svg";
 import { ReactComponent as Shelficon } from "../assets/shelf-icon.svg";
 import { ReactComponent as CloseIcon } from '../assets/close.svg'
+import { ReactComponent as RiceAccIcon } from "../assets/rice-accessions-icon.svg";
+import { ReactComponent as CalendarIcon } from "../assets/calendar-icon.svg"
+import { ReactComponent as SeasonIcon } from "../assets/season-icon.svg"
+
+
 
 
 import { ReactComponent as SearchIcon } from "../assets/search-icon.svg"
@@ -20,6 +25,7 @@ import VegetativeStage from "./VegetativeStage";
 import ReproductiveStage from "./ReproductiveStage";
 import GrainCharacteristics from "./GrainCharacteristics";
 import YieldComponents from "./YieldComponents";
+import ModalSuccess from "../components/ModalSuccess";
 
 export default function RiceData() {
 
@@ -41,7 +47,10 @@ export default function RiceData() {
     }
   }
 
-  const [isModalOpen, setIsModalOpen] = useState(false)
+  const [isModalOpen, setIsModalOpen] = useState(true)
+const [isPromptOpen, setIsPromptOpen] = useState(false)
+const message = 'Rice Data Successfully Added!'
+
   // Rice Data Inputs----------->
   const [riceData, setRiceData] = useState({
     accessionId: ' ',
@@ -416,7 +425,7 @@ export default function RiceData() {
 
       }
 
-      if (riceDataExists === true || riceData.accessionId === ' ' || riceData.accessionId === 'Accession') {
+      if (riceDataExists === true || riceData.accessionId === ' ' || riceData.accessionId === 'no choice') {
         alert('Change Accession')
       }
 
@@ -429,6 +438,10 @@ export default function RiceData() {
         await setDoc(riceListDocRef, riceListPayLoad);
         setIsModalOpen(false)
         setRiceData(initialState);
+        setIsPromptOpen(true)
+			setTimeout(()=>{
+				setIsPromptOpen(false)
+			}, 3000)
       }
     } catch (error) {
       alert(error);
@@ -508,6 +521,7 @@ export default function RiceData() {
 
   return (
     <>
+    <ModalSuccess open={isPromptOpen} close={()=>{setIsPromptOpen(false)}} message={message}/>
       <div className=' w-full hidden sm:flex flex-col rounded-xl  bg-white opacity-90 p-2'>
         {/* Header */}
         <header className="page-header   flex items-center">
@@ -595,14 +609,17 @@ export default function RiceData() {
             >
               <div className={riceDataExists === true ? "block text-red-400" : "hidden"}>*Rice Data Already Exists</div>
               {/* Indexes */}
-              <div className="flex whitespace-nowrap  my-2 justify-between">
+              <div className="flex whitespace-nowrap  my-2 justify-between ">
                 <div className="flex gap-1 ">
                   {/* Accession */}
                   <div className="drop-shadow-md flex" >
-                    <div className="bg-sprPrimaryLight text-white h-full text-sm  p-2 rounded-full pl-3 pr-10">Accession</div>
+                  <div className="bg-sprPrimaryLight sm:hidden lg:block text-white h-full text-sm  p-2 rounded-full pl-3 pr-10">Accession</div>
+                    <div className="bg-sprPrimaryLight sm:block lg:hidden text-white h-full  p-2 rounded-full pl-3 pr-10">
+                      <RiceAccIcon className="stroke-white h-full "fill="none"/>
+                    </div>
                     <div className=" -ml-9">
-                      <select className="rounded-full py-2 text-sprPrimary text-sm " name="accessionId" id="" onChange={handleChange} required>
-                        <option value='Accession' >Accession</option>
+                      <select className="rounded-full py-2 text-sprPrimary text-sm focus:outline-none focus:ring-2 focus:ring-sprPrimary" name="accessionId" id="" onChange={handleChange} required>
+                        <option value='no choice'>CL-XXXX</option>
                         {riceAccessions.map((rice) =>
                           <option value={rice.accessionId}  >{`CL-R${rice.accessionId}`}</option>)}
                       </select>
@@ -613,9 +630,13 @@ export default function RiceData() {
                   </div>
                   {/* Season */}
                   <div className="drop-shadow-md flex" >
-                    <div className="bg-sprPrimaryLight text-white h-full text-sm  p-2 rounded-full pl-3 pr-10">Season</div>
+                    <div className="bg-sprPrimaryLight sm:hidden lg:block text-white h-full text-sm  p-2 rounded-full pl-3 pr-10">Season</div>
+                    <div className="bg-sprPrimaryLight sm:block lg:hidden text-white h-full   p-2 rounded-full pl-3 pr-10">
+                      <SeasonIcon className="fill-white h-full"/>
+                    </div>
+                   
                     <div className=" -ml-9">
-                      <select className="rounded-full py-2 text-sprPrimary text-sm " value={riceData.riceSeason} name="riceSeason" onChange={handleChange}>
+                      <select className="rounded-full py-2 text-sprPrimary text-sm focus:outline-none focus:ring-2 focus:ring-sprPrimary" value={riceData.riceSeason} name="riceSeason" onChange={handleChange}>
                         <option value="Dry">Dry</option>
                         <option value="Wet">Wet</option>
                       </select>
@@ -626,9 +647,12 @@ export default function RiceData() {
                   </div>
                   {/* Year */}
                   <div className="drop-shadow-md flex" >
-                    <div className="bg-sprPrimaryLight text-white h-full text-sm  p-2 rounded-full pl-3 pr-10">Year</div>
+                  <div className="bg-sprPrimaryLight sm:hidden lg:block text-white h-full text-sm  p-2 rounded-full pl-3 pr-10">Year</div>
+                    <div className="bg-sprPrimaryLight sm:block lg:hidden text-white h-full p-2 rounded-full pl-3 pr-10">
+                      <CalendarIcon className="stroke-white h-full"/>
+                    </div>
                     <div className=" -ml-9">
-                      <select className="rounded-full py-2 text-sprPrimary text-sm " value={riceData.riceYear} name="riceYear" onChange={handleChange}>
+                      <select className="rounded-full py-2 text-sprPrimary text-sm focus:outline-none focus:ring-2 focus:ring-sprPrimary " value={riceData.riceYear} name="riceYear" onChange={handleChange}>
                         {
                           years.map((e) =>
                             <option value={e} >{e}</option>
@@ -645,7 +669,7 @@ export default function RiceData() {
                 {/* Shelf No. */}
                 <div className="drop-shadow-md flex relative ">
 
-                  <input className="rounded-full   w-32 pl-2 placeholder:text-sprPrimaryLight" type="text" placeholder="Shelf No." name="shelfNum" value={riceData.shelfNum} onChange={handleChange} required />
+                  <input className="rounded-full   w-32 pl-2 placeholder:text-sprPrimaryLight focus:outline-none focus:ring-2 focus:ring-sprPrimary" type="text" placeholder="Shelf No." name="shelfNum" value={riceData.shelfNum} onChange={handleChange} required />
                   <div className="bg-sprPrimaryLight text-white h-full text-sm  p-2 rounded-full  z-10 absolute right-0">
                     <Shelficon className="h-full fill-white" />
                   </div>

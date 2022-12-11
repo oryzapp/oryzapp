@@ -105,10 +105,10 @@ const qrScanner = new QrScanner(video,result =>
 console.log('I am data');
 console.log(qrData);
   return (
-    <div className='bg-slate-50 rounded-t-xl  sm:rounded-xl h-full w-full flex flex-col  p-2'>
+    <div className='bg-slate-50 rounded-t-xl  sm:rounded-xl h-full w-full flex flex-col p-2'>
       {/* Header */}
       <header className=" ">
-        <h1 className="text-3xl font-bold text-sprBlack opacity-80 p-2">
+        <h1 className="text-3xl font-bold text-sprBlack opacity-80 ">
           Scan Code
         </h1>
       </header>
