@@ -13,6 +13,8 @@ import { ReactComponent as EmptyIllustration } from '../assets/empty-illustratio
 import { ReactComponent as ExcelIcon } from "../assets/excel-icon.svg"
 
 import ModalRiceList from "../components/ModalRiceList";
+import ModalAccessionsInfo from "../components/ModalAccessionsInfo";
+import ModalViewRiceData from "../components/ModalViewRiceData";
 
 export default function RiceList() {
 
@@ -555,7 +557,9 @@ export default function RiceList() {
 
             </div>
 
-                <ModalRiceList open={isModalOpen} closeModal={()=>{setIsModalOpen(false)}} currentData={currentData} />
+                <ModalViewRiceData open={isModalOpen} closeModal={()=>{setIsModalOpen(false)}} currentData={currentData} />
+                {/* <ModalRiceList open={isModalOpen} closeModal={()=>{setIsModalOpen(false)}} currentData={currentData} /> */}
+                {/* <ModalAccessionsInfo open={isModalOpen}  closeModal={()=>{setIsModalOpen(false)}} currentData={currentData} modalId={currentData.accessionId}/> */}
         </>
     );
 }

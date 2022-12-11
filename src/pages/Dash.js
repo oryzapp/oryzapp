@@ -4,6 +4,7 @@ import { ReactComponent as PigIcon } from '../assets/pigmented-icon.svg'
 import { ReactComponent as GlutIcon } from '../assets/glutinous-icon.svg'
 import { ReactComponent as SearchIcon } from '../assets/search-icon.svg'
 import { ReactComponent as ExcelIcon } from '../assets/excel-icon.svg'
+import { ReactComponent as RiceIllusOne } from '../assets/rice-illustration1.svg'
 import ModalSearch from '../components/ModalSearch'
 import { collection, onSnapshot } from 'firebase/firestore'
 import db from "../firebase-config";
@@ -80,11 +81,14 @@ export default function Dash() {
     var list = 0;
     return (
         <>
-            <div className=' h-full w-full flex flex-col rounded-t-xl sm:rounded-xl bg-slate-50 opacity-90 p-2' onClick={() => {
+            <div className=' h-full w-full flex p-2 flex-col rounded-t-xl sm:rounded-xl bg-slate-50 opacity-90  relative' onClick={() => {
             }}>
+                <div className=' absolute rounded-t-xl sm:rounded-xl bottom-0 right-0 left-0 top-0  flex items-end justify-end  '>
+                    <RiceIllusOne className='w-full sm:rounded-b-xl'  />
+                </div>
                 {/* Header */}
                 <header className=" flex items-center justify-between">
-                    <h1 className="text-3xl font-bold text-sprBlack opacity-80">Dashboard</h1>
+                    <h1 className="text-3xl font-bold text-sprBlack opacity-80">Dashboard </h1>
                     <div className='sm:hidden' onClick={()=>{
                         setIsSearchModalOpen(true)
                     }}>

@@ -94,7 +94,7 @@ export default function RiceAccessions() {
 				setIsPromptOpen(true)
 				setTimeout(()=>{
 					setIsPromptOpen(false)
-				}, 3000)
+				}, 1000)
 			}
 		} catch (error) {
 			alert(error);
@@ -199,7 +199,7 @@ export default function RiceAccessions() {
 			setIsPromptOpen(true)
 			setTimeout(()=>{
 				setIsPromptOpen(false)
-			}, 3000)
+			}, 1000)
 		} catch (error) {
 			console.log(error);
 		}
@@ -298,7 +298,10 @@ export default function RiceAccessions() {
 
 	return (
 		<>
-				<ModalSuccess open={isPromptOpen} close={()=>{setIsPromptOpen(false)}} message={message}/>
+			 <div className="absolute top-0">
+
+<ModalSuccess open={isPromptOpen} close={()=>{setIsPromptOpen(false)}} message={message}/>
+</div>
 
 			<div className='h-full w-full flex flex-col rounded-t-xl  sm:rounded-xl bg-slate-50 opacity-90 p-2'>
 

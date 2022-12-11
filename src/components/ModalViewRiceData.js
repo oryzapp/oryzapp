@@ -1,26 +1,26 @@
-import { collection, onSnapshot, query, where } from "firebase/firestore";
-import { useEffect } from "react";
-import ReactDom from "react-dom";
-
-import { ReactComponent as CloseIcon } from "../assets/close.svg"
-import { ReactComponent as CalendarIcon } from "../assets/calendar-icon.svg"
-import { ReactComponent as WetIcon } from "../assets/wet-icon.svg"
-import { ReactComponent as DryIcon } from "../assets/dry-icon.svg"
-import { ReactComponent as EmptyIllTwo } from "../assets/empty-illustration-2.svg"
-import { useState } from "react";
+import { collection, onSnapshot, query, where } from 'firebase/firestore';
+import React from 'react'
+import { useState } from 'react';
+import { useEffect } from 'react';
 import db from "../firebase-config";
+import { ReactComponent as CloseIcon } from "../assets/close.svg"
+import { ReactComponent as EmptyIllTwo } from "../assets/empty-illustration-2.svg"
 
 
 
-export default function ModalAccessionsInfo({ open, modalId, closeModal }) {
-    const [riceAccessions, setRiceAccessions] = useState([])
 
-    useEffect(() => {
-        if (open === false) {
-            setYear('2018')
-        }
-        if(modalId !== undefined){
-            const collectionRef = collection(db, "SPR/Rice_Accessions/Accession_IDs");
+export default function ModalViewRiceData({open, closeModal, currentData}) {
+
+    const modalId = currentData.accessionId;
+    const season = `${currentData.riceSeason}_Season`
+    const year = currentData.riceYear
+
+    console.log(modalId, season, year);
+
+
+    const [riceAccessions,setRiceAccessions] = useState([])
+    useEffect(()=>{
+        const collectionRef = collection(db, "SPR/Rice_Accessions/Accession_IDs");
         const q = query(collectionRef, where('accessionId', '==', modalId));
 
         const unsub = onSnapshot(q, (snapshot) => {
@@ -30,15 +30,7 @@ export default function ModalAccessionsInfo({ open, modalId, closeModal }) {
         });
 
         return unsub;
-
-        }
-
-    }, [open])
-    console.log('I am modal');
-    console.log(riceAccessions);
-
-    const [season, setSeason] = useState('Wet_Season')
-    const [year, setYear] = useState('2018')
+    },[open])
 
     const [vsData, setVsData] = useState([])
     const [rsData, setRsData] = useState([])
@@ -110,73 +102,39 @@ export default function ModalAccessionsInfo({ open, modalId, closeModal }) {
 
     }, [season, year, open])
 
-    const years = [2018, 2019, 2020, 2021, 2022, 2023, 2024, 2025, 2026, 2027, 2028, 2030]
-
-   
-
-    if (!open) return null;
-    return ReactDom.createPortal(
-        <>
+    if (!open) return  null;
+  return (
+    <div>
             <div className=" fixed left-0 right-0 bottom-0 top-0 z-50 bg-black opacity-70 " onClick={closeModal}/>
+           
             <div className=" flex flex-col absolute left-3 right-3 bottom-16 top-16 sm:left-12 sm:right-12 md:left-28 md:right-28 lg:left-1/4 lg:right-1/4 z-50 bg-white rounded-xl  px-4 pt-8 pb-4   ">
-                {/* button */}
-                <div className="absolute right-4 top-4 z-50 ">
+                  {/* button */}
+             <div className="absolute right-4 top-4 z-50 ">
                 
-                    <CloseIcon className='group-hover:stroke-white stroke-sprGray50 hover:stroke-sprGray80 active:stroke-sprPrimary h-5' onClick={closeModal} />
-                </div>
-                {/* main */}
-                <div className=" flex-auto flex flex-col gap-2">
-                    <div className="w-full h-1/4 flex ">
-                        <div className="  bg-slate-100  sm:w-1/3  rounded-md overflow-hidden">
+                <CloseIcon className='group-hover:stroke-white stroke-sprGray50 hover:stroke-sprGray80 active:stroke-sprPrimary h-5' onClick={closeModal} />
+            </div>
+            <div className=" flex-auto flex flex-col  overflow-hidden  ">
+            <div className='flex p-4 bg-white'>
+                <div className="  bg-slate-100  w-1/2 sm:w-1/3 rounded-md overflow-hidden">
                            
-                            {riceAccessions.map((rice)=>(
-                                <div>{rice.imageUrl === ''? <div className=" h-full rounded-md"></div>:<img src={rice.imageUrl} alt="" className=" rounded-md h-full "/>}</div>
-                            ))}
-                        </div>
+                           {riceAccessions.map((rice)=>(
+                               <div>{rice.imageUrl === ''? <div className=" h-full rounded-md"></div>:<img src={rice.imageUrl} alt="" className=" rounded-md h-full "/>}</div>
+                           ))}
+                       </div>
 
-                        {riceAccessions.map((rice) => (
-                            <div className=" flex flex-col flex-auto p-3 pt-0">
-                                <h1 className=" text-xl sm:text-4xl text-sprPrimaryDarkest font-semibold ">CL-R{rice.accessionId}</h1>
-                                <h1 className="sm:text-lg text-sprGray60 font-medium">Source: {rice.source === '' ? "---" : rice.source}</h1>
-                                <h1 className="sm:text-lg text-sprGray60 font-medium">Variety: {rice.variety === '' ? "---" : rice.variety}</h1>
-                                <h1 className="sm:text-lg text-sprGray60 font-medium"> Classification: {rice.classification === ''? "---" : rice.classification}</h1>
+                       {riceAccessions.map((rice) => (
+                           <div className=" flex flex-col flex-auto p-3 pt-0">
+                               <h1 className=" text-2xl sm:text-4xl text-sprPrimaryDarkest font-semibold ">CL-R{rice.accessionId}</h1>
+                               <h1 className="sm:text-lg text-sprGray60 font-medium">Source: {rice.source === '' ? "---" : rice.source}</h1>
+                               <h1 className="sm:text-lg text-sprGray60 font-medium">Variety: {rice.variety === '' ? "---" : rice.variety}</h1>
+                               <h1 className="sm:text-lg text-sprGray60 font-medium"> Classification: {rice.classification === ''? "---" : rice.classification}</h1>
+                           </div>
 
-
-                            </div>
-
-                        ))}
-
-                    </div>
-                    <div className=" w-full flex-auto flex flex-col ">
-                        <div className="  flex gap-3  sm:w-3/4">
-                            <div className="flex-auto bg-sprPrimaryOffLight flex p-2 justify-center gap-2 rounded-t-lg">
-                                <CalendarIcon stroke="#AFBE00" className="h-6" />
-                                <select className=" bg-transparent text-sprPrimary text-md font-medium " name="riceYear" onChange={(e) => { setYear(e.target.value) }}>
-                                    {
-                                        years.map((e) =>
-                                            <option value={e} >{e}</option>
-
-                                        )
-                                    }
-                                </select>
-                            </div>
-                            <div className={season === 'Wet_Season' ? "cursor-pointer flex-auto bg-sprPrimary flex  p-2 justify-center items-center rounded-t-lg gap-2" : "cursor-pointer flex-auto bg-slate-200 flex  p-2 justify-center items-center rounded-t-lg gap-2"} onClick={() => {
-                                    setSeason('Wet_Season')
-                                }}>
-                                <WetIcon fill={season === 'Wet_Season' ? "white" : "rgba(18, 20, 20, 0.5)"} className="h-6" />
-                                <h1 className={season === 'Wet_Season' ? " text-white text-md font-medium whitespace-nowrap hidden sm:block" : " text-sprGray50 text-md font-medium whitespace-nowrap hidden sm:block"} >Wet Season</h1>
-                            </div>
-                            <div className={season === 'Dry_Season' ? "cursor-pointer flex-auto bg-sprPrimary flex  p-2 justify-center items-center rounded-t-lg gap-2" : "cursor-pointer flex-auto bg-slate-200 flex  p-2 justify-center items-center rounded-t-lg gap-2"}  onClick={() => {
-                                    setSeason('Dry_Season')
-                                }}>
-                                <DryIcon stroke={season === 'Dry_Season' ? "white" : "rgba(18, 20, 20, 0.5)"} className="h-6" />
-                                <h1 className={season === 'Dry_Season' ? " text-white text-md font-medium whitespace-nowrap hidden sm:block" : " text-sprGray50 text-md font-medium whitespace-nowrap hidden sm:block"}>Dry Season</h1>
-
-                            </div>
-
-                        </div>
-                        <div className="bg-sprPrimaryOffLight flex-auto overflow-auto scrollbar rounded-b-md rounded-r-md ">
-                            {vsData.length === 0 && rsData.length === 0 && gcData.length === 0 && ycData.length === 0 ? 
+                       ))}
+                </div>
+                <div className=" w-full flex-auto flex flex-col max-h-full overflow-auto scrollbar rounded-t-lg z-50 bg-sprPrimarySuperLight">
+                    <div className=' '>
+                    {vsData.length === 0 && rsData.length === 0 && gcData.length === 0 && ycData.length === 0 ? 
                             <div className="h-full flex flex-col justify-center items-center gap-3">
                                 <EmptyIllTwo className="stroke-white"/>
                                 <h1 className="text-xl font-medium text-white">Plenty more room here</h1>
@@ -634,14 +592,14 @@ export default function ModalAccessionsInfo({ open, modalId, closeModal }) {
                               ))}
                             </div>
                             }
-                          
-                        </div>
-
                     </div>
 
                 </div>
+
+</div>
+               
             </div>
-        </>,
-        document.getElementById('portal')
-    )
+
+    </div>
+  )
 }

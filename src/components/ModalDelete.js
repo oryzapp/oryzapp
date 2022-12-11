@@ -202,7 +202,7 @@ const ModalDelete = ({ open, closeModal, modalId, delId, delUrl }) => {
         < div className='h-screen w-screen top-0 bottom-0 right-0 left-0  absolute z-50'>
             <ModalSuccess open={isPromptOpen} close={()=>{setIsPromptOpen(false)}} message={message}/>
             <div className={isPromptOpen === true ? "hidden":" fixed left-0 right-0 bottom-0 top-0  bg-black/70 flex justify-center items-center"}>
-                <div className='h-72 w-72 rounded-md sm:bottom-36 bg-white flex flex-col items-center justify-center p-2 relative'>
+                <div className='h-72 w-72 rounded-md  bg-white flex flex-col items-center justify-center p-2 relative'>
                     <div className="absolute top-4  right-4 z-50 ">
                         {/* <button onClick={closeModal}>
                             <img className="relative" src={closeIcon} alt="" />

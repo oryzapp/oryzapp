@@ -8,7 +8,6 @@ export default function ModalRiceList({open, closeModal, currentData}) {
     if (!open) return null;
   return (
       <div>
-            <form>
                 <div className=" fixed left-0 right-0 bottom-0 top-0 z-50 bg-black opacity-70 " />
                 <div className=" flex flex-col fixed left-0 right-0 bottom-0 top-0  z-50  justify-center items-center ">
                     <div className='h-96 w-96 bg-white rounded-md relative flex justify-center items-center flex-col p-4 gap-2 '>
@@ -39,7 +38,6 @@ export default function ModalRiceList({open, closeModal, currentData}) {
                     </div>
 
                 </div>
-            </form>
 
 
         </div>

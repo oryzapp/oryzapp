@@ -47,7 +47,7 @@ export default function RiceData() {
     }
   }
 
-  const [isModalOpen, setIsModalOpen] = useState(true)
+  const [isModalOpen, setIsModalOpen] = useState(false)
 const [isPromptOpen, setIsPromptOpen] = useState(false)
 const message = 'Rice Data Successfully Added!'
 
@@ -521,7 +521,10 @@ const message = 'Rice Data Successfully Added!'
 
   return (
     <>
+    <div className="absolute top-0">
+
     <ModalSuccess open={isPromptOpen} close={()=>{setIsPromptOpen(false)}} message={message}/>
+    </div>
       <div className=' w-full hidden sm:flex flex-col rounded-xl  bg-white opacity-90 p-2'>
         {/* Header */}
         <header className="page-header   flex items-center">
