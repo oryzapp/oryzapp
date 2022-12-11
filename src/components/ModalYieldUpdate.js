@@ -51,6 +51,7 @@ export default function ModalYieldUpdate({ open, closeModal, modalId, modalYear,
         cookedRiceAroma: riceData.cookedRiceAroma,
         grainAroma: riceData.grainAroma,
         leafAroma: riceData.leafAroma,
+        searchIndex:`${riceData.accessionId} ${riceData.shelfNum} ${riceData.cavans} ${riceData.kilogram} ${riceData.grainYield} ${riceData.tonHa} ${riceData.cookedRiceAroma} ${ riceData.grainAroma} ${riceData.leafAroma}`,
         timestamp: serverTimestamp(),
       };
       await updateDoc(docRef, ycPayLoad);

@@ -37,9 +37,9 @@ export default function RiceData() {
       case 'vegetative-stage':
         return <VegetativeStage filterSeason={filterSeason} filterYear={filterYear} searchInput={searchInput}/>
       case 'reproductive-stage':
-        return <ReproductiveStage filterSeason={filterSeason} filterYear={filterYear} />
+        return <ReproductiveStage filterSeason={filterSeason} filterYear={filterYear} searchInput={searchInput}/>
       case 'grain-characteristics':
-        return <GrainCharacteristics  filterSeason={filterSeason} filterYear={filterYear}/>
+        return <GrainCharacteristics  filterSeason={filterSeason} filterYear={filterYear} searchInput={searchInput}/>
       case 'yield-components':
         return <YieldComponents filterSeason={filterSeason} filterYear={filterYear} searchInput={searchInput}/>
         default:
@@ -329,7 +329,7 @@ const message = 'Rice Data Successfully Added!'
         liguleColour: riceData.liguleColour,
         rhizomeandStolonFormation: riceData.rhizomeandStolonFormation,
         seedlingHeight: riceData.seedlingHeight,
-        searchIndex: `${riceData.accessionId} ${riceData.shelfNum}  ${riceData.auricleColor} ${riceData.coleoptileAnthocyaninColouration} ${riceData.collarColour} ${riceData.culmHabit} ${riceData.culmKneeingAbility} ${riceData.culmLength}`,
+        searchIndex: `${riceData.accessionId} Shelf ${riceData.shelfNum}  ${riceData.auricleColor} ${riceData.coleoptileAnthocyaninColouration} ${riceData.collarColour} ${riceData.culmHabit} ${riceData.culmKneeingAbility} ${riceData.culmLength} ${riceData.culmNumber } ${riceData.culmDiameteratBasalInternode} ${riceData.culmAnthocyaninColourationonNodes} ${riceData.culmUnderlyingNodeColour} ${riceData.culmInternodeAnthocyanin} ${riceData.culmUnderlyingInternodeColouration} ${riceData.culmLodgingResistance} ${riceData.culmStrength} ${riceData.flagLeafLegnth} ${riceData.flagLeafWidth} ${riceData.flagLeafAttitudeEarlyobs} ${riceData.flagLeafAttitudeLateobs} ${riceData.leafMarginPubesence} ${riceData.leafSenesence} ${riceData.lbPresenceAbsenceofAnthocyaninColouration} ${riceData.lbDistributionofAnthocyaninColouration} ${riceData.lbIntensityofGreenColour} ${riceData.lbAttitude}${riceData.lbPubesence} ${riceData.lbPubesenceonBladeSurface} ${riceData.lbLength} ${ riceData.lbWidth} ${riceData.basalLeafSheathColour} ${riceData.lsAnthocyaninColouration} ${riceData.liguleLength} ${riceData.liguleShape} ${ riceData.liguleShapeCultivatedSpecies} ${riceData.liguleShapeWildSpecies} ${riceData.liguleMarginShapeWildSpecies} ${riceData.liguleMarginHairiness} ${riceData.ligulePubesence} ${riceData.liguleColour} ${riceData.rhizomeandStolonFormation} ${ riceData.seedlingHeight}`,
         timestamp: serverTimestamp(),
       };
       const rsColRef = doc(db, `/SPR/Rice_Seasons/Seasons/${season}/Stages/Reproductive_Stage/RS_Raw_Rice_Data`, `${riceData.accessionId}_${season}_${riceData.riceYear}`);
@@ -362,6 +362,7 @@ const message = 'Rice Data Successfully Added!'
         panicleSecondaryBranching: riceData.panicleSecondaryBranching,
         panicleExsertion: riceData.panicleExsertion,
         panicleShattering: riceData.panicleShattering,
+        searchIndex:`${riceData.accessionId} Shelf ${riceData.shelfNum} ${riceData.antherLength} ${riceData.antherColour} ${riceData.awnsPresenceWildSpecies} ${riceData.awnsDistributionCultivatedSpecies} ${riceData.awnsDistributionEarlyobs} ${riceData.awnLength} ${riceData.awnsThickness} ${ riceData.lemmaColourofApicusearlyobs} ${ riceData.lemmaAnthocyaninColourationofAreaBelowApiculusEarlyobs} ${riceData.lemmaandPaleaColourEarlyobs} ${riceData.maleSterility} ${ riceData.stigmaColour} ${riceData.panicleArrangementofPrimaryBranches} ${riceData.panicleNumberofBasalPrimaryBranches} ${riceData.panicleDistancefromBasetoLowestSpikeletInsertion} ${riceData.panicleTextureofMainAxis} ${riceData.panicleNumberPerPlant} ${riceData.panicleLength} ${riceData.panicleAttitudeofMainAxis} ${riceData.panicleAttitudeofBranches} ${riceData.panicleSecondaryBranching} ${riceData.panicleExsertion} ${riceData.panicleShattering} `,
         timestamp: serverTimestamp(),
       };
       const gcColRef = doc(db, `/SPR/Rice_Seasons/Seasons/${season}/Stages/Grain_Characteristics/GC_Raw_Rice_Data`, `${riceData.accessionId}_${season}_${riceData.riceYear}`);
@@ -395,6 +396,7 @@ const message = 'Rice Data Successfully Added!'
         longerSterileLemmaLength: riceData.longerSterileLemmaLength,
         sterileLemmaShape: riceData.sterileLemmaShape,
         sterileLemmaColour: riceData.sterileLemmaColour,
+        searchIndex:`${riceData.accessionId} Shelf ${riceData.shelfNum} ${riceData.awnColour} ${ riceData.caryopsisLength} ${ riceData.caryopsisWidth} ${riceData.caryopsisShape} ${riceData.caryopsisPericarpColour} ${riceData.endorspermType} ${riceData.grainLength} ${riceData.grainWidth} ${riceData.grainThickness} ${riceData.grain100GrainWeight} ${ riceData.lemmaAnthocyaninColourationofKeel} ${ riceData.lemmaAnthocyaninColourationofAreaBelowApiculusLateobs} ${riceData.lemmaColourofApiculusLateobs} ${riceData.lemmaShapeofApiculus} ${riceData.lemmaandPaleaPubesence} ${riceData.lemmaandPaleaColourLateobs} ${riceData.panicleLengthLateobs} ${riceData.panicleThreshability} ${riceData.spikeletFertility} ${riceData.sterileLemmaLength} ${riceData.longerSterileLemmaLength} ${riceData.sterileLemmaShape} ${riceData.sterileLemmaShape} ${riceData.sterileLemmaColour} `,
         timestamp: serverTimestamp(),
       };
       const ycColRef = doc(db, `/SPR/Rice_Seasons/Seasons/${season}/Stages/Yield_Components/YC_Raw_Rice_Data/`, `${riceData.accessionId}_${season}_${riceData.riceYear}`);
@@ -411,7 +413,7 @@ const message = 'Rice Data Successfully Added!'
         cookedRiceAroma: riceData.cookedRiceAroma,
         grainAroma: riceData.grainAroma,
         leafAroma: riceData.leafAroma,
-
+        searchIndex:`${riceData.accessionId} Shelf ${riceData.shelfNum} ${riceData.cavans} ${riceData.kilogram} ${riceData.grainYield} ${riceData.tonHa} ${riceData.cookedRiceAroma} ${ riceData.grainAroma} ${riceData.leafAroma}`,
         timestamp: serverTimestamp(),
       };
 

@@ -111,6 +111,7 @@ try {
 					panicleExsertion: riceData.panicleExsertion,
 					panicleShattering: riceData.panicleShattering,
 					stigmaColour: riceData.stigmaColour,
+        searchIndex:`${riceData.accessionId} Shelf ${riceData.shelfNum} ${riceData.antherLength} ${riceData.antherColour} ${riceData.awnsPresenceWildSpecies} ${riceData.awnsDistributionCultivatedSpecies} ${riceData.awnsDistributionEarlyobs} ${riceData.awnLength} ${riceData.awnsThickness} ${ riceData.lemmaColourofApicusearlyobs} ${ riceData.lemmaAnthocyaninColourationofAreaBelowApiculusEarlyobs} ${riceData.lemmaandPaleaColourEarlyobs} ${riceData.maleSterility} ${ riceData.stigmaColour} ${riceData.panicleArrangementofPrimaryBranches} ${riceData.panicleNumberofBasalPrimaryBranches} ${riceData.panicleDistancefromBasetoLowestSpikeletInsertion} ${riceData.panicleTextureofMainAxis} ${riceData.panicleNumberPerPlant} ${riceData.panicleLength} ${riceData.panicleAttitudeofMainAxis} ${riceData.panicleAttitudeofBranches} ${riceData.panicleSecondaryBranching} ${riceData.panicleExsertion} ${riceData.panicleShattering}`,
 					timestamp: serverTimestamp(),
   };
   await updateDoc(docRef, rsPayLoad);

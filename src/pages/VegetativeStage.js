@@ -82,6 +82,76 @@ export default function VegetativeStage({filterSeason, filterYear, searchInput})
         XLSX.writeFile(wb, `Special_Purpose_Rice_Vegetative_Stage.xlsx`)
     }
     
+        // DB Data to Array Search for Searching---->
+	const [searched, setSearched] = useState([])
+	useEffect(() => {
+		var searchList = []
+
+		if (searchInput !== "") {
+			riceData.map((rice) => {
+				const match = rice.searchIndex.toLowerCase()
+				const search = match.includes(searchInput)
+				if (search === true) {
+					searchList.push({
+            accessionId: rice.accessionId,
+            tagId: rice.tagId,
+            riceYear: rice.riceYear,
+            riceSeason: rice.riceSeason,
+            shelfNum: rice.shelfNum,
+            auricleColor: rice.auricleColor,
+            coleoptileAnthocyaninColouration: rice.coleoptileAnthocyaninColouration,
+            collarColour: rice.collarColour,
+            culmHabit: rice.culmHabit,
+            culmKneeingAbility: rice.culmKneeingAbility,
+            culmLength: rice.culmLength,
+            culmNumber: rice.culmNumber,
+            culmDiameteratBasalInternode: rice.culmDiameteratBasalInternode,
+            culmAnthocyaninColourationonNodes: rice.culmAnthocyaninColourationonNodes,
+            culmUnderlyingNodeColour: rice.culmUnderlyingNodeColour,
+            culmInternodeAnthocyanin: rice.culmInternodeAnthocyanin,
+            culmUnderlyingInternodeColouration: rice.culmUnderlyingInternodeColouration,
+            culmLodgingResistance: rice.culmLodgingResistance,
+            culmStrength: rice.culmStrength,
+            flagLeafLegnth: rice.flagLeafLegnth,
+            flagLeafWidth: rice.flagLeafWidth,
+            flagLeafAttitudeEarlyobs: rice.flagLeafAttitudeEarlyobs,
+            flagLeafAttitudeLateobs: rice.flagLeafAttitudeLateobs,
+            leafMarginPubesence: rice.leafMarginPubesence,
+            leafSenesence: rice.leafSenesence,
+            lbPresenceAbsenceofAnthocyaninColouration: rice.lbPresenceAbsenceofAnthocyaninColouration,
+            lbDistributionofAnthocyaninColouration: rice.lbDistributionofAnthocyaninColouration,
+            lbIntensityofGreenColour: rice.lbIntensityofGreenColour,
+            lbAttitude: rice.lbAttitude,
+            lbPubesence: rice.lbPubesence,
+            lbPubesenceonBladeSurface: rice.lbPubesenceonBladeSurface,
+            lbLength: rice.lbLength,
+            lbWidth: rice.lbWidth,
+            basalLeafSheathColour: rice.basalLeafSheathColour,
+            lsAnthocyaninColouration: rice.lsAnthocyaninColouration,
+            liguleLength: rice.liguleLength,
+            liguleShape: rice.liguleShape,
+            liguleShapeCultivatedSpecies: rice.liguleShapeCultivatedSpecies,
+            liguleShapeWildSpecies: rice.liguleShapeWildSpecies,
+            liguleMarginShapeWildSpecies: rice.liguleMarginShapeWildSpecies,
+            liguleMarginHairiness: rice.liguleMarginHairiness,
+            ligulePubesence: rice.ligulePubesence,
+            liguleColour: rice.liguleColour,
+            rhizomeandStolonFormation: rice.rhizomeandStolonFormation,
+            seedlingHeight: rice.seedlingHeight,
+            timestamp:rice.timestamp,
+					
+					})
+         
+
+				}
+      
+			})
+		}
+    console.log(riceData);
+    console.log(searched);
+
+		setSearched(searchList)
+	}, [searchInput])
   
   return (
     <div className="  flex flex-auto max-w-0 max-h-0  ">
@@ -95,9 +165,14 @@ export default function VegetativeStage({filterSeason, filterYear, searchInput})
           <tbody className=" flex ">
             <div className="hidden sm:block flex-auto divide-y divide-slate-300 relative ">
               <div className="px-6 py-3 font-medium text-sprPrimary sticky top-4 bg-white">Accession</div>
+              {searchInput === ''?<>
               {riceData.map((rice) => (
                 <div className="px-6 py-3"> CL-R{rice.accessionId === "" ? "---" : rice.accessionId}</div>
+                ))}</>:<>
+                {searched.map((rice) => (
+                  <div className="px-6 py-3"> CL-R{rice.accessionId === "" ? "---" : rice.accessionId}</div>
               ))}
+              </>}
             </div>
           </tbody>
         </table>
@@ -107,9 +182,14 @@ export default function VegetativeStage({filterSeason, filterYear, searchInput})
           <tbody className=" flex ">
             <div className="hidden sm:block flex-auto divide-y divide-slate-300 ">
               <div className="px-6 py-3 font-medium text-sm whitespace-nowrap sticky top-4 bg-white text-sprPrimary">#</div>
+              {searchInput === ''?<>
               {riceData.map((rice) => (
                 <div className="px-6 py-3 text-sm whitespace-nowrap"> {rice.shelfNum === "" ? "---" : rice.shelfNum}</div>
+                ))}</>:<>
+                {searched.map((rice) => (
+                  <div className="px-6 py-3 text-sm whitespace-nowrap"> {rice.shelfNum === "" ? "---" : rice.shelfNum}</div>
               ))}
+              </>}
             </div>
           </tbody>
         </table>
@@ -119,15 +199,25 @@ export default function VegetativeStage({filterSeason, filterYear, searchInput})
           <tbody className=" flex ">
             <div className="hidden sm:block flex-auto divide-y divide-slate-300 ">
               <div className="px-6 text-sm py-3 font-medium whitespace-nowrap text-sprPrimary sticky top-4 bg-white">Year</div>
+              {searchInput === ''?<>
               {riceData.map((rice) => (
                 <div className="px-6 py-3 text-sm whitespace-nowrap"> {rice.riceYear === "" ? "---" : rice.riceYear}</div>
+                ))}</>:<>
+                {searched.map((rice) => (
+                  <div className="px-6 py-3 text-sm whitespace-nowrap"> {rice.riceYear === "" ? "---" : rice.riceYear}</div>
               ))}
+              </>}
             </div>
             <div className="hidden sm:block flex-auto divide-y divide-slate-300 ">
               <div className="px-6 py-3 text-sm font-medium whitespace-nowrap text-sprPrimary sticky top-4 bg-white">Season</div>
+              {searchInput === ''?<>
               {riceData.map((rice) => (
                 <div className="px-6 py-3 text-sm whitespace-nowrap"> {rice.riceSeason === "" ? "---" : rice.riceSeason}</div>
+                ))}</>:<>
+                {searched.map((rice) => (
+                   <div className="px-6 py-3 text-sm whitespace-nowrap"> {rice.riceSeason === "" ? "---" : rice.riceSeason}</div>
               ))}
+                </>}
             </div>
           </tbody>
         </table>
@@ -137,9 +227,14 @@ export default function VegetativeStage({filterSeason, filterYear, searchInput})
           <div className=" flex ">
             <div className="hidden sm:block flex-auto divide-y divide-slate-300 ">
               <div className="px-6 py-3 font-medium whitespace-nowrap text-sprPrimary sticky top-4 bg-white">Color</div>
+              {searchInput === ''?<>
               {riceData.map((rice) => (
                 <div className="px-6 py-3 bg-slate-50 whitespace-nowrap"> {rice.auricleColor === "" ? "---" : rice.auricleColor}</div>
+                ))}</>:<>
+                {searched.map((rice) => (
+                  <div className="px-6 py-3 bg-slate-50 whitespace-nowrap"> {rice.auricleColor === "" ? "---" : rice.auricleColor}</div>
               ))}
+                </>}
             </div>
           </div>
         </table>
@@ -148,9 +243,14 @@ export default function VegetativeStage({filterSeason, filterYear, searchInput})
           <tbody className=" flex ">
             <div className="hidden sm:block flex-auto divide-y divide-slate-300 ">
               <div className="px-6 py-3 font-medium whitespace-nowrap text-sprPrimary sticky top-4 bg-white">Anthocyanin colouration</div>
+              {searchInput === ''?<>
               {riceData.map((rice) => (
                 <div className="px-6 py-3 whitespace-nowrap"> {rice.coleoptileAnthocyaninColouration === "" ? "---" : rice.coleoptileAnthocyaninColouration}</div>
-              ))}
+                ))}</>:<>
+                {searched.map((rice) => (
+                  <div className="px-6 py-3 whitespace-nowrap"> {rice.coleoptileAnthocyaninColouration === "" ? "---" : rice.coleoptileAnthocyaninColouration}</div>
+             ))}
+                </>}
             </div>
           </tbody>
         </table>
@@ -159,9 +259,14 @@ export default function VegetativeStage({filterSeason, filterYear, searchInput})
           <tbody className=" flex ">
             <div className="hidden sm:block flex-auto divide-y divide-slate-300 ">
               <div className="px-6 py-3 font-medium whitespace-nowrap text-sprPrimary sticky top-4 bg-white">Colour</div>
+              {searchInput === ''?<>
               {riceData.map((rice) => (
                 <div className="px-6 py-3 bg-slate-50 whitespace-nowrap"> {rice.collarColour === "" ? "---" : rice.collarColour}</div>
+                ))}</>:<>
+                {searched.map((rice) => (
+                     <div className="px-6 py-3 bg-slate-50 whitespace-nowrap"> {rice.collarColour === "" ? "---" : rice.collarColour}</div>
               ))}
+                </>}
             </div>
           </tbody>
         </table>
@@ -170,69 +275,127 @@ export default function VegetativeStage({filterSeason, filterYear, searchInput})
           <tbody className=" flex ">
             <div className="hidden sm:block flex-auto divide-y divide-slate-300 ">
               <div className="px-6 py-3 font-medium whitespace-nowrap text-sprPrimary sticky top-4 bg-white">Habit</div>
+              {searchInput === ''?<>
               {riceData.map((rice) => (
                 <div className="px-6 py-3 whitespace-nowrap"> {rice.culmHabit === "" ? "---" : rice.culmHabit}</div>
+                ))}</>:<>
+                {searched.map((rice) => (
+                  <div className="px-6 py-3 whitespace-nowrap"> {rice.culmHabit === "" ? "---" : rice.culmHabit}</div>
               ))}
+                </>}
             </div>
             <div className="hidden sm:block flex-auto divide-y divide-slate-300 ">
               <div className="px-6 py-3 font-medium whitespace-nowrap text-sprPrimary sticky top-4 bg-white">Kneeing Ability</div>
+              {searchInput === ''?<>
               {riceData.map((rice) => (
                 <div className="px-6 py-3 whitespace-nowrap bg-slate-50"> {rice.culmKneeingAbility === "" ? "---" : rice.culmKneeingAbility}</div>
+                ))}</>:<>
+                {searched.map((rice) => (
+                   <div className="px-6 py-3 whitespace-nowrap bg-slate-50"> {rice.culmKneeingAbility === "" ? "---" : rice.culmKneeingAbility}</div>
               ))}
+              </>}
             </div>
             <div className="hidden sm:block flex-auto divide-y divide-slate-300 ">
               <div className="px-6 py-3 font-medium whitespace-nowrap text-sprPrimary sticky top-4 bg-white">Length</div>
+              {searchInput === ''?<>
               {riceData.map((rice) => (
                 <div className="px-6 py-3 whitespace-nowrap"> {rice.culmLength === "" ? "---" : rice.culmLength}</div>
+                ))}</>:<>
+                {searched.map((rice) => (
+                  <div className="px-6 py-3 whitespace-nowrap"> {rice.culmLength === "" ? "---" : rice.culmLength}</div>
+                
               ))}
+              </>}
             </div>
             <div className="hidden sm:block flex-auto divide-y divide-slate-300 ">
               <div className="px-6 py-3 font-medium whitespace-nowrap text-sprPrimary sticky top-4 bg-white">Number</div>
+              {searchInput === ''?<>
               {riceData.map((rice) => (
                 <div className="px-6 py-3 bg-slate-50 whitespace-nowrap"> {rice.culmNumber === "" ? "---" : rice.culmNumber}</div>
+                ))}</>:<>
+                {searched.map((rice) => (
+                   <div className="px-6 py-3 bg-slate-50 whitespace-nowrap"> {rice.culmNumber === "" ? "---" : rice.culmNumber}</div>
               ))}
+                </>}
             </div>
             <div className="hidden sm:block flex-auto divide-y divide-slate-300 ">
               <div className="px-6 py-3 font-medium whitespace-nowrap text-sprPrimary sticky top-4 bg-white">Diameter at Basal Internode</div>
+              {searchInput === ''?<>
               {riceData.map((rice) => (
                 <div className="px-6 py-3 whitespace-nowrap"> {rice.culmDiameteratBasalInternode === "" ? "---" : rice.culmDiameteratBasalInternode}</div>
+                ))}</>:<>
+                {searched.map((rice) => (
+                  <div className="px-6 py-3 whitespace-nowrap"> {rice.culmDiameteratBasalInternode === "" ? "---" : rice.culmDiameteratBasalInternode}</div>
               ))}
+               </>}
             </div>
             <div className="hidden sm:block flex-auto divide-y divide-slate-300 ">
               <div className="px-6 py-3 font-medium whitespace-nowrap text-sprPrimary sticky top-4 bg-white">Anthocyanin Colouration on Nodes</div>
-              {riceData.map((rice) => (
+              {searchInput === ''?<>
+                {riceData.map((rice) => (
                 <div className="px-6 py-3 whitespace-nowrap bg-slate-50"> {rice.culmAnthocyaninColourationonNodes === "" ? "---" : rice.culmAnthocyaninColourationonNodes}</div>
-              ))}
+                ))}</>:<>
+                {searched.map((rice) => (
+                  <div className="px-6 py-3 whitespace-nowrap bg-slate-50"> {rice.culmAnthocyaninColourationonNodes === "" ? "---" : rice.culmAnthocyaninColourationonNodes}</div>
+                  ))}
+              </>}
             </div>
             <div className="hidden sm:block flex-auto divide-y divide-slate-300 ">
               <div className="px-6 py-3 font-medium whitespace-nowrap text-sprPrimary sticky top-4 bg-white">Underlying Node Colour</div>
+              {searchInput === ''?<>
               {riceData.map((rice) => (
                 <div className="px-6 py-3 whitespace-nowrap"> {rice.culmUnderlyingNodeColour === "" ? "---" : rice.culmUnderlyingNodeColour}</div>
+                ))}</>:<>
+                {searched.map((rice) => (
+                  <div className="px-6 py-3 whitespace-nowrap"> {rice.culmUnderlyingNodeColour === "" ? "---" : rice.culmUnderlyingNodeColour}</div>
               ))}
+               </>}
             </div>
             <div className="hidden sm:block flex-auto divide-y divide-slate-300 ">
               <div className="px-6 py-3 font-medium whitespace-nowrap text-sprPrimary sticky top-4 bg-white">Internode Anthocyanin</div>
+              {searchInput === ''?<>
               {riceData.map((rice) => (
                 <div className="px-6 py-3 whitespace-nowrap bg-slate-50"> {rice.culmInternodeAnthocyanin === "" ? "---" : rice.culmInternodeAnthocyanin}</div>
-              ))}
+                ))}</>:<>
+                {searched.map((rice) => (
+                  <div className="px-6 py-3 whitespace-nowrap bg-slate-50"> {rice.culmInternodeAnthocyanin === "" ? "---" : rice.culmInternodeAnthocyanin}</div>
+                ))}
+                 </>}
             </div>
             <div className="hidden sm:block flex-auto divide-y divide-slate-300 ">
               <div className="px-6 py-3 font-medium whitespace-nowrap text-sprPrimary sticky top-4 bg-white">Underlying Internode Colouration</div>
+              {searchInput === ''?<>
               {riceData.map((rice) => (
                 <div className="px-6 py-3 whitespace-nowrap"> {rice.culmUnderlyingInternodeColouration === "" ? "---" : rice.culmUnderlyingInternodeColouration}</div>
+                ))}</>:<>
+                {searched.map((rice) => (
+                 <div className="px-6 py-3 whitespace-nowrap"> {rice.culmUnderlyingInternodeColouration === "" ? "---" : rice.culmUnderlyingInternodeColouration}</div>
+
               ))}
+               </>}
             </div>
             <div className="hidden sm:block flex-auto divide-y divide-slate-300 ">
               <div className="px-6 py-3 font-medium whitespace-nowrap text-sprPrimary sticky top-4 bg-white">Lodging Resistance</div>
+              {searchInput === ''?<>
               {riceData.map((rice) => (
                 <div className="px-6 py-3 whitespace-nowrap bg-slate-50"> {rice.culmLodgingResistance === "" ? "---" : rice.culmLodgingResistance}</div>
+                ))}</>:<>
+                {searched.map((rice) => (
+                <div className="px-6 py-3 whitespace-nowrap bg-slate-50"> {rice.culmLodgingResistance === "" ? "---" : rice.culmLodgingResistance}</div>
+
               ))}
+                  </>}
             </div>
             <div className="hidden sm:block flex-auto divide-y divide-slate-300 ">
               <div className="px-6 py-3 font-medium whitespace-nowrap text-sprPrimary sticky top-4 bg-white">Strength</div>
+              {searchInput === ''?<>
               {riceData.map((rice) => (
                 <div className="px-6 py-3 whitespace-nowrap"> {rice.culmStrength === "" ? "---" : rice.culmStrength}</div>
+                ))}</>:<>
+                {searched.map((rice) => (
+                  <div className="px-6 py-3 whitespace-nowrap"> {rice.culmStrength === "" ? "---" : rice.culmStrength}</div>
               ))}
+                 </>}
             </div>
           </tbody>
         </table>
@@ -241,27 +404,47 @@ export default function VegetativeStage({filterSeason, filterYear, searchInput})
           <tbody className=" flex ">
             <div className="hidden sm:block flex-auto divide-y divide-slate-300 ">
               <div className="px-6 py-3 font-medium whitespace-nowrap text-sprPrimary sticky top-4 bg-white">Length</div>
+              {searchInput === ''?<>
               {riceData.map((rice) => (
                 <div className="px-6 py-3 bg-slate-50 whitespace-nowrap"> {rice.flagLeafLegnth === "" ? "---" : rice.flagLeafLegnth}</div>
-              ))}
+                ))}</>:<>
+                {searched.map((rice) => (
+                  <div className="px-6 py-3 bg-slate-50 whitespace-nowrap"> {rice.flagLeafLegnth === "" ? "---" : rice.flagLeafLegnth}</div>
+             ))}
+                 </>}
             </div>
             <div className="hidden sm:block flex-auto divide-y divide-slate-300 ">
               <div className="px-6 py-3 font-medium whitespace-nowrap text-sprPrimary sticky top-4 bg-white">Width</div>
-              {riceData.map((rice) => (
+              {searchInput === ''?<>
+                {riceData.map((rice) => (
                 <div className="px-6 py-3 whitespace-nowrap"> {rice.flagLeafWidth === "" ? "---" : rice.flagLeafWidth}</div>
+                ))}</>:<>
+                {searched.map((rice) => (
+                      <div className="px-6 py-3 whitespace-nowrap"> {rice.flagLeafWidth === "" ? "---" : rice.flagLeafWidth}</div>
               ))}
+              </>}
             </div>
             <div className="hidden sm:block flex-auto divide-y divide-slate-300 ">
               <div className="px-6 py-3 font-medium whitespace-nowrap text-sprPrimary sticky top-4 bg-white">Attitude Early Observation</div>
+              {searchInput === ''?<>
               {riceData.map((rice) => (
                 <div className="px-6 py-3 whitespace-nowrap bg-slate-50"> {rice.flagLeafAttitudeEarlyobs === "" ? "---" : rice.flagLeafAttitudeEarlyobs}</div>
+                ))}</>:<>
+                {searched.map((rice) => (
+                  <div className="px-6 py-3 whitespace-nowrap bg-slate-50"> {rice.flagLeafAttitudeEarlyobs === "" ? "---" : rice.flagLeafAttitudeEarlyobs}</div>
               ))}
+              </>}
             </div>
             <div className="hidden sm:block flex-auto divide-y divide-slate-300 ">
               <div className="px-6 py-3 font-medium whitespace-nowrap text-sprPrimary sticky top-4 bg-white">Attitude Late Obeservation</div>
+              {searchInput === ''?<>
               {riceData.map((rice) => (
                 <div className="px-6 py-3 whitespace-nowrap"> {rice.flagLeafAttitudeLateobs === "" ? "---" : rice.flagLeafAttitudeLateobs}</div>
+                ))}</>:<>
+                {searched.map((rice) => (
+                  <div className="px-6 py-3 whitespace-nowrap"> {rice.flagLeafAttitudeLateobs === "" ? "---" : rice.flagLeafAttitudeLateobs}</div>
               ))}
+                 </>}
             </div>
           </tbody>
         </table>
@@ -270,15 +453,26 @@ export default function VegetativeStage({filterSeason, filterYear, searchInput})
           <tbody className=" flex ">
             <div className="hidden sm:block flex-auto divide-y divide-slate-300 ">
               <div className="px-6 py-3 font-medium whitespace-nowrap text-sprPrimary sticky top-4 bg-white">Margin Pubesence</div>
+              {searchInput === ''?<>
               {riceData.map((rice) => (
                 <div className="px-6 py-3 whitespace-nowrap bg-slate-50"> {rice.leafMarginPubesence === "" ? "---" : rice.leafMarginPubesence}</div>
+                ))}</>:<>
+                {searched.map((rice) => (
+                   <div className="px-6 py-3 whitespace-nowrap bg-slate-50"> {rice.leafMarginPubesence === "" ? "---" : rice.leafMarginPubesence}</div>
+             
               ))}
+                 </>}
             </div>
             <div className="hidden sm:block flex-auto divide-y divide-slate-300 ">
               <div className="px-6 py-3 font-medium whitespace-nowrap text-sprPrimary sticky top-4 bg-white">Senesence</div>
+              {searchInput === ''?<>
               {riceData.map((rice) => (
                 <div className="px-6 py-3 whitespace-nowrap"> {rice.leafSenesence === "" ? "---" : rice.leafSenesence}</div>
+                ))}</>:<>
+                {searched.map((rice) => (
+                   <div className="px-6 py-3 whitespace-nowrap"> {rice.leafSenesence === "" ? "---" : rice.leafSenesence}</div>
               ))}
+                </>}
             </div>
           </tbody>
         </table>
@@ -287,51 +481,91 @@ export default function VegetativeStage({filterSeason, filterYear, searchInput})
           <tbody className=" flex ">
             <div className="hidden sm:block flex-auto divide-y divide-slate-300 ">
               <div className="px-6 py-3 font-medium whitespace-nowrap text-sprPrimary sticky top-4 bg-white">Presence Absence of Anthocyanin Colouration</div>
+              {searchInput === ''?<>
               {riceData.map((rice) => (
                 <div className="px-6 py-3 whitespace-nowrap bg-slate-50"> {rice.lbPresenceAbsenceofAnthocyaninColouration === "" ? "---" : rice.lbPresenceAbsenceofAnthocyaninColouration}</div>
-              ))}
+                ))}</>:<>
+                {searched.map((rice) => (
+                    <div className="px-6 py-3 whitespace-nowrap bg-slate-50"> {rice.lbPresenceAbsenceofAnthocyaninColouration === "" ? "---" : rice.lbPresenceAbsenceofAnthocyaninColouration}</div>
+                ))}
+                  </>}
             </div>
             <div className="hidden sm:block flex-auto divide-y divide-slate-300 ">
               <div className="px-6 py-3 font-medium whitespace-nowrap text-sprPrimary sticky top-4 bg-white">Distribution of Anthocyanin Colouration</div>
+              {searchInput === ''?<>
               {riceData.map((rice) => (
                 <div className="px-6 py-3 whitespace-nowrap"> {rice.lbDistributionofAnthocyaninColouration === "" ? "---" : rice.lbDistributionofAnthocyaninColouration}</div>
-              ))}
+                ))}</>:<>
+                {searched.map((rice) => (
+              <div className="px-6 py-3 whitespace-nowrap"> {rice.lbDistributionofAnthocyaninColouration === "" ? "---" : rice.lbDistributionofAnthocyaninColouration}</div>
+               ))}
+               </>}
             </div>
             <div className="hidden sm:block flex-auto divide-y divide-slate-300 ">
               <div className="px-6 py-3 font-medium whitespace-nowrap text-sprPrimary sticky top-4 bg-white">Intensity of Green Colour</div>
+              {searchInput === ''?<>
               {riceData.map((rice) => (
                 <div className="px-6 py-3 whitespace-nowrap bg-slate-50"> {rice.lbIntensityofGreenColour === "" ? "---" : rice.lbIntensityofGreenColour}</div>
+                ))}</>:<>
+                {searched.map((rice) => (
+                <div className="px-6 py-3 whitespace-nowrap bg-slate-50"> {rice.lbIntensityofGreenColour === "" ? "---" : rice.lbIntensityofGreenColour}</div>
               ))}
+                </>}
             </div>
             <div className="hidden sm:block flex-auto divide-y divide-slate-300 ">
               <div className="px-6 py-3 font-medium whitespace-nowrap text-sprPrimary sticky top-4 bg-white">Attitude</div>
+              {searchInput === ''?<>
               {riceData.map((rice) => (
                 <div className="px-6 py-3 whitespace-nowrap"> {rice.lbAttitude === "" ? "---" : rice.lbAttitude}</div>
+                ))}</>:<>
+                {searched.map((rice) => (
+                  <div className="px-6 py-3 whitespace-nowrap"> {rice.lbAttitude === "" ? "---" : rice.lbAttitude}</div>
               ))}
+                 </>}
             </div>
             <div className="hidden sm:block flex-auto divide-y divide-slate-300 ">
               <div className="px-6 py-3 font-medium whitespace-nowrap text-sprPrimary sticky top-4 bg-white">Pubesence</div>
+              {searchInput === ''?<>
               {riceData.map((rice) => (
                 <div className="px-6 py-3 bg-slate-50 whitespace-nowrap"> {rice.lbPubesence === "" ? "---" : rice.lbPubesence}</div>
+                ))}</>:<>
+                {searched.map((rice) => (
+                    <div className="px-6 py-3 bg-slate-50 whitespace-nowrap"> {rice.lbPubesence === "" ? "---" : rice.lbPubesence}</div>
               ))}
+               </>}
             </div>
             <div className="hidden sm:block flex-auto divide-y divide-slate-300 ">
               <div className="px-6 py-3 font-medium whitespace-nowrap text-sprPrimary sticky top-4 bg-white">Pubesence on Blade Surface</div>
+              {searchInput === ''?<>
               {riceData.map((rice) => (
                 <div className="px-6 py-3 whitespace-nowrap"> {rice.lbPubesenceonBladeSurface === "" ? "---" : rice.lbPubesenceonBladeSurface}</div>
+                ))}</>:<>
+                {searched.map((rice) => (
+                  <div className="px-6 py-3 whitespace-nowrap"> {rice.lbPubesenceonBladeSurface === "" ? "---" : rice.lbPubesenceonBladeSurface}</div>
               ))}
+               </>}
             </div>
             <div className="hidden sm:block flex-auto divide-y divide-slate-300 ">
               <div className="px-6 py-3 font-medium whitespace-nowrap text-sprPrimary sticky top-4 bg-white">Length</div>
+              {searchInput === ''?<>
               {riceData.map((rice) => (
                 <div className="px-6 py-3 bg-slate-50 whitespace-nowrap"> {rice.lbLength === "" ? "---" : rice.lbLength}</div>
+                ))}</>:<>
+                {searched.map((rice) => (
+                   <div className="px-6 py-3 bg-slate-50 whitespace-nowrap"> {rice.lbLength === "" ? "---" : rice.lbLength}</div>
               ))}
+               </>}
             </div>
             <div className="hidden sm:block flex-auto divide-y divide-slate-300 ">
               <div className="px-6 py-3 font-medium whitespace-nowrap text-sprPrimary sticky top-4 bg-white">Width</div>
+              {searchInput === ''?<>
               {riceData.map((rice) => (
                 <div className="px-6 py-3 whitespace-nowrap"> {rice.lbWidth === "" ? "---" : rice.lbWidth}</div>
+                ))}</>:<>
+                {searched.map((rice) => (
+                   <div className="px-6 py-3 whitespace-nowrap"> {rice.lbWidth === "" ? "---" : rice.lbWidth}</div>
               ))}
+                </>}
             </div>
           </tbody>
         </table>
@@ -340,15 +574,25 @@ export default function VegetativeStage({filterSeason, filterYear, searchInput})
           <tbody className=" flex ">
             <div className="hidden sm:block flex-auto divide-y divide-slate-300 ">
               <div className="px-6 py-3 font-medium whitespace-nowrap text-sprPrimary sticky top-4 bg-white">Basal Leaf Sheath Colour</div>
+              {searchInput === ''?<>
               {riceData.map((rice) => (
                 <div className="px-6 py-3 whitespace-nowrap bg-slate-50"> {rice.basalLeafSheathColour === "" ? "---" : rice.basalLeafSheathColour}</div>
+                ))}</>:<>
+                {searched.map((rice) => (
+                   <div className="px-6 py-3 whitespace-nowrap bg-slate-50"> {rice.basalLeafSheathColour === "" ? "---" : rice.basalLeafSheathColour}</div>
               ))}
+              </>}
             </div>
             <div className="hidden sm:block flex-auto divide-y divide-slate-300 ">
               <div className="px-6 py-3 font-medium whitespace-nowrap text-sprPrimary sticky top-4 bg-white">Anthocyanin Colouration</div>
+              {searchInput === ''?<>
               {riceData.map((rice) => (
                 <div className="px-6 py-3 whitespace-nowrap"> {rice.lsAnthocyaninColouration === "" ? "---" : rice.lsAnthocyaninColouration}</div>
+                ))}</>:<>
+                {searched.map((rice) => (
+                  <div className="px-6 py-3 whitespace-nowrap"> {rice.lsAnthocyaninColouration === "" ? "---" : rice.lsAnthocyaninColouration}</div>
               ))}
+                </>}
             </div>
           </tbody>
         </table>
@@ -357,51 +601,92 @@ export default function VegetativeStage({filterSeason, filterYear, searchInput})
           <tbody className=" flex ">
             <div className="hidden sm:block flex-auto divide-y divide-slate-300 ">
               <div className="px-6 py-3 font-medium whitespace-nowrap text-sprPrimary sticky top-4 bg-white">Length</div>
+              {searchInput === ''?<>
               {riceData.map((rice) => (
                 <div className="px-6 py-3 bg-slate-50 whitespace-nowrap"> {rice.liguleLength === "" ? "---" : rice.liguleLength}</div>
-              ))}
+                ))}</>:<>
+                {searched.map((rice) => (
+                   <div className="px-6 py-3 bg-slate-50 whitespace-nowrap"> {rice.liguleLength === "" ? "---" : rice.liguleLength}</div>
+             ))}
+                  </>}
             </div>
             <div className="hidden sm:block flex-auto divide-y divide-slate-300 ">
               <div className="px-6 py-3 font-medium whitespace-nowrap text-sprPrimary sticky top-4 bg-white">Shape</div>
+              {searchInput === ''?<>
               {riceData.map((rice) => (
                 <div className="px-6 py-3 whitespace-nowrap"> {rice.liguleShape === "" ? "---" : rice.liguleShape}</div>
-              ))}
+                ))}</>:<>
+                {searched.map((rice) => (
+                  <div className="px-6 py-3 whitespace-nowrap"> {rice.liguleShape === "" ? "---" : rice.liguleShape}</div>
+                ))}
+                  </>}
             </div>
             <div className="hidden sm:block flex-auto divide-y divide-slate-300 ">
               <div className="px-6 py-3 font-medium whitespace-nowrap text-sprPrimary sticky top-4 bg-white">Shape Cultivated Species</div>
+              {searchInput === ''?<>
               {riceData.map((rice) => (
                 <div className="px-6 py-3 whitespace-nowrap bg-slate-50"> {rice.liguleShapeCultivatedSpecies === "" ? "---" : rice.liguleShapeCultivatedSpecies}</div>
-              ))}
+                ))}</>:<>
+                {searched.map((rice) => (
+                  <div className="px-6 py-3 whitespace-nowrap bg-slate-50"> {rice.liguleShapeCultivatedSpecies === "" ? "---" : rice.liguleShapeCultivatedSpecies}</div>
+                ))}
+                </>}
             </div>
             <div className="hidden sm:block flex-auto divide-y divide-slate-300 ">
               <div className="px-6 py-3 font-medium whitespace-nowrap text-sprPrimary sticky top-4 bg-white">Shape Wild Species</div>
+              {searchInput === ''?<>
               {riceData.map((rice) => (
                 <div className="px-6 py-3 whitespace-nowrap"> {rice.liguleShapeWildSpecies === "" ? "---" : rice.liguleShapeWildSpecies}</div>
+                ))}</>:<>
+                {searched.map((rice) => (
+                  <div className="px-6 py-3 whitespace-nowrap"> {rice.liguleShapeWildSpecies === "" ? "---" : rice.liguleShapeWildSpecies}</div>
               ))}
+                  </>}
             </div>
             <div className="hidden sm:block flex-auto divide-y divide-slate-300 ">
               <div className="px-6 py-3 font-medium whitespace-nowrap text-sprPrimary sticky top-4 bg-white">Margin Shape Wild Species</div>
+              {searchInput === ''?<>
               {riceData.map((rice) => (
                 <div className="px-6 py-3 whitespace-nowrap bg-slate-50"> {rice.liguleMarginShapeWildSpecies === "" ? "---" : rice.liguleMarginShapeWildSpecies}</div>
+                ))}</>:<>
+                {searched.map((rice) => (
+                   <div className="px-6 py-3 whitespace-nowrap bg-slate-50"> {rice.liguleMarginShapeWildSpecies === "" ? "---" : rice.liguleMarginShapeWildSpecies}</div>
+                   
               ))}
+              </>}
             </div>
             <div className="hidden sm:block flex-auto divide-y divide-slate-300 ">
               <div className="px-6 py-3 font-medium whitespace-nowrap text-sprPrimary sticky top-4 bg-white">Margin Hairiness</div>
+              {searchInput === ''?<>
               {riceData.map((rice) => (
                 <div className="px-6 py-3 whitespace-nowrap"> {rice.liguleMarginHairiness === "" ? "---" : rice.liguleMarginHairiness}</div>
-              ))}
+                ))}</>:<>
+                {searched.map((rice) => (
+                   <div className="px-6 py-3 whitespace-nowrap"> {rice.liguleMarginHairiness === "" ? "---" : rice.liguleMarginHairiness}</div>
+             ))}
+               </>}
             </div>
             <div className="hidden sm:block flex-auto divide-y divide-slate-300 ">
               <div className="px-6 py-3 font-medium whitespace-nowrap text-sprPrimary sticky top-4 bg-white">Pubesence</div>
+              {searchInput === ''?<>
               {riceData.map((rice) => (
                 <div className="px-6 py-3 bg-slate-50 whitespace-nowrap"> {rice.ligulePubesence === "" ? "---" : rice.ligulePubesence}</div>
-              ))}
+                ))}</>:<>
+                {searched.map((rice) => (
+                  <div className="px-6 py-3 bg-slate-50 whitespace-nowrap"> {rice.ligulePubesence === "" ? "---" : rice.ligulePubesence}</div>
+             ))}
+              </>}
             </div>
             <div className="hidden sm:block flex-auto divide-y divide-slate-300 ">
               <div className="px-6 py-3 font-medium whitespace-nowrap text-sprPrimary sticky top-4 bg-white">Colour</div>
+              {searchInput === ''?<>
               {riceData.map((rice) => (
                 <div className="px-6 py-3 whitespace-nowrap"> {rice.liguleColour === "" ? "---" : rice.liguleColour}</div>
+                ))}</>:<>
+                {searched.map((rice) => (
+                    <div className="px-6 py-3 whitespace-nowrap"> {rice.liguleColour === "" ? "---" : rice.liguleColour}</div>
               ))}
+                 </>}
             </div>
           </tbody>
         </table>
@@ -410,9 +695,14 @@ export default function VegetativeStage({filterSeason, filterYear, searchInput})
           <tbody className=" flex ">
             <div className="hidden sm:block flex-auto divide-y divide-slate-300 ">
               <div className="px-6 py-3 font-medium whitespace-nowrap text-sprPrimary sticky top-4 bg-white">Formation</div>
+              {searchInput === ''?<>
               {riceData.map((rice) => (
                 <div className="px-6 py-3 whitespace-nowrap bg-slate-50"> {rice.rhizomeandStolonFormation === "" ? "---" : rice.rhizomeandStolonFormation}</div>
+                ))}</>:<>
+                {searched.map((rice) => (
+                   <div className="px-6 py-3 whitespace-nowrap bg-slate-50"> {rice.rhizomeandStolonFormation === "" ? "---" : rice.rhizomeandStolonFormation}</div>
               ))}
+                </>}
             </div>
           </tbody>
         </table>
@@ -421,9 +711,14 @@ export default function VegetativeStage({filterSeason, filterYear, searchInput})
           <tbody className=" flex ">
             <div className="hidden sm:block flex-auto divide-y divide-slate-300 ">
               <div className="px-6 py-3 font-medium whitespace-nowrap text-sprPrimary sticky top-4 bg-white">Height</div>
+              {searchInput === ''?<>
               {riceData.map((rice) => (
                 <div className="px-6 py-3 whitespace-nowrap"> {rice.seedlingHeight === "" ? "---" : rice.seedlingHeight}</div>
-              ))}
+                ))}</>:<>
+                {searched.map((rice) => (
+                  <div className="px-6 py-3 whitespace-nowrap"> {rice.seedlingHeight === "" ? "---" : rice.seedlingHeight}</div>
+             ))}
+              </>}
             </div>
           </tbody>
         </table>

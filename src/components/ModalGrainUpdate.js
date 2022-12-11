@@ -110,6 +110,7 @@ export default function ModalGrainUpdate({open, closeModal, modalId,modalYear, m
             longerSterileLemmaLength: riceData.longerSterileLemmaLength,
             sterileLemmaShape: riceData.sterileLemmaShape,
             sterileLemmaColour: riceData.sterileLemmaColour,
+            searchIndex:`${riceData.accessionId} Shelf ${riceData.shelfNum} ${riceData.awnColour} ${ riceData.caryopsisLength} ${ riceData.caryopsisWidth} ${riceData.caryopsisShape} ${riceData.caryopsisPericarpColour} ${riceData.endorspermType} ${riceData.grainLength} ${riceData.grainWidth} ${riceData.grainThickness} ${riceData.grain100GrainWeight} ${ riceData.lemmaAnthocyaninColourationofKeel} ${ riceData.lemmaAnthocyaninColourationofAreaBelowApiculusLateobs} ${riceData.lemmaColourofApiculusLateobs} ${riceData.lemmaShapeofApiculus} ${riceData.lemmaandPaleaPubesence} ${riceData.lemmaandPaleaColourLateobs} ${riceData.panicleLengthLateobs} ${riceData.panicleThreshability} ${riceData.spikeletFertility} ${riceData.sterileLemmaLength} ${riceData.longerSterileLemmaLength} ${riceData.sterileLemmaShape} ${riceData.sterileLemmaShape} ${riceData.sterileLemmaColour} `,
             timestamp: serverTimestamp(),
           };
           await updateDoc(docRef, gcPayLoad);

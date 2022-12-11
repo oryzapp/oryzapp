@@ -80,6 +80,60 @@ export default function GrainCharacteristics({filterSeason, filterYear, searchIn
         XLSX.writeFile(wb, `Special_Purpose_Rice_Grain_Characteristics.xlsx`)
     }
 
+     // DB Data to Array Search for Searching---->
+	const [searched, setSearched] = useState([])
+	useEffect(() => {
+		var searchList = []
+
+		if (searchInput !== "") {
+			riceData.map((rice) => {
+				const match = rice.searchIndex.toLowerCase()
+				const search = match.includes(searchInput)
+				if (search === true) {
+					searchList.push({
+            accessionId: rice.accessionId,
+            tagId: rice.tagId,
+            riceYear: rice.riceYear,
+            riceSeason: rice.riceSeason,
+            shelfNum: rice.shelfNum,
+            awnColour: rice.awnColour,
+            caryopsisLength: rice.caryopsisLength,
+            caryopsisWidth: rice.caryopsisWidth,
+            caryopsisShape: rice.caryopsisShape,
+            caryopsisPericarpColour: rice.caryopsisPericarpColour,
+            endorspermType: rice.endorspermType,
+            grainLength: rice.grainLength,
+            grainWidth: rice.grainWidth,
+            grainThickness: rice.grainThickness,
+            grain100GrainWeight: rice.grain100GrainWeight,
+            grain10GrainWeight: rice.grain10GrainWeight,
+            lemmaAnthocyaninColourationofKeel: rice.lemmaAnthocyaninColourationofKeel,
+            lemmaAnthocyaninColourationofAreaBelowApiculusLateobs: rice.lemmaAnthocyaninColourationofAreaBelowApiculusLateobs,
+            lemmaColourofApiculusLateobs: rice.lemmaColourofApiculusLateobs,
+            lemmaShapeofApiculus: rice.lemmaShapeofApiculus,
+            lemmaandPaleaPubesence: rice.lemmaandPaleaPubesence,
+            lemmaandPaleaColourLateobs: rice.lemmaandPaleaColourLateobs,
+            panicleLengthLateobs: rice.panicleLengthLateobs,
+            panicleThreshability: rice.panicleThreshability,
+            spikeletFertility: rice.spikeletFertility,
+            sterileLemmaLength: rice.sterileLemmaLength,
+            longerSterileLemmaLength: rice.longerSterileLemmaLength,
+            sterileLemmaShape: rice.sterileLemmaShape,
+            sterileLemmaColour: rice.sterileLemmaColour,
+            timestamp:rice.timestamp,
+					
+					})
+
+				}
+			})
+		}
+
+
+		setSearched(searchList)
+	}, [searchInput])
+
+  console.log(searched);
+
 
   return (
     <div className="  flex flex-auto max-w-0 max-h-0 divide-y divide-slate-400 ">
@@ -91,9 +145,25 @@ export default function GrainCharacteristics({filterSeason, filterYear, searchIn
           <tbody className=" flex ">
             <div className="hidden sm:block flex-auto divide-y divide-slate-300 ">
               <div className="px-6 py-3 font-medium whitespace-nowrap text-sprPrimary sticky top-4 bg-white">Accession</div>
+             
+              {/* {searchInput === ''?<>
+              {riceData.map((rice) => (
+                <div className="px-6 py-3 v bg-slate-50"> {rice.cookedRiceAroma === "" ? "---" : rice.cookedRiceAroma}</div>
+                ))}</>:<>
+                  {searched.map((rice) => (
+                    <div className="px-6 py-3 v bg-slate-50"> {rice.cookedRiceAroma === "" ? "---" : rice.cookedRiceAroma}</div>
+                  ))}
+              </>} */}
+             
+             
+             {searchInput === ''?<>
               {riceData.map((rice) => (
                 <div className="px-6 py-3 whitespace-nowrap"> CL-R{rice.accessionId === "" ? "---" : rice.accessionId}</div>
+                ))}</>:<>
+                {searched.map((rice) => (
+                  <div className="px-6 py-3 whitespace-nowrap"> CL-R{rice.accessionId === "" ? "---" : rice.accessionId}</div>
               ))}
+               </>}
             </div>
           </tbody>
         </table>
@@ -102,9 +172,16 @@ export default function GrainCharacteristics({filterSeason, filterYear, searchIn
           <tbody className=" flex ">
             <div className="hidden sm:block flex-auto divide-y divide-slate-300 ">
               <div className="px-6 text-sm py-3 font-medium whitespace-nowrap text-sprPrimary sticky top-4 bg-white">#</div>
+               
+              {searchInput === ''?<>
               {riceData.map((rice) => (
                 <div className="px-6 py-3 whitespace-nowrap"> {rice.shelfNum === "" ? "---" : rice.shelfNum}</div>
+                ))}</>:<>
+                {searched.map((rice) => (
+                                  <div className="px-6 py-3 whitespace-nowrap"> {rice.shelfNum === "" ? "---" : rice.shelfNum}</div>
+
               ))}
+               </>}
             </div>
           </tbody>
         </table>
@@ -113,15 +190,26 @@ export default function GrainCharacteristics({filterSeason, filterYear, searchIn
           <tbody className=" flex ">
             <div className="hidden sm:block flex-auto divide-y divide-slate-300 ">
               <div className="px-6 text-sm py-3 font-medium whitespace-nowrap text-sprPrimary sticky top-4 bg-white">Year</div>
+              {searchInput === ''?<>
               {riceData.map((rice) => (
                 <div className="px-6 py-3 whitespace-nowrap"> {rice.riceYear === "" ? "---" : rice.riceYear}</div>
+                ))}</>:<>
+                {searched.map((rice) => (
+                  <div className="px-6 py-3 whitespace-nowrap"> {rice.riceYear === "" ? "---" : rice.riceYear}</div>
               ))}
+               </>}
             </div>
             <div className="hidden sm:block flex-auto divide-y divide-slate-300 ">
               <div className="px-6 text-sm py-3 font-medium whitespace-nowrap text-sprPrimary sticky top-4 bg-white">Season</div>
+              {searchInput === ''?<>
               {riceData.map((rice) => (
                 <div className="px-6 py-3 whitespace-nowrap"> {rice.riceSeason === "" ? "---" : rice.riceSeason}</div>
+                ))}</>:<>
+                {searched.map((rice) => (
+                   <div className="px-6 py-3 whitespace-nowrap"> {rice.riceSeason === "" ? "---" : rice.riceSeason}</div>
+                
               ))}
+               </>}
             </div>
           </tbody>
         </table>
@@ -130,9 +218,14 @@ export default function GrainCharacteristics({filterSeason, filterYear, searchIn
           <tbody className=" flex ">
             <div className="hidden sm:block flex-auto divide-y divide-slate-300 ">
               <div className="px-6 py-3 font-medium whitespace-nowrap text-sprPrimary sticky top-4 bg-white">Colour</div>
+              {searchInput === ''?<>
               {riceData.map((rice) => (
                 <div className="px-6 py-3 whitespace-nowrap bg-slate-50"> {rice.awnColour === "" ? "---" : rice.awnColour}</div>
+                ))}</>:<>
+                {searched.map((rice) => (
+                <div className="px-6 py-3 whitespace-nowrap bg-slate-50"> {rice.awnColour === "" ? "---" : rice.awnColour}</div>
               ))}
+               </>}
             </div>
           </tbody>
         </table>
@@ -141,27 +234,47 @@ export default function GrainCharacteristics({filterSeason, filterYear, searchIn
           <tbody className=" flex ">
             <div className="hidden sm:block flex-auto divide-y divide-slate-300 ">
               <div className="px-6 py-3 whitespave-nowrap font-medium text-sprPrimary sticky top-4 bg-white">Length</div>
+              {searchInput === ''?<>
               {riceData.map((rice) => (
                 <div className="px-6 py-3 whitespace-nowrap"> {rice.caryopsisLength === "" ? "---" : rice.caryopsisLength}</div>
+                ))}</>:<>
+                {searched.map((rice) => (
+                  <div className="px-6 py-3 whitespace-nowrap"> {rice.caryopsisLength === "" ? "---" : rice.caryopsisLength}</div>
               ))}
+               </>}
             </div>
             <div className="hidden sm:block flex-auto divide-y divide-slate-300 ">
               <div className="px-6 py-3 font-medium whitespace-nowrap text-sprPrimary sticky top-4 bg-white">Width</div>
+              {searchInput === ''?<>
               {riceData.map((rice) => (
                 <div className="px-6 py-3 whitespace-nowrap bg-slate-50"> {rice.caryopsisWidth === "" ? "---" : rice.caryopsisWidth}</div>
-              ))}
+                ))}</>:<>
+                {searched.map((rice) => (
+             <div className="px-6 py-3 whitespace-nowrap bg-slate-50"> {rice.caryopsisWidth === "" ? "---" : rice.caryopsisWidth}</div>
+             ))}
+              </>}
             </div>
             <div className="hidden sm:block flex-auto divide-y divide-slate-300 ">
               <div className="px-6 py-3 font-medium whitespace-nowrap text-sprPrimary sticky top-4 bg-white">Shape</div>
+              {searchInput === ''?<>
               {riceData.map((rice) => (
                 <div className="px-6 py-3 whitespace-nowrap"> {rice.caryopsisShape === "" ? "---" : rice.caryopsisShape}</div>
+                ))}</>:<>
+                {searched.map((rice) => (
+                    <div className="px-6 py-3 whitespace-nowrap"> {rice.caryopsisShape === "" ? "---" : rice.caryopsisShape}</div>
               ))}
+               </>}
             </div>
             <div className="hidden sm:block flex-auto divide-y divide-slate-300 ">
               <div className="px-6 py-3 font-medium whitespace-nowrap text-sprPrimary sticky top-4 bg-white">Pericarp Colour</div>
+              {searchInput === ''?<>
               {riceData.map((rice) => (
                 <div className="px-6 py-3 whitespace-nowrap bg-slate-50"> {rice.caryopsisPericarpColour === "" ? "---" : rice.caryopsisPericarpColour}</div>
+                ))}</>:<>
+                {searched.map((rice) => (
+                   <div className="px-6 py-3 whitespace-nowrap bg-slate-50"> {rice.caryopsisPericarpColour === "" ? "---" : rice.caryopsisPericarpColour}</div>
               ))}
+               </>}
             </div>
           </tbody>
         </table>
@@ -170,9 +283,14 @@ export default function GrainCharacteristics({filterSeason, filterYear, searchIn
           <tbody className=" flex ">
             <div className="hidden sm:block flex-auto divide-y divide-slate-300 ">
               <div className="px-6 py-3 font-medium whitespace-nowrap text-sprPrimary sticky top-4 bg-white">Colour</div>
+              {searchInput === ''?<>
               {riceData.map((rice) => (
                 <div className="px-6 py-3 whitespace-nowrap"> {rice.endorspermType === "" ? "---" : rice.endorspermType}</div>
-              ))}
+                ))}</>:<>
+                {searched.map((rice) => (
+                   <div className="px-6 py-3 whitespace-nowrap"> {rice.endorspermType === "" ? "---" : rice.endorspermType}</div>
+                ))}
+                 </>}
             </div>
           </tbody>
         </table>
@@ -181,33 +299,58 @@ export default function GrainCharacteristics({filterSeason, filterYear, searchIn
           <tbody className=" flex ">
             <div className="hidden sm:block flex-auto divide-y divide-slate-300 ">
               <div className="px-6 py-3 font-medium whitespace-nowrap text-sprPrimary sticky top-4 bg-white">Habit</div>
+              {searchInput === ''?<>
               {riceData.map((rice) => (
                 <div className="px-6 py-3 whitespace-nowrap bg-slate-50"> {rice.grainLength === "" ? "---" : rice.grainLength}</div>
+                ))}</>:<>
+                {searched.map((rice) => (
+                  <div className="px-6 py-3 whitespace-nowrap bg-slate-50"> {rice.grainLength === "" ? "---" : rice.grainLength}</div>
               ))}
+                </>}
             </div>
             <div className="hidden sm:block flex-auto divide-y divide-slate-300 ">
               <div className="px-6 py-3 font-medium whitespace-nowrap text-sprPrimary sticky top-4 bg-white">Width</div>
+              {searchInput === ''?<>
               {riceData.map((rice) => (
                 <div className="px-6 py-3 whitespace-nowrap"> {rice.grainWidth === "" ? "---" : rice.grainWidth}</div>
+                ))}</>:<>
+                {searched.map((rice) => (
+                  <div className="px-6 py-3 whitespace-nowrap"> {rice.grainWidth === "" ? "---" : rice.grainWidth}</div>
               ))}
+                 </>}
             </div>
             <div className="hidden sm:block flex-auto divide-y divide-slate-300 ">
               <div className="px-6 py-3 font-medium whitespace-nowrap text-sprPrimary sticky top-4 bg-white">Thickness</div>
+              {searchInput === ''?<>
               {riceData.map((rice) => (
                 <div className="px-6 py-3 whitespace-nowrap bg-slate-50"> {rice.grainThickness === "" ? "---" : rice.grainThickness}</div>
+                ))}</>:<>
+                {searched.map((rice) => (
+                  <div className="px-6 py-3 whitespace-nowrap bg-slate-50"> {rice.grainThickness === "" ? "---" : rice.grainThickness}</div>
               ))}
+               </>}
             </div>
             <div className="hidden sm:block flex-auto divide-y divide-slate-300 ">
               <div className="px-6 py-3 font-medium whitespace-nowrap text-sprPrimary sticky top-4 bg-white">100 Grain Weight</div>
+              {searchInput === ''?<>
               {riceData.map((rice) => (
                 <div className="px-6 py-3 whitespace-nowrap"> {rice.grain100GrainWeight === "" ? "---" : rice.grain100GrainWeight}</div>
+                ))}</>:<>
+                {searched.map((rice) => (
+                  <div className="px-6 py-3 whitespace-nowrap"> {rice.grain100GrainWeight === "" ? "---" : rice.grain100GrainWeight}</div>
               ))}
+                 </>}
             </div>
             <div className="hidden sm:block flex-auto divide-y divide-slate-300 ">
               <div className="px-6 py-3 font-medium whitespace-nowrap text-sprPrimary sticky top-4 bg-white">10 Grain Weight</div>
+              {searchInput === ''?<>
               {riceData.map((rice) => (
                 <div className="px-6 py-3 whitespace-nowrap bg-slate-50"> {rice.grain10GrainWeight === "" ? "---" : rice.grain10GrainWeight}</div>
+                ))}</>:<>
+                {searched.map((rice) => (
+                  <div className="px-6 py-3 whitespace-nowrap bg-slate-50"> {rice.grain10GrainWeight === "" ? "---" : rice.grain10GrainWeight}</div>
               ))}
+              </>}
             </div>
           </tbody>
         </table>
@@ -216,27 +359,47 @@ export default function GrainCharacteristics({filterSeason, filterYear, searchIn
           <tbody className=" flex ">
             <div className="hidden sm:block flex-auto divide-y divide-slate-300 ">
               <div className="px-6 py-3 font-medium whitespace-nowrap text-sprPrimary sticky top-4 bg-white">Anthocyanin Colouration of Keel</div>
+              {searchInput === ''?<>
               {riceData.map((rice) => (
                 <div className="px-6 py-3 whitespace-nowrap"> {rice.lemmaAnthocyaninColourationofKeel === "" ? "---" : rice.lemmaAnthocyaninColourationofKeel}</div>
+                ))}</>:<>
+                {searched.map((rice) => (
+                  <div className="px-6 py-3 whitespace-nowrap"> {rice.lemmaAnthocyaninColourationofKeel === "" ? "---" : rice.lemmaAnthocyaninColourationofKeel}</div>
               ))}
+              </>}
             </div>
             <div className="hidden sm:block flex-auto divide-y divide-slate-300 ">
               <div className="px-6 py-3 font-medium whitespace-nowrap text-sprPrimary sticky top-4 bg-white">Anthocyanin Colouration of Area Below Apiculus Late Observation</div>
+              {searchInput === ''?<>
               {riceData.map((rice) => (
                 <div className="px-6 py-3 bg-slate-50 whitespace-nowrap"> {rice.lemmaAnthocyaninColourationofAreaBelowApiculusLateobs === "" ? "---" : rice.lemmaAnthocyaninColourationofAreaBelowApiculusLateobs}</div>
-              ))}
+                ))}</>:<>
+                {searched.map((rice) => (
+                  <div className="px-6 py-3 bg-slate-50 whitespace-nowrap"> {rice.lemmaAnthocyaninColourationofAreaBelowApiculusLateobs === "" ? "---" : rice.lemmaAnthocyaninColourationofAreaBelowApiculusLateobs}</div>
+                ))}
+                  </>}
             </div>
             <div className="hidden sm:block flex-auto divide-y divide-slate-300 ">
               <div className="px-6 py-3 font-medium whitespace-nowrap text-sprPrimary sticky top-4 bg-white">Colour of Apiculus Late Observation</div>
+              {searchInput === ''?<>
               {riceData.map((rice) => (
                 <div className="px-6 py-3 whitespace-nowrap"> {rice.lemmaColourofApiculusLateobs === "" ? "---" : rice.lemmaColourofApiculusLateobs}</div>
+                ))}</>:<>
+                {searched.map((rice) => (
+                  <div className="px-6 py-3 whitespace-nowrap"> {rice.lemmaColourofApiculusLateobs === "" ? "---" : rice.lemmaColourofApiculusLateobs}</div>
               ))}
+                </>}
             </div>
             <div className="hidden sm:block flex-auto divide-y divide-slate-300 ">
               <div className="px-6 py-3 font-medium whitespace-nowrap text-sprPrimary sticky top-4 bg-white">Shape of Apiculus</div>
+              {searchInput === ''?<>
               {riceData.map((rice) => (
                 <div className="px-6 py-3 whitespace-nowrap bg-slate-50"> {rice.lemmaShapeofApiculus === "" ? "---" : rice.lemmaShapeofApiculus}</div>
+                ))}</>:<>
+                {searched.map((rice) => (
+                  <div className="px-6 py-3 whitespace-nowrap bg-slate-50"> {rice.lemmaShapeofApiculus === "" ? "---" : rice.lemmaShapeofApiculus}</div>
               ))}
+               </>}
             </div>
           </tbody>
         </table>
@@ -245,15 +408,25 @@ export default function GrainCharacteristics({filterSeason, filterYear, searchIn
           <tbody className=" flex ">
             <div className="hidden sm:block flex-auto divide-y divide-slate-300 ">
               <div className="px-6 py-3 font-medium whitespace-nowrap text-sprPrimary sticky top-4 bg-white">Pubesence</div>
+              {searchInput === ''?<>
               {riceData.map((rice) => (
                 <div className="px-6 py-3 whitespace-nowrap"> {rice.lemmaandPaleaPubesence === "" ? "---" : rice.lemmaandPaleaPubesence}</div>
+                ))}</>:<>
+                {searched.map((rice) => (
+                   <div className="px-6 py-3 whitespace-nowrap"> {rice.lemmaandPaleaPubesence === "" ? "---" : rice.lemmaandPaleaPubesence}</div>
               ))}
+               </>}
             </div>
             <div className="hidden sm:block flex-auto divide-y divide-slate-300 ">
               <div className="px-6 py-3 font-medium whitespace-nowrap text-sprPrimary sticky top-4 bg-white">Colour Late Observation</div>
+              {searchInput === ''?<>
               {riceData.map((rice) => (
                 <div className="px-6 py-3 whitespace-nowrap bg-slate-50"> {rice.lemmaandPaleaColourLateobs === "" ? "---" : rice.lemmaandPaleaColourLateobs}</div>
+                ))}</>:<>
+                {searched.map((rice) => (
+                  <div className="px-6 py-3 whitespace-nowrap bg-slate-50"> {rice.lemmaandPaleaColourLateobs === "" ? "---" : rice.lemmaandPaleaColourLateobs}</div>
               ))}
+               </>}
             </div>
           </tbody>
         </table>
@@ -262,15 +435,26 @@ export default function GrainCharacteristics({filterSeason, filterYear, searchIn
           <tbody className=" flex ">
             <div className="hidden sm:block flex-auto divide-y divide-slate-300 ">
               <div className="px-6 py-3 font-medium whitespace-nowrap text-sprPrimary sticky top-4 bg-white">Length Late Observation</div>
+              {searchInput === ''?<>
               {riceData.map((rice) => (
                 <div className="px-6 py-3 whitespace-nowrap"> {rice.panicleLengthLateobs === "" ? "---" : rice.panicleLengthLateobs}</div>
+                ))}</>:<>
+                {searched.map((rice) => (
+                   <div className="px-6 py-3 whitespace-nowrap"> {rice.panicleLengthLateobs === "" ? "---" : rice.panicleLengthLateobs}</div>
               ))}
+                </>}
             </div>
             <div className="hidden sm:block flex-auto divide-y divide-slate-300 ">
               <div className="px-6 py-3 font-medium whitespace-nowrap text-sprPrimary sticky top-4 bg-white">Threshability</div>
+              {searchInput === ''?<>
               {riceData.map((rice) => (
                 <div className="px-6 py-3 whitespace-nowrap bg-slate-50"> {rice.panicleThreshability === "" ? "---" : rice.panicleThreshability}</div>
+                ))}</>:<>
+                {searched.map((rice) => (
+                <div className="px-6 py-3 whitespace-nowrap bg-slate-50"> {rice.panicleThreshability === "" ? "---" : rice.panicleThreshability}</div>
+
               ))}
+               </>}
             </div>
           </tbody>
         </table>
@@ -279,9 +463,14 @@ export default function GrainCharacteristics({filterSeason, filterYear, searchIn
           <tbody className=" flex ">
             <div className="hidden sm:block flex-auto divide-y divide-slate-300 ">
               <div className="px-6 py-3 font-medium whitespace-nowrap text-sprPrimary sticky top-4 bg-white">Fertility</div>
+              {searchInput === ''?<>
               {riceData.map((rice) => (
                 <div className="px-6 py-3 whitespace-nowrap"> {rice.spikeletFertility === "" ? "---" : rice.spikeletFertility}</div>
+                ))}</>:<>
+                {searched.map((rice) => (
+                  <div className="px-6 py-3 whitespace-nowrap"> {rice.spikeletFertility === "" ? "---" : rice.spikeletFertility}</div>
               ))}
+              </>}
             </div>
           </tbody>
         </table>
@@ -290,27 +479,47 @@ export default function GrainCharacteristics({filterSeason, filterYear, searchIn
           <tbody className=" flex ">
             <div className="hidden sm:block flex-auto divide-y divide-slate-300 ">
               <div className="px-6 py-3 font-medium whitespace-nowrap text-sprPrimary sticky top-4 bg-white">Lemma Length</div>
+              {searchInput === ''?<>
               {riceData.map((rice) => (
                 <div className="px-6 py-3 whitespace-nowrap bg-slate-50"> {rice.sterileLemmaLength === "" ? "---" : rice.sterileLemmaLength}</div>
+                ))}</>:<>
+                {searched.map((rice) => (
+                    <div className="px-6 py-3 whitespace-nowrap bg-slate-50"> {rice.sterileLemmaLength === "" ? "---" : rice.sterileLemmaLength}</div>
               ))}
+              </>}
             </div>
             <div className="hidden sm:block flex-auto divide-y divide-slate-300 ">
               <div className="px-6 py-3 font-medium whitespace-nowrap text-sprPrimary sticky top-4 bg-white">Longer Sterile Lemma Length</div>
+              {searchInput === ''?<>
               {riceData.map((rice) => (
                 <div className="px-6 py-3 whitespace-nowrap"> {rice.longerSterileLemmaLength === "" ? "---" : rice.longerSterileLemmaLength}</div>
+                ))}</>:<>
+                {searched.map((rice) => (
+                  <div className="px-6 py-3 whitespace-nowrap"> {rice.longerSterileLemmaLength === "" ? "---" : rice.longerSterileLemmaLength}</div>
               ))}
+               </>}
             </div>
             <div className="hidden sm:block flex-auto divide-y divide-slate-300 ">
               <div className="px-6 py-3 font-medium whitespace-nowrap text-sprPrimary sticky top-4 bg-white">Lemma Shape</div>
+              {searchInput === ''?<>
               {riceData.map((rice) => (
                 <div className="px-6 py-3 bg-slate-50 whitespace-nowrap"> {rice.sterileLemmaShape === "" ? "---" : rice.sterileLemmaShape}</div>
+                ))}</>:<>
+                {searched.map((rice) => (
+                  <div className="px-6 py-3 bg-slate-50 whitespace-nowrap"> {rice.sterileLemmaShape === "" ? "---" : rice.sterileLemmaShape}</div>
               ))}
+             </>}
             </div>
             <div className="hidden sm:block flex-auto divide-y divide-slate-300 ">
               <div className="px-6 py-3 font-medium whitespace-nowrap text-sprPrimary sticky top-4 bg-white">Lemma Colour</div>
+              {searchInput === ''?<>
               {riceData.map((rice) => (
                 <div className="px-6 py-3 whitespace-nowrap"> {rice.sterileLemmaColour === "" ? "---" : rice.sterileLemmaColour}</div>
+                ))}</>:<>
+                {searched.map((rice) => (
+                  <div className="px-6 py-3 whitespace-nowrap"> {rice.sterileLemmaColour === "" ? "---" : rice.sterileLemmaColour}</div>
               ))}
+               </>}
             </div>
           </tbody>
         </table>

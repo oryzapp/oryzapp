@@ -114,8 +114,8 @@ export default function ModalViewRiceData({open, closeModal, currentData}) {
                 <CloseIcon className='group-hover:stroke-white stroke-sprGray50 hover:stroke-sprGray80 active:stroke-sprPrimary h-5' onClick={closeModal} />
             </div>
             <div className=" flex-auto flex flex-col  overflow-hidden  ">
-            <div className='flex p-4 bg-white'>
-                <div className="  bg-slate-100  w-1/2 sm:w-1/3 rounded-md overflow-hidden">
+            <div className='flex p-4 '>
+                <div className="  bg-slate-100 h-40 w-1/2 sm:w-1/3 rounded-md overflow-hidden">
                            
                            {riceAccessions.map((rice)=>(
                                <div>{rice.imageUrl === ''? <div className=" h-full rounded-md"></div>:<img src={rice.imageUrl} alt="" className=" rounded-md h-full "/>}</div>
@@ -125,21 +125,23 @@ export default function ModalViewRiceData({open, closeModal, currentData}) {
                        {riceAccessions.map((rice) => (
                            <div className=" flex flex-col flex-auto p-3 pt-0">
                                <h1 className=" text-2xl sm:text-4xl text-sprPrimaryDarkest font-semibold ">CL-R{rice.accessionId}</h1>
-                               <h1 className="sm:text-lg text-sprGray60 font-medium">Source: {rice.source === '' ? "---" : rice.source}</h1>
-                               <h1 className="sm:text-lg text-sprGray60 font-medium">Variety: {rice.variety === '' ? "---" : rice.variety}</h1>
-                               <h1 className="sm:text-lg text-sprGray60 font-medium"> Classification: {rice.classification === ''? "---" : rice.classification}</h1>
+                               <h1 className="sm:text-md text-sprGray50 font-medium">Source: {rice.source === '' ? "---" : rice.source}</h1>
+                               <h1 className="sm:text-md text-sprGray50 font-medium">Variety: {rice.variety === '' ? "---" : rice.variety}</h1>
+                               <h1 className="sm:text-md text-sprGray50 font-medium"> Classification: {rice.classification === ''? "---" : rice.classification}</h1>
+                               <h1 className="sm:text-md text-sprGray50 font-medium"> Season: {season === ''? "---" : season}</h1>
+                               <h1 className="sm:text-md text-sprGray50 font-medium"> Year: {year === ''? "---" : year}</h1>
                            </div>
 
                        ))}
                 </div>
-                <div className=" w-full flex-auto flex flex-col max-h-full overflow-auto scrollbar rounded-t-lg z-50 bg-sprPrimarySuperLight">
-                    <div className=' '>
+                <div className=" w-full flex-auto flex flex-col max-h-full overflow-auto scrollbar rounded-lg z-50 bg-sprPrimarySuperLight">
+                    <div className=''>
                     {vsData.length === 0 && rsData.length === 0 && gcData.length === 0 && ycData.length === 0 ? 
                             <div className="h-full flex flex-col justify-center items-center gap-3">
                                 <EmptyIllTwo className="stroke-white"/>
                                 <h1 className="text-xl font-medium text-white">Plenty more room here</h1>
                             </div> :
-                            <div className="  max-h-0  p-4">
+                            <div className=" p-4">
                               {vsData.map((vsData) => (
                                   <div className="bg-white p-2 rounded-md text-sm">
                                       {/* vegetative stage */}

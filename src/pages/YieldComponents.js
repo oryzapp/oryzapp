@@ -95,27 +95,25 @@ useEffect(() => {
 				const search = match.includes(searchInput)
 				if (search === true) {
 					searchList.push({
-            accessionId: riceData.accessionId,
-            tagId: `${riceData.accessionId}_${filterSeason}_${riceData.riceYear}`,
-            riceYear: riceData.riceYear,
-            riceSeason: riceData.riceSeason,
-            shelfNum: riceData.shelfNum,
-            cavans: riceData.cavans,
-            kilogram: riceData.kilogram,
-            grainYield: riceData.grainYield,
-            tonHa: riceData.tonHa,
-            cookedRiceAroma: riceData.cookedRiceAroma,
-            grainAroma: riceData.grainAroma,
-            leafAroma: riceData.leafAroma,
-            timestamp:riceData.timestamp,
+            accessionId: rice.accessionId,
+            tagId: rice.tagId,
+            riceYear: rice.riceYear,
+            riceSeason: rice.riceSeason,
+            shelfNum: rice.shelfNum,
+            cavans: rice.cavans,
+            kilogram: rice.kilogram,
+            grainYield: rice.grainYield,
+            tonHa: rice.tonHa,
+            cookedRiceAroma: rice.cookedRiceAroma,
+            grainAroma: rice.grainAroma,
+            leafAroma: rice.leafAroma,
+            timestamp:rice.timestamp,
 					
 					})
 
 				}
 			})
 		}
-
-
 		setSearched(searchList)
 	}, [searchInput])
 
@@ -134,9 +132,15 @@ useEffect(() => {
           <tbody className=" flex ">
             <div className="hidden sm:block flex-auto divide-y divide-slate-300 ">
               <div className="px-6 py-3 font-medium whitespace-nowrap text-sprPrimary sticky top-4 bg-white">Accession</div>
-              {riceData.map((rice) => (
+              {searchInput === ''?<>
+              { riceData.map((rice) => (
                 <div className="px-6 py-3 whitespace-nowrap"> CL-R{rice.accessionId === "" ? "---" : rice.accessionId}</div>
               ))}
+              </>:<>
+              { searched.map((rice) => (
+                <div className="px-6 py-3 whitespace-nowrap"> CL-R{rice.accessionId === "" ? "---" : rice.accessionId}</div>
+              ))}
+              </>}
             </div>
           </tbody>
         </table>
@@ -145,9 +149,16 @@ useEffect(() => {
           <tbody className=" flex ">
             <div className="hidden sm:block flex-auto divide-y divide-slate-300 ">
               <div className="px-6 py-3 font-medium whitespace-nowrap text-sprPrimary sticky top-4 bg-white">#</div>
-              {riceData.map((rice) => (
+             {searchInput === ''?<>
+             {riceData.map((rice) => (
                 <div className="px-6 py-3 whitespace-nowrap"> {rice.shelfNum === "" ? "---" : rice.shelfNum}</div>
               ))}
+             </>:<>
+             {searched.map((rice) => (
+                <div className="px-6 py-3 whitespace-nowrap"> {rice.shelfNum === "" ? "---" : rice.shelfNum}</div>
+              ))}</>
+
+             }
             </div>
           </tbody>
         </table>
@@ -156,15 +167,27 @@ useEffect(() => {
           <tbody className=" flex ">
             <div className="hidden sm:block flex-auto divide-y divide-slate-300 ">
               <div className="px-6 py-3 font-medium whitespace-nowrap text-sprPrimary sticky top-4 bg-white">Year</div>
+              {searchInput === ''?<>
               {riceData.map((rice) => (
                 <div className="px-6 py-3 whitespace-nowrap"> {rice.riceYear === "" ? "---" : rice.riceYear}</div>
+              ))}</>:<>
+               
+                {searched.map((rice) => (
+                <div className="px-6 py-3 whitespace-nowrap"> {rice.riceYear === "" ? "---" : rice.riceYear}</div>
               ))}
+              </>}
             </div>
             <div className="hidden sm:block flex-auto divide-y divide-slate-300 ">
               <div className="px-6 py-3 font-medium whitespace-nowrap text-sprPrimary sticky top-4 bg-white">Season</div>
+              {/* {searchInput === ''?<> </>:<> </>} */}
+              {searchInput === ''?<>
               {riceData.map((rice) => (
                 <div className="px-6 py-3 whitespace-nowrap"> {rice.riceSeason === "" ? "---" : rice.riceSeason}</div>
+              ))}</>:<>
+               {searched.map((rice) => (
+                <div className="px-6 py-3 whitespace-nowrap"> {rice.riceYear === "" ? "---" : rice.riceYear}</div>
               ))}
+              </>}
             </div>
           </tbody>
         </table>
@@ -173,27 +196,47 @@ useEffect(() => {
           <tbody className=" flex ">
             <div className="hidden sm:block flex-auto divide-y divide-slate-300 ">
               <div className="px-6 py-3 font-medium whitespace-nowrap text-sprPrimary sticky top-4 bg-white">Cavans</div>
+              {searchInput === ''?<>
               {riceData.map((rice) => (
                 <div className="px-6 py-3 bg-slate-50 whitespace-nowrap"> {rice.cavans === "" ? "---" : rice.cavans}</div>
+                ))}</>:<>
+                 {searched.map((rice) => (
+                  <div className="px-6 py-3 bg-slate-50 whitespace-nowrap"> {rice.cavans === "" ? "---" : rice.cavans}</div>
               ))}
+              </>}
             </div>
             <div className="hidden sm:block flex-auto divide-y divide-slate-300 ">
               <div className="px-6 py-3 font-medium whitespace-nowrap text-sprPrimary sticky top-4 bg-white">Kilogram</div>
+              {searchInput === ''?<>
               {riceData.map((rice) => (
                 <div className="px-6 py-3 whitespace-nowrap"> {rice.kilogram === "" ? "---" : rice.kilogram}</div>
+                ))}</>:<>
+                {searched.map((rice) => (
+                 <div className="px-6 py-3 whitespace-nowrap"> {rice.kilogram === "" ? "---" : rice.kilogram}</div>
               ))}
+            </>}
             </div>
             <div className="hidden sm:block flex-auto divide-y divide-slate-300 ">
               <div className="px-6 py-3 font-medium whitespace-nowrap text-sprPrimary sticky top-4 bg-white">Grain Yield</div>
+              {searchInput === ''?<>
               {riceData.map((rice) => (
                 <div className="px-6 py-3 whitespace-nowrap bg-slate-50"> {rice.grainYield === "" ? "---" : rice.grainYield}</div>
-              ))}
+                ))}</>:<>
+                 {searched.map((rice) => (
+                  <div className="px-6 py-3 whitespace-nowrap bg-slate-50"> {rice.grainYield === "" ? "---" : rice.grainYield}</div>
+                  ))}
+                 </>}
             </div>
             <div className="hidden sm:block flex-auto divide-y divide-slate-300 ">
               <div className="px-6 py-3 font-medium whitespace-nowrap text-sprPrimary sticky top-4 bg-white">Ton/Ha</div>
+              {searchInput === ''?<>
               {riceData.map((rice) => (
                 <div className="px-6 py-3 whitespace-nowrap"> {rice.tonHa === "" ? "---" : rice.tonHa}</div>
-              ))}
+                ))}</>:<>
+              {searched.map((rice) => (
+                <div className="px-6 py-3 whitespace-nowrap"> {rice.tonHa === "" ? "---" : rice.tonHa}</div>
+                ))}
+                  </>}
             </div>
           </tbody>
 
@@ -203,21 +246,37 @@ useEffect(() => {
           <tbody className=" flex ">
             <div className="hidden sm:block flex-auto divide-y divide-slate-300 ">
               <div className="px-6 py-3 font-medium whitespace-nowrap text-sprPrimary sticky top-4 bg-white">Cooked Rice</div>
+              {searchInput === ''?<>
               {riceData.map((rice) => (
                 <div className="px-6 py-3 v bg-slate-50"> {rice.cookedRiceAroma === "" ? "---" : rice.cookedRiceAroma}</div>
-              ))}
+                ))}</>:<>
+                  {searched.map((rice) => (
+                    <div className="px-6 py-3 v bg-slate-50"> {rice.cookedRiceAroma === "" ? "---" : rice.cookedRiceAroma}</div>
+                  ))}
+              </>}
             </div>
             <div className="hidden sm:block flex-auto divide-y divide-slate-300 ">
               <div className="px-6 py-3 font-medium text-sprPrimary sticky top-4 bg-white">Grain</div>
+              {searchInput === ''?<>
               {riceData.map((rice) => (
                 <div className="px-6 py-3"> {rice.grainAroma === "" ? "---" : rice.grainAroma}</div>
-              ))}
+                ))}</>:<>
+                {searched.map((rice) => (
+                  <div className="px-6 py-3"> {rice.grainAroma === "" ? "---" : rice.grainAroma}</div>
+                 ))}
+              </>}
             </div>
             <div className="hidden sm:block flex-auto divide-y divide-slate-300 ">
               <div className="px-6 py-3 font-medium text-sprPrimary sticky top-4 bg-white">Leaf</div>
+             
+              {searchInput === ''?<>
               {riceData.map((rice) => (
                 <div className="px-6 py-3 bg-slate-50"> {rice.leafAroma === "" ? "---" : rice.leafAroma}</div>
+                ))}</>:<>
+                 {searched.map((rice) => (
+                   <div className="px-6 py-3 bg-slate-50"> {rice.leafAroma === "" ? "---" : rice.leafAroma}</div>
               ))}
+              </>}
             </div>
           </tbody>
         </table>
