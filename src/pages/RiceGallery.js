@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react"
 import { getDownloadURL, getMetadata, listAll, ref } from "firebase/storage";
 import { storage } from "../firebase-config";
+import ModalViewImage from "../components/ModalViewImage";
 
 export default function RiceGallery() {
 
@@ -35,7 +36,13 @@ export default function RiceGallery() {
 
   console.log(imageList);
 
-  
+  const [isModalOpen, setIsModalOpen] = useState(false)
+  const[modalItems, setModalItems] = useState({
+    url:'',
+    accession:''
+  })
+
+  console.log(modalItems);
 
   return (
     <>
@@ -49,13 +56,21 @@ export default function RiceGallery() {
           <div className="flex w-full max-h-0 lg:max-w-full relative bg-yellow-400">
             <div className=" grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 p-3">
                       {imageList.map((item) => (
-                        <div className="bg-white m-1 p-2 flex justify-center items-start relative rounded-xl flex-col border border-slate-100 drop-shadow-sm hover:bg-sprPrimarySuperLight">
-                          <div className="h-40 bg-white  rounded-md">
-                        <img className="w-full rounded-md" src={item.url} />
+                        <div className="group bg-white m-1 p-2 flex justify-center items-start relative rounded-xl flex-col border border-slate-100 drop-shadow-sm hover:bg-sprPrimarySuperLight active:bg-sprPrimary" onClick={()=>{
+                          setIsModalOpen(true)
+                          setModalItems(
+                            {
+                              url:item.url,
+                              accession:item.name
+                            }
+                          )
+                        }}>
+                          <div className=" bg-white  rounded-md">
+                        <img className="w-full h-auto  rounded-md" src={item.url} />
 
                           </div>
                         <div className="">
-                        <h1 className="font-semibold">{item.name}</h1>
+                        <h1 className="font-semibold group-hover:text-sprPrimary group-active:text-white">CL-R{item.name}</h1>
                         </div>
                         </div>
                       ))}
@@ -63,6 +78,7 @@ export default function RiceGallery() {
          </div>
         </section>
       </div>
+      <ModalViewImage open={isModalOpen} close={()=>setIsModalOpen(false)} modalItems={modalItems}/>
     </>
   );
 }

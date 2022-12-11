@@ -6,6 +6,7 @@ import { useEffect } from 'react';
 import { useState } from 'react';
 import { ReactComponent as CloseIcon } from '../assets/close.svg';
 import { deleteObject, ref } from 'firebase/storage';
+import ModalSuccess from './ModalSuccess';
 
 
 
@@ -101,67 +102,92 @@ const ModalDelete = ({ open, closeModal, modalId, delId, delUrl }) => {
 
     }, [modalId])
 
+    const [isPromptOpen, setIsPromptOpen] = useState(false)
+    const message = `Succesfully Deleted! CL-R${modalId}`
 
     const [deleteList, setDeleteList] = useState([])
+
     const deleteRiceAccession = async (accessionId, id) => {
         try {
 
-            var deleteList = [];
             console.log('Iam' + accessionId);
             const batch = writeBatch(db)
 
+            var listDeleted= []
 
             const docRef = doc(db, "SPR/Rice_Accessions/Accession_IDs", id);
             const imageRef= ref(storage, delUrl)
 
             dryList.forEach((rice) => {
                 batch.delete(doc(db, "SPR/Rice_Accessions/Rice_List/Dry_Season/Raw_Rice_List", rice.id))
+                listDeleted.push(rice.id)
             })
             wetList.forEach((rice) => {
                 batch.delete(doc(db, "SPR/Rice_Accessions/Rice_List/Wet_Season/Raw_Rice_List", rice.id))
+                listDeleted.push(rice.id)
+
             })
 
             // Vegetative Stage
             vsWetList.forEach((rice) => {
                 batch.delete(doc(db, "SPR/Rice_Seasons/Seasons/Wet_Season/Stages/Vegetative_Stage/VS_Raw_Rice_Data", rice.id))
-                console.log('vsWetDelete:' + rice.id);
+                listDeleted.push(rice.id)
+
             })
             vsDryList.forEach((rice) => {
                 batch.delete(doc(db, "SPR/Rice_Seasons/Seasons/Dry_Season/Stages/Vegetative_Stage/VS_Raw_Rice_Data", rice.id))
-                console.log('vsDryDelete:' + rice.id);
 
             })
             // Reproductive Stage
             rsWetList.forEach((rice) => {
                 batch.delete(doc(db, "SPR/Rice_Seasons/Seasons/Wet_Season/Stages/Reproductive_Stage/RS_Raw_Rice_Data", rice.id))
-                console.log('rsWetDelete:' + rice.id);
-
+                listDeleted.push(rice.id)
+                
             })
             rsDryList.forEach((rice) => {
                 batch.delete(doc(db, "SPR/Rice_Seasons/Seasons/Dry_Season/Stages/Reproductive_Stage/RS_Raw_Rice_Data", rice.id))
-                console.log('rsDryDelete:' + rice.id);
-
+                listDeleted.push(rice.id)
             })
             // Grain Characteristics
             gcWetList.forEach((rice) => {
                 batch.delete(doc(db, "SPR/Rice_Seasons/Seasons/Wet_Season/Stages/Grain_Characteristics/GC_Raw_Rice_Data", rice.id))
+                listDeleted.push(rice.id)
+
             })
             gcDryList.forEach((rice) => {
-                batch.delete(doc(db, "SPR/Rice_Seasons/Seasons/Dry_Season/Stages/Grain_Characteristics/GC_Raw_Rice_Data", rice.id))
+                batch.delete(doc
+                    (db, "SPR/Rice_Seasons/Seasons/Dry_Season/Stages/Grain_Characteristics/GC_Raw_Rice_Data", rice.id))
+                listDeleted.push(rice.id)
+
             })
             // Yield Components
             ycWetList.forEach((rice) => {
                 batch.delete(doc(db, "SPR/Rice_Seasons/Seasons/Wet_Season/Stages/Yield_Components/YC_Raw_Rice_Data", rice.id))
+                listDeleted.push(rice.id)
+
             })
             ycDryList.forEach((rice) => {
                 batch.delete(doc(db, "SPR/Rice_Seasons/Seasons/Dry_Season/Stages/Yield_Components/YC_Raw_Rice_Data", rice.id))
+                listDeleted.push(rice.id)
+
             })
 
             await batch.commit()
             await deleteDoc(docRef);
-            await deleteObject(imageRef)
+            console.log('I am in last part');
+            console.log(delUrl);
+            setIsPromptOpen(true)
+            setTimeout(()=>{
+                setIsPromptOpen(false)
+                closeModal()
+            },1000)
+            if(delUrl === undefined || delUrl === ''){
+                console.log('error');
+            }else{
+                await deleteObject(imageRef)
 
-            return alert('Accession Delted')
+            }
+
 
         } catch (error) {
             console.log(error);
@@ -173,9 +199,10 @@ const ModalDelete = ({ open, closeModal, modalId, delId, delUrl }) => {
 
     return ReactDom.createPortal(
         <>
-            <div className=" fixed left-0 right-0 bottom-0 top-0 z-50 bg-black opacity-70 " />
-            <div className=" flex flex-col fixed left-0 right-0 bottom-0 top-0  z-50  justify-center items-center ">
-                <div className='h-72 w-72 bg-white rounded-md relative flex justify-center items-center flex-col p-4 gap-2 '>
+        < div className='h-screen w-screen top-0 bottom-0 right-0 left-0  absolute z-50'>
+            <ModalSuccess open={isPromptOpen} close={()=>{setIsPromptOpen(false)}} message={message}/>
+            <div className={isPromptOpen === true ? "hidden":" fixed left-0 right-0 bottom-0 top-0  bg-black/70 flex justify-center items-center"}>
+                <div className='h-72 w-72 rounded-md sm:bottom-36 bg-white flex flex-col items-center justify-center p-2 relative'>
                     <div className="absolute top-4  right-4 z-50 ">
                         {/* <button onClick={closeModal}>
                             <img className="relative" src={closeIcon} alt="" />
@@ -187,16 +214,22 @@ const ModalDelete = ({ open, closeModal, modalId, delId, delUrl }) => {
                     <div className='flex gap-3 mt-6'>
                         <button onClick={closeModal} className='rounded-full   bg-sprGray40 p-2  text-white hover:bg-sprGray10 hover:text-sprGray50'>Cancel</button>
                         <button onClick={() => {
+                            
                             deleteRiceAccession(modalId, delId);
-                            closeModal()
+                            // closeModal()
 
                         }} className='rounded-full  bg-sprTertiary p-2 text-white hover:bg-sprTertiary/50 hover:text-sprTertiary'>Delete</button>
                     </div>
 
-                </div>
 
+
+                </div>
             </div>
-        </>,
+
+         
+        </div>
+        </>
+        ,
         document.getElementById('portal')
     )
 }
@@ -217,3 +250,4 @@ export default ModalDelete
 //     return alert('Accession Deleted')
 
 // })
+

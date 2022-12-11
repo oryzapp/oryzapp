@@ -11,6 +11,10 @@ import ModalYieldUpdate from "../components/ModalYieldUpdate";
 
 export default function YieldComponents({filterSeason, filterYear, searchInput}) {
 
+  useEffect(()=>{
+    console.log(searchInput);
+  },[searchInput])
+
 // List All and Filter ------------------->
 const [riceData, setRiceData] = useState([])
 useEffect(() => {
@@ -45,13 +49,18 @@ useEffect(() => {
 
 }, [filterSeason, filterYear]);
 
-  // Update Yield Characteristics
+  // Sort---------------->
+	riceData.sort((a,b)=>{
+		return a.accessionId - b.accessionId
+	})
+
+  // Update Yield Characteristics---------------->
      const [isModalOpen, setIsModalOpen] = useState(false)
      const [modalId, setModalId] = useState('')
      const [modalYear, setModalYear] = useState('')
      const [modalSeason, setModalSeason] = useState('')
 
-  //  Get YC Data
+  //  Get YC Data------------>
   const [ycRiceData, setYcRiceData] = useState('')
 
 	const getRiceData=(id)=>{
@@ -75,58 +84,50 @@ useEffect(() => {
     }
 
 
+    // DB Data to Array Search for Searching---->
+	const [searched, setSearched] = useState([])
+	useEffect(() => {
+		var searchList = []
+
+		if (searchInput !== "") {
+			riceData.map((rice) => {
+				const match = rice.searchIndex.toLowerCase()
+				const search = match.includes(searchInput)
+				if (search === true) {
+					searchList.push({
+            accessionId: riceData.accessionId,
+            tagId: `${riceData.accessionId}_${filterSeason}_${riceData.riceYear}`,
+            riceYear: riceData.riceYear,
+            riceSeason: riceData.riceSeason,
+            shelfNum: riceData.shelfNum,
+            cavans: riceData.cavans,
+            kilogram: riceData.kilogram,
+            grainYield: riceData.grainYield,
+            tonHa: riceData.tonHa,
+            cookedRiceAroma: riceData.cookedRiceAroma,
+            grainAroma: riceData.grainAroma,
+            leafAroma: riceData.leafAroma,
+            timestamp:riceData.timestamp,
+					
+					})
+
+				}
+			})
+		}
+
+
+		setSearched(searchList)
+	}, [searchInput])
+
+
+  console.log(searched);
+
   return (
 
     <div className="  flex flex-auto max-w-0 max-h-0 divide-y divide-slate-400 ">
    <div className="flex flex-col">
 
-       {/* <div className="flex p-1 bg-sprPrimaryOffLight/40 gap-2">
-         <div className="relative ">
-              <input
-                className=" pl-2  text-sm placeholder:text-sprPrimary/80 text-sprPrimary focus:border-none  rounded-full shadow-inner shadow-slate-200 focus:outline-none focus:ring-1 focus:ring-sprPrimary  "
-                type="text"
-                placeholder="Find a Rice"
-                
-              />
-              <button className="  h-full px-1 rounded-full absolute right-0 bg-sprPrimary">
-                <SearchIcon className="stroke-white h-3" />
-              </button>
-          </div>
-        <div className=" flex" >
-        <div className="bg-sprPrimaryLight text-white  text-sm rounded-full pl-2 pr-10 flex items-center">
-          <p>Season</p>
-        </div>
-        <div className=" -ml-9">
-          <select value={season} name="riceSeason" onChange={changeSeason}  className="rounded-full  text-sprPrimary text-sm  focus:outline-none focus:ring-1 focus:ring-sprPrimary border border-white ">
-            <option value="All">All</option>
-            <option value="Dry_Season">Dry</option>
-            <option value="Wet_Season">Wet</option>
-          </select>
-        </div>
-
-
-
-        </div>
-        <div className=" flex" >
-        <div className="bg-sprPrimaryLight text-white  text-sm rounded-full pl-2 pr-10 flex items-center">
-          <p>Year</p>
-        </div>
-        <div className=" -ml-9">
-          <select value={year} name="riceYear" onChange={changeYear}  className="rounded-full  text-sprPrimary text-sm  focus:outline-none focus:ring-1 focus:ring-sprPrimary border border-white ">
-            <option value="All">All</option>
-            {
-                                        years.map((e) =>
-                                            <option value={e} >{e}</option>
-
-                                        )
-                                    }
-          </select>
-        </div>
-
-
-
-        </div>
-        </div> */}
+    
       <div className="  flex flex-auto text-sprGray60 text-sm">
         <table className="">
           <thead className=" text-xs font-medium uppercase text-center bg-sprPrimaryOffLight sticky top-0 z-50">Accession</thead>

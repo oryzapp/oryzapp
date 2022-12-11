@@ -1,6 +1,6 @@
 const LoadingPage = () => {
     return (
-        <div className="w-full h-full bg-green-600 absolute">Loading</div>
+        <div className="w-screen h-screen bg-white ">Loading</div>
     )
 }
 

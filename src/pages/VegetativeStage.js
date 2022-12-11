@@ -43,6 +43,11 @@ export default function VegetativeStage({filterSeason, filterYear, searchInput})
 
   }, [filterSeason,filterYear]);
 
+    // Sort
+    riceData.sort((a,b)=>{
+      return a.accessionId - b.accessionId
+    })
+
   // Update Vegetative Stage
 	const [isModalOpen, setIsModalOpen] = useState(false)
 	const [modalId, setModalId] = useState('')

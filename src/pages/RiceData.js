@@ -29,20 +29,20 @@ export default function RiceData() {
   const getPage = () => {
     switch (page) {
       case 'vegetative-stage':
-        return <VegetativeStage filterSeason={filterSeason} filterYear={filterYear} />
+        return <VegetativeStage filterSeason={filterSeason} filterYear={filterYear} searchInput={searchInput}/>
       case 'reproductive-stage':
         return <ReproductiveStage filterSeason={filterSeason} filterYear={filterYear} />
       case 'grain-characteristics':
         return <GrainCharacteristics  filterSeason={filterSeason} filterYear={filterYear}/>
       case 'yield-components':
-        return <YieldComponents filterSeason={filterSeason} filterYear={filterYear}/>
+        return <YieldComponents filterSeason={filterSeason} filterYear={filterYear} searchInput={searchInput}/>
         default:
           break;
     }
   }
 
   const [isModalOpen, setIsModalOpen] = useState(false)
-  // Rice Data Inputs
+  // Rice Data Inputs----------->
   const [riceData, setRiceData] = useState({
     accessionId: ' ',
     riceYear: '2018',
@@ -146,11 +146,8 @@ export default function RiceData() {
     cookedRiceAroma: '',
     grainAroma: '',
     leafAroma: '',
-
-
-
   })
-  // Initial State
+  // Initial State for Resetting Inputs---------->
   const initialState = {
     accessionId: ' ',
     riceYear: '2018',
@@ -255,8 +252,7 @@ export default function RiceData() {
     grainAroma: '',
     leafAroma: '',
   }
-
-  // Handle Inputs
+  // Handle Inputs ------------->
   const handleChange = async (e) => {
     setRiceData({
       ...riceData,
@@ -265,7 +261,7 @@ export default function RiceData() {
 
   };
 
-  // Set Season in Snake case
+  // Set Season in Snake case ------------->
   var season;
   if (riceData.riceSeason === "Dry") {
     season = "Dry_Season"
@@ -273,11 +269,6 @@ export default function RiceData() {
   if (riceData.riceSeason === "Wet") {
     season = "Wet_Season"
   }
-
-  console.log(riceData.accessionId);
-  console.log(riceData.riceYear);
-  console.log(riceData.riceSeason);
-
   // Submit to Database ------------->
   const handleSubmit = async (e) => {
     try {
@@ -329,6 +320,7 @@ export default function RiceData() {
         liguleColour: riceData.liguleColour,
         rhizomeandStolonFormation: riceData.rhizomeandStolonFormation,
         seedlingHeight: riceData.seedlingHeight,
+        searchIndex: `${riceData.accessionId} ${riceData.shelfNum}  ${riceData.auricleColor} ${riceData.coleoptileAnthocyaninColouration} ${riceData.collarColour} ${riceData.culmHabit} ${riceData.culmKneeingAbility} ${riceData.culmLength}`,
         timestamp: serverTimestamp(),
       };
       const rsColRef = doc(db, `/SPR/Rice_Seasons/Seasons/${season}/Stages/Reproductive_Stage/RS_Raw_Rice_Data`, `${riceData.accessionId}_${season}_${riceData.riceYear}`);
@@ -442,15 +434,12 @@ export default function RiceData() {
       alert(error);
     }
   };
-
   // Stages Nav ---------------->
   const [toggleState, setToggleState] = useState(1)
   const toggleTab = (index) => {
     setToggleState(index)
   }
-
-
-  // Get All Accessions for Select
+  // Get All Accessions for Input Option----------->
   const [riceAccessions, setRiceAccessions] = useState([]);
   useEffect(() => {
     const collectionRef = collection(db, "SPR/Rice_Accessions/Accession_IDs");
@@ -463,7 +452,7 @@ export default function RiceData() {
     return unsub;
   }, []);
 
-  // Get All Rice List to check if Exisiting -------------->
+  // Get All Rice List to check if Rice Data Exists -------------->
   const [riceDataExists, setRiceDataExists] = useState(false)
   const [riceList, setRiceList] = useState([]);
 
@@ -477,15 +466,14 @@ export default function RiceData() {
     return unsub;
   }, []);
 
+  // Check if Rice List Exists -------------->
   useEffect(() => {
 
     const result = riceList.find(rice => rice.id === `${riceData.accessionId}_${season}_${riceData.riceYear}`)
     if (result === undefined) {
-      console.log('undefine');
       setRiceDataExists(false)
     }
     else {
-      console.log('exisst');
       setRiceDataExists(true)
     }
   }, [riceData.accessionId, season, riceData.riceYear, riceList])
@@ -493,7 +481,7 @@ export default function RiceData() {
 
 
   
-  // Passing of Filter Choices to Stages
+  // Passing of Filter Choices to Stages --------------->
   const years = [2018, 2019, 2020, 2021, 2022, 2023, 2024, 2025, 2026, 2027, 2028, 2030]
   const [ activeStage, setActiveStage] = useState('Vegetative_Stage')
   const [filterSeason, setFilterSeason] = useState('All')
@@ -504,15 +492,19 @@ export default function RiceData() {
      setFilterSeason(e.target.value)
      
    }
+  //  Change YEar
    const getYearFilter = (e) => {
      setFilterYear(e.target.value)
    }
- 
 
-  console.log('Below me is trial function');
- console.log(activeStage);
- console.log(filterSeason);
- console.log(filterYear);
+  //  Search Input------------>
+    const [searchInput, setSearchInput] = useState('')
+    const handleSearchInput = (e) => {
+      setSearchInput(e.target.value)
+    }
+
+    console.log(searchInput);
+
 
   return (
     <>
@@ -530,15 +522,19 @@ export default function RiceData() {
         <div className="bg-sprPrimaryLight ml-9 rounded-t-lg">
            <div className="flex p-1  gap-2">
          <div className="relative ">
-              <input
+            <form onSubmit={(e)=>{e.preventDefault()}}>
+            <input
                 className=" pl-2  text-sm placeholder:text-sprPrimary/80 text-sprPrimary focus:border-none  rounded-full shadow-inner shadow-slate-200 focus:outline-none focus:ring-1 focus:ring-sprPrimary  "
                 type="text"
                 placeholder="Find a Rice"
+                value={searchInput}
+                onChange={handleSearchInput}
                 
               />
               <button className="  h-full px-1 rounded-full absolute right-0 bg-sprPrimary">
                 <SearchIcon className="stroke-white h-3" />
               </button>
+            </form>
           </div>
         <div className=" flex" >
         <div className="bg-sprPrimaryLight text-white  text-sm rounded-full pl-2 pr-10 flex items-center">
@@ -576,14 +572,10 @@ export default function RiceData() {
         {/* Table */}
         <section className=" w-full flex flex-auto overflow-auto rounded-lg rounded-tl-lg rounded-t-none scrollbar   border  border-slate-200" >
           <div className="">
-            <RiceTables onChange={setPage} activeStage= {setActiveStage}/>
+            <RiceTables onChange={setPage} activeStage={setActiveStage}/>
           </div>
-
           <div className="  w-full max-h-full flex  flex-auto overflow-auto scrollbar">
-
               {getPage()}
-            {/* <div className="  flex flex-auto max-w-0 max-h-0 divide-y divide-slate-400 ">
-            </div> */}
           </div>
         </section>
         {/* Modal */}

@@ -65,3 +65,47 @@ export const deleteRiceAccession = async (id) => {
     Lorem ipsum, dolor sit amet consectetur adipisicing elit. Commodi quasi blanditiis consectetur ut nesciunt provident ratione numquam! Ab voluptates ipsa perferendis nihil numquam alias quos impedit totam incidunt nisi beatae, deserunt praesentium doloremque mollitia officiis repellat repellendus. Impedit molestiae sunt, quos inventore incidunt fuga ea id. Excepturi id ex porro praesentium sapiente aliquam qui beatae, pariatur sit consectetur quisquam placeat labore minus blanditiis iste atque quis corporis totam ipsum! Quae laudantium quas ad debitis? Perspiciatis excepturi non optio voluptas iusto quidem hic, perferendis fugit nisi, eveniet dicta temporibus sunt reprehenderit provident nihil beatae amet consequatur placeat adipisci porro! Voluptas reprehenderit molestiae dolores possimus, animi perspiciatis! Dolore repellat adipisci minima vel incidunt commodi nesciunt dolorum iste nostrum in, quam assumenda asperiores velit soluta ipsum quis fuga ea ipsa distinctio? Eius architecto, similique corporis provident autem delectus vel amet quos ipsum quod a consequatur consectetur. Doloribus eligendi quibusdam autem quae ratione molestias nobis ullam delectus atque sit, sed inventore in repudiandae beatae consequatur quaerat reiciendis sapiente numquam voluptate. Corporis voluptatum sequi saepe fugiat consequuntur aliquid quos, vel quod repellat, hic eligendi ipsam ducimus ipsum incidunt. Unde sapiente non mollitia aliquid blanditiis aspernatur dolor, consequuntur sit nobis odit explicabo, nihil facere nulla impedit.
   </div>
 </section> */}
+
+// Search Filter Trial
+// console.log('Discovery');
+// const words = [{word:['11','free','pigmented']},{word:['12','row','pigmented']}, {word:['joe','cute','coleoptile']}];
+
+// const result = words.filter(word => word.length > 6);
+
+// const baby=  words.map(word=>console.log(word.word.filter(word => word.includes('e'))))
+
+// var arrayFilled = [];
+
+// const filtered = words.map(mapped => mapped.word.filter(filtered=>{
+  
+//   const trial = filtered.includes('11 pig')
+//   if(trial === true){
+//   arrayFilled.push(mapped.word)}
+// }
+
+// ))
+// console.log(filtered)
+// console.log(arrayFilled);
+
+// let data = [
+//   {
+//     title: 'Ready Player One',
+//     author: 'Ernest Cline',
+//   },
+//   {
+//     title: 'The Circle',
+//     author: 'Dave Eggers',
+//   },
+//   ];
+
+// let substring = "ernest playe";
+// let filteredData = data.filter(book => book.author.toLowerCase().includes(substring.toLowerCase()))
+// console.log(filteredData);
+
+// returns [
+//   {
+//     title: 'Ready Player One',
+//     author: 'Ernest Cline'
+//   }
+// ]
+

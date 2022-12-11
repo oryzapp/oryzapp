@@ -62,6 +62,11 @@ export default function RiceList() {
         }
     }, [season, year]);
 
+    	// Sort Rice Accesssions
+	riceList.sort((a,b)=>{
+		return a.accessionId - b.accessionId
+	})
+
     // Season Filter--------------->
     const changeSeason = (e) => {
         setSeason(e.target.value)

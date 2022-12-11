@@ -46,17 +46,12 @@ export default function RiceAccessions() {
 	// Data in Modal
 	const [modalId, setModalId] = useState('')
 
-	console.log('Modal id:' + modalId);
-
 	// Handle Form Submit ------------------>
 	const [imageUpload, setImageUpload] = useState(null)
 
 	const [imageUrl,setImageUrl] = useState('')
 	const [isPromptOpen, setIsPromptOpen] = useState(false)
 	const [message, setMessage] = useState('')
-
-	
-	console.log(imageUpload);
 
 	const handleSubmit = async (e) => {
 		try {
@@ -72,8 +67,6 @@ export default function RiceAccessions() {
 				if (imageUpload !== null) {
 					await uploadBytes(imageRef, imageUpload)
 					await getDownloadURL(imageRef).then(url=>downloadURL = url)
-					console.log('inside if');
-					console.log(downloadURL);
 
 					if(imageUpload.type === 'image/png'){
 						imageType = '.png'
@@ -83,8 +76,6 @@ export default function RiceAccessions() {
 						imageType = '.jpg'
 					}
 				}
-				console.log('outside if');
-					console.log(downloadURL);
 
 				const collectionRef = collection(db, "SPR/Rice_Accessions/Accession_IDs");
 				const payLoad = {
@@ -97,7 +88,6 @@ export default function RiceAccessions() {
 				imageFilename: `${state.accession}`,
 				timestamp: serverTimestamp(),
 			};
-			console.log(payLoad);
 				await addDoc(collectionRef, payLoad);
 				setIsModalOpen(false)
 				setState(initialState)
@@ -184,7 +174,6 @@ export default function RiceAccessions() {
 				const imageRef = ref(storage, `images/${state.accession} `)
 				await uploadBytes(imageRef, imageUpload)
 				await getDownloadURL(imageRef).then(url=>downloadURL = url)
-				console.log('images');
 				if(imageUpload.type === 'image/png'){
 					imageType = '.png'
 				}
@@ -224,11 +213,6 @@ export default function RiceAccessions() {
 		setSearchInput(e.target.value)
 	}
 
-	// Search Entered ----------------->
-	const startSearch = (e) => {
-		e.preventDefault()
-	}
-
 	// Display  -------------------->
 	const [riceAccessions, setRiceAccessions] = useState([]);
 
@@ -249,9 +233,6 @@ export default function RiceAccessions() {
 		}
 	}, [searchInput]);
 
-	console.log('I am rice accession sorted');
-	console.log(riceAccessions);
-	
 	// Sort Rice Accesssions
 	riceAccessions.sort((a,b)=>{
 		return a.accessionId - b.accessionId
@@ -285,9 +266,6 @@ export default function RiceAccessions() {
 		setSearched(searchList)
 	}, [searchInput])
 
-	console.log(searched);
-
-
 	// Count accessions ------------------>
 	var list = 0
 
@@ -295,12 +273,10 @@ export default function RiceAccessions() {
 	const [isDelModalOpen, setIsDelModalOpen] = useState(false)
 	const [delId, setDelId] = useState('')
 	const [delUrl, setDelUrl] = useState('')
-	console.log(delId);
 
 	// Export Excel
 	  const exportExcel = () => {
         var XLSX = require("xlsx");
-        console.log('exporting');
         var wb= XLSX.utils.book_new()
 		if(searchInput === ''){
 			var ws = XLSX.utils.json_to_sheet(riceAccessions)
@@ -317,10 +293,8 @@ export default function RiceAccessions() {
 
 	useEffect(()=>{
 		const accessionInput = document.getElementById('input-accession')
-		console.log(accessionInput);
 		accessionInput?.focus()
 	},[isModalOpen])
-
 
 
 
@@ -348,7 +322,7 @@ export default function RiceAccessions() {
 
 					<div className="flex  items-center gap-3 bg-white rounded-full">
 						<div className="relative drop-shadow-md">
-							<form onSubmit={startSearch}>
+							<form onSubmit={e=>e.preventDefault()}>
 								<input
 									className=" pl-2 py-2 text-sm placeholder:text-sprPrimary/50 text-sprPrimary focus:outline-none focus:border-none  rounded-full  "
 									type="text"
@@ -521,9 +495,7 @@ export default function RiceAccessions() {
 													setDelId(rice.id)
 													setModalId(rice.accessionId)
 													setDelUrl(rice.imageUrl);
-
 													setIsDelModalOpen(true)
-													console.log('delId');
 
 												}}
 											>

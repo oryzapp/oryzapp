@@ -44,6 +44,11 @@ export default function ReproductiveStage({filterSeason, filterYear, searchInput
 
  }, [filterSeason, filterYear]);
 
+   // Sort
+   riceData.sort((a,b)=>{
+		return a.accessionId - b.accessionId
+	})
+
   // Update Reproductive Stage
   const [isModalOpen, setIsModalOpen] = useState(false)
 	const [modalId, setModalId] = useState('')
@@ -84,53 +89,6 @@ export default function ReproductiveStage({filterSeason, filterYear, searchInput
   return (
     <div className="  flex flex-auto max-w-0 max-h-0 divide-y divide-slate-400 ">
         <div className="flex flex-col">
-          {/* <div className="flex p-1 bg-sprPrimaryOffLight/40 gap-2">
-          <div className="relative ">
-                <input
-                  className=" pl-2  text-sm placeholder:text-sprPrimary/80 text-sprPrimary focus:border-none  rounded-full shadow-inner shadow-slate-200 focus:outline-none focus:ring-1 focus:ring-sprPrimary  "
-                  type="text"
-                  placeholder="Find a Rice"
-                  
-                />
-                <button className="  h-full px-1 rounded-full absolute right-0 bg-sprPrimary">
-                  <SearchIcon className="stroke-white h-3" />
-                </button>
-            </div>
-          <div className=" flex" >
-          <div className="bg-sprPrimaryLight text-white  text-sm rounded-full pl-2 pr-10 flex items-center">
-            <p>Season</p>
-          </div>
-          <div className=" -ml-9">
-            <select value={season} name="riceSeason" onChange={changeSeason}  className="rounded-full  text-sprPrimary text-sm  focus:outline-none focus:ring-1 focus:ring-sprPrimary border border-white ">
-              <option value="All">All</option>
-              <option value="Dry_Season">Dry</option>
-              <option value="Wet_Season">Wet</option>
-            </select>
-          </div>
-
-
-
-          </div>
-          <div className=" flex" >
-          <div className="bg-sprPrimaryLight text-white  text-sm rounded-full pl-2 pr-10 flex items-center">
-            <p>Year</p>
-          </div>
-          <div className=" -ml-9">
-            <select value={year} name="riceYear" onChange={changeYear}  className="rounded-full  text-sprPrimary text-sm  focus:outline-none focus:ring-1 focus:ring-sprPrimary border border-white ">
-              <option value="All">All</option>
-              {
-                                          years.map((e) =>
-                                              <option value={e} >{e}</option>
-
-                                          )
-                                      }
-            </select>
-          </div>
-
-
-
-          </div>
-          </div> */}
       <div className="  flex text-sm text-sprGray60">
         <table className="">
           <thead className="text-xs font-medium uppercase text-center bg-sprPrimaryOffLight sticky top-0 z-50">Accession</thead>
