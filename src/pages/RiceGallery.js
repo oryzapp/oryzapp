@@ -59,7 +59,7 @@ export default function RiceGallery() {
                             }
                           )
                         }}>
-                          <div className=" bg-white h-32 overflow-hidden rounded-md">
+                          <div className=" bg-white h-20 overflow-hidden rounded-md">
                         <img className="w-full rounded-md" src={item.url} />
 
                           </div>
