@@ -273,7 +273,7 @@ export default function RiceAccessions() {
 
 
 
-                        <div className="hidden sm:block divide-y divide-slate-300 h-fit">
+                        <div className="hidden sm:block divide-y divide-slate-300 bg-white h-fit">
                             <div className="px-6 py-2 text-sm font-medium bg-white text-sprPrimary ">#</div>
                             {
 

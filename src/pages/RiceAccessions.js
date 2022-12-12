@@ -143,8 +143,10 @@ export default function RiceAccessions() {
 	// Open Edit Rice Accession ---------->
 	const [isEdit, setIsEdit] = useState(false)
 	const [editId, setEditId] = useState('')
-	const editRiceAccessionID = async (id) => {
+	const [existingImage, setExistingImage]= useState('')
+	const editRiceAccessionID = async (id, imageUrl) => {
 		setIsEdit(true)
+		setExistingImage(imageUrl)
 		setIsModalOpen(true)
 		setEditId(id)
 		riceAccessions.map((rice) => {
@@ -166,7 +168,7 @@ export default function RiceAccessions() {
 	const submitEdit = async (e) => {
 		try {
 			e.preventDefault()
-			let downloadURL = '';
+			let downloadURL = existingImage;
 			let imageType ='';
 			if (imageUpload !== null) {
 				const imageRef = ref(storage, `images/${state.accession} `)
@@ -442,7 +444,7 @@ export default function RiceAccessions() {
 												<button
 													className=" lg:block p-1 bg-gradient-to-b from-sprPrimary to-sprPrimaryDarkest hover:bg-gradient-to-t hover:from-sprPrimaryLight hover:to-sprPrimaryLight   rounded-full   shadow-slate-300 "
 													onClick={() => {
-														editRiceAccessionID(rice.id);
+														editRiceAccessionID(rice.id, rice.imageUrl);
 													}}
 												>
 													<div className="w-4 h-4"><img src={editIcon} alt="" /></div>

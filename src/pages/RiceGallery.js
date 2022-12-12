@@ -63,7 +63,7 @@ export default function RiceGallery() {
                         <img className="w-full rounded-md" src={item.url} />
 
                           </div>
-                        <div className="">
+                        <div className="pt-3">
                         <h1 className="font-semibold group-hover:text-sprPrimary group-active:text-white">CL-R{item.name}</h1>
                         </div>
                         </div>

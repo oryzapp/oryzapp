@@ -24,6 +24,7 @@ import { ReactComponent as DisabledIcon } from "../assets/disabled-icon.svg"
 import { ReactComponent as View } from "../assets/view.svg"
 import ModalEditUsers from "../components/ModalEditUsers";
 import ModalChangeRole from "../components/ModalChangeRole";
+import ModalSuccess from "../components/ModalSuccess";
 
 export default function ManageUsers() {
 
@@ -99,7 +100,8 @@ export default function ManageUsers() {
 
   return (
     <>
-      <div className='h-full w-full flex flex-col rounded-t-xl  sm:rounded-xl bg-slate-50 opacity-90 p-2'>
+    
+      <div className='h-full w-full hidden sm:flex flex-col rounded-t-xl  sm:rounded-xl bg-slate-50 opacity-90 p-2'>
 
         {/* Header */}
         <header className=" flex items-center">
@@ -115,7 +117,7 @@ export default function ManageUsers() {
                 <input
                   className=" pl-2 py-2 text-sm placeholder:text-sprPrimary/50 text-sprPrimary focus:outline-none focus:border-none  rounded-full  "
                   type="text"
-                  placeholder="Find a Rice"
+                  placeholder="Find a User"
                   value={searchInput}
                 onChange={handleSearchInput}
                 />

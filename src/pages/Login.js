@@ -50,7 +50,6 @@ export default function Login() {
 	const [errorMessage, setErrorMessage] = useState('error')
 	const [isError, setIsError] = useState(false)
 
-
 	// Users----------------->
 	const [users, setUsers] = useState([])
 	useEffect(() => {
@@ -98,6 +97,33 @@ export default function Login() {
 			}
 
 		} catch (error) {
+			console.log(error.message);
+			if(error.message === 'Firebase: Error (auth/wrong-password).'){
+				setIsError(true)
+				setErrorMessage('* Password You entered is incorrect')
+				setState(
+					{
+						email: state.email,
+						password: ''
+					}
+				)
+				setTimeout(()=>{
+					setIsError(false)
+				},5000) 
+			}
+			if(error.message.includes('(auth/too-many-requests).')){
+				setIsError(true)
+				setErrorMessage('*Too many attempts please try again after a while')
+				setState(
+					{
+						email: state.email,
+						password: ''
+					}
+				)
+				setTimeout(()=>{
+					setIsError(false)
+				},5000)
+			}
 			
 
 		}
@@ -287,3 +313,6 @@ try {
 		</div>
 	)
 }
+
+// Firebase: Access to this account has been temporarily disabled due to many failed login attempts. You can immediately restore it by resetting your password or you can try again later. (auth/too-many-requests).
+// Firebase: Error (auth/wrong-password).

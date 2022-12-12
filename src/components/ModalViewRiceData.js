@@ -115,7 +115,7 @@ export default function ModalViewRiceData({open, closeModal, currentData}) {
             </div>
             <div className=" flex-auto flex flex-col  overflow-hidden  ">
             <div className='flex p-4 '>
-                <div className="  bg-slate-100 h-40 w-1/2 sm:w-1/3 rounded-md overflow-hidden">
+                <div className="  bg-slate-100 max-h-28 w-1/2 sm:w-1/3 rounded-md overflow-hidden">
                            
                            {riceAccessions.map((rice)=>(
                                <div>{rice.imageUrl === ''? <div className=" h-full rounded-md"></div>:<img src={rice.imageUrl} alt="" className=" rounded-md h-full "/>}</div>
@@ -125,11 +125,15 @@ export default function ModalViewRiceData({open, closeModal, currentData}) {
                        {riceAccessions.map((rice) => (
                            <div className=" flex flex-col flex-auto p-3 pt-0">
                                <h1 className=" text-2xl sm:text-4xl text-sprPrimaryDarkest font-semibold ">CL-R{rice.accessionId}</h1>
-                               <h1 className="sm:text-md text-sprGray50 font-medium">Source: {rice.source === '' ? "---" : rice.source}</h1>
+                           <div className='flex '>
+                           <div className='flex-auto'>
+                              <h1 className="sm:text-md text-sprGray50 font-medium">Source: {rice.source === '' ? "---" : rice.source}</h1>
                                <h1 className="sm:text-md text-sprGray50 font-medium">Variety: {rice.variety === '' ? "---" : rice.variety}</h1>
                                <h1 className="sm:text-md text-sprGray50 font-medium"> Classification: {rice.classification === ''? "---" : rice.classification}</h1>
-                               <h1 className="sm:text-md text-sprGray50 font-medium"> Season: {season === ''? "---" : season}</h1>
-                               <h1 className="sm:text-md text-sprGray50 font-medium"> Year: {year === ''? "---" : year}</h1>
+                              </div>
+                            <div>   <h1 className="sm:text-md text-sprGray50 font-medium"> Season: {season === ''? "---" : season}</h1>
+                               <h1 className="sm:text-md text-sprGray50 font-medium"> Year: {year === ''? "---" : year}</h1></div>
+                           </div>
                            </div>
 
                        ))}

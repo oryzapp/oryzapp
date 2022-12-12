@@ -175,7 +175,7 @@ export default function Dash() {
 
                     <div className="flex w-full max-h-0 sm:max-h-0 sm:max-w-0 lg:max-w-full  relative bg-yellow-400">
 
-                        <div className="hidden sm:flex flex-col  divide-y divide-slate-200 relative h-full ">
+                        <div className="hidden sm:flex flex-col  divide-y divide-slate-200  bg-white relative h-full ">
                             <div className="  text-sprPrimary bg-white sticky top-0 px-6 py-2 text-sm font-medium">
                                 #
                             </div>

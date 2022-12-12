@@ -54,8 +54,8 @@ export default function ModalTopbarBox() {
             }}>Profile</p> */}
 
             <div className='flex items-center p-3 group hover:bg-sprPrimaryLight rounded-md active:bg-sprPrimary '>
-            <OutIcon className='h-5 fill-sprGray70 group-hover:fill-white active:text-white'/>
-            <p className=' group-hover:text-white active:text-white' onClick={onSignOut}>Sign Out</p>
+            <OutIcon className='h-5 fill-sprGray70 group-hover:fill-white active:text-white '/>
+            <p className=' group-hover:text-white active:text-white cursor-pointer' onClick={onSignOut}>Sign Out</p>
 
 
             </div>

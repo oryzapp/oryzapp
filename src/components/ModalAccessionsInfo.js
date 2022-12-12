@@ -126,16 +126,16 @@ export default function ModalAccessionsInfo({ open, modalId, closeModal }) {
                 </div>
                 {/* main */}
                 <div className=" flex-auto flex flex-col gap-2">
-                    <div className="w-full h-1/4 flex ">
-                        <div className="  bg-slate-100  sm:w-1/3  rounded-md overflow-hidden">
+                    <div className="w-full h-1/4 flex items-start" >
+                        <div className="  bg-slate-100  sm:w-1/3 max-h-28  rounded-md overflow-hidden">
                            
                             {riceAccessions.map((rice)=>(
-                                <div>{rice.imageUrl === ''? <div className=" h-full rounded-md"></div>:<img src={rice.imageUrl} alt="" className=" rounded-md h-full "/>}</div>
+                                <div>{rice.imageUrl === ''? <div className=" w-full rounded-md"></div>:<img src={rice.imageUrl} alt="" className=" rounded-md w-full "/>}</div>
                             ))}
                         </div>
 
                         {riceAccessions.map((rice) => (
-                            <div className=" flex flex-col flex-auto p-3 pt-0">
+                            <div className=" flex flex-col flex-auto p-3 pt-0 -space-y-1">
                                 <h1 className=" text-xl sm:text-4xl text-sprPrimaryDarkest font-semibold ">CL-R{rice.accessionId}</h1>
                                 <h1 className="sm:text-lg text-sprGray60 font-medium">Source: {rice.source === '' ? "---" : rice.source}</h1>
                                 <h1 className="sm:text-lg text-sprGray60 font-medium">Variety: {rice.variety === '' ? "---" : rice.variety}</h1>

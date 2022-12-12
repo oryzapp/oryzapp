@@ -5,6 +5,7 @@ import { useState } from 'react';
 import closeIcon from "../assets/close.svg";
 import { ReactComponent as CloseIcon } from '../assets/close.svg';
 import db from "../firebase-config";
+import ModalSuccess from './ModalSuccess';
 
 
 
@@ -36,6 +37,8 @@ export default function ModalReproductiveStage( {open, closeModal, modalId, moda
 			panicleShattering: '',
 			stigmaColour: '',
 		})
+
+const [isPromptOpen, setIsPromptOpen] = useState(true)
 
 		// Pass rsRiceData to riceData
 		useEffect(()=>{
@@ -115,8 +118,11 @@ try {
 					timestamp: serverTimestamp(),
   };
   await updateDoc(docRef, rsPayLoad);
-  closeModal()
-  alert('Updated')
+  // setIsPromptOpen(true)
+  // setTimeout(()=>{
+  //     setIsPromptOpen(false)
+  //     closeModal()
+  // }, 1000)
 } catch (error) {
   console.log(error);
 }
@@ -125,7 +131,10 @@ try {
 
     if (!open) return null;
   return (
-    <div>
+    <>
+        <div className="absolute top-0 text-center">
+      <ModalSuccess open={isPromptOpen} close={()=>{setIsPromptOpen(false)}} message={'Reproductive Data Updated Successfully!'}/>
+      </div>
 			<form onSubmit={submitEdit}>
 				<div className=" fixed left-0 right-0 bottom-0 top-0 z-50 bg-black opacity-70 " />
 				<div className=" hidden sm:flex flex-col absolute left-20 right-20 bottom-32 top-16 z-50 bg-white rounded-md  p-8   md:left-52 md:right-52  lg:left-96 lg:right-96  ">
@@ -297,6 +306,6 @@ try {
 
 				</div>
 			</form>	
-    </div>
+    </>
   )
 }
