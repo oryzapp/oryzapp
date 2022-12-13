@@ -143,7 +143,7 @@ export default function ReproductiveStage({filterSeason, filterYear, searchInput
         <div className="flex flex-col">
       <div className="  flex text-sm text-sprGray60">
         <table className="">
-          <thead className="text-xs font-medium uppercase text-center bg-sprPrimaryOffLight sticky top-0 z-50">Accession</thead>
+          <thead className="text-xs font-medium uppercase text-center bg-sprPrimaryOffLight sticky top-0 ">Accession</thead>
           <tbody className=" flex ">
             <div className="hidden sm:block flex-auto divide-y divide-slate-300 ">
               <div className="px-6 py-3 font-medium whitespace-nowrap text-sprPrimary sticky top-4 bg-white">Accession</div>
@@ -159,7 +159,7 @@ export default function ReproductiveStage({filterSeason, filterYear, searchInput
           </tbody>
         </table>
         <table className="">
-          <thead className=" text-xs font-medium uppercase text-center bg-sprPrimaryLight sticky top-0 z-50">Shelf No.</thead>
+          <thead className=" text-xs font-medium uppercase text-center bg-sprPrimaryLight sticky top-0 ">Shelf No.</thead>
           <tbody className=" flex ">
             <div className="hidden sm:block flex-auto divide-y divide-slate-300 ">
               <div className="px-6 py-3 font-medium whitespace-nowrap text-sprPrimary sticky top-4 bg-white">#</div>
@@ -175,7 +175,7 @@ export default function ReproductiveStage({filterSeason, filterYear, searchInput
           </tbody>
         </table>
         <table className="">
-          <thead className=" text-xs font-medium uppercase text-center bg-sprPrimaryOffLight sticky top-0 z-50">Year & Season</thead>
+          <thead className=" text-xs font-medium uppercase text-center bg-sprPrimaryOffLight sticky top-0 ">Year & Season</thead>
           <tbody className=" flex ">
             <div className="hidden sm:block flex-auto divide-y divide-slate-300 ">
               <div className="px-6 py-3 font-medium whitespace-nowrap text-sprPrimary sticky top-4 bg-white">Year</div>
@@ -202,7 +202,7 @@ export default function ReproductiveStage({filterSeason, filterYear, searchInput
           </tbody>
         </table>
         <table className="">
-          <thead className="text-xs uppercase font-medium text-center bg-sprPrimaryLight sticky top-0 z-50">Anther</thead>
+          <thead className="text-xs uppercase font-medium text-center bg-sprPrimaryLight sticky top-0 ">Anther</thead>
           <tbody className=" flex ">
             <div className="hidden sm:block flex-auto divide-y divide-slate-300 ">
               <div className="px-6 py-3 font-medium whitespace-nowrap text-sprPrimary sticky top-4 bg-white">Length</div>
@@ -229,7 +229,7 @@ export default function ReproductiveStage({filterSeason, filterYear, searchInput
           </tbody>
         </table>
         <table className="">
-          <thead className="text-xs uppercase font-medium text-center bg-sprPrimaryOffLight sticky top-0 z-50">Awns</thead>
+          <thead className="text-xs uppercase font-medium text-center bg-sprPrimaryOffLight sticky top-0 ">Awns</thead>
           <tbody className=" flex ">
             <div className="hidden sm:block flex-auto divide-y divide-slate-300 ">
               <div className="px-6 py-3 font-medium whitespace-nowrap text-sprPrimary sticky top-4 bg-white">Presence Wild Species</div>
@@ -289,7 +289,7 @@ export default function ReproductiveStage({filterSeason, filterYear, searchInput
           </tbody>
         </table>
         <table className="">
-          <thead className="text-xs uppercase font-medium text-center bg-sprPrimaryLight sticky top-0 z-50">Lemma</thead>
+          <thead className="text-xs uppercase font-medium text-center bg-sprPrimaryLight sticky top-0 ">Lemma</thead>
           <tbody className=" flex ">
             <div className="hidden sm:block flex-auto divide-y divide-slate-300 ">
               <div className="px-6 py-3 font-medium whitespace-nowrap text-sprPrimary sticky top-4 bg-white">Colour of Apicus Early Observation</div>
@@ -316,7 +316,7 @@ export default function ReproductiveStage({filterSeason, filterYear, searchInput
           </tbody>
         </table>
         <table className="">
-          <thead className="whitespace-nowrap text-xs uppercase font-medium text-center bg-sprPrimaryOffLight sticky top-0 z-50">Lemma and Palea</thead>
+          <thead className="whitespace-nowrap text-xs uppercase font-medium text-center bg-sprPrimaryOffLight sticky top-0 ">Lemma and Palea</thead>
           <tbody className=" flex ">
             <div className="hidden sm:block flex-auto divide-y divide-slate-300 ">
               <div className="px-6 py-3 font-medium whitespace-nowrap text-sprPrimary sticky top-4 bg-white">Colour Early Observation</div>
@@ -332,7 +332,7 @@ export default function ReproductiveStage({filterSeason, filterYear, searchInput
           </tbody>
         </table>
         <table className="">
-          <thead className="text-xs uppercase font-medium text-center bg-sprPrimaryLight sticky top-0 z-50">Male Sterility</thead>
+          <thead className="text-xs uppercase font-medium text-center bg-sprPrimaryLight sticky top-0 ">Male Sterility</thead>
           <tbody className=" flex ">
             <div className="hidden sm:block flex-auto divide-y divide-slate-300 ">
               <div className="px-6 py-3 font-medium whitespace-nowrap text-sprPrimary sticky top-4 bg-white">Sterility</div>
@@ -348,7 +348,7 @@ export default function ReproductiveStage({filterSeason, filterYear, searchInput
           </tbody>
         </table>
         <table className="">
-          <thead className="text-xs uppercase font-medium text-center bg-sprPrimaryOffLight sticky top-0 z-50">Stigma</thead>
+          <thead className="text-xs uppercase font-medium text-center bg-sprPrimaryOffLight sticky top-0 ">Stigma</thead>
           <tbody className=" flex ">
             <div className="hidden sm:block flex-auto divide-y divide-slate-300 ">
               <div className="px-6 py-3 font-medium whitespace-nowrap text-sprPrimary sticky top-4 bg-white">Colour</div>
@@ -364,7 +364,7 @@ export default function ReproductiveStage({filterSeason, filterYear, searchInput
           </tbody>
         </table>
         <table className="">
-          <thead className="text-xs uppercase font-medium text-center bg-sprPrimaryLight sticky top-0 z-50">Panicle</thead>
+          <thead className="text-xs uppercase font-medium text-center bg-sprPrimaryLight sticky top-0 ">Panicle</thead>
           <tbody className=" flex ">
             <div className="hidden sm:block flex-auto divide-y divide-slate-300 ">
               <div className="px-6 py-3 font-medium whitespace-nowrap text-sprPrimary sticky top-4 bg-white">Arrangement of Primary Branches</div>
@@ -491,7 +491,7 @@ export default function ReproductiveStage({filterSeason, filterYear, searchInput
           </tbody>
         </table>
 
-       <table className=" text-sm sticky right-0 z-100">
+       <table className=" text-sm sticky right-0 ">
           <thead className="text-xs font-medium uppercase text-center bg-white flex justify-center sticky top-0">
           <h1 className="opacity-0">I</h1>
           </thead>

@@ -141,7 +141,7 @@ export default function GrainCharacteristics({filterSeason, filterYear, searchIn
       
       <div className="  flex text-sm text-sprGray60">
         <table className="">
-          <thead className="text-xs uppercase font-medium text-center bg-sprPrimaryOffLight sticky top-0 z-50">Accession</thead>
+          <thead className="text-xs uppercase font-medium text-center bg-sprPrimaryOffLight sticky top-0 ">Accession</thead>
           <tbody className=" flex ">
             <div className="hidden sm:block flex-auto divide-y divide-slate-300 ">
               <div className="px-6 py-3 font-medium whitespace-nowrap text-sprPrimary sticky top-4 bg-white">Accession</div>
@@ -168,7 +168,7 @@ export default function GrainCharacteristics({filterSeason, filterYear, searchIn
           </tbody>
         </table>
         <table className="">
-          <thead className=" text-xs font-medium uppercase text-center bg-sprPrimaryLight sticky top-0 z-50">Shelf No.</thead>
+          <thead className=" text-xs font-medium uppercase text-center bg-sprPrimaryLight sticky top-0 ">Shelf No.</thead>
           <tbody className=" flex ">
             <div className="hidden sm:block flex-auto divide-y divide-slate-300 ">
               <div className="px-6 text-sm py-3 font-medium whitespace-nowrap text-sprPrimary sticky top-4 bg-white">#</div>
@@ -186,7 +186,7 @@ export default function GrainCharacteristics({filterSeason, filterYear, searchIn
           </tbody>
         </table>
         <table className="">
-          <thead className=" text-xs font-medium uppercase text-center bg-sprPrimaryOffLight sticky top-0 z-50">Year & Season</thead>
+          <thead className=" text-xs font-medium uppercase text-center bg-sprPrimaryOffLight sticky top-0 ">Year & Season</thead>
           <tbody className=" flex ">
             <div className="hidden sm:block flex-auto divide-y divide-slate-300 ">
               <div className="px-6 text-sm py-3 font-medium whitespace-nowrap text-sprPrimary sticky top-4 bg-white">Year</div>
@@ -214,7 +214,7 @@ export default function GrainCharacteristics({filterSeason, filterYear, searchIn
           </tbody>
         </table>
         <table className="">
-          <thead className="text-xs uppercase font-medium text-center bg-sprPrimaryLight sticky top-0 z-50">Awn</thead>
+          <thead className="text-xs uppercase font-medium text-center bg-sprPrimaryLight sticky top-0 ">Awn</thead>
           <tbody className=" flex ">
             <div className="hidden sm:block flex-auto divide-y divide-slate-300 ">
               <div className="px-6 py-3 font-medium whitespace-nowrap text-sprPrimary sticky top-4 bg-white">Colour</div>
@@ -230,7 +230,7 @@ export default function GrainCharacteristics({filterSeason, filterYear, searchIn
           </tbody>
         </table>
         <table className="">
-          <thead className="text-xs uppercase font-medium text-center bg-sprPrimaryOffLight sticky top-0 z-50">Caryopsis</thead>
+          <thead className="text-xs uppercase font-medium text-center bg-sprPrimaryOffLight sticky top-0 ">Caryopsis</thead>
           <tbody className=" flex ">
             <div className="hidden sm:block flex-auto divide-y divide-slate-300 ">
               <div className="px-6 py-3 whitespave-nowrap font-medium text-sprPrimary sticky top-4 bg-white">Length</div>
@@ -279,7 +279,7 @@ export default function GrainCharacteristics({filterSeason, filterYear, searchIn
           </tbody>
         </table>
         <table className="">
-          <thead className="text-xs uppercase font-medium text-center bg-sprPrimaryLight sticky top-0 z-50">Endorsperm</thead>
+          <thead className="text-xs uppercase font-medium text-center bg-sprPrimaryLight sticky top-0 ">Endorsperm</thead>
           <tbody className=" flex ">
             <div className="hidden sm:block flex-auto divide-y divide-slate-300 ">
               <div className="px-6 py-3 font-medium whitespace-nowrap text-sprPrimary sticky top-4 bg-white">Colour</div>
@@ -295,7 +295,7 @@ export default function GrainCharacteristics({filterSeason, filterYear, searchIn
           </tbody>
         </table>
         <table className="">
-          <thead className="text-xs uppercase font-medium text-center bg-sprPrimaryOffLight sticky top-0 z-50">Grain</thead>
+          <thead className="text-xs uppercase font-medium text-center bg-sprPrimaryOffLight sticky top-0 ">Grain</thead>
           <tbody className=" flex ">
             <div className="hidden sm:block flex-auto divide-y divide-slate-300 ">
               <div className="px-6 py-3 font-medium whitespace-nowrap text-sprPrimary sticky top-4 bg-white">Habit</div>
@@ -355,7 +355,7 @@ export default function GrainCharacteristics({filterSeason, filterYear, searchIn
           </tbody>
         </table>
         <table className="">
-          <thead className="text-xs uppercase font-medium text-center bg-sprPrimaryLight sticky top-0 z-50">Lemma</thead>
+          <thead className="text-xs uppercase font-medium text-center bg-sprPrimaryLight sticky top-0 ">Lemma</thead>
           <tbody className=" flex ">
             <div className="hidden sm:block flex-auto divide-y divide-slate-300 ">
               <div className="px-6 py-3 font-medium whitespace-nowrap text-sprPrimary sticky top-4 bg-white">Anthocyanin Colouration of Keel</div>
@@ -404,7 +404,7 @@ export default function GrainCharacteristics({filterSeason, filterYear, searchIn
           </tbody>
         </table>
         <table className="">
-          <thead className="text-xs uppercase font-medium text-center bg-sprPrimaryOffLight sticky top-0 z-50">Lemma and Palea</thead>
+          <thead className="text-xs uppercase font-medium text-center bg-sprPrimaryOffLight sticky top-0 ">Lemma and Palea</thead>
           <tbody className=" flex ">
             <div className="hidden sm:block flex-auto divide-y divide-slate-300 ">
               <div className="px-6 py-3 font-medium whitespace-nowrap text-sprPrimary sticky top-4 bg-white">Pubesence</div>
@@ -431,7 +431,7 @@ export default function GrainCharacteristics({filterSeason, filterYear, searchIn
           </tbody>
         </table>
         <table className="">
-          <thead className="text-xs uppercase font-medium text-center bg-sprPrimaryLight sticky top-0 z-50 ">Panicle</thead>
+          <thead className="text-xs uppercase font-medium text-center bg-sprPrimaryLight sticky top-0  ">Panicle</thead>
           <tbody className=" flex ">
             <div className="hidden sm:block flex-auto divide-y divide-slate-300 ">
               <div className="px-6 py-3 font-medium whitespace-nowrap text-sprPrimary sticky top-4 bg-white">Length Late Observation</div>
@@ -459,7 +459,7 @@ export default function GrainCharacteristics({filterSeason, filterYear, searchIn
           </tbody>
         </table>
         <table className="">
-          <thead className="text-xs uppercase font-medium text-center bg-sprPrimaryOffLight sticky top-0 z-50">Spikelet</thead>
+          <thead className="text-xs uppercase font-medium text-center bg-sprPrimaryOffLight sticky top-0 ">Spikelet</thead>
           <tbody className=" flex ">
             <div className="hidden sm:block flex-auto divide-y divide-slate-300 ">
               <div className="px-6 py-3 font-medium whitespace-nowrap text-sprPrimary sticky top-4 bg-white">Fertility</div>
@@ -475,7 +475,7 @@ export default function GrainCharacteristics({filterSeason, filterYear, searchIn
           </tbody>
         </table>
         <table className="">
-          <thead className="text-xs uppercase font-medium text-center bg-sprPrimaryLight sticky top-0 z-50">Sterile</thead>
+          <thead className="text-xs uppercase font-medium text-center bg-sprPrimaryLight sticky top-0 ">Sterile</thead>
           <tbody className=" flex ">
             <div className="hidden sm:block flex-auto divide-y divide-slate-300 ">
               <div className="px-6 py-3 font-medium whitespace-nowrap text-sprPrimary sticky top-4 bg-white">Lemma Length</div>
@@ -524,7 +524,7 @@ export default function GrainCharacteristics({filterSeason, filterYear, searchIn
           </tbody>
         </table>
 
-        <table className=" text-sm sticky right-0 z-100">
+        <table className=" text-sm sticky right-0 ">
           <thead className="text-xs font-medium uppercase text-center bg-white flex justify-center sticky top-0">
           <h1 className="opacity-0">I</h1>
           </thead>

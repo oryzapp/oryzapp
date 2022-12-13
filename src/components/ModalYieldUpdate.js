@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react'
 import db from "../firebase-config";
 import { doc, serverTimestamp, updateDoc } from 'firebase/firestore';
 import { ReactComponent as CloseIcon } from '../assets/close.svg';
+import ModalSuccess from './ModalSuccess';
 
 
 
@@ -16,6 +17,10 @@ export default function ModalYieldUpdate({ open, closeModal, modalId, modalYear,
     grainAroma: '',
     leafAroma: '',
   })
+
+  // Success Prompt
+  const [isPromptOpen, setIsPromptOpen] = useState(true)
+
   // When Edit is Clicked Passed YcData is set on riceData to show on Input.
   useEffect(() => {
     setRiceData({
@@ -55,8 +60,11 @@ export default function ModalYieldUpdate({ open, closeModal, modalId, modalYear,
         timestamp: serverTimestamp(),
       };
       await updateDoc(docRef, ycPayLoad);
-      closeModal()
-      alert('Updated')
+      setIsPromptOpen(true)
+      setTimeout(()=>{
+          setIsPromptOpen(false)
+          closeModal()
+      }, 1000)
     } catch (error) {
       console.log(error);
     }
@@ -65,9 +73,12 @@ export default function ModalYieldUpdate({ open, closeModal, modalId, modalYear,
   if (!open) return null;
   return (
     <div>
+        <div className="absolute top-0  right-0 bottom-0 left-0 text-center " >
+      <ModalSuccess open={isPromptOpen} close={()=>{setIsPromptOpen(false)}} message={'Reproductive Data Updated Successfully!'}/>
+      </div>
       <form onSubmit={submitEdit}>
-        <div className=" fixed left-0 right-0 bottom-0 top-0 z-50 bg-black opacity-70 " />
-        <div className=" hidden sm:flex flex-col absolute left-20 right-20 bottom-32 top-16 z-50 bg-white rounded-md  p-8   md:left-52 md:right-52  lg:left-96 lg:right-96  ">
+        <div className=" fixed left-0 right-0 bottom-0 top-0  bg-black opacity-70 " onClick={closeModal} />
+        <div className=" hidden sm:flex flex-col absolute left-20 right-20 bottom-32 top-16 z-40 bg-white rounded-md  p-8   md:left-52 md:right-52  lg:left-96 lg:right-96  ">
           <div className="absolute right-4 top-4 z-50 ">
 
             <CloseIcon className='group-hover:stroke-white stroke-sprGray50 hover:stroke-sprGray80 active:stroke-sprPrimary h-5' onClick={closeModal} />

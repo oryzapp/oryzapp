@@ -38,7 +38,7 @@ export default function ModalReproductiveStage( {open, closeModal, modalId, moda
 			stigmaColour: '',
 		})
 
-const [isPromptOpen, setIsPromptOpen] = useState(true)
+const [isPromptOpen, setIsPromptOpen] = useState(false)
 
 		// Pass rsRiceData to riceData
 		useEffect(()=>{
@@ -118,11 +118,11 @@ try {
 					timestamp: serverTimestamp(),
   };
   await updateDoc(docRef, rsPayLoad);
-  // setIsPromptOpen(true)
-  // setTimeout(()=>{
-  //     setIsPromptOpen(false)
-  //     closeModal()
-  // }, 1000)
+  setIsPromptOpen(true)
+  setTimeout(()=>{
+      setIsPromptOpen(false)
+      closeModal()
+  }, 1000)
 } catch (error) {
   console.log(error);
 }
@@ -132,12 +132,12 @@ try {
     if (!open) return null;
   return (
     <>
-        <div className="absolute top-0 text-center">
+        <div className="absolute top-0  right-0 bottom-0 left-0 text-center " >
       <ModalSuccess open={isPromptOpen} close={()=>{setIsPromptOpen(false)}} message={'Reproductive Data Updated Successfully!'}/>
       </div>
-			<form onSubmit={submitEdit}>
-				<div className=" fixed left-0 right-0 bottom-0 top-0 z-50 bg-black opacity-70 " />
-				<div className=" hidden sm:flex flex-col absolute left-20 right-20 bottom-32 top-16 z-50 bg-white rounded-md  p-8   md:left-52 md:right-52  lg:left-96 lg:right-96  ">
+      <form onSubmit={submitEdit}>
+				<div className=" fixed left-0 right-0 bottom-0 top-0  bg-black opacity-70 " onClick={closeModal}/>
+				<div className=" hidden sm:flex flex-col absolute left-20 right-20 bottom-32 top-16 z-40 bg-white rounded-md  p-8   md:left-52 md:right-52  lg:left-96 lg:right-96  ">
 					<div className="absolute right-4 top-4 z-50 ">
 											{/* <button onClick={()=>{
 												closeModal()
@@ -306,6 +306,7 @@ try {
 
 				</div>
 			</form>	
+		
     </>
   )
 }
