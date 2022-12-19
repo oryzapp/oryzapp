@@ -235,8 +235,8 @@ export default function Sidebar({ onChange }) {
           </div>
         </button>
 
-        <div  className=" hover:bg-slate-400 group rounded-full w-3 h-3 bg-slate-200 ">?
-        <div className="hidden group-hover:block"> Melvin Magat</div>
+        <div  className=" hover:bg-slate-900/40 group rounded-full absolute w-5 h-5 bg-slate-900/20 hidden sm:block text-center text-white bottom-5">?
+        <small className="hidden group-hover:block absolute left-6 bottom-4 p-2 text-xs font-light rounded-sm bg-slate-900/20">Developers<br /> Melvin C. Magat <br /> Blanche Jairus Peralta <br />Jessica M.  Velasco</small>
         </div>
       
         </>:<></>}
