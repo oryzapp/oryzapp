@@ -57,14 +57,19 @@ const Main = () => {
 	// Authentication // Current user--------->
 	useEffect(() => {
 		const unsub = onAuthStateChanged(auth, async (user) => {
+			let userType =''
 			try {
 				if (user !== null) {
 				console.log(user?.type);
 				const matchUser = users.find((dbUser) => dbUser.email === user.email)
-					console.log('hello old');
-				if(matchUser.type === 'New'){
+				 userType = matchUser.type
+				console.log(userType);
+				if(userType === 'New'){
 					console.log('hello New');
 					setIsPromptOpen(true)
+					setTimeout(()=>{
+						setIsPromptOpen(false);
+					},3000)
 				}
 
 				if (matchUser.role === 'Administrator') {

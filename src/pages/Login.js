@@ -4,6 +4,7 @@ import { useState, useEffect } from "react"
 import { useNavigate } from "react-router-dom"
 import { useAuth, login, signup } from "../firebase-config"
 import { ReactComponent as OryzappLogo } from "../assets/oryzapp-logo.svg"
+import { ReactComponent as LoginBackground } from "../assets/login-background.svg"
 import { addDoc, collection, doc, onSnapshot, setDoc } from "firebase/firestore"
 import db from "../firebase-config";
 import { decode, encode } from "string-encode-decode"
@@ -240,7 +241,11 @@ try {
 
 	return (
 		<div className="h-full bg-white absolute top-0 bottom-0 right-0 left-0 flex justify-center items-center">
-			<div className="bg-slate-100  p-4 pt-10 -mt-16 rounded-xl  w-80 flex flex-col items-center justify-center drop-shadow-xl ">
+			<div className=" absolute h-screen w-screen ">
+				<div className="h-full w-full bg-white/30 backdrop-blur-lg absolute z-10"></div>
+				<LoginBackground  className="absolute bottom-0"/>
+			</div>
+			<div className="bg-white  p-4 pt-10 -mt-16 rounded-xl  w-80 flex flex-col items-center justify-center drop-shadow-xl z-50 ">
 				<div className=" m-2 mb-6">
 					<OryzappLogo className="h-10" />
 				</div>
@@ -250,14 +255,14 @@ try {
 					<form onSubmit={handleSignUp}>
 						<div className="flex flex-col pb-3">
 							<label className="ary text-sprPrimary" htmlFor="">Email</label>
-							<input onChange={handleChange} type="email" name="email" value={state.email} className="rounded-full h-8 p-2  text-gray-700" required />
+							<input onChange={handleChange} type="email" name="email" value={state.email} className="rounded-full h-8 p-2  text-gray-700 ring-2 ring-sprPrimary/60 focus:outline-none focus:bg-sprPrimary/10" required />
 						</div>
 
 						<div className="flex flex-col pb-3">
 							<label htmlFor="" className=" text-sprPrimary">Password</label>
-							<input onChange={handleChange} type="password" name="password" value={state.password} className="rounded-full h-8 p-3 text-gray-700" required />
+							<input onChange={handleChange} type="password" name="password" value={state.password} className="rounded-full h-8 p-3 text-gray-700 ring-2 ring-sprPrimary/60 focus:outline-none focus:bg-sprPrimary/10" required />
 						</div>
-						<button className="bg-sprPrimary  w-full rounded-full py-2 text-white font-medium" type='submit'>Sign Up</button>
+						<button className="bg-sprPrimary/80  hover:bg-sprPrimary/50 active:bg-sprPrimary  w-full rounded-full py-2 text-white font-medium" type='submit'>Sign Up</button>
 					</form>
 
 				</div>
@@ -266,15 +271,15 @@ try {
 					<form onSubmit={handleLogIn}>
 						<div className="flex flex-col pb-3">
 							<label className="text-yellow-500" htmlFor="">Email</label>
-							<input onChange={handleChange} type="email" name="email" value={state.email} className="rounded-full h-8 p-2  text-gray-700" required />
+							<input onChange={handleChange} type="email" name="email" value={state.email} className="rounded-full h-8 p-2  text-gray-700 ring-2 ring-yellow-300 focus:outline-none focus:bg-yellow-100/50" required  />
 						</div>
 
 						<div className="flex flex-col pb-3">
 							<label htmlFor="" className="text-yellow-500">Password</label>
 
-							<input onChange={handleChange} type="password" name="password" value={state.password} className="rounded-full h-8 p-3 text-gray-700" required />
+							<input onChange={handleChange} type="password" name="password" value={state.password} className="rounded-full h-8 p-3 text-gray-700 ring-2 ring-yellow-300 focus:outline-none focus:bg-yellow-100/50" required />
 						</div>
-						<button className="bg-yellow-500 hover:bg-yellow-500/50 active:bg-yellow-500 w-full rounded-full py-2 text-white font-medium" type='submit'>Login</button>
+						<button className="bg-yellow-500 hover:bg-yellow-300 active:bg-yellow-600 w-full rounded-full py-2 text-white font-medium" type='submit'>Login</button>
 					</form>
 				</div>
 				<div className={loginWithUsername === false ? "bg-slate-200 w-52 h-52 rounded-lg mb-3" : "hidden"}>

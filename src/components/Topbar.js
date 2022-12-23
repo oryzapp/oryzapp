@@ -6,6 +6,7 @@ import { ReactComponent as ProfileIcon } from "../assets/profile.svg"
 import { auth } from "../firebase-config";
 import ModalClick from "./ModalClick";
 import ModalTopbar from "./ModalClick";
+import ModalProfileandLogout from "./ModalProfileandLogout";
 import ModalSignout from "./ModalTopbarBox";
 
 export default function Topbar() {
@@ -37,7 +38,8 @@ export default function Topbar() {
           <ProfileIcon className="fill-sprPrimary"/>
         </div>
       </div>
-      <ModalClick open={isModalOpen} closeModal={()=>{setIsModalOpen(false)}}/>
+      <ModalProfileandLogout open={isModalOpen} closeModal={()=>{setIsModalOpen(false)}}/>
+      
     </div>
   );
 }

@@ -1,10 +1,13 @@
 import React from 'react'
 import { ReactComponent as CloseIcon } from '../assets/close.svg';
+import ReactDom from "react-dom";
+
+
 
 
 export default function ModalProfile({open, closeModal}) {
   if(!open) return null;
-  return (
+  return ReactDom.createPortal(
     <div>
         <div className=" bg-black/20 flex flex-col fixed left-0 right-0 bottom-0 top-0  z-50  justify-center items-center " onClick={closeModal}>
            
@@ -21,8 +24,7 @@ export default function ModalProfile({open, closeModal}) {
 
                </div>
         </div>
-
-
-    </div>
+    </div>,
+    document.getElementById("portal")
   )
 }
