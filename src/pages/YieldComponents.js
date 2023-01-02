@@ -306,7 +306,7 @@ useEffect(() => {
 
                     }}
                   >
-                    <EditIcon className="h-4" />
+                    <EditIcon className="h-4 fill-white" />
                   </button>
 
                 </div>

@@ -51,8 +51,7 @@ export default function ModalProfileandLogout({open, closeModal}) {
     }}/>
     <div className=' h-screen w-screen top-0 bottom-0 right-0 left-0 z-40 absolute bg-black/20' onClick={closeModal}/>
     <div className='w-32  bg-white absolute right-5 top-12 z-50 rounded-md'>
-        <div className='flex items-center p-3 group hover:bg-sprPrimaryLight rounded-t-md active:bg-sprPrimary ' onClick={()=>{setIsProfileOn(true) 
-            closeModal()} }>
+        <div className='flex items-center p-3 group hover:bg-sprPrimaryLight rounded-t-md active:bg-sprPrimary ' onClick={()=>{setIsProfileOn(true)}}>
                 <ProfileIcon className='h-5 fill-sprGray70 group-hover:fill-white active:text-white '/>
                 <p className=' group-hover:text-white active:text-white cursor-pointer' >Profile</p>
         </div>

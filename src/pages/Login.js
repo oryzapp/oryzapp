@@ -241,23 +241,26 @@ try {
 
 	return (
 		<div className="h-full bg-white absolute top-0 bottom-0 right-0 left-0 flex justify-center items-center">
-			<div className=" absolute h-screen w-screen ">
+			{/* Background */}
+			{/* <div className=" absolute h-screen w-screen ">
 				<div className="h-full w-full bg-white/30 backdrop-blur-lg absolute z-10"></div>
 				<LoginBackground  className="absolute bottom-0"/>
-			</div>
+			</div> */}
+
 			<div className="bg-white  p-4 pt-10 -mt-16 rounded-xl  w-80 flex flex-col items-center justify-center drop-shadow-xl z-50 ">
+				{/* Logo */}
 				<div className=" m-2 mb-6">
 					<OryzappLogo className="h-10" />
 				</div>
+				{/* Error Message */}
 				{isError === true ? <div className="text-sprTertiary/80 text-sm text-center">{errorMessage}</div>:<></>}
-				{/* {firebaseError === true ? <div className="text-sprTertiary/80 text-sm text-center">{firebaseErrMess === 'Firebase: Error (auth/email-already-in-use).'?'*Email Already in Use':''}</div>:<></>} */}
+				{/* Signup */}
 				<div className={loginWithUsername === 'signup' ? "w-52 h-52 rounded-lg " : " hidden"}>
 					<form onSubmit={handleSignUp}>
 						<div className="flex flex-col pb-3">
 							<label className="ary text-sprPrimary" htmlFor="">Email</label>
 							<input onChange={handleChange} type="email" name="email" value={state.email} className="rounded-full h-8 p-2  text-gray-700 ring-2 ring-sprPrimary/60 focus:outline-none focus:bg-sprPrimary/10" required />
 						</div>
-
 						<div className="flex flex-col pb-3">
 							<label htmlFor="" className=" text-sprPrimary">Password</label>
 							<input onChange={handleChange} type="password" name="password" value={state.password} className="rounded-full h-8 p-3 text-gray-700 ring-2 ring-sprPrimary/60 focus:outline-none focus:bg-sprPrimary/10" required />
@@ -266,8 +269,8 @@ try {
 					</form>
 
 				</div>
+				{/* Login */}
 				<div className={loginWithUsername === true ? "w-52 h-52 rounded-lg " : " hidden"}>
-
 					<form onSubmit={handleLogIn}>
 						<div className="flex flex-col pb-3">
 							<label className="text-yellow-500" htmlFor="">Email</label>
@@ -282,6 +285,7 @@ try {
 						<button className="bg-yellow-500 hover:bg-yellow-300 active:bg-yellow-600 w-full rounded-full py-2 text-white font-medium" type='submit'>Login</button>
 					</form>
 				</div>
+				{/* QR Scan */}
 				<div className={loginWithUsername === false ? "bg-slate-200 w-52 h-52 rounded-lg mb-3" : "hidden"}>
 					<video id="qr-scan" ref={scanRef} className="h-full w-full "></video>
 				</div>

@@ -27,6 +27,7 @@ import closeIcon from "../assets/close.svg";
 import delIcon from "../assets/delete-icon.svg"
 import editIcon from "../assets/edit-icon.svg"
 import downloadIcon from "../assets/download-icon.svg"
+import { ReactComponent as EditIcon } from "../assets/edit-icon.svg"
 import { ReactComponent as SearchIcon } from "../assets/search-icon.svg"
 import { ReactComponent as EmptyIllustration } from "../assets/empty-illustration.svg"
 import { ReactComponent as ImageIcon } from "../assets/image-icon.svg"
@@ -447,7 +448,8 @@ export default function RiceAccessions() {
 														editRiceAccessionID(rice.id, rice.imageUrl);
 													}}
 												>
-													<div className="w-4 h-4"><img src={editIcon} alt="" /></div>
+													{/* <div className="w-4 h-4"><img src={editIcon} alt="" /></div> */}
+													<EditIcon className="w-4 h-4 fill-white"/>
 												</button>
 												<button
 													className=" lg:block p-1 bg-gradient-to-b from-sprPrimary to-sprPrimaryDarkest rounded-full  hover:bg-gradient-to-t hover:from-sprPrimaryLight hover:to-sprPrimaryLight shadow-slate-300 "
