@@ -41,11 +41,13 @@ export default function Topbar() {
 
       // console.log(docSnap.data().type);
       const payLoad = {
+        fname:docSnap.data().fname,
+        lname:docSnap.data().lname,
        email: docSnap.data().email,
 						password: docSnap.data().password,
 						role: docSnap.data().role,
 						type:'Old',
-						searchIndex: docSnap.data().email
+						searchIndex: `${docSnap.data().fname} ${docSnap.data().lname} ${docSnap.data().email}`
       }
 
       // Store Credentials
@@ -53,6 +55,7 @@ export default function Topbar() {
 
       await auth.signOut()
 			navigate('/login');
+      console.log(docSnap.data());
     
   }
 

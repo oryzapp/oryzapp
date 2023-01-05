@@ -25,11 +25,15 @@ export default function Login() {
 
 	// email and password input
 	const [state, setState] = useState({
+		fname:'',
+		lname:'',
 		email: '',
 		password: ''
 	})
 	// reset email and password input
 	const initialState = {
+		fname:'',
+		lname:'',
 		email: '',
 		password: ''
 	}
@@ -66,8 +70,6 @@ export default function Login() {
 
 	// Login--------------->
 	const handleLogIn = async (e) => {
-
-
 		try {
 			e.preventDefault();
 
@@ -145,7 +147,9 @@ export default function Login() {
 					
 					setIsError(true)
 					setErrorMessage('* Password should be at least 8 Characters')
-					setState({ 
+					setState({
+						fname:'',
+						lname:'',
 						email:state.email,
 						password:''
 					})
@@ -156,17 +160,20 @@ export default function Login() {
 					const enPass = encode(state.password)
 					const collectionRef = doc(db, "AUTH",state.email)
 					const payLoad = {
+						fname:state.fname,
+						lname:state.lname,
 						email: state.email,
 						password: enPass,
 						role: 'User',
 						type:'New',
-						searchIndex: `${state.email} `
+						searchIndex: `${state.fname} ${state.lname} ${state.email} `
 					}
-					// Store Credentials
+					// // Store Credentials
 					await setDoc(collectionRef, payLoad);
 					
-					// Signing Up
+					// // Signing Up
 					await signup(state.email, state.password)
+					
 				
 					navigate('/')
 
@@ -237,6 +244,7 @@ try {
 }
 
 
+
 // For Prompt
 
 	return (
@@ -255,8 +263,16 @@ try {
 				{/* Error Message */}
 				{isError === true ? <div className="text-sprTertiary/80 text-sm text-center">{errorMessage}</div>:<></>}
 				{/* Signup */}
-				<div className={loginWithUsername === 'signup' ? "w-52 h-52 rounded-lg " : " hidden"}>
+				<div className={loginWithUsername === 'signup' ? "w-52 h-auto rounded-lg" : " hidden"}>
 					<form onSubmit={handleSignUp}>
+						<div className="flex flex-col pb-3">
+							<label className="ary text-sprPrimary" htmlFor="">First Name</label>
+							<input onChange={handleChange} type="text" name="fname" value={state.fname} className="rounded-full h-8 p-2  text-gray-700 ring-2 ring-sprPrimary/60 focus:outline-none focus:bg-sprPrimary/10" required />
+						</div>
+						<div className="flex flex-col pb-3">
+							<label className="ary text-sprPrimary" htmlFor="">Last Name</label>
+							<input onChange={handleChange} type="text" name="lname" value={state.lname} className="rounded-full h-8 p-2  text-gray-700 ring-2 ring-sprPrimary/60 focus:outline-none focus:bg-sprPrimary/10" required />
+						</div>
 						<div className="flex flex-col pb-3">
 							<label className="ary text-sprPrimary" htmlFor="">Email</label>
 							<input onChange={handleChange} type="email" name="email" value={state.email} className="rounded-full h-8 p-2  text-gray-700 ring-2 ring-sprPrimary/60 focus:outline-none focus:bg-sprPrimary/10" required />
