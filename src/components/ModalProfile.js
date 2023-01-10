@@ -6,6 +6,7 @@ import { onAuthStateChanged } from 'firebase/auth';
 import { auth } from '../firebase-config';
 import db from "../firebase-config";
 import { collection, doc, getDoc, onSnapshot, query, where } from 'firebase/firestore';
+import { QRCodeCanvas } from 'qrcode.react';
 
 
 
@@ -14,11 +15,11 @@ import { collection, doc, getDoc, onSnapshot, query, where } from 'firebase/fire
 export default function ModalProfile({open, closeModal}) {
 
   const [user,setUser] = useState([])
-  const [userInfo,setUserInfo] = useState([])
+
   useEffect(()=>{
 		const unsub = onAuthStateChanged(auth, async (user) => {
       // console.log(user);
-      setUser(user)   
+      setUser(user.email)   
       
       // const docRef = doc(db, 'AUTH',user)
       // const docSnap = await getDoc(docRef);
@@ -28,25 +29,69 @@ export default function ModalProfile({open, closeModal}) {
 
   },[])
 
-  console.log(user.email);
+  console.log(user);
+
+  const [userInfo,setUserInfo] = useState([])
+  const [info, setInfo] = useState({
+    email:'',
+    password:'',
+    fname:'',
+    lname:'',
+    role:''
+
+  })
 
 
   useEffect(()=>{
-    console.log(user.email);
+   
     const collectionRef = collection(db, "AUTH");
-    const q = query(collectionRef, where('email', '==', user.email));
+    const q = query(collectionRef, where('email', '==', user));
 
     const unsub = onSnapshot(q, (snapshot) => {
       setUserInfo(
           snapshot.docs.map((doc) => ({ ...doc.data(), id: doc.id }))
       );
   });
-   return unsub
+  return unsub
 
   },[user])
 
-  // console.log(userInfo.role);
- 
+  useEffect(()=>{
+      userInfo.map((info)=>{
+        console.log(info?.email);
+        console.log(info?.password);
+        console.log(info?.fname);
+        console.log(info?.lname);
+        console.log(info?.role);
+        setInfo({
+          email:info?.email,
+          password:info?.password,
+          fname:info?.fname,
+          lname:info?.lname,
+          role:info?.role
+        })
+      })
+  },[userInfo])
+
+  const toQRCode = {
+    email: info?.email,
+    password: info?.password
+}
+
+  // Download QR Code-------------->
+  const downloadQR = () => {
+    const canvas = document.getElementById(`qr-gen`);
+    const pngUrl = canvas
+        .toDataURL("image/png")
+        .replace("image/png", "image/octet-stream");
+    let downloadLink = document.createElement("a");
+    downloadLink.href = pngUrl;
+    downloadLink.download = `${info?.email}.png`;
+    document.body.appendChild(downloadLink);
+    downloadLink.click();
+    document.body.removeChild(downloadLink);
+}
+
 
   if(!open) return null;
   return ReactDom.createPortal(
@@ -62,23 +107,29 @@ export default function ModalProfile({open, closeModal}) {
 										  {/* Name */}
 											<div >
                       <div className='font-medium'>Kumusta,</div>
-                      <h1 className='text-sprPrimary text-2xl font-medium'>Juan</h1>
+                      <h1 className='text-sprPrimary text-2xl font-medium'>{info.fname === undefined ? 'bee': info.fname}</h1>
                       {/* <h1 className='text-sprPrimary text-2xl font-medium'>{user.displayName === null ? 'Edit your name' : user.displayName}</h1> */}
                     </div>
 										{/* Role */}
                   <div className='flex flex-col -space-y-2'>
                     <small className='text-sprPrimary font-medium'>ROLE</small>
-                    <h6 className='text-lg font-medium text-sprGray'></h6>
+                    <h6 className='text-lg font-medium text-sprGray'>{info.role}</h6>
                   </div>
 										{/* Position */}
-                  <div className='flex flex-col -space-y-2'>
+                  {/* <div className='flex flex-col -space-y-2'>
                     <small className='text-sprPrimary font-medium'>POSITION</small>
                     <h6 className='text-lg font-medium text-sprGray'>Research Staff</h6>
-                  </div>
+                  </div> */}
 									
 									</div>
-									<div className="bg-blue-300 ">
-										<div className='w-32 h-32 rounded-full bg-yellow-100 '> </div>
+									<div className="bg-blue-300 "
+                            onClick={downloadQR}
+                  
+                  >
+
+                    <QRCodeCanvas className='rounded-md' id={`qr-gen`} value={JSON.stringify(toQRCode)} bgColor="#FAFAFA" fgColor="rgba(18, 20, 20, 0.8)" includeMargin={true} size={150} />
+
+
 									</div>
                </div>
         </div>
@@ -87,14 +138,3 @@ export default function ModalProfile({open, closeModal}) {
   )
 }
 
-// import { getAuth, updateProfile } from "firebase/auth";
-// const auth = getAuth();
-// updateProfile(auth.currentUser, {
-//   displayName: "Jane Q. User", photoURL: "https://example.com/jane-q-user/profile.jpg"
-// }).then(() => {
-//   // Profile updated!
-//   // ...
-// }).catch((error) => {
-//   // An error occurred
-//   // ...
-// });
