@@ -164,7 +164,7 @@ export default function Login() {
 						lname:state.lname,
 						email: state.email,
 						password: enPass,
-						role: 'User',
+						role: 'Guest',
 						type:'New',
 						searchIndex: `${state.fname} ${state.lname} ${state.email} `
 					}

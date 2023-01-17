@@ -81,7 +81,7 @@ const Main = () => {
 					// 	setPage('dashboard')
 					// }
 				}
-				if (matchUser.role === 'User') {
+				if (matchUser.role === 'Guest') {
 					setIsAdmin(false)
 					setPage('scan-code')
 				}
@@ -133,6 +133,8 @@ const Main = () => {
 
 				case 'rice-gallery':
 					return <RiceGallery />
+				case 'rice-list':
+					return <RiceList />
 				case 'scan-code':
 					return <ScanCode />
 

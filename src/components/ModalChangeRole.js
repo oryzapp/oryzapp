@@ -15,7 +15,7 @@ export default function ModalChangeRole({open, closeModal, modalId, roleChoice, 
         case 'Administrator':
             color = 'sprPrimary'
             break;
-        case 'User':
+        case 'Guest':
             color = 'yellow-500'
             break;
         case 'Disabled':

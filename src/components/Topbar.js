@@ -40,7 +40,7 @@ export default function Topbar() {
       const docSnap = await getDoc(docRef);
 
       // console.log(docSnap.data().type);
-      console.log(docSnap.data()?.fname);
+      
       const payLoad = {
         fname:docSnap.data()?.fname,
         lname:docSnap.data()?.lname,

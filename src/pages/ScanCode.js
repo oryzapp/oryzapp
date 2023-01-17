@@ -51,11 +51,33 @@ export default function ScanCode() {
     }
   }, []);
 
+  console.log('belo');
   console.log(riceList);
 
 
   // Check if Rice Accession Exists --------->
   const [currentData, setCurrentData] = useState([])
+  const [ycData, setYcData] = useState([])
+
+  const getYcData = async () => {
+    console.log('umm hi');
+    console.log(currentData.id);
+    console.log(currentData.riceSeason);
+    console.log('hhhhhhhhhhhhhh');
+
+			try {
+        const docRef = doc(db,`SPR/Rice_Seasons/Seasons/${currentData.riceSeason}_Season/Stages/Yield_Components/YC_Raw_Rice_Data`, currentData.id);
+      const docSnap = await getDoc(docRef);
+      console.log('data');
+      console.log(docSnap.data());
+      setYcData(docSnap.data())
+      
+      } catch (error) {
+        console.log(error);
+      }
+
+
+  }
 
   useEffect(() => {
 
@@ -67,12 +89,30 @@ export default function ScanCode() {
       setCurrentData(result)
       setRiceDataExists(true)
 
+      // try {
+      //   const collectionRef = collection(db,`SPR/Rice_Seasons/Seasons/${result.riceSeason}_Season/Stages/Yield_Components/YC_Raw_Rice_Data`)
+      //   console.log('mami');
+      //   console.log(result.riceYear);
+      //   console.log(result.id);
+      // const q = query(collectionRef, where("id","==",result.id))
+      // const unsub = onSnapshot(q, (snapshot) => {
+      //   console.log('ok');
+      //   console.log(
+      //     snapshot.docs.map((doc) => ({ ...doc.data(), id: doc.id }))
+      //   );
+      // });
+      // return unsub;
+      // } catch (error) {
+      //   console.log(error);
+      // }
     }
+
   }, [qrData])
+
+  
 
   // Scan or Upload Image
   const [isScan, setIsScan] = useState(true)
-
 
   console.log('I am currentData');
   console.log(currentData);
@@ -104,6 +144,7 @@ const qrScanner = new QrScanner(video,result =>
 }
 console.log('I am data');
 console.log(qrData);
+console.log(ycData.searchIndex);
   return (
     <div className='bg-slate-50 rounded-t-xl  sm:rounded-xl h-full w-full flex flex-col p-2'>
       {/* Header */}
@@ -176,6 +217,7 @@ console.log(qrData);
               </div>
               <button className=" text-white text-sm bg-gradient-to-b from-sprPrimary to-sprPrimaryDarkest h-8 w-16   rounded-full shadow-lg shadow-slate-300 hover:bg-gradient-to-t hover:from-sprPrimaryLight hover:to-sprPrimaryLight " onClick={() => {
               setIsModalOpen(true)
+              getYcData()
               }}>
                 view
               </button>

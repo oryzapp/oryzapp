@@ -58,9 +58,9 @@ export default function ModalEditUsers({ open, closeModal, modalId, modalEmail,m
                                 <AdminIcon className='fill-white h-2' />
                                 <h1 className='text-white font-medium text-sm'>Administrator</h1>
                             </div>
-                            <div className={modalRole === 'User' ? "bg-yellow-500 flex  items-center p-2 gap-1 rounded-full":"hidden"}>
+                            <div className={modalRole === 'Guest' ? "bg-yellow-500 flex  items-center p-2 gap-1 rounded-full":"hidden"}>
                                 <UserIcon className='fill-white h-3' />
-                                <h1 className='text-white font-medium text-sm'>User Only</h1>
+                                <h1 className='text-white font-medium text-sm'>Guest</h1>
                             </div>
                             <div className={modalRole === 'Disabled' ? "bg-sprTertiary flex  items-center p-2 gap-1 rounded-full":"hidden"}>
                                 <DisabledIcon className='fill-white h-3' />

@@ -533,7 +533,7 @@ const message = 'Rice Data Successfully Added!'
           <button className=" w-8 h-8 p-2 rounded-full  bg-gradient-to-b from-sprPrimary to-sprPrimaryDarkest hover:bg-gradient-to-t hover:from-sprPrimaryLight hover:to-sprPrimaryLight drop-shadow-md" onClick={() => setIsModalOpen(true)}>
             <img src={addIcon} alt="" />
           </button>
-          <h1 className="text-3xl font-bold text-sprBlack opacity-80 pl-2">Rice Data</h1>
+          <h1 className="text-3xl font-bold text-sprBlack opacity-80 pl-2">Argonomic Traits</h1>
         </header>
       
         {/* Main */}

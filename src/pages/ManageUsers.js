@@ -207,18 +207,18 @@ export default function ManageUsers() {
                         </button>
                         
                          {user.email !== 'clsuspecialpurposerice@gmail.com'?<>
-                            <button className={user.role === 'User' ? " flex gap-1 items-center justify-center px-2 bg-yellow-400 rounded-full h-6": " flex gap-1 items-center justify-center px-2 bg-sprGray/30 rounded-full h-6"}
+                            <button className={user.role === 'Guest' ? " flex gap-1 items-center justify-center px-2 bg-yellow-400 rounded-full h-6": " flex gap-1 items-center justify-center px-2 bg-sprGray/30 rounded-full h-6"}
                         onClick={()=>{
                           setIsModalChangeRoleOpen(true)
                           setModalId(user.id)
                           setModalEmail(user.email)
-                          setRoleChoice('User')
+                          setRoleChoice('Guest')
                          }
                          }
-                         disabled={user.role === 'User' ? true : false}
+                         disabled={user.role === 'Guest' ? true : false}
                         >
                            <UserIcon className='fill-white h-4  ' />
-                                <h1 className='hidden lg:block text-white font-medium text-md'>User Only</h1>
+                                <h1 className='hidden lg:block text-white font-medium text-md'>Guest</h1>
                         </button>
                         
                         <button className={user.role === 'Disabled' ? " flex gap-1 items-center justify-center px-2 bg-sprTertiary rounded-full h-6": " flex gap-1 items-center justify-center px-2 bg-sprGray/30 rounded-full h-6"}
@@ -274,18 +274,18 @@ export default function ManageUsers() {
                         </button>
                         
                          {user.email !== 'clsuspecialpurposerice@gmail.com'?<>
-                            <button className={user.role === 'User' ? " flex gap-1 items-center justify-center px-2 bg-yellow-400 rounded-full h-6": " flex gap-1 items-center justify-center px-2 bg-sprGray/30 rounded-full h-6"}
+                            <button className={user.role === 'Guest' ? " flex gap-1 items-center justify-center px-2 bg-yellow-400 rounded-full h-6": " flex gap-1 items-center justify-center px-2 bg-sprGray/30 rounded-full h-6"}
                         onClick={()=>{
                           setIsModalChangeRoleOpen(true)
                           setModalId(user.id)
                           setModalEmail(user.email)
-                          setRoleChoice('User')
+                          setRoleChoice('Guest')
                          }
                          }
-                         disabled={user.role === 'User' ? true : false}
+                         disabled={user.role === 'Guest' ? true : false}
                         >
                            <UserIcon className='fill-white h-4  ' />
-                                <h1 className='hidden lg:block text-white font-medium text-md'>User Only</h1>
+                                <h1 className='hidden lg:block text-white font-medium text-md'>Guest</h1>
                         </button>
                         
                         <button className={user.role === 'Disabled' ? " flex gap-1 items-center justify-center px-2 bg-sprTertiary rounded-full h-6": " flex gap-1 items-center justify-center px-2 bg-sprGray/30 rounded-full h-6"}

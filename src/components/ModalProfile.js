@@ -99,17 +99,19 @@ export default function ModalProfile({open, closeModal}) {
       <div className=" flex flex-col fixed left-0 right-0 bottom-0 top-0  z-50 justify-center items-center " >
       <div className=" bg-black/30 flex flex-col fixed left-0 right-0 bottom-0 top-0  z-30 justify-center items-center " onClick={closeModal}/>
 
-               <div className='bg-white h-60 w-96 p-10 flex items-start relative rounded-md  z-50'>
+               <div className=' h-60 w-96 p-10 flex items-center relative rounded-md  z-50 bg-red-300'>
                 <div className="absolute right-4 top-4 z-40  ">
             <CloseIcon className='group-hover:stroke-white stroke-sprGray50 hover:stroke-sprGray80 active:stroke-sprPrimary h-5' onClick={closeModal} />
                 </div>
-                  <div className='bg-yellow-400 flex-auto'>
-										  {/* Name */}
-											<div >
-                      <div className='font-medium'>Kumusta,</div>
-                      <h1 className='text-sprPrimary text-2xl font-medium'>{info.fname === undefined ? 'bee': info.fname}</h1>
-                      {/* <h1 className='text-sprPrimary text-2xl font-medium'>{user.displayName === null ? 'Edit your name' : user.displayName}</h1> */}
-                    </div>
+               
+                  <div className='bg-yellow-400 flex-auto h-full'>
+										
+										
+										{/* Name */}
+                  <div className='flex flex-col -space-y-2'>
+                    <small className='text-sprPrimary font-medium'>NAME</small>
+                    <h6 className='text-lg font-medium text-sprGray'>{`${info.fname} ${info.lname}`}</h6>
+                  </div>
 										{/* Role */}
                   <div className='flex flex-col -space-y-2'>
                     <small className='text-sprPrimary font-medium'>ROLE</small>
@@ -122,14 +124,10 @@ export default function ModalProfile({open, closeModal}) {
                   </div> */}
 									
 									</div>
-									<div className="bg-blue-300 "
+									<div className=" bg-blue-200 h-full flex items-center"
                             onClick={downloadQR}
-                  
                   >
-
                     <QRCodeCanvas className='rounded-md' id={`qr-gen`} value={JSON.stringify(toQRCode)} bgColor="#FAFAFA" fgColor="rgba(18, 20, 20, 0.8)" includeMargin={true} size={150} />
-
-
 									</div>
                </div>
         </div>
