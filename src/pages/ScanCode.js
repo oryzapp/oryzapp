@@ -60,17 +60,15 @@ export default function ScanCode() {
   const [ycData, setYcData] = useState([])
 
   const getYcData = async () => {
-    console.log('umm hi');
-    console.log(currentData.id);
-    console.log(currentData.riceSeason);
-    console.log('hhhhhhhhhhhhhh');
+ 
 
 			try {
         const docRef = doc(db,`SPR/Rice_Seasons/Seasons/${currentData.riceSeason}_Season/Stages/Yield_Components/YC_Raw_Rice_Data`, currentData.id);
-      const docSnap = await getDoc(docRef);
-      console.log('data');
-      console.log(docSnap.data());
-      setYcData(docSnap.data())
+        const docSnap = await getDoc(docRef);
+
+        // const picDocRef = doc = doc(db,'SPR/Rice_Accessions/Accession_IDs',)
+     
+        setYcData(docSnap.data())
       
       } catch (error) {
         console.log(error);
@@ -89,22 +87,6 @@ export default function ScanCode() {
       setCurrentData(result)
       setRiceDataExists(true)
 
-      // try {
-      //   const collectionRef = collection(db,`SPR/Rice_Seasons/Seasons/${result.riceSeason}_Season/Stages/Yield_Components/YC_Raw_Rice_Data`)
-      //   console.log('mami');
-      //   console.log(result.riceYear);
-      //   console.log(result.id);
-      // const q = query(collectionRef, where("id","==",result.id))
-      // const unsub = onSnapshot(q, (snapshot) => {
-      //   console.log('ok');
-      //   console.log(
-      //     snapshot.docs.map((doc) => ({ ...doc.data(), id: doc.id }))
-      //   );
-      // });
-      // return unsub;
-      // } catch (error) {
-      //   console.log(error);
-      // }
     }
 
   }, [qrData])
@@ -114,8 +96,6 @@ export default function ScanCode() {
   // Scan or Upload Image
   const [isScan, setIsScan] = useState(true)
 
-  console.log('I am currentData');
-  console.log(currentData);
 
   // Scan with Webcam
 const video = document.getElementById('qr-scan')              
@@ -241,7 +221,7 @@ console.log(ycData.searchIndex);
 </section>
     
 {/* Modal */}
-            <ModalRiceList open={isModalOpen} closeModal={()=>{setIsModalOpen(false)}} currentData={currentData}/>
+            <ModalRiceList open={isModalOpen} closeModal={()=>{setIsModalOpen(false)}} currentData={currentData} ycData={ycData}/>
 
     </div >
 
