@@ -99,12 +99,17 @@ export default function ModalProfile({open, closeModal}) {
       <div className=" flex flex-col fixed left-0 right-0 bottom-0 top-0  z-50 justify-center items-center " >
       <div className=" bg-black/30 flex flex-col fixed left-0 right-0 bottom-0 top-0  z-30 justify-center items-center " onClick={closeModal}/>
 
-               <div className=' h-60 w-96 p-10 flex items-center relative rounded-md  z-50 bg-red-300'>
+               <div className=' w-96 p-10 flex flex-col items-center relative rounded-md  z-50 bg-white'>
                 <div className="absolute right-4 top-4 z-40  ">
             <CloseIcon className='group-hover:stroke-white stroke-sprGray50 hover:stroke-sprGray80 active:stroke-sprPrimary h-5' onClick={closeModal} />
                 </div>
-               
-                  <div className='bg-yellow-400 flex-auto h-full'>
+
+                <div className=" bg-white h-full flex items-center"
+                            onClick={downloadQR}
+                  >
+                    <QRCodeCanvas className='rounded-md' id={`qr-gen`} value={JSON.stringify(toQRCode)} bgColor="#FAFAFA" fgColor="rgba(18, 20, 20, 0.8)" includeMargin={true} size={150} />
+									</div>
+                  <div className='bg-white flex-auto h-full'>
 										
 										
 										{/* Name */}
@@ -117,6 +122,11 @@ export default function ModalProfile({open, closeModal}) {
                     <small className='text-sprPrimary font-medium'>ROLE</small>
                     <h6 className='text-lg font-medium text-sprGray'>{info.role}</h6>
                   </div>
+										{/* Email */}
+                  <div className='flex flex-col -space-y-2'>
+                    <small className='text-sprPrimary font-medium'>EMAIL</small>
+                    <h6 className='text-lg font-medium text-sprGray'>{info.email}</h6>
+                  </div>
 										{/* Position */}
                   {/* <div className='flex flex-col -space-y-2'>
                     <small className='text-sprPrimary font-medium'>POSITION</small>
@@ -124,11 +134,7 @@ export default function ModalProfile({open, closeModal}) {
                   </div> */}
 									
 									</div>
-									<div className=" bg-blue-200 h-full flex items-center"
-                            onClick={downloadQR}
-                  >
-                    <QRCodeCanvas className='rounded-md' id={`qr-gen`} value={JSON.stringify(toQRCode)} bgColor="#FAFAFA" fgColor="rgba(18, 20, 20, 0.8)" includeMargin={true} size={150} />
-									</div>
+								
                </div>
         </div>
     </div>,

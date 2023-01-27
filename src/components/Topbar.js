@@ -6,10 +6,6 @@ import { ReactComponent as ProfileIcon } from "../assets/profile.svg"
 import { ReactComponent as ProfileIcon2 } from "../assets/profile2.svg"
 import {ReactComponent as OutIcon} from '../assets/logout.svg'
 import { auth } from "../firebase-config";
-import ModalClick from "./ModalClick";
-import ModalTopbar from "./ModalClick";
-import ModalProfileandLogout from "./ModalProfileandLogout";
-import ModalSignout from "./ModalTopbarBox";
 import ModalProfile from "./ModalProfile";
 import { doc, getDoc, setDoc } from "firebase/firestore";
 import db from "../firebase-config";
@@ -22,24 +18,39 @@ export default function Topbar() {
 
   const [user,setUser] = useState([])
   const [userEmail,setUserEmail] = useState([])
+  const[userInfo, setUserInfo] = useState([])
+
+  const getUserInfo = async () =>{
+
+    const docRef = doc(db, 'AUTH',userEmail)
+    const docSnap = await getDoc(docRef);
+    setUserInfo(docSnap.data())
+
+  }
+
+  console.log(userInfo);
 
   useEffect(()=>{
+    getUserInfo()
+
+
 		const unsub = onAuthStateChanged(auth, async (user) => {
       console.log(user);
       setUser(user)
       setUserEmail(user?.email)
+
       
     })
+
+    
     return unsub
 
-  },[])
+  },[user])
 
    const onSignOut = async () => {
 
 	    const docRef = doc(db, 'AUTH',userEmail)
       const docSnap = await getDoc(docRef);
-
-      // console.log(docSnap.data().type);
       
       const payLoad = {
         fname:docSnap.data()?.fname,
@@ -77,7 +88,7 @@ export default function Topbar() {
       </div>
       <div className=" h-6 w-full flex flex-auto gap-2 justify-end">
         <p className="hidden sm:block">
-          Kumusta, <strong className="text-sprPrimary">{user?.email}</strong>
+          Kumusta, <strong className="text-sprPrimary">{userInfo.fname}</strong>
         </p>
         <div className="h-6 w-6 rounded-full bg-sprPrimaryLight/20 relative" onClick={() => { setIsProfileandLogout(true)}}>
           <ProfileIcon className="fill-sprPrimary"/>
