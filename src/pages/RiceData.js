@@ -269,6 +269,9 @@ const message = 'Rice Data Successfully Added!'
     });
 
   };
+  // Get Image Info
+  const [image, setImage] = useState([])
+  console.log(image);
 
   // Set Season in Snake case ------------->
   var season;
@@ -623,10 +626,15 @@ const message = 'Rice Data Successfully Added!'
                       <RiceAccIcon className="stroke-white h-full "fill="none"/>
                     </div>
                     <div className=" -ml-9">
-                      <select className="rounded-full py-2 text-sprPrimary text-sm focus:outline-none focus:ring-2 focus:ring-sprPrimary" name="accessionId" id="" onChange={handleChange} required>
+                      <select className="rounded-full py-2 text-sprPrimary text-sm focus:outline-none focus:ring-2 focus:ring-sprPrimary" name="accessionId" id="" onChange={()=>{}} required>
                         <option value='no choice'>CL-XXXX</option>
                         {riceAccessions.map((rice) =>
-                          <option value={rice.accessionId}  >{`CL-R${rice.accessionId}`}</option>)}
+                          {
+                            <option value={rice.accessionId}  >{`CL-R${rice.accessionId}`}</option>
+                            
+                          }
+                          
+                          )}
                       </select>
                     </div>
 

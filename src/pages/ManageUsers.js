@@ -38,6 +38,10 @@ export default function ManageUsers() {
   const [modalEmail, setModalEmail] = useState('')
   const [roleChoice, setRoleChoice] = useState('')
   const [modalPassword, setModalPassword] = useState('')
+  const [modalFname, setModalFname] = useState('')
+  const [modalLname, setModalLname] = useState('')
+
+  
 
   // Search Box ----------------------->
   const [searchInput, setSearchInput] = useState('')
@@ -187,6 +191,8 @@ export default function ManageUsers() {
                           setModalEmail(user.email)
                           setModalRole(user.role)
                           setModalPassword(user.password)
+                          setModalFname(user.fname)
+                          setModalLname(user.lname)
                         }}>
                            <View className= 'fill-sprPrimary h-7  group-active:fill-white ' />
 
@@ -253,6 +259,9 @@ export default function ManageUsers() {
                           setModalEmail(user.email)
                           setModalRole(user.role)
                           setModalPassword(user.password)
+                          setModalFname(user.fname)
+                          setModalLname(user.lname)
+                          
 
                         }}>
                            <View className= 'fill-sprPrimary h-7  group-active:fill-white ' />
@@ -318,7 +327,7 @@ export default function ManageUsers() {
 
       </div>
      
-      <ModalEditUsers open={isModalOpen} closeModal={() => { setIsModalOpen(false) }} modalId={modalId} modalEmail={modalEmail}  modalRole={modalRole} modalPassword= {modalPassword}  />
+      <ModalEditUsers open={isModalOpen} closeModal={() => { setIsModalOpen(false) }} modalId={modalId} modalEmail={modalEmail}  modalRole={modalRole} modalPassword= {modalPassword} modalFname={modalFname} modalLname={modalLname} />
       <ModalChangeRole open={isModalChangeRoleOpen} closeModal={() => { setIsModalChangeRoleOpen(false) }} modalId={modalId} roleChoice={roleChoice} modalEmail={modalEmail}   />
 
     </>

@@ -136,8 +136,6 @@ const Main = () => {
 					return <RiceGallery />
 				case 'rice-list':
 					return <RiceList />
-				case 'guest-rice-list':
-					return <GuestRiceList />
 				case 'scan-code':
 					return <ScanCode />
 

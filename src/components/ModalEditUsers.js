@@ -12,7 +12,7 @@ import { decode, encode } from 'string-encode-decode';
 
 
 
-export default function ModalEditUsers({ open, closeModal, modalId, modalEmail,modalRole, modalPassword }) {
+export default function ModalEditUsers({ open, closeModal, modalId, modalEmail,modalRole, modalPassword,modalFname, modalLname }) {
 
     const toQRCode = {
         email: modalEmail,
@@ -51,6 +51,10 @@ export default function ModalEditUsers({ open, closeModal, modalId, modalEmail,m
                             {/* <div className='bg-sprPrimary/30 h-5 w-5  rounded-full  absolute right-1 top-1' >
                                 <img src={downloadIcon} alt="" />
                             </div> */}
+                        </div>
+                        <div className='flex space-x-2'>
+                        <h1 className='text-sprGray60 text-xl font-medium'>{modalFname}</h1>
+                        <h1 className='text-sprGray60 text-xl font-medium'>{modalLname}</h1>
                         </div>
                         <h1 className='text-sprPrimary font-medium'>{modalEmail}</h1>
                         <div className='flex gap-1'>

@@ -59,6 +59,8 @@ export default function ScanCode() {
   const [currentData, setCurrentData] = useState([])
   const [ycData, setYcData] = useState([])
 
+  
+  console.log('I am current Data' + currentData.id);
   const getYcData = async () => {
  
 

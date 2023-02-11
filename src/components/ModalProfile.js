@@ -14,23 +14,17 @@ import { QRCodeCanvas } from 'qrcode.react';
 
 export default function ModalProfile({open, closeModal}) {
 
+  // get Current User
   const [user,setUser] = useState([])
-
   useEffect(()=>{
 		const unsub = onAuthStateChanged(auth, async (user) => {
-      // console.log(user);
       setUser(user.email)   
-      
-      // const docRef = doc(db, 'AUTH',user)
-      // const docSnap = await getDoc(docRef);
-      // console.log(docSnap.data());
     })
     return unsub
 
   },[])
 
-  console.log(user);
-
+  // Get Current User Info
   const [userInfo,setUserInfo] = useState([])
   const [info, setInfo] = useState({
     email:'',
@@ -40,7 +34,6 @@ export default function ModalProfile({open, closeModal}) {
     role:''
 
   })
-
 
   useEffect(()=>{
    
@@ -115,17 +108,17 @@ export default function ModalProfile({open, closeModal}) {
 										{/* Name */}
                   <div className='flex flex-col -space-y-2'>
                     <small className='text-sprPrimary font-medium'>NAME</small>
-                    <h6 className='text-lg font-medium text-sprGray'>{`${info.fname} ${info.lname}`}</h6>
+                    <h6 className='text-m font-medium text-sprGray70'>{`${info.fname} ${info.lname}`}</h6>
                   </div>
 										{/* Role */}
                   <div className='flex flex-col -space-y-2'>
                     <small className='text-sprPrimary font-medium'>ROLE</small>
-                    <h6 className='text-lg font-medium text-sprGray'>{info.role}</h6>
+                    <h6 className='text-m font-medium text-sprGray70'>{info.role}</h6>
                   </div>
 										{/* Email */}
                   <div className='flex flex-col -space-y-2'>
                     <small className='text-sprPrimary font-medium'>EMAIL</small>
-                    <h6 className='text-lg font-medium text-sprGray'>{info.email}</h6>
+                    <h6 className='text-m font-medium text-sprGray70'>{info.email}</h6>
                   </div>
 										{/* Position */}
                   {/* <div className='flex flex-col -space-y-2'>

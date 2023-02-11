@@ -4,10 +4,12 @@ import { useState, useEffect } from "react"
 import { useNavigate } from "react-router-dom"
 import { useAuth, login, signup } from "../firebase-config"
 import { ReactComponent as OryzappLogo } from "../assets/oryzapp-logo.svg"
-import { ReactComponent as LoginBackground } from "../assets/login-background.svg"
 import { addDoc, collection, doc, onSnapshot, setDoc } from "firebase/firestore"
 import db from "../firebase-config";
 import { decode, encode } from "string-encode-decode"
+import clsuBG from "../assets/clsu.jpeg"
+import clsuLogo from "../assets/clsu-logo.png"
+import clsuRETLogo from "../assets/clsu-ret-logo.jpg"
 import { auth } from "../firebase-config";
 import QrScanner from "qr-scanner"
 import { async } from "@firebase/util"
@@ -250,13 +252,15 @@ try {
 	return (
 		<div className="h-full bg-white absolute top-0 bottom-0 right-0 left-0 flex justify-center items-center">
 			{/* Background */}
-			{/* <div className=" absolute h-screen w-screen ">
-				<div className="h-full w-full bg-white/30 backdrop-blur-lg absolute z-10"></div>
-				<LoginBackground  className="absolute bottom-0"/>
-			</div> */}
+			<div className=" absolute h-screen w-screen overflow-hidden ">
+				<div className="h-full w-full bg-white/30 backdrop-blur-sm absolute z-10"></div>
+				{/* <LoginBackground  className="absolute bottom-0"/> */}
+				<img src={clsuBG} alt="" className=" h-full sm:w-full" />
+			</div>
 
 			<div className="bg-white  p-4 pt-10 -mt-16 rounded-xl  w-80 flex flex-col items-center justify-center drop-shadow-xl z-50 ">
 				{/* Logo */}
+			
 				<div className=" m-2 mb-6">
 					<OryzappLogo className="h-10" />
 				</div>
@@ -332,9 +336,13 @@ try {
 					setIsError(false)
 					
 				}}><p className="font-light text-sprGray">Don't have an account?</p> <p className="text-yellow-500 font-light underline">Sign Up</p></div>
-				{/* <div className="w-full h-32 "></div> */}
+				<div className="flex px-10 w-full justify-between mt-4">
+				<img src={clsuLogo} alt="" className="w-12 h-12 rounded-full" />
+				<img src={clsuRETLogo} alt="" className="w-12 h-12 rounded-full" />
+				</div>
 
 			</div>
+			
 		</div>
 	)
 }
