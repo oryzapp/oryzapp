@@ -12,7 +12,7 @@ import { doc, getDoc, setDoc } from "firebase/firestore";
 import db from "../firebase-config";
 import { useNavigate } from "react-router-dom";
 import clsuLogo from "../assets/clsu-logo.png"
-import clsuRETLogo from "../assets/clsu-ret-logo.jpg"
+import clsuRETLogo from "../assets/clsu-ret-logo.png"
 import ModalSettings from "./ModalSettings";
 
 
@@ -92,8 +92,8 @@ export default function Topbar() {
      
       <div className=" my-2 -ml-4  mr-2   pl-4 sm:pl-8 sm:pr-2 py-3 flex items-center space  sm:bg-white rounded-xl">
       <div className="flex-auto ml-4 sm:ml-0 flex space-x-2">
-      <img src={clsuLogo} alt="" className="w-6 h-6 rounded-full" />
-				<img src={clsuRETLogo} alt="" className="w-6 h-6 rounded-full" />
+      {/* <img src={clsuLogo} alt="" className="w-6 h-6 rounded-full" />
+				<img src={clsuRETLogo} alt="" className="w-6 h-6 rounded-full" /> */}
         <OryzappLogo className="h-6" />
         
       </div>

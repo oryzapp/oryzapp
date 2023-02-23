@@ -20,7 +20,7 @@ export default function RiceList() {
 
     const [riceList, setRiceList] = useState([]);
     const [riceSearchList, setRiceSearchList] = useState([])
-    const [listOn, setListOn] = useState(true)
+    const [listOn, setListOn] = useState(false)
     const [season, setSeason] = useState('All')
     const [year, setYear] = useState('All')
     const [searchValue, setSearchValue] = useState('')

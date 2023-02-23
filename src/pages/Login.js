@@ -4,12 +4,13 @@ import { useState, useEffect } from "react"
 import { useNavigate } from "react-router-dom"
 import { useAuth, login, signup } from "../firebase-config"
 import { ReactComponent as OryzappLogo } from "../assets/oryzapp-logo.svg"
+import { ReactComponent as OryzappNewLogo } from "../assets/oryzapp-new-logo.svg"
 import { addDoc, collection, doc, onSnapshot, setDoc } from "firebase/firestore"
 import db from "../firebase-config";
 import { decode, encode } from "string-encode-decode"
-import clsuBG from "../assets/clsu.jpeg"
+import palayBG from "../assets/palay-background.png"
 import clsuLogo from "../assets/clsu-logo.png"
-import clsuRETLogo from "../assets/clsu-ret-logo.jpg"
+import clsuRETLogo from "../assets/clsu-ret-logo.png"
 import { auth } from "../firebase-config";
 import QrScanner from "qr-scanner"
 import { async } from "@firebase/util"
@@ -21,10 +22,12 @@ import ModalSuccess from "../components/ModalSuccess"
 
 export default function Login() {
 
-	const [loginWithUsername, setLoginWithusername] = useState(false)
 	const currentUser = useAuth()
 	const navigate = useNavigate()
 
+	// Email, Scan, or SignUp
+	const [mode, setMode] = useState('email')
+ 
 	// email and password input
 	const [state, setState] = useState({
 		fname:'',
@@ -48,12 +51,8 @@ export default function Login() {
 			}
 		)
 	}
-	
-	useEffect(() => {
 
-	})
-
-	// print errors
+	// print errors--------------->
 	const [errorMessage, setErrorMessage] = useState('error')
 	const [isError, setIsError] = useState(false)
 
@@ -133,7 +132,7 @@ export default function Login() {
 
 		}
 	}
-// Sign Up User
+// Sign Up User--------------->
 	const handleSignUp = async (e) => {
 		try {
 			e.preventDefault(); 
@@ -188,8 +187,7 @@ export default function Login() {
 			console.log(error);
 		}
 	}
-
-// Qr Scanner log In
+// Qr Scanner log In--------------->
 const scanRef = useRef(null)
 
 const video = document.getElementById('qr-scan')              
@@ -245,103 +243,80 @@ try {
 }
 }
 
-
-
-// For Prompt
-
 	return (
-		<div className="h-full bg-white absolute top-0 bottom-0 right-0 left-0 flex justify-center items-center">
+		<div className="h-full  absolute top-0 bottom-0 right-0 left-0 flex justify-center items-center">
 			{/* Background */}
 			<div className=" absolute h-screen w-screen overflow-hidden ">
-				<div className="h-full w-full bg-white/30 backdrop-blur-sm absolute z-10"></div>
-				{/* <LoginBackground  className="absolute bottom-0"/> */}
-				<img src={clsuBG} alt="" className=" h-full sm:w-full" />
+				<div className="h-full w-full bg-black/30 backdrop-blur-sm absolute z-10 font-"></div>
+				<img src={palayBG} alt="" className=" h-full sm:w-full" />
 			</div>
 
-			<div className="bg-white  p-4 pt-10 -mt-16 rounded-xl  w-80 flex flex-col items-center justify-center drop-shadow-xl z-50 ">
-				{/* Logo */}
+		<div className="  hidden md:flex w-1/2 h-full  z-50  justify-center items-center space-x-10">
+			<img src={clsuLogo}  className="md:h-48 lg:h-64" alt="" />
+			<img src={clsuRETLogo} className="md:h-48 lg:h-64" alt="" />
+
+		</div>
+		<div className="bg-white  w-full md:w-1/2 h-full flex flex-col z-50 px-16 lg:px-32 justify-center  space-y-3">
+			<OryzappNewLogo className="h-16 md:h-24"/>
+			<h1 className="text-2xl md:text-3xl  font-semibold whitespace-nowrap text-center text-slate-800">Welcome Researcher.</h1>
 			
-				<div className=" m-2 mb-6">
-					<OryzappLogo className="h-10" />
+			{/* Email Login */}
+				<form onSubmit={handleLogIn}>
+					<div className={mode === 'email' ?'flex flex-col space-y-3':'hidden'}>
+						<input onChange={handleChange} type="email" name="email" value={state.email}  placeholder="Email" className="bg-slate-100  text-base   rounded-full font-light p-3 focus:outline-2 focus:outline-sprPrimary "/>
+						<input onChange={handleChange} type="password" name="password" placeholder="Password" className="bg-slate-100 text-base   rounded-full font-light p-3 focus:outline-2 focus:outline-sprPrimary"/>
+						<button type="submit" className="bg-sprPrimary text-base  font-bold text-white rounded-full p-3 ">Login</button>
+					</div>
+				</form>
+
+			{/* Scanner Login */}
+			<div className={mode==='scanner' ? 'flex flex-col  justify-center  items-center space-y-3':'hidden'}>
+				<div className="bg-slate-200 w-52 h-52 rounded-lg">
+					<video id="qr-scan" ref={scanRef} className="h-full w-full"></video>
 				</div>
-				{/* Error Message */}
-				{isError === true ? <div className="text-sprTertiary/80 text-sm text-center">{errorMessage}</div>:<></>}
-				{/* Signup */}
-				<div className={loginWithUsername === 'signup' ? "w-52 h-auto rounded-lg" : " hidden"}>
-					<form onSubmit={handleSignUp}>
-						<div className="flex flex-col pb-3">
-							<label className="ary text-sprPrimary" htmlFor="">First Name</label>
-							<input onChange={handleChange} type="text" name="fname" value={state.fname} className="rounded-full h-8 p-2  text-gray-700 ring-2 ring-sprPrimary/60 focus:outline-none focus:bg-sprPrimary/10" required />
-						</div>
-						<div className="flex flex-col pb-3">
-							<label className="ary text-sprPrimary" htmlFor="">Last Name</label>
-							<input onChange={handleChange} type="text" name="lname" value={state.lname} className="rounded-full h-8 p-2  text-gray-700 ring-2 ring-sprPrimary/60 focus:outline-none focus:bg-sprPrimary/10" required />
-						</div>
-						<div className="flex flex-col pb-3">
-							<label className="ary text-sprPrimary" htmlFor="">Email</label>
-							<input onChange={handleChange} type="email" name="email" value={state.email} className="rounded-full h-8 p-2  text-gray-700 ring-2 ring-sprPrimary/60 focus:outline-none focus:bg-sprPrimary/10" required />
-						</div>
-						<div className="flex flex-col pb-3">
-							<label htmlFor="" className=" text-sprPrimary">Password</label>
-							<input onChange={handleChange} type="password" name="password" value={state.password} className="rounded-full h-8 p-3 text-gray-700 ring-2 ring-sprPrimary/60 focus:outline-none focus:bg-sprPrimary/10" required />
-						</div>
-						<button className="bg-sprPrimary/80  hover:bg-sprPrimary/50 active:bg-sprPrimary  w-full rounded-full py-2 text-white font-medium" type='submit'>Sign Up</button>
-					</form>
+			<button type="submit" className="bg-sprPrimary text-base  font-bold text-white rounded-full p-3">Scan Code</button>
+			</div>
 
+			{/* Signup */}
+			<form onSubmit={handleSignUp}>
+
+			<div className={mode === 'signup' ?'flex flex-col space-y-3 ':'hidden'}>
+				<div className="flex flex-col">
+					<label  className="text-sm text-slate-500" htmlFor="fname">
+						First Name
+					</label>
+					<input required type="text" placeholder="e.g. Juan" className="bg-slate-100 text-base   rounded-full font-light p-3 focus:outline-2 focus:outline-sprPrimary"/>
 				</div>
-				{/* Login */}
-				<div className={loginWithUsername === true ? "w-52 h-52 rounded-lg " : " hidden"}>
-					<form onSubmit={handleLogIn}>
-						<div className="flex flex-col pb-3">
-							<label className="text-yellow-500" htmlFor="">Email</label>
-							<input onChange={handleChange} type="email" name="email" value={state.email} className="rounded-full h-8 p-2  text-gray-700 ring-2 ring-yellow-300 focus:outline-none focus:bg-yellow-100/50" required  />
-						</div>
-
-						<div className="flex flex-col pb-3">
-							<label htmlFor="" className="text-yellow-500">Password</label>
-
-							<input onChange={handleChange} type="password" name="password" value={state.password} className="rounded-full h-8 p-3 text-gray-700 ring-2 ring-yellow-300 focus:outline-none focus:bg-yellow-100/50" required />
-						</div>
-						<button className="bg-yellow-500 hover:bg-yellow-300 active:bg-yellow-600 w-full rounded-full py-2 text-white font-medium" type='submit'>Login</button>
-					</form>
+				<div className="flex flex-col text-slate-500">
+					<label className="text-sm" htmlFor="fname">
+						Email
+					</label>
+					<input required onChange={handleChange} type="email" name="email" value={state.email} placeholder="e.g. delacruz.juan@clsu2.edu.ph" className="bg-slate-100 text-base   rounded-full font-light p-3 focus:outline-2 focus:outline-sprPrimary"/>
 				</div>
-				{/* QR Scan */}
-				<div className={loginWithUsername === false ? "bg-slate-200 w-52 h-52 rounded-lg mb-3" : "hidden"}>
-					<video id="qr-scan" ref={scanRef} className="h-full w-full "></video>
+				<div className="flex flex-col text-slate-500">
+					<label className="text-sm" htmlFor="fname">
+						Password
+					</label>
+					<input required onChange={handleChange} type="password" name="password" value={state.password} placeholder="e.g. Juan" className="bg-slate-100 text-base   rounded-full font-light p-3 focus:outline-2 focus:outline-sprPrimary"/>
 				</div>
-					<button onClick={()=>{
-						startScanning()
-						}}
-						className={loginWithUsername === false ?"bg-yellow-400 rounded-full p-2 text-white font-medium hover:bg-yellow-200 active:bg-yellow-500":"hidden"}
-						>
-							Scan Code</button>
-
-				<div className="mb-4 text-slate-500">OR</div>
-
-				<div className={loginWithUsername === true ? "hidden" : "cursor-pointer"} onClick={() => {
-					setLoginWithusername(true)
-					setState(initialState)
-				setIsError(false)
-				}}><u className="text-yellow-500 font-light underline">Log In with Email</u></div>
-
-				<div className={loginWithUsername === false ? "hidden" : "cursor-pointer"} onClick={() => {
-					setState(initialState)
-					setLoginWithusername(false)
-				setIsError(false)
-
-				}}><u className="text-yellow-500 font-light" >Log In with Scanner</u></div>
-				<div className={loginWithUsername === 'signup' ? "hidden" : "pt-2 cursor-pointer flex text-sm"} onClick={() => {
-					setState(initialState)
-					setLoginWithusername('signup')
-					setIsError(false)
-					
-				}}><p className="font-light text-sprGray">Don't have an account?</p> <p className="text-yellow-500 font-light underline">Sign Up</p></div>
-				<div className="flex px-10 w-full justify-between mt-4">
-				<img src={clsuLogo} alt="" className="w-12 h-12 rounded-full" />
-				<img src={clsuRETLogo} alt="" className="w-12 h-12 rounded-full" />
-				</div>
+			<button type="submit" className="bg-sprPrimary text-base  font-bold text-white rounded-full p-3">Sign Up</button>
 
 			</div>
+			</form>
+
+
+			<div className="flex flex-col  items-center space-y-2">
+				<h3 className="text-slate-500">OR</h3>
+				<div className="flex flex-col items-center ">
+				<h3 className={mode === 'scanner' ||'signup' ? 'underline text-amber-500 cursor-pointer block': 'hidden'} onClick={()=>{setMode('email')}} >Login with Email</h3>
+				<h3 className={mode === 'email' || 'signup' ? 'underline text-amber-500 cursor-pointer block': 'hidden'} onClick={()=>{setMode('scanner')}} >Login with Scanner</h3>
+				<h3 className={mode === 'signup'?'hidden':'text-slate-500'}>Don't have an account? <u className="text-amber-500 cursor-pointer" onClick={()=>{setMode('signup')}} >Sign Up</u></h3>
+				</div>
+				
+			</div>
+
+		</div>
+			
 			
 		</div>
 	)
