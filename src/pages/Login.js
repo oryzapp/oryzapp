@@ -308,8 +308,8 @@ try {
 			<div className="flex flex-col  items-center space-y-2">
 				<h3 className="text-slate-500">OR</h3>
 				<div className="flex flex-col items-center ">
-				<h3 className={mode === 'scanner' ||'signup' ? 'underline text-amber-500 cursor-pointer block': 'hidden'} onClick={()=>{setMode('email')}} >Login with Email</h3>
-				<h3 className={mode === 'email' || 'signup' ? 'underline text-amber-500 cursor-pointer block': 'hidden'} onClick={()=>{setMode('scanner')}} >Login with Scanner</h3>
+				<h3 className={mode === 'scanner' ? 'underline text-amber-500 cursor-pointer block': 'hidden'} onClick={()=>{setMode('email')}} >Login with Email</h3>
+				<h3 className={mode === 'email' ? 'underline text-amber-500 cursor-pointer block': 'hidden'} onClick={()=>{setMode('scanner')}} >Login with Scanner</h3>
 				<h3 className={mode === 'signup'?'hidden':'text-slate-500'}>Don't have an account? <u className="text-amber-500 cursor-pointer" onClick={()=>{setMode('signup')}} >Sign Up</u></h3>
 				</div>
 				

@@ -626,14 +626,14 @@ const message = 'Rice Data Successfully Added!'
                       <RiceAccIcon className="stroke-white h-full "fill="none"/>
                     </div>
                     <div className=" -ml-9">
-                      <select className="rounded-full py-2 text-sprPrimary text-sm focus:outline-none focus:ring-2 focus:ring-sprPrimary" name="accessionId" id="" onChange={()=>{}} required>
+                      <select className="rounded-full py-2 text-sprPrimary text-sm focus:outline-none overflow-hidden focus:ring-2 focus:ring-sprPrimary" name="accessionId" id="" onChange={handleChange} required>
                         <option value='no choice'>CL-XXXX</option>
-                        {riceAccessions.map((rice) =>
-                          {
+                        {riceAccessions.map((rice) => 
+                          
                             <option value={rice.accessionId}  >{`CL-R${rice.accessionId}`}</option>
                             
-                          }
                           
+
                           )}
                       </select>
                     </div>
