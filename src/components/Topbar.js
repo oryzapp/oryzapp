@@ -25,6 +25,7 @@ export default function Topbar() {
   const[userInfo, setUserInfo] = useState([])
 
   const getUserInfo = async () =>{
+    console.log(userEmail);
 
     const docRef = doc(db, 'AUTH',userEmail)
     const docSnap = await getDoc(docRef);
@@ -35,16 +36,19 @@ export default function Topbar() {
   console.log(userInfo);
 
   useEffect(()=>{
+    
     getUserInfo()
-
 
 		const unsub = onAuthStateChanged(auth, async (user) => {
       console.log(user);
+      console.log(user.email);
       setUser(user)
       setUserEmail(user?.email)
 
       
-    })
+    }
+    )
+
 
     
     return unsub

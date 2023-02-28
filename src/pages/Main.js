@@ -58,13 +58,14 @@ const Main = () => {
 	// Authentication // Current user--------->
 	useEffect(() => {
 		const unsub = onAuthStateChanged(auth, async (user) => {
+			
 			let userType =''
 			try {
 				if (user !== null) {
-				console.log(user?.type);
 				const matchUser = users.find((dbUser) => dbUser.email === user.email)
-				 userType = matchUser.type
+				userType = matchUser.type
 				console.log(userType);
+
 				if(userType === 'New'){
 					console.log('hello New');
 					setIsPromptOpen(true)
