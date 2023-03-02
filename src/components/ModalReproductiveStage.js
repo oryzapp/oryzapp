@@ -9,151 +9,151 @@ import ModalSuccess from './ModalSuccess';
 
 
 
-export default function ModalReproductiveStage( {open, closeModal, modalId, modalYear, modalSeason, rsRiceData}) {
-	console.log(modalSeason);
-		// Container for the data from RS 
-		const[riceData, setRiceData] = useState({
-			antherLength: '',
-			antherColour: '',
-			awnsPresenceWildSpecies: '',
-			awnsDistributionCultivatedSpecies: '',
-			awnsDistributionEarlyobs: '',
-			awnLength: '',
-			awnsThickness: '',
-			lemmaColourofApicusearlyobs: '',
-			lemmaAnthocyaninColourationofAreaBelowApiculusEarlyobs: '',
-			lemmaandPaleaColourEarlyobs: '',
-			maleSterility: '',
-			panicleArrangementofPrimaryBranches: '',
-			panicleNumberofBasalPrimaryBranches: '',
-			panicleDistancefromBasetoLowestSpikeletInsertion: '',
-			panicleTextureofMainAxis: '',
-			panicleNumberPerPlant: '',
-			panicleLength: '',
-			panicleAttitudeofMainAxis: '',
-			panicleAttitudeofBranches: '',
-			panicleSecondaryBranching: '',
-			panicleExsertion: '',
-			panicleShattering: '',
-			stigmaColour: '',
-		})
+export default function ModalReproductiveStage({ open, closeModal, modalId, modalYear, modalSeason, rsRiceData }) {
+  console.log(modalSeason);
+  // Container for the data from RS 
+  const [riceData, setRiceData] = useState({
+    antherLength: '',
+    antherColour: '',
+    awnsPresenceWildSpecies: '',
+    awnsDistributionCultivatedSpecies: '',
+    awnsDistributionEarlyobs: '',
+    awnLength: '',
+    awnsThickness: '',
+    lemmaColourofApicusearlyobs: '',
+    lemmaAnthocyaninColourationofAreaBelowApiculusEarlyobs: '',
+    lemmaandPaleaColourEarlyobs: '',
+    maleSterility: '',
+    panicleArrangementofPrimaryBranches: '',
+    panicleNumberofBasalPrimaryBranches: '',
+    panicleDistancefromBasetoLowestSpikeletInsertion: '',
+    panicleTextureofMainAxis: '',
+    panicleNumberPerPlant: '',
+    panicleLength: '',
+    panicleAttitudeofMainAxis: '',
+    panicleAttitudeofBranches: '',
+    panicleSecondaryBranching: '',
+    panicleExsertion: '',
+    panicleShattering: '',
+    stigmaColour: '',
+  })
 
-const [isPromptOpen, setIsPromptOpen] = useState(false)
+  const [isPromptOpen, setIsPromptOpen] = useState(false)
 
-		// Pass rsRiceData to riceData
-		useEffect(()=>{
-			setRiceData(
-				{
-					antherLength: rsRiceData.antherLength,
-					antherColour: rsRiceData.antherColour,
-					awnsPresenceWildSpecies: rsRiceData.awnsPresenceWildSpecies,
-					awnsDistributionCultivatedSpecies: rsRiceData.awnsDistributionCultivatedSpecies,
-					awnsDistributionEarlyobs: rsRiceData.awnsDistributionEarlyobs,
-					awnLength: rsRiceData.awnLength,
-					awnsThickness: rsRiceData.awnsThickness,
-					lemmaColourofApicusearlyobs: rsRiceData.lemmaColourofApicusearlyobs,
-					lemmaAnthocyaninColourationofAreaBelowApiculusEarlyobs: riceData.lemmaAnthocyaninColourationofAreaBelowApiculusEarlyobs,
-					lemmaandPaleaColourEarlyobs: rsRiceData.lemmaandPaleaColourEarlyobs,
-					maleSterility: rsRiceData.maleSterility,
-					panicleArrangementofPrimaryBranches: rsRiceData.panicleArrangementofPrimaryBranches,
-					panicleNumberofBasalPrimaryBranches: rsRiceData.panicleNumberofBasalPrimaryBranches,
-					panicleDistancefromBasetoLowestSpikeletInsertion: rsRiceData.panicleDistancefromBasetoLowestSpikeletInsertion,
-					panicleTextureofMainAxis: rsRiceData.panicleTextureofMainAxis ,
-					panicleNumberPerPlant: rsRiceData.panicleNumberPerPlant,
-					panicleLength: rsRiceData.panicleLength,
-					panicleAttitudeofMainAxis: rsRiceData.panicleAttitudeofMainAxis,
-					panicleAttitudeofBranches: rsRiceData.panicleAttitudeofBranches,
-					panicleSecondaryBranching: rsRiceData.panicleSecondaryBranching,
-					panicleExsertion: rsRiceData.panicleExsertion,
-					panicleShattering: rsRiceData.panicleShattering,
-					stigmaColour: rsRiceData.stigmaColour,
-				}
-			)
-		}, [rsRiceData])
+  // Pass rsRiceData to riceData
+  useEffect(() => {
+    setRiceData(
+      {
+        antherLength: rsRiceData.antherLength,
+        antherColour: rsRiceData.antherColour,
+        awnsPresenceWildSpecies: rsRiceData.awnsPresenceWildSpecies,
+        awnsDistributionCultivatedSpecies: rsRiceData.awnsDistributionCultivatedSpecies,
+        awnsDistributionEarlyobs: rsRiceData.awnsDistributionEarlyobs,
+        awnLength: rsRiceData.awnLength,
+        awnsThickness: rsRiceData.awnsThickness,
+        lemmaColourofApicusearlyobs: rsRiceData.lemmaColourofApicusearlyobs,
+        lemmaAnthocyaninColourationofAreaBelowApiculusEarlyobs: riceData.lemmaAnthocyaninColourationofAreaBelowApiculusEarlyobs,
+        lemmaandPaleaColourEarlyobs: rsRiceData.lemmaandPaleaColourEarlyobs,
+        maleSterility: rsRiceData.maleSterility,
+        panicleArrangementofPrimaryBranches: rsRiceData.panicleArrangementofPrimaryBranches,
+        panicleNumberofBasalPrimaryBranches: rsRiceData.panicleNumberofBasalPrimaryBranches,
+        panicleDistancefromBasetoLowestSpikeletInsertion: rsRiceData.panicleDistancefromBasetoLowestSpikeletInsertion,
+        panicleTextureofMainAxis: rsRiceData.panicleTextureofMainAxis,
+        panicleNumberPerPlant: rsRiceData.panicleNumberPerPlant,
+        panicleLength: rsRiceData.panicleLength,
+        panicleAttitudeofMainAxis: rsRiceData.panicleAttitudeofMainAxis,
+        panicleAttitudeofBranches: rsRiceData.panicleAttitudeofBranches,
+        panicleSecondaryBranching: rsRiceData.panicleSecondaryBranching,
+        panicleExsertion: rsRiceData.panicleExsertion,
+        panicleShattering: rsRiceData.panicleShattering,
+        stigmaColour: rsRiceData.stigmaColour,
+      }
+    )
+  }, [rsRiceData])
 
-		console.log('--------------');
-		console.log(riceData);
-
-		// Get Inputs
-	const handleChange = (e) =>{
-  setRiceData({
-    ...riceData,
-    [e.target.name]: e.target.value,
-  });
+  console.log('--------------');
   console.log(riceData);
-}
 
-// Submit the Edit
-const submitEdit =async (e) => {
-try {
-  e.preventDefault()
-  
+  // Get Inputs
+  const handleChange = (e) => {
+    setRiceData({
+      ...riceData,
+      [e.target.name]: e.target.value,
+    });
+    console.log(riceData);
+  }
 
-  const docRef = doc(db, `SPR/Rice_Seasons/Seasons/${modalSeason}_Season/Stages/Reproductive_Stage/RS_Raw_Rice_Data`, modalId)
-  const rsPayLoad = {
-   antherLength: riceData.antherLength,
-					antherColour: riceData.antherColour,
-					awnsPresenceWildSpecies: riceData.awnsPresenceWildSpecies,
-					awnsDistributionCultivatedSpecies: riceData.awnsDistributionCultivatedSpecies,
-					awnsDistributionEarlyobs: riceData.awnsDistributionEarlyobs,
-					awnLength: riceData.awnLength,
-					awnsThickness: riceData.awnsThickness,
-					lemmaColourofApicusearlyobs: riceData.lemmaColourofApicusearlyobs,
-					lemmaAnthocyaninColourationofAreaBelowApiculusEarlyobs: riceData.lemmaAnthocyaninColourationofAreaBelowApiculusEarlyobs,
-					lemmaandPaleaColourEarlyobs: riceData.lemmaandPaleaColourEarlyobs,
-					maleSterility: riceData.maleSterility,
-					panicleArrangementofPrimaryBranches: riceData.panicleArrangementofPrimaryBranches,
-					panicleNumberofBasalPrimaryBranches: riceData.panicleNumberofBasalPrimaryBranches,
-					panicleDistancefromBasetoLowestSpikeletInsertion: riceData.panicleDistancefromBasetoLowestSpikeletInsertion,
-					panicleTextureofMainAxis: riceData.panicleTextureofMainAxis ,
-					panicleNumberPerPlant: riceData.panicleNumberPerPlant,
-					panicleLength: riceData.panicleLength,
-					panicleAttitudeofMainAxis: riceData.panicleAttitudeofMainAxis,
-					panicleAttitudeofBranches: riceData.panicleAttitudeofBranches,
-					panicleSecondaryBranching: riceData.panicleSecondaryBranching,
-					panicleExsertion: riceData.panicleExsertion,
-					panicleShattering: riceData.panicleShattering,
-					stigmaColour: riceData.stigmaColour,
-        searchIndex:`${riceData.accessionId} Shelf ${riceData.shelfNum} ${riceData.antherLength} ${riceData.antherColour} ${riceData.awnsPresenceWildSpecies} ${riceData.awnsDistributionCultivatedSpecies} ${riceData.awnsDistributionEarlyobs} ${riceData.awnLength} ${riceData.awnsThickness} ${ riceData.lemmaColourofApicusearlyobs} ${ riceData.lemmaAnthocyaninColourationofAreaBelowApiculusEarlyobs} ${riceData.lemmaandPaleaColourEarlyobs} ${riceData.maleSterility} ${ riceData.stigmaColour} ${riceData.panicleArrangementofPrimaryBranches} ${riceData.panicleNumberofBasalPrimaryBranches} ${riceData.panicleDistancefromBasetoLowestSpikeletInsertion} ${riceData.panicleTextureofMainAxis} ${riceData.panicleNumberPerPlant} ${riceData.panicleLength} ${riceData.panicleAttitudeofMainAxis} ${riceData.panicleAttitudeofBranches} ${riceData.panicleSecondaryBranching} ${riceData.panicleExsertion} ${riceData.panicleShattering}`,
-					timestamp: serverTimestamp(),
-  };
-  await updateDoc(docRef, rsPayLoad);
-  setIsPromptOpen(true)
-  setTimeout(()=>{
-      setIsPromptOpen(false)
-      closeModal()
-  }, 1000)
-} catch (error) {
-  console.log(error);
-}
-}
+  // Submit the Edit
+  const submitEdit = async (e) => {
+    try {
+      e.preventDefault()
 
 
-    if (!open) return null;
+      const docRef = doc(db, `SPR/Rice_Seasons/Seasons/${modalSeason}_Season/Stages/Reproductive_Stage/RS_Raw_Rice_Data`, modalId)
+      const rsPayLoad = {
+        antherLength: riceData.antherLength,
+        antherColour: riceData.antherColour,
+        awnsPresenceWildSpecies: riceData.awnsPresenceWildSpecies,
+        awnsDistributionCultivatedSpecies: riceData.awnsDistributionCultivatedSpecies,
+        awnsDistributionEarlyobs: riceData.awnsDistributionEarlyobs,
+        awnLength: riceData.awnLength,
+        awnsThickness: riceData.awnsThickness,
+        lemmaColourofApicusearlyobs: riceData.lemmaColourofApicusearlyobs,
+        lemmaAnthocyaninColourationofAreaBelowApiculusEarlyobs: riceData.lemmaAnthocyaninColourationofAreaBelowApiculusEarlyobs,
+        lemmaandPaleaColourEarlyobs: riceData.lemmaandPaleaColourEarlyobs,
+        maleSterility: riceData.maleSterility,
+        panicleArrangementofPrimaryBranches: riceData.panicleArrangementofPrimaryBranches,
+        panicleNumberofBasalPrimaryBranches: riceData.panicleNumberofBasalPrimaryBranches,
+        panicleDistancefromBasetoLowestSpikeletInsertion: riceData.panicleDistancefromBasetoLowestSpikeletInsertion,
+        panicleTextureofMainAxis: riceData.panicleTextureofMainAxis,
+        panicleNumberPerPlant: riceData.panicleNumberPerPlant,
+        panicleLength: riceData.panicleLength,
+        panicleAttitudeofMainAxis: riceData.panicleAttitudeofMainAxis,
+        panicleAttitudeofBranches: riceData.panicleAttitudeofBranches,
+        panicleSecondaryBranching: riceData.panicleSecondaryBranching,
+        panicleExsertion: riceData.panicleExsertion,
+        panicleShattering: riceData.panicleShattering,
+        stigmaColour: riceData.stigmaColour,
+        searchIndex: `${riceData.accessionId} Shelf ${riceData.shelfNum} ${riceData.antherLength} ${riceData.antherColour} ${riceData.awnsPresenceWildSpecies} ${riceData.awnsDistributionCultivatedSpecies} ${riceData.awnsDistributionEarlyobs} ${riceData.awnLength} ${riceData.awnsThickness} ${riceData.lemmaColourofApicusearlyobs} ${riceData.lemmaAnthocyaninColourationofAreaBelowApiculusEarlyobs} ${riceData.lemmaandPaleaColourEarlyobs} ${riceData.maleSterility} ${riceData.stigmaColour} ${riceData.panicleArrangementofPrimaryBranches} ${riceData.panicleNumberofBasalPrimaryBranches} ${riceData.panicleDistancefromBasetoLowestSpikeletInsertion} ${riceData.panicleTextureofMainAxis} ${riceData.panicleNumberPerPlant} ${riceData.panicleLength} ${riceData.panicleAttitudeofMainAxis} ${riceData.panicleAttitudeofBranches} ${riceData.panicleSecondaryBranching} ${riceData.panicleExsertion} ${riceData.panicleShattering}`,
+        timestamp: serverTimestamp(),
+      };
+      await updateDoc(docRef, rsPayLoad);
+      setIsPromptOpen(true)
+      setTimeout(() => {
+        setIsPromptOpen(false)
+        closeModal()
+      }, 1000)
+    } catch (error) {
+      console.log(error);
+    }
+  }
+
+
+  if (!open) return null;
   return (
     <>
-     <div className='z-50'>
-     <div className="absolute top-0  right-0 bottom-0 left-0 text-center " >
-      <ModalSuccess open={isPromptOpen} close={()=>{setIsPromptOpen(false)}} message={'Reproductive Data Updated Successfully!'}/>
-      </div>
-      <form onSubmit={submitEdit}>
-				<div className=" fixed left-0 right-0 bottom-0 top-0  bg-black opacity-70 " onClick={closeModal}/>
-				<div className=" hidden sm:flex flex-col absolute left-20 right-20 bottom-32 top-16 z-40 bg-white rounded-md  p-8   md:left-52 md:right-52  lg:left-96 lg:right-96  ">
-					<div className="absolute right-4 top-4 z-50 ">
-											{/* <button onClick={()=>{
+      <div className='z-50'>
+        <div className="absolute top-0  right-0 bottom-0 left-0 text-center " >
+          <ModalSuccess open={isPromptOpen} close={() => { setIsPromptOpen(false) }} message={'Reproductive Stage Data Updated Successfully!'} />
+        </div>
+        <form onSubmit={submitEdit}>
+          <div className=" fixed left-0 right-0 bottom-0 top-0  bg-black opacity-70 " onClick={closeModal} />
+          <div className=" hidden sm:flex flex-col absolute left-20 right-20 bottom-32 top-16 z-40 bg-white rounded-md  p-8   md:left-52 md:right-52  lg:left-96 lg:right-96  ">
+            <div className="absolute right-4 top-4 z-50 ">
+              {/* <button onClick={()=>{
 												closeModal()
 												// setRiceData(initialState)
 											}} >
 													<img className="relative" src={closeIcon} alt="" />
 											</button> */}
-                <CloseIcon className='group-hover:stroke-white stroke-sprGray50 hover:stroke-sprGray80 active:stroke-sprPrimary h-5' onClick={closeModal}/>
-					</div>
-					<div className="flex-auto flex flex-col  overflow-hidden ">
-						<h1 className="page-header text-2xl font-bold text-sprGray70 inline-block">Update Reproductive Data</h1> 
-						<p className="font-medium text-xl text-sprPrimaryDark">{modalId}</p>
-						<div className="  flex overflow-auto flex-auto scrollbar">
-							<div className=" flex-auto flex flex-col text-sprBlack  ">
-									<div className="flex flex-col p-2 pb-0">
+              <CloseIcon className='group-hover:stroke-white stroke-sprGray50 hover:stroke-sprGray80 active:stroke-sprPrimary h-5' onClick={closeModal} />
+            </div>
+            <div className="flex-auto flex flex-col  overflow-hidden ">
+              <h1 className="page-header text-2xl font-bold text-sprGray70 inline-block">Update Reproductive Data</h1>
+              <p className="font-medium text-xl text-sprPrimaryDark">{modalId}</p>
+              <div className="  flex overflow-auto flex-auto scrollbar">
+                <div className=" flex-auto flex flex-col text-sprBlack  ">
+                  <div className="flex flex-col p-2 pb-0">
                     <div className="text-xs uppercase font-medium">Anther</div>
                     <div className="grid grid-cols-2 gap-4 bg-white text-sm">
                       <div className="flex flex-col bg-white px-6">
@@ -283,32 +283,32 @@ try {
 
 
                   </div>
-							</div>
+                </div>
 
-						</div>
-						<div className="flex gap-2 justify-end">
-          			<button
-									className="bg-sprGray30 rounded-full py-2 px-3 text-sm font-medium text-white shadow-slate-300"
-									onClick={() => {
-										closeModal()
+              </div>
+              <div className="flex gap-2 justify-end">
+                <button
+                  className="bg-sprGray30 rounded-full py-2 px-3 text-sm font-medium text-white shadow-slate-300"
+                  onClick={() => {
+                    closeModal()
                     // setRiceData(initialState)
-									}}
-								>
-									Cancel
-								</button>
-								<button
-									type="submit"
-									className="bg-sprPrimary rounded-full py-2 px-3 text-sm font-medium text-white shadow-slate-300"
-								>
-									Update
-								</button>
-          </div>
-					</div>
+                  }}
+                >
+                  Cancel
+                </button>
+                <button
+                  type="submit"
+                  className="bg-sprPrimary rounded-full py-2 px-3 text-sm font-medium text-white shadow-slate-300"
+                >
+                  Update
+                </button>
+              </div>
+            </div>
 
-				</div>
-			</form>	
-     </div>
-		
+          </div>
+        </form>
+      </div>
+
     </>
   )
 }

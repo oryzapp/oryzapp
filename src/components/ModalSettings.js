@@ -6,6 +6,7 @@ import { ReactComponent as CloseIcon } from '../assets/close.svg';
 import { auth } from '../firebase-config';
 import db from "../firebase-config";
 import { decode, encode } from 'string-encode-decode';
+import ModalSuccess from './ModalSuccess';
 
 
 
@@ -80,6 +81,8 @@ export default function ModalSettings({ open, closeModal }) {
     });
   }
 
+
+  const [isPromptOpen, setIsPromptOpen] = useState(true)
   //  Handle Submit
   const submitEdit = async (e) => {
     try {
@@ -97,9 +100,14 @@ export default function ModalSettings({ open, closeModal }) {
         console.log('mmm');
       }
       else {
-        // console.log('Im payload');
-        // console.log(payLoad);
+
         await updateDoc(docRef, payLoad);
+        setIsPromptOpen(true)
+        setTimeout(() => {
+          setIsPromptOpen(false)
+          closeModal()
+        }, 1000)
+
 
 
       }
@@ -115,7 +123,10 @@ export default function ModalSettings({ open, closeModal }) {
   if (!open) return null;
   return ReactDom.createPortal(
     <div>
+
       <div className=" flex flex-col fixed left-0 right-0 bottom-0 top-0  z-50 justify-center items-center " >
+        <ModalSuccess open={isPromptOpen} close={() => { setIsPromptOpen(false) }} message={'Profile Updated Successfully!'} />
+
         {/* Close onClick Outside */}
         <div className=" bg-black/30 flex flex-col fixed left-0 right-0 bottom-0 top-0  z-30 justify-center items-center " onClick={() => {
           closeModal()

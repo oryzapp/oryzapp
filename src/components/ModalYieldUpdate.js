@@ -74,7 +74,7 @@ export default function ModalYieldUpdate({ open, closeModal, modalId, modalYear,
   return (
     <div className='z-50'>
       <div className="absolute top-0  right-0 bottom-0 left-0 text-center " >
-        <ModalSuccess open={isPromptOpen} close={() => { setIsPromptOpen(false) }} message={'Yield Data Updated Successfully!'} />
+        <ModalSuccess open={isPromptOpen} close={() => { setIsPromptOpen(false) }} message={'Yield Components Data Updated Successfully!'} />
       </div>
       <form onSubmit={submitEdit}>
         <div className=" fixed left-0 right-0 bottom-0 top-0  bg-black opacity-70 " onClick={closeModal} />
