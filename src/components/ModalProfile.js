@@ -108,6 +108,7 @@ export default function ModalProfile({ open, closeModal }) {
             {/* Name */}
             <div className='flex flex-col -space-y-2'>
               <small className='text-sprPrimary font-medium'>NAME</small>
+              <h6 className='uppercase'> {`${info.fname.charAt(0)}`}</h6>
               <h6 className='text-m font-medium text-sprGray70'>{`${info.fname} ${info.lname}`}</h6>
             </div>
             {/* Role */}

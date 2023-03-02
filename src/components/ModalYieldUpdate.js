@@ -19,7 +19,7 @@ export default function ModalYieldUpdate({ open, closeModal, modalId, modalYear,
   })
 
   // Success Prompt
-  const [isPromptOpen, setIsPromptOpen] = useState(true)
+  const [isPromptOpen, setIsPromptOpen] = useState(false)
 
   // When Edit is Clicked Passed YcData is set on riceData to show on Input.
   useEffect(() => {
@@ -56,14 +56,14 @@ export default function ModalYieldUpdate({ open, closeModal, modalId, modalYear,
         cookedRiceAroma: riceData.cookedRiceAroma,
         grainAroma: riceData.grainAroma,
         leafAroma: riceData.leafAroma,
-        searchIndex:`${riceData.accessionId} ${riceData.shelfNum} ${riceData.cavans} ${riceData.kilogram} ${riceData.grainYield} ${riceData.tonHa} ${riceData.cookedRiceAroma} ${ riceData.grainAroma} ${riceData.leafAroma}`,
+        searchIndex: `${riceData.accessionId} ${riceData.shelfNum} ${riceData.cavans} ${riceData.kilogram} ${riceData.grainYield} ${riceData.tonHa} ${riceData.cookedRiceAroma} ${riceData.grainAroma} ${riceData.leafAroma}`,
         timestamp: serverTimestamp(),
       };
       await updateDoc(docRef, ycPayLoad);
       setIsPromptOpen(true)
-      setTimeout(()=>{
-          setIsPromptOpen(false)
-          closeModal()
+      setTimeout(() => {
+        setIsPromptOpen(false)
+        closeModal()
       }, 1000)
     } catch (error) {
       console.log(error);
@@ -73,8 +73,8 @@ export default function ModalYieldUpdate({ open, closeModal, modalId, modalYear,
   if (!open) return null;
   return (
     <div>
-        <div className="absolute top-0  right-0 bottom-0 left-0 text-center " >
-      <ModalSuccess open={isPromptOpen} close={()=>{setIsPromptOpen(false)}} message={'Reproductive Data Updated Successfully!'}/>
+      <div className="absolute top-0  right-0 bottom-0 left-0 text-center " >
+        <ModalSuccess open={isPromptOpen} close={() => { setIsPromptOpen(false) }} message={'Yield Data Updated Successfully!'} />
       </div>
       <form onSubmit={submitEdit}>
         <div className=" fixed left-0 right-0 bottom-0 top-0  bg-black opacity-70 " onClick={closeModal} />
