@@ -691,10 +691,10 @@ const message = 'Rice Data Successfully Added!'
               </div>
 
               {/* Tab Nav */}
-              <div className=" flex  ">
+              <div className=" flex">
 
                 <div className="flex cursor-pointer ">
-                  <div className={toggleState === 1 ? "group border-b-2 border-b-sprPrimary flex items-end" : "group flex  items-end"} onClick={() => toggleTab(1)}>
+                  <div className={toggleState === 1 ? "group border-b-2 border-b-sprPrimary flex items-end z-50" : "group flex  items-end z-50"} onClick={() => toggleTab(1)}>
                     <div className="w-8 h-8 ">
                       {/* <img src={vegetativeStageIcon} alt="" /> */}
                       <VSicon className={toggleState === 1 ? "" : "group-hover:stroke-sprPrimaryLight"} fill="none" stroke={toggleState !== 1 ? "#888A89" : "#AFBE00"} />

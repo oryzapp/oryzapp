@@ -160,11 +160,11 @@ export default function VegetativeStage({filterSeason, filterYear, searchInput})
     
       <div className=" flex  text-sprGray60 relative">
         {/* Accession */}
-        <table className=" text-sm relative">
-          <thead className="text-xs font-medium uppercase text-center bg-sprPrimaryOffLight sticky top-0 z-50">Accession </thead>
+        <table className=" text-sm sticky bg-white left-0 z-30">
+          <thead className="text-xs font-medium uppercase text-center bg-sprPrimaryOffLight sticky left-0 top-0 z-30">Accession </thead>
           <tbody className=" flex ">
             <div className="hidden sm:block flex-auto divide-y divide-slate-300 relative ">
-              <div className="px-6 py-3 font-medium text-sprPrimary sticky top-4 bg-white">Accession</div>
+              <div className="px-6 py-3 font-medium text-sprPrimary sticky left-0 top-4 bg-white z-30">Accession</div>
               {searchInput === ''?<>
               {riceData.map((rice) => (
                 <div className="px-6 py-3"> CL-R{rice.accessionId === "" ? "---" : rice.accessionId}</div>
@@ -177,8 +177,8 @@ export default function VegetativeStage({filterSeason, filterYear, searchInput})
           </tbody>
         </table>
         {/* ShelfNum */}
-        <table className=" relative">
-          <thead className=" text-xs font-medium uppercase text-center bg-sprPrimaryLight  sticky top-0 z-50">Shelf No.</thead>
+        <table className="text-sm">
+          <thead className=" text-xs font-medium uppercase text-center bg-sprPrimaryLight  sticky top-0 z-20">Shelf No.</thead>
           <tbody className=" flex ">
             <div className="hidden sm:block flex-auto divide-y divide-slate-300 ">
               <div className="px-6 py-3 font-medium text-sm whitespace-nowrap sticky top-4 bg-white text-sprPrimary">#</div>
@@ -194,8 +194,8 @@ export default function VegetativeStage({filterSeason, filterYear, searchInput})
           </tbody>
         </table>
         {/* RiceYear */}
-        <table className="relative">
-          <thead className=" text-xs font-medium uppercase text-center bg-sprPrimaryOffLight  sticky top-0 z-50">Year & Season</thead>
+        <table className="text-sm">
+          <thead className=" text-xs font-medium uppercase text-center bg-sprPrimaryOffLight  sticky top-0 z-20">Year & Season</thead>
           <tbody className=" flex ">
             <div className="hidden sm:block flex-auto divide-y divide-slate-300 ">
               <div className="px-6 text-sm py-3 font-medium whitespace-nowrap text-sprPrimary sticky top-4 bg-white">Year</div>
@@ -223,7 +223,7 @@ export default function VegetativeStage({filterSeason, filterYear, searchInput})
         </table>
         {/* Auricle */}
         <table className="text-sm">
-          <div className=" text-xs font-medium uppercase text-center bg-sprPrimaryLight sticky top-0 z-50">Auricle</div>
+          <div className=" text-xs font-medium uppercase text-center bg-sprPrimaryLight sticky top-0 z-20">Auricle</div>
           <div className=" flex ">
             <div className="hidden sm:block flex-auto divide-y divide-slate-300 ">
               <div className="px-6 py-3 font-medium whitespace-nowrap text-sprPrimary sticky top-4 bg-white">Color</div>
@@ -239,7 +239,7 @@ export default function VegetativeStage({filterSeason, filterYear, searchInput})
           </div>
         </table>
         <table className=" text-sm">
-          <thead className="text-xs font-medium uppercase text-center bg-sprPrimaryOffLight sticky top-0 z-50">Coleoptile</thead>
+          <thead className="text-xs font-medium uppercase text-center bg-sprPrimaryOffLight sticky top-0 z-20">Coleoptile</thead>
           <tbody className=" flex ">
             <div className="hidden sm:block flex-auto divide-y divide-slate-300 ">
               <div className="px-6 py-3 font-medium whitespace-nowrap text-sprPrimary sticky top-4 bg-white">Anthocyanin colouration</div>
@@ -255,7 +255,7 @@ export default function VegetativeStage({filterSeason, filterYear, searchInput})
           </tbody>
         </table>
         <table className=" text-sm">
-          <thead className="text-xs font-medium uppercase text-center bg-sprPrimaryLight sticky top-0 z-50">Collar</thead>
+          <thead className="text-xs font-medium uppercase text-center bg-sprPrimaryLight sticky top-0 z-20">Collar</thead>
           <tbody className=" flex ">
             <div className="hidden sm:block flex-auto divide-y divide-slate-300 ">
               <div className="px-6 py-3 font-medium whitespace-nowrap text-sprPrimary sticky top-4 bg-white">Colour</div>
@@ -271,7 +271,7 @@ export default function VegetativeStage({filterSeason, filterYear, searchInput})
           </tbody>
         </table>
         <table className=" text-sm">
-          <thead className="text-xs font-medium uppercase text-center bg-sprPrimaryOffLight sticky top-0 z-50">Culm</thead>
+          <thead className="text-xs font-medium uppercase text-center bg-sprPrimaryOffLight sticky top-0 z-20">Culm</thead>
           <tbody className=" flex ">
             <div className="hidden sm:block flex-auto divide-y divide-slate-300 ">
               <div className="px-6 py-3 font-medium whitespace-nowrap text-sprPrimary sticky top-4 bg-white">Habit</div>
@@ -400,7 +400,7 @@ export default function VegetativeStage({filterSeason, filterYear, searchInput})
           </tbody>
         </table>
         <table className=" text-sm">
-          <thead className="text-xs font-medium uppercase text-center bg-sprPrimaryLight sticky top-0 z-50">Flag Leaf</thead>
+          <thead className="text-xs font-medium uppercase text-center bg-sprPrimaryLight sticky top-0 z-20">Flag Leaf</thead>
           <tbody className=" flex ">
             <div className="hidden sm:block flex-auto divide-y divide-slate-300 ">
               <div className="px-6 py-3 font-medium whitespace-nowrap text-sprPrimary sticky top-4 bg-white">Length</div>
@@ -449,7 +449,7 @@ export default function VegetativeStage({filterSeason, filterYear, searchInput})
           </tbody>
         </table>
         <table className=" text-sm">
-          <thead className="text-xs font-medium uppercase text-center bg-sprPrimaryOffLight sticky top-0 z-50">Leaf</thead>
+          <thead className="text-xs font-medium uppercase text-center bg-sprPrimaryOffLight sticky top-0 z-20">Leaf</thead>
           <tbody className=" flex ">
             <div className="hidden sm:block flex-auto divide-y divide-slate-300 ">
               <div className="px-6 py-3 font-medium whitespace-nowrap text-sprPrimary sticky top-4 bg-white">Margin Pubesence</div>
@@ -477,7 +477,7 @@ export default function VegetativeStage({filterSeason, filterYear, searchInput})
           </tbody>
         </table>
         <table className=" text-sm">
-          <thead className="text-xs font-medium uppercase text-center bg-sprPrimaryLight sticky top-0 z-50">Leaf Blade</thead>
+          <thead className="text-xs font-medium uppercase text-center bg-sprPrimaryLight sticky top-0 z-20">Leaf Blade</thead>
           <tbody className=" flex ">
             <div className="hidden sm:block flex-auto divide-y divide-slate-300 ">
               <div className="px-6 py-3 font-medium whitespace-nowrap text-sprPrimary sticky top-4 bg-white">Presence Absence of Anthocyanin Colouration</div>
@@ -570,7 +570,7 @@ export default function VegetativeStage({filterSeason, filterYear, searchInput})
           </tbody>
         </table>
         <table className=" text-sm">
-          <thead className="text-xs font-medium uppercase text-center bg-sprPrimaryOffLight sticky top-0 z-50">Leaf Sheath</thead>
+          <thead className="text-xs font-medium uppercase text-center bg-sprPrimaryOffLight sticky top-0 z-20">Leaf Sheath</thead>
           <tbody className=" flex ">
             <div className="hidden sm:block flex-auto divide-y divide-slate-300 ">
               <div className="px-6 py-3 font-medium whitespace-nowrap text-sprPrimary sticky top-4 bg-white">Basal Leaf Sheath Colour</div>
@@ -597,7 +597,7 @@ export default function VegetativeStage({filterSeason, filterYear, searchInput})
           </tbody>
         </table>
         <table className=" text-sm">
-          <thead className="text-xs font-medium uppercase text-center bg-sprPrimaryLight sticky top-0 z-50">Ligule</thead>
+          <thead className="text-xs font-medium uppercase text-center bg-sprPrimaryLight sticky top-0 z-20">Ligule</thead>
           <tbody className=" flex ">
             <div className="hidden sm:block flex-auto divide-y divide-slate-300 ">
               <div className="px-6 py-3 font-medium whitespace-nowrap text-sprPrimary sticky top-4 bg-white">Length</div>
@@ -691,7 +691,7 @@ export default function VegetativeStage({filterSeason, filterYear, searchInput})
           </tbody>
         </table>
         <table className=" text-sm">
-          <thead className="text-xs whitespace-nowrap font-medium uppercase text-center bg-sprPrimaryOffLight sticky top-0 z-50">Rhizome and Stalon</thead>
+          <thead className="text-xs whitespace-nowrap font-medium uppercase text-center bg-sprPrimaryOffLight sticky top-0 z-20">Rhizome and Stalon</thead>
           <tbody className=" flex ">
             <div className="hidden sm:block flex-auto divide-y divide-slate-300 ">
               <div className="px-6 py-3 font-medium whitespace-nowrap text-sprPrimary sticky top-4 bg-white">Formation</div>
@@ -707,7 +707,7 @@ export default function VegetativeStage({filterSeason, filterYear, searchInput})
           </tbody>
         </table>
         <table className=" text-sm">
-          <thead className="text-xs font-medium uppercase text-center bg-sprPrimaryLight sticky top-0 z-50">Seedling</thead>
+          <thead className="text-xs font-medium uppercase text-center bg-sprPrimaryLight sticky top-0 z-20">Seedling</thead>
           <tbody className=" flex ">
             <div className="hidden sm:block flex-auto divide-y divide-slate-300 ">
               <div className="px-6 py-3 font-medium whitespace-nowrap text-sprPrimary sticky top-4 bg-white">Height</div>
@@ -722,7 +722,7 @@ export default function VegetativeStage({filterSeason, filterYear, searchInput})
             </div>
           </tbody>
         </table>
-        <table className=" text-sm sticky right-0 z-100">
+        <table className=" text-sm sticky right-0 z-30">
           <thead className="text-xs font-medium uppercase text-center bg-white flex justify-center sticky top-0">
           <h1 className="opacity-0">I</h1>
           </thead>

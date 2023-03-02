@@ -306,7 +306,7 @@ export default function RiceAccessions() {
 <ModalSuccess open={isPromptOpen} close={()=>{setIsPromptOpen(false)}} message={message}/>
 </div>
 
-			<div className='h-full w-full flex flex-col rounded-t-xl  sm:rounded-xl bg-slate-50 opacity-90 p-2'>
+			<div className='h-full w-full flex flex-col rounded-t-xl  sm:rounded-xl bg-slate-50 opacity-90 p-2 overflow-hidden'>
 
 				{/* Header */}
 				<header className=" flex items-center">

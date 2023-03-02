@@ -142,11 +142,11 @@ export default function ReproductiveStage({filterSeason, filterYear, searchInput
     <div className="  flex flex-auto max-w-0 max-h-0 divide-y divide-slate-400 ">
         <div className="flex flex-col">
       <div className="  flex text-sm text-sprGray60">
-        <table className="">
-          <thead className="text-xs font-medium uppercase text-center bg-sprPrimaryOffLight sticky top-0 ">Accession</thead>
+        <table className="text-sm sticky bg-white left-0 z-30">
+          <thead className="text-xs font-medium uppercase text-center bg-sprPrimaryOffLight sticky top-0 left-0 z-30">Accession</thead>
           <tbody className=" flex ">
             <div className="hidden sm:block flex-auto divide-y divide-slate-300 ">
-              <div className="px-6 py-3 font-medium whitespace-nowrap text-sprPrimary sticky top-4 bg-white">Accession</div>
+              <div className="px-6 py-3 font-medium whitespace-nowrap text-sprPrimary sticky top-4 bg-white left-0 z-30">Accession</div>
               {searchInput === ''?<>
               {riceData.map((rice) => (
                 <div className="px-6 py-3 whitespace-nowrap">CL-R{rice.accessionId === "" ? "---" : rice.accessionId}</div>

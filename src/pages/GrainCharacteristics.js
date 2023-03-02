@@ -140,11 +140,11 @@ export default function GrainCharacteristics({filterSeason, filterYear, searchIn
    <div className="flex flex-col">
       
       <div className="  flex text-sm text-sprGray60">
-        <table className="">
-          <thead className="text-xs uppercase font-medium text-center bg-sprPrimaryOffLight sticky top-0 ">Accession</thead>
+        <table className="sticky left-0 z-30 bg-white">
+          <thead className="text-xs uppercase font-medium text-center bg-sprPrimaryOffLight sticky top-0 left-0 z-30">Accession</thead>
           <tbody className=" flex ">
             <div className="hidden sm:block flex-auto divide-y divide-slate-300 ">
-              <div className="px-6 py-3 font-medium whitespace-nowrap text-sprPrimary sticky top-4 bg-white">Accession</div>
+              <div className="px-6 py-3 font-medium whitespace-nowrap text-sprPrimary sticky top-4 bg-white z-30 left-0">Accession</div>
              
               {/* {searchInput === ''?<>
               {riceData.map((rice) => (
