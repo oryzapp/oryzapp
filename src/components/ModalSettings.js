@@ -82,7 +82,7 @@ export default function ModalSettings({ open, closeModal }) {
   }
 
 
-  const [isPromptOpen, setIsPromptOpen] = useState(true)
+  const [isPromptOpen, setIsPromptOpen] = useState(false)
   //  Handle Submit
   const submitEdit = async (e) => {
     try {
