@@ -137,7 +137,7 @@ const [isPromptOpen, setIsPromptOpen] = useState(false)
     if (!open) return null;
 
   return (
-   <div>
+   <div className='z-50'>
       <div className="absolute top-0  right-0 bottom-0 left-0 text-center " >
       <ModalSuccess open={isPromptOpen} close={()=>{setIsPromptOpen(false)}} message={'Reproductive Data Updated Successfully!'}/>
       </div>
