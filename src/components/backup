@@ -82,3 +82,34 @@
 				</div>
 
 			</div>
+
+
+
+
+   <div className='flex space-x-10'>
+                        <aside>
+                            <ul className='text-sm'>
+                                <li onClick={()=>{setIndex(1)}} className={index === 1 ? 'font-bold': ''}>Account Settings</li>
+                                {/* <li onClick={()=>{setIndex(2)}} className={index === 2 ? 'font-bold': ''}>Display</li> */}
+                            </ul>
+                        </aside>
+                        <main className=' w-auto'>
+                           <div className={index !== 1? 'hidden':'block'}>
+                           <h1 className='font-semibold'>Edit Profile</h1>
+                            <section className='flex-col sm:flex-row flex sm:space-x-4 '>
+                                
+                            <div className='flex flex-col flex-auto'><label> First Name</label> <input type="text"  className=' ring-2 ring-sprPrimary/60 focus:outline-none pl-2 py-1 rounded-full' name='fname' value={info.fname} onChange={handleChange}/></div>
+                            <div className='flex flex-col flex-auto'><label> Last Name</label> <input type="text"  className='ring-2 ring-sprPrimary/60 focus:outline-none pl-2 py-1 rounded-full' name='lname' value={info.lname } onChange={handleChange}/></div>
+
+                            
+                            </section>
+                            <div className='flex flex-col'><label> Role</label> <input type="text"   className='ring-2 ring-sprPrimary/60 focus:outline-none pl-2 py-1 rounded-full' name='role' value={info.role}  onChange={handleChange}/></div>
+                            <div className='flex flex-col'><label>Email</label> <input type="text"  className='ring-2 ring-sprPrimary/60 focus:outline-none pl-2 py-1 rounded-full' name='email' value={info.email} readOnly/></div>
+                            <div className='flex flex-col'><label> Password</label><input type="password"  className='ring-2 ring-sprPrimary/60 focus:outline-none pl-2 py-1 rounded-full' name='password'  value={info.password} onChange={handleChange}/></div>
+                           </div>
+
+                           <button className='bg-sprPrimary hover:bg-sprPrimaryOffLight font-medium py-1 px-2 mt-2 rounded-full text-white'> Save</button>
+                        </main>
+
+
+                </div>
