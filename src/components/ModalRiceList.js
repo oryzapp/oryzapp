@@ -55,10 +55,10 @@ export default function ModalRiceList({open, closeModal, currentData, ycData}) {
                <p className='inline-block flex-auto '>Leaf Aroma</p>
                 <div className='bg-white w-1/2 px-2 rounded-full'>{ycData.leafAroma === ''?'---': ycData.leafAroma}</div>
                </div>
-               <div className='flex mb-2'>
+               {/* <div className='flex mb-2'>
                <p className='inline-block flex-auto '>Cavans</p>
                 <div className='bg-white w-1/2 px-2 rounded-full'>{ycData.cavans === ''?'---':ycData.cavans}</div>
-               </div>
+               </div> */}
 
                
             
