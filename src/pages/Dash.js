@@ -81,7 +81,7 @@ export default function Dash() {
     var list = 0;
     return (
         <>
-            <div className=' h-full w-full flex p-2 flex-col rounded-t-xl sm:rounded-xl bg-slate-50 opacity-90  relative' onClick={() => {
+            <div className=' h-full w-full flex p-2 flex-col rounded-t-xl sm:rounded-xl bg-slate-50 opacity-90  relative overflow-hidden' onClick={() => {
             }}>
                 <div className=' absolute rounded-t-xl sm:rounded-xl bottom-0 right-0 left-0 top-0  flex items-end justify-end  '>
                     <RiceIllusOne className='w-full sm:rounded-b-xl'  />
@@ -171,7 +171,7 @@ export default function Dash() {
                     </div>
 
                 </section>
-                <section className={showTable === true ? "flex-auto overflow-auto  scrollbar bg-white rounded-lg border border-slate-200 w-full" : "hidden"}>
+                <section className={showTable === true ? " relative flex-auto overflow-auto  scrollbar bg-white rounded-lg border border-slate-200 w-full" : "hidden"}>
 
                     <div className="flex w-full max-h-0 sm:max-h-0 sm:max-w-0 lg:max-w-full  relative bg-yellow-400">
 

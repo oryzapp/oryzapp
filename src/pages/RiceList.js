@@ -445,7 +445,7 @@ export default function RiceList() {
                 </section>
                 <section className={listOn === false ? "flex-auto overflow-auto  scrollbar bg-white rounded-lg border border-slate-200 w-full" : "hidden"}>
                     <div className="flex w-full h-full   sm:max-w-92 lg:max-w-full relative  justify-center">
-                        {riceList.length === 0 ? <div className="flex  w-full items-center justify-center flex-col  "><EmptyIllustration /><p className="font-medium text-xl text-sprPrimaryOffLight whitespace-nowrap">Plenty of space in the field </p></div> :
+                        {riceList.length === 0 ? <div className="flex  w-full items-center justify-center flex-col"><EmptyIllustration /><p className="font-medium text-xl text-sprPrimaryOffLight whitespace-nowrap">Plenty of space in the field </p></div> :
                             <div className="bg-red-900 grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5  max-h-0 w-full ">
                                 {searchValue === '' ? <>
                                     {riceList.map((rice) => (
