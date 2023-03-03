@@ -70,10 +70,10 @@ export default function Dash() {
     const exportExcel = () => {
         var XLSX = require("xlsx");
         console.log('exporting');
-        var wb= XLSX.utils.book_new(),
-        ws = XLSX.utils.json_to_sheet(searched)
+        var wb = XLSX.utils.book_new(),
+            ws = XLSX.utils.json_to_sheet(searched)
 
-        XLSX.utils.book_append_sheet(wb,ws,`Special Purpose Rice ${classification}`)
+        XLSX.utils.book_append_sheet(wb, ws, `Special Purpose Rice ${classification}`)
 
         XLSX.writeFile(wb, `Special_Purpose_Rice_${classification}.xlsx`)
     }
@@ -84,29 +84,29 @@ export default function Dash() {
             <div className=' h-full w-full flex p-2 flex-col rounded-t-xl sm:rounded-xl bg-slate-50 opacity-90  relative' onClick={() => {
             }}>
                 <div className=' absolute rounded-t-xl sm:rounded-xl bottom-0 right-0 left-0 top-0  flex items-end justify-end  '>
-                    <RiceIllusOne className='w-full sm:rounded-b-xl'  />
+                    <RiceIllusOne className='w-full sm:rounded-b-xl' />
                 </div>
                 {/* Header */}
                 <header className=" flex items-center justify-between">
                     <h1 className="text-3xl font-bold text-sprBlack opacity-80">Dashboard </h1>
-                    <div className='sm:hidden' onClick={()=>{
+                    {/* <div className='sm:hidden' onClick={()=>{
                         setIsSearchModalOpen(true)
                     }}>
 									<SearchIcon className=" stroke-sprPrimary" />
 
-                    </div>
+                    </div> */}
                 </header>
 
                 {/* Main */}
                 <div className='flex justify-center pb-4'>
-                    <div className="relative drop-shadow-md hidden sm:flex w-1/2 " onClick={() => {
+                    <div className="relative drop-shadow-md flex w-1/2 " onClick={() => {
                         setIsSearchModalOpen(true)
                     }}>
                         <input
                             className="  w-full pl-2 py-2 text-sm placeholder:text-sprPrimary/50 text-sprPrimary focus:outline-none focus:border-none  rounded-full "
                             type="text"
                             placeholder="Find a Rice"
-                            
+
                         />
                         <button className="  h-full px-2 rounded-full absolute right-0 bg-sprPrimaryLight">
                             <SearchIcon stroke="white" />
@@ -217,8 +217,8 @@ export default function Dash() {
                         </div>
                         <div className="hidden sm:flex flex-col divide-y sm:divide-y bg-white divide-white h-full sticky right-0 justify-center items-center">
                             <div className=" text-sprPrimary bg-white  px-10 py-2 sticky top-0 text-sm font-medium">
-                                <h1 className="group" onClick={()=>{exportExcel()}}>
-                                    <ExcelIcon className='stroke-sprPrimary h-5 hover:stroke-sprPrimarySuperLight active:stroke-sprPrimary'/>
+                                <h1 className="group" onClick={() => { exportExcel() }}>
+                                    <ExcelIcon className='stroke-sprPrimary h-5 hover:stroke-sprPrimarySuperLight active:stroke-sprPrimary' />
                                     <small className=' hidden group-hover:block absolute whitespace-nowrap right-2 bg-sprGray60 rounded-sm p-1 text-white' >Export as Excel</small>
                                 </h1>
                             </div>
@@ -240,26 +240,26 @@ export default function Dash() {
                                 </div>
                             ))}
                         </div>
-                        
+
                         {/* Mobile */}
                         <div className='w-full sm:hidden flex flex-col gap-2 p-2'>
-                             {searched.map((rice)=>(
+                            {searched.map((rice) => (
                                 <div className="flex justify-between items-center  bg-slate-50">
-									<div className="flex flex-col -space-y-3">
-										<div className="px-6 py-4 text-3xl font-bold text-sprGray80">CL-R{rice.accession}</div>
-										<div className="px-6 py-2 text-md font-normal text-sprPrimaryLight">{rice.classification} Season</div>
-										<div className="px-6 py-2 text-md font-normal text-sprPrimaryLight">{rice.variety}</div>
-										<div className="px-6 py-2 text-md font-normal text-sprPrimaryLight">{rice.source}</div>
-										
-									</div>
-										<button className="mr-8 bg-sprPrimary hover:bg-sprPrimaryLight active:bg-sprPrimary rounded-full p-1 px-2 text-white font-medium text-xl" 
+                                    <div className="flex flex-col -space-y-3">
+                                        <div className="px-6 py-4 text-3xl font-bold text-sprGray80">CL-R{rice.accession}</div>
+                                        <div className="px-6 py-2 text-md font-normal text-sprPrimaryLight">{rice.classification} Season</div>
+                                        <div className="px-6 py-2 text-md font-normal text-sprPrimaryLight">{rice.variety}</div>
+                                        <div className="px-6 py-2 text-md font-normal text-sprPrimaryLight">{rice.source}</div>
+
+                                    </div>
+                                    <button className="mr-8 bg-sprPrimary hover:bg-sprPrimaryLight active:bg-sprPrimary rounded-full p-1 px-2 text-white font-medium text-xl"
                                         onClick={() => {
-                                                setIsModalOpen(true)
-                                                setCurrentId(rice.accession)
-                                                console.log(rice.accession)
-                                            }}
-												>view</button>
-									</div>
+                                            setIsModalOpen(true)
+                                            setCurrentId(rice.accession)
+                                            console.log(rice.accession)
+                                        }}
+                                    >view</button>
+                                </div>
                             ))}
                         </div>
 
