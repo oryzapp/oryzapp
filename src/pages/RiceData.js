@@ -124,6 +124,7 @@ const message = 'Rice Data Successfully Added!'
     stigmaColour: '',
     // grain components
     awnColour: '',
+    // supposedly awnColourLateObs
     caryopsisLength: '',
     caryopsisWidth: '',
     caryopsisShape: '',
@@ -229,6 +230,7 @@ const message = 'Rice Data Successfully Added!'
     stigmaColour: '',
     // grain components
     awnColour: '',
+    // supposedly awnColourLateObs
     caryopsisLength: '',
     caryopsisWidth: '',
     caryopsisShape: '',
@@ -1182,7 +1184,8 @@ const message = 'Rice Data Successfully Added!'
                       <div className="flex flex-col bg-white px-6">
                         <div className="flex flex-col -space-y-1">
                           <label className="text-sprPrimary" htmlFor="" >Awn colour (late observation) </label></div>
-                        <input className="rounded-full px-1 py-px border border-sprInactiveGray focus:border-none focus:outline-none focus:ring-2 focus:ring-sprPrimary" type="text" name="awnColour" value={riceData.awnColour} onChange={handleChange} /></div>
+                        <input className="rounded-full px-1 py-px border border-sprInactiveGray focus:border-none focus:outline-none focus:ring-2 focus:ring-sprPrimary" type="text" name="awnColour" value={riceData.awnColour} onChange={handleChange} /></div>  
+                        {/* input above is awn colour (late obseration) not just awn colour*/}
                     </div>
 
 

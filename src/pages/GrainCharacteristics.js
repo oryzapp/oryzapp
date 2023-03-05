@@ -97,6 +97,7 @@ export default function GrainCharacteristics({filterSeason, filterYear, searchIn
             riceSeason: rice.riceSeason,
             shelfNum: rice.shelfNum,
             awnColour: rice.awnColour,
+            // supposedly awnColourLateObs
             caryopsisLength: rice.caryopsisLength,
             caryopsisWidth: rice.caryopsisWidth,
             caryopsisShape: rice.caryopsisShape,
@@ -217,7 +218,7 @@ export default function GrainCharacteristics({filterSeason, filterYear, searchIn
           <thead className="text-xs uppercase font-medium text-center bg-sprPrimaryLight sticky top-0 ">Awn</thead>
           <tbody className=" flex ">
             <div className="hidden sm:block flex-auto divide-y divide-slate-300 ">
-              <div className="px-6 py-3 font-medium whitespace-nowrap text-sprPrimary sticky top-4 bg-white">Colour</div>
+              <div className="px-6 py-3 font-medium whitespace-nowrap text-sprPrimary sticky top-4 bg-white">Colour Late Obseration</div>
               {searchInput === ''?<>
               {riceData.map((rice) => (
                 <div className="px-6 py-3 whitespace-nowrap bg-slate-50"> {rice.awnColour === "" ? "---" : rice.awnColour}</div>

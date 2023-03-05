@@ -382,9 +382,14 @@ export default function ModalAccessionsInfo({ open, modalId, closeModal }) {
                                           <div className="flex flex-auto"><p className="text-sprGray60">Anther Colour :</p>
                                               {rsData.antherColour === "" ? "---" : rsData.antherColour}</div>
                                       </div>
+                                      {/* <div className="text-sprBlack">
+                                          
+                                          <div className="fle flex-auto"><p className="text-sprGray60">Lemma and Palea Colour Early Obs :</p>
+                                              {rsData.lemmaandPaleaColourEarlyobs === "" ? "---" : rsData.lemmaandPaleaColourEarlyobs}</div>
+                                      </div> */}
                                       <div className="text-sprBlack">
                                           
-                                          <div className="fle flex-auto"><p className="text-sprGray60">Lemma And Palea Colour Early Obs :</p>
+                                          <div className="flex flex-auto"><p className="text-sprGray60">Lemma And Palea Colour Early Obs :</p>
                                               {rsData.lemmaandPaleaColourEarlyobs === "" ? "---" : rsData.lemmaandPaleaColourEarlyobs}</div>
                                       </div>
                                       <div className="text-sprBlack">
@@ -409,8 +414,9 @@ export default function ModalAccessionsInfo({ open, modalId, closeModal }) {
                                       </div>
                                       <div className="text-sprBlack">
                                           
-                                          <div className="flex flex-auto"><p className="text-sprGray60">Awns Distribution Early Obs :</p>
+                                          <div className="flex flex-auto"><p className="text-sprGray60">Awns Colour Early Obs :</p>
                                               {rsData.awnsDistributionEarlyobs === "" ? "---" : rsData.awnsDistributionEarlyobs}</div>
+                                              {/* this is awns colour early observation */}
                                       </div>
                                       <div className="text-sprBlack">
                                           
@@ -495,8 +501,9 @@ export default function ModalAccessionsInfo({ open, modalId, closeModal }) {
                                       </div>
                                       <div className="text-sprBlack">
                                           
-                                          <div className="flex flex-auto"><p className="text-sprGray60">Awn Colour :</p>
+                                          <div className="flex flex-auto"><p className="text-sprGray60">Awn Colour Late Obs :</p>
                                               {gcData.awnColour === "" ? "---" : gcData.awnColour}</div>
+                                              {/* awn color late obseration not just awn color */}
                                       </div>
                                       <div className="text-sprBlack">
                                           

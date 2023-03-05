@@ -346,9 +346,14 @@ export default function ModalViewRiceData({open, closeModal, currentData}) {
                                           <div className="flex flex-auto"><p className="text-sprGray60">Anther Colour :</p>
                                               {rsData.antherColour === "" ? "---" : rsData.antherColour}</div>
                                       </div>
-                                      <div className="text-sprBlack">
+                                      {/* <div className="text-sprBlack">
                                           
                                           <div className="fle flex-auto"><p className="text-sprGray60">Lemma And Palea Colour Early Obs :</p>
+                                              {rsData.lemmaandPaleaColourEarlyobs === "" ? "---" : rsData.lemmaandPaleaColourEarlyobs}</div>
+                                      </div> */}
+                                      <div className="text-sprBlack">
+                                          
+                                          <div className="flex flex-auto"><p className="text-sprGray60">Lemma And Palea Colour Early Obs :</p>
                                               {rsData.lemmaandPaleaColourEarlyobs === "" ? "---" : rsData.lemmaandPaleaColourEarlyobs}</div>
                                       </div>
                                       <div className="text-sprBlack">
@@ -373,7 +378,7 @@ export default function ModalViewRiceData({open, closeModal, currentData}) {
                                       </div>
                                       <div className="text-sprBlack">
                                           
-                                          <div className="flex flex-auto"><p className="text-sprGray60">Awns Distribution Early Obs :</p>
+                                          <div className="flex flex-auto"><p className="text-sprGray60">Awns Colour Early Obs :</p>
                                               {rsData.awnsDistributionEarlyobs === "" ? "---" : rsData.awnsDistributionEarlyobs}</div>
                                       </div>
                                       <div className="text-sprBlack">
@@ -459,8 +464,9 @@ export default function ModalViewRiceData({open, closeModal, currentData}) {
                                       </div>
                                       <div className="text-sprBlack">
                                           
-                                          <div className="flex flex-auto"><p className="text-sprGray60">Awn Colour :</p>
+                                          <div className="flex flex-auto"><p className="text-sprGray60">Awn Colour Late Obs :</p>
                                               {gcData.awnColour === "" ? "---" : gcData.awnColour}</div>
+                                              {/* awn color late observation not just awn color */}
                                       </div>
                                       <div className="text-sprBlack">
                                           

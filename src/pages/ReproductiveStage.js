@@ -254,7 +254,8 @@ export default function ReproductiveStage({filterSeason, filterYear, searchInput
               </>}
             </div>
             <div className="hidden sm:block flex-auto divide-y divide-slate-300 ">
-              <div className="px-6 py-3 font-medium whitespace-nowrap text-sprPrimary sticky top-4 bg-white">Distribution Early Observation</div>
+              {/* here is awn colour early obseration */}
+              <div className="px-6 py-3 font-medium whitespace-nowrap text-sprPrimary sticky top-4 bg-white">Colour Early Observation</div>
               {searchInput === ''?<>
               {riceData.map((rice) => (
                 <div className="px-6 py-3 whitespace-nowrap bg-slate-50"> {rice.awnsDistributionEarlyobs === "" ? "---" : rice.awnsDistributionEarlyobs}</div>

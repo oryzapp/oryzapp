@@ -123,7 +123,7 @@ export default function Topbar() {
             Kumusta, <strong className="text-sprPrimary">{userInfo.fname}</strong>
           </p>
           <div className="h-6 w-6 rounded-full bg-slate-200 relative flex justify-center cursor-pointer" onClick={() => { setIsProfileandLogout(true) }}>
-            {/* <ProfileIcon className="fill-sprPrimary"/> */}
+            <ProfileIcon className="fill-sprPrimary"/>
             <h6 className='text-slate-900 uppercase'></h6>
             {/* <div className="bg-yellow-300 absolute top-0 bottom-0 right-0 left-0 h-screen w-screen z-30">bbb</div> */}
 

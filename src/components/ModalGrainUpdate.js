@@ -14,6 +14,7 @@ export default function ModalGrainUpdate({ open, closeModal, modalId, modalYear,
     // Container for the data from GC
     const [riceData, setRiceData] = useState({
         awnColour: '',
+        // supposedly awnColourLateObs
         caryopsisLength: '',
         caryopsisWidth: '',
         caryopsisShape: '',
@@ -48,6 +49,7 @@ export default function ModalGrainUpdate({ open, closeModal, modalId, modalYear,
         setRiceData(
             {
                 awnColour: gcRiceData.awnColour,
+                // supposedly awnColorLateObs
                 caryopsisLength: gcRiceData.caryopsisLength,
                 caryopsisWidth: gcRiceData.caryopsisWidth,
                 caryopsisShape: gcRiceData.caryopsisShape,
@@ -153,6 +155,18 @@ export default function ModalGrainUpdate({ open, closeModal, modalId, modalYear,
                         <p className="font-medium text-xl text-sprPrimaryDark">{modalId}</p>
                         <div className="  flex overflow-auto flex-auto scrollbar">
                             <div className='flex-auto flex flex-col text-sprBlack '>
+                            <div className="flex flex-col p-2 pb-0">
+                                    <div className="text-xs uppercase font-medium">Awn</div>
+                                    <div className="grid grid-cols-2 gap-4 bg-white text-sm">
+                                        <div className="flex flex-col bg-white px-6">
+                                            <div className="flex flex-col -space-y-1">
+                                                <label className="text-sprPrimary" htmlFor="">Awn colour (late observation)</label></div>
+                                            <input className="rounded-full px-1 py-px border border-sprInactiveGray focus:border-none focus:outline-none focus:ring-2 focus:ring-sprPrimary" type="text" name="awnColour" value={riceData.awnColour} onChange={handleChange} /></div>
+                                    </div>
+
+
+
+                                </div>
                                 <div className="flex flex-col p-2 pb-0">
                                     <div className="text-xs uppercase font-medium">Caryopsis</div>
                                     <div className="grid grid-cols-2 gap-4 bg-white text-sm">
