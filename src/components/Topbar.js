@@ -15,6 +15,8 @@ import clsuLogo from "../assets/clsu-logo.png"
 import clsuRETLogo from "../assets/clsu-ret-logo.png"
 import ModalSettings from "./ModalSettings";
 import { QRCodeCanvas } from "qrcode.react";
+import { ReactComponent as EditIcon } from '../assets/edit-icon.svg'
+
 
 
 export default function Topbar() {
@@ -123,7 +125,7 @@ export default function Topbar() {
             Kumusta, <strong className="text-sprPrimary">{userInfo.fname}</strong>
           </p>
           <div className="h-6 w-6 rounded-full bg-slate-200 relative flex justify-center cursor-pointer" onClick={() => { setIsProfileandLogout(true) }}>
-            <ProfileIcon className="fill-sprPrimary"/>
+            <ProfileIcon className="fill-sprPrimary" />
             <h6 className='text-slate-900 uppercase'></h6>
             {/* <div className="bg-yellow-300 absolute top-0 bottom-0 right-0 left-0 h-screen w-screen z-30">bbb</div> */}
 
@@ -133,7 +135,10 @@ export default function Topbar() {
         <div className={isProfileandlogout === true ? '' : 'hidden'}>
           <div className=' h-screen w-screen top-0 bottom-0 right-0 left-0 z-30 absolute bg-blue-900/10' onClick={() => { setIsProfileandLogout(false) }} />
           <div className='  bg-white min-w-60 absolute right-5 top-12 z-50 rounded-md drop-shadow-sm p-3'>
-            <h1 className="font-bold text-slate-900 border-b-2 border-slate-100 text-center">{userInfo.fname} {userInfo.lname}</h1>
+            <div className=" flex border-b-2 border-slate-100">
+              <h1 className="font-bold text-slate-900  text-center flex-auto">{userInfo.fname} {userInfo.lname}</h1>
+              <EditIcon className="fill-slate-700 cursor-pointer hover:fill-slate-400 active:fill-slate-900 h-5 " onClick={() => { setIsSettingsOn(true) }} />
+            </div>
             <div className="flex flex-col justify-center items-center p-3">
 
 
@@ -150,10 +155,10 @@ export default function Topbar() {
 
             </div>
             <div className="border-t-2 border-slate-100">
-              <div className='flex space-x-3 items-center group hover:bg-sprPrimaryLight  active:bg-sprPrimary rounded-md py-3 px-1' onClick={() => { setIsSettingsOn(true) }} >
+              {/* <div className='flex space-x-3 items-center group hover:bg-sprPrimaryLight  active:bg-sprPrimary rounded-md py-3 px-1' onClick={() => { setIsSettingsOn(true) }} >
                 <Settings className='h-5 fill-sprGray70 group-hover:fill-white active:text-white ' />
                 <p className=' group-hover:text-white active:text-white cursor-pointer' >Settings</p>
-              </div>
+              </div> */}
               <div className='flex space-x-3  items-center group hover:bg-sprPrimaryLight  active:bg-sprPrimary rounded-md py-3 px-1 '>
                 <OutIcon className='h-5 fill-sprGray70 group-hover:fill-white active:text-white ' />
                 <p className=' group-hover:text-white active:text-white cursor-pointer' onClick={onSignOut} >Sign Out</p>
