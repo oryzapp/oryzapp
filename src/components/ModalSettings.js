@@ -124,7 +124,7 @@ export default function ModalSettings({ open, closeModal }) {
   return ReactDom.createPortal(
     <div>
       <form onSubmit={submitEdit}>
-        <div className=" flex flex-col fixed  -left-10 -right-10 top-0 bottom-0 lg:right-0 lg:left-0  z-50 justify-center items-center " >
+        <div className=" flex flex-col fixed min-height: min-content -left-14 -right-14 top-0 bottom-0 lg:right-0 lg:left-0  z-50 justify-center items-center " >
           <ModalSuccess open={isPromptOpen} close={() => { setIsPromptOpen(false) }} message={'Profile Updated Successfully!'} />
 
           {/* Close onClick Outside */}
