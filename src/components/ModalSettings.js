@@ -160,14 +160,14 @@ export default function ModalSettings({ open, closeModal }) {
                         <label className="text-sm text-slate-500" htmlFor="fname">
                           First Name
                         </label>
-                        <input type="text" placeholder="e.g. Juan" className="border border-slate-500 text-sm  w-64  rounded-full font-light p-1 lg:p-2  focus:outline-2 focus:outline-sprPrimary" name='fname' value={info.fname} onChange={handleChange} />
+                        <input type="text" placeholder="e.g. Juan" className="border border-slate-500 text-sm  w-64  rounded-full font-light p-2 lg:p-2  focus:outline-2 focus:outline-sprPrimary" name='fname' value={info.fname} onChange={handleChange} />
                       </div>
                       {/* Last Name */}
                       <div className="flex flex-col">
                         <label className="text-sm text-slate-500" htmlFor="lname">
                           Last Name
                         </label>
-                        <input type="text" placeholder="e.g. Dela Cruz" className="border border-slate-500 text-sm   w-64  rounded-full font-light p-1 lg:p-2  focus:outline-2 focus:outline-sprPrimary" name='lname' value={info.lname} onChange={handleChange} />
+                        <input type="text" placeholder="e.g. Dela Cruz" className="border border-slate-500 text-sm   w-64  rounded-full font-light p-2 lg:p-2  focus:outline-2 focus:outline-sprPrimary" name='lname' value={info.lname} onChange={handleChange} />
                       </div>
                     </div>
                     {/* Role */}
@@ -175,7 +175,7 @@ export default function ModalSettings({ open, closeModal }) {
                       <label className="text-sm text-slate-500" htmlFor="fname">
                         Role
                       </label>
-                      <input disabled type="text" placeholder="Role" className="bg-slate-100 text-sm   w-64  rounded-full font-light  p-1 lg:p-2  focus:outline-2 focus:outline-sprPrimary" name='role' value={info.role} />
+                      <input disabled type="text" placeholder="Role" className="bg-slate-100 text-sm   w-64  rounded-full font-light  p-2 lg:p-2  focus:outline-2 focus:outline-sprPrimary" name='role' value={info.role} />
                     </div>
 
                   </div>
@@ -187,14 +187,14 @@ export default function ModalSettings({ open, closeModal }) {
                       <label className="text-sm text-slate-500" htmlFor="fname">
                         Email
                       </label>
-                      <input disabled type="text" placeholder="email" className="bg-slate-100 text-sm   w-64  rounded-full font-light p-1 lg:p-2  focus:outline-2 focus:outline-sprPrimary" name='email' value={info.email} />
+                      <input disabled type="text" placeholder="email" className="bg-slate-100 text-sm   w-64  rounded-full font-light p-2 lg:p-2  focus:outline-2 focus:outline-sprPrimary" name='email' value={info.email} />
                     </div>
                     {/* Password */}
                     <div className="flex flex-col">
                       <label className="text-sm text-slate-500" htmlFor="fname">
                         Password
                       </label>
-                      <input type="password" className="border border-slate-500 text-sm   w-64  rounded-full font-light p-1 lg:p-2  focus:outline-2 focus:outline-sprPrimary" name='password' value={info.password} onChange={handleChange} />
+                      <input type="password" className="border border-slate-500 text-sm   w-64  rounded-full font-light p-2 lg:p-2  focus:outline-2 focus:outline-sprPrimary" name='password' value={info.password} onChange={handleChange} />
                     </div>
 
                   </div>
