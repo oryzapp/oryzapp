@@ -16,7 +16,6 @@ import QrScanner from "qr-scanner"
 import { async } from "@firebase/util"
 import { onAuthStateChanged } from "firebase/auth"
 import ModalSuccess from "../components/ModalSuccess"
-import ReactDom from "react-dom";
 
 
 
@@ -259,6 +258,9 @@ export default function Login() {
 				<OryzappNewLogo className="h-16 md:h-24" />
 				<h1 className="text-2xl md:text-3xl  font-semibold whitespace-nowrap text-center text-slate-800">Welcome Researcher</h1>
 
+				{/* Error Message */}
+				{isError === true ? <div className="text-sprTertiary/80 text-sm text-center">{errorMessage}</div> : <></>}
+
 				{/* Email Login */}
 				<form onSubmit={handleLogIn}>
 					<div className={mode === 'email' ? 'flex flex-col space-y-3' : 'hidden'}>
@@ -273,7 +275,11 @@ export default function Login() {
 					<div className="bg-slate-200 w-52 h-52 rounded-lg">
 						<video id="qr-scan" ref={scanRef} className="h-full w-full"></video>
 					</div>
-					<button type="submit" className="bg-sprPrimary text-base  font-bold text-white rounded-full p-3">Scan Code</button>
+					<button type="submit" className="bg-sprPrimary text-base  font-bold text-white rounded-full p-3"
+						onClick={() => {
+							startScanning()
+						}}
+					>Scan Code</button>
 				</div>
 
 				{/* Signup */}
@@ -307,9 +313,9 @@ export default function Login() {
 				<div className="flex flex-col  items-center space-y-2">
 					<h3 className="text-slate-500">OR</h3>
 					<div className="flex flex-col items-center ">
-						<h3 className={mode === 'scanner' ? 'underline text-amber-500 cursor-pointer block' : 'hidden'} onClick={() => { setMode('email') }} >Login with Email</h3>
-						<h3 className={mode === 'email' ? 'underline text-amber-500 cursor-pointer block' : 'hidden'} onClick={() => { setMode('scanner') }} >Login with Scanner</h3>
-						<h3 className={mode === 'signup' ? 'hidden' : 'text-slate-500'}>Don't have an account? <u className="text-amber-500 cursor-pointer" onClick={() => { setMode('signup') }} >Sign Up</u></h3>
+						<h3 className={mode === 'scanner' ? 'underline text-amber-500 cursor-pointer block' : 'hidden'} onClick={() => { setMode('email'); setState(initialState); setIsError(false) }}>Login with Email</h3>
+						<h3 className={mode === 'email' ? 'underline text-amber-500 cursor-pointer block' : 'hidden'} onClick={() => { setMode('scanner'); setState(initialState); setIsError(false) }} >Login with Scanner</h3>
+						<h3 className={mode === 'signup' ? 'hidden' : 'text-slate-500'}>Don't have an account? <u className="text-amber-500 cursor-pointer" onClick={() => { setMode('signup'); setState(initialState); setIsError(false) }} >Sign Up</u></h3>
 					</div>
 
 				</div>
