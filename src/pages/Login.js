@@ -299,7 +299,7 @@ export default function Login() {
 							<label className="text-sm text-slate-500" htmlFor="fname">
 								First Name
 							</label>
-							<input required type="text" placeholder="e.g. Juan" className="bg-slate-100 text-base   rounded-full font-light p-3 focus:outline-2 focus:outline-sprPrimary" />
+							<input required type="text" onChange={handleChange} name='fname' value={state.fname} placeholder="e.g. Juan" className="bg-slate-100 text-base   rounded-full font-light p-3 focus:outline-2 focus:outline-sprPrimary" />
 						</div>
 						<div className="flex flex-col text-slate-500">
 							<label className="text-sm" htmlFor="fname">
@@ -311,7 +311,7 @@ export default function Login() {
 							<label className="text-sm" htmlFor="fname">
 								Password
 							</label>
-							<input required onChange={handleChange} type="password" name="password" value={state.password} placeholder="must contain at least 8 characters" className="bg-slate-100 text-base   rounded-full font-light p-3 focus:outline-2 focus:outline-sprPrimary" />
+							<input required onChange={handleChange} type="password" name="password" value={state.password} placeholder="Password must contain at least 8 characters" className="bg-slate-100 text-base   rounded-full font-light p-3 focus:outline-2 focus:outline-sprPrimary" />
 						</div>
 						<button type="submit" className="bg-sprPrimary text-base  font-bold text-white rounded-full p-3">Sign Up</button>
 
