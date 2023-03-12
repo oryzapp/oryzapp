@@ -629,10 +629,10 @@ export default function RiceAccessions() {
 										/>
 									</div>
 								</div>
-								<div className="flex justify-center items-center    w-1/2 ">
-									<div className="group  rounded-b-lg  sprBorderDashed w-28 h-28 sm:w-52 sm:h-52  flex flex-col sm:gap-5 p-4  justify-center items-center bg-slate-100 ">
+								<div className="flex justify-center items-center  w-1/2 ">
+									<div className="group  rounded-b-lg  sprBorderDashed w-28 h-28 sm:w-52 sm:h-52  flex flex-col sm:gap-5 p-4  justify-center items-center bg-slate-100 overflow-hidden ">
 										<ImageIcon fill="none" stroke="#CFD491" className="w-12 sm:w-16" />
-										<div className="bg-sprPrimaryLight group-hover:bg-sprPrimaryOffLight group-active:bg-sprPrimary relative rounded-full   ">
+										<div className="bg-sprPrimaryLight group-hover:bg-sprPrimaryOffLight group-active:bg-sprPrimary relative rounded-full  ">
 											<h6 className="absolute  left-1 top-2 sm:left-3 sm:top-1  text-white text-xs sm:text-sm  whitespace-nowrap font-medium" >Choose Image</h6>
 											<input className="opacity-0 w-24 sm:w-32 " type="file" onChange={(e) => {
 												setImageUpload(e.target.files[0])

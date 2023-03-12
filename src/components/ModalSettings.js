@@ -202,17 +202,38 @@ export default function ModalSettings({ open, closeModal }) {
 
               </div>
               {/* Button */}
-              <div className=' '>
+              <div className='flex flex-col pl-3 pt-3 md:pl-0 md:pt-0'>
+                    <div className='space-y-3 flex md:space-x-3 flex-col md:flex-row sm:space-y-3 md:space-y-0 justify-end'>
+                      {/* Cancel BTN */}
+                      <div className="flex flex-col">
+                        <button className="border-2 border-slate-400 text-sm w-24 font-bold text-slate-400 hover:border-slate-300/0 hover:bg-slate-300 
+                        hover:text-slate-100 active:bg-slate-500 active:text-slate-100 rounded-full py-2" onClick={() => {
+                          closeModal()
+                          setInfo(initialInfo)
+                        }}>Cancel</button>
+                      </div>
+                      {/* Save BTN */}
+                      <div className="flex flex-col">
+                        <button type="submit" className="bg-sprPrimary text-sm font-bold w-24  hover:bg-slate-300 border-2 border-transparent
+                        hover:text-slate-100 active:bg-slate-500 active:text-slate-100 text-white rounded-full py-2">Save</button>
+                      </div>
+                    </div>
+              </div>
+
+
+
+              {/* <div className=' '>
                 <div className='flex  justify-end space-x-3 '>
-                  <button className="border-2 border-slate-400 text-sm w-24 font-bold text-slate-400 hover:border-slate-300/0 hover:bg-slate-300  hover:text-slate-100 active:bg-slate-500 active:text-slate-100 rounded-full py-2" onClick={() => {
+                  <button className="border-2 border-slate-400 text-sm w-24 font-bold text-slate-400 hover:border-slate-300/0 hover:bg-slate-300 
+                   hover:text-slate-100 active:bg-slate-500 active:text-slate-100 rounded-full py-2" onClick={() => {
                     closeModal()
                     setInfo(initialInfo)
                   }}>Cancel</button>
-                  <button type="submit" className="bg-sprPrimary text-sm font-bold w-24  hover:bg-slate-300  hover:text-slate-100 active:bg-slate-500 active:text-slate-100 text-white rounded-full">Save</button>
-
+                  <button type="submit" className="bg-sprPrimary text-sm font-bold w-24  hover:bg-slate-300 
+                   hover:text-slate-100 active:bg-slate-500 active:text-slate-100 text-white rounded-full">Save</button>
                 </div>
 
-              </div>
+              </div> */}
 
             </div>
 
