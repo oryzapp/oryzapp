@@ -175,28 +175,34 @@ export default function Dash() {
 
                     <div className="flex w-full max-h-0 sm:max-h-0 sm:max-w-0 lg:max-w-full  relative bg-yellow-400">
                         <div className='flex flex-col relative h-full w-full'>
-                            <div className=' sticky top-0 flex '>
-                                <div className='w-10 h-fit bg-white px-3  text-sprPrimary700 '>#</div>
+                            <div className=' sticky top-0 flex  border-b border-slate-200'>
+                                <div className='w-10 h-fit px-3 bg-white text-sprPrimary700 '>#</div>
                                 <div className=' w-1/4 h-fit bg-white px-3 text-sprPrimary700'>Accession</div>
                                 <div className='w-1/4 h-fit bg-white px-3 text-sprPrimary700'>Classification</div>
                                 <div className=' w-1/4 h-fit bg-white px-3 text-sprPrimary700'>Variety</div>
                                 <div className='w-1/4 h-fit bg-white px-3 text-sprPrimary700'>Source</div>
-                                <div className=' h-fit bg-white px-3'>Anotha</div>
+                                <div className=' w-24 bg-white px-3 whitespace-nowrap flex flex-col justify-center  group relative' onClick={() => { exportExcel() }}>
+                                    <ExcelIcon className='stroke-sprPrimary px-3 h-5 hover:stroke-sprPrimarySuperLight active:stroke-sprPrimary' />
+                                    <small className='hidden group-hover:block absolute right-0 top-6  bg-slate-900 rounded-sm text-white font-medium px-2'>Export Table</small>
+                                </div>
                             </div>
                             {
                                 searched.map((rice) => (
                                     // <div className="px-6 py-2 font-medium text-sprPrimary300 "> {list = list + 1} </div>
-                                    <div className='flex group cursor-pointer' onClick={() => {
+                                    <div className='flex group cursor-pointer border-b border-slate-200 ' onClick={() => {
                                         setIsModalOpen(true)
                                         setCurrentId(rice.accession)
                                         console.log(rice.accession)
                                     }}>
-                                        <div className='group-hover:bg-slate-300 group-active:bg-sprPrimary500  w-10 h-fit  bg-slate-100 p-3 text-slate-700' >{list = list + 1} </div>
-                                        <div className=' group-hover:bg-slate-300 group-active:bg-sprPrimary500 w-1/4 h-fit  bg-slate-50 p-3 text-slate-700'>{rice.accession === "" ? "---" : `CL-R${rice.accession}`}</div>
-                                        <div className='group-hover:bg-slate-300 group-active:bg-sprPrimary500 w-1/4 h-fit bg-slate-100 p-3 text-slate-700'>{rice.classification === "" ? "---" : rice.classification}</div>
-                                        <div className='group-hover:bg-slate-300 group-active:bg-sprPrimary500 w-1/4 h-fit bg-slate-50 p-3 text-slate-700'>{rice.variety === "" ? "---" : rice.variety}</div>
-                                        <div className='group-hover:bg-slate-300 group-active:bg-sprPrimary500 w-1/4 h-fit bg-slate-100 p-3 text-slate-700'>{rice.source === "" ? "---" : rice.source}</div>
-                                        <div className='group-hover:bg-slate-300 group-active:bg-sprPrimary500  h-fit bg-slate-100 p-3'>Source</div>
+                                        <div className='group-hover:bg-slate-200 group-active:bg-sprPrimary500  w-10 h-fit  bg-white p-3 text-slate-700' >{list = list + 1} </div>
+                                        <div className='group-hover:bg-slate-200 group-active:bg-sprPrimary500 w-1/4 h-fit  bg-slate-50 p-3 text-slate-700'>{rice.accession === "" ? "---" : `CL-R${rice.accession}`}</div>
+                                        <div className='group-hover:bg-slate-200 group-active:bg-sprPrimary500 w-1/4 h-fit bg-slate-100 p-3 text-slate-700'>{rice.classification === "" ? "---" : rice.classification}</div>
+                                        <div className='group-hover:bg-slate-200 group-active:bg-sprPrimary500 w-1/4 h-fit bg-slate-50 p-3 text-slate-700'>{rice.variety === "" ? "---" : rice.variety}</div>
+                                        <div className='group-hover:bg-slate-200 group-active:bg-sprPrimary500 w-1/4 h-fit bg-slate-100 p-3 text-slate-700'>{rice.source === "" ? "---" : rice.source}</div>
+                                        <div className='group-hover:bg-slate-200 group-active:bg-sprPrimary500   w-24 bg-slate-100 p-3 '>
+                                            <ExcelIcon className='stroke-sprPrimary px-3 h-5 hover:stroke-sprPrimarySuperLight active:stroke-sprPrimary opacity-0' />
+
+                                        </div>
 
                                     </div>
                                 ))
