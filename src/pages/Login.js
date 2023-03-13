@@ -106,7 +106,7 @@ export default function Login() {
 			console.log(error.message);
 			if (error.message === 'Firebase: Error (auth/wrong-password).') {
 				setIsError(true)
-				setErrorMessage('* Password You entered is incorrect')
+				setErrorMessage('* Password you entered is incorrect')
 				setState(
 					{
 						email: state.email,
@@ -142,7 +142,7 @@ export default function Login() {
 			const matchUser = users?.find((dbUser) => dbUser?.email === state?.email)
 			if (matchUser !== undefined) {
 				setIsError(true)
-				setErrorMessage('* Email already in use')
+				setErrorMessage('* Email is already in use')
 			}
 			else {
 				if (state.password.length <= 6) {
@@ -254,7 +254,7 @@ export default function Login() {
 
 			{/* Background */}
 			<div className=" absolute h-screen w-screen overflow-hidden ">
-				<div className="h-full w-full bg-black/30 backdrop-blur-sm absolute z-10 font-"></div>
+				<div className="h-full w-full bg-black/30 backdrop-blur-sm absolute z-10 "></div>
 				<img src={palayBG} alt="" className=" h-full sm:w-full" />
 			</div>
 
@@ -273,9 +273,9 @@ export default function Login() {
 				{/* Email Login */}
 				<form onSubmit={handleLogIn}>
 					<div className={mode === 'email' ? 'flex flex-col space-y-3' : 'hidden'}>
-						<input onChange={handleChange} type="email" name="email" value={state.email} placeholder="Email" className="bg-slate-100  text-base   rounded-full font-light p-3 focus:outline-2 focus:outline-sprPrimary " />
-						<input onChange={handleChange} type="password" name="password" placeholder="Password" className="bg-slate-100 text-base   rounded-full font-light p-3 focus:outline-2 focus:outline-sprPrimary" />
-						<button type="submit" className="bg-sprPrimary text-base  font-bold text-white rounded-full p-3 ">Login</button>
+						<input onChange={handleChange} type="email" name="email" value={state.email} placeholder="Email" className="bg-slate-100  text-base   rounded-full font-light p-3 focus:outline-2 focus:outline-sprPrimary500 " />
+						<input onChange={handleChange} type="password" name="password" placeholder="Password" className="bg-slate-100 text-base   rounded-full font-light p-3 focus:outline-2 focus:outline-sprPrimary500" />
+						<button type="submit" className="bg-sprPrimary500 hover:bg-sprPrimary300 active:bg-sprPrimary700 text-base  font-bold text-white rounded-full p-3 ">Login</button>
 					</div>
 				</form>
 
@@ -284,7 +284,7 @@ export default function Login() {
 					<div className="bg-slate-200 w-52 h-52 rounded-lg">
 						<video id="qr-scan" ref={scanRef} className="h-full w-full"></video>
 					</div>
-					<button type="submit" className="bg-sprPrimary text-base  font-bold text-white rounded-full p-3"
+					<button type="submit" className="bg-sprPrimary500 hover:bg-sprPrimary300 active:bg-sprPrimary700 text-base  font-bold text-white rounded-full p-3"
 						onClick={() => {
 							startScanning()
 						}}
@@ -299,21 +299,25 @@ export default function Login() {
 							<label className="text-sm text-slate-500" htmlFor="fname">
 								First Name
 							</label>
-							<input required type="text" onChange={handleChange} name='fname' value={state.fname} placeholder="e.g. Juan" className="bg-slate-100 text-base   rounded-full font-light p-3 focus:outline-2 focus:outline-sprPrimary" />
+							<input required type="text" onChange={handleChange} name='fname' value={state.fname} placeholder="e.g. Juan" className="bg-slate-100 text-base   rounded-full font-light p-3 focus:outline-2 focus:outline-sprPrimary500" />
+							<label className="text-sm text-slate-500" htmlFor="fname">
+								Last Name
+							</label>
+							<input required type="text" onChange={handleChange} name='lname' value={state.lname} placeholder="e.g. Dela Cruz" className="bg-slate-100 text-base   rounded-full font-light p-3 focus:outline-2 focus:outline-sprPrimary500" />
 						</div>
 						<div className="flex flex-col text-slate-500">
 							<label className="text-sm" htmlFor="fname">
 								Email
 							</label>
-							<input required onChange={handleChange} type="email" name="email" value={state.email} placeholder="e.g. delacruz.juan@clsu2.edu.ph" className="bg-slate-100 text-base   rounded-full font-light p-3 focus:outline-2 focus:outline-sprPrimary" />
+							<input required onChange={handleChange} type="email" name="email" value={state.email} placeholder="e.g. delacruz.juan@clsu2.edu.ph" className="bg-slate-100 text-base   rounded-full font-light p-3 focus:outline-2 focus:outline-sprPrimary500" />
 						</div>
 						<div className="flex flex-col text-slate-500">
 							<label className="text-sm" htmlFor="fname">
 								Password
 							</label>
-							<input required onChange={handleChange} type="password" name="password" value={state.password} placeholder="Password must contain at least 8 characters" className="bg-slate-100 text-base   rounded-full font-light p-3 focus:outline-2 focus:outline-sprPrimary" />
+							<input required onChange={handleChange} type="password" name="password" value={state.password} placeholder="Password must contain at least 8 characters" className="bg-slate-100 text-base   rounded-full font-light p-3 focus:outline-2 focus:outline-sprPrimary500" />
 						</div>
-						<button type="submit" className="bg-sprPrimary text-base  font-bold text-white rounded-full p-3">Sign Up</button>
+						<button type="submit" className="bg-sprPrimary500 hover:bg-sprPrimary300 active:bg-sprPrimary700 text-base  font-bold text-white rounded-full p-3">Sign Up</button>
 
 					</div>
 				</form>
