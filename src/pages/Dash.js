@@ -81,7 +81,7 @@ export default function Dash() {
     var list = 0;
     return (
         <>
-            <div className=' h-full w-full flex p-2 flex-col rounded-t-xl sm:rounded-xl bg-slate-50 opacity-90  relative overflow-hidden' onClick={() => {
+            <div className=' h-full w-full flex p-2 flex-col rounded-t-xl sm:rounded-xl bg-white opacity-90  relative overflow-hidden' onClick={() => {
             }}>
                 <div className=' absolute rounded-t-xl sm:rounded-xl bottom-0 right-0 left-0 top-0  flex items-end justify-end  '>
                     <RiceIllusOne className='w-full sm:rounded-b-xl' />
@@ -98,8 +98,8 @@ export default function Dash() {
                 </header>
 
                 {/* Main */}
-                <div className='flex justify-center pb-4'>
-                    <div className="relative drop-shadow-md flex w-1/2 " onClick={() => {
+                <div className='flex justify-center pb-4 '>
+                    <div className="relative flex w-1/2 drop-shadow-sm" onClick={() => {
                         setIsSearchModalOpen(true)
                     }}>
                         <input
@@ -115,23 +115,23 @@ export default function Dash() {
                 </div>
 
                 {/* No Table */}
-                <section className={showTable === false ? "h-full flex justify-center items-center gap-3 p-6 sm:p-10 lg:p-20" : 'hidden'}>
+                <section className={showTable === false ? " cursor-pointer h-full flex justify-center items-center gap-3 p-6 sm:p-10 lg:p-20" : 'hidden'}>
 
-                    <div className='group hover:bg-sprPrimary300 active:bg-sprPrimary bg-white flex-auto flex flex-col justify-center items-center drop-shadow-sm rounded-lg p-2 md:p-5' onClick={() => {
+                    <div className='group  hover:bg-sprPrimary300 active:bg-sprPrimary bg-white flex-auto flex flex-col justify-center items-center drop-shadow-sm rounded-lg p-2 md:p-5' onClick={() => {
                         setShowTable(true)
                         setClassification('Aromatic')
                     }}>
                         <AromIcon className='h-20 group-hover:stroke-white ' stroke='#AFBE00' />
                         <h1 className='text-lg font-medium text-sprPrimaryDark group-hover:text-white '>Aromatic</h1>
                     </div>
-                    <div className=' group hover:bg-sprPrimary300 active:bg-sprPrimary  bg-white flex-auto flex flex-col justify-center items-center drop-shadow-sm rounded-lg p-2 md:p-5' onClick={() => {
+                    <div className=' group  hover:bg-sprPrimary300 active:bg-sprPrimary  bg-white flex-auto flex flex-col justify-center items-center drop-shadow-sm rounded-lg p-2 md:p-5' onClick={() => {
                         setShowTable(true)
                         setClassification('Pigmented')
                     }}>
                         <PigIcon className='h-20 group-hover:stroke-white' stroke='#AFBE00' />
                         <h1 className='text-lg font-medium text-sprPrimaryDark  group-hover:text-white'>Pigmented</h1>
                     </div>
-                    <div className='group hover:bg-sprPrimary300 active:bg-sprPrimary text-lg font-medium text-sprPrimaryDark bg-white flex-auto flex flex-col justify-center items-center drop-shadow-sm rounded-lg p-2 md:p-5' onClick={() => {
+                    <div className='group   hover:bg-sprPrimary300 active:bg-sprPrimary text-lg font-medium text-sprPrimaryDark bg-white flex-auto flex flex-col justify-center items-center drop-shadow-sm rounded-lg p-2 md:p-5' onClick={() => {
                         setShowTable(true)
 
                         setClassification('Glutinous')
@@ -144,22 +144,22 @@ export default function Dash() {
                 {/* With Table */}
                 <section className={showTable === true ? " mb-2" : "hidden"}>
 
-                    <div className='flex w-full gap-3'>
-                        <div className={classification === 'Aromatic' ? "group hover:bg-sprPrimary300 active:bg-sprPrimary bg-sprPrimary  flex-auto flex flex-col justify-center items-center drop-shadow-sm rounded-lg p-2" : "group hover:bg-sprPrimary300 active:bg-sprPrimary bg-white  flex-auto flex flex-col justify-center items-center drop-shadow-sm rounded-lg p-2"} onClick={() => {
+                    <div className='flex w-full gap-3 cursor-pointer'>
+                        <div className={classification === 'Aromatic' ? "group  hover:bg-sprPrimary300 active:bg-sprPrimary bg-sprPrimary  flex-auto flex flex-col justify-center items-center drop-shadow-sm rounded-lg p-2" : "group hover:bg-sprPrimary300 active:bg-sprPrimary bg-white  flex-auto flex flex-col justify-center items-center drop-shadow-sm rounded-lg p-2"} onClick={() => {
                             setShowTable(true)
                             setClassification('Aromatic')
                         }}>
                             <AromIcon className='h-10 group-hover:stroke-white' stroke={classification === 'Aromatic' ? 'white' : '#AFBE00'} />
                             <h1 className={classification === 'Aromatic' ? "group-hover:text-white text-sm md:text-lg font-medium text-white" : 'group-hover:text-white text-sm md:text-lg font-medium text-sprPrimaryDark'}>Aromatic</h1>
                         </div>
-                        <div className={classification === 'Pigmented' ? "group hover:bg-sprPrimary300 active:bg-sprPrimary bg-sprPrimary  flex-auto flex flex-col justify-center items-center drop-shadow-sm rounded-lg p-2" : "group hover:bg-sprPrimary300 active:bg-sprPrimary bg-white  flex-auto flex flex-col justify-center items-center drop-shadow-sm rounded-lg p-2"} onClick={() => {
+                        <div className={classification === 'Pigmented' ? "group  hover:bg-sprPrimary300 active:bg-sprPrimary bg-sprPrimary  flex-auto flex flex-col justify-center items-center drop-shadow-sm rounded-lg p-2" : "group hover:bg-sprPrimary300 active:bg-sprPrimary bg-white  flex-auto flex flex-col justify-center items-center drop-shadow-sm rounded-lg p-2"} onClick={() => {
                             setShowTable(true)
                             setClassification('Pigmented')
                         }}>
                             <PigIcon className='h-10 group-hover:stroke-white' stroke={classification === 'Pigmented' ? 'white' : '#AFBE00'} />
                             <h1 className={classification === 'Pigmented' ? "group-hover:text-white text-sm md:text-lg font-medium text-white" : 'group-hover:text-white text-sm md:text-lg font-medium text-sprPrimaryDark'}>Pigmented</h1>
                         </div>
-                        <div className={classification === 'Glutinous' ? "group hover:bg-sprPrimary300 active:bg-sprPrimary bg-sprPrimary  flex-auto flex flex-col justify-center items-center drop-shadow-sm rounded-lg p-2" : "group hover:bg-sprPrimary300 active:bg-sprPrimary bg-white  flex-auto flex flex-col justify-center items-center drop-shadow-sm rounded-lg p-2"} onClick={() => {
+                        <div className={classification === 'Glutinous' ? "group  hover:bg-sprPrimary300 active:bg-sprPrimary bg-sprPrimary  flex-auto flex flex-col justify-center items-center drop-shadow-sm rounded-lg p-2" : "group hover:bg-sprPrimary300 active:bg-sprPrimary bg-white  flex-auto flex flex-col justify-center items-center drop-shadow-sm rounded-lg p-2"} onClick={() => {
 
                             setShowTable(true)
 
@@ -173,14 +173,14 @@ export default function Dash() {
                 </section>
                 <section className={showTable === true ? " relative flex-auto overflow-auto  scrollbar bg-white rounded-lg border border-slate-200 w-full" : "hidden"}>
 
-                    <div className="flex w-full max-h-0 sm:max-h-0 sm:max-w-0 lg:max-w-full  relative bg-yellow-400">
-                        <div className='flex flex-col relative h-full w-full'>
-                            <div className=' sticky top-0 flex  border-b border-slate-200'>
+                    <div className="flex w-full max-h-0  lg:max-w-full  relative bg-yellow-400">
+                        <div className=' flex-col relative h-full w-full'>
+                            <div className=' sticky top-0 hidden sm:flex  border-b border-slate-200'>
                                 <div className='w-10 h-fit px-3 bg-white text-sprPrimary700 '>#</div>
-                                <div className=' w-1/4 h-fit bg-white px-3 text-sprPrimary700'>Accession</div>
-                                <div className='w-1/4 h-fit bg-white px-3 text-sprPrimary700'>Classification</div>
-                                <div className=' w-1/4 h-fit bg-white px-3 text-sprPrimary700'>Variety</div>
-                                <div className='w-1/4 h-fit bg-white px-3 text-sprPrimary700'>Source</div>
+                                <div className=' w-full h-fit bg-white px-3 text-sprPrimary700'>Accession</div>
+                                <div className='w-full h-fit bg-white px-3 text-sprPrimary700'>Classification</div>
+                                <div className=' w-full h-fit bg-white px-3 text-sprPrimary700'>Variety</div>
+                                <div className='w-full h-fit bg-white px-3 text-sprPrimary700'>Source</div>
                                 <div className=' w-24 bg-white px-3 whitespace-nowrap flex flex-col justify-center  group relative' onClick={() => { exportExcel() }}>
                                     <ExcelIcon className='stroke-sprPrimary px-3 h-5 hover:stroke-sprPrimarySuperLight active:stroke-sprPrimary' />
                                     <small className='hidden group-hover:block absolute right-0 top-6  bg-slate-900 rounded-sm text-white font-medium px-2'>Export Table</small>
@@ -189,16 +189,16 @@ export default function Dash() {
                             {
                                 searched.map((rice) => (
                                     // <div className="px-6 py-2 font-medium text-sprPrimary300 "> {list = list + 1} </div>
-                                    <div className='flex group cursor-pointer border-b border-slate-200 ' onClick={() => {
+                                    <div className='hidden sm:flex group cursor-pointer border-b border-slate-200 ' onClick={() => {
                                         setIsModalOpen(true)
                                         setCurrentId(rice.accession)
                                         console.log(rice.accession)
                                     }}>
-                                        <div className='group-hover:bg-slate-200 group-active:bg-sprPrimary500  w-10 h-fit  bg-white p-3 text-slate-700' >{list = list + 1} </div>
-                                        <div className='group-hover:bg-slate-200 group-active:bg-sprPrimary500 w-1/4 h-fit  bg-slate-50 p-3 text-slate-700'>{rice.accession === "" ? "---" : `CL-R${rice.accession}`}</div>
-                                        <div className='group-hover:bg-slate-200 group-active:bg-sprPrimary500 w-1/4 h-fit bg-slate-100 p-3 text-slate-700'>{rice.classification === "" ? "---" : rice.classification}</div>
-                                        <div className='group-hover:bg-slate-200 group-active:bg-sprPrimary500 w-1/4 h-fit bg-slate-50 p-3 text-slate-700'>{rice.variety === "" ? "---" : rice.variety}</div>
-                                        <div className='group-hover:bg-slate-200 group-active:bg-sprPrimary500 w-1/4 h-fit bg-slate-100 p-3 text-slate-700'>{rice.source === "" ? "---" : rice.source}</div>
+                                        <div className='group-hover:bg-slate-200 group-active:bg-sprPrimary500  w-10 h-auto  bg-white p-3 text-slate-700' >{list = list + 1} </div>
+                                        <div className='group-hover:bg-slate-200 group-active:bg-sprPrimary500 w-full h-auto  bg-slate-50 p-3 text-slate-700'>{rice.accession === "" ? "---" : `CL-R${rice.accession}`}</div>
+                                        <div className='group-hover:bg-slate-200 group-active:bg-sprPrimary500 w-full h-auto bg-slate-100 p-3 text-slate-700'>{rice.classification === "" ? "---" : rice.classification}</div>
+                                        <div className='group-hover:bg-slate-200 group-active:bg-sprPrimary500 w-full h-auto bg-slate-50 p-3 text-slate-700'>{rice.variety === "" ? "---" : rice.variety}</div>
+                                        <div className='group-hover:bg-slate-200 group-active:bg-sprPrimary500 w-full h-auto bg-slate-100 p-3 text-slate-700'>{rice.source === "" ? "---" : rice.source}</div>
                                         <div className='group-hover:bg-slate-200 group-active:bg-sprPrimary500   w-24 bg-slate-100 p-3 '>
                                             <ExcelIcon className='stroke-sprPrimary px-3 h-5 hover:stroke-sprPrimarySuperLight active:stroke-sprPrimary opacity-0' />
 
@@ -207,6 +207,29 @@ export default function Dash() {
                                     </div>
                                 ))
                             }
+
+                            {/* Mobile */}
+                            <div className='w-full sm:hidden flex flex-col gap-2 p-2'>
+                                {searched.map((rice) => (
+                                    <div className="flex justify-between items-center  bg-slate-50">
+                                        <div className="flex flex-col -space-y-3">
+                                            <div className="px-6 py-4 text-3xl font-bold text-sprGray80">CL-R{rice.accession}</div>
+                                            <div className="px-6 py-2 text-md font-normal text-slate-800">{rice.classification} Season</div>
+                                            <div className="px-6 py-2 text-md font-normal text-slate-800">{rice.variety}</div>
+                                            <div className="px-6 py-2 text-md font-normal text-slate-800">{rice.source}</div>
+
+                                        </div>
+                                        <button className="mr-8 bg-sprPrimary hover:bg-sprPrimary500 active:bg-sprPrimary rounded-full p-1 px-2 text-white font-medium text-xl"
+                                            onClick={() => {
+                                                setIsModalOpen(true)
+                                                setCurrentId(rice.accession)
+                                                console.log(rice.accession)
+                                            }}
+                                        >view</button>
+                                    </div>
+                                ))}
+                            </div>
+
 
                         </div>
 
@@ -276,27 +299,14 @@ export default function Dash() {
                             ))}
                         </div> */}
 
-                        {/* Mobile */}
-                        <div className='w-full sm:hidden flex flex-col gap-2 p-2'>
-                            {searched.map((rice) => (
-                                <div className="flex justify-between items-center  bg-slate-50">
-                                    <div className="flex flex-col -space-y-3">
-                                        <div className="px-6 py-4 text-3xl font-bold text-sprGray80">CL-R{rice.accession}</div>
-                                        <div className="px-6 py-2 text-md font-normal text-sprPrimary500">{rice.classification} Season</div>
-                                        <div className="px-6 py-2 text-md font-normal text-sprPrimary500">{rice.variety}</div>
-                                        <div className="px-6 py-2 text-md font-normal text-sprPrimary500">{rice.source}</div>
 
-                                    </div>
-                                    <button className="mr-8 bg-sprPrimary hover:bg-sprPrimary500 active:bg-sprPrimary rounded-full p-1 px-2 text-white font-medium text-xl"
-                                        onClick={() => {
-                                            setIsModalOpen(true)
-                                            setCurrentId(rice.accession)
-                                            console.log(rice.accession)
-                                        }}
-                                    >view</button>
+                        {/* <div className=' block sm:hidden'>
+                            {searched.map((rice) => (
+                                <div className='bg-blue-400'>
                                 </div>
                             ))}
-                        </div>
+
+                        </div> */}
 
 
                     </div>
