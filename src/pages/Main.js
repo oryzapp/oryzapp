@@ -36,74 +36,74 @@ const Main = () => {
 		return unsub;
 	}, [])
 
-	 // Window Width------------>
-  const [windowWidth, setWindowWidth] = useState(window.innerWidth)
+	// Window Width------------>
+	const [windowWidth, setWindowWidth] = useState(window.innerWidth)
 
-  const handleResize = () => {
-    setWindowWidth(window.innerWidth)
-  }
+	const handleResize = () => {
+		setWindowWidth(window.innerWidth)
+	}
 
-  useEffect(()=>{
-    window.addEventListener('resize', handleResize)
-  },[])
+	useEffect(() => {
+		window.addEventListener('resize', handleResize)
+	}, [])
 
-  console.log(windowWidth);
+	console.log(windowWidth);
 
-  		// prompts
-		  const [isPromptOpen, setIsPromptOpen] = useState(false)
-		  const message = 'Signed Up Succesfully!'
-		  console.log(isPromptOpen);
+	// prompts
+	const [isPromptOpen, setIsPromptOpen] = useState(false)
+	const message = 'Signed Up Succesfully!'
+	console.log(isPromptOpen);
 
 
 	// Authentication // Current user--------->
 	useEffect(() => {
 		const unsub = onAuthStateChanged(auth, async (user) => {
-			
-			let userType =''
+
+			let userType = ''
 			try {
 				if (user !== null) {
-				const matchUser = users.find((dbUser) => dbUser.email === user.email)
-				userType = matchUser.type
-				console.log(userType);
+					const matchUser = users.find((dbUser) => dbUser.email === user.email)
+					userType = matchUser.type
+					console.log(userType);
 
-				if(userType === 'New'){
-					console.log('hello New');
-					setIsPromptOpen(true)
-					setTimeout(()=>{
-						setIsPromptOpen(false);
-					},3000)
+					if (userType === 'New') {
+						console.log('hello New');
+						setIsPromptOpen(true)
+						setTimeout(() => {
+							setIsPromptOpen(false);
+						}, 3000)
+					}
+
+					if (matchUser.role === 'Administrator') {
+						setIsAdmin(true)
+						// if(windowWidth <= 480 ){
+						// 	setPage('scan-code')
+						// }
+						// else{
+						// 	setPage('dashboard')
+						// }
+					}
+					if (matchUser.role === 'Guest') {
+						setIsAdmin(false)
+						setPage('scan-code')
+					}
+					if (matchUser.role === 'Disabled') {
+						await auth.signOut();
+						navigate('/login');
+
+					}
+				}
+				else {
+					await auth.signOut();
+					navigate('/login');
+
 				}
 
-				if (matchUser.role === 'Administrator') {
-					setIsAdmin(true)
-					// if(windowWidth <= 480 ){
-					// 	setPage('scan-code')
-					// }
-					// else{
-					// 	setPage('dashboard')
-					// }
-				}
-				if (matchUser.role === 'Guest') {
-					setIsAdmin(false)
-					setPage('scan-code')
-				}
-				 if(matchUser.role === 'Disabled') {
-				await auth.signOut();
-				navigate('/login');
-
-			}
-			}
-			else {
-				await auth.signOut();
-				navigate('/login');
-
-			}
-				
 			} catch (error) {
 				console.log(error);
 			}
-			
-			
+
+
 		})
 		return unsub
 
@@ -147,16 +147,17 @@ const Main = () => {
 	return (
 		<>
 			{/* <ModalSuccess open={isPromptOpen} close={()=>{setIsPromptOpen(false)}} message={message}/> */}
-		<div className=" bg-sprBackground flex flex-col h-screen relative ">
-			<div className="text-">
-				<Topbar />
-			</div>
-			<div className=" px-2 py-0 flex-col-reverse h-full max-h-full flex  sm:gap-2 sm:flex-row sm:p-0 sm:pb-2 sm:pr-2  ">
-				<Sidebar onChange={setPage} />
-				{getPage()}
+			<div className=" bg-slate-100 flex flex-col h-screen relative ">
+				<div className="text-">
+					<Topbar />
+				</div>
+				<div className=" px-2 py-0 flex-col-reverse h-full max-h-full flex  sm:gap-2 sm:flex-row sm:p-0 sm:pb-2 sm:pr-2  ">
+					<Sidebar onChange={setPage} />
+					{getPage()}
+					{/* NO INTERNET CONNECTION HERE? */}
 
+				</div>
 			</div>
-		</div>
 		</>
 	)
 }

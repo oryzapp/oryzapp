@@ -16,6 +16,7 @@ import QrScanner from "qr-scanner"
 import { async } from "@firebase/util"
 import { onAuthStateChanged } from "firebase/auth"
 import ModalSuccess from "../components/ModalSuccess"
+import ModalFailed from "../components/ModalFailed"
 
 
 
@@ -53,6 +54,7 @@ export default function Login() {
 	}
 	// Success Prompt
 	const [isPromptOpen, setIsPromptOpen] = useState(false)
+	const [isPromptFailOpen, setIsPromptFailOpen] = useState(false)
 
 	// print errors--------------->
 	const [errorMessage, setErrorMessage] = useState('error')
@@ -90,10 +92,16 @@ export default function Login() {
 			else {
 				if (matchUser.role === 'Disabled') {
 					setIsError(true)
-					setErrorMessage('*Account is Disabled')
+					setIsPromptFailOpen(true)
+					setErrorMessage('Account Disabled')
+					setTimeout(() => {
+						setIsPromptFailOpen(false)
+					}, 10000)
 					setTimeout(() => {
 						setIsError(false)
-					}, 5000)
+					}, 10000)
+
+
 				}
 				else {
 					setIsError(false)
@@ -219,7 +227,14 @@ export default function Login() {
 
 					if (matchUser.role === 'Disabled') {
 						setIsError(true)
-						setErrorMessage('* Sorry your account is disabled')
+						setIsPromptFailOpen(true)
+						setErrorMessage('Account Disabled')
+						setTimeout(() => {
+							setIsPromptFailOpen(false)
+						}, 10000)
+						setTimeout(() => {
+							setIsError(false)
+						}, 10000)
 
 					}
 					else {
@@ -251,6 +266,7 @@ export default function Login() {
 	return (
 		<div className="h-full  absolute top-0 bottom-0 right-0 left-0 flex justify-center items-center">
 			<ModalSuccess open={isPromptOpen} close={() => { setIsPromptOpen(false) }} message={'Signed In Successfully!'} />
+			<ModalFailed open={isPromptFailOpen} close={() => { setIsPromptFailOpen(false) }} message={'Sorry.Your account is disabled by the Administrator.Please contact your admin personally.Thank You!'} />
 
 			{/* Background */}
 			<div className=" absolute h-screen w-screen overflow-hidden ">

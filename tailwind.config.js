@@ -37,7 +37,7 @@ module.exports = {
         sprPrimary50: "#FDFFEA",
         sprPrimary100: "#FAFFB6",
         sprPrimary200: "#E8F084",
-        sprPrimary300: "#DEEC36",
+        sprPrimary300: "#D2DF3B",
         sprPrimary400: "#C9D910",
         sprPrimary500: "#C0CF15",
         sprPrimary600: "#A1AD10",

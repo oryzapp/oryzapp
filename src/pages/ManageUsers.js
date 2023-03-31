@@ -41,7 +41,7 @@ export default function ManageUsers() {
   const [modalFname, setModalFname] = useState('')
   const [modalLname, setModalLname] = useState('')
 
-  
+
 
   // Search Box ----------------------->
   const [searchInput, setSearchInput] = useState('')
@@ -104,7 +104,7 @@ export default function ManageUsers() {
 
   return (
     <>
-    
+
       <div className='h-full w-full hidden sm:flex flex-col rounded-t-xl  sm:rounded-xl bg-slate-50 opacity-90 p-2'>
 
         {/* Header */}
@@ -118,16 +118,16 @@ export default function ManageUsers() {
 
           <div className="flex  items-center gap-3 bg-white rounded-full">
             <div className="relative drop-shadow-md">
-                <input
-                  className=" pl-2 py-2 text-sm placeholder:text-sprPrimary/50 text-sprPrimary focus:outline-none focus:border-none  rounded-full  "
-                  type="text"
-                  placeholder="Find a User"
-                  value={searchInput}
+              <input
+                className=" pl-2 py-2 text-sm placeholder:text-sprPrimary/50 text-sprPrimary focus:outline-none focus:border-none  rounded-full  "
+                type="text"
+                placeholder="Find a User"
+                value={searchInput}
                 onChange={handleSearchInput}
-                />
-                <button className="  h-full px-2 rounded-full absolute right-0  bg-sprPrimaryLight">
-                  <SearchIcon stroke=" white" />
-                </button>
+              />
+              <button className="  h-full px-2 rounded-full absolute right-0  bg-sprPrimaryLight">
+                <SearchIcon stroke=" white" />
+              </button>
             </div>
 
           </div>
@@ -171,7 +171,7 @@ export default function ManageUsers() {
                 }
 
               </div>
-             
+
 
               <div className="hidden sm:flex flex-col  divide-y sm:divide-y divide-slate-200 bg-slate-50 h-full sticky right-0">
                 <div className=" text-sprPrimary bg-white  px-10 py-4 sticky top-0 text-sm font-medium">
@@ -183,139 +183,139 @@ export default function ManageUsers() {
                   {oryzappUsers.map((user) => (
                     <div className="px-6 py-4 text-md font-medium text-sprGray60 whitespace-nowrap" >
                       <div className="flex gap-2">
-                       
-                        <button className=" group flex gap-1 items-center justify-center px-2  hover:bg-sprPrimaryOffLight active:bg-sprPrimary rounded-full h-6 mr-2" 
-                        onClick={()=>{
-                          setIsModalOpen(true)
-                          setModalId(user.id)
-                          setModalEmail(user.email)
-                          setModalRole(user.role)
-                          setModalPassword(user.password)
-                          setModalFname(user.fname)
-                          setModalLname(user.lname)
-                        }}>
-                           <View className= 'fill-sprPrimary h-7  group-active:fill-white ' />
 
-                               
+                        <button className=" group flex gap-1 items-center justify-center px-2  hover:bg-sprPrimaryOffLight active:bg-sprPrimary rounded-full h-6 mr-2"
+                          onClick={() => {
+                            setIsModalOpen(true)
+                            setModalId(user.id)
+                            setModalEmail(user.email)
+                            setModalRole(user.role)
+                            setModalPassword(user.password)
+                            setModalFname(user.fname)
+                            setModalLname(user.lname)
+                          }}>
+                          <View className='fill-sprPrimary h-7  group-active:fill-white ' />
+
+
                         </button>
-                        <button className={user.role === 'Administrator' ? " flex gap-1 items-center justify-center px-2 bg-sprPrimary rounded-full h-6": " flex gap-1 items-center justify-center px-2 bg-sprGray/30 rounded-full h-6"}
-                         onClick={()=>{
-                          setIsModalChangeRoleOpen(true)
-                          setModalId(user.id)
-                          setModalEmail(user.email)
-                          setRoleChoice('Administrator')
-                         }
-                         }
-                         disabled={user.role === 'Administrator' ? true : false}
+                        <button className={user.role === 'Administrator' ? " flex gap-1 items-center justify-center px-2 bg-sprPrimary rounded-full h-6" : " flex gap-1 items-center justify-center px-2 bg-sprGray/30 rounded-full h-6"}
+                          onClick={() => {
+                            setIsModalChangeRoleOpen(true)
+                            setModalId(user.id)
+                            setModalEmail(user.email)
+                            setRoleChoice('Administrator')
+                          }
+                          }
+                          disabled={user.role === 'Administrator' ? true : false}
                         >
-                           <AdminIcon className='fill-white h-3  ' />
-                                <h1 className='hidden lg:block text-white font-medium text-md'>Administrator</h1>
+                          <AdminIcon className='fill-white h-3  ' />
+                          <h1 className='hidden lg:block text-white font-medium text-md'>Administrator</h1>
                         </button>
-                        
-                         {user.email !== 'clsuspecialpurposerice@gmail.com'?<>
-                            <button className={user.role === 'Guest' ? " flex gap-1 items-center justify-center px-2 bg-yellow-400 rounded-full h-6": " flex gap-1 items-center justify-center px-2 bg-sprGray/30 rounded-full h-6"}
-                        onClick={()=>{
-                          setIsModalChangeRoleOpen(true)
-                          setModalId(user.id)
-                          setModalEmail(user.email)
-                          setRoleChoice('Guest')
-                         }
-                         }
-                         disabled={user.role === 'Guest' ? true : false}
-                        >
-                           <UserIcon className='fill-white h-4  ' />
-                                <h1 className='hidden lg:block text-white font-medium text-md'>Guest</h1>
-                        </button>
-                        
-                        <button className={user.role === 'Disabled' ? " flex gap-1 items-center justify-center px-2 bg-sprTertiary rounded-full h-6": " flex gap-1 items-center justify-center px-2 bg-sprGray/30 rounded-full h-6"}
-                         onClick={()=>{
-                          setIsModalChangeRoleOpen(true)
-                          setModalId(user.id)
-                          setModalEmail(user.email)
-                          setRoleChoice('Disabled')
-                         }
-                         }
-                         disabled={user.role === 'Disabled' ? true : false}
-                        >
-                           <DisabledIcon className='stroke-white h-4  ' />
-                                <h1 className='hidden lg:block text-white font-medium text-md'>Disabled</h1>
-                        </button></>:
-                        <></>}
-                        
+
+                        {user.email !== 'clsuspecialpurposerice@gmail.com' ? <>
+                          <button className={user.role === 'Guest' ? " flex gap-1 items-center justify-center px-2 bg-yellow-400 rounded-full h-6" : " flex gap-1 items-center justify-center px-2 bg-sprGray/30 rounded-full h-6"}
+                            onClick={() => {
+                              setIsModalChangeRoleOpen(true)
+                              setModalId(user.id)
+                              setModalEmail(user.email)
+                              setRoleChoice('Guest')
+                            }
+                            }
+                            disabled={user.role === 'Guest' ? true : false}
+                          >
+                            <UserIcon className='fill-white h-4  ' />
+                            <h1 className='hidden lg:block text-white font-medium text-md'>Guest</h1>
+                          </button>
+
+                          <button className={user.role === 'Disabled' ? " flex gap-1 items-center justify-center px-2 bg-sprTertiary rounded-full h-6" : " flex gap-1 items-center justify-center px-2 bg-sprGray/30 rounded-full h-6"}
+                            onClick={() => {
+                              setIsModalChangeRoleOpen(true)
+                              setModalId(user.id)
+                              setModalEmail(user.email)
+                              setRoleChoice('Disabled')
+                            }
+                            }
+                            disabled={user.role === 'Disabled' ? true : false}
+                          >
+                            <DisabledIcon className='stroke-white h-4  ' />
+                            <h1 className='hidden lg:block text-white font-medium text-md'>Disabled</h1>
+                          </button></> :
+                          <></>}
+
 
                       </div>
                     </div>
                   ))}
-                </> : 
-                
-                <>{searched.map((user) => (
-                  <div className="px-6 py-4 text-md font-medium text-sprGray60 whitespace-nowrap" >
+                </> :
+
+                  <>{searched.map((user) => (
+                    <div className="px-6 py-4 text-md font-medium text-sprGray60 whitespace-nowrap" >
                       <div className="flex gap-2">
-                       
-                        <button className=" group flex gap-1 items-center justify-center px-2  hover:bg-sprPrimaryOffLight active:bg-sprPrimary rounded-full h-6 mr-2" 
-                        onClick={()=>{
-                          setIsModalOpen(true)
-                          setModalId(user.id)
-                          setModalEmail(user.email)
-                          setModalRole(user.role)
-                          setModalPassword(user.password)
-                          setModalFname(user.fname)
-                          setModalLname(user.lname)
-                          
 
-                        }}>
-                           <View className= 'fill-sprPrimary h-7  group-active:fill-white ' />
+                        <button className=" group flex gap-1 items-center justify-center px-2  hover:bg-sprPrimaryOffLight active:bg-sprPrimary rounded-full h-6 mr-2"
+                          onClick={() => {
+                            setIsModalOpen(true)
+                            setModalId(user.id)
+                            setModalEmail(user.email)
+                            setModalRole(user.role)
+                            setModalPassword(user.password)
+                            setModalFname(user.fname)
+                            setModalLname(user.lname)
 
-                               
+
+                          }}>
+                          <View className='fill-sprPrimary h-7  group-active:fill-white ' />
+
+
                         </button>
-                        <button className={user.role === 'Administrator' ? " flex gap-1 items-center justify-center px-2 bg-sprPrimary rounded-full h-6": " flex gap-1 items-center justify-center px-2 bg-sprGray/30 rounded-full h-6"}
-                         onClick={()=>{
-                          setIsModalChangeRoleOpen(true)
-                          setModalId(user.id)
-                          setModalEmail(user.email)
-                          setRoleChoice('Administrator')
-                         }
-                         }
-                         disabled={user.role === 'Administrator' ? true : false}
+                        <button className={user.role === 'Administrator' ? " flex gap-1 items-center justify-center px-2 bg-sprPrimary rounded-full h-6" : " flex gap-1 items-center justify-center px-2 bg-sprGray/30 rounded-full h-6"}
+                          onClick={() => {
+                            setIsModalChangeRoleOpen(true)
+                            setModalId(user.id)
+                            setModalEmail(user.email)
+                            setRoleChoice('Administrator')
+                          }
+                          }
+                          disabled={user.role === 'Administrator' ? true : false}
                         >
-                           <AdminIcon className='fill-white h-3  ' />
-                                <h1 className='hidden lg:block text-white font-medium text-md'>Administrator</h1>
+                          <AdminIcon className='fill-white h-3  ' />
+                          <h1 className='hidden lg:block text-white font-medium text-md'>Administrator</h1>
                         </button>
-                        
-                         {user.email !== 'clsuspecialpurposerice@gmail.com'?<>
-                            <button className={user.role === 'Guest' ? " flex gap-1 items-center justify-center px-2 bg-yellow-400 rounded-full h-6": " flex gap-1 items-center justify-center px-2 bg-sprGray/30 rounded-full h-6"}
-                        onClick={()=>{
-                          setIsModalChangeRoleOpen(true)
-                          setModalId(user.id)
-                          setModalEmail(user.email)
-                          setRoleChoice('Guest')
-                         }
-                         }
-                         disabled={user.role === 'Guest' ? true : false}
-                        >
-                           <UserIcon className='fill-white h-4  ' />
-                                <h1 className='hidden lg:block text-white font-medium text-md'>Guest</h1>
-                        </button>
-                        
-                        <button className={user.role === 'Disabled' ? " flex gap-1 items-center justify-center px-2 bg-sprTertiary rounded-full h-6": " flex gap-1 items-center justify-center px-2 bg-sprGray/30 rounded-full h-6"}
-                         onClick={()=>{
-                          setIsModalChangeRoleOpen(true)
-                          setModalId(user.id)
-                          setModalEmail(user.email)
-                          setRoleChoice('Disabled')
-                         }
-                         }
-                         disabled={user.role === 'Disabled' ? true : false}
-                        >
-                           <DisabledIcon className='stroke-white h-4  ' />
-                                <h1 className='hidden lg:block text-white font-medium text-md'>Disabled</h1>
-                        </button></>:
-                        <></>}
-                        
+
+                        {user.email !== 'clsuspecialpurposerice@gmail.com' ? <>
+                          <button className={user.role === 'Guest' ? " flex gap-1 items-center justify-center px-2 bg-yellow-400 rounded-full h-6" : " flex gap-1 items-center justify-center px-2 bg-sprGray/30 rounded-full h-6"}
+                            onClick={() => {
+                              setIsModalChangeRoleOpen(true)
+                              setModalId(user.id)
+                              setModalEmail(user.email)
+                              setRoleChoice('Guest')
+                            }
+                            }
+                            disabled={user.role === 'Guest' ? true : false}
+                          >
+                            <UserIcon className='fill-white h-4  ' />
+                            <h1 className='hidden lg:block text-white font-medium text-md'>Guest</h1>
+                          </button>
+
+                          <button className={user.role === 'Disabled' ? " flex gap-1 items-center justify-center px-2 bg-sprTertiary rounded-full h-6" : " flex gap-1 items-center justify-center px-2 bg-sprGray/30 rounded-full h-6"}
+                            onClick={() => {
+                              setIsModalChangeRoleOpen(true)
+                              setModalId(user.id)
+                              setModalEmail(user.email)
+                              setRoleChoice('Disabled')
+                            }
+                            }
+                            disabled={user.role === 'Disabled' ? true : false}
+                          >
+                            <DisabledIcon className='stroke-white h-4  ' />
+                            <h1 className='hidden lg:block text-white font-medium text-md'>Disabled</h1>
+                          </button></> :
+                          <></>}
+
 
                       </div>
                     </div>
-                ))}</>}
+                  ))}</>}
               </div>
 
 
@@ -326,9 +326,9 @@ export default function ManageUsers() {
 
 
       </div>
-     
-      <ModalEditUsers open={isModalOpen} closeModal={() => { setIsModalOpen(false) }} modalId={modalId} modalEmail={modalEmail}  modalRole={modalRole} modalPassword= {modalPassword} modalFname={modalFname} modalLname={modalLname} />
-      <ModalChangeRole open={isModalChangeRoleOpen} closeModal={() => { setIsModalChangeRoleOpen(false) }} modalId={modalId} roleChoice={roleChoice} modalEmail={modalEmail}   />
+
+      <ModalEditUsers open={isModalOpen} closeModal={() => { setIsModalOpen(false) }} modalId={modalId} modalEmail={modalEmail} modalRole={modalRole} modalPassword={modalPassword} modalFname={modalFname} modalLname={modalLname} />
+      <ModalChangeRole open={isModalChangeRoleOpen} closeModal={() => { setIsModalChangeRoleOpen(false) }} modalId={modalId} roleChoice={roleChoice} modalEmail={modalEmail} />
 
     </>
   );

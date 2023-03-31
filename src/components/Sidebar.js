@@ -146,61 +146,61 @@ export default function Sidebar({ onChange }) {
             <button onClick={() => handleClick('dashboard', dashNav.index)} className={state === dashNav.index ? ` flex justify-center  flex-auto   sm:justify-start bg-sprPrimary rounded-full px-3 py-2 ${dashNav.order}  ` : ` group flex justify-center  flex-auto   sm:justify-start  px-3 py-2 hover:bg-slate-200 rounded-full  ${dashNav.order}`}>
               <div className="flex items-center space-x-1  "  >
                 <div className="rounded-xl h-6 w-6  ">
-                  <DashBIcon className=" group-hover:stroke-sprInactiveGray" fill="none" stroke={state !== dashNav.index ? "#888A89" : "white"} />
+                  <DashBIcon className=" group-hover:stroke-slate-500" fill="none" stroke={state !== dashNav.index ? "#888A89" : "white"} />
                 </div>
-                <h3 className={state === dashNav.index ? "nav-text hidden md:block text-white font-medium text-md" : "nav-text hidden  md:block text-sprInactiveGray font-medium text-md"}>Dashboard</h3>
+                <h3 className={state === dashNav.index ? "nav-text hidden md:block text-white font-medium text-base" : "nav-text hidden  md:block text-slate-500 font-medium text-base"}>Dashboard</h3>
               </div>
             </button>
 
             <button onClick={() => handleClick('users', 2)} className={state === 2 ? "hidden sm:flex justify-center  flex-auto   sm:justify-start bg-sprPrimary rounded-full px-3 py-2 " : "group hidden  sm:flex justify-center  flex-auto   sm:justify-start  px-3 py-2 hover:bg-slate-200 rounded-full  "}>
               <div className="flex items-center  space-x-1   " >
                 <div className="rounded-xl h-6 w-6  ">
-                  <MUsersIcon className=" group-hover:stroke-sprInactiveGray" fill="none" stroke={state !== 2 ? "#888A89" : "white"} />
+                  <MUsersIcon className=" group-hover:stroke-slate-500" fill="none" stroke={state !== 2 ? "#888A89" : "white"} />
                 </div>
-                <h3 className={state === 2 ? "nav-text hidden md:block text-white font-medium text-md" : "nav-text hidden  md:block text-sprInactiveGray font-medium text-md"}>Manage Users</h3>
+                <h3 className={state === 2 ? "nav-text hidden md:block text-white font-medium text-base" : "nav-text hidden  md:block text-slate-500 font-medium text-base"}>Manage Users</h3>
               </div>
             </button>
             <button onClick={() => handleClick('rice-accessions', 3)} className={state === 3 ? "flex justify-center  flex-auto   sm:justify-start bg-sprPrimary rounded-full px-3 py-2 " : "group flex justify-center  flex-auto   sm:justify-start  px-3 py-2 hover:bg-slate-200 rounded-full "} >
               <div className="flex items-center space-x-1   " >
                 <div className="rounded-xl h-6 w-6">
-                  <RiceAccIcon className=" group-hover:stroke-sprInactiveGray" fill="none" stroke={state !== 3 ? "#888A89" : "white"} />
+                  <RiceAccIcon className=" group-hover:stroke-slate-500" fill="none" stroke={state !== 3 ? "#888A89" : "white"} />
                 </div>
-                <h3 className={state === 3 ? "nav-text hidden md:block text-white font-medium text-md" : "nav-text hidden  md:block text-sprInactiveGray font-medium text-md"}>Rice Accessions</h3>
+                <h3 className={state === 3 ? "nav-text hidden md:block text-white font-medium text-base" : "nav-text hidden  md:block text-slate-500 font-medium text-base"}>Rice Accessions</h3>
               </div>
             </button>
 
             <button onClick={() => handleClick('rice-list', 4)} className={state === 4 ? "flex justify-center  flex-auto   sm:justify-start bg-sprPrimary rounded-full px-3 py-2 " : "group flex justify-center  flex-auto   sm:justify-start  px-3 py-2 hover:bg-slate-200 rounded-full "} >
               <div className="flex items-center space-x-1   " >
                 <div className="rounded-xl h-6 w-6">
-                  <RiceLIcon className=" group-hover:stroke-sprInactiveGray" fill="none" stroke={state !== 4 ? "#888A89" : "white"} />
+                  <RiceLIcon className=" group-hover:stroke-slate-500" fill="none" stroke={state !== 4 ? "#888A89" : "white"} />
                 </div>
-                <h3 className={state === 4 ? "nav-text hidden md:block text-white font-medium text-md" : "nav-text hidden  md:block text-sprInactiveGray font-medium text-md"}>Rice List</h3>
+                <h3 className={state === 4 ? "nav-text hidden md:block text-white font-medium text-base" : "nav-text hidden  md:block text-slate-500 font-medium text-base"}>Rice List</h3>
               </div>
             </button>
 
             <button onClick={() => handleClick('rice-data', 5)} className={state === 5 ? "hidden sm:flex justify-center  flex-auto   sm:justify-start bg-sprPrimary rounded-full px-3 py-2" : " group hidden sm:flex justify-center  flex-auto   sm:justify-start  px-3 py-2 hover:bg-slate-200 rounded-full "} >
               <div className="flex items-center space-x-1 " >
                 <div className="rounded-xl h-6 w-6 ">
-                  <RiceDIcon className=" group-hover:stroke-sprInactiveGray" fill="none" stroke={state !== 5 ? "#888A89" : "white"} />
+                  <RiceDIcon className=" group-hover:stroke-slate-500" fill="none" stroke={state !== 5 ? "#888A89" : "white"} />
                 </div>
-                <h3 className={state === 5 ? "nav-text hidden md:block text-white font-medium text-md" : "nav-text hidden  md:block text-sprInactiveGray font-medium text-md"}>Agronomic Traits</h3>
+                <h3 className={state === 5 ? "nav-text hidden md:block text-white font-medium text-base" : "nav-text hidden  md:block text-slate-500 font-medium text-base"}>Agronomic Traits</h3>
               </div>
             </button>
             <button onClick={() => handleClick('rice-gallery', 6)} className={state === 6 ? "flex justify-center  flex-auto   sm:justify-start bg-sprPrimary rounded-full px-3 py-2" : "group flex justify-center  flex-auto   sm:justify-start  px-3 py-2 hover:bg-slate-200 rounded-full "} >
               <div className="flex items-center space-x-1  ">
                 <div className="rounded-xl h-6 w-6 ">
-                  <RiceGIcon className=" group-hover:stroke-sprInactiveGray" fill="none" stroke={state !== 6 ? "#888A89" : "white"} />
+                  <RiceGIcon className=" group-hover:stroke-slate-500" fill="none" stroke={state !== 6 ? "#888A89" : "white"} />
                 </div>
-                <h3 className={state === 6 ? "nav-text hidden md:block text-white font-medium text-md" : "nav-text hidden  md:block text-sprInactiveGray font-medium text-md"}>Rice Gallery</h3>
+                <h3 className={state === 6 ? "nav-text hidden md:block text-white font-medium text-base" : "nav-text hidden  md:block text-slate-500 font-medium text-base"}>Rice Gallery</h3>
               </div>
             </button>
 
             <button onClick={() => handleClick('scan-code', scanNav.index)} className={state === scanNav.index ? ` flex justify-center  flex-auto   sm:justify-start bg-sprPrimary rounded-full px-3 py-2 ${scanNav.order}  ` : `group flex justify-center  flex-auto   sm:justify-start  px-3 py-2 hover:bg-slate-200 rounded-full ${scanNav.order}`} >
               <div className="flex items-center space-x-1  ">
                 <div className="rounded-xl h-6 w-6 ">
-                  <SQRIcon className=" group-hover:stroke-sprInactiveGray" fill="none" stroke={state !== scanNav.index ? "#888A89" : "white"} />
+                  <SQRIcon className=" group-hover:stroke-slate-500" fill="none" stroke={state !== scanNav.index ? "#888A89" : "white"} />
                 </div>
-                <h3 className={state === scanNav.index ? "nav-text hidden md:block text-white font-medium text-md" : "nav-text hidden  md:block text-sprInactiveGray font-medium text-md"}>Scan Code</h3>
+                <h3 className={state === scanNav.index ? "nav-text hidden md:block text-white font-medium text-base" : "nav-text hidden  md:block text-slate-500 font-medium text-base"}>Scan Rice Code</h3>
               </div>
             </button>
             <div className=" hover:bg-slate-900/40 group rounded-full absolute w-5 h-5 bg-slate-900/20 hidden sm:block text-center text-white bottom-5">?
@@ -219,18 +219,18 @@ export default function Sidebar({ onChange }) {
           <button onClick={() => handleClick('scan-code', 1)} className={state === 1 ? " flex justify-center  flex-auto   sm:justify-start bg-sprPrimary rounded-full px-3 py-2  " : "group flex justify-center  flex-auto   sm:justify-start  px-3 py-2 hover:bg-slate-200 rounded-full "} >
             <div className="flex items-center space-x-1  ">
               <div className="rounded-xl h-6 w-6 ">
-                <SQRIcon className=" group-hover:stroke-sprInactiveGray" fill="none" stroke={state !== 1 ? "#888A89" : "white"} />
+                <SQRIcon className=" group-hover:stroke-slate-500" fill="none" stroke={state !== 1 ? "#888A89" : "white"} />
               </div>
-              <h3 className={state === 1 ? "nav-text hidden md:block text-white font-medium text-md" : "nav-text hidden  md:block text-sprInactiveGray font-medium text-md"}>Scan Code</h3>
+              <h3 className={state === 1 ? "nav-text hidden md:block text-white font-medium text-base" : "nav-text hidden  md:block text-slate-500 font-medium text-base"}>Scan Rice Code</h3>
 
             </div>
           </button>
           <button onClick={() => handleClick('rice-list', 2)} className={state === 2 ? "flex justify-center  flex-auto   sm:justify-start bg-sprPrimary rounded-full px-3 py-2 " : "group flex justify-center  flex-auto   sm:justify-start  px-3 py-2 hover:bg-slate-200 rounded-full "} >
             <div className="flex items-center space-x-1   " >
               <div className="rounded-xl h-6 w-6">
-                <RiceLIcon className=" group-hover:stroke-sprInactiveGray" fill="none" stroke={state !== 2 ? "#888A89" : "white"} />
+                <RiceLIcon className=" group-hover:stroke-slate-500" fill="none" stroke={state !== 2 ? "#888A89" : "white"} />
               </div>
-              <h3 className={state === 2 ? "nav-text hidden md:block text-white font-medium text-md" : "nav-text hidden  md:block text-sprInactiveGray font-medium text-md"}>Rice List</h3>
+              <h3 className={state === 2 ? "nav-text hidden md:block text-white font-medium text-base" : "nav-text hidden  md:block text-slate-500 font-medium text-base"}>Rice List</h3>
             </div>
           </button>
 
@@ -238,9 +238,9 @@ export default function Sidebar({ onChange }) {
           <button onClick={() => handleClick('rice-gallery', 3)} className={state === 3 ? "flex justify-center  flex-auto   sm:justify-start bg-sprPrimary rounded-full px-3 py-2" : "group flex justify-center  flex-auto   sm:justify-start  px-3 py-2 hover:bg-slate-200 rounded-full  "} >
             <div className="flex items-center space-x-1  ">
               <div className="rounded-xl h-6 w-6 ">
-                <RiceGIcon className=" group-hover:stroke-sprInactiveGray" fill="none" stroke={state !== 3 ? "#888A89" : "white"} />
+                <RiceGIcon className=" group-hover:stroke-slate-500" fill="none" stroke={state !== 3 ? "#888A89" : "white"} />
               </div>
-              <h3 className={state === 3 ? "nav-text hidden md:block text-white font-medium text-md" : "nav-text hidden  md:block text-sprInactiveGray font-medium text-md"}>Rice Gallery</h3>
+              <h3 className={state === 3 ? "nav-text hidden md:block text-white font-medium text-base" : "nav-text hidden  md:block text-slate-500 font-medium text-base"}>Rice Gallery</h3>
             </div>
           </button>
 

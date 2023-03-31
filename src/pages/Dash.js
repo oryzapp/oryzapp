@@ -88,7 +88,7 @@ export default function Dash() {
                 </div>
                 {/* Header */}
                 <header className=" flex items-center justify-between">
-                    <h1 className="text-3xl font-bold text-sprBlack opacity-80">Dashboard </h1>
+                    <h1 className="text-3xl font-bold text-slate-700 opacity-80">Dashboard </h1>
                     {/* <div className='sm:hidden' onClick={()=>{
                         setIsSearchModalOpen(true)
                     }}>
@@ -176,12 +176,12 @@ export default function Dash() {
                     <div className="flex w-full max-h-0  lg:max-w-full  relative bg-yellow-400">
                         <div className=' flex-col relative h-full w-full'>
                             <div className=' sticky top-0 hidden sm:flex  border-b border-slate-200'>
-                                <div className='w-10 h-fit px-3 bg-white text-sprPrimary700 '>#</div>
-                                <div className=' w-full h-fit bg-white px-3 text-sprPrimary700'>Accession</div>
-                                <div className='w-full h-fit bg-white px-3 text-sprPrimary700'>Classification</div>
-                                <div className=' w-full h-fit bg-white px-3 text-sprPrimary700'>Variety</div>
-                                <div className='w-full h-fit bg-white px-3 text-sprPrimary700'>Source</div>
-                                <div className=' w-24 bg-white px-3 whitespace-nowrap flex flex-col justify-center  group relative' onClick={() => { exportExcel() }}>
+                                <div className='w-10 h-fit px-3 py-1 bg-white text-sprPrimary700 '>#</div>
+                                <div className=' w-full h-fit py-1 bg-white px-3 text-sprPrimary700'>Accession</div>
+                                <div className='w-full h-fit py-1 bg-white px-3 text-sprPrimary700'>Classification</div>
+                                <div className=' w-full h-fit py-1 bg-white px-3 text-sprPrimary700'>Variety</div>
+                                <div className='w-full h-fit py-1 bg-white px-3 text-sprPrimary700'>Source</div>
+                                <div className=' w-24 py-1 bg-white px-3 whitespace-nowrap flex flex-col justify-center  group relative' onClick={() => { exportExcel() }}>
                                     <ExcelIcon className='stroke-sprPrimary px-3 h-5 hover:stroke-sprPrimarySuperLight active:stroke-sprPrimary' />
                                     <small className='hidden group-hover:block absolute right-0 top-6  bg-slate-900 rounded-sm text-white font-medium px-2'>Export Table</small>
                                 </div>
@@ -194,11 +194,11 @@ export default function Dash() {
                                         setCurrentId(rice.accession)
                                         console.log(rice.accession)
                                     }}>
-                                        <div className='group-hover:bg-slate-200 group-active:bg-sprPrimary500  w-10 h-auto  bg-white p-3 text-slate-700' >{list = list + 1} </div>
-                                        <div className='group-hover:bg-slate-200 group-active:bg-sprPrimary500 w-full h-auto  bg-slate-50 p-3 text-slate-700'>{rice.accession === "" ? "---" : `CL-R${rice.accession}`}</div>
-                                        <div className='group-hover:bg-slate-200 group-active:bg-sprPrimary500 w-full h-auto bg-slate-100 p-3 text-slate-700'>{rice.classification === "" ? "---" : rice.classification}</div>
-                                        <div className='group-hover:bg-slate-200 group-active:bg-sprPrimary500 w-full h-auto bg-slate-50 p-3 text-slate-700'>{rice.variety === "" ? "---" : rice.variety}</div>
-                                        <div className='group-hover:bg-slate-200 group-active:bg-sprPrimary500 w-full h-auto bg-slate-100 p-3 text-slate-700'>{rice.source === "" ? "---" : rice.source}</div>
+                                        <div className='group-hover:bg-slate-200 group-active:bg-sprPrimary500  w-10 h-auto  bg-white p-3 text-slate-900' >{list = list + 1} </div>
+                                        <div className='group-hover:bg-slate-200 group-active:bg-sprPrimary500 w-full h-auto  bg-slate-50 p-3 text-slate-900'>{rice.accession === "" ? "---" : `CL-R${rice.accession}`}</div>
+                                        <div className='group-hover:bg-slate-200 group-active:bg-sprPrimary500 w-full h-auto bg-slate-100 p-3 text-slate-900'>{rice.classification === "" ? "---" : rice.classification}</div>
+                                        <div className='group-hover:bg-slate-200 group-active:bg-sprPrimary500 w-full h-auto bg-slate-50 p-3 text-slate-900'>{rice.variety === "" ? "---" : rice.variety}</div>
+                                        <div className='group-hover:bg-slate-200 group-active:bg-sprPrimary500 w-full h-auto bg-slate-100 p-3 text-slate-900'>{rice.source === "" ? "---" : rice.source}</div>
                                         <div className='group-hover:bg-slate-200 group-active:bg-sprPrimary500   w-24 bg-slate-100 p-3 '>
                                             <ExcelIcon className='stroke-sprPrimary px-3 h-5 hover:stroke-sprPrimarySuperLight active:stroke-sprPrimary opacity-0' />
 
