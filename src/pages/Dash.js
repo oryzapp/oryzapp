@@ -88,7 +88,7 @@ export default function Dash() {
                 </div>
                 {/* Header */}
                 <header className=" flex items-center justify-between">
-                    <h1 className="text-3xl font-bold text-slate-700 opacity-80">Dashboard </h1>
+                    <h1 className="text-3xl font-bold text-slate-900 opacity-80">Dashboard </h1>
                     {/* <div className='sm:hidden' onClick={()=>{
                         setIsSearchModalOpen(true)
                     }}>
