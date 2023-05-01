@@ -105,7 +105,7 @@ export default function ManageUsers() {
   return (
     <>
 
-      <div className='h-full w-full hidden sm:flex flex-col rounded-t-xl  sm:rounded-xl bg-slate-50 opacity-90 p-2'>
+      <div className='h-full w-full flex flex-col rounded-t-xl  sm:rounded-xl bg-slate-50 opacity-90 p-2'>
 
         {/* Header */}
         <header className=" flex items-center">
@@ -139,7 +139,7 @@ export default function ManageUsers() {
         <section className="flex-auto overflow-auto  scrollbar bg-white rounded-lg border border-slate-200 w-full">
           {oryzappUsers.length === 0 ? <div className="flex justify-center items-center pt-32 flex-col gap-8 "><EmptyIllustration /><p className="font-medium text-xl text-sprPrimaryOffLight">Plenty of space in the field </p></div> :
             <div className="flex w-full max-h-0 sm:max-h-0 sm:max-w-0 lg:max-w-full  relative bg-yellow-400">
-              <div className="hidden sm:flex flex-col  divide-y divide-slate-200 relative h-full ">
+              <div className="flex flex-col  divide-y divide-slate-200 relative h-full ">
                 <div className="  text-sprPrimary bg-white sticky top-0 px-6 py-4 text-sm font-medium">
                   #
                 </div>
@@ -156,7 +156,7 @@ export default function ManageUsers() {
                     </>
                 }
               </div>
-              <div className="hidden sm:flex flex-col flex-auto  divide-y divide-slate-200 relative h-full">
+              <div className="flex flex-col flex-auto  divide-y divide-slate-200 relative h-full">
                 <div className="text-sprPrimary bg-white sticky top-0 px-8 py-4 text-sm font-medium">
                   Email
                 </div>
@@ -173,7 +173,7 @@ export default function ManageUsers() {
               </div>
 
 
-              <div className="hidden sm:flex flex-col  divide-y sm:divide-y divide-slate-200 bg-slate-50 h-full sticky right-0">
+              <div className="flex flex-col  divide-y sm:divide-y divide-slate-200 bg-slate-50 h-full sticky right-0">
                 <div className=" text-sprPrimary bg-white  px-10 py-4 sticky top-0 text-sm font-medium">
                   <h1 className="opacity-0">
                     Action

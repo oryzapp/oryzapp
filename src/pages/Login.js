@@ -266,7 +266,7 @@ export default function Login() {
 	return (
 		<div className="h-full  absolute top-0 bottom-0 right-0 left-0 flex justify-center items-center">
 			<ModalSuccess open={isPromptOpen} close={() => { setIsPromptOpen(false) }} message={'Signed In Successfully!'} />
-			<ModalFailed open={isPromptFailOpen} close={() => { setIsPromptFailOpen(false) }} message={'Sorry.Your account is disabled by the Administrator.Please contact your admin personally.Thank You!'} />
+			<ModalFailed open={isPromptFailOpen} close={() => { setIsPromptFailOpen(false) }} message={`Sorry, your account is disabled by the Administrator. Please contact your admin personally or send an email @clsuspecialpurposerice@gmail.com. Thank You!`} />
 
 			{/* Background */}
 			<div className=" absolute h-screen w-screen overflow-hidden ">

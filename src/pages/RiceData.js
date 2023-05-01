@@ -35,21 +35,21 @@ export default function RiceData() {
   const getPage = () => {
     switch (page) {
       case 'vegetative-stage':
-        return <VegetativeStage filterSeason={filterSeason} filterYear={filterYear} searchInput={searchInput}/>
+        return <VegetativeStage filterSeason={filterSeason} filterYear={filterYear} searchInput={searchInput} />
       case 'reproductive-stage':
-        return <ReproductiveStage filterSeason={filterSeason} filterYear={filterYear} searchInput={searchInput}/>
+        return <ReproductiveStage filterSeason={filterSeason} filterYear={filterYear} searchInput={searchInput} />
       case 'grain-characteristics':
-        return <GrainCharacteristics  filterSeason={filterSeason} filterYear={filterYear} searchInput={searchInput}/>
+        return <GrainCharacteristics filterSeason={filterSeason} filterYear={filterYear} searchInput={searchInput} />
       case 'yield-components':
-        return <YieldComponents filterSeason={filterSeason} filterYear={filterYear} searchInput={searchInput}/>
-        default:
-          break;
+        return <YieldComponents filterSeason={filterSeason} filterYear={filterYear} searchInput={searchInput} />
+      default:
+        break;
     }
   }
 
   const [isModalOpen, setIsModalOpen] = useState(false)
-const [isPromptOpen, setIsPromptOpen] = useState(false)
-const message = 'Rice Data Successfully Added!'
+  const [isPromptOpen, setIsPromptOpen] = useState(false)
+  const message = 'Rice Data Successfully Added!'
 
   // Rice Data Inputs----------->
   const [riceData, setRiceData] = useState({
@@ -334,7 +334,7 @@ const message = 'Rice Data Successfully Added!'
         liguleColour: riceData.liguleColour,
         rhizomeandStolonFormation: riceData.rhizomeandStolonFormation,
         seedlingHeight: riceData.seedlingHeight,
-        searchIndex: `${riceData.accessionId} Shelf ${riceData.shelfNum}  ${riceData.auricleColor} ${riceData.coleoptileAnthocyaninColouration} ${riceData.collarColour} ${riceData.culmHabit} ${riceData.culmKneeingAbility} ${riceData.culmLength} ${riceData.culmNumber } ${riceData.culmDiameteratBasalInternode} ${riceData.culmAnthocyaninColourationonNodes} ${riceData.culmUnderlyingNodeColour} ${riceData.culmInternodeAnthocyanin} ${riceData.culmUnderlyingInternodeColouration} ${riceData.culmLodgingResistance} ${riceData.culmStrength} ${riceData.flagLeafLegnth} ${riceData.flagLeafWidth} ${riceData.flagLeafAttitudeEarlyobs} ${riceData.flagLeafAttitudeLateobs} ${riceData.leafMarginPubesence} ${riceData.leafSenesence} ${riceData.lbPresenceAbsenceofAnthocyaninColouration} ${riceData.lbDistributionofAnthocyaninColouration} ${riceData.lbIntensityofGreenColour} ${riceData.lbAttitude}${riceData.lbPubesence} ${riceData.lbPubesenceonBladeSurface} ${riceData.lbLength} ${ riceData.lbWidth} ${riceData.basalLeafSheathColour} ${riceData.lsAnthocyaninColouration} ${riceData.liguleLength} ${riceData.liguleShape} ${ riceData.liguleShapeCultivatedSpecies} ${riceData.liguleShapeWildSpecies} ${riceData.liguleMarginShapeWildSpecies} ${riceData.liguleMarginHairiness} ${riceData.ligulePubesence} ${riceData.liguleColour} ${riceData.rhizomeandStolonFormation} ${ riceData.seedlingHeight}`,
+        searchIndex: `${riceData.accessionId} Shelf ${riceData.shelfNum}  ${riceData.auricleColor} ${riceData.coleoptileAnthocyaninColouration} ${riceData.collarColour} ${riceData.culmHabit} ${riceData.culmKneeingAbility} ${riceData.culmLength} ${riceData.culmNumber} ${riceData.culmDiameteratBasalInternode} ${riceData.culmAnthocyaninColourationonNodes} ${riceData.culmUnderlyingNodeColour} ${riceData.culmInternodeAnthocyanin} ${riceData.culmUnderlyingInternodeColouration} ${riceData.culmLodgingResistance} ${riceData.culmStrength} ${riceData.flagLeafLegnth} ${riceData.flagLeafWidth} ${riceData.flagLeafAttitudeEarlyobs} ${riceData.flagLeafAttitudeLateobs} ${riceData.leafMarginPubesence} ${riceData.leafSenesence} ${riceData.lbPresenceAbsenceofAnthocyaninColouration} ${riceData.lbDistributionofAnthocyaninColouration} ${riceData.lbIntensityofGreenColour} ${riceData.lbAttitude}${riceData.lbPubesence} ${riceData.lbPubesenceonBladeSurface} ${riceData.lbLength} ${riceData.lbWidth} ${riceData.basalLeafSheathColour} ${riceData.lsAnthocyaninColouration} ${riceData.liguleLength} ${riceData.liguleShape} ${riceData.liguleShapeCultivatedSpecies} ${riceData.liguleShapeWildSpecies} ${riceData.liguleMarginShapeWildSpecies} ${riceData.liguleMarginHairiness} ${riceData.ligulePubesence} ${riceData.liguleColour} ${riceData.rhizomeandStolonFormation} ${riceData.seedlingHeight}`,
         timestamp: serverTimestamp(),
       };
       const rsColRef = doc(db, `/SPR/Rice_Seasons/Seasons/${season}/Stages/Reproductive_Stage/RS_Raw_Rice_Data`, `${riceData.accessionId}_${season}_${riceData.riceYear}`);
@@ -367,7 +367,7 @@ const message = 'Rice Data Successfully Added!'
         panicleSecondaryBranching: riceData.panicleSecondaryBranching,
         panicleExsertion: riceData.panicleExsertion,
         panicleShattering: riceData.panicleShattering,
-        searchIndex:`${riceData.accessionId} Shelf ${riceData.shelfNum} ${riceData.antherLength} ${riceData.antherColour} ${riceData.awnsPresenceWildSpecies} ${riceData.awnsDistributionCultivatedSpecies} ${riceData.awnsDistributionEarlyobs} ${riceData.awnLength} ${riceData.awnsThickness} ${ riceData.lemmaColourofApicusearlyobs} ${ riceData.lemmaAnthocyaninColourationofAreaBelowApiculusEarlyobs} ${riceData.lemmaandPaleaColourEarlyobs} ${riceData.maleSterility} ${ riceData.stigmaColour} ${riceData.panicleArrangementofPrimaryBranches} ${riceData.panicleNumberofBasalPrimaryBranches} ${riceData.panicleDistancefromBasetoLowestSpikeletInsertion} ${riceData.panicleTextureofMainAxis} ${riceData.panicleNumberPerPlant} ${riceData.panicleLength} ${riceData.panicleAttitudeofMainAxis} ${riceData.panicleAttitudeofBranches} ${riceData.panicleSecondaryBranching} ${riceData.panicleExsertion} ${riceData.panicleShattering} `,
+        searchIndex: `${riceData.accessionId} Shelf ${riceData.shelfNum} ${riceData.antherLength} ${riceData.antherColour} ${riceData.awnsPresenceWildSpecies} ${riceData.awnsDistributionCultivatedSpecies} ${riceData.awnsDistributionEarlyobs} ${riceData.awnLength} ${riceData.awnsThickness} ${riceData.lemmaColourofApicusearlyobs} ${riceData.lemmaAnthocyaninColourationofAreaBelowApiculusEarlyobs} ${riceData.lemmaandPaleaColourEarlyobs} ${riceData.maleSterility} ${riceData.stigmaColour} ${riceData.panicleArrangementofPrimaryBranches} ${riceData.panicleNumberofBasalPrimaryBranches} ${riceData.panicleDistancefromBasetoLowestSpikeletInsertion} ${riceData.panicleTextureofMainAxis} ${riceData.panicleNumberPerPlant} ${riceData.panicleLength} ${riceData.panicleAttitudeofMainAxis} ${riceData.panicleAttitudeofBranches} ${riceData.panicleSecondaryBranching} ${riceData.panicleExsertion} ${riceData.panicleShattering} `,
         timestamp: serverTimestamp(),
       };
       const gcColRef = doc(db, `/SPR/Rice_Seasons/Seasons/${season}/Stages/Grain_Characteristics/GC_Raw_Rice_Data`, `${riceData.accessionId}_${season}_${riceData.riceYear}`);
@@ -401,7 +401,7 @@ const message = 'Rice Data Successfully Added!'
         longerSterileLemmaLength: riceData.longerSterileLemmaLength,
         sterileLemmaShape: riceData.sterileLemmaShape,
         sterileLemmaColour: riceData.sterileLemmaColour,
-        searchIndex:`${riceData.accessionId} Shelf ${riceData.shelfNum} ${riceData.awnColour} ${ riceData.caryopsisLength} ${ riceData.caryopsisWidth} ${riceData.caryopsisShape} ${riceData.caryopsisPericarpColour} ${riceData.endorspermType} ${riceData.grainLength} ${riceData.grainWidth} ${riceData.grainThickness} ${riceData.grain100GrainWeight} ${ riceData.lemmaAnthocyaninColourationofKeel} ${ riceData.lemmaAnthocyaninColourationofAreaBelowApiculusLateobs} ${riceData.lemmaColourofApiculusLateobs} ${riceData.lemmaShapeofApiculus} ${riceData.lemmaandPaleaPubesence} ${riceData.lemmaandPaleaColourLateobs} ${riceData.panicleLengthLateobs} ${riceData.panicleThreshability} ${riceData.spikeletFertility} ${riceData.sterileLemmaLength} ${riceData.longerSterileLemmaLength} ${riceData.sterileLemmaShape} ${riceData.sterileLemmaShape} ${riceData.sterileLemmaColour} `,
+        searchIndex: `${riceData.accessionId} Shelf ${riceData.shelfNum} ${riceData.awnColour} ${riceData.caryopsisLength} ${riceData.caryopsisWidth} ${riceData.caryopsisShape} ${riceData.caryopsisPericarpColour} ${riceData.endorspermType} ${riceData.grainLength} ${riceData.grainWidth} ${riceData.grainThickness} ${riceData.grain100GrainWeight} ${riceData.lemmaAnthocyaninColourationofKeel} ${riceData.lemmaAnthocyaninColourationofAreaBelowApiculusLateobs} ${riceData.lemmaColourofApiculusLateobs} ${riceData.lemmaShapeofApiculus} ${riceData.lemmaandPaleaPubesence} ${riceData.lemmaandPaleaColourLateobs} ${riceData.panicleLengthLateobs} ${riceData.panicleThreshability} ${riceData.spikeletFertility} ${riceData.sterileLemmaLength} ${riceData.longerSterileLemmaLength} ${riceData.sterileLemmaShape} ${riceData.sterileLemmaShape} ${riceData.sterileLemmaColour} `,
         timestamp: serverTimestamp(),
       };
       const ycColRef = doc(db, `/SPR/Rice_Seasons/Seasons/${season}/Stages/Yield_Components/YC_Raw_Rice_Data/`, `${riceData.accessionId}_${season}_${riceData.riceYear}`);
@@ -418,7 +418,7 @@ const message = 'Rice Data Successfully Added!'
         cookedRiceAroma: riceData.cookedRiceAroma,
         grainAroma: riceData.grainAroma,
         leafAroma: riceData.leafAroma,
-        searchIndex:`${riceData.accessionId} Shelf ${riceData.shelfNum} ${riceData.cavans} ${riceData.kilogram} ${riceData.grainYield} ${riceData.tonHa} ${riceData.cookedRiceAroma} ${ riceData.grainAroma} ${riceData.leafAroma}`,
+        searchIndex: `${riceData.accessionId} Shelf ${riceData.shelfNum} ${riceData.cavans} ${riceData.kilogram} ${riceData.grainYield} ${riceData.tonHa} ${riceData.cookedRiceAroma} ${riceData.grainAroma} ${riceData.leafAroma}`,
         timestamp: serverTimestamp(),
       };
 
@@ -446,9 +446,9 @@ const message = 'Rice Data Successfully Added!'
         setIsModalOpen(false)
         setRiceData(initialState);
         setIsPromptOpen(true)
-			setTimeout(()=>{
-				setIsPromptOpen(false)
-			}, 3000)
+        setTimeout(() => {
+          setIsPromptOpen(false)
+        }, 3000)
       }
     } catch (error) {
       alert(error);
@@ -500,39 +500,39 @@ const message = 'Rice Data Successfully Added!'
 
 
 
-  
+
   // Passing of Filter Choices to Stages --------------->
   const years = [2018, 2019, 2020, 2021, 2022, 2023, 2024, 2025, 2026, 2027, 2028, 2030]
-  const [ activeStage, setActiveStage] = useState('Vegetative_Stage')
+  const [activeStage, setActiveStage] = useState('Vegetative_Stage')
   const [filterSeason, setFilterSeason] = useState('All')
   const [filterYear, setFilterYear] = useState('All')
 
-   // Change Seasons
-   const getSeasonFilter = (e) => {
-     setFilterSeason(e.target.value)
-     
-   }
+  // Change Seasons
+  const getSeasonFilter = (e) => {
+    setFilterSeason(e.target.value)
+
+  }
   //  Change YEar
-   const getYearFilter = (e) => {
-     setFilterYear(e.target.value)
-   }
+  const getYearFilter = (e) => {
+    setFilterYear(e.target.value)
+  }
 
   //  Search Input------------>
-    const [searchInput, setSearchInput] = useState('')
-    const handleSearchInput = (e) => {
-      setSearchInput(e.target.value)
-    }
+  const [searchInput, setSearchInput] = useState('')
+  const handleSearchInput = (e) => {
+    setSearchInput(e.target.value)
+  }
 
-    console.log(searchInput);
+  console.log(searchInput);
 
 
   return (
     <>
-    <div className="absolute top-0">
+      <div className="absolute top-0">
 
-    <ModalSuccess open={isPromptOpen} close={()=>{setIsPromptOpen(false)}} message={message}/>
-    </div>
-      <div className=' w-full hidden sm:flex flex-col rounded-xl  bg-white opacity-90 p-2'>
+        <ModalSuccess open={isPromptOpen} close={() => { setIsPromptOpen(false) }} message={message} />
+      </div>
+      <div className=' w-full flex flex-col rounded-xl  bg-white opacity-90 p-2'>
         {/* Header */}
         <header className="page-header   flex items-center">
           <button className=" w-8 h-8 p-2 rounded-full  bg-gradient-to-b from-sprPrimary to-sprPrimaryDarkest hover:bg-gradient-to-t hover:from-sprPrimaryLight hover:to-sprPrimaryLight drop-shadow-md" onClick={() => setIsModalOpen(true)}>
@@ -540,75 +540,76 @@ const message = 'Rice Data Successfully Added!'
           </button>
           <h1 className="text-3xl font-bold text-sprBlack opacity-80 pl-2">Agronomic Traits</h1>
         </header>
-      
+
         {/* Main */}
         {/* Filters */}
         <div className="bg-sprPrimaryLight ml-9 rounded-t-lg">
-           <div className="flex p-1  gap-2">
-         <div className="relative ">
-            <form onSubmit={(e)=>{e.preventDefault()}}>
-            <input
-                className=" pl-2  text-sm placeholder:text-sprPrimary/80 text-sprPrimary focus:border-none  rounded-full shadow-inner shadow-slate-200 focus:outline-none focus:ring-1 focus:ring-sprPrimary  "
-                type="text"
-                placeholder="Find a Rice"
-                value={searchInput}
-                onChange={handleSearchInput}
-                
-              />
-              <button className="  h-full px-1 rounded-full absolute right-0 bg-sprPrimary">
-                <SearchIcon className="stroke-white h-3" />
-              </button>
-            </form>
+          <div className="flex p-1  gap-2">
+            <div className="relative ">
+              <form onSubmit={(e) => { e.preventDefault() }}>
+                <input
+                  className=" pl-2  text-sm placeholder:text-sprPrimary/80 text-sprPrimary focus:border-none  rounded-full shadow-inner shadow-slate-200 focus:outline-none focus:ring-1 focus:ring-sprPrimary  "
+                  type="text"
+                  placeholder="Find a Rice"
+                  value={searchInput}
+                  onChange={handleSearchInput}
+
+                />
+                <button className="  h-full px-1 rounded-full absolute right-0 bg-sprPrimary">
+                  <SearchIcon className="stroke-white h-3" />
+                </button>
+              </form>
+            </div>
+            <div className=" flex" >
+              <div className="bg-sprPrimaryLight text-white  text-sm rounded-full pl-2 pr-10 flex items-center">
+                <p>Season</p>
+              </div>
+              <div className=" -ml-9">
+                <select value={filterSeason} name="riceSeason" onChange={getSeasonFilter} className="rounded-full  text-sprPrimary text-sm  focus:outline-none focus:ring-1 focus:ring-sprPrimary border border-white ">
+                  <option value="All">All</option>
+                  <option value="Dry_Season">Dry</option>
+                  <option value="Wet_Season">Wet</option>
+                </select>
+              </div>
+            </div>
+            <div className=" flex" >
+              <div className="bg-sprPrimaryLight text-white  text-sm rounded-full pl-2 pr-10 flex items-center">
+                <p>Year</p>
+              </div>
+              <div className=" -ml-9">
+                <select value={filterYear} name="riceSeason" onChange={getYearFilter} className="rounded-full  text-sprPrimary text-sm  focus:outline-none focus:ring-1 focus:ring-sprPrimary border border-white ">
+                  <option value="All">All</option>
+                  {
+                    years.map((e) =>
+                      <option value={e} >{e}</option>
+
+                    )
+                  }
+                </select>
+              </div>
+
+
+
+            </div>
           </div>
-        <div className=" flex" >
-        <div className="bg-sprPrimaryLight text-white  text-sm rounded-full pl-2 pr-10 flex items-center">
-          <p>Season</p>
-        </div>
-        <div className=" -ml-9">
-          <select value={filterSeason} name="riceSeason" onChange={getSeasonFilter}  className="rounded-full  text-sprPrimary text-sm  focus:outline-none focus:ring-1 focus:ring-sprPrimary border border-white ">
-            <option value="All">All</option>
-            <option value="Dry_Season">Dry</option>
-            <option value="Wet_Season">Wet</option>
-          </select>
-        </div>
-        </div>
-        <div className=" flex" >
-        <div className="bg-sprPrimaryLight text-white  text-sm rounded-full pl-2 pr-10 flex items-center">
-          <p>Year</p>
-        </div>
-        <div className=" -ml-9">
-          <select value={filterYear} name="riceSeason" onChange={getYearFilter}  className="rounded-full  text-sprPrimary text-sm  focus:outline-none focus:ring-1 focus:ring-sprPrimary border border-white ">
-            <option value="All">All</option>
-            {
-                                        years.map((e) =>
-                                            <option value={e} >{e}</option>
-
-                                        )
-                                    }
-          </select>
-        </div>
-
-
-
-        </div>
-      </div>
         </div>
         {/* Table */}
         <section className=" w-full flex flex-auto overflow-auto rounded-lg rounded-tl-lg rounded-t-none scrollbar   border  border-slate-200" >
           <div className="">
-            <RiceTables onChange={setPage} activeStage={setActiveStage}/>
+            <RiceTables onChange={setPage} activeStage={setActiveStage} />
           </div>
           <div className="  w-full max-h-full flex  flex-auto overflow-auto scrollbar">
-              {getPage()}
+            {getPage()}
           </div>
         </section>
         {/* Modal */}
         <ModalAddRiceData open={isModalOpen} onClose={() => setIsModalOpen(false)}>
-        <div className="absolute right-4 top-4 z-50 ">
-          <CloseIcon className='group-hover:stroke-white stroke-sprGray50 hover:stroke-sprGray80 active:stroke-sprPrimary h-5' onClick={()=>{setIsModalOpen(false)
-          setRiceData(initialState)
-          }}/>
-      </div>
+          <div className="absolute right-4 top-4 z-50 ">
+            <CloseIcon className='group-hover:stroke-white stroke-sprGray50 hover:stroke-sprGray80 active:stroke-sprPrimary h-5' onClick={() => {
+              setIsModalOpen(false)
+              setRiceData(initialState)
+            }} />
+          </div>
           <div className="flex ">
             <h1 className="page-header text-2xl font-bold">Add Rice Data</h1>
           </div>
@@ -623,20 +624,20 @@ const message = 'Rice Data Successfully Added!'
                 <div className="flex gap-1 ">
                   {/* Accession */}
                   <div className="drop-shadow-md flex" >
-                  <div className="bg-sprPrimaryLight sm:hidden lg:block text-white h-full text-sm  p-2 rounded-full pl-3 pr-10">Accession</div>
+                    <div className="bg-sprPrimaryLight sm:hidden lg:block text-white h-full text-sm  p-2 rounded-full pl-3 pr-10">Accession</div>
                     <div className="bg-sprPrimaryLight sm:block lg:hidden text-white h-full  p-2 rounded-full pl-3 pr-10">
-                      <RiceAccIcon className="stroke-white h-full "fill="none"/>
+                      <RiceAccIcon className="stroke-white h-full " fill="none" />
                     </div>
                     <div className=" -ml-9">
                       <select className="rounded-full py-2 text-sprPrimary text-sm focus:outline-none overflow-hidden focus:ring-2 focus:ring-sprPrimary" name="accessionId" id="" onChange={handleChange} required>
                         <option value='no choice'>CL-XXXX</option>
-                        {riceAccessions.map((rice) => 
-                          
-                            <option value={rice.accessionId}  >{`CL-R${rice.accessionId}`}</option>
-                            
-                          
+                        {riceAccessions.map((rice) =>
 
-                          )}
+                          <option value={rice.accessionId}  >{`CL-R${rice.accessionId}`}</option>
+
+
+
+                        )}
                       </select>
                     </div>
 
@@ -647,9 +648,9 @@ const message = 'Rice Data Successfully Added!'
                   <div className="drop-shadow-md flex" >
                     <div className="bg-sprPrimaryLight sm:hidden lg:block text-white h-full text-sm  p-2 rounded-full pl-3 pr-10">Season</div>
                     <div className="bg-sprPrimaryLight sm:block lg:hidden text-white h-full   p-2 rounded-full pl-3 pr-10">
-                      <SeasonIcon className="fill-white h-full"/>
+                      <SeasonIcon className="fill-white h-full" />
                     </div>
-                   
+
                     <div className=" -ml-9">
                       <select className="rounded-full py-2 text-sprPrimary text-sm focus:outline-none focus:ring-2 focus:ring-sprPrimary" value={riceData.riceSeason} name="riceSeason" onChange={handleChange}>
                         <option value="Dry">Dry</option>
@@ -662,9 +663,9 @@ const message = 'Rice Data Successfully Added!'
                   </div>
                   {/* Year */}
                   <div className="drop-shadow-md flex" >
-                  <div className="bg-sprPrimaryLight sm:hidden lg:block text-white h-full text-sm  p-2 rounded-full pl-3 pr-10">Year</div>
+                    <div className="bg-sprPrimaryLight sm:hidden lg:block text-white h-full text-sm  p-2 rounded-full pl-3 pr-10">Year</div>
                     <div className="bg-sprPrimaryLight sm:block lg:hidden text-white h-full p-2 rounded-full pl-3 pr-10">
-                      <CalendarIcon className="stroke-white h-full"/>
+                      <CalendarIcon className="stroke-white h-full" />
                     </div>
                     <div className=" -ml-9">
                       <select className="rounded-full py-2 text-sprPrimary text-sm focus:outline-none focus:ring-2 focus:ring-sprPrimary " value={riceData.riceYear} name="riceYear" onChange={handleChange}>
@@ -1184,8 +1185,8 @@ const message = 'Rice Data Successfully Added!'
                       <div className="flex flex-col bg-white px-6">
                         <div className="flex flex-col -space-y-1">
                           <label className="text-sprPrimary" htmlFor="" >Awn colour (late observation) </label></div>
-                        <input className="rounded-full px-1 py-px border border-sprInactiveGray focus:border-none focus:outline-none focus:ring-2 focus:ring-sprPrimary" type="text" name="awnColour" value={riceData.awnColour} onChange={handleChange} /></div>  
-                        {/* input above is awn colour (late obseration) not just awn colour*/}
+                        <input className="rounded-full px-1 py-px border border-sprInactiveGray focus:border-none focus:outline-none focus:ring-2 focus:ring-sprPrimary" type="text" name="awnColour" value={riceData.awnColour} onChange={handleChange} /></div>
+                      {/* input above is awn colour (late obseration) not just awn colour*/}
                     </div>
 
 
@@ -1395,7 +1396,7 @@ const message = 'Rice Data Successfully Added!'
                   className="bg-sprGray30 rounded-full py-2 px-3 font-medium text-sm text-white drop-shadow-2xl shadow-slate-300"
                   onClick={() => {
                     setIsModalOpen(false);
-          setRiceData(initialState)
+                    setRiceData(initialState)
 
                   }}
                 >
